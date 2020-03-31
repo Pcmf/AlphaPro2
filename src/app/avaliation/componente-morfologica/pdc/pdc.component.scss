@@ -1,10 +1,8 @@
 .container{
-    position: relative;
-    width: 100vw;
-    height: 94vh;
-
-    overflow: auto;
-
+  position: relative;
+  width: 98vw;
+  height: 94vh;
+  margin: auto;
 
 .headers{
     margin-top:15px;
@@ -17,10 +15,11 @@
 .section{
   //  background-color: lightblue;
     position: absolute;
-    width: 100%;
+    width: 98%;
     padding: 10px;
-    height: 75vh;
+    height: 75%;
     bottom: 8%;
+    overflow: auto;
 
     table{
       width: 100%;

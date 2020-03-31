@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AgeService } from 'src/app/services/age.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-slaugther',
@@ -19,24 +20,40 @@ export class SlaugtherComponent implements OnInit {
   student: any = [];
   id: number;
 
+  // graphics
+  single: any[];
+  view: any[] = [300, 300];
+
+  // options
+  gradient = true;
+  showLegend = false;
+  showLabels = true;
+  isDoughnut = false;
+  legendPosition = '';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
   constructor(private location: Location, private dataService: DataService,
               private actRoute: ActivatedRoute,
               private datapipe: DatePipe,
               private snackBar: MatSnackBar,
               private ageService: AgeService
-               ) {
+  ) {
 
-      this.id = this.actRoute.snapshot.params.id;
-      this.dataService.getData('clients/' + this.id).subscribe(
-        resp => {
-          this.student = resp[0];
-          const age = this.ageService.getAge(resp[0].dt_nasc);
-          if ( age > 16 ) {
-            this.openSnackBar('Atenção: Este protocolo não deve ser usado neste aluno!', '');
-          }
+    this.id = this.actRoute.snapshot.params.id;
+    this.dataService.getData('clients/' + this.id).subscribe(
+      resp => {
+        this.student = resp[0];
+        const age = this.ageService.getAge(resp[0].dt_nasc);
+        if (age > 16) {
+          this.openSnackBar('Atenção: Este protocolo não deve ser usado neste aluno!', '');
         }
-      );
-      this.getData();
+
+      }
+    );
+    this.getData();
   }
 
   getData() {
@@ -46,13 +63,28 @@ export class SlaugtherComponent implements OnInit {
           this.maxPointer = resp.length;
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
+          const single = [{ name: 'Triciptal', value: this.evaluation[this.pointer].triciptal },
+                          { name: 'Geminal', value: this.evaluation[this.pointer].geminal }];
+          Object.assign(this, { single });
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
     );
-   }
+  }
+
+  onSelect(data): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
 
   ngOnInit(): void {
   }
@@ -73,7 +105,7 @@ export class SlaugtherComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.addEval = true;
   }
 

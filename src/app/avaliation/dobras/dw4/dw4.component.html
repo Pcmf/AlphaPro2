@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="header">
+        <h3>Durnin @ Womersley (1974)</h3>
+    </div> 
+    <div class="section">
+     <form #f="ngForm" (submit)="save(f.value)">
+         <table>
+             <thead>
+                 <tr>
+                     <th>&nbsp;</th>
+                     <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data}}</th>
+                     <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data}}</th>
+                     <th class="th-top" *ngIf="addEval">
+                         <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                             style="width: 110px;">
+                     </th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <th><span>Triciptal</span></th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                     <td *ngIf="addEval">
+                         <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                              type="number" step="0.1">
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>Subescapular</th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                     <td *ngIf="addEval">
+                         <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                             type="number" step="0.1">
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>Biciptal</th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].biciptal}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].biciptal}}</td>
+                     <td *ngIf="addEval">
+                         <input name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"
+                             type="number" step="0.1">
+                     </td>
+                 </tr>
+                 <tr>
+                    <th>Supailiaca</th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xsupailiaca}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].c_xsupailiaca}}</td>
+                    <td *ngIf="addEval">
+                        <input name="c_xsupailiaca" #c_xsupailiaca="ngModel" [(ngModel)]="newEvaluation.c_xsupailiaca"
+                            type="number" step="0.1">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Média</th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xmed}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].c_xmedia}}</td>
+                    <td *ngIf="addEval">
+                        <input name="c_xmedia" #c_xmedia="ngModel" [(ngModel)]="newEvaluation.c_xmedia"
+                            type="number" step="0.1">
+                    </td>
+                </tr>
+                 <tr>
+                     <th>Somatório</th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xtot}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].c_xtot}}</td>
+                     <td *ngIf="addEval">
+                         <input name="c_xtot" #c_xtot="ngModel" [(ngModel)]="newEvaluation.c_xtot"
+                             type="number" step="0.1">
+                     </td>
+                 </tr>
+                </tbody>
+         </table>
+ 
+         <div class="action">
+             <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                 (click)="pointer=pointer-1">
+                 <mat-icon class="mat-14">chevron_left</mat-icon>
+             </button>
+             <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                 <mat-icon class="mat-18">add</mat-icon>
+             </button>
+             <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
+                 color="default" (click)="pointer=pointer+1">
+                 <mat-icon class="mat-14">chevron_right</mat-icon>
+             </button>
+             <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                 <mat-icon class="mat-18">close</mat-icon>
+             </button>
+             <button *ngIf="addEval" mat-fab>
+                 <mat-icon class="mat-18">check</mat-icon>
+             </button>
+         </div>
+     </form>
+ 
+ </div>
+ 
+ <div class="footer">
+ <a mat-mini-fab color="primary" (click)="goBack()">
+ <mat-icon>undo</mat-icon>
+ </a>
+ </div>
+ </div>
+ 
+

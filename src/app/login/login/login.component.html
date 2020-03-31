@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="login-form">
+      <form class="center-form panel" #f="ngForm" (submit)="submit(f.value)">
+        <h2 class="title">ALPHA PRO</h2>
+  
+        <mat-form-field class="center-full-width">
+          <input i18n="Utilizador | utilizador login" matInput placeholder="Utilizador" #user ngModel name="username" value="" required>
+        </mat-form-field>
+  
+        <mat-form-field class="center-full-width">
+          <input i18n="Senha | placeholder" matInput type="password" #pass ngModel placeholder="Senha" name="password" required minlength="3">
+        </mat-form-field>
+        <mat-error *ngIf="!f.valid && user.touched && pass.touched">
+          <small i18n="Erro Login">Campos obrigatórios</small>
+        </mat-error>
+        <mat-error *ngIf="erro">
+          <small i18n="Erro Login">Verifique utilizador e senha!</small>
+        </mat-error>
+        <button i18n="Botão entrar" [disabled]="!f.valid" mat-stroked-button type="submit" color="primary">Entrar</button>
+      </form>
+    </div>
+  
+  </div>

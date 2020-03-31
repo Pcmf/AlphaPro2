@@ -1,0 +1,112 @@
+{
+  "configVersion": 1,
+  "timestamp": 1585407392914,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-es2015.60b17200fd0cea8f3ef6.js",
+        "/main-es5.60b17200fd0cea8f3ef6.js",
+        "/manifest.webmanifest",
+        "/polyfills-es2015.7b7892a190f840b83b57.js",
+        "/polyfills-es5.ec5f24459b4f51c9eaaf.js",
+        "/runtime-es2015.0811dcefd377500b5b1a.js",
+        "/runtime-es5.0811dcefd377500b5b1a.js",
+        "/styles.18eab9fe146c6eeac3b2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/icons/icon-128-128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/img/alexander-redl-d3bYmnZ0ank-unsplash.jpg",
+        "/assets/img/guillaume-bolduc-hdBaq9W0hRY-unsplash.jpg",
+        "/assets/img/john-fornander-UbSBhuMuVVE-unsplash.jpg",
+        "/assets/img/luke-chesser-rCOWMC8qf8A-unsplash.jpg",
+        "/assets/img/measurement-1698856.jpg",
+        "/assets/img/meghan-holmes-wy_L8W0zcpI-unsplash.jpg",
+        "/assets/img/samuel-girven-VJ2s0c20qCo-unsplash.jpg",
+        "/assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg",
+        "/assets/img/trust-tru-katsande-Pu7BOaYlYGY-unsplash.jpg",
+        "/assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg",
+        "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg",
+        "/assets/videos/BANCO.mp4",
+        "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg",
+        "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg",
+        "/trust-tru-katsande-Pu7BOaYlYGY-unsplash.670b4fbe9582867878df.jpg",
+        "/tyler-nix-Y1drF0Y3Oe0-unsplash.42efff6aaac0c0f9450f.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/icons/icon-128-128.png": "4d52c4a23d975eef9fa3e0b9aeca5d30a5b76710",
+    "/assets/icons/icon-144x144.png": "83ee3131dff69d581c852392bd0876f346a62da8",
+    "/assets/icons/icon-152x152.png": "afb681de8dc18d8a42240b1d3be9eb27c023d530",
+    "/assets/icons/icon-192x192.png": "fa4aa6a50679c1dabefd699af089f9c4bbc46b00",
+    "/assets/icons/icon-384x384.png": "fa4aa6a50679c1dabefd699af089f9c4bbc46b00",
+    "/assets/icons/icon-512x512.png": "fa4aa6a50679c1dabefd699af089f9c4bbc46b00",
+    "/assets/icons/icon-72x72.png": "f873b0c39bd2545f7dc1ea83190f2d3a07e075d1",
+    "/assets/icons/icon-96x96.png": "db8db9f01a1cc981c1af876714b309f01250902f",
+    "/assets/img/alexander-redl-d3bYmnZ0ank-unsplash.jpg": "6fcc311d33cb47772edb7d496d5e12a11ce792c6",
+    "/assets/img/guillaume-bolduc-hdBaq9W0hRY-unsplash.jpg": "242156c39558627faa14e2540a86e06ed47da71d",
+    "/assets/img/john-fornander-UbSBhuMuVVE-unsplash.jpg": "69ed871fdc73847c39031a2314882bb22df4392c",
+    "/assets/img/luke-chesser-rCOWMC8qf8A-unsplash.jpg": "f92b028b707e23cc0f721a67b46aad44b0a82607",
+    "/assets/img/measurement-1698856.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
+    "/assets/img/meghan-holmes-wy_L8W0zcpI-unsplash.jpg": "ddc49b1269963438324fe33e589efafd2ad2751a",
+    "/assets/img/samuel-girven-VJ2s0c20qCo-unsplash.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
+    "/assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
+    "/assets/img/trust-tru-katsande-Pu7BOaYlYGY-unsplash.jpg": "bca4b39b98acb9990c32bab78ffc05efd8977e08",
+    "/assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb",
+    "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg": "9d79be69b823d9fa6ddfb7931d7b2422aa0e976f",
+    "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
+    "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
+    "/index.html": "995e99445c1682c313b9e87ebff9d92d354e716d",
+    "/main-es2015.60b17200fd0cea8f3ef6.js": "452689c93545ecdf9180fb504193299423dcfcf1",
+    "/main-es5.60b17200fd0cea8f3ef6.js": "ce8502181ffbca42217b1a1660710e71a50eb270",
+    "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
+    "/polyfills-es2015.7b7892a190f840b83b57.js": "18cdd59332ca4958b599b881779911133e5bc7a8",
+    "/polyfills-es5.ec5f24459b4f51c9eaaf.js": "6ea2387db7039d26a790a7fcc38b7bec91f62dd6",
+    "/runtime-es2015.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
+    "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
+    "/styles.18eab9fe146c6eeac3b2.css": "9cf20e3bb733ef0551c17cf735a8138f33c51c25",
+    "/trust-tru-katsande-Pu7BOaYlYGY-unsplash.670b4fbe9582867878df.jpg": "bca4b39b98acb9990c32bab78ffc05efd8977e08",
+    "/tyler-nix-Y1drF0Y3Oe0-unsplash.42efff6aaac0c0f9450f.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

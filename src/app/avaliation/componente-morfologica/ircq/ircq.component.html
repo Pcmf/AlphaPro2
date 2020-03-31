@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="headers">
+        <h2 i18n>Indice de Relação Cintura/Quadril</h2>
+    </div>
+
+    <div class="section">
+                <form #f="ngForm" (submit)="save(f.value)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="dt_avaliacao" #dt_avaliacao="ngModel" [(ngModel)]="newEvaluation.dt_avaliacao" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th i18n>Cintura <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cintura}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura"
+                                         type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Quadril <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadril}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadril}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril"
+                                        type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>IRCQ</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ircq}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ircq}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ircq" #ircq="ngModel" [(ngModel)]="newEvaluation.ircq"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Classificação</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].classe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].classe}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text">
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+
+
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>
+
+
+

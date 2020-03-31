@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="header">
+        <h3 i18n="Title">Componente Cardiopulmunar</h3>
+        <h4 i18n>Teste de Bicicleta</h4>
+    </div>
+    
+
+    <div class="main">
+
+                <mat-card>
+                    <mat-card-header [routerLink]="['/astryh/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">Astrand-Ryhming (1954) - 6min</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/balke/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">Balke e Ware (1954) - feminino</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/ymca/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">YMCA - Golding, Myers & Sinning (1989) - masculino</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+
+    </div>
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>
+
+

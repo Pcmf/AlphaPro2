@@ -1,0 +1,93 @@
+.container{
+    position: relative;
+ /*    background-image: url("../../../assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-size: cover;
+    background-position: center; 
+    background-color:  rgba(247, 238, 238, 0.704);*/
+    height: 94vh;
+    overflow: auto;
+  }
+
+  .header{
+      margin-top: 30px;;
+      width: 100%;
+      text-align: center;
+      color: rgb(35, 35, 185);
+  }
+
+  .main{
+      width: 90%;
+      height: 70%;
+      position: absolute;
+      bottom: 8%;
+      display: flex;
+      flex-direction: column-reverse;
+      left: 50%;
+      overflow: auto;
+      transform: translate(-50%,0);
+
+      mat-expansion-panel{
+        background-color: rgba(247, 248, 238, 0.704);
+        border-radius: 4px;
+      }
+      
+      mat-expansion-panel-body {
+        padding: 0;
+      }
+
+    .mat-card{
+        height: 30px;
+      //  background-color: rgba(14, 13, 13, 0.904);
+        margin-bottom: 1px;
+
+        
+    }
+
+  }
+
+  table{
+    width: 100%;
+  }
+  th, td{
+    height: 28px;
+   // background-color: blanchedalmond;
+    border-bottom: 1px #999 solid;
+    text-align: center;
+  }
+  th{
+      font-weight: 500 !important;
+      text-align: left;
+      padding-left: 5px;
+  }
+  .th-top{
+      text-align: center;
+  }
+  td>input{
+    width: 60px;
+  }
+
+  .action{
+      width: 260px;
+      margin: auto;
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-around;
+
+  }
+
+  .sub-line{
+      font-weight: 500;
+      color: blue;
+  }
+
+
+.footer{
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+  

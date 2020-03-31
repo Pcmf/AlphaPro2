@@ -1,0 +1,486 @@
+<div class="container">
+    <div class="header">
+        <h2>Goniómetro</h2>
+        <h3>Angulos Articulares</h3>
+    </div>
+
+    <div class="main">
+        <mat-accordion>
+            <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n="Title | area de avaliação">
+                        Membros Superiores
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form #f="ngForm" (submit)="save(f.value)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Ombro</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrof}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombrof}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroe}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombroe" #ombroe="ngModel" [(ngModel)]="newEvaluation.ombroe" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Adução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroad}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroad}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Abdução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroab}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroab}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação Medial</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombromedial" #ombromedial="ngModel" [(ngModel)]="newEvaluation.ombromedial" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação Lateral</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrolateral}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombrolateral}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="ombrolateral" #ombrolateral="ngModel" [(ngModel)]="newEvaluation.ombrolateral" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Cotovelo</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extenção</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                                    
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Radioulnar</span></th>
+                            </tr>
+                            <tr>
+                                <th>Pronação</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].radioulnarp}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].radioulnarp}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="radioulnarp" #radioulnarp="ngModel" [(ngModel)]="newEvaluation.radioulnarp" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supinação</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].radioulnars}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].radioulnars}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="radioulnars" #radioulnars="ngModel" [(ngModel)]="newEvaluation.radioulnars" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+         
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Punho</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Adução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoad}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoad}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="punhoad" #punhoad="ngModel" [(ngModel)]="newEvaluation.punhoad" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Abdução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoab}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoab}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="punhoab" #punhoab="ngModel" [(ngModel)]="newEvaluation.punhoab" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+                
+            </mat-expansion-panel>
+
+            <mat-expansion-panel >
+                <mat-expansion-panel-header (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-panel-title i18n="Title">
+                        Membros Inferiores
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form #f="ngForm" (submit)="save(f.value)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Quadril</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrile}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrile}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Adução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Abdução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilab}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilab}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação Medial</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilmedial}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilmedial}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrilmedial" #quadrilmedial="ngModel" [(ngModel)]="newEvaluation.quadrilmedial" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação Lateral</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrillateral}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrillateral}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="quadrillateral" #quadrillateral="ngModel" [(ngModel)]="newEvaluation.quadrillateral" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Joelho</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                                    
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Tornozelo</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão Dorsal</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelod}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="tornozelod" #tornozelod="ngModel" [(ngModel)]="newEvaluation.tornozelod" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Flexão Plantar</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelop}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelop}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="tornozelop" #tornozelop="ngModel" [(ngModel)]="newEvaluation.tornozelop" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Adução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozeload}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeload}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="tornozeload" #tornozeload="ngModel" [(ngModel)]="newEvaluation.tornozeload" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Abdução</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozeloab}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeloab}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="tornozeloab" #tornozeloab="ngModel" [(ngModel)]="newEvaluation.tornozeloab" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n="Title">
+                        Coluna Vertebral
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form #f="ngForm" (submit)="save(f.value)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Cervical</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalf}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalf}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cervicalf" #cervicalf="ngModel" [(ngModel)]="newEvaluation.cervicalf" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Flexão Lateral</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+
+                            <tr class="sub-line">
+                                <th [attr.colspan]="pointer+2"><span>Lombar</span></th>
+                            </tr>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombare}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombare}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Flexão Lateral</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rotação</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+                
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+    <div class="footer">
+        <button mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </button>
+    </div>
+</div>
+

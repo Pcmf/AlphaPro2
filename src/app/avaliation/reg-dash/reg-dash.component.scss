@@ -1,0 +1,71 @@
+.container-fluid{
+    position: relative;
+    background-image: url("../../../assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(180, 177, 177, 0.308);
+    height: 94vh;
+    overflow: auto;
+  }
+
+  .header{
+      margin-top: 30px;;
+      width: 100%;
+      text-align: center;
+      color: white;
+  }
+
+  .main{
+      width: 90%;
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translate(-50%,0);
+
+      mat-expansion-panel{
+        background-color: rgba(247, 238, 238, 0.704);
+        border-radius: 4px;
+      }
+      .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
+        //  background-color: rgba(51, 48, 48, 0.486);
+      }
+      mat-expansion-panel-header {
+       // background-color: rgba(51, 48, 48, 0.486);      
+      }
+      
+      mat-expansion-panel-body {
+        padding: 0;
+      }
+
+      mat-expansion-panel-content{
+      //  background-color: rgba(51, 48, 48, 0.904);
+      }
+
+
+
+      mat-panel-title{
+       // color: white;
+    }
+    .mat-card{
+        height: 30px;
+        // background-color: rgba(14, 13, 13, 0.904);
+        margin-bottom: 1px;
+        .mat-card-subtitle{
+         //  color: white; 
+        }
+        
+    }
+
+  }
+
+  .footer{
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+  }
+    
+  

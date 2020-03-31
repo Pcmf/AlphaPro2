@@ -1,0 +1,158 @@
+<div class="container">
+    <div class="headers">
+        <h2 i18n>Soma Tipo</h2>
+    </div>
+
+    <div class="section">
+                <form #f="ngForm" (submit)="save(f.value)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="dt_avaliacao" #dt_avaliacao="ngModel" [(ngModel)]="newEvaluation.dt_avaliacao" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th i18n>Altura <small>(m)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura"
+                                         type="number" step="0.1" placeholder="metros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Peso <small>(Kg)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].peso}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso"
+                                        type="number" step="0.1" placeholder="kilos">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n class="sub-line">Diâmetros</th>
+                            </tr>
+                            <tr>
+                                <th i18n>Joelho <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelho}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelho}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho"
+                                        type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Cotovelo <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelo}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelo}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newEvaluation.cotovelo"
+                                    type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th i18n class="sub-line">Dobras Cutâneas</th>
+                            </tr>
+                            <tr>
+                                <th i18n>Tríceps <small>(mm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].triceps}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].triceps}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="triceps" #triceps="ngModel" [(ngModel)]="newEvaluation.triceps"
+                                        type="number" step="0.1" placeholder="milimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Subescapular <small>(mm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                                    type="number" step="0.1" placeholder="milimetros">
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th i18n>Geminal <small>(mm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].geminal}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal"
+                                        type="number" step="0.1" placeholder="milimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Suprailiaca <small>(mm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
+                                    type="number" step="0.1" placeholder="milimetros">
+                                </td>
+                            </tr>   
+                            
+                            <tr>
+                                <th i18n class="sub-line">Perimetros</th>
+                            </tr>
+                            <tr>
+                                <th i18n>Braço contraido <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].braco}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].braco}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="braco" #braco="ngModel" [(ngModel)]="newEvaluation.braco"
+                                        type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Perna <small>(cm)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].perna}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].perna}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="perna" #perna="ngModel" [(ngModel)]="newEvaluation.perna"
+                                    type="number" step="0.1" placeholder="centimetros">
+                                </td>
+                            </tr>                          
+                        </tbody>
+                    </table>
+
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+
+
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>
+
+
+
+

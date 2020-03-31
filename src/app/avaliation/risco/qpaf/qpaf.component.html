@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="header">
+        <h1 i18n>Questionário de Prontidão para a Actividade Fisica (PAR-Q)</h1>
+    </div>
+
+    <div class="section">
+        <form #f="ngForm" (submit)="save(f.value)">
+            <mat-list>
+                <mat-list-item>
+                    <p i18n>1) Seu médico já he disse que você é portador de um problema cardiaco e o que somente deve fazer?</p>
+                    <mat-radio-group aria-label="Select an option" #parq1="ngModel" name="parq1" [(ngModel)]="student.parq1">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>2) Você sente dor no peito quando realiza uma actividade física?</p>
+                    <mat-radio-group aria-label="Select an option" #parq2="ngModel" name="parq2" [(ngModel)]="student.parq2">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>3) No último mês, você teve dor no peito quando não estava realizando uma actividade física?</p>
+                    <mat-radio-group aria-label="Select an option" #parq3="ngModel" name="parq3" [(ngModel)]="student.parq3">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>4) Você perdeu o equilíbrio em virtude de uma tontura ou já perdeu a consciência?
+                    </p>
+                    <mat-radio-group aria-label="Select an option" #parq4="ngModel" name="parq4" [(ngModel)]="student.parq4">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>5) Você sofre de algum problema ósseo ou articular que poderia ser agravado por uma mudança 
+                        em sua actividade física?</p>
+                    <mat-radio-group aria-label="Select an option" #parq5="ngModel" name="parq5" [(ngModel)]="student.parq5">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>6) Seu médico está lhe receitando actualmente medicamentos (por exemplo, diurécticos) para a 
+                        Pressão arterial ou algum problema cardíaco?</p>
+                    <mat-radio-group aria-label="Select an option" #parq6="ngModel" name="parq6" [(ngModel)]="student.parq6">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <p i18n>7) Você está a par de alguma outra razão pela qual não deveria realizar uma actividade física?</p>
+                    <mat-radio-group aria-label="Select an option" #parq7="ngModel" name="parq7" [(ngModel)]="student.parq7">
+                        <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                        <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                    </mat-radio-group>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <em i18n>Fonte: Sociadade Canadense de Fisiologia do Exercicio, in ACSM (2003)</em>
+                    <div class="action">
+                       <button mat-mini-fab><mat-icon>check</mat-icon></button> 
+                    </div>
+                    
+                </mat-list-item>
+            </mat-list>
+        </form>
+    </div>
+    <div class="footer">
+        <button mat-mini-fab color="primary" (click)="goBack()">
+          <mat-icon>undo</mat-icon>
+        </button>
+        
+      </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header">
+        <h3 i18n="Title">Componente Cardiopulmunar</h3>
+        <h4 i18n>Teste de Caminhada</h4>
+    </div>
+    
+
+    <div class="main">
+
+                <mat-card>
+                    <mat-card-header [routerLink]="['/rock/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">Rockport (1987) - 1609m</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/ukk/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">Instituto UKK Finlândia<br/>Kukkonen-Harjula et Al, 1998 -2000m</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/cureton/', studentId]">
+                        <mat-card-subtitle i18n="Subtitle">Cureton et Al, (1954) - 1609m</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+
+    </div>
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>

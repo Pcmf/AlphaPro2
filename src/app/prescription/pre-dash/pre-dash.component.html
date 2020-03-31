@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="header">
+        <h1>Prescrições de Exercicios</h1>
+        <h2>{{selectedStudent.NOME}}</h2>
+    </div>
+
+    <div class="main">
+        <mat-accordion>
+            <mat-expansion-panel class="accordion">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        FORÇA
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Quadro geral de Orientação</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Prescrição</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        FLEXIBILIDADE
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Quadro geral de Orientação</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        AERÓBICO
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Quadro geral de Orientação</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Registo / Controle de Treino</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Histórico de Treinos</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        PROPOSTA DE PRESCRIÇÃO PARA AULA EM GRUPO
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Proposta de Prescrição para Aula em Grupo</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        QUADROS INDIVIDUAIS DE ORIENTAÇÃO
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle>Quadros Individuais de Orientação</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+
+
+        </mat-accordion>
+
+    </div>
+    <div class="footer">
+        <a mat-mini-fab color="primary" routerLink="/dash">
+            <mat-icon>home</mat-icon>
+        </a>
+    </div>
+</div>

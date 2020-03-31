@@ -1,0 +1,42 @@
+.container-fluid{
+    position: relative;
+    background-image: url("../../../assets/img/samuel-girven-VJ2s0c20qCo-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+
+  .login-form{
+    width: 200px;
+    height: 190px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba($color: whitesmoke, $alpha: .60);
+    color: black;
+    border-radius: 10%;
+  }
+  
+  .center-form {
+    margin-top: -4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-width: 100px;
+      max-width: 200px;
+      width: 100%;
+      padding-top: 5%;
+    }
+    
+    .center-full-width {
+      margin-top: -17px;
+      width: 80%;
+    }
+    
+    .mat-display-1{
+      margin: 0 0 10px;
+    }

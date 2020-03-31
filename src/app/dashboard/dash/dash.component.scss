@@ -1,0 +1,54 @@
+.container-fluid{
+    position: relative;
+    background-image: url("../../../assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg");
+/*     background-repeat: no-repeat;
+    background-blend-mode: normal; */
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+  }
+
+  .dash-form{
+    width: 96%;
+    height: 230px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, 0);
+    background-color: rgba($color: whitesmoke, $alpha: .50);
+    color: black;
+    font-size: small;
+    border-radius: 10%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .mat-form-field{
+      font-size: small;
+      width: 300px;
+    }
+  }
+
+  .dash-buttons-action{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+    .dash-buttons-action_block{
+      width: 56px;
+      text-align: center;
+
+      label{
+        font-size: x-small;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .dash-button-new{
+    width: 100%;
+    a{
+      margin-left: 75%;
+    }
+  }

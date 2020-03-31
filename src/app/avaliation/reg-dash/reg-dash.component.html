@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="header">
+<!--         <h1>Dados do Aluno</h1>
+        <h2>{{selectedStudent.NOME}}</h2> -->
+    </div>
+
+
+    <div class="main">
+        <mat-accordion>
+            <mat-expansion-panel class="accordion">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        ESTRATIFICAÇÃO DE RISCO
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card>
+                    <mat-card-header [routerLink]="['/qpaf/', studentId]">
+                        <mat-card-subtitle>Questionário de prontidão para a actividade fisica (PAR-Q)
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/rdc/', studentId]">
+                        <mat-card-subtitle>Risco de desnvolvimento de cardiopatia</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/rddc/', studentId]">
+                        <mat-card-subtitle>Risco de desnvolvimento de dor na coluna</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        ANAMNESE GERAL
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/anamn/', studentId]">
+                        <mat-card-subtitle>Anamnese</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>
+                        REGISTO
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/new/', studentId]">
+                        <mat-card-subtitle i18n>Registo</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header [routerLink]="['/eval/', studentId]">
+                        <mat-card-subtitle i18n>Avaliação</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" routerLink="/dash">
+            <mat-icon>home</mat-icon>
+        </a>
+    </div>
+</div>

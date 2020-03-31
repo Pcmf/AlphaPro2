@@ -1,0 +1,35 @@
+.menu-icon {
+    padding: 0 14px;
+  }
+  
+  .menu-spacer {
+    flex: 1 1 auto;
+  }
+  .menu-username{
+    font-size: x-small;
+  }
+
+  a { 
+    color: whitesmoke;
+    text-decoration: none;
+    
+    .menu-icon{
+      margin-top: 10px;
+    }
+  }
+  a:hover { 
+    color:whitesmoke; 
+    text-decoration: none;
+    
+    .menu-icon{
+      margin-top: 10px;
+    }
+  }
+  a:visited { 
+    color: whitesmoke;
+    text-decoration: none;
+    
+    .menu-icon{
+      margin-top: 10px;
+    }
+  }

@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <span><a routerLink="/dash">ALPHA PRO</a></span>
+    <span class="menu-spacer"></span>
+    <span class="menu-username" *ngIf="selectedStudent.id"><a routerLink="/new/{{selectedStudent.id}}">{{selectedStudent.nome}}</a></span>
+    <a [routerLink]="['/menuDash/']">
+        <mat-icon class="menu-icon" aria-hidden="false" aria-label="menu">menu</mat-icon>
+    </a>
+    <mat-icon class="menu-icon" aria-hidden="false" aria-label="log out" (click)="logout()">power_settings_new</mat-icon>
+</mat-toolbar>

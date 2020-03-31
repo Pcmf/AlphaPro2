@@ -1,0 +1,313 @@
+<div class="container">
+    <div class="headers">
+        <h2 i18n>Perimetros e Diâmetros Corporais</h2>
+    </div>
+
+    <div class="section">
+        <mat-tab-group [disableRipple]="false">
+            <mat-tab  i18n label="Perímetros">
+                <form #fp="ngForm" (submit)="savePerimetros(fp)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                                <th class="th-top" *ngIf="addPerim">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newPerimetros.data" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><span>Tórax</span></th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].torax}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].torax}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="torax" #torax="ngModel" [(ngModel)]="newPerimetros.torax"
+                                         type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Cintura</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].cintura}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].cintura}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="cintura" #cintura="ngModel" [(ngModel)]="newPerimetros.cintura"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Abdómen</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].abdomen}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].abdomen}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newPerimetros.abdomen"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Quadril</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].quadril}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].quadril}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="quadril" #quadril="ngModel" [(ngModel)]="newPerimetros.quadril"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Braço Drt</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracod}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].bracod}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="bracod" #bracod="ngModel" [(ngModel)]="newPerimetros.bracod"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Braço Esq</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoe}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].bracoe}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="bracoe" #bracoe="ngModel" [(ngModel)]="newPerimetros.bracoe"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Antebraço Drt</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracod}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].antebracod}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="antebracod" #antebracod="ngModel"
+                                        [(ngModel)]="newPerimetros.antebracod" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Antebraço Esq</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracoe}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].antebracoe}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="antebracoe" #antebracoe="ngModel"
+                                        [(ngModel)]="newPerimetros.antebracoe" type="number"
+                                        step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Coxa Drt</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxad}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].coxad}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="coxad" #coxad="ngModel" [(ngModel)]="newPerimetros.coxad"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Coxa Esq</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxae}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].coxae}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="coxae" #coxae="ngModel" [(ngModel)]="newPerimetros.coxae"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Perna Drt</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].pernad}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].pernad}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="pernad" #pernad="ngModel" [(ngModel)]="newPerimetros.pernad"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Perna Esq</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].pernae}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].pernae}}</td>
+                                <td *ngIf="addPerim">
+                                    <input name="pernae" #pernae="ngModel" [(ngModel)]="newPerimetros.pernae"
+                                        type="number" step="0.1">
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="action">
+                        <button type="button" *ngIf="!addPerim" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addPerim" mat-fab (click)="addPerimetros()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addPerim" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addPerim" mat-fab color="default" (click)="closeInputPerimetros()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addPerim" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab i18n label="Diâmetros">
+                <form #fd="ngForm" (submit)="saveDiametros(fd)">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                                <th class="th-top" *ngIf="addDiam">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newDiametros.data" type="date" style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Radio-ulnar<br /> (Punho)</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].punho}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].punho}}</td>
+                                <td *ngIf="addDiam">
+                                    <input name="punho" #punho="ngModel" [(ngModel)]="newDiametros.punho" type="number" step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Bi-epicôndilo Umeral<br /> (Cotovelo)</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].cotovelo}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].cotovelo}}</td>
+                                <td *ngIf="addDiam">
+                                    <input name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newDiametros.cotovelo" type="number" step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Bi-côndilo Fermural<br /> (Joelho)</th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].joelho}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].joelho}}</td>
+                                <td *ngIf="addDiam">
+                                    <input name="joelho" #joelho="ngModel" [(ngModel)]="newDiametros.joelho" type="number" step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="action">
+                        <button type="button" *ngIf="!addDiam" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addDiam" mat-fab (click)="addDiametros()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addDiam" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addDiam" mat-fab color="default" (click)="closeInputDiametros()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addDiam" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-tab>
+            <!-- Mais Perimetros Corporais -->
+            <mat-tab i18n label="Outros Perimetros">
+                <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
+                            <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                            <th class="th-top" *ngIf="addOutros">
+                                <input name="data" #data="ngModel" [(ngModel)]="newOutros.data" type="date" style="width: 110px;">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Coxa<br/> Inferior Drt</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaid}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].coxaid}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="coxaid" #coxaid="ngModel" [(ngModel)]="newOutros.coxaid" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Coxa<br/> Inferior Esq</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaie}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].coxaie}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="coxaie" #coxaie="ngModel" [(ngModel)]="newOutros.coxaie" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Coxa<br/> Medial Drt</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].coxamd}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].coxamd}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="coxamd" #coxamd="ngModel" [(ngModel)]="newOutros.coxamd" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Coxa<br/> Medial Esq</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].coxame}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].coxame}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="coxame" #coxame="ngModel" [(ngModel)]="newOutros.coxame" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Pescoço</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].pescoco}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].pescoco}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="pescoco" #pescoco="ngModel" [(ngModel)]="newOutros.pescoco" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Braço contraido</th>
+                            <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoc}}</td>
+                            <td *ngIf="pointer>=0">{{medidas[pointer].bracoc}}</td>
+                            <td *ngIf="addOutros">
+                                <input name="bracoc" #bracoc="ngModel" [(ngModel)]="newOutros.bracoc" type="number" step="0.1" style="width: 60px;">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="action">
+                    <button type="button" *ngIf="!addOutros" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addOutros" mat-fab (click)="addOutrosPerimetros()">
+                        <mat-icon class="mat-18">add</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        color="default" (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="addOutros" mat-fab color="default" (click)="closeInputOutros()">
+                        <mat-icon class="mat-18">close</mat-icon>
+                    </button>
+                    <button *ngIf="addOutros" mat-fab>
+                        <mat-icon class="mat-18">check</mat-icon>
+                    </button>
+                </div>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>

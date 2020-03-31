@@ -14,7 +14,7 @@ export class RDDCComponent implements OnInit {
   data: any = [];
   points = 0;
   smoker = '0';
-  private id: number;
+  id: number;
 
   constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
       this.id = this.actRoute.snapshot.params.id;
@@ -37,7 +37,7 @@ export class RDDCComponent implements OnInit {
           }
           this.dataService.getData('clients/column/' + this.id).subscribe(
             respd => {
-              if (respd[0]) {
+              if (respd) {
                 this.data = respd[0];
               }
               this.data.smoker = this.smoker;

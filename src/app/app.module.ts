@@ -44,7 +44,7 @@ import { JP7Component } from './avaliation/dobras/jp7/jp7.component';
 import { WB2Component } from './avaliation/dobras/wb2/wb2.component';
 import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
-import { BalancaComponent } from './avaliation/balanca/balanca.component';
+import { BalancaComponent } from './avaliation/composicao-corporal/balanca/balanca.component';
 import { TranWeltmanComponent } from './avaliation/antropometria/tran-weltman/tran-weltman.component';
 import { DeurembergComponent } from './avaliation/antropometria/deuremberg/deuremberg.component';
 import { WeltmanComponent } from './avaliation/antropometria/weltman/weltman.component';
@@ -73,6 +73,8 @@ import { AgeService } from './services/age.service';
 import { ComponentePosturalComponent, DialogPosturalHelp } from './avaliation/componente-postural/componente-postural.component';
 import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.component';
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
+import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
+import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -139,6 +141,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ComponentePosturalComponent,
     IRCQComponent,
     StComponent,
+    ScanerComponent,
+    DEXAComponent,
   ],
   imports: [
     BrowserModule,

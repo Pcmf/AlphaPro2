@@ -26,10 +26,13 @@
                 </mat-checkbox>
                 <mat-checkbox i18n="Label" #QEST="ngModel" name="QEST" [(ngModel)]="student.QEST">Estético
                 </mat-checkbox>
-                <mat-checkbox [disabled]="!QEST.value" i18n="Label" #Q201="ngModel" name="Q201"
-                  [(ngModel)]="student.Q201">Hipertrofia muscular</mat-checkbox>
-                <mat-checkbox [disabled]="!QEST.value" i18n="Label" #Q13="ngModel" name="Q13" [(ngModel)]="student.Q13">
-                  Emagrecimento</mat-checkbox>
+                <div *ngIf="QEST.value" style="margin-left: 25px;">
+                  <mat-checkbox i18n="Label" #Q201="ngModel" name="Q201"
+                    [(ngModel)]="student.Q201">Hipertrofia muscular</mat-checkbox>
+                  <mat-checkbox i18n="Label" #Q13="ngModel" name="Q13"
+                    [(ngModel)]="student.Q13">
+                    Emagrecimento</mat-checkbox>
+                </div>
                 <mat-checkbox i18n="Label" #Q16="ngModel" name="Q16" [(ngModel)]="student.Q16">Prevenção</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q20="ngModel" name="Q20" [(ngModel)]="student.Q20">Performaçe de Alto
                   Rendimento</mat-checkbox>
@@ -57,7 +60,8 @@
 
               <mat-form-field appearance="">
                 <mat-label i18n="Label">Data para alcançar o objectivo</mat-label>
-                <input matInput #DT_OBJ="ngModel" name="DT_OBJ" [(ngModel)]="dataObj" [matDatepicker]="pickerAmn" placeholder="Ex: 25/01/2021" required>
+                <input matInput #DT_OBJ="ngModel" name="DT_OBJ" [(ngModel)]="dataObj" [matDatepicker]="pickerAmn"
+                  placeholder="Ex: 25/01/2021" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerAmn"></mat-datepicker-toggle>
                 <mat-datepicker #pickerAmn startView="month" touchUi="true" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
@@ -130,17 +134,20 @@
                 <label i18n="Label">Há quanto tempo?</label>
                 <mat-form-field class="input-sm">
                   <mat-label i18n="Label">anos</mat-label>
-                  <input matInput type="number" i18n placeholder="anos" #Q6TA="ngModel" name="Q6TA" [(ngModel)]="student.Q6TA">
+                  <input matInput type="number" i18n placeholder="anos" #Q6TA="ngModel" name="Q6TA"
+                    [(ngModel)]="student.Q6TA">
                 </mat-form-field>
                 <mat-form-field class="input-sm">
-                  <input matInput type="number" i18n placeholder="meses" #Q6TM="ngModel" name="Q6TM" [(ngModel)]="student.Q6TM">
+                  <input matInput type="number" i18n placeholder="meses" #Q6TM="ngModel" name="Q6TM"
+                    [(ngModel)]="student.Q6TM">
                 </mat-form-field>
               </div>
               <div>
                 <label i18n="Label">Nº vezes na semana?</label>
                 <mat-form-field class="input-sm">
                   <mat-label></mat-label>
-                  <input matInput type="number" i18n placeholder="nº vezes" #afs="ngModel" name="afs" [(ngModel)]="student.afs">
+                  <input matInput type="number" i18n placeholder="nº vezes" #afs="ngModel" name="afs"
+                    [(ngModel)]="student.afs">
                 </mat-form-field>
               </div>
             </mat-card-content>
@@ -159,7 +166,8 @@
 
               <mat-form-field appearance="">
                 <mat-label i18n="Label" i18n="Label">Data para inicio do programa</mat-label>
-                <input matInput #dt_prevista name="dt_prevista" [(ngModel)]="dataIniPgm" [matDatepicker]="pickerP" placeholder="Ex: 01/03/2021" required>
+                <input matInput #dt_prevista name="dt_prevista" [(ngModel)]="dataIniPgm" [matDatepicker]="pickerP"
+                  placeholder="Ex: 01/03/2021" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerP"></mat-datepicker-toggle>
                 <mat-datepicker #pickerP startView="month" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
@@ -225,16 +233,16 @@
             </mat-card-content>
           </mat-card>
           <mat-card>
-              <mat-card-header>
-                  <mat-card-subtitle i18n>Classificação do Cliente</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                  <mat-radio-group #classe="ngModel" name="classe" [(ngModel)]="student.classe">
-                    <mat-radio-button i18n value="1">Iniciante</mat-radio-button>
-                    <mat-radio-button i18n value="2">Intermediário</mat-radio-button>
-                    <mat-radio-button i18n value="3">Avançado</mat-radio-button>
-                  </mat-radio-group>
-              </mat-card-content>
+            <mat-card-header>
+              <mat-card-subtitle i18n>Classificação do Cliente</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-radio-group #classe="ngModel" name="classe" [(ngModel)]="student.classe">
+                <mat-radio-button i18n value="1">Iniciante</mat-radio-button>
+                <mat-radio-button i18n value="2">Intermediário</mat-radio-button>
+                <mat-radio-button i18n value="3">Avançado</mat-radio-button>
+              </mat-radio-group>
+            </mat-card-content>
           </mat-card>
 
           <mat-action-row>
@@ -255,142 +263,150 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form #fhp="ngForm" (submit)="saveHistoricoPatologico(fhp.value)">
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group aria-label="Select an option" #Q2A="ngModel" name="Q2A" [(ngModel)]="student.Q2A">
-              <mat-label i18n="Label">Cirugia</mat-label>
-              <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q2A.value==1">
-              <mat-label i18n="Label">Qual(s)</mat-label>
-              <input matInput placeholder="" #Q2AQ="ngModel" name="Q2AQ" [(ngModel)]="student.Q2AQ">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q21OBS="ngModel" name="Q21OBS" [(ngModel)]="student.Q21OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
+          <mat-card>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" #Q2A="ngModel" name="Q2A" [(ngModel)]="student.Q2A">
+                <mat-label i18n="Label">Cirugia</mat-label>
+                <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q2A.value==1">
+                <mat-label i18n="Label">Qual(s)</mat-label>
+                <input matInput placeholder="" #Q2AQ="ngModel" name="Q2AQ" [(ngModel)]="student.Q2AQ">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q21OBS="ngModel" name="Q21OBS"
+                  [(ngModel)]="student.Q21OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group aria-label="Select an option" #Q2AASN="ngModel" name="Q2AASN" [(ngModel)]="student.Q2AASN">
-              <mat-label i18n="Label">Alergia</mat-label>
-              <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q2AASN.value==1">
-              <mat-label i18n="Label">Qual(is) Alergia(s)</mat-label>
-              <input matInput placeholder="" #Q2AA="ngModel" name="Q2AA" [(ngModel)]="student.Q2AA">
-            </mat-form-field>
-            <mat-form-field class="input-lg" *ngIf="Q2AASN.value==1">
-              <mat-label i18n="Label">Fator(es) desencadeante(s)</mat-label>
-              <input matInput placeholder="" #Q2AAFATOR="ngModel" name="Q2AAFATOR" [(ngModel)]="student.Q2AAFATOR">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q22OBS="ngModel" name="Q22OBS" [(ngModel)]="student.Q22OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Doença -->
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group aria-label="Select an option" #Q2B="ngModel" name="Q2B" [(ngModel)]="student.Q2B">
-              <mat-label i18n="Label">Doença</mat-label>
-              <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg"  *ngIf="Q2B.value==1">
-              <mat-label i18n="Label">Qual(is)</mat-label>
-              <input matInput placeholder=""  #Q2BQ="ngModel" name="Q2BQ" [(ngModel)]="student.Q2BQ">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q23OBS="ngModel" name="Q23OBS" [(ngModel)]="student.Q23OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-       <!--  Lesão -->
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group aria-label="Select an option" #Q2BLSN="ngModel" name="Q2BLSN" [(ngModel)]="student.Q2BLSN">
-              <mat-label i18n="Label">Lesão</mat-label>
-              <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q2BLSN.value==1">
-              <mat-label i18n="Label">Qual(is)</mat-label>
-              <input matInput placeholder="" #Q2BL="ngModel" name="Q2BL" [(ngModel)]="student.Q2BL">
-            </mat-form-field>
-            <mat-form-field  *ngIf="Q2BLSN.value==1">
-              <mat-label i18n="Label">Tipo de lesão</mat-label>
-              <mat-select #Q2BLTIPO="ngModel" name="Q2BLTIPO" [(ngModel)]="student.Q2BLTIPO">
-                <mat-option value="0" i18n="Label">Muscular</mat-option>
-                <mat-option value="1" i18n="Label">Articular</mat-option>
-                <mat-option value="2" i18n="Label">Ossea</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q24OBS="ngModel" name="Q24OBS" [(ngModel)]="student.Q24OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Medicamentos -->
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group aria-label="Select an option" #Q2C="ngModel" name="Q2C" [(ngModel)]="student.Q2C">
-              <mat-label i18n="Label">Medicamentos</mat-label>
-              <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q2C.value==1">
-              <mat-label i18n="Label">Qual(is)</mat-label>
-              <input matInput placeholder="" #Q2CQ="ngModel" name="Q2CQ" [(ngModel)]="student.Q2CQ">
-            </mat-form-field>
-            <mat-form-field class="input-lg" *ngIf="Q2C.value==1">
-              <mat-label i18n="Label">Finalidade(s)</mat-label>
-              <input matInput placeholder="" #Q2CFIM="ngModel" name="Q2CFIM" [(ngModel)]="student.Q2CFIM">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q25OBS="ngModel" name="Q25OBS" [(ngModel)]="student.Q25OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Sangue -->
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n="Label">Sangue</mat-label>
-            <mat-form-field>
-              <mat-label i18n="Label">Tipo de Sangue</mat-label>
-              <mat-select #Q2DTIPO="ngModel" name="Q2DTIPO" [(ngModel)]="student.Q2DTIPO">
-                <mat-option value="A">A</mat-option>
-                <mat-option value="B">B</mat-option>
-                <mat-option value="O">O</mat-option>
-                <mat-option value="AB">AB</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label i18n="Label">Factor RH</mat-label>
-              <mat-select #Q2ERH="ngModel" name="Q2ERH" [(ngModel)]="student.Q2ERH">
-                <mat-option value="P" i18n="Label">Positivo</mat-option>
-                <mat-option value="N" i18n="Label">Negativo</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q26OBS="ngModel" name="Q26OBS" [(ngModel)]="student.Q26OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
+          <mat-card>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" #Q2AASN="ngModel" name="Q2AASN"
+                [(ngModel)]="student.Q2AASN">
+                <mat-label i18n="Label">Alergia</mat-label>
+                <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q2AASN.value==1">
+                <mat-label i18n="Label">Qual(is) Alergia(s)</mat-label>
+                <input matInput placeholder="" #Q2AA="ngModel" name="Q2AA" [(ngModel)]="student.Q2AA">
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q2AASN.value==1">
+                <mat-label i18n="Label">Fator(es) desencadeante(s)</mat-label>
+                <input matInput placeholder="" #Q2AAFATOR="ngModel" name="Q2AAFATOR" [(ngModel)]="student.Q2AAFATOR">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q22OBS="ngModel" name="Q22OBS"
+                  [(ngModel)]="student.Q22OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Doença -->
+          <mat-card>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" #Q2B="ngModel" name="Q2B" [(ngModel)]="student.Q2B">
+                <mat-label i18n="Label">Doença</mat-label>
+                <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q2B.value==1">
+                <mat-label i18n="Label">Qual(is)</mat-label>
+                <input matInput placeholder="" #Q2BQ="ngModel" name="Q2BQ" [(ngModel)]="student.Q2BQ">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q23OBS="ngModel" name="Q23OBS"
+                  [(ngModel)]="student.Q23OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!--  Lesão -->
+          <mat-card>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" #Q2BLSN="ngModel" name="Q2BLSN"
+                [(ngModel)]="student.Q2BLSN">
+                <mat-label i18n="Label">Lesão</mat-label>
+                <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q2BLSN.value==1">
+                <mat-label i18n="Label">Qual(is)</mat-label>
+                <input matInput placeholder="" #Q2BL="ngModel" name="Q2BL" [(ngModel)]="student.Q2BL">
+              </mat-form-field>
+              <mat-form-field *ngIf="Q2BLSN.value==1">
+                <mat-label i18n="Label">Tipo de lesão</mat-label>
+                <mat-select #Q2BLTIPO="ngModel" name="Q2BLTIPO" [(ngModel)]="student.Q2BLTIPO">
+                  <mat-option value="0" i18n="Label">Muscular</mat-option>
+                  <mat-option value="1" i18n="Label">Articular</mat-option>
+                  <mat-option value="2" i18n="Label">Ossea</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q24OBS="ngModel" name="Q24OBS"
+                  [(ngModel)]="student.Q24OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Medicamentos -->
+          <mat-card>
+            <mat-card-content>
+              <mat-radio-group aria-label="Select an option" #Q2C="ngModel" name="Q2C" [(ngModel)]="student.Q2C">
+                <mat-label i18n="Label">Medicamentos</mat-label>
+                <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q2C.value==1">
+                <mat-label i18n="Label">Qual(is)</mat-label>
+                <input matInput placeholder="" #Q2CQ="ngModel" name="Q2CQ" [(ngModel)]="student.Q2CQ">
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q2C.value==1">
+                <mat-label i18n="Label">Finalidade(s)</mat-label>
+                <input matInput placeholder="" #Q2CFIM="ngModel" name="Q2CFIM" [(ngModel)]="student.Q2CFIM">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q25OBS="ngModel" name="Q25OBS"
+                  [(ngModel)]="student.Q25OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Sangue -->
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n="Label">Sangue</mat-label>
+              <mat-form-field>
+                <mat-label i18n="Label">Tipo de Sangue</mat-label>
+                <mat-select #Q2DTIPO="ngModel" name="Q2DTIPO" [(ngModel)]="student.Q2DTIPO">
+                  <mat-option value="A">A</mat-option>
+                  <mat-option value="B">B</mat-option>
+                  <mat-option value="O">O</mat-option>
+                  <mat-option value="AB">AB</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n="Label">Factor RH</mat-label>
+                <mat-select #Q2ERH="ngModel" name="Q2ERH" [(ngModel)]="student.Q2ERH">
+                  <mat-option value="P" i18n="Label">Positivo</mat-option>
+                  <mat-option value="N" i18n="Label">Negativo</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q26OBS="ngModel" name="Q26OBS"
+                  [(ngModel)]="student.Q26OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-          <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
-        </mat-action-row>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
+          </mat-action-row>
         </form>
       </mat-expansion-panel>
 
@@ -405,67 +421,67 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form #fpf="ngForm" (submit)="savePatologiaFamiliar(fpf.value)">
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Alguém da familia com estas carateristicas?</mat-label>
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Alguém da familia com estas carateristicas?</mat-label>
 
-            <mat-checkbox i18n #Q31="ngModel" name="Q31" [(ngModel)]="student.Q31">Cardiopatia</mat-checkbox>
-            <mat-form-field class="" *ngIf="Q31.value">
-              <mat-label i18n="Label">Grau de parentesco</mat-label>
-              <input matInput i18n placeholder="Ex. Pai" #Q31Q="ngModel" name="Q31Q" [(ngModel)]="student.Q31Q">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="Q31.value">
-              <mat-label i18n="Label">&gt; de 60</mat-label>
-              <input matInput placeholder="" #Q31QTDE="ngModel" name="Q31QTDE" [(ngModel)]="student.Q31QTDE">
-            </mat-form-field>
-            
+              <mat-checkbox i18n #Q31="ngModel" name="Q31" [(ngModel)]="student.Q31">Cardiopatia</mat-checkbox>
+              <mat-form-field class="" *ngIf="Q31.value">
+                <mat-label i18n="Label">Grau de parentesco</mat-label>
+                <input matInput i18n placeholder="Ex. Pai" #Q31Q="ngModel" name="Q31Q" [(ngModel)]="student.Q31Q">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="Q31.value">
+                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
+                <input matInput placeholder="" #Q31QTDE="ngModel" name="Q31QTDE" [(ngModel)]="student.Q31QTDE">
+              </mat-form-field>
 
-            <mat-checkbox i18n="Label" #Q32="ngModel" name="Q32" [(ngModel)]="student.Q32">Hipertensão</mat-checkbox>
-            <mat-form-field class="" *ngIf="Q32.value">
-              <mat-label i18n="Label">Grau de parentesco</mat-label>
-              <input matInput placeholder="Ex. Pai" #Q32Q="ngModel" name="Q32Q" [(ngModel)]="student.Q32Q">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="Q32.value">
-              <mat-label i18n="Label">&gt; de 60</mat-label>
-              <input matInput placeholder="" #Q32QTDE="ngModel" name="Q32QTDE" [(ngModel)]="student.Q32QTDE">
-            </mat-form-field>
 
-            <mat-checkbox i18n #Q33="ngModel" name="Q33" [(ngModel)]="student.Q33">Diabetes</mat-checkbox>
-            <mat-form-field class="" *ngIf="Q33.value">
-              <mat-label i18n="Label">Grau de parentesco</mat-label>
-              <input matInput i18n placeholder="Ex. Pai" #Q33Q="ngModel" name="Q33Q" [(ngModel)]="student.Q33Q">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="Q33.value">
-              <mat-label i18n="Label">&gt; de 60</mat-label>
-              <input matInput placeholder="" #Q33QTDE="ngModel" name="Q33QTDE" [(ngModel)]="student.Q33QTDE">
-            </mat-form-field>
-            
+              <mat-checkbox i18n="Label" #Q32="ngModel" name="Q32" [(ngModel)]="student.Q32">Hipertensão</mat-checkbox>
+              <mat-form-field class="" *ngIf="Q32.value">
+                <mat-label i18n="Label">Grau de parentesco</mat-label>
+                <input matInput placeholder="Ex. Pai, Avó" #Q32Q="ngModel" name="Q32Q" [(ngModel)]="student.Q32Q">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="Q32.value">
+                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
+                <input matInput placeholder="quantos" #Q32QTDE="ngModel" name="Q32QTDE" [(ngModel)]="student.Q32QTDE">
+              </mat-form-field>
 
-            <mat-checkbox i18n="Label" #Q34="ngModel" name="Q34" [(ngModel)]="student.Q34">Outra doença</mat-checkbox>
-            <mat-form-field class="" *ngIf="Q34.value">
-              <mat-label i18n="Label">Grau de parentesco</mat-label>
-              <input matInput placeholder="Ex. Pai" #Q34Q="ngModel" name="Q34Q" [(ngModel)]="student.Q34Q">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="Q34.value">
-              <mat-label i18n="Label">&gt; de 60</mat-label>
-              <input matInput placeholder="" #Q34QTDE="ngModel" name="Q34QTDE" [(ngModel)]="student.Q34QTDE">
-            </mat-form-field>
-            <mat-form-field class="input-lg" *ngIf="Q34.value">
-              <mat-label i18n="Label">Descrição da doença</mat-label>
-              <input matInput placeholder="" #Q34RESP="ngModel" name="Q34RESP" [(ngModel)]="student.Q34RESP">
-            </mat-form-field>
+              <mat-checkbox i18n #Q33="ngModel" name="Q33" [(ngModel)]="student.Q33">Diabetes</mat-checkbox>
+              <mat-form-field class="" *ngIf="Q33.value">
+                <mat-label i18n="Label">Grau de parentesco</mat-label>
+                <input matInput i18n placeholder="Ex. Pai, Avó" #Q33Q="ngModel" name="Q33Q" [(ngModel)]="student.Q33Q">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="Q33.value">
+                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
+                <input matInput placeholder="quantos" #Q33QTDE="ngModel" name="Q33QTDE" [(ngModel)]="student.Q33QTDE">
+              </mat-form-field>
 
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q3OBS="ngModel" name="Q3OBS" [(ngModel)]="student.Q3OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-          <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
-        </mat-action-row>
+              <mat-checkbox i18n="Label" #Q34="ngModel" name="Q34" [(ngModel)]="student.Q34">Outra doença</mat-checkbox>
+              <mat-form-field class="" *ngIf="Q34.value">
+                <mat-label i18n="Label">Grau de parentesco</mat-label>
+                <input matInput placeholder="Ex. Pai, Avó" #Q34Q="ngModel" name="Q34Q" [(ngModel)]="student.Q34Q">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="Q34.value">
+                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
+                <input matInput placeholder="quantos" #Q34QTDE="ngModel" name="Q34QTDE" [(ngModel)]="student.Q34QTDE">
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q34.value">
+                <mat-label i18n="Label">Descrição da doença</mat-label>
+                <input matInput placeholder="" #Q34RESP="ngModel" name="Q34RESP" [(ngModel)]="student.Q34RESP">
+              </mat-form-field>
+
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q3OBS="ngModel" name="Q3OBS" [(ngModel)]="student.Q3OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
+          </mat-action-row>
         </form>
       </mat-expansion-panel>
 
@@ -481,168 +497,178 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form #fhs="ngForm" (submit)="saveHabitosSociais(fhs.value)">
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Tabagismo</mat-label>
-            <mat-radio-group aria-label="Select an option" #fumante="ngModel" name="fumante" [(ngModel)]="student.fumante">
-              <mat-radio-button value="N" i18n>Não Fumador</mat-radio-button>
-              <mat-radio-button value="S" i18n>Fumador</mat-radio-button>
-              <mat-radio-button value="E" i18n>Eventual</mat-radio-button>
-            </mat-radio-group>
-            <br/>
-            <mat-form-field class="input-lg" *ngIf="fumante.value=='S' || fumante.value=='E'">
-              <mat-label i18n>Quantos por dia?</mat-label>
-              <input matInput i18n placeholder="nº de cigarros"#qtos="ngModel" name="qtos" [(ngModel)]="student.qtos">
-            </mat-form-field>
-            <mat-label i18n *ngIf="fumante.value=='S' || fumante.value=='E'">Há quanto tempo?</mat-label>
-            <mat-form-field class="input-sm" *ngIf="fumante.value=='S' || fumante.value=='E'">
-              <input matInput i18n placeholder="anos"#Q4ATA="ngModel" name="Q4ATA" [(ngModel)]="student.Q4ATA">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="fumante.value=='S' || fumante.value=='E'">
-              <input matInput i18n placeholder="meses" #Q4ATM="ngModel" name="Q4ATM" [(ngModel)]="student.Q4ATM">
-            </mat-form-field>
-            <mat-label i18n *ngIf="fumante.value == 'N'">Se parou, há quanto tempo?</mat-label>
-            <mat-form-field class="input-sm"*ngIf="fumante.value == 0">
-              <input matInput placeholder="anos"#Q4APA="ngModel" name="Q4APA" [(ngModel)]="student.Q4APA">
-            </mat-form-field>
-            <mat-form-field class="input-sm"*ngIf="fumante.value == 'N'">
-              <input matInput i18n placeholder="meses"#Q4APM="ngModel" name="Q4APM" [(ngModel)]="student.Q4APM">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q41OBS="ngModel" name="Q41OBS" [(ngModel)]="student.Q41OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Tabagismo</mat-label>
+              <mat-radio-group aria-label="Select an option" #fumante="ngModel" name="fumante"
+                [(ngModel)]="student.fumante">
+                <mat-radio-button value="N" i18n>Não Fumador</mat-radio-button>
+                <mat-radio-button value="S" i18n>Fumador</mat-radio-button>
+                <mat-radio-button value="E" i18n>Eventual</mat-radio-button>
+              </mat-radio-group>
+              <br />
+              <mat-form-field class="input-lg" *ngIf="fumante.value=='S' || fumante.value=='E'">
+                <mat-label i18n>Quantos por dia?</mat-label>
+                <input matInput i18n placeholder="nº de cigarros" #qtos="ngModel" name="qtos"
+                  [(ngModel)]="student.qtos">
+              </mat-form-field>
+              <mat-label i18n *ngIf="fumante.value=='S' || fumante.value=='E'">Há quanto tempo?</mat-label>
+              <mat-form-field class="input-sm" *ngIf="fumante.value=='S' || fumante.value=='E'">
+                <input matInput i18n placeholder="anos" #Q4ATA="ngModel" name="Q4ATA" [(ngModel)]="student.Q4ATA">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="fumante.value=='S' || fumante.value=='E'">
+                <input matInput i18n placeholder="meses" #Q4ATM="ngModel" name="Q4ATM" [(ngModel)]="student.Q4ATM">
+              </mat-form-field>
+              <mat-label i18n *ngIf="fumante.value == 'N'">Se parou, há quanto tempo?</mat-label>
+              <mat-form-field class="input-sm" *ngIf="fumante.value == 0">
+                <input matInput placeholder="anos" #Q4APA="ngModel" name="Q4APA" [(ngModel)]="student.Q4APA">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="fumante.value == 'N'">
+                <input matInput i18n placeholder="meses" #Q4APM="ngModel" name="Q4APM" [(ngModel)]="student.Q4APM">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q41OBS="ngModel" name="Q41OBS"
+                  [(ngModel)]="student.Q41OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Álcool</mat-label>
-            <mat-radio-group aria-label="Select an option" #Q4BB="ngModel" name="Q4BB" [(ngModel)]="student.Q4BB">
-              <mat-radio-button value="1" i18n>Consome</mat-radio-button>
-              <mat-radio-button value="0" i18n>Não consome</mat-radio-button>
-            </mat-radio-group>
-            <br/>
-            <mat-label i18n *ngIf="Q4BB.value==1">Frequência</mat-label>
-            <mat-radio-group  *ngIf="Q4BB.value==1" aria-label="Select an option" #Q4BBTIPO="ngModel" name="Q4BBTIPO" [(ngModel)]="student.Q4BBTIPO">
-              <mat-radio-button value="1" i18n>Frequentemente</mat-radio-button>
-              <mat-radio-button value="2" i18n>Socialmente</mat-radio-button>
-            </mat-radio-group>
-            <br/>
-            <mat-label i18n *ngIf="Q4BB.value==1">Há quanto tempo?</mat-label>
-            <mat-form-field class="input-sm" *ngIf="Q4BB.value==1">
-              <input matInput i18n placeholder="anos"#Q4BBA="ngModel" name="Q4BBA" [(ngModel)]="student.Q4BBA">
-            </mat-form-field>
-            <mat-form-field class="input-sm" *ngIf="Q4BB.value==1">
-              <input matInput i18n placeholder="meses"#Q4BBM="ngModel" name="Q4BBM" [(ngModel)]="student.Q4BBM">
-            </mat-form-field>
-            <mat-form-field class="input-lg" *ngIf="Q4BB.value==1">
-              <mat-label i18n>Quantas vezes por semana?</mat-label>
-              <input matInput i18n placeholder="vezes"#Q4BBVEZES="ngModel" name="Q4BBVEZES" [(ngModel)]="student.Q4BBVEZES">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder=""#Q42OBS="ngModel" name="Q42OBS" [(ngModel)]="student.Q42OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Exames médicos -->
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Exames Médicos</mat-label>
-            <br />
-            <mat-label i18n>Faz periodicamente?</mat-label>
-            <mat-radio-group aria-label="Select an option"#Q4B="ngModel" name="Q4B" [(ngModel)]="student.Q4B">
-              <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-              <mat-radio-button value="0" i18n>Não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field appearance="">
-              <mat-label i18n="Label">Data do ultimo exame</mat-label>
-              <input matInput #Q4BDATA name="Q4BDATA"  [(ngModel)]="dataUltimoExame" [matDatepicker]="pickerExm" placeholder="Ex: 25/01/2020" required>
-              <mat-datepicker-toggle matSuffix [for]="pickerExm"></mat-datepicker-toggle>
-              <mat-datepicker #pickerExm startView="month" touchUi="true" [startAt]="startDate"></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q43OBS="ngModel" name="Q43OBS" [(ngModel)]="student.Q43OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Repouso -->
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Repouso</mat-label>
-            <br />
-            <mat-label i18n>Quantas horas de sono por dia?</mat-label>
-            <mat-radio-group aria-label="Select an option" #Q4C="ngModel" name="Q4C" [(ngModel)]="student.Q4C">
-              <mat-radio-button value="1" i18n>&lt; 5 horas</mat-radio-button>
-              <mat-radio-button value="2" i18n>entre 5 e 6 horas</mat-radio-button>
-              <mat-radio-button value="3" i18n>entre 6 e 7 horas</mat-radio-button>
-              <mat-radio-button value="4" i18n>entre 7 e 8 horas</mat-radio-button>
-              <mat-radio-button value="5" i18n>&gt; 8 horas</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label" i18n>Observações</mat-label>
-              <textarea matInput placeholder="" #Q44OBS="ngModel" name="Q44OBS" [(ngModel)]="student.Q44OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Postura -->
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Postura</mat-label>
-            <br />
-            <mat-label i18n>Profissão: {{student.profissao}}</mat-label>
-            <br />
-            <mat-label i18n>Quais as posturas que mais adopta durante o dia?</mat-label>
-            <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="student.Q4D1">Sentado</mat-checkbox>
-            <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="student.Q4D2">Em pé</mat-checkbox>
-            <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="student.Q4D3">Deitado</mat-checkbox>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q45OBS="ngModel" name="Q45OBS" [(ngModel)]="student.Q45OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- Alimentação -->
-        <mat-card>
-          <mat-card-content>
-            <mat-label i18n>Alimentação</mat-label>
-            <br />
-            <mat-label i18n>Está em dieta para ganhar ou perder peso?</mat-label>
-            <mat-radio-group aria-label="Select an option" #Q4E="ngModel" name="Q4E" [(ngModel)]="student.Q4E">
-              <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-              <mat-radio-button value="2" i18n>não</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q4E.value==1">
-              <mat-label i18n="Label">Que tipo de dieta?</mat-label>
-              <textarea matInput placeholder="" #Q4ETIPO="ngModel" name="Q4ETIPO" [(ngModel)]="student.Q4ETIPO"></textarea>
-            </mat-form-field>
-            <mat-label i18n  *ngIf="Q4E.value == 1">A dieta é acompanhada por um profissional?</mat-label>
-            <mat-radio-group *ngIf="Q4E.value == 1" aria-label="Select an option" #Q4EPROF="ngModel" name="Q4EPROF" [(ngModel)]="student.Q4EPROF">
-              <mat-radio-button value="1" i18n>Nutricionista</mat-radio-button>
-              <mat-radio-button value="2" i18n>Endocrinologista</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field class="input-lg" *ngIf="Q4E.value == 1">
-              <mat-label i18n="Label">Nome do profissional</mat-label>
-              <input matInput placeholder="" #Q4ENOME="ngModel" name="Q4ENOME" [(ngModel)]="student.Q4ENOME">
-            </mat-form-field>
-            <mat-form-field class="input-lg" *ngIf="Q4E.value == 1">
-              <mat-label i18n="Label">Contacto</mat-label>
-              <input matInput placeholder="" #Q4ECONTATO="ngModel" name="Q4ECONTATO" [(ngModel)]="student.Q4ECONTATO">
-            </mat-form-field>
-            <mat-form-field class="input-lg">
-              <mat-label i18n="Label">Observações</mat-label>
-              <textarea matInput placeholder="" #Q46OBS="ngModel" name="Q46OBS" [(ngModel)]="student.Q46OBS"></textarea>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Álcool</mat-label>
+              <mat-radio-group aria-label="Select an option" #Q4BB="ngModel" name="Q4BB" [(ngModel)]="student.Q4BB">
+                <mat-radio-button value="1" i18n>Consome</mat-radio-button>
+                <mat-radio-button value="0" i18n>Não consome</mat-radio-button>
+              </mat-radio-group>
+              <br />
+              <mat-label i18n *ngIf="Q4BB.value==1">Frequência</mat-label>
+              <mat-radio-group *ngIf="Q4BB.value==1" aria-label="Select an option" #Q4BBTIPO="ngModel" name="Q4BBTIPO"
+                [(ngModel)]="student.Q4BBTIPO">
+                <mat-radio-button value="1" i18n>Frequentemente</mat-radio-button>
+                <mat-radio-button value="2" i18n>Socialmente</mat-radio-button>
+              </mat-radio-group>
+              <br />
+              <mat-label i18n *ngIf="Q4BB.value==1">Há quanto tempo?</mat-label>
+              <mat-form-field class="input-sm" *ngIf="Q4BB.value==1">
+                <input matInput i18n placeholder="anos" #Q4BBA="ngModel" name="Q4BBA" [(ngModel)]="student.Q4BBA">
+              </mat-form-field>
+              <mat-form-field class="input-sm" *ngIf="Q4BB.value==1">
+                <input matInput i18n placeholder="meses" #Q4BBM="ngModel" name="Q4BBM" [(ngModel)]="student.Q4BBM">
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q4BB.value==1">
+                <mat-label i18n>Quantas vezes por semana?</mat-label>
+                <input matInput i18n placeholder="vezes" #Q4BBVEZES="ngModel" name="Q4BBVEZES"
+                  [(ngModel)]="student.Q4BBVEZES">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q42OBS="ngModel" name="Q42OBS"
+                  [(ngModel)]="student.Q42OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Exames médicos -->
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Exames Médicos</mat-label>
+              <br />
+              <mat-label i18n>Faz periodicamente?</mat-label>
+              <mat-radio-group aria-label="Select an option" #Q4B="ngModel" name="Q4B" [(ngModel)]="student.Q4B">
+                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field appearance="">
+                <mat-label i18n="Label">Data do ultimo exame</mat-label>
+                <input matInput #Q4BDATA="ngModel" name="Q4BDATA" [(ngModel)]="student.Q4BDATA" placeholder="Ex: mês passado" >
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q43OBS="ngModel" name="Q43OBS"
+                  [(ngModel)]="student.Q43OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Repouso -->
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Repouso</mat-label>
+              <br />
+              <mat-label i18n>Quantas horas de sono por dia?</mat-label>
+              <mat-radio-group aria-label="Select an option" #Q4C="ngModel" name="Q4C" [(ngModel)]="student.Q4C">
+                <mat-radio-button value="1" i18n>&lt; 5 horas</mat-radio-button>
+                <mat-radio-button value="2" i18n>entre 5 e 6 horas</mat-radio-button>
+                <mat-radio-button value="3" i18n>entre 6 e 7 horas</mat-radio-button>
+                <mat-radio-button value="4" i18n>entre 7 e 8 horas</mat-radio-button>
+                <mat-radio-button value="5" i18n>&gt; 8 horas</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label" i18n>Observações</mat-label>
+                <textarea matInput placeholder="" #Q44OBS="ngModel" name="Q44OBS"
+                  [(ngModel)]="student.Q44OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Postura -->
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Postura</mat-label>
+              <br />
+              <mat-label i18n>Profissão: {{student.profissao}}</mat-label>
+              <br />
+              <mat-label i18n>Quais as posturas que mais adopta durante o dia?</mat-label>
+              <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="student.Q4D1">Sentado</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="student.Q4D2">Em pé</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="student.Q4D3">Deitado</mat-checkbox>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q45OBS="ngModel" name="Q45OBS"
+                  [(ngModel)]="student.Q45OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- Alimentação -->
+          <mat-card>
+            <mat-card-content>
+              <mat-label i18n>Alimentação</mat-label>
+              <br />
+              <mat-label i18n>Está em dieta para ganhar ou perder peso?</mat-label>
+              <mat-radio-group aria-label="Select an option" #Q4E="ngModel" name="Q4E" [(ngModel)]="student.Q4E">
+                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                <mat-radio-button value="2" i18n>não</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q4E.value==1">
+                <mat-label i18n="Label">Que tipo de dieta?</mat-label>
+                <textarea matInput placeholder="" #Q4ETIPO="ngModel" name="Q4ETIPO"
+                  [(ngModel)]="student.Q4ETIPO"></textarea>
+              </mat-form-field>
+              <mat-label i18n *ngIf="Q4E.value == 1">A dieta é acompanhada por um profissional?</mat-label>
+              <mat-radio-group *ngIf="Q4E.value == 1" aria-label="Select an option" #Q4EPROF="ngModel" name="Q4EPROF"
+                [(ngModel)]="student.Q4EPROF">
+                <mat-radio-button value="1" i18n>Nutricionista</mat-radio-button>
+                <mat-radio-button value="2" i18n>Endocrinologista</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="input-lg" *ngIf="Q4E.value == 1">
+                <mat-label i18n="Label">Nome do profissional</mat-label>
+                <input matInput placeholder="" #Q4ENOME="ngModel" name="Q4ENOME" [(ngModel)]="student.Q4ENOME">
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q4E.value == 1">
+                <mat-label i18n="Label">Contacto</mat-label>
+                <input matInput placeholder="" #Q4ECONTATO="ngModel" name="Q4ECONTATO" [(ngModel)]="student.Q4ECONTATO">
+              </mat-form-field>
+              <mat-form-field class="input-lg">
+                <mat-label i18n="Label">Observações</mat-label>
+                <textarea matInput placeholder="" #Q46OBS="ngModel" name="Q46OBS"
+                  [(ngModel)]="student.Q46OBS"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
 
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-          <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
-        </mat-action-row>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-button color="primary" (click)="nextStep()" i18n="Label">Seguinte</button>
+          </mat-action-row>
         </form>
       </mat-expansion-panel>
 
@@ -659,22 +685,33 @@
         </mat-expansion-panel-header>
 
         <form #fqa="ngForm" (submit)="saveQueixasAtuais(fqa.value)">
-        <mat-card>
-          <mat-card-content>
+          <mat-card>
+            <mat-card-content>
               <div class="check-box">
-                <mat-checkbox i18n="Label" #Q51="ngModel" name="Q51" [(ngModel)]="student.Q51">Dor de cabeça</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q51="ngModel" name="Q51" [(ngModel)]="student.Q51">Dor de cabeça
+                </mat-checkbox>
                 <mat-checkbox i18n="Label" #Q52="ngModel" name="Q52" [(ngModel)]="student.Q52">Tonturas</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q53="ngModel" name="Q53" [(ngModel)]="student.Q53">Desmaios</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q54="ngModel" name="Q54" [(ngModel)]="student.Q54">Dor no peito</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q55="ngModel" name="Q55" [(ngModel)]="student.Q55">Excesso de peso</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q54="ngModel" name="Q54" [(ngModel)]="student.Q54">Dor no peito
+                </mat-checkbox>
+                <mat-checkbox i18n="Label" #Q55="ngModel" name="Q55" [(ngModel)]="student.Q55">Excesso de peso
+                </mat-checkbox>
                 <mat-checkbox i18n="Label" #Q56="ngModel" name="Q56" [(ngModel)]="student.Q56">Alergias</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q57="ngModel" name="Q57" [(ngModel)]="student.Q57">Dores nas pernas</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q57="ngModel" name="Q57" [(ngModel)]="student.Q57">Dores nas pernas
+                </mat-checkbox>
                 <mat-checkbox i18n="Label" #Q58="ngModel" name="Q58" [(ngModel)]="student.Q58">Arritemias</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q59="ngModel" name="Q59" [(ngModel)]="student.Q59">Tensão pré-menstrual</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q510="ngModel" name="Q510" [(ngModel)]="student.Q510">Dores nas costas</mat-checkbox>
-                <mat-checkbox [disabled]="!Q510.value" i18n="Label" #Q510TC="ngModel" name="Q510TC" [(ngModel)]="student.Q510TC">Cervical</mat-checkbox>
-                <mat-checkbox [disabled]="!Q510.value" i18n="Label" #Q510TD="ngModel" name="Q510TD" [(ngModel)]="student.Q510TD">Dorsal</mat-checkbox>
-                <mat-checkbox [disabled]="!Q510.value" i18n="Label" #Q510TL="ngModel" name="Q510TL" [(ngModel)]="student.Q510TL">Lombar</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q59="ngModel" name="Q59" [(ngModel)]="student.Q59">Tensão pré-menstrual
+                </mat-checkbox>
+                <mat-checkbox i18n="Label" #Q510="ngModel" name="Q510" [(ngModel)]="student.Q510">Dores nas costas
+                </mat-checkbox>
+                <div *ngIf="Q510.value" style="margin-left: 25px;">
+                  <mat-checkbox i18n="Label" #Q510TC="ngModel" name="Q510TC" [(ngModel)]="student.Q510TC">Cervical
+                  </mat-checkbox>
+                  <mat-checkbox i18n="Label" #Q510TD="ngModel" name="Q510TD" [(ngModel)]="student.Q510TD">Dorsal
+                  </mat-checkbox>
+                  <mat-checkbox i18n="Label" #Q510TL="ngModel" name="Q510TL" [(ngModel)]="student.Q510TL">Lombar
+                  </mat-checkbox>
+                </div>
                 <mat-checkbox i18n="Label" #Q511="ngModel" name="Q511" [(ngModel)]="student.Q511">Outras</mat-checkbox>
               </div>
               <mat-form-field class="input-lg" *ngIf="Q511.value">
@@ -685,13 +722,13 @@
                 <mat-label i18n="Label">Observações</mat-label>
                 <input matInput placeholder="" #Q5OBS="ngModel" name="Q5OBS" [(ngModel)]="student.Q5OBS">
               </mat-form-field>
-          </mat-card-content>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-          <button mat-button color="primary" (click)="nextStep()" i18n="Label">Fim</button>
-        </mat-action-row>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-button color="primary" (click)="nextStep()" i18n="Label">Fim</button>
+          </mat-action-row>
         </form>
       </mat-expansion-panel>
 

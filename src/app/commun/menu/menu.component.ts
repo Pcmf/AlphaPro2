@@ -12,19 +12,16 @@ export class MenuComponent implements OnInit {
   selectedStudent: any = [];
 
   constructor(private dataService: DataService, private menuService: MenuService) {
-    this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
+    this.menuService.getSelectedStudent().subscribe(
+      resp => this.selectedStudent = resp
+    );
   }
 
   ngOnInit(): void {
-
-    this.menuService.getSelectedStudent().subscribe(
-      (resp: any) => {
-        if (resp) {
-          this.selectedStudent = resp;
-        }
-      }
-    );
-
+    if (sessionStorage.selectedStudent) {
+      this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
+      this.menuService.setSelectedStudent(this.selectedStudent);
+    }
   }
 
 

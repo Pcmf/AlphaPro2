@@ -3,215 +3,225 @@
         <h1 i18n>Risco de Desenvolvimento de Cardiopatia</h1>
         <h3 i18n>Fatores de Risco</h3>
     </div>
-</div>
 
-<div class="section">
-    <form #f="ngForm" (submit)="save(f.value)">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Pressão Arterial(mm/Hg)</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Sistólica</mat-label>
-                            <input matInput #qtas="ngModel" name="qtas" [(ngModel)]="data.qtas">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Diastólica</mat-label>
-                            <input matInput #qtad="ngModel" name="qtad" [(ngModel)]="data.qtad">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Tabagismo</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Cigarros por dia</mat-label>
-                            <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="data.qtos">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Lipídios Sanguínios(mg/dl)</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Colesterol Total</mat-label>
-                            <input matInput #lsc="ngModel" name="lsc" [(ngModel)]="data.lsc">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Fração CT/HDL-C</mat-label>
-                            <input matInput #lsf="ngModel" name="lsf" [(ngModel)]="data.lsf">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Triglicerídeos</mat-label>
-                            <input matInput #lst="ngModel" name="lst" [(ngModel)]="data.lst">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Glicemia</mat-label>
-                            <input matInput #lsg="ngModel" name="lsg" [(ngModel)]="data.lsg">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Diabetes Mellitus</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <!-- <mat-label>Cigarros por dia</mat-label> -->
-                            <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="data.diabetes">
-                                <mat-option value="0" i18n>Não</mat-option>
-                                <mat-option value="1" i18n>DMNID*</mat-option>
-                                <mat-option value="2" i18n>DMNID* Recente</mat-option>
-                                <mat-option value="3" i18n>DMNID* + 15 anos</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-                <small>*Diabetes Mellitus Não Insulina Dependente</small>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Gordura Corporal(%)</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item *ngIf="sex == 'F'">
-                        <mat-form-field>
-                            <mat-label i18n>Mulheres</mat-label>
-                            <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item *ngIf="sex == 'M'">
-                        <mat-form-field>
-                            <mat-label i18n>Homens</mat-label>
-                            <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Stress - Tensão</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-select #st="ngModel" name="st" [(ngModel)]="data.st">
-                                <mat-option value="0" i18n>Nunca</mat-option>
-                                <mat-option value="1" i18n>quase nunca</mat-option>
-                                <mat-option value="2" i18n>às vezes</mat-option>
-                                <mat-option value="3" i18n>frequentemente</mat-option>
-                                <mat-option value="4" i18n>quase sempre</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Actividade Fisica</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Frequência Semanal</mat-label>
-                            <mat-select #afs="ngModel" name="afs" [(ngModel)]="data.afs">
-                                <mat-option value="0">4</mat-option>
-                                <mat-option value="1">3</mat-option>
-                                <mat-option value="2">2</mat-option>
-                                <mat-option value="3">1</mat-option>
-                                <mat-option value="4">0</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Minutos/Semana</mat-label>
-                            <mat-select #af50="ngModel" name="af50" [(ngModel)]="data.af50">
-                                <mat-option value="0">120</mat-option>
-                                <mat-option value="1">90</mat-option>
-                                <mat-option value="2">30</mat-option>
-                                <mat-option value="3">0</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Histórico Familiar</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <mat-label i18n>Famimilares doentes coronarios > 60</mat-label>
-                            <mat-select #hf="ngModel" name="hf" [ngModel]="data.hf" disabled>
-                                <mat-option value="0">0</mat-option>
-                                <mat-option value="1">1</mat-option>
-                                <mat-option value="2">2</mat-option>
-                                <mat-option value="3">3</mat-option>
-                            </mat-select>
+    <div class="section">
+        <form #f="ngForm" (submit)="save(f.value)">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Pressão Arterial(mm/Hg)</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Sistólica</mat-label>
+                                <input matInput #qtas="ngModel" name="qtas" [(ngModel)]="data.qtas">
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Diastólica</mat-label>
+                                <input matInput #qtad="ngModel" name="qtad" [(ngModel)]="data.qtad">
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Tabagismo</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Cigarros por dia</mat-label>
+                                <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="data.qtos">
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Lipídios Sanguínios(mg/dl)</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Colesterol Total</mat-label>
+                                <input matInput #lsc="ngModel" name="lsc" [(ngModel)]="data.lsc">
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Fração CT/HDL-C</mat-label>
+                                <input matInput #lsf="ngModel" name="lsf" [(ngModel)]="data.lsf">
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Triglicerídeos</mat-label>
+                                <input matInput #lst="ngModel" name="lst" [(ngModel)]="data.lst">
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Glicemia</mat-label>
+                                <input matInput #lsg="ngModel" name="lsg" [(ngModel)]="data.lsg">
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Diabetes Mellitus</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <!-- <mat-label>Cigarros por dia</mat-label> -->
+                                <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="data.diabetes">
+                                    <mat-option value="0" i18n>Não</mat-option>
+                                    <mat-option value="1" i18n>DMNID*</mat-option>
+                                    <mat-option value="2" i18n>DMNID* Recente</mat-option>
+                                    <mat-option value="3" i18n>DMNID* + 15 anos</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                    <small>*Diabetes Mellitus Não Insulina Dependente</small>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Gordura Corporal(%)</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngIf="sex == 'F'">
+                            <mat-form-field>
+                                <mat-label i18n>Mulheres</mat-label>
+                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item *ngIf="sex == 'M'">
+                            <mat-form-field>
+                                <mat-label i18n>Homens</mat-label>
+                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Stress - Tensão</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-select #st="ngModel" name="st" [(ngModel)]="data.st">
+                                    <mat-option value="0" i18n>Nunca</mat-option>
+                                    <mat-option value="1" i18n>quase nunca</mat-option>
+                                    <mat-option value="2" i18n>às vezes</mat-option>
+                                    <mat-option value="3" i18n>frequentemente</mat-option>
+                                    <mat-option value="4" i18n>quase sempre</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Actividade Fisica</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Frequência Semanal</mat-label>
+                                <mat-select #afs="ngModel" name="afs" [(ngModel)]="data.afs">
+                                    <mat-option value="0">4</mat-option>
+                                    <mat-option value="1">3</mat-option>
+                                    <mat-option value="2">2</mat-option>
+                                    <mat-option value="3">1</mat-option>
+                                    <mat-option value="4">0</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Minutos/Semana</mat-label>
+                                <mat-select #af50="ngModel" name="af50" [(ngModel)]="data.af50">
+                                    <mat-option value="0">120</mat-option>
+                                    <mat-option value="1">90</mat-option>
+                                    <mat-option value="2">30</mat-option>
+                                    <mat-option value="3">0</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Histórico Familiar</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <mat-label i18n>Famimilares doentes coronarios > 60</mat-label>
+                                <mat-select #hf="ngModel" name="hf" [ngModel]="data.hf" disabled>
+                                    <mat-option value="0">0</mat-option>
+                                    <mat-option value="1">1</mat-option>
+                                    <mat-option value="2">2</mat-option>
+                                    <mat-option value="3">3</mat-option>
+                                </mat-select>
 
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-subtitle i18n>Idade</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field>
-                            <input matInput readonly #idade="ngModel" name="idade" [ngModel]="data.idade">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
-        <div class="action">
-            <button mat-fab type="button" color="default" (click)="goBack()">
-                <mat-icon>close</mat-icon>
-            </button>
-            <button mat-fab type="submit">
-                <mat-icon>check</mat-icon>
-            </button>
-        </div>
-    </form>
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle i18n>Idade</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-form-field>
+                                <input matInput readonly #idade="ngModel" name="idade" [ngModel]="data.idade">
+                            </mat-form-field>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+            <div class="action">
+                <button mat-fab type="button" color="default" (click)="goBack()">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <button mat-fab type="submit">
+                    <mat-icon>check</mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <button mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </button>
+        <a mat-mini-fab color="primary" [routerLink]="['/rddc/', id]">
+            <mat-icon>redo</mat-icon>
+        </a>
+
+    </div>
+
 </div>

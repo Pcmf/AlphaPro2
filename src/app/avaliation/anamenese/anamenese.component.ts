@@ -55,6 +55,10 @@ export class AnameneseComponent implements OnInit {
 
   saveObjetivos(form) {
     console.table(form);
+    if (!form.QEST) {
+      form.Q201 = '';
+      form.Q13 = '';
+    }
     form.DT_OBJ = this.dataObj;
     this.saveData(form);
   }
@@ -83,6 +87,11 @@ export class AnameneseComponent implements OnInit {
 
   saveQueixasAtuais(form) {
     console.table(form);
+    if (!form.Q510) {
+      form.Q510TC = '';
+      form.Q510TD = '';
+      form.Q510TL = '';
+    }
     this.saveData(form);
   }
 

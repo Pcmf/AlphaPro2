@@ -16,7 +16,9 @@ export class AvDashComponent implements OnInit {
     this.studentId = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/entity/' + this.dataService.getPTId() + '/' + this.studentId).subscribe(
       resp => {
-        this.selectedStudent = resp[0];
+        if (resp) {
+          this.selectedStudent = resp[0];
+        }
       }
     );
   }

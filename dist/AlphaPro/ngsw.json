@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1585781774139,
+  "timestamp": 1585782323208,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -17,7 +17,7 @@
         "/polyfills-es5.ec5f24459b4f51c9eaaf.js",
         "/runtime-es2015.0811dcefd377500b5b1a.js",
         "/runtime-es5.0811dcefd377500b5b1a.js",
-        "/styles.4b0d71e38e50a98d0b12.css"
+        "/styles.efd6718eeaf959a727f7.css"
       ],
       "patterns": []
     },
@@ -80,7 +80,7 @@
     "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg": "9d79be69b823d9fa6ddfb7931d7b2422aa0e976f",
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
     "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
-    "/index.html": "c7e27660ab6d72a724a447914123afa741260b03",
+    "/index.html": "de6d318352f70305fe1f149e1558eb8cfc2be310",
     "/main-es2015.cf2292748e8ba002c4fa.js": "418e8642b9f20bd22c2a63d3b4abc07fcb168b20",
     "/main-es5.cf2292748e8ba002c4fa.js": "b00f9aece4c4f9737ee6f3c06481eda53f591d6a",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
@@ -91,7 +91,7 @@
     "/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
     "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
-    "/styles.4b0d71e38e50a98d0b12.css": "d7c97db992eec81f0734f82266c30ae6b7a512de",
+    "/styles.efd6718eeaf959a727f7.css": "cf52c8997ae20ae46efad76f536ffaaac4dc9a4b",
     "/trust-tru-katsande-Pu7BOaYlYGY-unsplash.670b4fbe9582867878df.jpg": "bca4b39b98acb9990c32bab78ffc05efd8977e08",
     "/tyler-nix-Y1drF0Y3Oe0-unsplash.42efff6aaac0c0f9450f.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb"
   },

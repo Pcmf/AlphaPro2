@@ -1,5 +1,5 @@
 
-.container-fluid{
+.container{
   position: relative;
   background-image: url("../../../assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg");
   background-repeat: no-repeat;
@@ -8,7 +8,10 @@
   background-position: center;
  // background-color: rgba(75, 73, 73, 0.404);
   height: 94vh;
+  width: 98vw;
+  margin: auto;
   overflow: auto;
+  
 }
 
 .header{
@@ -18,13 +21,14 @@
     color: white;
 }
 
-.main{
+.section{
   position: absolute;
   top: 40%;
   left:50%;
   transform: translateX(-50%);
   width: 96%;
   margin: auto;
+  overflow: auto;
   z-index: 1000;
  }
 
@@ -111,11 +115,9 @@ mat-label{
 
 
 
-.footer{
+/* .footer{
   position: absolute;
   bottom: 1%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
-
-}
+} */

@@ -1,17 +1,3 @@
-.container{
-  position: relative;
-  width: 98vw;
-  height: 94vh;
-  margin: auto;
-
-.headers{
-    margin-top:15px;
-    width: 100%;
-    top: 5px;
-    left: 0;
-    text-align: center;
-}
-
 .section{
   //  background-color: lightblue;
     position: absolute;
@@ -50,15 +36,4 @@
         justify-content: space-around;
   
     }
-}
-
-
-
-.footer{
-    position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-  
-  }
 }

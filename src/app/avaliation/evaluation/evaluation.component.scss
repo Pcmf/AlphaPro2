@@ -1,26 +1,11 @@
-.container{
-    position: relative;
-    width: 100vw;
-    height: 94vh;
-
-    overflow: auto;
-
-
-.headers{
-    margin-top:15px;
-    width: 100%;
-    top: 5px;
-    left: 0;
-    text-align: center;
-}
-
 .section{
   //  background-color: lightblue;
     position: absolute;
-    width: 100%;
+    width: 98%;
     padding: 10px;
     height: 75vh;
     bottom: 8%;
+    overflow: auto;
 
     table{
       width: 100%;
@@ -51,15 +36,4 @@
         justify-content: space-around;
   
     }
-}
-
-
-
-.footer{
-    position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-  
-  }
 }

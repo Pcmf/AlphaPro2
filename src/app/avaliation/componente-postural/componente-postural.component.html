@@ -6,15 +6,50 @@
     <div class="section">
         <mat-tab-group [disableRipple]="false">
             <mat-tab i18n label="Avaliação">
-                <div class="photos">
+                <div class="photos" *ngIf="oldData[pointer]">
                     <div class="photo">
-                        <img [src]="" alt="Vista Anterior">
+                        <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
+                        <button mat-mini-fab (click)="openTakePhoto('a')"><mat-icon>camera_alt</mat-icon></button>
                     </div>
                     <div class="photo">
-                        <img [src]="" alt="Vista Anterior">
+                        <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
+                        <button mat-mini-fab (click)="openTakePhoto('l')"><mat-icon>camera_alt</mat-icon></button>
+
                     </div>
                     <div class="photo">
-                        <img [src]="" alt="Vista Anterior">
+                        <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
+                        <button mat-mini-fab (click)="openTakePhoto('p')"><mat-icon>camera_alt</mat-icon></button>
+
+                    </div>
+                </div>
+                <div *ngIf="view" class="photoArea" style="text-align:center">
+                    <h4>{{viewTitle}}</h4>
+                    <div *ngIf="!webcamImage">
+                        <webcam  [width]="200" [trigger]="triggerObservable"
+                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                            [videoOptions]="videoOptions" [imageQuality]="1"
+                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+                        </webcam>
+                        <br />
+                        <button mat-mini-fab color="default" (click)="view=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
+                            <mat-icon>camera</mat-icon>
+                        </button>
+                        <br />
+                    </div>
+                    <!-- Visualizador de foto -->
+                    <div class="snapshot" *ngIf="webcamImage">
+                        <img [src]="webcamImage.imageAsDataUrl"  width="200" />
+                        <br/>
+                        <button mat-mini-fab color="default" (click)="webcamImage=null">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
+                            <mat-icon>save</mat-icon>
+                        </button>
                     </div>
                 </div>
             </mat-tab>
@@ -38,42 +73,36 @@
                                 <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação da Cabeça</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vacabi="matButtonToggleGroup" name="vacabi" [(ngModel)]="newData.vacabi">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                          DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vacabi="ngModel" name="vacabi" [(ngModel)]="newData.vacabi" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação da Cabeça')">Rotação da Cabeça</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabr}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vacabr="matButtonToggleGroup" name="vacabr" [(ngModel)]="newData.vacabr">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                          DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnivel de Ombros')">Desnivel de Ombros</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaombrodesn}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vaombrodesn="matButtonToggleGroup" name="vaombrodesn" [(ngModel)]="newData.vaombrodesn">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                          DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vaombrodesn="ngModel" name="vaombrodesn" [(ngModel)]="newData.vaombrodesn" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
 
@@ -81,51 +110,40 @@
                                 <th><span (click)="openDialog('Rotação do Tronco')">Rotação do Tronco</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vaquadril="matButtonToggleGroup" name="vaquadril" [(ngModel)]="newData.vaquadril">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle value="Normal" aria-label="Normal">
-                                          Normal
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                            DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vaquadril="ngModel" name="vaquadril" [(ngModel)]="newData.vaquadril" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Triangulo de Thales')">Triangulo de Thales</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpthalesd}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpthalesd="matButtonToggleGroup" name="vpthalesd" [(ngModel)]="newData.vpthalesd">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle value="Simetrico" aria-label="Simetrico">
-                                          Simétrico
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                            DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpthalesd="ngModel" name="vpthalesd" [(ngModel)]="newData.vpthalesd" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Simétrico">Simétrico</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Altura das Cristas Iliacas')">Altura das<br />Cristas Iliacas</span></th>
+                                <th><span (click)="openDialog('Altura das Cristas Iliacas')">Altura das<br />Cristas
+                                        Iliacas</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].aci_va}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #aci_va="matButtonToggleGroup" name="aci_va" [(ngModel)]="newData.aci_va">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle value="Simetrico" aria-label="Simetrico">
-                                          Simétrico
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                            DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #aci_va="ngModel" name="aci_va" [(ngModel)]="newData.aci_va" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Simétrico">Simétrico</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
 
@@ -133,42 +151,36 @@
                                 <th><span (click)="openDialog('Desnivel da Pelve')">Desnivel da Pelve</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vaquadril="matButtonToggleGroup" name="vaquadril" [(ngModel)]="newData.vaquadril">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                            DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vaquadril="ngModel" name="vaquadril" [(ngModel)]="newData.vaquadril" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vajoelho}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vajoelho="matButtonToggleGroup" name="vajoelho" [(ngModel)]="newData.vajoelho">
-                                        <mat-button-toggle class="label-esq" value="Valgo" aria-label="Valgo">
-                                          Valgo
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Varo" aria-label="Varo">
-                                            Varo
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vajoelho="ngModel" name="vajoelho" [(ngModel)]="newData.vajoelho" placeholder="selecionar">
+                                            <mat-option value="Valgo">Valgo</mat-option>
+                                            <mat-option value="Varo">Varo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés')">Pés</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vape}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vape="matButtonToggleGroup" name="vape" [(ngModel)]="newData.vape">
-                                        <mat-button-toggle class="label-esq" value="Abduzidos" aria-label="Abduzidos">
-                                          Abduzidos
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Aduzidos" aria-label="Aduzidos">
-                                            Aduzidos
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vape="ngModel" name="vape" [(ngModel)]="newData.vape" placeholder="selecionar">
+                                            <mat-option value="Abduzidos">Abduzidos</mat-option>
+                                            <mat-option value="Aduzidos">Aduzidos</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                         </tbody>
@@ -213,107 +225,89 @@
                                 <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcab}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vlcab="matButtonToggleGroup" name="vlcab" [(ngModel)]="newData.vlcab">
-                                        <mat-button-toggle class="label-esq" value="Protraida" aria-label="Protraida">
-                                          Protraida
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retraida" aria-label="Retraida">
-                                            Retraida
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vlcab="ngModel" name="vlcab" [(ngModel)]="newData.vlcab" placeholder="selecionar">
+                                            <mat-option value="Protraido">Protraido</mat-option>
+                                            <mat-option value="Retraido">Retraido</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cervical')">Cervical</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcervical}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vlcervical="matButtonToggleGroup" name="vlcervical" [(ngModel)]="newData.vlcervical">
-                                        <mat-button-toggle class="label-esq" value="Hiperlordótica" aria-label="Hiperlordótica">
-                                          Hiperlordótica
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retificada" aria-label="Retificada">
-                                            Retificada
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vlcervical="ngModel" name="vlcervical" [(ngModel)]="newData.vlcervical" placeholder="selecionar">
+                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option value="Retificada">Retificada</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros')">Ombros</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombro}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vlombro="matButtonToggleGroup" name="vlombro" [(ngModel)]="newData.vlombro">
-                                        <mat-button-toggle class="label-esq" value="Protraidos" aria-label="Protraidos">
-                                          Protraidos
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retraidos" aria-label="Retraidos">
-                                            Retraidos
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vlombro="ngModel" name="vlombro" [(ngModel)]="newData.vlombro" placeholder="selecionar">
+                                            <mat-option value="Protraidos">Protraidos</mat-option>
+                                            <mat-option value="Retraidos">Retraidos</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Membro Superior Direito')">Membro Superior<br/>Direito</span></th>
+                                <th><span (click)="openDialog('Membro Superior Direito')">Membro
+                                        Superior<br />Direito</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].msd}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #msd="matButtonToggleGroup" name="msd" [(ngModel)]="newData.msd">
-                                        <mat-button-toggle class="label-esq" value="Anteriorizado" aria-label="Anteriorizado">
-                                          Anteriorizado
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Normal" aria-label="Normal">
-                                            Normal
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Posteriorizado" aria-label="Posteriorizado">
-                                            Posteriorizado
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #msd="ngModel" name="msd" [(ngModel)]="newData.msd" placeholder="selecionar">
+                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
+                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Posteriorizado">Posteriorizado</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Membro Superior Esquerdo')">Membro Superior<br/>Esquerdo</span></th>
+                                <th><span (click)="openDialog('Membro Superior Esquerdo')">Membro
+                                        Superior<br />Esquerdo</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].mse}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #mse="matButtonToggleGroup" name="mse" [(ngModel)]="newData.mse">
-                                        <mat-button-toggle class="label-esq" value="Anteriorizado" aria-label="Anteriorizado">
-                                          Anteriorizado
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Normal" aria-label="Normal">
-                                            Normal
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Posteriorizado" aria-label="Posteriorizado">
-                                            Posteriorizado
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #mse="ngModel" name="mse" [(ngModel)]="newData.mse" placeholder="selecionar">
+                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
+                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Posteriorizado">Posteriorizado</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Dorsal')">Dorsal</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vldorsal}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vldorsal="matButtonToggleGroup" name="vldorsal" [(ngModel)]="newData.vldorsal">
-                                        <mat-button-toggle class="label-esq" value="Hipercifótica" aria-label="Hipercifótica">
-                                          Hipercifótica
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retificada" aria-label="Retificada">
-                                            Retificada
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vldorsal="ngModel" name="vldorsal" [(ngModel)]="newData.vldorsal" placeholder="selecionar">
+                                            <mat-option value="Hipercifótica">Hipercifótica</mat-option>
+                                            <mat-option value="Retificada">Retificada</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação do Tronco')">Rotação do Tronco</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].pescoco}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #carga_peso="matButtonToggleGroup" name="carga_peso" [(ngModel)]="newData.carga_peso">
-                                        <mat-button-toggle class="label-esq" value="Direita" aria-label="Direita">
-                                          DIR
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Normal" aria-label="Normal">
-                                            Normal
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Esquerda" aria-label="Esquerda">
-                                            ESQ
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #carga_peso="ngModel" name="carga_peso" [(ngModel)]="newData.carga_peso" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -321,77 +315,68 @@
                                 <td *ngIf="pointer>=0"><span *ngIf="oldData[pointer].vlprotusao">Protusão</span></td>
                                 <td *ngIf="addForm">
                                     <mat-label>Protusão&nbsp;</mat-label>
-                                    <input name="vlprotusao" #vlprotusao="ngModel" [(ngModel)]="newData.vlprotusao" type="checkbox">
+                                    <input name="vlprotusao" #vlprotusao="ngModel" [(ngModel)]="newData.vlprotusao"
+                                        type="checkbox">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Lombar')">Lombar</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vllombar}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vllombar="matButtonToggleGroup" name="vllombar" [(ngModel)]="newData.vllombar">
-                                        <mat-button-toggle class="label-esq" value="Hiperlordótica" aria-label="Hiperlordótica">
-                                            Hiperlordótica
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retificada" aria-label="Retificada">
-                                            Retificada
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vllombar="ngModel" name="vllombar" [(ngModel)]="newData.vllombar" placeholder="selecionar">
+                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option value="Retificada">Retificada</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril')">Quadril</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].quadril}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #quadril="matButtonToggleGroup" name="quadril" [(ngModel)]="newData.quadril">
-                                        <mat-button-toggle class="label-esq" value="Antepulsão" aria-label="Antepulsão">
-                                            Antepulsão
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retropulsão" aria-label="Retropulsão">
-                                            Retropulsão
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #quadril="ngModel" name="quadril" [(ngModel)]="newData.quadril" placeholder="selecionar">
+                                            <mat-option value="Antepulsão">Antepulsão</mat-option>
+                                            <mat-option value="Retropulsão">Retropulsão</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pelve')">Pelve</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlquadril}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vlquadril="matButtonToggleGroup" name="vlquadril" [(ngModel)]="newData.vlquadril">
-                                        <mat-button-toggle class="label-esq" value="Anteversão" aria-label="Anteversão">
-                                            Anteversão
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Retroversão" aria-label="Retroversão">
-                                            Retroversão
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vlquadril="ngModel" name="vlquadril" [(ngModel)]="newData.vlquadril" placeholder="selecionar">
+                                            <mat-option value="Anteversão">Anteversão</mat-option>
+                                            <mat-option value="Retroversão">Retroversão</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vljoelho}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vljoelho="matButtonToggleGroup" name="vljoelho" [(ngModel)]="newData.vljoelho">
-                                        <mat-button-toggle class="label-esq" value="Flexos" aria-label="Flexos">
-                                            Flexos
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Recurvatos" aria-label="Recurvatos">
-                                            Recurvatos
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vljoelho="ngModel" name="vljoelho" [(ngModel)]="newData.vljoelho" placeholder="selecionar">
+                                            <mat-option value="Flexos">Flexos</mat-option>
+                                            <mat-option value="Recurvatos">Recurvatos</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés')">Pés</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpe}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vlpe="matButtonToggleGroup" name="vlpe" [(ngModel)]="newData.vlpe">
-                                        <mat-button-toggle class="label-esq" value="Cavos" aria-label="Cavos">
-                                            Cavos
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Planos" aria-label="Planos">
-                                            Planos
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vlpe="ngModel" name="vlpe" [(ngModel)]="newData.vlpe" placeholder="selecionar">
+                                            <mat-option value="Cavos">Cavos</mat-option>
+                                            <mat-option value="Planos">Planos</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
 
@@ -438,149 +423,136 @@
                                 <th><span (click)="openDialog('Ombros')">Ombros</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombro}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpombro="matButtonToggleGroup" name="vpombro" [(ngModel)]="newData.vpombro">
-                                        <mat-button-toggle class="label-esq" value="Deprimidos" aria-label="Deprimidos">
-                                            Deprimidos
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Elevados" aria-label="Elevados">
-                                            Elevados
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpombro="ngModel" name="vpombro" [(ngModel)]="newData.vpombro" placeholder="selecionar">
+                                            <mat-option value="Deprimidos">Deprimidos</mat-option>
+                                            <mat-option value="Elevados">Elevados</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnível')">Desnível</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombrodesn}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpombrodesn="matButtonToggleGroup" name="vpombrodesn" [(ngModel)]="newData.vpombrodesn">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpombrodesn="ngModel" name="vpombrodesn" [(ngModel)]="newData.vpombrodesn" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escápulas')">Escápulas</span></th>
                                 <td *ngIf="pointer>=0">
-                                    <span *ngIf="oldData[pointer].esc_simetrica_vp">Simétricas<br/></span>
-                                    <span *ngIf="oldData[pointer].esc_assimetricas_vp">Assimétricas<br/></span>
-                                    <span *ngIf="oldData[pointer].vpescad">Aduzidas<br/></span>
-                                    <span *ngIf="oldData[pointer].vpesc">Abduzidas<br/></span>
-                                    <span *ngIf="oldData[pointer].vpescal">Aladas<br/></span>
+                                    <span *ngIf="oldData[pointer].esc_simetrica_vp">Simétricas<br /></span>
+                                    <span *ngIf="oldData[pointer].esc_assimetricas_vp">Assimétricas<br /></span>
+                                    <span *ngIf="oldData[pointer].vpescad">Aduzidas<br /></span>
+                                    <span *ngIf="oldData[pointer].vpesc">Abduzidas<br /></span>
+                                    <span *ngIf="oldData[pointer].vpescal">Aladas<br /></span>
                                 </td>
-                                <td *ngIf="addForm">
-                                    <mat-checkbox name="esc_simetrica_vp" #esc_simetrica_vp="ngModel" [(ngModel)]="newData.esc_simetrica_vp" type="number">Simétricas</mat-checkbox><br/>
-                                    <mat-checkbox name="esc_assimetricas_vp" #esc_assimetricas_vp="ngModel" [(ngModel)]="newData.esc_assimetricas_vp" type="number">Assimétricas</mat-checkbox><br/>
-                                    <mat-checkbox name="vpescad" #vpescad="ngModel" [(ngModel)]="newData.vpescad" type="number">Aduzidas</mat-checkbox><br/>
-                                    <mat-checkbox name="vpesc" #vpesc="ngModel" [(ngModel)]="newData.vpesc" type="number">Abduzidas</mat-checkbox><br/>
-                                    <mat-checkbox name="vpescal" #vpescal="ngModel" [(ngModel)]="newData.vpescal" type="number">Aladas</mat-checkbox>
+                                <td *ngIf="addForm" style="text-align: left;">
+                                    <mat-checkbox name="esc_simetrica_vp" #esc_simetrica_vp="ngModel"
+                                        [(ngModel)]="newData.esc_simetrica_vp" type="number">Simétricas</mat-checkbox>
+                                    <br />
+                                    <mat-checkbox name="esc_assimetricas_vp" #esc_assimetricas_vp="ngModel"
+                                        [(ngModel)]="newData.esc_assimetricas_vp" type="number">Assimétricas
+                                    </mat-checkbox><br />
+                                    <mat-checkbox name="vpescad" #vpescad="ngModel" [(ngModel)]="newData.vpescad"
+                                        type="number">Aduzidas</mat-checkbox><br />
+                                    <mat-checkbox name="vpesc" #vpesc="ngModel" [(ngModel)]="newData.vpesc"
+                                        type="number">Abduzidas</mat-checkbox><br />
+                                    <mat-checkbox name="vpescal" #vpescal="ngModel" [(ngModel)]="newData.vpescal"
+                                        type="number">Aladas</mat-checkbox>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escápulas Aladas')">Escápulas Aladas</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].esc_alada_l}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #esc_alada_l="matButtonToggleGroup" name="esc_alada_l" [(ngModel)]="newData.esc_alada_l">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #esc_alada_l="ngModel" name="esc_alada_l" [(ngModel)]="newData.esc_alada_l" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Gibosidade Torácica')">Gibosidade Torácica</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].gibosidade}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #gibosidade="matButtonToggleGroup" name="gibosidade" [(ngModel)]="newData.gibosidade">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-esq" value="Ausente" aria-label="Ausente">
-                                            Ausente
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #gibosidade="ngModel" name="gibosidade" [(ngModel)]="newData.gibosidade" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Ausente">Ausente</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Dorsal')">Escoliose Dorsal</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpdorsal}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpdorsal="matButtonToggleGroup" name="vpdorsal" [(ngModel)]="newData.vpdorsal">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpdorsal="ngModel" name="vpdorsal" [(ngModel)]="newData.vpdorsal" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Lombar')">Escoliose Lombar</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vplombar}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vplombar="matButtonToggleGroup" name="vplombar" [(ngModel)]="newData.vplombar">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vplombar="ngModel" name="vplombar" [(ngModel)]="newData.vplombar" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnivel da Pelve')">Desnivel da Pelve</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpquadril}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpquadril="matButtonToggleGroup" name="vpquadril" [(ngModel)]="newData.vpquadril">
-                                        <mat-button-toggle class="label-esq" value="Esquerda" aria-label="Esquerda">
-                                            Esquerda
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direita" aria-label="Direita">
-                                            Direita
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpquadril="ngModel" name="vpquadril" [(ngModel)]="newData.vpquadril" placeholder="selecionar">
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpjoelho}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vpjoelho="matButtonToggleGroup" name="vpjoelho" [(ngModel)]="newData.vpjoelho">
-                                        <mat-button-toggle class="label-esq" value="Valgo" aria-label="Valgo">
-                                            Valgo
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Varo" aria-label="Varo">
-                                            Varo
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpjoelho="ngModel" name="vpjoelho" [(ngModel)]="newData.vpjoelho" placeholder="selecionar">
+                                            <mat-option value="Valgo">Valgo</mat-option>
+                                            <mat-option value="Varo">Varo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelos')">Tornozelos</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vppe}}</td>
                                 <td *ngIf="addForm">
-                                    <mat-button-toggle-group  #vppe="matButtonToggleGroup" name="vppe" [(ngModel)]="newData.vppe">
-                                        <mat-button-toggle class="label-esq" value="Valgo" aria-label="Valgo">
-                                            Valgo
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Varo" aria-label="Varo">
-                                            Varo
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vppe="ngModel" name="vppe" [(ngModel)]="newData.vppe" placeholder="selecionar">
+                                            <mat-option value="Valgo">Valgo</mat-option>
+                                            <mat-option value="Varo">Varo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                     <div class="action">

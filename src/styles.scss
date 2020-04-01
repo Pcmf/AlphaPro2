@@ -6,6 +6,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.container-fluid{
-    height: 95vh;
+.container{
+    position: relative;
+    height: 94vh;
+    width: 98vw;
+    margin: auto;
 }
+
+.header {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+    color: rgb(35, 35, 185);
+    h1{
+        font-size: 20px;
+    }
+  }
+
+.footer {
+    position: absolute;
+    height: 42px;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    .mat-flat-button{
+      margin: 2px 10px;
+    }
+  }

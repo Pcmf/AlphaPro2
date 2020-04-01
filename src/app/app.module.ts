@@ -26,7 +26,6 @@ import { AnameneseComponent } from './avaliation/anamenese/anamenese.component';
 import { AvDashComponent } from './avaliation/av-dash/av-dash.component';
 import { PreDashComponent } from './prescription/pre-dash/pre-dash.component';
 import { RepDashComponent } from './reports/rep-dash/rep-dash.component';
-import { RegDashComponent } from './avaliation/reg-dash/reg-dash.component';
 import { DateFormat } from './date-format';
 import { QPAFComponent } from './avaliation/risco/qpaf/qpaf.component';
 import { RDCComponent } from './avaliation/risco/rdc/rdc.component';
@@ -96,7 +95,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     AvDashComponent,
     PreDashComponent,
     RepDashComponent,
-    RegDashComponent,
     QPAFComponent,
     RDCComponent,
     RDDCComponent,

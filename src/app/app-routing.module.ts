@@ -6,7 +6,6 @@ import { NewComponent } from './register/new/new.component';
 import { PreDashComponent } from './prescription/pre-dash/pre-dash.component';
 import { AvDashComponent } from './avaliation/av-dash/av-dash.component';
 import { RepDashComponent } from './reports/rep-dash/rep-dash.component';
-import { RegDashComponent } from './avaliation/reg-dash/reg-dash.component';
 import { AnameneseComponent } from './avaliation/anamenese/anamenese.component';
 import { QPAFComponent } from './avaliation/risco/qpaf/qpaf.component';
 import { RDDCComponent } from './avaliation/risco/rddc/rddc.component';
@@ -117,7 +116,6 @@ const routes: Routes = [
   {path: 'rdc/:id', component: RDCComponent},
   {path: 'qpaf/:id', component: QPAFComponent},
   {path: 'anamn/:id', component: AnameneseComponent},
-  {path: 'regDash/:id', component: RegDashComponent},
   {path: 'repDash/:id', component: RepDashComponent},
   {path: 'avDash/:id', component: AvDashComponent},
   {path: 'preDash/:id', component: PreDashComponent},

@@ -1,22 +1,3 @@
-.container{
-    position: relative;
- /*    background-image: url("../../../assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-blend-mode: normal;
-    background-size: cover;
-    background-position: center; 
-    background-color:  rgba(247, 238, 238, 0.704);*/
-    height: 94vh;
-    overflow: auto;
-  }
-
-  .header{
-      margin-top: 30px;;
-      width: 100%;
-      text-align: center;
-      color: rgb(35, 35, 185);
-  }
-
   .main{
       width: 90%;
       height: 70%;
@@ -81,13 +62,3 @@
       font-weight: 500;
       color: blue;
   }
-
-
-.footer{
-  position: absolute;
-  bottom: 1%;
-  left: 50%;
-  transform: translateX(-50%);
-
-}
-  

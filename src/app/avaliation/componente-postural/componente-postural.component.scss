@@ -1,17 +1,3 @@
-.container {
-  position: relative;
-  width: 98vw;
-  height: 94vh;
-  margin: auto;
-
-  .headers {
-    margin-top: 15px;
-    width: 100%;
-    top: 5px;
-    left: 0;
-    text-align: center;
-  }
-
   .section {
     position: absolute;
     width: 98%;
@@ -19,6 +5,8 @@
     height: 75vh;
     bottom: 8%;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
 
     table {
       width: 100%;
@@ -42,6 +30,10 @@
       width: 60px;
     }
 
+    .form-select-sm{
+      width: 100px;
+    }
+
     .action {
       width: 260px;
       margin: auto;
@@ -56,12 +48,6 @@
     color: blue;
   }
 
-  .label-esq {
-    color: blue;
-  }
-  .label-dir {
-    color: red;
-  }
   .mat-button-toggle {
     height: 30px !important;
     padding-bottom: 3px;
@@ -78,21 +64,23 @@
 
   .photos{
     margin-top: 20px;
+    height: 25%;
     width: 100%;
     display: flex;
     justify-content: space-around;
 
     .photo{
       width: 27%;
+      max-height: 100%;
       margin: auto;
+      img{
+        width: 100%;
+      }
     }
   }
 
+  .photoArea{
+    margin-top: 100px;
+    height: 75%;
 
-  .footer {
-    position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translateX(-50%);
   }
-}

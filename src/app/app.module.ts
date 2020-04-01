@@ -15,6 +15,7 @@ import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { MatVideoModule } from 'mat-video';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {WebcamModule} from 'ngx-webcam';
 
 import { DataService } from './services/data.service';
 import { MenuComponent } from './commun/menu/menu.component';
@@ -155,6 +156,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     FormsModule,
     NgxChartsModule,
     HammerModule,
+    WebcamModule,
     NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

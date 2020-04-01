@@ -6,75 +6,17 @@
     <div class="section">
         <mat-tab-group [disableRipple]="false">
             <mat-tab i18n label="Avaliação">
-                <form #f="ngForm" (submit)="saveDataForm(f)">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                               
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data}}</th>
-                                <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                        style="width: 110px;">
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th><span (click)="openDialog('Lateralidade')">Lateralidade</span></th>
-                                <td *ngIf="pointer>=0">{{oldData[pointer].lateralidade}}</td>
-                                <td *ngIf="addForm">
-                                    <mat-button-toggle-group #lateralidade="matButtonToggleGroup" name="lateralidade" [(ngModel)]="newData.lateralidade">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle value="Cruzado" aria-label="Cruzado">
-                                          Cruzado
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                          DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><span (click)="openDialog('Onde Carrega Peso')">Onde Carrega Peso </span></th>
-                                <td *ngIf="pointer>=0">{{oldData[pointer].carga_peso}}</td>
-                                <td *ngIf="addForm">
-                                    <mat-button-toggle-group #carga_peso="matButtonToggleGroup" name="carga_peso" [(ngModel)]="newData.carga_peso">
-                                        <mat-button-toggle class="label-esq" value="Esquerdo" aria-label="Esquerda">
-                                          ESQ
-                                        </mat-button-toggle>
-                                        <mat-button-toggle class="label-dir" value="Direito" aria-label="Direito">
-                                          DIR
-                                        </mat-button-toggle>
-                                      </mat-button-toggle-group>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                    <div class="action">
-                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
-                            <mat-icon class="mat-14">chevron_left</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="!addForm" mat-fab (click)="addDataForm()">
-                            <mat-icon class="mat-18">add</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1" mat-mini-fab
-                            color="default" (click)="pointer=pointer+1">
-                            <mat-icon class="mat-14">chevron_right</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="addForm" mat-fab color="default" (click)="closeInputs()">
-                            <mat-icon class="mat-18">close</mat-icon>
-                        </button>
-                        <button *ngIf="addForm" mat-fab>
-                            <mat-icon class="mat-18">check</mat-icon>
-                        </button>
+                <div class="photos">
+                    <div class="photo">
+                        <img [src]="" alt="Vista Anterior">
                     </div>
-                </form>
+                    <div class="photo">
+                        <img [src]="" alt="Vista Anterior">
+                    </div>
+                    <div class="photo">
+                        <img [src]="" alt="Vista Anterior">
+                    </div>
+                </div>
             </mat-tab>
             <!-- TAB - Vista anterior -->
             <mat-tab i18n label="Vista Anterior">

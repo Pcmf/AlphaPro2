@@ -1,87 +1,83 @@
-.container{
-    position: relative;
-    width: 100vw;
-    height: 94vh;
+.container {
+  position: relative;
+  width: 98vw;
+  height: 94vh;
+  margin: auto;
 
-    overflow: auto;
-
-
-.headers{
-    margin-top:15px;
+  .headers {
+    margin-top: 15px;
     width: 100%;
     top: 5px;
     left: 0;
     text-align: center;
-}
+  }
 
-.section{
-  //  background-color: lightblue;
+  .section {
     position: absolute;
-    width: 100%;
+    width: 98%;
     padding: 10px;
     height: 75vh;
     bottom: 8%;
     overflow: auto;
 
-    table{
+    table {
       width: 100%;
     }
-    th, td{
+    th,
+    td {
       height: 28px;
-     // background-color: blanchedalmond;
+      // background-color: blanchedalmond;
       border-bottom: 1px #999 solid;
       text-align: center;
     }
-    th{
-        font-weight: 500 !important;
-        text-align: left;
-        padding-left: 5px;
+    th {
+      font-weight: 500 !important;
+      text-align: left;
+      padding-left: 5px;
     }
-    .th-top{
-        text-align: center;
+    .th-top {
+      text-align: center;
     }
-    td>input{
+    td > input {
       width: 60px;
     }
-  
-    .action{
-        width: 260px;
-        margin: auto;
-        margin-top: 5px;
-        display: flex;
-        justify-content: space-around;
-  
-    }
-}
 
-.sub-line{
+    .action {
+      width: 260px;
+      margin: auto;
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .sub-line {
     font-weight: 500;
     color: blue;
-}
+  }
 
-.label-esq{
-  color: blue;
-}
-.label-dir{
-  color: red;
-}
-.mat-button-toggle {
-  height: 30px !important;
-  padding-bottom: 3px;
-}
-.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-  line-height: 28px !important;
-  padding: 0 8px;
-}
-.mat-button-toggle-checked {
-  background-color: #303031;
-  color: rgb(255, 255, 255);
-}
-.footer{
+  .label-esq {
+    color: blue;
+  }
+  .label-dir {
+    color: red;
+  }
+  .mat-button-toggle {
+    height: 30px !important;
+    padding-bottom: 3px;
+  }
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 28px !important;
+    padding: 0 8px;
+  }
+  .mat-button-toggle-checked {
+    background-color: #303031;
+    color: rgb(255, 255, 255);
+  }
+  .footer {
     position: absolute;
     bottom: 1%;
     left: 50%;
     transform: translateX(-50%);
-  
   }
 }

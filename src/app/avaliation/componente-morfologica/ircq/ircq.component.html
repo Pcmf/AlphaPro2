@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="headers">
+    <div class="header">
         <h2 i18n>Indice de Relação Cintura/Quadril</h2>
     </div>
 
@@ -9,8 +9,8 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="dt_avaliacao" #dt_avaliacao="ngModel" [(ngModel)]="newEvaluation.dt_avaliacao" type="date"
                                         style="width: 110px;">
@@ -20,10 +20,10 @@
                         <tbody>
                             <tr>
                                 <th i18n>Cintura <small>(cm)</small></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cintura}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura"
+                                    <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
                                          type="number" step="0.1" placeholder="centimetros">
                                 </td>
                             </tr>
@@ -38,19 +38,29 @@
                             </tr>
                             <tr>
                                 <th i18n>IRCQ</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ircq}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ircq}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen / evaluation[pointer-1].quadril | number:'1.1'}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen / evaluation[pointer].quadril | number:'1.1'}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="ircq" #ircq="ngModel" [(ngModel)]="newEvaluation.ircq"
-                                        type="number" step="0.1">
+<!--                                     <input name="ircq" #ircq="ngModel" [(ngModel)]="newEvaluation.ircq"
+                                        type="number" step="0.1"> -->
                                 </td>
                             </tr>
                             <tr>
                                 <th i18n>Classificação</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].classe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].classe}}</td>
+                                <td *ngIf="pointer>=1">
+                                    <span *ngIf="getClasse(evaluation[pointer-1])==1">Baixo</span>
+                                    <span *ngIf="getClasse(evaluation[pointer-1])==2">Moderado</span>
+                                    <span *ngIf="getClasse(evaluation[pointer-1])==3">Alto</span>
+                                    <span *ngIf="getClasse(evaluation[pointer-1])==4">Muito Alto</span>
+                                </td>
+                                <td *ngIf="pointer>=0">
+                                    <span *ngIf="getClasse(evaluation[pointer])==1">Baixo</span>
+                                    <span *ngIf="getClasse(evaluation[pointer])==2">Moderado</span>
+                                    <span *ngIf="getClasse(evaluation[pointer])==3">Alto</span>
+                                    <span *ngIf="getClasse(evaluation[pointer])==4">Muito Alto</span>
+                                </td>
                                 <td *ngIf="addEval">
-                                    <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text">
+                                    <!-- <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text"> -->
                                 </td>
                             </tr>
                             

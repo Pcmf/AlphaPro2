@@ -6,9 +6,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-toolbar{
+  height: 6vh;
+}
 .container{
     position: relative;
-    height: 94vh;
+    height: 96vh;
     width: 98vw;
     margin: auto;
 }

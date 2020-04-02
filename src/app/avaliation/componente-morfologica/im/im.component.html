@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="headers">
+    <div class="header">
         <h2 i18n>IMC - Índice de Massa Corporal</h2>
     </div>
 
@@ -9,11 +9,11 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].dt_avaliacao | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].dt_avaliacao | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="dt_avaliacao" #dt_avaliacao="ngModel" [(ngModel)]="newEvaluation.dt_avaliacao" type="date"
-                                        style="width: 110px;">
+                                        style="width: 110px;"> 
                                 </th>
                             </tr>
                         </thead>
@@ -38,21 +38,68 @@
                             </tr>
                             <tr>
                                 <th i18n>IMC</th>
-                                <td *ngIf="pointer>=1">{{calcIMC(evaluation[pointer-1])}}</td>
-                                <td *ngIf="pointer>=0">{{calcIMC(evaluation[pointer])}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].imc}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="imc" #imc="ngModel" [ngModel]="newEvaluation.imc" [value]="calcIMC(newEvaluation)"  readonly>
+                                    <input name="imc" #imc="ngModel" [ngModel]="calcIMC(newEvaluation)" [value]="calcIMC(newEvaluation)"  readonly>
                                 </td>
                             </tr>
                             <tr>
                                 <th i18n>Classificação</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].classe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].classe}}</td>
+                                <td *ngIf="pointer>=1">
+                                    <span *ngIf="evaluation[pointer-1].imc < 18.5">Peso abaixo do normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25">Normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Peso acima do normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade tipo I</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade tipo II</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 40">Obsidade extrema</span>
+                                </td>
+                                <td *ngIf="pointer>=0">
+                                        <span *ngIf="evaluation[pointer].imc < 18.5">Peso abaixo do normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25">Normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Peso acima do normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade tipo I</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade tipo II</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 40">Obesidade extrema</span>
+                                </td>
                                 <td *ngIf="addEval">
-                                    <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text">
+                                    <!-- <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text"> -->
                                 </td>
                             </tr>
-                            
+                            <tr>
+                                <th i18n>Risco</th>
+                                <td *ngIf="pointer>=1">
+                                    <div *ngIf="student.sexo=='M'">
+                                        <span *ngIf="evaluation[pointer-1].imc < 19">Baixo</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 19 && evaluation[pointer-1].imc < 25">Ideal</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 27.7">Moderado</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 27.7">Elevado</span>
+                                    </div>
+                                    <div *ngIf="student.sexo=='F'">
+                                        <span *ngIf="evaluation[pointer-1].imc < 18">Baixo</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 18 && evaluation[pointer-1].imc < 24.5">Ideal</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 24.5 && evaluation[pointer-1].imc < 27.2">Moderado</span>
+                                        <span *ngIf="evaluation[pointer-1].imc >= 27.2">Elevado</span>
+                                    </div>    
+                                </td>
+                                <td *ngIf="pointer>=0">
+                                    <div *ngIf="student.sexo=='M'">
+                                        <span *ngIf="evaluation[pointer].imc < 19">Baixo</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 19 && evaluation[pointer].imc < 25">Ideal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 27.7">Moderado</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 27.7">Elevado</span>
+                                    </div>
+                                    <div *ngIf="student.sexo=='F'">
+                                        <span *ngIf="evaluation[pointer].imc < 18">Baixo</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 18 && evaluation[pointer].imc < 24.5">Ideal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 24.5 && evaluation[pointer].imc < 27.2">Moderado</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 27.2">Elevado</span>
+                                    </div> 
+                                </td>
+                                <td *ngIf="addEval">
+                                    <!-- <input name="classe" #classe="ngModel" [(ngModel)]="newEvaluation.classe" type="text"> -->
+                                </td>
+                            </tr>                            
                         </tbody>
                     </table>
 

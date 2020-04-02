@@ -51,6 +51,7 @@ export class EvaluationComponent implements OnInit {
   }
 
   save(form) {
+    form.tmb = this.calcTMB(form);
     console.table(form);
     this.dataService.setData('clients/eval/' + this.id, form).subscribe(
       resp => {
@@ -68,6 +69,10 @@ export class EvaluationComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
+    if (this.evaluation[this.pointer].altura) {
+      this.newEvaluation.altura = this.evaluation[this.pointer].altura;
+      this.newEvaluation.envergadura = this.evaluation[this.pointer].envergadura;
+    }
     this.addEval = true;
   }
 

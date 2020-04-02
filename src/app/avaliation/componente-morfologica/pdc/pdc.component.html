@@ -11,8 +11,8 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addPerim">
                                     <input name="data" #data="ngModel" [(ngModel)]="newPerimetros.data" type="date"
                                         style="width: 110px;">
@@ -161,8 +161,8 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addDiam">
                                     <input name="data" #data="ngModel" [(ngModel)]="newDiametros.data" type="date" style="width: 110px;">
                                 </th>
@@ -223,8 +223,8 @@
                     <thead>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data}}</th>
-                            <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data}}</th>
+                            <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                            <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd-LL-yyyy'}}</th>
                             <th class="th-top" *ngIf="addOutros">
                                 <input name="data" #data="ngModel" [(ngModel)]="newOutros.data" type="date" style="width: 110px;">
                             </th>

@@ -41,10 +41,8 @@ export class IMComponent implements OnInit {
   }
 
   calcIMC(ln) {
-    let sexParam = 0;
-    this.student.sexo == 'M' ? sexParam = 5 : sexParam = -161;
-    const TMB = 10 * ln.peso + 6.25 * ln.altura * 100 - 5 * this.student.idade + sexParam;
-    return TMB;
+    const IMC = +ln.peso / ln.altura ** 2;
+    return IMC.toFixed(2);
   }
 
   ngOnInit(): void {
@@ -68,6 +66,9 @@ export class IMComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
+    if (this.evaluation[this.pointer].altura) {
+      this.newEvaluation.altura = this.evaluation[this.pointer].altura;
+    }
     this.addEval = true;
   }
 

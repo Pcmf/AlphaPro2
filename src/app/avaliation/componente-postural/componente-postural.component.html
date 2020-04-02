@@ -13,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">
@@ -166,7 +166,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">
@@ -364,7 +364,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">

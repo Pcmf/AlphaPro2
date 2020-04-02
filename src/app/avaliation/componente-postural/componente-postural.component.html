@@ -1,62 +1,15 @@
-<div class="container">
+<div class="container" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
     <div class="header">
         <h1 i18n>Avaliação Postural</h1>
     </div>
 
     <div class="section">
-        <mat-tab-group [disableRipple]="false">
-            <mat-tab i18n label="Avaliação">
-                <div class="photos" *ngIf="oldData[pointer]">
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
-                        <button mat-mini-fab (click)="openTakePhoto('a')"><mat-icon>camera_alt</mat-icon></button>
-                    </div>
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
-                        <button mat-mini-fab (click)="openTakePhoto('l')"><mat-icon>camera_alt</mat-icon></button>
+        <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
 
-                    </div>
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
-                        <button mat-mini-fab (click)="openTakePhoto('p')"><mat-icon>camera_alt</mat-icon></button>
-
-                    </div>
-                </div>
-                <div *ngIf="view" class="photoArea" style="text-align:center">
-                    <h4>{{viewTitle}}</h4>
-                    <div *ngIf="!webcamImage">
-                        <webcam  [width]="200" [trigger]="triggerObservable"
-                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                            [videoOptions]="videoOptions" [imageQuality]="1"
-                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
-                        </webcam>
-                        <br />
-                        <button mat-mini-fab color="default" (click)="view=''">
-                            <mat-icon>close</mat-icon>
-                        </button>
-                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
-                            <mat-icon>camera</mat-icon>
-                        </button>
-                        <br />
-                    </div>
-                    <!-- Visualizador de foto -->
-                    <div class="snapshot" *ngIf="webcamImage">
-                        <img [src]="webcamImage.imageAsDataUrl"  width="200" />
-                        <br/>
-                        <button mat-mini-fab color="default" (click)="webcamImage=null">
-                            <mat-icon>undo</mat-icon>
-                        </button>
-                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
-                            <mat-icon>save</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </mat-tab>
             <!-- TAB - Vista anterior -->
-            <mat-tab i18n label="Vista Anterior">
+            <mat-tab i18n label="Vista Anterior" >
                 <form #fa="ngForm" (submit)="saveDataForm(fa)">
-                    <table>
+                    <table >
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -67,7 +20,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
 
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação da Cabeça</span></th>
@@ -575,6 +528,55 @@
                         </button>
                     </div>
                 </form>
+            </mat-tab>
+          <!--   FOTOS -->
+            <mat-tab i18n label="Fotos">
+                <div class="photos" *ngIf="oldData[pointer]">
+                    <div class="photo">
+                        <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
+                        <button mat-mini-fab (click)="openTakePhoto('a')"><mat-icon>camera_alt</mat-icon></button>
+                    </div>
+                    <div class="photo">
+                        <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
+                        <button mat-mini-fab (click)="openTakePhoto('l')"><mat-icon>camera_alt</mat-icon></button>
+
+                    </div>
+                    <div class="photo">
+                        <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
+                        <button mat-mini-fab (click)="openTakePhoto('p')"><mat-icon>camera_alt</mat-icon></button>
+
+                    </div>
+                </div>
+                <div *ngIf="view" class="photoArea" style="text-align:center">
+                    <h4>{{viewTitle}}</h4>
+                    <div *ngIf="!webcamImage">
+                        <webcam  [width]="200" [trigger]="triggerObservable"
+                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                            [videoOptions]="videoOptions" [imageQuality]="1"
+                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+                        </webcam>
+                        <br />
+                        <button mat-mini-fab color="default" (click)="view=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
+                            <mat-icon>camera</mat-icon>
+                        </button>
+                        <br />
+                    </div>
+                    <!-- Visualizador de foto -->
+                    <div class="snapshot" *ngIf="webcamImage">
+                        <img [src]="webcamImage.imageAsDataUrl"  width="200" />
+                        <br/>
+                        <button mat-mini-fab color="default" (click)="webcamImage=null">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </mat-tab>
         </mat-tab-group>
     </div>

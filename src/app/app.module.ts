@@ -79,8 +79,10 @@ import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.compon
 
 
 export class MyHammerConfig extends HammerGestureConfig {
-  overrides = {
+  overrides ={
     swipe: { direction: Hammer.DIRECTION_ALL },
+    pinch: { enable: false },
+    rotate: { enable: false }
   } as any;
 }
 

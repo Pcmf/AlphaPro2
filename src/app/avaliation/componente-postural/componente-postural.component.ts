@@ -14,11 +14,11 @@ import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 })
 export class ComponentePosturalComponent implements OnInit {
   constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private menuService: MenuService,
-              private actRoute: ActivatedRoute,
-              private dialog: MatDialog
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private menuService: MenuService,
+    private actRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     this.studentId = this.actRoute.snapshot.params.id;
     this.getData();
@@ -30,6 +30,7 @@ export class ComponentePosturalComponent implements OnInit {
   oldData: any = [];
   newData: any = [];
   data: string;
+  selectedTab = 0;
 
   // toggle webcam on/off
   public showWebcam = true;
@@ -55,6 +56,23 @@ export class ComponentePosturalComponent implements OnInit {
   private foto1: string;
   private foto2: string;
   private foto3: string;
+
+  swipeLeft(event) {
+    if (this.selectedTab < 3) {
+      this.selectedTab++;
+      console.log(this.selectedTab);
+    }
+
+
+  }
+  swipeRight(event) {
+    if (this.selectedTab > 0) {
+      this.selectedTab--;
+      console.log(this.selectedTab);
+    }
+
+
+  }
 
   getData() {
     this.dataService.getData('clients/post/' + this.studentId).subscribe(
@@ -107,21 +125,22 @@ export class ComponentePosturalComponent implements OnInit {
         this.foto3 = this.webcamImage.imageAsDataUrl;
         break;
     }
-    const obj = { data: this.datapipe.transform(Date(), 'yyyy-MM-dd'),
-                  fotoa: this.foto1,
-                  fotol: this.foto2,
-                  fotop: this.foto3
-                };
+    const obj = {
+      data: this.datapipe.transform(Date(), 'yyyy-MM-dd'),
+      fotoa: this.foto1,
+      fotol: this.foto2,
+      fotop: this.foto3
+    };
 
-  //  console.table(this.newData);
+    //  console.table(this.newData);
     this.dataService.setData('clients/post/' + this.studentId, obj).subscribe(
-          resp => {
-            console.log(resp);
-            this.getData();
-            this.view = '';
-            this.webcamImage = null;
-          }
-        );
+      resp => {
+        console.log(resp);
+        this.getData();
+        this.view = '';
+        this.webcamImage = null;
+      }
+    );
   }
 
   public triggerSnapshot(): void {
@@ -144,25 +163,25 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-  //  console.log('received webcam image', webcamImage);
+    //  console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
   }
 
   public cameraWasSwitched(deviceId: string): void {
-  //  console.log('active device: ' + deviceId);
+    //  console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
   }
 
-  public get triggerObservable(): Observable < void > {
+  public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
 
-  public get nextWebcamObservable(): Observable < boolean | string > {
+  public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
 
 
-  goBack()  {
+  goBack() {
     this.location.back();
   }
 
@@ -172,7 +191,7 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   saveDataForm(form) {
-  //  console.table(form.value);
+    //  console.table(form.value);
     this.dataService.setData('clients/post/' + this.studentId, form.value).subscribe(
       resp => {
         console.log(resp);

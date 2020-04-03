@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AgeService } from 'src/app/services/age.service';
 
 @Component({
@@ -17,7 +17,9 @@ export class RDCComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private actRoute: ActivatedRoute,
-              private ageService: AgeService) {
+              private ageService: AgeService,
+              private router: Router
+              ) {
     this.id = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/rdc/' + this.id).subscribe(
       resp => {
@@ -54,7 +56,7 @@ export class RDCComponent implements OnInit {
     this.dataService.setData('clients/rdc/' + this.id, form).subscribe(
       resp => {
         console.log(resp);
-        this.location.back();
+        this.router.navigate(['rddc/', this.id]);
       }
     );
   }

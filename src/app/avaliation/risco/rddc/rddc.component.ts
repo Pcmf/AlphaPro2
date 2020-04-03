@@ -59,7 +59,6 @@ export class RDDCComponent implements OnInit {
     this.dataService.setData('clients/column/' + this.id, form).subscribe(
       resp => {
         console.log(resp);
-        this.location.back();
       }
     );
   }

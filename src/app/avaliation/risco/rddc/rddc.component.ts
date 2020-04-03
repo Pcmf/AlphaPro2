@@ -37,7 +37,7 @@ export class RDDCComponent implements OnInit {
           }
           this.dataService.getData('clients/column/' + this.id).subscribe(
             respd => {
-              if (respd) {
+              if (respd[0]) {
                 this.data = respd[0];
               }
               this.data.smoker = this.smoker;

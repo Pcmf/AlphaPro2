@@ -15,8 +15,10 @@ export class QPAFComponent implements OnInit {
     this.id = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/parq/' + this.id).subscribe(
       resp => {
-        if (resp) {
+        if (resp[0]) {
           this.student = resp[0];
+        } else {
+          this.student.codigo = this.id;
         }
       }
     );

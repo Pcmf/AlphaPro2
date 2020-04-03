@@ -69,7 +69,7 @@ export class EvaluationComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
-    if (this.evaluation[this.pointer].altura) {
+    if (this.evaluation[this.pointer]) {
       this.newEvaluation.altura = this.evaluation[this.pointer].altura;
       this.newEvaluation.envergadura = this.evaluation[this.pointer].envergadura;
     }

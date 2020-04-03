@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-qpaf',
@@ -11,7 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class QPAFComponent implements OnInit {
   student: any = [];
   id: number;
-  constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
+  constructor(private location: Location,
+              private dataService: DataService,
+              private actRoute: ActivatedRoute,
+              private router: Router
+              ) {
     this.id = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/parq/' + this.id).subscribe(
       resp => {
@@ -35,7 +39,7 @@ export class QPAFComponent implements OnInit {
     this.dataService.setData('clients/parq/' + this.id, form).subscribe(
       resp => {
         console.log(resp);
-        this.location.back();
+        this.router.navigate(['rdc/', this.id]);
       }
     );
   }

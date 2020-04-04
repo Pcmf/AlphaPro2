@@ -7,9 +7,9 @@
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
 
             <!-- TAB - Vista anterior -->
-            <mat-tab i18n label="Vista Anterior" >
+            <mat-tab i18n label="Vista Anterior">
                 <form #fa="ngForm" (submit)="saveDataForm(fa)">
-                    <table >
+                    <table>
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -20,18 +20,19 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody>
 
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação da Cabeça</span></th>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vacabi="ngModel" name="vacabi" [(ngModel)]="newData.vacabi" placeholder="selecionar">
+                                        <mat-select #vacabi="ngModel" name="vacabi" [(ngModel)]="newData.vacabi"
+                                            placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
-                                      </mat-form-field>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -39,11 +40,12 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabr}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr" placeholder="selecionar">
+                                        <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr"
+                                            placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
-                                      </mat-form-field>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -51,7 +53,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaombrodesn}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vaombrodesn="ngModel" name="vaombrodesn" [(ngModel)]="newData.vaombrodesn" placeholder="selecionar">
+                                        <mat-select #vaombrodesn="ngModel" name="vaombrodesn"
+                                            [(ngModel)]="newData.vaombrodesn" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -64,7 +67,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vaquadril="ngModel" name="vaquadril" [(ngModel)]="newData.vaquadril" placeholder="selecionar">
+                                        <mat-select #vaquadril="ngModel" name="vaquadril"
+                                            [(ngModel)]="newData.vaquadril" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -77,7 +81,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpthalesd}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpthalesd="ngModel" name="vpthalesd" [(ngModel)]="newData.vpthalesd" placeholder="selecionar">
+                                        <mat-select #vpthalesd="ngModel" name="vpthalesd"
+                                            [(ngModel)]="newData.vpthalesd" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -91,7 +96,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].aci_va}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #aci_va="ngModel" name="aci_va" [(ngModel)]="newData.aci_va" placeholder="selecionar">
+                                        <mat-select #aci_va="ngModel" name="aci_va" [(ngModel)]="newData.aci_va"
+                                            placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -105,7 +111,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vaquadril="ngModel" name="vaquadril" [(ngModel)]="newData.vaquadril" placeholder="selecionar">
+                                        <mat-select #vaquadril="ngModel" name="vaquadril"
+                                            [(ngModel)]="newData.vaquadril" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -117,7 +124,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vajoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vajoelho="ngModel" name="vajoelho" [(ngModel)]="newData.vajoelho" placeholder="selecionar">
+                                        <mat-select #vajoelho="ngModel" name="vajoelho" [(ngModel)]="newData.vajoelho"
+                                            placeholder="selecionar">
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -129,7 +137,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vape}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vape="ngModel" name="vape" [(ngModel)]="newData.vape" placeholder="selecionar">
+                                        <mat-select #vape="ngModel" name="vape" [(ngModel)]="newData.vape"
+                                            placeholder="selecionar">
                                             <mat-option value="Abduzidos">Abduzidos</mat-option>
                                             <mat-option value="Aduzidos">Aduzidos</mat-option>
                                         </mat-select>
@@ -179,7 +188,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcab}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vlcab="ngModel" name="vlcab" [(ngModel)]="newData.vlcab" placeholder="selecionar">
+                                        <mat-select #vlcab="ngModel" name="vlcab" [(ngModel)]="newData.vlcab"
+                                            placeholder="selecionar">
                                             <mat-option value="Protraido">Protraido</mat-option>
                                             <mat-option value="Retraido">Retraido</mat-option>
                                         </mat-select>
@@ -191,7 +201,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcervical}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vlcervical="ngModel" name="vlcervical" [(ngModel)]="newData.vlcervical" placeholder="selecionar">
+                                        <mat-select #vlcervical="ngModel" name="vlcervical"
+                                            [(ngModel)]="newData.vlcervical" placeholder="selecionar">
                                             <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -203,7 +214,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vlombro="ngModel" name="vlombro" [(ngModel)]="newData.vlombro" placeholder="selecionar">
+                                        <mat-select #vlombro="ngModel" name="vlombro" [(ngModel)]="newData.vlombro"
+                                            placeholder="selecionar">
                                             <mat-option value="Protraidos">Protraidos</mat-option>
                                             <mat-option value="Retraidos">Retraidos</mat-option>
                                         </mat-select>
@@ -216,7 +228,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].msd}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #msd="ngModel" name="msd" [(ngModel)]="newData.msd" placeholder="selecionar">
+                                        <mat-select #msd="ngModel" name="msd" [(ngModel)]="newData.msd"
+                                            placeholder="selecionar">
                                             <mat-option value="Anteriorizado">Anteriorizado</mat-option>
                                             <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Posteriorizado">Posteriorizado</mat-option>
@@ -230,7 +243,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].mse}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #mse="ngModel" name="mse" [(ngModel)]="newData.mse" placeholder="selecionar">
+                                        <mat-select #mse="ngModel" name="mse" [(ngModel)]="newData.mse"
+                                            placeholder="selecionar">
                                             <mat-option value="Anteriorizado">Anteriorizado</mat-option>
                                             <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Posteriorizado">Posteriorizado</mat-option>
@@ -243,7 +257,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vldorsal}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vldorsal="ngModel" name="vldorsal" [(ngModel)]="newData.vldorsal" placeholder="selecionar">
+                                        <mat-select #vldorsal="ngModel" name="vldorsal" [(ngModel)]="newData.vldorsal"
+                                            placeholder="selecionar">
                                             <mat-option value="Hipercifótica">Hipercifótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -255,7 +270,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].pescoco}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #carga_peso="ngModel" name="carga_peso" [(ngModel)]="newData.carga_peso" placeholder="selecionar">
+                                        <mat-select #carga_peso="ngModel" name="carga_peso"
+                                            [(ngModel)]="newData.carga_peso" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -267,7 +283,7 @@
                                 <th><span (click)="openDialog('Abdómen')">Abdómen</span></th>
                                 <td *ngIf="pointer>=0"><span *ngIf="oldData[pointer].vlprotusao">Protusão</span></td>
                                 <td *ngIf="addForm">
-                                    
+
                                     <input name="vlprotusao" #vlprotusao="ngModel" [(ngModel)]="newData.vlprotusao"
                                         type="checkbox">
                                     <mat-label>Protusão&nbsp;</mat-label>
@@ -278,7 +294,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vllombar}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vllombar="ngModel" name="vllombar" [(ngModel)]="newData.vllombar" placeholder="selecionar">
+                                        <mat-select #vllombar="ngModel" name="vllombar" [(ngModel)]="newData.vllombar"
+                                            placeholder="selecionar">
                                             <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -290,7 +307,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].quadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #quadril="ngModel" name="quadril" [(ngModel)]="newData.quadril" placeholder="selecionar">
+                                        <mat-select #quadril="ngModel" name="quadril" [(ngModel)]="newData.quadril"
+                                            placeholder="selecionar">
                                             <mat-option value="Antepulsão">Antepulsão</mat-option>
                                             <mat-option value="Retropulsão">Retropulsão</mat-option>
                                         </mat-select>
@@ -302,7 +320,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vlquadril="ngModel" name="vlquadril" [(ngModel)]="newData.vlquadril" placeholder="selecionar">
+                                        <mat-select #vlquadril="ngModel" name="vlquadril"
+                                            [(ngModel)]="newData.vlquadril" placeholder="selecionar">
                                             <mat-option value="Anteversão">Anteversão</mat-option>
                                             <mat-option value="Retroversão">Retroversão</mat-option>
                                         </mat-select>
@@ -314,7 +333,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vljoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vljoelho="ngModel" name="vljoelho" [(ngModel)]="newData.vljoelho" placeholder="selecionar">
+                                        <mat-select #vljoelho="ngModel" name="vljoelho" [(ngModel)]="newData.vljoelho"
+                                            placeholder="selecionar">
                                             <mat-option value="Flexos">Flexos</mat-option>
                                             <mat-option value="Recurvatos">Recurvatos</mat-option>
                                         </mat-select>
@@ -326,7 +346,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpe}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vlpe="ngModel" name="vlpe" [(ngModel)]="newData.vlpe" placeholder="selecionar">
+                                        <mat-select #vlpe="ngModel" name="vlpe" [(ngModel)]="newData.vlpe"
+                                            placeholder="selecionar">
                                             <mat-option value="Cavos">Cavos</mat-option>
                                             <mat-option value="Planos">Planos</mat-option>
                                         </mat-select>
@@ -378,7 +399,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpombro="ngModel" name="vpombro" [(ngModel)]="newData.vpombro" placeholder="selecionar">
+                                        <mat-select #vpombro="ngModel" name="vpombro" [(ngModel)]="newData.vpombro"
+                                            placeholder="selecionar">
                                             <mat-option value="Deprimidos">Deprimidos</mat-option>
                                             <mat-option value="Elevados">Elevados</mat-option>
                                         </mat-select>
@@ -390,7 +412,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombrodesn}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpombrodesn="ngModel" name="vpombrodesn" [(ngModel)]="newData.vpombrodesn" placeholder="selecionar">
+                                        <mat-select #vpombrodesn="ngModel" name="vpombrodesn"
+                                            [(ngModel)]="newData.vpombrodesn" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -426,7 +449,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].esc_alada_l}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #esc_alada_l="ngModel" name="esc_alada_l" [(ngModel)]="newData.esc_alada_l" placeholder="selecionar">
+                                        <mat-select #esc_alada_l="ngModel" name="esc_alada_l"
+                                            [(ngModel)]="newData.esc_alada_l" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -438,7 +462,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].gibosidade}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #gibosidade="ngModel" name="gibosidade" [(ngModel)]="newData.gibosidade" placeholder="selecionar">
+                                        <mat-select #gibosidade="ngModel" name="gibosidade"
+                                            [(ngModel)]="newData.gibosidade" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Ausente">Ausente</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -451,7 +476,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpdorsal}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpdorsal="ngModel" name="vpdorsal" [(ngModel)]="newData.vpdorsal" placeholder="selecionar">
+                                        <mat-select #vpdorsal="ngModel" name="vpdorsal" [(ngModel)]="newData.vpdorsal"
+                                            placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -463,7 +489,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vplombar}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vplombar="ngModel" name="vplombar" [(ngModel)]="newData.vplombar" placeholder="selecionar">
+                                        <mat-select #vplombar="ngModel" name="vplombar" [(ngModel)]="newData.vplombar"
+                                            placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -475,7 +502,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpquadril="ngModel" name="vpquadril" [(ngModel)]="newData.vpquadril" placeholder="selecionar">
+                                        <mat-select #vpquadril="ngModel" name="vpquadril"
+                                            [(ngModel)]="newData.vpquadril" placeholder="selecionar">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -487,7 +515,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpjoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vpjoelho="ngModel" name="vpjoelho" [(ngModel)]="newData.vpjoelho" placeholder="selecionar">
+                                        <mat-select #vpjoelho="ngModel" name="vpjoelho" [(ngModel)]="newData.vpjoelho"
+                                            placeholder="selecionar">
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -499,7 +528,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vppe}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vppe="ngModel" name="vppe" [(ngModel)]="newData.vppe" placeholder="selecionar">
+                                        <mat-select #vppe="ngModel" name="vppe" [(ngModel)]="newData.vppe"
+                                            placeholder="selecionar">
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -530,54 +560,88 @@
                     </div>
                 </form>
             </mat-tab>
-          <!--   FOTOS -->
+            <!--   FOTOS -->
             <mat-tab i18n label="Fotos">
-                <div class="photos" *ngIf="oldData[pointer]">
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
-                        <button mat-mini-fab (click)="openTakePhoto('a')"><mat-icon>camera_alt</mat-icon></button>
-                    </div>
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
-                        <button mat-mini-fab (click)="openTakePhoto('l')"><mat-icon>camera_alt</mat-icon></button>
-
-                    </div>
-                    <div class="photo">
-                        <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
-                        <button mat-mini-fab (click)="openTakePhoto('p')"><mat-icon>camera_alt</mat-icon></button>
-
-                    </div>
+                <div class="action">
+                    <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab color="default"
+                        (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        color="default" (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
                 </div>
-                <div *ngIf="view" class="photoArea" style="text-align:center">
-                    <h4>{{viewTitle}}</h4>
-                    <div *ngIf="!webcamImage">
-                        <webcam  [width]="200" [trigger]="triggerObservable"
-                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                            [videoOptions]="videoOptions" [imageQuality]="0.6"
-                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
-                        </webcam>
-                        <br />
-                        <button mat-mini-fab color="default" (click)="view=''">
-                            <mat-icon>close</mat-icon>
-                        </button>
-                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
-                            <mat-icon>camera</mat-icon>
-                        </button>
-                        <br />
-                    </div>
-                    <!-- Visualizador de foto -->
-                    <div class="snapshot" *ngIf="webcamImage">
-                        <img [src]="webcamImage.imageAsDataUrl"  width="200" />
-                        <br/>
-                        <button mat-mini-fab color="default" (click)="webcamImage=null">
-                            <mat-icon>undo</mat-icon>
-                        </button>
-                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
-                            <mat-icon>save</mat-icon>
-                        </button>
-                    </div>
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
+                            <th class="th-top" *ngIf="addForm">
+                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                    style="width: 110px;">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="photos" *ngIf="oldData[pointer]">
+                                    <div class="photo">
+                                        <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
+                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('a')">
+                                            <mat-icon>camera_alt</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div class="photo">
+                                        <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
+                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('l')">
+                                            <mat-icon>camera_alt</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div class="photo">
+                                        <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
+                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('p')">
+                                            <mat-icon>camera_alt</mat-icon>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="view" class="photoArea" style="text-align:center">
+                                    <h4>{{viewTitle}}</h4>
+                                    <div *ngIf="!webcamImage">
+                                        <webcam [width]="200" [trigger]="triggerObservable"
+                                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                                            [allowCameraSwitch]="allowCameraSwitch"
+                                            [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+                                            [imageQuality]="0.6" (cameraSwitched)="cameraWasSwitched($event)"
+                                            (initError)="handleInitError($event)">
+                                        </webcam>
+                                        <br />
+                                        <button mat-mini-fab color="default" (click)="view=''">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
+                                            <mat-icon>camera</mat-icon>
+                                        </button>
+                                        <br />
+                                    </div>
+                                    <!-- Visualizador de foto -->
+                                    <div class="snapshot" *ngIf="webcamImage">
+                                        <img [src]="webcamImage.imageAsDataUrl" width="200" />
+                                        <br />
+                                        <button mat-mini-fab color="default" (click)="webcamImage=null">
+                                            <mat-icon>undo</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
+                                            <mat-icon>save</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </mat-tab>
         </mat-tab-group>
     </div>

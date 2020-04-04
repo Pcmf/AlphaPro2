@@ -14,11 +14,11 @@ import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 })
 export class ComponentePosturalComponent implements OnInit {
   constructor(private location: Location,
-    private dataService: DataService,
-    private datapipe: DatePipe,
-    private menuService: MenuService,
-    private actRoute: ActivatedRoute,
-    private dialog: MatDialog
+              private dataService: DataService,
+              private datapipe: DatePipe,
+              private menuService: MenuService,
+              private actRoute: ActivatedRoute,
+              private dialog: MatDialog
   ) {
     this.studentId = this.actRoute.snapshot.params.id;
     this.getData();
@@ -85,6 +85,7 @@ export class ComponentePosturalComponent implements OnInit {
           this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        console.table(this.oldData);
       }
     );
   }

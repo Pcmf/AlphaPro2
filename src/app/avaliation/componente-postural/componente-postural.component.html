@@ -139,7 +139,7 @@
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab color="default"
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
@@ -267,9 +267,10 @@
                                 <th><span (click)="openDialog('Abdómen')">Abdómen</span></th>
                                 <td *ngIf="pointer>=0"><span *ngIf="oldData[pointer].vlprotusao">Protusão</span></td>
                                 <td *ngIf="addForm">
-                                    <mat-label>Protusão&nbsp;</mat-label>
+                                    
                                     <input name="vlprotusao" #vlprotusao="ngModel" [(ngModel)]="newData.vlprotusao"
                                         type="checkbox">
+                                    <mat-label>Protusão&nbsp;</mat-label>
                                 </td>
                             </tr>
                             <tr>
@@ -336,7 +337,7 @@
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab color="default"
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
@@ -509,7 +510,7 @@
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab color="default"
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
@@ -553,7 +554,7 @@
                         <webcam  [width]="200" [trigger]="triggerObservable"
                             (imageCapture)="handleImage($event)" *ngIf="showWebcam"
                             [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                            [videoOptions]="videoOptions" [imageQuality]="1"
+                            [videoOptions]="videoOptions" [imageQuality]="0.6"
                             (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
                         </webcam>
                         <br />

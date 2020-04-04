@@ -14,6 +14,8 @@ export class RDCComponent implements OnInit {
   data: any = [];
   id: number;
   sex: string;
+  risco = 0;
+
   constructor(private location: Location,
               private dataService: DataService,
               private actRoute: ActivatedRoute,
@@ -40,6 +42,7 @@ export class RDCComponent implements OnInit {
         this.dataService.getData('clients/anamnese/' + this.id).subscribe(
           respq => this.data.hf = respq[0].Q31QTDE
         );
+        this.calcRisco(this.data);
       }
     );
   }
@@ -59,6 +62,51 @@ export class RDCComponent implements OnInit {
         this.router.navigate(['rddc/', this.id]);
       }
     );
+  }
+
+  calcRisco(ln) {
+    this.risco = 0;
+    if (ln.qtas >= 140) {
+      this.risco++;
+    }
+    if (ln.qtad >= 90) {
+      this.risco++;
+    }
+    if (ln.qtos >= 20) {
+      this.risco++;
+    }
+    if (ln.lsc >= 250 || ln.lsf >= 4.5 || ln.lst >= 130 || ln.lsg >= 110) {
+      this.risco++;
+    }
+    if (ln.diabetes == 1 && ln.idade >= 35) {
+      this.risco += 2;
+    }
+    if (ln.diabetes == 2 && ln.idade >= 30) {
+      this.risco += 2;
+    }
+    if (ln.diabetes == 3) {
+      this.risco += 2;
+    }
+    if (this.sex == 'M' && ln.gc >= 25) {
+      this.risco++;
+    }
+    if (this.sex == 'F' && ln.gc >= 32) {
+      this.risco++;
+    }
+    if (ln.st > 2) {
+      this.risco++;
+    }
+    if (ln.hf > 2) {
+      this.risco++;
+    }
+    if (ln.afs <= 1 || ln.af50 < 30) {
+      this.risco++;
+    }
+    if (ln.idade > 50) {
+      this.risco++;
+    }
+
+
   }
 
 }

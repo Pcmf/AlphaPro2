@@ -17,6 +17,10 @@ export class AnameneseComponent implements OnInit {
   dataIniPgm: any;
   dataUltimoExame: any;
 
+  Parentesco: any = [];
+  CardioParentesco: any = [];
+  HiperParentesco: any = [];
+
   constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
     this.studentId = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/anamnese/' + this.studentId).subscribe(
@@ -28,11 +32,30 @@ export class AnameneseComponent implements OnInit {
           this.dataUltimoExame = this.student.Q4BDATA;
         } else {
           this.student = [];
+
         }
+        this.CardioParentesco = [{parentesco: 'Pai', mais60: '1', patologia: 'Cardipatia'},
+        {parentesco: 'Mãe', mais60: false, patologia: 'Cardipatia'}];
       }
     );
    }
 
+   showCardParent(form, patology) {
+     console.log(form);
+     this.CardioParentesco = [];
+     form.forEach(element => {
+       this.CardioParentesco.push({parentesco: element, mais60: false, patologia: patology});
+     });
+     console.log(this.CardioParentesco);
+   }
+   showHiperParent(form, patology) {
+    console.log(form);
+    this.HiperParentesco = [];
+    form.forEach(element => {
+      this.HiperParentesco.push({parentesco: element, mais60: false, patologia: patology});
+    });
+    console.log(this.HiperParentesco);
+  }
 
   ngOnInit(): void {
   }

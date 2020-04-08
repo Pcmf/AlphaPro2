@@ -423,27 +423,57 @@
           <mat-card>
             <mat-card-content>
               <mat-label i18n>Alguém da familia com estas carateristicas?</mat-label>
-
+              <!-- cardiopatia -->
               <mat-checkbox i18n #Q31="ngModel" name="Q31" [(ngModel)]="student.Q31">Cardiopatia</mat-checkbox>
               <mat-form-field class="" *ngIf="Q31.value">
+
                 <mat-label i18n="Label">Grau de parentesco</mat-label>
-                <input matInput i18n placeholder="Ex. Pai" #Q31Q="ngModel" name="Q31Q" [(ngModel)]="student.Q31Q">
+                <mat-select  i18n placeholder="selecione" multiple #cardParentesco="ngModel" 
+                             name="cardParentesco" [(ngModel)]="Parentesco.Cardio" 
+                             (selectionChange)="showCardParent(cardParentesco.value, 'Cardiopatia')">
+                  <mat-option value="Pai">Pai</mat-option>
+                  <mat-option value="Mãe">Mãe</mat-option>
+                  <mat-option value="Avô Paterno">Avô Paterno</mat-option>
+                  <mat-option value="Avó Paterna">Avó Paterna</mat-option>
+                  <mat-option value="Avô Materno">Avô Materno</mat-option>
+                  <mat-option value="Avó Materna">Avó Materna</mat-option>
+                </mat-select>
               </mat-form-field>
-              <mat-form-field class="input-sm" *ngIf="Q31.value">
-                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
-                <input matInput placeholder="" #Q31QTDE="ngModel" name="Q31QTDE" [(ngModel)]="student.Q31QTDE">
-              </mat-form-field>
-
-
+              <ul *ngIf="Q31.value">
+                <li *ngFor="let p of CardioParentesco" style="width: 100%; display: inline-flex; justify-items: space-between;">
+                    <span style="width: 130px;">{{p.parentesco}}</span>
+                    <mat-checkbox style="display: inline; justify-content: end;" #mais60="ngModel" 
+                                  name="mais60" [(ngModel)]="p.mais60" value="1" color="primary">
+                                      mais de 60 anos
+                    </mat-checkbox>
+                  </li>
+              </ul>
+              <!-- hipertensão -->
               <mat-checkbox i18n="Label" #Q32="ngModel" name="Q32" [(ngModel)]="student.Q32">Hipertensão</mat-checkbox>
               <mat-form-field class="" *ngIf="Q32.value">
                 <mat-label i18n="Label">Grau de parentesco</mat-label>
-                <input matInput placeholder="Ex. Pai, Avó" #Q32Q="ngModel" name="Q32Q" [(ngModel)]="student.Q32Q">
+                <mat-select  i18n placeholder="selecione" multiple #hipParentesco="ngModel" 
+                             name="hipParentesco" [(ngModel)]="Parentesco.Hipertensao" 
+                             (selectionChange)="showHiperParent(hipParentesco.value, 'Hipertensão')">
+                  <mat-option value="Pai">Pai</mat-option>
+                  <mat-option value="Mãe">Mãe</mat-option>
+                  <mat-option value="Avô Paterno">Avô Paterno</mat-option>
+                  <mat-option value="Avó Paterna">Avó Paterna</mat-option>
+                  <mat-option value="Avô Materno">Avô Materno</mat-option>
+                  <mat-option value="Avó Materna">Avó Materna</mat-option>
+                  </mat-select>
               </mat-form-field>
-              <mat-form-field class="input-sm" *ngIf="Q32.value">
-                <mat-label i18n="Label">&gt; de 60 anos</mat-label>
-                <input matInput placeholder="quantos" #Q32QTDE="ngModel" name="Q32QTDE" [(ngModel)]="student.Q32QTDE">
-              </mat-form-field>
+              <ul *ngIf="Q31.value">
+                <li *ngFor="let p of HiperParentesco" style="width: 100%; display: inline-flex; justify-items: space-between;">
+                    <span style="width: 130px;">{{p.parentesco}}</span>
+                    <mat-checkbox style="display: inline; justify-content: end;" #mais60="ngModel" 
+                                  name="mais60" [(ngModel)]="p.mais60" value="1" color="primary">
+                                      mais de 60 anos
+                    </mat-checkbox>
+                  </li>
+              </ul>
+
+
 
               <mat-checkbox i18n #Q33="ngModel" name="Q33" [(ngModel)]="student.Q33">Diabetes</mat-checkbox>
               <mat-form-field class="" *ngIf="Q33.value">

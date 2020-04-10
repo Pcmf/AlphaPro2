@@ -76,10 +76,11 @@ import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.com
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
+import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
-  overrides ={
+  overrides = {
     swipe: { direction: Hammer.DIRECTION_ALL },
     pinch: { enable: false },
     rotate: { enable: false }
@@ -171,7 +172,8 @@ export class MyHammerConfig extends HammerGestureConfig {
                 provide: HAMMER_GESTURE_CONFIG,
                 useClass: MyHammerConfig,
               },
-              AgeService
+              AgeService,
+              ProtcolosDobrasService
             ],
   bootstrap: [AppComponent]
 })

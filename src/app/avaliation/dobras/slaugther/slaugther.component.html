@@ -8,8 +8,8 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" (click)="setEvaluation(evaluation[pointer-1], pointer-1)" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" (click)="setEvaluation(evaluation[pointer], pointer)" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                 style="width: 110px;">
@@ -77,6 +77,7 @@
         </form>
         <br />
         <hr />
+        <h5 style="text-align: center; color: blue;">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}</h5>
         <div class="graphics">
             <ngx-charts-pie-chart 
                 [view]="view" 

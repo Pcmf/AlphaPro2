@@ -42,7 +42,8 @@ export class JP3Component implements OnInit {
   }
 
   getData() {
-    this.dataService.getData('clients/morfo/' + this.id).subscribe(
+    /* Protocolo Jackson Pollok 3d - 3 */
+    this.dataService.getData('clients/morfo/3/' + this.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;

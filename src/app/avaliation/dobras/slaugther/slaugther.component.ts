@@ -21,17 +21,18 @@ export class SlaugtherComponent implements OnInit {
 
   // graphics
   single: any[];
+  single2: any[];
   view: any[] = [300, 300];
 
   // options
   gradient = true;
-  showLegend = false;
-  showLabels = true;
+  showLegend = true;
+  showLabels = false;
   isDoughnut = false;
-  legendPosition = '';
+  legendPosition = 'top';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#1010FF', '#BF00FF', '#00FFFF']
   };
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
@@ -52,7 +53,8 @@ export class SlaugtherComponent implements OnInit {
   }
 
   getData() {
-    this.dataService.getData('clients/morfo/' + this.student.id).subscribe(
+    // Protocolo Slaughter - 6
+    this.dataService.getData('clients/morfo/6/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -93,12 +95,21 @@ export class SlaugtherComponent implements OnInit {
                 const proto = this.protocolos.protocoloSlaughter2d(evaluation, this.gorduraDesejada);
                 console.log(proto);
                 // Create graphic
-                const single = [{ name: '% G. atual', value: proto.perGordura },
-                                { name: '% G. desejada', value: proto.gorduraDesejada },
-                                { name: '% G. em excesso', value: proto.gorduraExcesso },
-                                { name: '% livre de gordura', value: proto.percLivreGordura }
+                const single = [{ name: '% Gordura atual', value: proto.perGordura },
+                                { name: '% Gordura desejada', value: proto.gorduraDesejada },
+                                { name: '% Gordura em excesso', value: proto.gorduraExcesso },
+                                { name: '% Livre de gordura', value: proto.percLivreGordura }
                               ];
                 Object.assign(this, { single });
+                // Create graphic 2
+                const single2 = [{ name: 'Peso atual', value: proto.pesoAtual },
+                                { name: 'Peso sugerido', value: proto.pesoSugerido },
+                                { name: 'Peso em excesso', value: proto.pesoExcesso },
+                                { name: 'Peso osseo', value: proto.pesoOsseo },
+                                { name: 'Peso residual', value: proto.pesoResidual },
+                                { name: 'Peso muscular', value: proto.pesoMuscular }
+                              ];
+                Object.assign(this, { single2 });
 
               } else {
                 this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');

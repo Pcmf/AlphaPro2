@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location,  DatePipe } from '@angular/common';
 
 @Component({
@@ -14,21 +13,20 @@ export class JP7Component implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   selectedStudent: any = [];
   sex: string;
 
   constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.sex = this.selectedStudent.sexo;
+    // start
     this.getData();
   }
 
   getData() {
-    this.dataService.getData('clients/morfo/' + this.id).subscribe(
+    /* Protocolo Jackson Pollok 7d - 4 */
+    this.dataService.getData('clients/morfo/4/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -47,7 +45,7 @@ export class JP7Component implements OnInit {
 
   save(form) {
     form.protocolo = 4;
-    this.dataService.setData('clients/morfo/' + this.id, form).subscribe(
+    this.dataService.setData('clients/morfo/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;

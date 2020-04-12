@@ -8,8 +8,16 @@
              <thead>
                  <tr>
                      <th>&nbsp;</th>
-                     <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                     <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                     <th class="th-top" *ngIf="pointer>=1">
+                        <button type="button" (click)="setEvaluation(evaluation[pointer-1], pointer-1)">
+                            {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                        </button>
+                    </th>
+                    <th class="th-top" *ngIf="pointer>=0">
+                        <button type="button" (click)="setEvaluation(evaluation[pointer], pointer)">
+                            {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                        </button>
+                    </th>
                      <th class="th-top" *ngIf="addEval">
                          <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                              style="width: 110px;">
@@ -17,6 +25,24 @@
                  </tr>
              </thead>
              <tbody>
+                <tr>
+                    <th>Subescapular</th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                    <td *ngIf="addEval">
+                        <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                            type="number" step="0.1">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Triciptal</th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                    <td *ngIf="addEval">
+                        <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                            type="number" step="0.1">
+                    </td>
+                </tr>
                 <tr>
                     <th><span>Coxa</span></th>
                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
@@ -26,32 +52,30 @@
                              type="number" step="0.1">
                     </td>
                 </tr>
-                <tr>
-                    <th>Abdominal</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
-                    <td *ngIf="addEval">
-                        <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                            type="number" step="0.1">
-                    </td>
-                </tr>
+
                  <tr>
                     <th>Media</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xmedia}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].c_xmedia}}</td>
-                    <td *ngIf="addEval">
-                        <input name="c_xmedia" #c_xmedia="ngModel" [(ngModel)]="newEvaluation.c_xmedia"
-                            type="number" step="0.1">
+                    <td *ngIf="pointer>=1">
+                        {{(+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
+                           + +evaluation[pointer-1].crural) / 3 | number: '1.2-2'}}
                     </td>
+                    <td *ngIf="pointer>=0">
+                        {{(+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
+                            + +evaluation[pointer].crural) / 3 | number: '1.2-2'}}
+                    </td>
+                    <td *ngIf="addEval">&nbsp;</td>
                 </tr>
                  <tr>
                      <th>Somatório</th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xtot}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].c_xtot}}</td>
-                     <td *ngIf="addEval">
-                         <input name="c_xtot" #c_xtot="ngModel" [(ngModel)]="newEvaluation.c_xtot"
-                             type="number" step="0.1">
-                     </td>
+                     <td *ngIf="pointer>=1">
+                        {{+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
+                           + +evaluation[pointer-1].crural | number: '1.2-2'}}
+                    </td>
+                    <td *ngIf="pointer>=0">
+                        {{+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
+                            + +evaluation[pointer].crural | number: '1.2-2'}}
+                    </td>
+                     <td *ngIf="addEval">&nbsp;</td>
                  </tr>
                 </tbody>
          </table>
@@ -76,7 +100,29 @@
              </button>
          </div>
      </form>
- 
+     <br />
+     <hr />
+     <h4 style="text-align: center; color: blue;">
+         {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+     </h4>
+
+     <!-- <app-chart-dobras [chart1]="single" [chart2]="single2" [doneApp]="done" ></app-chart-dobras> -->
+     <div *ngIf="showChart">
+         <div class="graphics">
+             <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+                 [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
+                 [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+                 (deactivate)="onDeactivate($event)">
+             </ngx-charts-pie-chart>
+         </div>
+         <div class="graphics">
+             <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single2"
+                 [gradient]="gradient" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
+                 [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+                 (deactivate)="onDeactivate($event)">
+             </ngx-charts-pie-chart>
+         </div>
+     </div> 
  </div>
  
  <div class="footer">

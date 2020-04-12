@@ -22,7 +22,8 @@ export class SlaugtherComponent implements OnInit {
   // graphics
   single: any[];
   single2: any[];
-  view: any[] = [300, 300];
+  view: any[] = [250, 250];
+  showChart = false;
 
   // options
   gradient = true;
@@ -36,7 +37,6 @@ export class SlaugtherComponent implements OnInit {
   };
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
-
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -61,7 +61,6 @@ export class SlaugtherComponent implements OnInit {
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer], this.pointer);
-
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -82,7 +81,6 @@ export class SlaugtherComponent implements OnInit {
     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       (respa: any[]) => {
         if (respa.length) {
-          console.log(respa);
           this.dataService.getData('clients/morfo/medidas/' + this.student.id).subscribe(
             (respm: any[]) => {
               if (respm.length) {
@@ -91,16 +89,16 @@ export class SlaugtherComponent implements OnInit {
                 evaluation.peso = respa[0].peso;
                 evaluation.punho = morfo.punho;
                 evaluation.joelho = morfo.joelho;
-                console.log(evaluation);
+                evaluation.sexo = this.student.sexo;
                 const proto = this.protocolos.protocoloSlaughter2d(evaluation, this.gorduraDesejada);
-                console.log(proto);
                 // Create graphic
-                const single = [{ name: '% Gordura atual', value: proto.perGordura },
+                this.showChart = true;
+                this.single = [{ name: '% Gordura atual', value: proto.perGordura },
                                 { name: '% Gordura desejada', value: proto.gorduraDesejada },
                                 { name: '% Gordura em excesso', value: proto.gorduraExcesso },
                                 { name: '% Livre de gordura', value: proto.percLivreGordura }
                               ];
-                Object.assign(this, { single });
+                Object.assign(this,  this.single );
                 // Create graphic 2
                 const single2 = [{ name: 'Peso atual', value: proto.pesoAtual },
                                 { name: 'Peso sugerido', value: proto.pesoSugerido },
@@ -110,7 +108,6 @@ export class SlaugtherComponent implements OnInit {
                                 { name: 'Peso muscular', value: proto.pesoMuscular }
                               ];
                 Object.assign(this, { single2 });
-
               } else {
                 this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
               }
@@ -118,6 +115,7 @@ export class SlaugtherComponent implements OnInit {
           );
         } else {
           this.openSnackBar('Atenção: Não existem avaliações complementares para esta data!', '');
+          this.showChart = false;
         }
       }
     );

@@ -8,13 +8,18 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" (click)="setEvaluation(evaluation[pointer-1], pointer-1)" *ngIf="pointer>=1">
-                            {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" (click)="setEvaluation(evaluation[pointer], pointer)" *ngIf="pointer>=0">
-                            {{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer-1], pointer-1)">
+                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer], pointer)">
+                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
                         <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
-                                style="width: 110px;">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" style="width: 110px;">
                         </th>
                     </tr>
                 </thead>
@@ -39,9 +44,11 @@
                     </tr>
                     <tr>
                         <th>Media</th>
-                        <td *ngIf="pointer>=1">{{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal)/2}}
+                        <td *ngIf="pointer>=1">
+                            {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal)/2 | number: '1.2-2' }}
                         </td>
-                        <td *ngIf="pointer>=0">{{(+evaluation[pointer].triciptal + +evaluation[pointer].geminal)/2}}
+                        <td *ngIf="pointer>=0">
+                            {{(+evaluation[pointer].triciptal + +evaluation[pointer].geminal)/2 | number: '1.2-2' }}
                         </td>
                         <td *ngIf="addEval">
                         </td>
@@ -79,19 +86,28 @@
         </form>
         <br />
         <hr />
-        <h5 style="text-align: center; color: blue;">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}</h5>
-        <div class="graphics">
-            <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
-                [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
-                (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
-            </ngx-charts-pie-chart>
+        <h4 style="text-align: center; color: blue;">
+            {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+        </h4>
+
+        <!-- <app-chart-dobras [chart1]="single" [chart2]="single2" [doneApp]="done" ></app-chart-dobras> -->
+        <div *ngIf="showChart">
+            <div class="graphics">
+                <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+                    [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
+                    [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+                    (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+            <div class="graphics">
+                <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single2"
+                    [gradient]="gradient" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
+                    [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+                    (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
         </div>
-        <div class="graphics">
-            <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single2" [gradient]="gradient"
-                [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
-                (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
-            </ngx-charts-pie-chart>
-        </div>
+
     </div>
 
     <div class="footer">

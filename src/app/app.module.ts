@@ -77,6 +77,7 @@ import { StComponent } from './avaliation/componente-morfologica/st/st.component
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
 import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
+import { ChartDobrasComponent } from './commun/chart-dobras/chart-dobras.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -146,6 +147,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     StComponent,
     ScanerComponent,
     DEXAComponent,
+    ChartDobrasComponent,
   ],
   imports: [
     BrowserModule,

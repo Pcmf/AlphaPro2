@@ -158,7 +158,7 @@ export class ProtcolosDobrasService {
         // Feminino DC = 1,06234-0,00068*(subescapular)-0,00039*(triciptal)-0,00025*(coxa)
         this.gorduraDesejada = gorduraDesejada;
         this.morfo = morfo;
-        const DC = 1.06234 - 0.00068 * +morfo.subescapular - 0.00039 * +morfo.triciptal - 0.00025 * +morfo.coxa;
+        const DC = 1.06234 - 0.00068 * +morfo.subescapular - 0.00039 * +morfo.triciptal - 0.00025 * +morfo.crural;
         this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
         const answer =  this.createAnswer();
         console.table(answer);

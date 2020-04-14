@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1586728973528,
+  "timestamp": 1586791839531,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.1b56b45c0f56d4f77c6f.js",
-        "/main-es5.1b56b45c0f56d4f77c6f.js",
+        "/main-es2015.7f4641eafe48b1acc21c.js",
+        "/main-es5.7f4641eafe48b1acc21c.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.7b7892a190f840b83b57.js",
         "/polyfills-es5.ec5f24459b4f51c9eaaf.js",
@@ -86,9 +86,9 @@
     "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg": "9d79be69b823d9fa6ddfb7931d7b2422aa0e976f",
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
     "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
-    "/index.html": "852a5831ed4336babc1cd0ef217158d13ce2062a",
-    "/main-es2015.1b56b45c0f56d4f77c6f.js": "ba90d6c907a9361a8068dbe5f4bea0ec9261a869",
-    "/main-es5.1b56b45c0f56d4f77c6f.js": "a3efd05b6ebce181974a7c6c842c8ba239b389fb",
+    "/index.html": "eb308601ef187c26c018ef3150f81bdb448ae72e",
+    "/main-es2015.7f4641eafe48b1acc21c.js": "da6486195708a3181a257e0c2464e130fa137c05",
+    "/main-es5.7f4641eafe48b1acc21c.js": "65e1853f28cfa196c2518020ff27efbc07094d32",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.0c487634ef3b141fe9c9.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.7b7892a190f840b83b57.js": "18cdd59332ca4958b599b881779911133e5bc7a8",

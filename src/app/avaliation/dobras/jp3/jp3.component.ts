@@ -105,19 +105,19 @@ export class JP3Component implements OnInit {
                 const proto = this.protocolos.protocoloJacksonPollok3d(evaluation, this.gorduraDesejada);
                 // Create graphic
                 this.showChart = true;
-                this.single = [{ name: '% Gordura atual', value: proto.perGordura },
-                { name: '% Gordura desejada', value: proto.gorduraDesejada },
-                { name: '% Gordura em excesso', value: proto.gorduraExcesso },
-                { name: '% Livre de gordura', value: proto.percLivreGordura }
+                this.single = [{ name: 'Gordura atual: ' + proto.perGordura + '%', value: proto.perGordura },
+                { name: 'Gordura desejada: ' + proto.gorduraDesejada + '%', value: proto.gorduraDesejada },
+                { name: 'Gordura em excesso: ' + proto.gorduraExcesso + '%', value: proto.gorduraExcesso },
+                { name: 'Livre de gordura: ' + proto.percLivreGordura + '%', value: proto.percLivreGordura }
                 ];
                 Object.assign(this, this.single);
                 // Create graphic 2
-                const single2 = [{ name: 'Peso atual', value: proto.pesoAtual },
-                { name: 'Peso sugerido', value: proto.pesoSugerido },
-                { name: 'Peso em excesso', value: proto.pesoExcesso },
-                { name: 'Peso osseo', value: proto.pesoOsseo },
-                { name: 'Peso residual', value: proto.pesoResidual },
-                { name: 'Peso muscular', value: proto.pesoMuscular }
+                const single2 = [{ name: 'Peso atual: ' + proto.pesoAtual + 'Kg' , value: proto.pesoAtual },
+                { name: 'Peso sugerido: ' + proto.pesoSugerido + 'Kg', value: proto.pesoSugerido },
+                { name: 'Peso em excesso: ' + proto.pesoExcesso + 'Kg', value: proto.pesoExcesso },
+                { name: 'Peso osseo: ' + proto.pesoOsseo + 'Kg', value: proto.pesoOsseo },
+                { name: 'Peso residual: ' + proto.pesoResidual + 'Kg', value: proto.pesoResidual },
+                { name: 'Peso muscular: ' + proto.pesoMuscular + 'Kg', value: proto.pesoMuscular }
                 ];
                 Object.assign(this, { single2 });
               } else {

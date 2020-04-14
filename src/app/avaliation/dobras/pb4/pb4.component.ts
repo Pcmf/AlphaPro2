@@ -97,12 +97,12 @@ export class PB4Component implements OnInit {
                               ];
                 Object.assign(this,  this.single );
                 // Create graphic 2
-                const single2 = [{ name: 'Peso atual', value: proto.pesoAtual },
-                                { name: 'Peso sugerido', value: proto.pesoSugerido },
-                                { name: 'Peso em excesso', value: proto.pesoExcesso },
-                                { name: 'Peso osseo', value: proto.pesoOsseo },
-                                { name: 'Peso residual', value: proto.pesoResidual },
-                                { name: 'Peso muscular', value: proto.pesoMuscular }
+                const single2 = [{ name: 'Peso atual(Kg)', value: proto.pesoAtual },
+                                { name: 'Peso sugerido(Kg)', value: proto.pesoSugerido },
+                                { name: 'Peso em excesso(Kg)', value: proto.pesoExcesso },
+                                { name: 'Peso osseo(Kg)', value: proto.pesoOsseo },
+                                { name: 'Peso residual(Kg)', value: proto.pesoResidual },
+                                { name: 'Peso muscular(Kg)', value: proto.pesoMuscular }
                               ];
                 Object.assign(this, { single2 });
               } else {

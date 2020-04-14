@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 
 @Component({
   selector: 'app-sloan',
@@ -23,32 +23,36 @@ export class SloanComponent implements OnInit {
   // graphics
   single: any[];
   single2: any[];
-  view: any[] = [250, 250];
   showChart = false;
 
-  // options
-  gradient = true;
-  showLegend = true;
-  showLabels = false;
-  isDoughnut = false;
-  legendPosition = 'top';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#1010FF', '#BF00FF', '#00FFFF']
-  };
-
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
+  fatChanged = false;
 
   constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private datapipe: DatePipe,
               private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService) {
+              private protocolos: ProtcolosDobrasService,
+              private prepareChart: PrepareChartService
+              ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
+    this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sexo = this.student.sexo;
     this.getData();
   }
 
+  getNewEvaluation() {
+    this.setEvaluation(this.selectedEvaluation);
+    this.fatChanged = true;
+  }
+
+  saveFatChange() {
+    this.student.percgd = this.gorduraDesejada;
+    sessionStorage.selectedStudent = JSON.stringify(this.student);
+    this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
+      resp => this.getData()
+    );
+    this.fatChanged = false;
+  }
   getData() {
     /* protocolo Sloan - 12 */
     this.dataService.getData('clients/morfo/12/' + this.student.id).subscribe(
@@ -57,7 +61,7 @@ export class SloanComponent implements OnInit {
           this.maxPointer = resp.length;
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
-          this.setEvaluation(this.evaluation[this.pointer], this.pointer);
+          this.setEvaluation(this.evaluation[this.pointer]);
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -67,7 +71,7 @@ export class SloanComponent implements OnInit {
   }
 
   // Seleciona a data que está a mostrar
-  setEvaluation(evaluation, p) {
+  setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
     this.startGraphics(evaluation);
   }
@@ -90,20 +94,10 @@ export class SloanComponent implements OnInit {
                 const proto = this.protocolos.protocoloSloan2d(evaluation, this.gorduraDesejada);
                 // Create graphic
                 this.showChart = true;
-                this.single = [{ name: '% Gordura atual', value: proto.perGordura },
-                { name: '% Gordura desejada', value: proto.gorduraDesejada },
-                { name: '% Gordura em excesso', value: proto.gorduraExcesso },
-                { name: '% Livre de gordura', value: proto.percLivreGordura }
-                ];
+                this.single = this.prepareChart.getSingle1(proto);
                 Object.assign(this, this.single);
                 // Create graphic 2
-                const single2 = [{ name: 'Peso atual', value: proto.pesoAtual },
-                { name: 'Peso sugerido(Kg)', value: proto.pesoSugerido },
-                { name: 'Peso em excesso(Kg)', value: proto.pesoExcesso },
-                { name: 'Peso osseo(Kg)', value: proto.pesoOsseo },
-                { name: 'Peso residual(Kg)', value: proto.pesoResidual },
-                { name: 'Peso muscular(Kg)', value: proto.pesoMuscular }
-                ];
+                const single2 = this.prepareChart.getSingle2(proto);
                 Object.assign(this, { single2 });
               } else {
                 this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
@@ -119,17 +113,6 @@ export class SloanComponent implements OnInit {
 
   }
 
-  onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
   ngOnInit(): void {
   }
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { MenuService } from 'src/app/services/menu.service';
 import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
+import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 
 @Component({
   selector: 'app-jp3',
@@ -25,44 +25,45 @@ export class JP3Component implements OnInit {
   // graphics
   single: any[];
   single2: any[];
-  view: any[] = [250, 250];
   showChart = false;
-
-  // options
-  gradient = true;
-  showLegend = true;
-  showLabels = false;
-  isDoughnut = false;
-  legendPosition = 'top';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#1010FF', '#BF00FF', '#00FFFF']
-  };
-
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
-
+  fatChanged = false;
 
   constructor(private location: Location, private dataService: DataService,
               private datapipe: DatePipe,
               private menuService: MenuService,
               private ageService: AgeService,
               private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService
+              private protocolos: ProtcolosDobrasService,
+              private prepareChart: PrepareChartService
   ) {
 
     this.student = JSON.parse(sessionStorage.selectedStudent);
-
+    this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);
-    if (this.student.sexo == 'M' && (this.age < 18 || this.age > 61)) {
+    if (this.student.sexo === 'M' && (this.age < 18 || this.age > 61)) {
       this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
     }
-    if (this.student.sexo == 'F' && (this.age < 18 || this.age > 55)) {
+    if (this.student.sexo === 'F' && (this.age < 18 || this.age > 55)) {
       this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
     }
 
     this.getData();
   }
-
+  getNewEvaluation() {
+    /*     console.log(this.gorduraDesejada);
+        this.selectedEvaluation.gorduraDesejada = this.gorduraDesejada; */
+        this.setEvaluation(this.selectedEvaluation);
+        this.fatChanged = true;
+      }
+      saveFatChange() {
+        this.student.percgd = this.gorduraDesejada;
+        sessionStorage.selectedStudent = JSON.stringify(this.student);
+        this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
+          resp => this.getData()
+        );
+        this.fatChanged = false;
+      }
   getData() {
     /* Protocolo Jackson Pollok 3d - 3 */
     this.dataService.getData('clients/morfo/3/' + this.student.id).subscribe(
@@ -71,7 +72,7 @@ export class JP3Component implements OnInit {
           this.maxPointer = resp.length;
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
-          this.setEvaluation(this.evaluation[this.pointer], this.pointer);
+          this.setEvaluation(this.evaluation[this.pointer]);
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -81,7 +82,7 @@ export class JP3Component implements OnInit {
   }
 
   // Seleciona a data que está a mostrar
-  setEvaluation(evaluation, p) {
+  setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
     this.startGraphics(evaluation);
   }
@@ -105,20 +106,10 @@ export class JP3Component implements OnInit {
                 const proto = this.protocolos.protocoloJacksonPollok3d(evaluation, this.gorduraDesejada);
                 // Create graphic
                 this.showChart = true;
-                this.single = [{ name: 'Gordura atual: ' + proto.perGordura + '%', value: proto.perGordura },
-                { name: 'Gordura desejada: ' + proto.gorduraDesejada + '%', value: proto.gorduraDesejada },
-                { name: 'Gordura em excesso: ' + proto.gorduraExcesso + '%', value: proto.gorduraExcesso },
-                { name: 'Livre de gordura: ' + proto.percLivreGordura + '%', value: proto.percLivreGordura }
-                ];
+                this.single = this.prepareChart.getSingle1(proto);
                 Object.assign(this, this.single);
                 // Create graphic 2
-                const single2 = [{ name: 'Peso atual: ' + proto.pesoAtual + 'Kg' , value: proto.pesoAtual },
-                { name: 'Peso sugerido: ' + proto.pesoSugerido + 'Kg', value: proto.pesoSugerido },
-                { name: 'Peso em excesso: ' + proto.pesoExcesso + 'Kg', value: proto.pesoExcesso },
-                { name: 'Peso osseo: ' + proto.pesoOsseo + 'Kg', value: proto.pesoOsseo },
-                { name: 'Peso residual: ' + proto.pesoResidual + 'Kg', value: proto.pesoResidual },
-                { name: 'Peso muscular: ' + proto.pesoMuscular + 'Kg', value: proto.pesoMuscular }
-                ];
+                const single2 = this.prepareChart.getSingle2(proto);
                 Object.assign(this, { single2 });
               } else {
                 this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
@@ -133,21 +124,6 @@ export class JP3Component implements OnInit {
       }
     );
 
-  }
-
-
-  onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-  ngOnInit(): void {
   }
 
   save(form) {

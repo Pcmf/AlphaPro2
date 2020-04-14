@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3>Guedes (1994)</h3>
+        <h3>Guedes - 3 dobras (1994)</h3>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
@@ -9,12 +9,12 @@
                     <tr>
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer-1], pointer-1)">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer], pointer)">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer])">
                                 {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>
@@ -102,6 +102,11 @@
                                        + +evaluation[pointer].crural | number: '1.2-2'}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <td colspan="3">
+                            <small class="advise-sm">* Todas as medidas são em milimetros</small>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -125,28 +130,14 @@
                 </button>
             </div>
         </form>
-        <br />
-        <hr />
-        <h4 style="text-align: center; color: blue;">
-            {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
-        </h4>
-
-        <!-- <app-chart-dobras [chart1]="single" [chart2]="single2" [doneApp]="done" ></app-chart-dobras> -->
         <div *ngIf="showChart">
-            <div class="graphics">
-                <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
-                    [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
-                    [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
-                    (deactivate)="onDeactivate($event)">
-                </ngx-charts-pie-chart>
-            </div>
-            <div class="graphics">
-                <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="single2"
-                    [gradient]="gradient" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
-                    [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
-                    (deactivate)="onDeactivate($event)">
-                </ngx-charts-pie-chart>
-            </div>
+            <br />
+            <hr />
+            <h4 style="text-align: center; color: blue;">
+                {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+            </h4>
+            <app-chart-pie [values]="single"></app-chart-pie>
+            <app-chart-pie [values]="single2"></app-chart-pie>
         </div>
     </div>
 

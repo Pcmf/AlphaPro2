@@ -23,9 +23,9 @@ export class ProtcolosDobrasService {
       this.morfo = morfo;
       // Masculino
       if (morfo.sexo == 'M') {
-        this.perGordura = +(0.735 * (+morfo.triciptal + +morfo.geminal) + 1).toFixed(3);
+        this.perGordura = +(0.735 * (+morfo.triciptal + +morfo.geminal) + 1).toFixed(2);
       } else {
-        this.perGordura = +(0.610 * (+morfo.triciptal + +morfo.geminal) + 5.1).toFixed(3);
+        this.perGordura = +(0.610 * (+morfo.triciptal + +morfo.geminal) + 5.1).toFixed(2);
       }
       const answer =  this.createAnswer();
       return answer;
@@ -41,11 +41,11 @@ export class ProtcolosDobrasService {
     if (morfo.sexo == 'M') { // Masculino
       const somatorio = +morfo.peitoral + +morfo.abdominal + +morfo.crural;
       const DC = 1.109380 - 0.0008267 * somatorio + 0.0000016 * Math.pow(somatorio, 2) - 0.0002574 * morfo.idade;
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Femenino
       const somatorio = +morfo.triciptal + +morfo.suprailiaca + +morfo.crural;
       const DC = 1.0994921 - 0.0009929 * somatorio + 0.0000023 * Math.pow(somatorio, 2)  - 0.0001392 * morfo.idade;
-      this.perGordura = +(((5.26 / DC) - 4.83) * 100).toFixed(3);
+      this.perGordura = +(((5.26 / DC) - 4.83) * 100).toFixed(2);
     }
     const answer =  this.createAnswer();
     console.table(answer);
@@ -78,10 +78,10 @@ export class ProtcolosDobrasService {
     const somatorio = +morfo.biciptal + +morfo.triciptal + +morfo.subescapular;
     if (morfo.sexo == 'M') { // Masculino
       const DC = 1.1765 - 0.0744 * Math.log(somatorio);
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Feminino
       const DC = 1.1567 - 0.0717 * Math.log(somatorio);
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
     const answer =  this.createAnswer();
     console.table(answer);
@@ -96,10 +96,10 @@ export class ProtcolosDobrasService {
     this.morfo = morfo;
     if (morfo.sexo == 'M') { // Masculino
       const DC = 1.10430 - 0.00133 * +morfo.crural - 0.00131 * morfo.subescapular;
-      this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(3);
+      this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     } else {  // Feminino
       const DC = 1.07640 - 0.00081 * +morfo.suprailiaca - 0.00088 * morfo.tríceps;
-      this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(3);
+      this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     }
     const answer =  this.createAnswer();
     console.table(answer);
@@ -115,11 +115,11 @@ export class ProtcolosDobrasService {
     if (morfo.sexo == 'M') { // Masculino
       const somatorio = +morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca;
       const DC = 1.17136 - 0.06706 * Math.log(somatorio);
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Feminino
       const somatorio = +morfo.subescapular + +morfo.crural + +morfo.suprailiaca;
       const DC = 1.16650 - 0.07063 * Math.log(somatorio);
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
     const answer =  this.createAnswer();
     console.table(answer);
@@ -136,7 +136,7 @@ export class ProtcolosDobrasService {
     const somatorio = +morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca + +morfo.subescapular
                       + +morfo.peitoral + +morfo.axilar + +morfo.crural;
     const DC = 1.1120 - 0.00043499 * somatorio + 0.00000055 * Math.pow(somatorio, 2) - 0.00028826 * morfo.idade;
-    this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+    this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     const answer =  this.createAnswer();
     console.table(answer);
     return answer;
@@ -148,7 +148,7 @@ export class ProtcolosDobrasService {
     this.morfo = morfo;
     const somatorio = +morfo.abdominal + +morfo.crural;
     const DC = 1.08543 - 0.000886 * morfo.abdominal - 0.0004 * morfo.crural;
-    this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+    this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     const answer =  this.createAnswer();
     console.table(answer);
     return answer;
@@ -159,7 +159,7 @@ export class ProtcolosDobrasService {
         this.gorduraDesejada = gorduraDesejada;
         this.morfo = morfo;
         const DC = 1.06234 - 0.00068 * +morfo.subescapular - 0.00039 * +morfo.triciptal - 0.00025 * +morfo.crural;
-        this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+        this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
         const answer =  this.createAnswer();
         console.table(answer);
         return answer;
@@ -173,11 +173,11 @@ export class ProtcolosDobrasService {
     if (morfo.sexo == 'M') { // Masculino
       const somatorio = +morfo.suprailiaca + +morfo.triciptal + +morfo.subescapular + +morfo.geminal;
       const DC = 1.10726863 - 0.00081201 * somatorio + 0.00000212 * somatorio - 0.00041761 * +morfo.idade;
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Feminino
       const somatorio = +morfo.axilar + +morfo.suprailiaca + +morfo.crural + +morfo.geminal;
       const DC = 1.1954713 - 0.07513507 * Math.log10(somatorio) - 0.00041072 * morfo.idade;
-      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(3);
+      this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
     const answer =  this.createAnswer();
     console.table(answer);
@@ -209,18 +209,18 @@ export class ProtcolosDobrasService {
   // Criar JSON com resposta
   createAnswer() {
     const resp = {
-      perGordura: this.perGordura,
+      perGordura: this.perGordura.toFixed(2),
       gorduraDesejada: this.gorduraDesejada,
-      gorduraExcesso: this.calcGorduraExcesso().toFixed(3),
-      percLivreGordura: this.calcLivreGordura().toFixed(3),
-      massaIsentaGordura: this.calcMassaIsentaGordura().toFixed(3),
-      pesoGordo: this.calcPesoGordura().toFixed(3),
+      gorduraExcesso: this.calcGorduraExcesso().toFixed(2),
+      percLivreGordura: this.calcLivreGordura().toFixed(2),
+      massaIsentaGordura: this.calcMassaIsentaGordura().toFixed(2),
+      pesoGordo: this.calcPesoGordura().toFixed(2),
       pesoAtual: this.morfo.peso,
-      pesoSugerido: this.calcPesoSugerido().toFixed(3),
-      pesoExcesso: this.calcPesoExcesso().toFixed(3),
-      pesoOsseo: this.calcPesoOsseo().toFixed(3),
-      pesoResidual: this.calcPesoResidual().toFixed(3),
-      pesoMuscular: this.calcPesoMuscular().toFixed(3)
+      pesoSugerido: this.calcPesoSugerido().toFixed(2),
+      pesoExcesso: this.calcPesoExcesso().toFixed(2),
+      pesoOsseo: this.calcPesoOsseo().toFixed(2),
+      pesoResidual: this.calcPesoResidual().toFixed(2),
+      pesoMuscular: this.calcPesoMuscular().toFixed(2)
     };
     return resp;
   }

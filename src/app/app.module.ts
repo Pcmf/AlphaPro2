@@ -78,6 +78,8 @@ import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
 import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
 import { ChartDobrasComponent } from './commun/chart-dobras/chart-dobras.component';
+import { PrepareChartService } from './services/prepare-chart.service';
+import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -148,6 +150,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     ScanerComponent,
     DEXAComponent,
     ChartDobrasComponent,
+    ChartPieComponent,
   ],
   imports: [
     BrowserModule,
@@ -175,7 +178,8 @@ export class MyHammerConfig extends HammerGestureConfig {
                 useClass: MyHammerConfig,
               },
               AgeService,
-              ProtcolosDobrasService
+              ProtcolosDobrasService,
+              PrepareChartService
             ],
   bootstrap: [AppComponent]
 })

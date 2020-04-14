@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3>Jackson & Pollock - 3 dobras (1978)</h3>
+        <h3 i18n>Jackson & Pollock - 3 dobras (1978)</h3>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr *ngIf="student.sexo == 'M'">
-                        <th><span>Peitoral</span></th>
+                        <th i18n>Peitoral</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peitoral}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peitoral}}</td>
                         <td *ngIf="addEval">
@@ -34,7 +34,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="student.sexo == 'F'">
-                        <th><span>Triciptal</span></th>
+                        <th i18n>Triciptal</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
                         <td *ngIf="addEval">
@@ -43,7 +43,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="student.sexo == 'M'">
-                        <th>Abdominal</th>
+                        <th i18n>Abdominal</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
                         <td *ngIf="addEval">
@@ -52,7 +52,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="student.sexo == 'F'">
-                        <th>Suprailiaca</th>
+                        <th i18n>Suprailiaca</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
                         <td *ngIf="addEval">
@@ -61,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Coxa</th>
+                        <th i18n>Coxa</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
                         <td *ngIf="addEval">
@@ -70,7 +70,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Media</th>
+                        <th i18n>Media</th>
                         <td *ngIf="pointer>=1 && student.sexo=='M'">
                             {{(+evaluation[pointer-1].peitoral + +evaluation[pointer-1].abdominal + +evaluation[pointer-1].crural) / 3 | number : '1.2-2'}}
                         </td>
@@ -86,7 +86,7 @@
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th>Somatório</th>
+                        <th i18n>Somatório</th>
                         <td *ngIf="pointer>=1 && student.sexo=='M'">
                             {{+evaluation[pointer-1].peitoral + +evaluation[pointer-1].abdominal + +evaluation[pointer-1].crural | number : '1.2-2'}}
                         </td>
@@ -103,7 +103,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <small class="advise-sm">* Todas as medidas são em milimetros</small>
+                            <small class="advise-sm" i18n>* Todas as medidas são em milimetros</small>
                         </td>
                     </tr>
                 </tbody>
@@ -135,7 +135,7 @@
             {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
         </h4>
         <div style="text-align: center; color: blue;">
-            <mat-label>% Gordura desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
+            <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
             <mat-slider min="10" max="30" step="1" thumbLabel="true"  [(ngModel)]="gorduraDesejada" [disabled]="!fatChanged"
                 (change)="getNewEvaluation()">
             </mat-slider>

@@ -69,7 +69,7 @@ export class DW4Component implements OnInit {
           this.maxPointer = resp.length;
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
-          this.setEvaluation(this.evaluation[this.pointer], this.pointer);
+          this.setEvaluation(this.evaluation[this.pointer]);
 
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');

@@ -126,6 +126,9 @@ export class JP3Component implements OnInit {
 
   }
 
+  ngOnInit(): void {
+  }
+
   save(form) {
     form.protocolo = 3;
     console.log(this.student.id);

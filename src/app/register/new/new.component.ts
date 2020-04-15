@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location, formatDate, DatePipe } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
@@ -37,7 +37,7 @@ export class NewComponent implements OnInit {
   checkIfExistsClient(form) {
     const data = this.datapipe.transform( this.date, 'yyyy-MM-dd');
     const obj = {nome: form.nome, data};
-    this.dataService.setData('clients/check/', obj).subscribe(
+    this.dataService.setData('clients/check/' + this.dataService.getPTId(), obj).subscribe(
       resp => {
         if (resp[0]) {
           this.erroRepeatCliente = true;

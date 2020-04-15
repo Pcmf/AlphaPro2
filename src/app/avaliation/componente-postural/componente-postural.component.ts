@@ -62,16 +62,12 @@ export class ComponentePosturalComponent implements OnInit {
       this.selectedTab++;
       console.log(this.selectedTab);
     }
-
-
   }
   swipeRight(event) {
     if (this.selectedTab > 0) {
       this.selectedTab--;
       console.log(this.selectedTab);
     }
-
-
   }
 
   getData() {

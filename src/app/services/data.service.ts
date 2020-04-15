@@ -77,10 +77,10 @@ export class DataService {
     }
   }
 
-  getEntity() {
+  getSuperEntity() {
     if (this.isLoggedIn()) {
       const token = sessionStorage.getItem('token');
-      return this.helper.decodeToken(token).entity;
+      return this.helper.decodeToken(token).super_entity;
     }
   }
 

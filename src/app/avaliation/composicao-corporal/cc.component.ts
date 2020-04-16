@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-cc',
@@ -9,11 +7,8 @@ import { Location } from '@angular/common';
 })
 export class CCComponent implements OnInit {
   panelOpenState = false;
-  studentId: number;
 
-  constructor(private dataService: DataService, private actRoute: ActivatedRoute, private location: Location) {
-    this.studentId = this.actRoute.snapshot.params.id;
-    console.log(this.studentId);
+  constructor(private location: Location) {
   }
 
   ngOnInit(): void {

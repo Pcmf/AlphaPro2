@@ -12,7 +12,6 @@ export class DashComponent implements OnInit {
   students: any =  [];
   student = {};
   selectedS = false;
-  id = '';
   constructor(private dataService: DataService, private menuService: MenuService) {
 
       const id = this.dataService.getPTId();
@@ -36,7 +35,6 @@ export class DashComponent implements OnInit {
   selected(student) {
     if (student) {
       this.selectedS = true;
-      this.id = student.id;
       this.menuService.setSelectedStudent(student);
       sessionStorage.selectedStudent = JSON.stringify(student);
     } else {
@@ -47,7 +45,6 @@ export class DashComponent implements OnInit {
   reset() {
     this.student = {};
     this.selectedS = false;
-    this.id = '';
     this.menuService.setSelectedStudent({});
     sessionStorage.removeItem('selectedStudent');
   }

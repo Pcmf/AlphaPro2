@@ -28,7 +28,7 @@ export class PDCComponent implements OnInit {
               private menuService: MenuService,
               private actRoute: ActivatedRoute
   ) {
-    this.studentId = this.actRoute.snapshot.params.id;
+    this.studentId = JSON.parse(sessionStorage.selectedStudent).id;
     this.getData();
   }
 

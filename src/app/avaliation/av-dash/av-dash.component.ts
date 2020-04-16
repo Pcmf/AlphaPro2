@@ -8,19 +8,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./av-dash.component.scss']
 })
 export class AvDashComponent implements OnInit {
-  selectedStudent: any = [];
+  /* selectedStudent: any = []; */
   panelOpenState = false;
-  studentId: number;
+  /* studentId: number; */
 
   constructor(private dataService: DataService, private actRoute: ActivatedRoute) {
-    this.studentId = this.actRoute.snapshot.params.id;
+/*     this.studentId = this.actRoute.snapshot.params.id;
     this.dataService.getData('clients/entity/' + this.dataService.getPTId() + '/' + this.studentId).subscribe(
       resp => {
         if (resp) {
           this.selectedStudent = resp[0];
         }
       }
-    );
+    ); */
   }
 
   ngOnInit(): void {

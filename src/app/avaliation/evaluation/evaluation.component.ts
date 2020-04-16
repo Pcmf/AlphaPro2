@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-evaluation',
@@ -15,18 +14,15 @@ export class EvaluationComponent implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   student: any = [];
 
   constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }
   getData() {
-    this.dataService.getData('clients/eval/' + this.id).subscribe(
+    this.dataService.getData('clients/eval/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -53,7 +49,7 @@ export class EvaluationComponent implements OnInit {
   save(form) {
     form.tmb = this.calcTMB(form);
     console.table(form);
-    this.dataService.setData('clients/eval/' + this.id, form).subscribe(
+    this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;

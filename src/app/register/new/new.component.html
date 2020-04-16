@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <header class="new-header">
-    <h1 i18n="titulo"><span *ngIf="id">Editar</span><span *ngIf="!id">Registar Novo</span> Aluno</h1>
+    <h1 i18n="titulo"><span *ngIf="student.id">Editar</span><span *ngIf="!student.id">Registar Novo</span> Aluno</h1>
   </header>
   <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
     <mat-form-field appearance="">
@@ -56,7 +56,7 @@
       <mat-label i18n="Label | postal code">Codigo Postal</mat-label>
       <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput>
     </mat-form-field>
-    <mat-form-field *ngIf="id">
+    <mat-form-field *ngIf="student.id">
       <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
       <input [value]="student.lastaccess" matInput>
     </mat-form-field>
@@ -65,7 +65,7 @@
       <button mat-fab type="button" (click)="cancel()" color="default">
         <mat-icon class="mat-18">close</mat-icon>
       </button>
-      <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente">
+      <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
         <mat-icon class="mat-18">check</mat-icon>
       </button>
       

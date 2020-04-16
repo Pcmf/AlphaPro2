@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
   selector: 'app-rddc',
@@ -14,19 +15,20 @@ export class RDDCComponent implements OnInit {
   data: any = [];
   points = 0;
   smoker = '0';
-  id: number;
+  student: any = [];
 
-  constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
-      this.id = this.actRoute.snapshot.params.id;
-      this.dataService.getData('clients/' + this.id).subscribe(
-        resp => {
-          if (resp[0].fumante == 'S' || resp[0].fumante == 'E') {
+  constructor(private location: Location,
+              private dataService: DataService,
+              private ageService: AgeService
+              ) {
+      this.student = JSON.parse(sessionStorage.selectedStudent);
+
+      if (this.student.fumante == 'S' || this.student.fumante == 'E') {
             this.smoker = '1';
             this.points += 1;
           }
-          const timeDiff = Math.abs(Date.now() - new Date(resp[0].dt_nasc).getTime());
-          this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
-          if (this.age < 30 ) {
+      this.age = this.ageService.getAge(this.student.dt_nasc);
+      if (this.age < 30 ) {
             this.points += 0;
           } else if (this.age < 40) {
             this.points += 1;
@@ -35,7 +37,7 @@ export class RDDCComponent implements OnInit {
           } else {
             this.points += 3;
           }
-          this.dataService.getData('clients/column/' + this.id).subscribe(
+      this.dataService.getData('clients/column/' + this.student.id).subscribe(
             respd => {
               if (respd[0]) {
                 this.data = respd[0];
@@ -44,8 +46,7 @@ export class RDDCComponent implements OnInit {
             }
           );
         }
-      );
-   }
+
 
   ngOnInit(): void {
   }
@@ -56,7 +57,7 @@ export class RDDCComponent implements OnInit {
 
   save(form) {
     form.pontos = +this.points + +form.objetos + +form.alonga + +form.peso + +form.dor;
-    this.dataService.setData('clients/column/' + this.id, form).subscribe(
+    this.dataService.setData('clients/column/' + this.student.id, form).subscribe(
       resp => {
         console.log(resp);
       }

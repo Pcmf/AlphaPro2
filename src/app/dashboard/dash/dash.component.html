@@ -22,19 +22,19 @@
 
         <div class="dash-buttons-action" *ngIf="selectedS">
             <div  class="dash-buttons-action_block">
-                <a mat-fab [routerLink]="['/new/', id]"><mat-icon>account_circle</mat-icon></a>
+                <a mat-fab [routerLink]="['/new']"><mat-icon>account_circle</mat-icon></a>
                 <label i18n="Label | registo">cadastro</label>
             </div>
             <div class="dash-buttons-action_block">
-                <a  mat-fab [routerLink]="['/avDash/', id]"><mat-icon>accessibility_new</mat-icon></a>
+                <a  mat-fab [routerLink]="['/avDash']"><mat-icon>accessibility_new</mat-icon></a>
                 <label i18n="Label | avaliação do aluno">avaliação</label>
             </div>
             <div class="dash-buttons-action_block">
-                <a  mat-fab [routerLink]="['/preDash/', id]"><mat-icon>directions_run</mat-icon></a>
+                <a  mat-fab [routerLink]="['/preDash']"><mat-icon>directions_run</mat-icon></a>
                 <label i18n="Label | prescrição de exercicios do aluno">prescrição</label>
             </div>
             <div  class="dash-buttons-action_block">
-                <a mat-fab [routerLink]="['/repDash/', id]"><mat-icon>description</mat-icon></a>
+                <a mat-fab [routerLink]="['/repDash']"><mat-icon>description</mat-icon></a>
                 <label i18n="Label | relatorios de evolução do aluno">relatorios</label>
             </div>
         </div>

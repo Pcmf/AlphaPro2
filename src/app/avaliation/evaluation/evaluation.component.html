@@ -33,7 +33,7 @@
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
                                 <td *ngIf="addEval">
                                     <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura"
-                                        type="number" step="0.1" placeholder="metros">
+                                        type="number" placeholder="m">
                                 </td>
                             </tr>
                             <tr>
@@ -110,9 +110,9 @@
     </div>
 
     <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
+        <button mat-mini-fab color="primary" routerLink="/avDash">
             <mat-icon>undo</mat-icon>
-        </a>
+        </button>
     </div>
 </div>
 

@@ -13,8 +13,8 @@ export class NewComponent implements OnInit {
   startDate = new Date(2000, 0, 1);
   date: Date;
   student: any = [];
-  id: number;
   erroRepeatCliente = false;
+
   constructor(private location: Location,
               private dataService: DataService,
               private actRoute: ActivatedRoute,
@@ -23,14 +23,9 @@ export class NewComponent implements OnInit {
               private datapipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.id = +this.actRoute.snapshot.paramMap.get('id');
-    if (this.id) {
-      this.dataService.getData('clients/' + this.id).subscribe(
-        resp => {
-          this.student = resp[0];
-          this.date = this.student.dt_nasc as Date;
-        }
-      );
+    if (sessionStorage.selectedStudent) {
+          this.student = JSON.parse(sessionStorage.selectedStudent);
+          this.date = this.student.dt_nasc;
     }
   }
 
@@ -41,10 +36,8 @@ export class NewComponent implements OnInit {
       resp => {
         if (resp[0]) {
           this.erroRepeatCliente = true;
-          console.log(this.erroRepeatCliente);
         } else {
           this.erroRepeatCliente = false;
-          console.log(this.erroRepeatCliente);
         }
       }
     );
@@ -52,25 +45,24 @@ export class NewComponent implements OnInit {
 
   saveForm(form) {
     form.dt_nasc = this.datapipe.transform( this.date, 'yyyy-MM-dd');
-    console.table(form);
-    if (!this.id) {
+    if (!this.student.id) {
       // new student
       this.dataService.setData('entity/clients/' + this.dataService.getPTId(), form).subscribe(
+        // TODO - control if student was created - important
         resp => {
           this.dataService.getData('clients/' + resp).subscribe(
             res => {
               this.menuService.setSelectedStudent(res[0]);
               sessionStorage.selectedStudent = JSON.stringify(res[0]);
-              this.route.navigate(['/eval/' + resp]);
+              this.route.navigate(['/eval']);
             }
           );
         }
       );
     } else {
       // edit student
-      this.dataService.setData('entity/clients/' + this.dataService.getPTId() + '/' + this.id, form).subscribe(
+      this.dataService.setData('entity/clients/' + this.dataService.getPTId() + '/' + this.student.id, form).subscribe(
         resp => {
-          console.log(resp);
           this.location.back();
         }
       );

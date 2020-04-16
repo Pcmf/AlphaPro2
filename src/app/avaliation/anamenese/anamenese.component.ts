@@ -12,7 +12,7 @@ export class AnameneseComponent implements OnInit {
   step: number;
   startDate = new Date();
   student: any = [];
-  studentId: number;
+  selectedStudent: any = [];
   dataObj: any;
   dataIniPgm: any;
   dataUltimoExame: any;
@@ -22,8 +22,8 @@ export class AnameneseComponent implements OnInit {
   HiperParentesco: any = [];
 
   constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
-    this.studentId = this.actRoute.snapshot.params.id;
-    this.dataService.getData('clients/anamnese/' + this.studentId).subscribe(
+    this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
+    this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
       (resp: any) => {
         if (resp.length > 0) {
           this.student = resp[0];
@@ -119,7 +119,7 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveData(form) {
-    this.dataService.setData('clients/anamnese/' + this.studentId, form).subscribe(
+    this.dataService.setData('clients/anamnese/' + this.selectedStudent.id, form).subscribe(
       resp => console.log(resp)
     );
   }

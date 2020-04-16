@@ -15,13 +15,13 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Sistólica</mat-label>
-                                <input matInput #qtas="ngModel" name="qtas" [(ngModel)]="data.qtas">
+                                <input matInput #qtas="ngModel" name="qtas" [(ngModel)]="rdcData.qtas">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Diastólica</mat-label>
-                                <input matInput #qtad="ngModel" name="qtad" [(ngModel)]="data.qtad">
+                                <input matInput #qtad="ngModel" name="qtad" [(ngModel)]="rdcData.qtad">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -36,7 +36,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Cigarros por dia</mat-label>
-                                <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="data.qtos">
+                                <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="student.qtos">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -51,25 +51,25 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Colesterol Total</mat-label>
-                                <input matInput #lsc="ngModel" name="lsc" [(ngModel)]="data.lsc">
+                                <input matInput #lsc="ngModel" name="lsc" [(ngModel)]="rdcData.lsc">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Fração CT/HDL-C</mat-label>
-                                <input matInput #lsf="ngModel" name="lsf" [(ngModel)]="data.lsf">
+                                <input matInput #lsf="ngModel" name="lsf" [(ngModel)]="rdcData.lsf">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Triglicerídeos</mat-label>
-                                <input matInput #lst="ngModel" name="lst" [(ngModel)]="data.lst">
+                                <input matInput #lst="ngModel" name="lst" [(ngModel)]="rdcData.lst">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Glicemia</mat-label>
-                                <input matInput #lsg="ngModel" name="lsg" [(ngModel)]="data.lsg">
+                                <input matInput #lsg="ngModel" name="lsg" [(ngModel)]="rdcData.lsg">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -83,8 +83,7 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
-                                <!-- <mat-label>Cigarros por dia</mat-label> -->
-                                <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="data.diabetes">
+                                <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="rdcData.diabetes">
                                     <mat-option value="0" i18n>Não</mat-option>
                                     <mat-option value="1" i18n>DMNID*</mat-option>
                                     <mat-option value="2" i18n>DMNID* Recente</mat-option>
@@ -105,15 +104,9 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>percentagem</mat-label>
-                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
+                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="rdcData.gc">
                             </mat-form-field>
                         </mat-list-item>
-  <!--                       <mat-list-item *ngIf="sex == 'M'">
-                            <mat-form-field>
-                                <mat-label i18n>Homens</mat-label>
-                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="data.gc">
-                            </mat-form-field>
-                        </mat-list-item> -->
                     </mat-list>
                 </mat-card-content>
             </mat-card>
@@ -125,7 +118,7 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
-                                <mat-select #st="ngModel" name="st" [(ngModel)]="data.st">
+                                <mat-select #st="ngModel" name="st" [(ngModel)]="rdcData.st">
                                     <mat-option value="0" i18n>Nunca</mat-option>
                                     <mat-option value="1" i18n>quase nunca</mat-option>
                                     <mat-option value="2" i18n>às vezes</mat-option>
@@ -146,13 +139,13 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Frequência Semanal</mat-label>
-                                <input matInput #afs="ngModel" name="afs" [(ngModel)]="data.afs" readonly>
+                                <input matInput #afs="ngModel" name="afs" [(ngModel)]="student.afs" readonly>
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Minutos/Semana</mat-label>
-                                <mat-select #af50="ngModel" name="af50" [(ngModel)]="data.af50">
+                                <mat-select #af50="ngModel" name="af50" [(ngModel)]="rdcData.af50">
                                     <mat-option value="0">120</mat-option>
                                     <mat-option value="1">90</mat-option>
                                     <mat-option value="2">30</mat-option>
@@ -171,8 +164,8 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
-                                <mat-label i18n>Famimilares doentes coronarios > 60</mat-label>
-                                <mat-select #hf="ngModel" name="hf" [ngModel]="data.hf" disabled>
+                                <mat-label i18n>Familares doentes coronarios > 60</mat-label>
+                                <mat-select #hf="ngModel" name="hf" [ngModel]="rdcData.hf" disabled>
                                     <mat-option value="0">0</mat-option>
                                     <mat-option value="1">1</mat-option>
                                     <mat-option value="2">2</mat-option>
@@ -192,7 +185,7 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
-                                <input matInput readonly #idade="ngModel" name="idade" [ngModel]="data.idade">
+                                <input matInput readonly #idade="ngModel" name="idade" [ngModel]="student.idade">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -218,7 +211,7 @@
         <button mat-mini-fab color="primary" (click)="goBack()">
             <mat-icon>undo</mat-icon>
         </button>
-        <a mat-mini-fab color="primary" [routerLink]="['/rddc/', id]">
+        <a mat-mini-fab color="primary" [routerLink]="['/rddc']">
             <mat-icon>redo</mat-icon>
         </a>
     </div>

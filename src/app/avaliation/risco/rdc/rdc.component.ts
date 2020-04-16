@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AgeService } from 'src/app/services/age.service';
 
 @Component({
@@ -11,38 +11,38 @@ import { AgeService } from 'src/app/services/age.service';
 })
 export class RDCComponent implements OnInit {
 
-  data: any = [];
-  id: number;
+  student: any = [];
+  rdcData: any = [];
   sex: string;
   risco = 0;
 
   constructor(private location: Location,
               private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private ageService: AgeService,
               private router: Router
               ) {
-    this.id = this.actRoute.snapshot.params.id;
-    this.dataService.getData('clients/rdc/' + this.id).subscribe(
+    this.student = JSON.parse(sessionStorage.selectedStudent);
+    this.student.idade = this.ageService.getAge(this.student.dt_nasc);
+    this.sex = this.student.sexo;
+    this.dataService.getData('clients/rdc/' + this.student.id).subscribe(
       resp => {
         if (resp[0]) {
-          this.data = resp[0];
+          this.rdcData = resp[0];
         }
-        // data from cad_aluno
-        this.dataService.getData('clients/' + this.id).subscribe(
-          respa => {
-            this.data.afs = respa[0].afs;
-            this.data.qtos = respa[0].qtos;
-            this.sex = respa[0].sexo;
-            // calculate age
-            this.data.idade = this.ageService.getAge(respa[0].dt_nasc);
+        this.dataService.getData('clients/eval/' + this.student.id).subscribe(
+          (respe: any []) => {
+            if (respe) {
+                const lastEval = respe.pop();
+                this.rdcData.qtas = lastEval.tamax;
+                this.rdcData.qtad = lastEval.tamin;
+            }
           }
         );
         // historic cardio family from arq_quest - Q31QTDE
-        this.dataService.getData('clients/anamnese/' + this.id).subscribe(
-          respq => this.data.hf = respq[0].Q31QTDE
+        this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+          respq => this.rdcData.hf = respq[0].Q31QTDE
         );
-        this.calcRisco(this.data);
+        this.calcRisco();
       }
     );
   }
@@ -56,53 +56,53 @@ export class RDCComponent implements OnInit {
 
   save(form) {
     console.table(form);
-    this.dataService.setData('clients/rdc/' + this.id, form).subscribe(
+    this.dataService.setData('clients/rdc/' + this.student.id, form).subscribe(
       resp => {
         console.log(resp);
-        this.router.navigate(['rddc/', this.id]);
+        this.router.navigate(['rddc/']);
       }
     );
   }
 
-  calcRisco(ln) {
+  calcRisco() {
     this.risco = 0;
-    if (ln.qtas >= 140) {
+    if (this.rdcData.qtas >= 140) {
       this.risco++;
     }
-    if (ln.qtad >= 90) {
+    if (this.rdcData.qtad >= 90) {
       this.risco++;
     }
-    if (ln.qtos >= 20) {
+    if (this.student.qtos >= 20) {
       this.risco++;
     }
-    if (ln.lsc >= 250 || ln.lsf >= 4.5 || ln.lst >= 130 || ln.lsg >= 110) {
+    if (this.rdcData.lsc >= 250 || this.rdcData.lsf >= 4.5 || this.rdcData.lst >= 130 || this.rdcData.lsg >= 110) {
       this.risco++;
     }
-    if (ln.diabetes == 1 && ln.idade >= 35) {
+    if (this.rdcData.diabetes == 1 && this.student.idade >= 35) {
       this.risco += 2;
     }
-    if (ln.diabetes == 2 && ln.idade >= 30) {
+    if (this.rdcData.diabetes == 2 && this.student.idade >= 30) {
       this.risco += 2;
     }
-    if (ln.diabetes == 3) {
+    if (this.rdcData.diabetes == 3) {
       this.risco += 2;
     }
-    if (this.sex == 'M' && ln.gc >= 25) {
+    if (this.sex == 'M' && this.rdcData.gc >= 25) {
       this.risco++;
     }
-    if (this.sex == 'F' && ln.gc >= 32) {
+    if (this.sex == 'F' && this.rdcData.gc >= 32) {
       this.risco++;
     }
-    if (ln.st > 2) {
+    if (this.rdcData.st > 2) {
       this.risco++;
     }
-    if (ln.hf > 2) {
+    if (this.rdcData.hf > 2) {
       this.risco++;
     }
-    if (ln.afs <= 1 || ln.af50 < 30) {
+    if (this.student.afs <= 1 || this.rdcData.af50 < 30) {
       this.risco++;
     }
-    if (ln.idade > 50) {
+    if (this.student.idade > 50) {
       this.risco++;
     }
 

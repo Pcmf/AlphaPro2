@@ -28,6 +28,7 @@ export class CarterComponent implements OnInit {
   }
 
   getData() {
+    // Protocolo Carter - 2
     this.dataService.getData('clients/morfo/' + this.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {

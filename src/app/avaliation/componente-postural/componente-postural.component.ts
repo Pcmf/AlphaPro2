@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { MenuService } from 'src/app/services/menu.service';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
@@ -13,29 +11,18 @@ import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
   styleUrls: ['./componente-postural.component.scss']
 })
 export class ComponentePosturalComponent implements OnInit {
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private menuService: MenuService,
-              private actRoute: ActivatedRoute,
-              private dialog: MatDialog
-  ) {
-    this.studentId = this.actRoute.snapshot.params.id;
-    this.getData();
-  }
   addForm = false;
-  studentId: number;
+  student: any = [];
   maxPointer = -1;
   pointer = -1;
   oldData: any = [];
   newData: any = [];
   data: string;
   selectedTab = 0;
-
   // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
-  public multipleWebcamsAvailable = false;
+  public multipleWebcamsAvailable = true;
   public deviceId: string;
   public videoOptions: MediaTrackConstraints = {
     // width: {ideal: 1024},
@@ -57,21 +44,30 @@ export class ComponentePosturalComponent implements OnInit {
   private foto2: string;
   private foto3: string;
 
+  constructor(private location: Location,
+              private dataService: DataService,
+              private datapipe: DatePipe,
+              private dialog: MatDialog
+  ) {
+    this.student = JSON.parse(sessionStorage.selectedStudent);
+    this.getData();
+  }
+
   swipeLeft(event) {
     if (this.selectedTab < 3) {
       this.selectedTab++;
-      console.log(this.selectedTab);
+      /* console.log(this.selectedTab); */
     }
   }
   swipeRight(event) {
     if (this.selectedTab > 0) {
       this.selectedTab--;
-      console.log(this.selectedTab);
+      /* console.log(this.selectedTab); */
     }
   }
 
   getData() {
-    this.dataService.getData('clients/post/' + this.studentId).subscribe(
+    this.dataService.getData('clients/post/' + this.student.id).subscribe(
       (resp: any[]) => {
         this.maxPointer = resp.length;
         if (this.maxPointer > 0) {
@@ -81,7 +77,7 @@ export class ComponentePosturalComponent implements OnInit {
           this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
-        console.table(this.oldData);
+        /* console.table(this.oldData); */
       }
     );
   }
@@ -130,7 +126,7 @@ export class ComponentePosturalComponent implements OnInit {
     };
 
     //  console.table(this.newData);
-    this.dataService.setData('clients/post/' + this.studentId, obj).subscribe(
+    this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
       resp => {
         console.log(resp);
         this.getData();
@@ -189,7 +185,7 @@ export class ComponentePosturalComponent implements OnInit {
 
   saveDataForm(form) {
     //  console.table(form.value);
-    this.dataService.setData('clients/post/' + this.studentId, form.value).subscribe(
+    this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
       resp => {
         console.log(resp);
         this.getData();

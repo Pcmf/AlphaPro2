@@ -43,11 +43,17 @@ export class EvaluationComponent implements OnInit {
     return TMB;
   }
 
+  calcIMC(form) {
+    const IMC = form.peso / Math.pow(form.altura, 2);
+    return IMC;
+  }
+
   ngOnInit(): void {
   }
 
   save(form) {
     form.tmb = this.calcTMB(form);
+    form.imc = this.calcIMC(form);
     console.table(form);
     this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
       resp => {

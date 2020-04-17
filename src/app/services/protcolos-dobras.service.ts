@@ -19,16 +19,16 @@ export class ProtcolosDobrasService {
 
   // PROTOCOLOS
   protocoloSlaughter2d(morfo, gorduraDesejada) {
-      this.gorduraDesejada = gorduraDesejada;
-      this.morfo = morfo;
-      // Masculino
-      if (morfo.sexo == 'M') {
-        this.perGordura = +(0.735 * (+morfo.triciptal + +morfo.geminal) + 1).toFixed(2);
-      } else {
-        this.perGordura = +(0.610 * (+morfo.triciptal + +morfo.geminal) + 5.1).toFixed(2);
-      }
-      const answer =  this.createAnswer();
-      return answer;
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    // Masculino
+    if (morfo.sexo == 'M') {
+      this.perGordura = +(0.735 * (+morfo.triciptal + +morfo.geminal) + 1).toFixed(2);
+    } else {
+      this.perGordura = +(0.610 * (+morfo.triciptal + +morfo.geminal) + 5.1).toFixed(2);
+    }
+    const answer = this.createAnswer();
+    return answer;
   }
 
   protocoloJacksonPollok3d(morfo, gorduraDesejada) {
@@ -44,10 +44,10 @@ export class ProtcolosDobrasService {
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Femenino
       const somatorio = +morfo.triciptal + +morfo.suprailiaca + +morfo.crural;
-      const DC = 1.0994921 - 0.0009929 * somatorio + 0.0000023 * Math.pow(somatorio, 2)  - 0.0001392 * morfo.idade;
+      const DC = 1.0994921 - 0.0009929 * somatorio + 0.0000023 * Math.pow(somatorio, 2) - 0.0001392 * morfo.idade;
       this.perGordura = +(((5.26 / DC) - 4.83) * 100).toFixed(2);
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
@@ -64,7 +64,7 @@ export class ProtcolosDobrasService {
     } else {  // Femenino
       this.perGordura = 0.29669 * somatorio - 0.00043 * Math.pow(somatorio, 2) + 0.02963 * +morfo.idade - 1.4072;
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
@@ -83,7 +83,7 @@ export class ProtcolosDobrasService {
       const DC = 1.1567 - 0.0717 * Math.log(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
@@ -101,10 +101,10 @@ export class ProtcolosDobrasService {
       const DC = 1.07640 - 0.00081 * +morfo.suprailiaca - 0.00088 * morfo.tríceps;
       this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
-   }
+  }
 
   protocoloGuedes3d(morfo, gorduraDesejada) {
     // Masculino  Dc=1,17136 - 06706 log(somat dobras)   ---- (tríceps, abdominal,suprailíaca)
@@ -121,10 +121,10 @@ export class ProtcolosDobrasService {
       const DC = 1.16650 - 0.07063 * Math.log(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
-   }
+  }
 
   protocoloCarter6d() { }
 
@@ -134,13 +134,13 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     const somatorio = +morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca + +morfo.subescapular
-                      + +morfo.peitoral + +morfo.axilar + +morfo.crural;
+      + +morfo.peitoral + +morfo.axilar + +morfo.crural;
     const DC = 1.1120 - 0.00043499 * somatorio + 0.00000055 * Math.pow(somatorio, 2) - 0.00028826 * morfo.idade;
     this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
-   }
+  }
 
   protocoloWilmoreBehnk2d(morfo, gorduraDesejada) {
     // Masculino DC = 1,08543-0,000886*(abdominal)-0,0004*(coxa)
@@ -149,21 +149,21 @@ export class ProtcolosDobrasService {
     const somatorio = +morfo.abdominal + +morfo.crural;
     const DC = 1.08543 - 0.000886 * morfo.abdominal - 0.0004 * morfo.crural;
     this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
-   }
+  }
 
   protocoloWilmoreBehnk3d(morfo, gorduraDesejada) {
-        // Feminino DC = 1,06234-0,00068*(subescapular)-0,00039*(triciptal)-0,00025*(coxa)
-        this.gorduraDesejada = gorduraDesejada;
-        this.morfo = morfo;
-        const DC = 1.06234 - 0.00068 * +morfo.subescapular - 0.00039 * +morfo.triciptal - 0.00025 * +morfo.crural;
-        this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
-        const answer =  this.createAnswer();
-        console.table(answer);
-        return answer;
-   }
+    // Feminino DC = 1,06234-0,00068*(subescapular)-0,00039*(triciptal)-0,00025*(coxa)
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    const DC = 1.06234 - 0.00068 * +morfo.subescapular - 0.00039 * +morfo.triciptal - 0.00025 * +morfo.crural;
+    this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
+    const answer = this.createAnswer();
+    console.table(answer);
+    return answer;
+  }
 
   protocoloPetroski(morfo, gorduraDesejada) {
     // Masculino  DC = 1,10726863-(0,00081201*( soma dobras))+(0,00000212*(soma dobras))-0,00041761 * idade
@@ -179,7 +179,7 @@ export class ProtcolosDobrasService {
       const DC = 1.1954713 - 0.07513507 * Math.log10(somatorio) - 0.00041072 * morfo.idade;
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
@@ -193,12 +193,49 @@ export class ProtcolosDobrasService {
     if (morfo.sexo == 'M') { // Masculino
       this.perGordura = 0.573 * somatorio - 0.0022 * Math.pow(somatorio, 2) + 0.107 * +morfo.idade - 9.35;
     } else {  // Feminino
-      this.perGordura =  0.428 * somatorio - 0.00112 * Math.pow(somatorio, 2) + 0.127 * +morfo.idade - 3.01;
+      this.perGordura = 0.428 * somatorio - 0.00112 * Math.pow(somatorio, 2) + 0.127 * +morfo.idade - 3.01;
     }
-    const answer =  this.createAnswer();
+    const answer = this.createAnswer();
     console.table(answer);
     return answer;
-   }
+  }
+
+  // PROTOCOLOS DE ANTROPOMETRIA
+  // Tran & Waltmen
+  protocoloTranWeltman(morfo, gorduraDesejada) {
+    console.table(morfo);
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    // Precisa da formula
+    this.perGordura = 22.00;
+    const answer = this.createAnswer();
+    console.table(answer);
+    return answer;
+  }
+
+  // Tran & Waltmen
+  protocoloDeuremberg(morfo, gorduraDesejada) {
+    console.table(morfo);
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    // Precisa da formula
+    this.perGordura = 22.00;
+    const answer = this.createAnswer();
+    console.table(answer);
+    return answer;
+  }
+
+    // Tran & Waltmen
+    protocoloWeltman(morfo, gorduraDesejada) {
+      console.table(morfo);
+      this.gorduraDesejada = gorduraDesejada;
+      this.morfo = morfo;
+      // Precisa da formula
+      this.perGordura = 22.00;
+      const answer = this.createAnswer();
+      console.table(answer);
+      return answer;
+    }
 
 
 

@@ -88,7 +88,7 @@ export class SlaugtherComponent implements OnInit {
     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       (respa: any[]) => {
         if (respa.length) {
-          this.dataService.getData('clients/morfo/medidas/' + this.student.id).subscribe(
+          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
             (respm: any[]) => {
               if (respm.length) {
                 const morfo = respm.pop();

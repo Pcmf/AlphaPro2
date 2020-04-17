@@ -1,142 +1,137 @@
 <div class="container">
     <div class="header">
         <h3 i18n>Wilmore & Behnke - 3 dobras (1969)</h3>
-    </div> 
+    </div>
     <div class="section">
-     <form #f="ngForm" (submit)="save(f.value)">
-         <table>
-             <thead>
-                 <tr>
-                     <th>&nbsp;</th>
-                     <th class="th-top" *ngIf="pointer>=1">
-                        <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
-                            {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
-                        </button>
-                    </th>
-                    <th class="th-top" *ngIf="pointer>=0">
-                        <button type="button" (click)="setEvaluation(evaluation[pointer])">
-                            {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
-                        </button>
-                    </th>
-                     <th class="th-top" *ngIf="addEval">
-                         <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
-                             style="width: 110px;">
-                     </th>
-                 </tr>
-             </thead>
-             <tbody>
-                <tr>
-                    <th i18n>Subescapular</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
-                    <td *ngIf="addEval">
-                        <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
-                            type="number" step="0.1">
-                    </td>
-                </tr>
-                <tr>
-                    <th i18n>Triciptal</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
-                    <td *ngIf="addEval">
-                        <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                            type="number" step="0.1">
-                    </td>
-                </tr>
-                <tr>
-                    <th 1i8n>Coxa</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
-                    <td *ngIf="addEval">
-                        <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural"
-                             type="number" step="0.1">
-                    </td>
-                </tr>
+        <form #f="ngForm" (submit)="save(f.value)">
+            <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th class="th-top" *ngIf="pointer>=1">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
+                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer])">
+                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
+                        <th class="th-top" *ngIf="addEval">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                style="width: 110px;">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th i18n>Subescapular</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                        <td *ngIf="addEval">
+                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                                type="number" step="0.1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th i18n>Triciptal</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                        <td *ngIf="addEval">
+                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                                type="number" step="0.1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th i18n>Coxa</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
+                        <td *ngIf="addEval">
+                            <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number"
+                                step="0.1">
+                        </td>
+                    </tr>
 
-                 <tr>
-                    <th i18n>Media</th>
-                    <td *ngIf="pointer>=1">
-                        {{(+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
+                    <tr>
+                        <th i18n>Media</th>
+                        <td *ngIf="pointer>=1">
+                            {{(+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
                            + +evaluation[pointer-1].crural) / 3 | number: '1.2-2'}}
-                    </td>
-                    <td *ngIf="pointer>=0">
-                        {{(+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
+                        </td>
+                        <td *ngIf="pointer>=0">
+                            {{(+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
                             + +evaluation[pointer].crural) / 3 | number: '1.2-2'}}
-                    </td>
-                    <td *ngIf="addEval">&nbsp;</td>
-                </tr>
-                 <tr>
-                     <th i18n>Somatório</th>
-                     <td *ngIf="pointer>=1">
-                        {{+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>Somatório</th>
+                        <td *ngIf="pointer>=1">
+                            {{+evaluation[pointer-1].subescapular + +evaluation[pointer-1].triciptal 
                            + +evaluation[pointer-1].crural | number: '1.2-2'}}
-                    </td>
-                    <td *ngIf="pointer>=0">
-                        {{+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
+                        </td>
+                        <td *ngIf="pointer>=0">
+                            {{+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
                             + +evaluation[pointer].crural | number: '1.2-2'}}
-                    </td>
-                     <td *ngIf="addEval">&nbsp;</td>
-                 </tr>
-                 <tr>
-                    <td colspan="3">
-                        <small class="advise-sm" i18n>* Todas as medidas são em milimetros</small>
-                    </td>
-                </tr>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <small class="advise-sm" i18n>* Todas as medidas são em milimetros</small>
+                        </td>
+                    </tr>
                 </tbody>
-         </table>
- 
-         <div class="action">
-             <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                 (click)="pointer=pointer-1">
-                 <mat-icon class="mat-14">chevron_left</mat-icon>
-             </button>
-             <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
-                 <mat-icon class="mat-18">add</mat-icon>
-             </button>
-             <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
-                 color="default" (click)="pointer=pointer+1">
-                 <mat-icon class="mat-14">chevron_right</mat-icon>
-             </button>
-             <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
-                 <mat-icon class="mat-18">close</mat-icon>
-             </button>
-             <button *ngIf="addEval" mat-fab>
-                 <mat-icon class="mat-18">check</mat-icon>
-             </button>
-         </div>
-     </form>
-     <div *ngIf="showChart">
+            </table>
+
+            <div class="action">
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                    (click)="pointer=pointer-1">
+                    <mat-icon class="mat-14">chevron_left</mat-icon>
+                </button>
+                <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                    <mat-icon class="mat-18">add</mat-icon>
+                </button>
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                    mat-mini-fab color="default" (click)="pointer=pointer+1">
+                    <mat-icon class="mat-14">chevron_right</mat-icon>
+                </button>
+                <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                    <mat-icon class="mat-18">close</mat-icon>
+                </button>
+                <button *ngIf="addEval" mat-fab>
+                    <mat-icon class="mat-18">check</mat-icon>
+                </button>
+            </div>
+        </form>
         <br />
         <hr />
         <h4 style="text-align: center; color: blue;">
             {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
         </h4>
-        <div style="text-align: center; color: blue;">
-            <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small>: </mat-label>
-            <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
-                [disabled]="!fatChanged" (change)="getNewEvaluation()">
-            </mat-slider>
-            <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
-                <mat-icon>save</mat-icon>
-            </button>
-        </div>
+        <div *ngIf="showChart">
+            <div style="text-align: center; color: blue;">
+                <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small>: </mat-label>
+                <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
+                    [disabled]="!fatChanged" (change)="getNewEvaluation()">
+                </mat-slider>
+                <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
 
-        <app-chart-pie [values]="single"></app-chart-pie>
-        <app-chart-pie [values]="single2"></app-chart-pie>
+            <app-chart-pie [values]="single"></app-chart-pie>
+            <app-chart-pie [values]="single2"></app-chart-pie>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
     </div>
 </div>
-
- <div class="footer">
- <a mat-mini-fab color="primary" (click)="goBack()">
- <mat-icon>undo</mat-icon>
- </a>
- </div>
- </div>
- 
-
-
-
-

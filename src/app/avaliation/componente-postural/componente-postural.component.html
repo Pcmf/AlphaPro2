@@ -561,21 +561,21 @@
                 </form>
             </mat-tab>
             <!--   FOTOS -->
-            <mat-tab i18n label="Fotos"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+            <mat-tab i18n label="Fotos">
 
-                <table >
+                <table>
                     <thead>
                         <tr>
                             <th class="th-top" *ngIf="pointer>=0">
-                                <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab color="default"
-                                (click)="pointer=pointer-1">
-                                <mat-icon class="mat-14">chevron_left</mat-icon>
-                            </button>
+                                <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab
+                                    color="default" (click)="pointer=pointer-1">
+                                    <mat-icon class="mat-14">chevron_left</mat-icon>
+                                </button>
                                 {{oldData[pointer].data | date:'dd-LL-yyyy'}}
                                 <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1" mat-mini-fab
-                                color="default" (click)="pointer=pointer+1">
-                                <mat-icon class="mat-14">chevron_right</mat-icon>
-                            </button>
+                                    color="default" (click)="pointer=pointer+1">
+                                    <mat-icon class="mat-14">chevron_right</mat-icon>
+                                </button>
                             </th>
                             <th class="th-top" *ngIf="addForm">
                                 <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
@@ -586,73 +586,74 @@
                     </thead>
                 </table>
 
-                                <div class="photos">
-                                    <div class="photo">
-                                        <div *ngIf="oldData[pointer] && oldData[pointer].fotoa">
-                                            <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
-                                        </div>
-                                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa">
-                                            <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
-                                        </div>                                        
-                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('a')">
-                                            <mat-icon>camera_alt</mat-icon>
-                                        </button>
-                                    </div>
-                                    <div class="photo">
-                                        <div *ngIf="oldData[pointer] && oldData[pointer].fotol">
-                                            <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
-                                        </div>
-                                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol">
-                                            <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
-                                        </div>  
-                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('l')">
-                                            <mat-icon>camera_alt</mat-icon>
-                                        </button>
-                                    </div>
-                                    <div class="photo">
-                                        <div *ngIf="oldData[pointer] && oldData[pointer].fotop">
-                                            <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
-                                        </div>
-                                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop">
-                                            <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
-                                        </div>  
-                                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('p')">
-                                            <mat-icon>camera_alt</mat-icon>
-                                        </button>
+                <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <div class="photo">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotoa">
+                            <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
+                        </div>
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa">
+                            <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
+                        </div>
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('a')">
+                            <mat-icon>camera_alt</mat-icon>
+                        </button>
+                    </div>
+                    <div class="photo">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotol">
+                            <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
+                        </div>
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol">
+                            <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
+                        </div>
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('l')">
+                            <mat-icon>camera_alt</mat-icon>
+                        </button>
+                    </div>
+                    <div class="photo">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotop">
+                            <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
+                        </div>
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop">
+                            <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
+                        </div>
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('p')">
+                            <mat-icon>camera_alt</mat-icon>
+                        </button>
 
-                                    </div>
-                                </div>
-                                <div *ngIf="view && pointer+1 == maxPointer" class="photoArea" style="text-align:center">
-                                    <h4>{{viewTitle}}</h4>
-                                    <div *ngIf="!webcamImage">
-                                        <webcam [width]="200" [trigger]="triggerObservable"
-                                            (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                                            [allowCameraSwitch]="allowCameraSwitch"
-                                            [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
-                                            [imageQuality]="0.6" (cameraSwitched)="cameraWasSwitched($event)"
-                                            (initError)="handleInitError($event)">
-                                        </webcam>
-                                        <br />
-                                        <button mat-mini-fab color="default" (click)="view=''">
-                                            <mat-icon>close</mat-icon>
-                                        </button>
-                                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
-                                            <mat-icon>camera</mat-icon>
-                                        </button>
-                                        <br />
-                                    </div>
-                                    <!-- Visualizador de foto -->
-                                    <div class="snapshot" *ngIf="webcamImage">
-                                        <img [src]="webcamImage.imageAsDataUrl" width="200" />
-                                        <br />
-                                        <button mat-mini-fab color="default" (click)="webcamImage=null">
-                                            <mat-icon>undo</mat-icon>
-                                        </button>
-                                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
-                                            <mat-icon>save</mat-icon>
-                                        </button>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+                <div *ngIf="view && pointer+1 == maxPointer" class="photoArea" style="text-align:center">
+                    <h4>{{viewTitle}}</h4>
+                    <div *ngIf="!webcamImage">
+                        <webcam [width]="200" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
+                            [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="0.6"
+                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+                        </webcam>
+                        <br />
+                        <button mat-mini-fab color="default" (click)="view=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
+                            <mat-icon>camera</mat-icon>
+                        </button>
+                        <br />
+                    </div>
+                    <!-- Visualizador de foto -->
+                    <div class="snapshot" *ngIf="webcamImage">
+                        <img [src]="webcamImage.imageAsDataUrl" width="200" />
+                        <br />
+                        <button mat-mini-fab color="default" (click)="webcamImage=null">
+                            <mat-icon>undo</mat-icon>
+                        </button>
+                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="!view" style="height: 200px;"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    &nbsp;
+                </div>
 
             </mat-tab>
         </mat-tab-group>

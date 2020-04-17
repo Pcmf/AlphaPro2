@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 
 @Component({
@@ -11,22 +10,18 @@ import { Location, DatePipe } from '@angular/common';
 export class IMComponent implements OnInit {
 
   evaluation: any = [];
-  addEval = false;
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   student: any = [];
 
   constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }
   getData() {
-    this.dataService.getData('clients/eval/' + this.id).subscribe(
+    this.dataService.getData('clients/eval/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -40,15 +35,12 @@ export class IMComponent implements OnInit {
     );
   }
 
-  calcIMC(ln) {
-    const IMC = +ln.peso / ln.altura ** 2;
-    return IMC.toFixed(2);
-  }
+
 
   ngOnInit(): void {
   }
 
-  save(form) {
+/*   save(form) {
     console.table(form);
     this.dataService.setData('clients/eval/' + this.id, form).subscribe(
       resp => {
@@ -57,24 +49,24 @@ export class IMComponent implements OnInit {
         this.getData();
       }
     );
-  }
+  } */
 
   goBack() {
     this.location.back();
   }
 
-  addEvaluation() {
+/*   addEvaluation() {
     this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
     if (this.evaluation[this.pointer].altura) {
       this.newEvaluation.altura = this.evaluation[this.pointer].altura;
     }
     this.addEval = true;
-  }
-
+  } */
+/* 
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
-  }
+  } */
 
 }

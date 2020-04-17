@@ -33,7 +33,7 @@ export class PDCComponent implements OnInit {
   }
 
   getData() {
-    this.dataService.getData('clients/morfo/medidas/' + this.studentId).subscribe(
+    this.dataService.getData('clients/corporal/' + this.studentId).subscribe(
       (resp: any[]) => {
         this.maxPointer = resp.length;
         if (this.maxPointer > 0) {
@@ -63,7 +63,7 @@ export class PDCComponent implements OnInit {
 
   savePerimetros(form) {
     console.table(form.value);
-    this.dataService.saveData('clients/morfo/medidas/' + this.studentId, form.value).subscribe(
+    this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
       resp => {
         console.log(resp);
         this.getData();
@@ -85,7 +85,7 @@ export class PDCComponent implements OnInit {
 
   saveDiametros(form) {
     console.table(form.value);
-    this.dataService.saveData('clients/morfo/medidas/' + this.studentId, form.value).subscribe(
+    this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
       resp => {
         console.log(resp);
         this.getData();
@@ -106,7 +106,7 @@ export class PDCComponent implements OnInit {
 
   saveOutrosPerimetros(form) {
     console.table(form.value);
-    this.dataService.saveData('clients/morfo/medidas/' + this.studentId, form.value).subscribe(
+    this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
       resp => {
         console.log(resp);
         this.getData();

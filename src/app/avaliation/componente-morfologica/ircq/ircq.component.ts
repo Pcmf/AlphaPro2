@@ -16,21 +16,20 @@ export class IRCQComponent implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   student: any = [];
   age: number;
 
-  constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
+  constructor(private location: Location,
+              private dataService: DataService,
               private datapipe: DatePipe,
-              private ageService: AgeService ) {
-    this.id = this.actRoute.snapshot.params.id;
+              private ageService: AgeService
+           ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
     this.getData();
   }
   getData() {
-    this.dataService.getData('clients/eval/' + this.id).subscribe(
+    this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -47,32 +46,9 @@ export class IRCQComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  save(form) {
-    console.table(form);
-    this.dataService.setData('clients/eval/' + this.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
-  }
-
   goBack() {
     this.location.back();
   }
-
-  addEvaluation() {
-    this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
-    this.newEvaluation.avaliador = this.dataService.getUserName();
-    this.addEval = true;
-  }
-
-  closeInput() {
-    this.newEvaluation = [];
-    this.addEval = false;
-  }
-
 
   getClasse(ln) {
     const ircq = ln.abdomen / ln.quadril;

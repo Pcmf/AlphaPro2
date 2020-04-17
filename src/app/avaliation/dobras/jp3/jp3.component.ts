@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { MenuService } from 'src/app/services/menu.service';
 import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
@@ -30,12 +29,11 @@ export class JP3Component implements OnInit {
   fatChanged = false;
 
   constructor(private location: Location, private dataService: DataService,
-              private datapipe: DatePipe,
-              private menuService: MenuService,
-              private ageService: AgeService,
-              private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService,
-              private prepareChart: PrepareChartService
+    private datapipe: DatePipe,
+    private ageService: AgeService,
+    private snackBar: MatSnackBar,
+    private protocolos: ProtcolosDobrasService,
+    private prepareChart: PrepareChartService
   ) {
 
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -51,19 +49,18 @@ export class JP3Component implements OnInit {
     this.getData();
   }
   getNewEvaluation() {
-    /*     console.log(this.gorduraDesejada);
-        this.selectedEvaluation.gorduraDesejada = this.gorduraDesejada; */
-        this.setEvaluation(this.selectedEvaluation);
-        this.fatChanged = true;
-      }
-      saveFatChange() {
-        this.student.percgd = this.gorduraDesejada;
-        sessionStorage.selectedStudent = JSON.stringify(this.student);
-        this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
-          resp => this.getData()
-        );
-        this.fatChanged = false;
-      }
+    this.setEvaluation(this.selectedEvaluation);
+    this.fatChanged = true;
+  }
+  saveFatChange() {
+    this.student.percgd = this.gorduraDesejada;
+    sessionStorage.selectedStudent = JSON.stringify(this.student);
+    this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
+      resp => this.getData()
+    );
+    this.fatChanged = false;
+  }
+
   getData() {
     /* Protocolo Jackson Pollok 3d - 3 */
     this.dataService.getData('clients/morfo/3/' + this.student.id).subscribe(
@@ -93,7 +90,7 @@ export class JP3Component implements OnInit {
     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       (respa: any[]) => {
         if (respa.length) {
-          this.dataService.getData('clients/morfo/medidas/' + this.student.id).subscribe(
+          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
             (respm: any[]) => {
               if (respm.length) {
                 const morfo = respm.pop();

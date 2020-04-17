@@ -8,8 +8,16 @@
              <thead>
                  <tr>
                      <th>&nbsp;</th>
-                     <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                     <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                     <th class="th-top" *ngIf="pointer>=1">
+                        <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
+                            {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                        </button>
+                    </th>
+                    <th class="th-top" *ngIf="pointer>=0">
+                        <button type="button" (click)="setEvaluation(evaluation[pointer])">
+                            {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                        </button>
+                    </th>
                      <th class="th-top" *ngIf="addEval">
                          <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                              style="width: 110px;">
@@ -17,40 +25,13 @@
                  </tr>
              </thead>
              <tbody>
-                 <tr>
-                     <th><span>IMC</span></th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].imc}}</td>
-                     <td *ngIf="addEval">
-                         <input name="imc" #imc="ngModel" [(ngModel)]="newEvaluation.imc"
-                              type="number" step="0.1">
-                     </td>
-                 </tr>
-                 <tr>
-                     <th>Idade</th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].idade}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].idade}}</td>
-                     <td *ngIf="addEval">
-                         <input name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade"
-                             type="number" step="0.1">
-                     </td>
-                 </tr>
-                <tr>
-                    <th>Altura</th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
-                    <td *ngIf="addEval">
-                        <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura"
-                            type="number" step="0.1">
-                    </td>
-                </tr>
                 <tr>
                     <th><span>Cintura</span></th>
                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura}}</td>
                     <td *ngIf="pointer>=0">{{evaluation[pointer].cintura}}</td>
                     <td *ngIf="addEval">
                         <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura"
-                             type="number" step="0.1">
+                             type="number" step="0.1" placeholder="cm">
                     </td>
                 </tr>
                  <tr>
@@ -59,9 +40,27 @@
                      <td *ngIf="pointer>=0">{{evaluation[pointer].quadril}}</td>
                      <td *ngIf="addEval">
                          <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril"
-                             type="number" step="0.1">
+                             type="number" step="0.1" placeholder="cm">
                      </td>
                  </tr>
+                 <tr>
+                     <th><span>IMC</span></th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].imc}}</td>
+                     <td *ngIf="addEval">&nbsp;</td>
+                 </tr>
+                 <tr>
+                     <th>Idade</th>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].idade}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].idade}}</td>
+                     <td *ngIf="addEval">&nbsp;</td>
+                 </tr>
+                <tr>
+                    <th>Altura</th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
+                    <td *ngIf="addEval">&nbsp;</td>
+                </tr>
                 </tbody>
          </table>
  
@@ -85,7 +84,29 @@
              </button>
          </div>
      </form>
- 
+     <br />
+     <hr />
+     <h4 style="text-align: center; color: blue;">
+         {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+     </h4>
+     <div *ngIf="showChart">
+     <div style="text-align: center; color: blue;">
+         <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
+         <mat-slider min="10" max="30" step="1" thumbLabel="true"  [(ngModel)]="gorduraDesejada" [disabled]="!fatChanged"
+             (change)="getNewEvaluation()">
+         </mat-slider>
+         <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+             <mat-icon>edit</mat-icon>
+         </button>
+         <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+             <mat-icon>save</mat-icon>
+         </button>
+     </div>
+     
+         <app-chart-pie [values]="single"></app-chart-pie>
+         <app-chart-pie [values]="single2"></app-chart-pie>
+     </div>
+
  </div>
  
  <div class="footer">

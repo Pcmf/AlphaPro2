@@ -1,40 +1,20 @@
-
-.container{
+.container {
   position: relative;
   background-image: url("../../../assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg");
   background-repeat: no-repeat;
   background-blend-mode: normal;
   background-size: cover;
   background-position: center;
- // background-color: rgba(75, 73, 73, 0.404);
+  // background-color: rgba(75, 73, 73, 0.404);
   height: 94vh;
   width: 98vw;
   margin: auto;
   overflow: auto;
-  
 }
 
-.header{
-    margin-top: 30px;;
-    width: 100%;
-    text-align: center;
-    color: white;
+.mat-expansion-panel {
+  background-color: rgba(247, 238, 238, 0.704);
 }
-
-.section{
-  position: absolute;
-  top: 40%;
-  left:50%;
-  transform: translateX(-50%);
-  width: 96%;
-  margin: auto;
-  overflow: auto;
-  z-index: 1000;
- }
-
- .mat-expansion-panel{
-   background-color: rgba(247, 238, 238, 0.704);
- }
 
 .headers-align .mat-expansion-panel-header-title,
 .headers-align .mat-expansion-panel-header-description {
@@ -50,9 +30,8 @@
   margin-left: 8px;
 }
 
-
-.check-box{
- // background-color: rgba(241, 235, 235, 0.767);
+.check-box {
+  // background-color: rgba(241, 235, 235, 0.767);
   margin-bottom: 20px;
 }
 
@@ -65,59 +44,43 @@
   font-size: small;
 }
 
-
-mat-label{
+mat-label {
   display: block;
 }
 
-.mat-tab-group{
+.mat-tab-group {
   width: 100%;
 }
 
-.mat-card{
+.mat-card {
   width: 90%;
   margin: auto;
 }
 
-.mat-radio-button{
+.mat-radio-button {
   display: block;
   margin-top: 5px;
   font-size: x-small;
 }
 
-
-.patologico{
-  .mat-radio-button{
+.patologico {
+  .mat-radio-button {
     display: inline-block;
     margin-left: 20px;
     font-size: unset;
   }
 
-  .mat-input{
+  .mat-input {
     width: 96%;
   }
 }
 
-
-
-
-
-
-.input-lg{
+.input-lg {
   width: 100%;
   margin: auto;
 }
 
-.input-sm{
+.input-sm {
   width: 60px;
   margin-left: 20px;
 }
-
-
-
-/* .footer{
-  position: absolute;
-  bottom: 1%;
-  left: 50%;
-  transform: translateX(-50%);
-} */

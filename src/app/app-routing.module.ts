@@ -58,7 +58,7 @@ import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.compon
 
 
 const routes: Routes = [
-
+// Morfologico - dobras e outros protocolos
   {path: 'slau', component: SlaugtherComponent},
   {path: 'jp3', component: JP3Component},
   {path: 'dw4', component: DW4Component},
@@ -78,7 +78,7 @@ const routes: Routes = [
   {path: 'tw', component: TranWeltmanComponent},
   {path: 'deur', component: DeurembergComponent},
   {path: 'welt', component: WeltmanComponent},
-
+// Flexidade
   {path: 'flex', component: FlexDashComponent},
   {path: 'frc', component: WeltmanComponent},
   {path: 'goniometro', component: GoniometroComponent},
@@ -86,7 +86,7 @@ const routes: Routes = [
   {path: 'flexiteste', component: FlexitesteComponent},
   {path: 'bwd', component: BancoWellsDillonComponent},
   {path: 'frm', component: FRMComponent},
-
+// Aerobicos
   {path: 'tcam', component: TesteCaminhadaComponent},
   {path: 'tcorr', component: TesteCorridaComponent},
   {path: 'tbic', component: TesteBicicletaComponent},
@@ -103,9 +103,7 @@ const routes: Routes = [
   {path: 'banco', component: BancoComponent},
   {path: 'natacao', component: NatacaoComponent},
 
-
-
-
+  // outros
   {path: 'pdc', component: PDCComponent},
   {path: 'cpost', component: ComponentePosturalComponent},
   {path: 'cc', component: CCComponent},

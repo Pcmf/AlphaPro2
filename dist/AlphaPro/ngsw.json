@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1586998741519,
+  "timestamp": 1587218229619,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.e891cb5af335e16f876b.js",
-        "/main-es5.e891cb5af335e16f876b.js",
+        "/main-es2015.e5fb2c14ff60045bbcb8.js",
+        "/main-es5.e5fb2c14ff60045bbcb8.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.7b7892a190f840b83b57.js",
         "/polyfills-es5.ec5f24459b4f51c9eaaf.js",
         "/runtime-es2015.0811dcefd377500b5b1a.js",
         "/runtime-es5.0811dcefd377500b5b1a.js",
-        "/styles.075e7fa2ca176b7f85fd.css"
+        "/styles.353e1bfe53df47c8faf2.css"
       ],
       "patterns": []
     },
@@ -43,6 +43,12 @@
         "/assets/img/luke-chesser-rCOWMC8qf8A-unsplash.jpg",
         "/assets/img/measurement-1698856.jpg",
         "/assets/img/meghan-holmes-wy_L8W0zcpI-unsplash.jpg",
+        "/assets/img/peso_black.gif",
+        "/assets/img/peso_blue.gif",
+        "/assets/img/peso_green.gif",
+        "/assets/img/peso_orange.gif",
+        "/assets/img/peso_orange2.gif",
+        "/assets/img/peso_red.gif",
         "/assets/img/samuel-girven-VJ2s0c20qCo-unsplash.jpg",
         "/assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg",
         "/assets/img/side_view.jpg",
@@ -78,6 +84,12 @@
     "/assets/img/luke-chesser-rCOWMC8qf8A-unsplash.jpg": "f92b028b707e23cc0f721a67b46aad44b0a82607",
     "/assets/img/measurement-1698856.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/assets/img/meghan-holmes-wy_L8W0zcpI-unsplash.jpg": "ddc49b1269963438324fe33e589efafd2ad2751a",
+    "/assets/img/peso_black.gif": "05f41d1c6532c9e1f970f5b56c2b5da356306322",
+    "/assets/img/peso_blue.gif": "a0fde2327134152a0f9a41726d85bba571f0954c",
+    "/assets/img/peso_green.gif": "bcc8dc03ac443b725b0395df6e0e17ff397bb674",
+    "/assets/img/peso_orange.gif": "f658f1aef883c6a31998af6c5948571b4431787e",
+    "/assets/img/peso_orange2.gif": "2d30a24d2dd360fd078d9f4886524f86cc381293",
+    "/assets/img/peso_red.gif": "7a51fb6464de75cc9e1c8553408fee4b860ffe02",
     "/assets/img/samuel-girven-VJ2s0c20qCo-unsplash.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
     "/assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
     "/assets/img/side_view.jpg": "2f7b34c67cdb2dc419f2d078cc6870161bbfe389",
@@ -86,9 +98,9 @@
     "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg": "9d79be69b823d9fa6ddfb7931d7b2422aa0e976f",
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
     "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
-    "/index.html": "923b2f0799f0249c8ec9ab686816fe0d5076e9f9",
-    "/main-es2015.e891cb5af335e16f876b.js": "6518acdfcd3bb12e9dade63f14b5482c0c7f0590",
-    "/main-es5.e891cb5af335e16f876b.js": "d48b872d432032becb76e57ca5e97462c77b4515",
+    "/index.html": "2181f4a2bee1d8383568ea4e74c68c7a6a337019",
+    "/main-es2015.e5fb2c14ff60045bbcb8.js": "f10244bdecd95d45e920010a8869c4325c03ca61",
+    "/main-es5.e5fb2c14ff60045bbcb8.js": "24e3ae2adb2d33c93226d38ca5be986e6401d9af",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.0c487634ef3b141fe9c9.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.7b7892a190f840b83b57.js": "18cdd59332ca4958b599b881779911133e5bc7a8",
@@ -97,7 +109,7 @@
     "/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
     "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
-    "/styles.075e7fa2ca176b7f85fd.css": "fd8e9aaa4e1af55c41ad8c8db5c0cd585a3edafd",
+    "/styles.353e1bfe53df47c8faf2.css": "e70375237aff163bba818a074ac09733297a2817",
     "/trust-tru-katsande-Pu7BOaYlYGY-unsplash.670b4fbe9582867878df.jpg": "bca4b39b98acb9990c32bab78ffc05efd8977e08",
     "/tyler-nix-Y1drF0Y3Oe0-unsplash.42efff6aaac0c0f9450f.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb"
   },

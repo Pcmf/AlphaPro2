@@ -4,10 +4,10 @@
     </div>
 
     <div class="section">
-        <mat-tab-group [disableRipple]="false">
+        <mat-tab-group [disableRipple]="false"  [(selectedIndex)]="selectedTab">
             <mat-tab  i18n label="Perímetros">
                 <form #fp="ngForm" (submit)="savePerimetros(fp)">
-                    <table>
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -161,7 +161,7 @@
             </mat-tab>
             <mat-tab i18n label="Diâmetros">
                 <form #fd="ngForm" (submit)="saveDiametros(fd)">
-                    <table>
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -224,11 +224,13 @@
                         </button>
                     </div>
                 </form>
+                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                </div>
             </mat-tab>
             <!-- Mais Perimetros Corporais -->
             <mat-tab i18n label="Outros Perimetros">
                 <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)">
-                <table>
+                <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                     <thead>
                         <tr>
                             <th>&nbsp;</th>
@@ -315,6 +317,8 @@
                     </button>
                 </div>
                 </form>
+                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                </div>
             </mat-tab>
         </mat-tab-group>
     </div>

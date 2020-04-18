@@ -17,16 +17,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .header {
-    margin-top: 30px;
+    height: 30px;
     width: 100%;
+    background-color: #3F51B5;
     text-align: center;
-    color: rgb(35, 35, 185);
+    color: white;
     h1{
         font-size: 20px;
     }
   }
 
-  
+  .section {
+    position: absolute;
+    width: 98%;
+    padding: 10px;
+    height: 80vh;
+    bottom: 8%;
+    overflow: auto;
+    display: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+  } 
 
 .graphics{
   width: 90%;

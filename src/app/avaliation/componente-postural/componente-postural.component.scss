@@ -1,86 +1,83 @@
-  .section {
-    position: absolute;
-    width: 98%;
-    padding: 10px;
-    height: 75vh;
-    bottom: 8%;
-    overflow: auto;
-    display: flex-start;
-    flex-direction: column;
-    align-items: stretch;
+.section {
+/*   position: absolute;
+  width: 98%;
+  padding: 10px;
+  height: 80vh;
+  bottom: 8%;
+  overflow: auto;
+  display: flex-start;
+  flex-direction: column;
+  align-items: stretch; */
+}
+table {
+  width: 98%;
+}
+th,
+td {
+  height: 28px;
+  // background-color: blanchedalmond;
+  border-bottom: 1px #999 solid;
+  text-align: center;
+}
+th {
+  font-weight: 500 !important;
+  text-align: left;
+  padding-left: 5px;
+}
+.th-top {
+  text-align: center;
+}
+td > input {
+  width: 60px;
+}
 
-    table {
-      width: 98%;
-    }
-    th,
-    td {
-      height: 28px;
-      // background-color: blanchedalmond;
-      border-bottom: 1px #999 solid;
-      text-align: center;
-    }
-    th {
-      font-weight: 500 !important;
-      text-align: left;
-      padding-left: 5px;
-    }
-    .th-top {
-      text-align: center;
-    }
-    td > input {
-      width: 60px;
-    }
+.form-select-sm {
+  width: 100px;
+}
 
-    .form-select-sm{
-      width: 100px;
-    }
+.action {
+  width: 260px;
+  margin: auto;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+}
 
-    .action {
-      width: 260px;
-      margin: auto;
-      margin-top: 5px;
-      display: flex;
-      justify-content: space-around;
-    }
-  }
+.sub-line {
+  font-weight: 500;
+  color: blue;
+}
 
-  .sub-line {
-    font-weight: 500;
-    color: blue;
-  }
+.mat-button-toggle {
+  height: 30px !important;
+  padding-bottom: 3px;
+}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 28px !important;
+  padding: 0 8px;
+}
+.mat-button-toggle-checked {
+  background-color: #303031;
+  color: rgb(255, 255, 255);
+}
 
-  .mat-button-toggle {
-    height: 30px !important;
-    padding-bottom: 3px;
-  }
-  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-    line-height: 28px !important;
-    padding: 0 8px;
-  }
-  .mat-button-toggle-checked {
-    background-color: #303031;
-    color: rgb(255, 255, 255);
-  }
+.photos {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 
-
-  .photos{
-    margin: 20px 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-
-    .photo{
-      width: 27%;
-      max-height: 100%;
-      margin: auto;
-      img{
-        width: 100%;
-      }
+  .photo {
+    width: 27%;
+    max-height: 100%;
+    margin: auto;
+    img {
+      width: 100%;
     }
   }
+}
 
-  .photoArea{
-/*     margin-top: 100px;
+.photoArea {
+  /*     margin-top: 100px;
     height: 75%; */
-
-  }
+}

@@ -20,7 +20,7 @@ export class PDCComponent implements OnInit {
   newPerimetros: any = [];
   newDiametros: any = [];
   newOutros: any = [];
-
+  selectedTab = 0;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -118,6 +118,17 @@ export class PDCComponent implements OnInit {
   closeInputOutros() {
     this.newOutros = [];
     this.addOutros = false;
+  }
+
+  swipeLeft(event) {
+    if (this.selectedTab < 2) {
+      this.selectedTab++;
+    }
+  }
+  swipeRight(event) {
+    if (this.selectedTab > 0) {
+      this.selectedTab--;
+    }
   }
 
 }

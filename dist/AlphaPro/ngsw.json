@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1587218229619,
+  "timestamp": 1587398493967,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.e5fb2c14ff60045bbcb8.js",
-        "/main-es5.e5fb2c14ff60045bbcb8.js",
+        "/main-es2015.3ac3c7729474bb3dc8a7.js",
+        "/main-es5.3ac3c7729474bb3dc8a7.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.7b7892a190f840b83b57.js",
         "/polyfills-es5.ec5f24459b4f51c9eaaf.js",
         "/runtime-es2015.0811dcefd377500b5b1a.js",
         "/runtime-es5.0811dcefd377500b5b1a.js",
-        "/styles.353e1bfe53df47c8faf2.css"
+        "/styles.64d4f05ec362ab5ab9df.css"
       ],
       "patterns": []
     },
@@ -37,6 +37,7 @@
         "/assets/icons/icon-96x96.png",
         "/assets/img/alexander-redl-d3bYmnZ0ank-unsplash.jpg",
         "/assets/img/back_view.jpg",
+        "/assets/img/dobras1.jpg",
         "/assets/img/front_view.jpg",
         "/assets/img/guillaume-bolduc-hdBaq9W0hRY-unsplash.jpg",
         "/assets/img/john-fornander-UbSBhuMuVVE-unsplash.jpg",
@@ -56,6 +57,7 @@
         "/assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg",
         "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg",
         "/assets/videos/BANCO.mp4",
+        "/dobras1.5566608538deda103951.jpg",
         "/measurement-1698856.0c487634ef3b141fe9c9.jpg",
         "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg",
         "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg",
@@ -78,6 +80,7 @@
     "/assets/icons/icon-96x96.png": "db8db9f01a1cc981c1af876714b309f01250902f",
     "/assets/img/alexander-redl-d3bYmnZ0ank-unsplash.jpg": "6fcc311d33cb47772edb7d496d5e12a11ce792c6",
     "/assets/img/back_view.jpg": "a8884b8e703ec1bab8bbe90bbebfe384624483e7",
+    "/assets/img/dobras1.jpg": "ff841c930982e0159c9f103d7352592fd4d60363",
     "/assets/img/front_view.jpg": "af363d317e2b83cea1c7adfea1a63935576c554a",
     "/assets/img/guillaume-bolduc-hdBaq9W0hRY-unsplash.jpg": "242156c39558627faa14e2540a86e06ed47da71d",
     "/assets/img/john-fornander-UbSBhuMuVVE-unsplash.jpg": "69ed871fdc73847c39031a2314882bb22df4392c",
@@ -97,10 +100,11 @@
     "/assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb",
     "/assets/img/victor-freitas-nlZTjUZX2qo-unsplash.jpg": "9d79be69b823d9fa6ddfb7931d7b2422aa0e976f",
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
+    "/dobras1.5566608538deda103951.jpg": "ff841c930982e0159c9f103d7352592fd4d60363",
     "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
-    "/index.html": "2181f4a2bee1d8383568ea4e74c68c7a6a337019",
-    "/main-es2015.e5fb2c14ff60045bbcb8.js": "f10244bdecd95d45e920010a8869c4325c03ca61",
-    "/main-es5.e5fb2c14ff60045bbcb8.js": "24e3ae2adb2d33c93226d38ca5be986e6401d9af",
+    "/index.html": "6ba39ba48d997b9208b4148f59902bfe247baf3e",
+    "/main-es2015.3ac3c7729474bb3dc8a7.js": "b2d71b4816ec6435549eca10f9da8c63a4655619",
+    "/main-es5.3ac3c7729474bb3dc8a7.js": "28b4f96293f3bb640ce32ced1f014ac2138f2afd",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.0c487634ef3b141fe9c9.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.7b7892a190f840b83b57.js": "18cdd59332ca4958b599b881779911133e5bc7a8",
@@ -109,7 +113,7 @@
     "/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/samuel-girven-VJ2s0c20qCo-unsplash.fcf27231a7ec83693af3.jpg": "21cc767c71b3b51e32586fe67f35991fa6bf4537",
     "/scott-webb-KblIFRq1jkg-unsplash.1e38dfedff19fbcad6be.jpg": "3a4cc91b82f66130f5c3eac611ef357c90c6a023",
-    "/styles.353e1bfe53df47c8faf2.css": "e70375237aff163bba818a074ac09733297a2817",
+    "/styles.64d4f05ec362ab5ab9df.css": "8d798b2ad17af3f55f4082e3b47b2d1715bb194c",
     "/trust-tru-katsande-Pu7BOaYlYGY-unsplash.670b4fbe9582867878df.jpg": "bca4b39b98acb9990c32bab78ffc05efd8977e08",
     "/tyler-nix-Y1drF0Y3Oe0-unsplash.42efff6aaac0c0f9450f.jpg": "32ace7fe9fc5dae72d4b52e75dea4c9e4a31ddcb"
   },

@@ -3,9 +3,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 .mat-toolbar{
   height: 6vh;
 }
@@ -37,6 +34,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex-start;
     flex-direction: column;
     align-items: stretch;
+    left: 50%;
+    transform: translateX(-50%);
   } 
 
 .graphics{
@@ -56,3 +55,59 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       margin: 2px 10px;
     }
   }
+
+  
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .container{
+    position: relative;
+    height: 94vh;
+    width: 60vw;
+    margin: auto;
+  }
+
+  .header {
+    height: 30px;
+    width: 100%;
+    background-color: #3F51B5;
+    text-align: center;
+    color: white;
+    h1{
+        font-size: 20px;
+    }
+  }
+
+  .section {
+    position: absolute;
+    width: 96%;
+    padding: 10px;
+    height: 80vh;
+    bottom: 8%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  } 
+
+  .graphics{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer {
+    position: absolute;
+    height: 42px;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    .mat-mini-fab{
+      margin: 2px 10px;
+    }
+  }
+  /* make scrollbar transparent */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+   } 
+}

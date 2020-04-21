@@ -27,9 +27,6 @@ export class ChartDobrasComponent implements OnInit {
     @Input() doneApp: boolean;
 
 
-  constructor() {
-   }
-
   ngOnInit(): void {
     console.log(this.doneApp);
     setTimeout(() => {

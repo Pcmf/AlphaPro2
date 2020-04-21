@@ -1,6 +1,23 @@
+@media only screen and (min-width: 768px){
+    .container {
+        background-image: url("../../../../assets/img/CON 012.JPG");
+        background-repeat: no-repeat;
+        background-blend-mode: normal;
+        background-size: cover;
+        background-position: center; 
+    }
+    .flex-form{
+        width: 50%;
+        margin: auto;
+    }
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
+}
 .mat-card {
     width: 90%;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
     display: inline-flex;
 }
 
@@ -15,3 +32,4 @@
     display: flex;
     justify-content: space-between;
 }
+

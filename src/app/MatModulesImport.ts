@@ -23,6 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         MatDividerModule,
         MatSnackBarModule,
         MatSlideToggleModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        LayoutModule
     ],
     exports: [
         MatInputModule,
@@ -74,6 +76,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         MatDividerModule,
         MatSnackBarModule,
         MatSlideToggleModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        LayoutModule
     ]
 }) export class MatModulesImports { }

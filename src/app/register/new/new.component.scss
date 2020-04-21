@@ -1,67 +1,64 @@
-.container-fluid{
-    position: relative;
+.container {
     background-image: url("../../../assets/img/trust-tru-katsande-Pu7BOaYlYGY-unsplash.jpg");
     background-repeat: no-repeat;
     background-blend-mode: normal;
     background-size: cover;
     background-position: center;
-    
-    height: 95vh;
-    overflow-y: auto;
+}
+.new-form {
+    width: 80%;
+    border-radius: 15px;
+    margin: auto;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    justify-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-  }
+    background-color: rgba($color: #dbd3d39f, $alpha: 0.67);
 
-  .new-header{
-      margin-top: 10%;
-      padding: 20px;
-      text-align: center;
-      color: white;
-      font-weight: 800;
-  }
+    .mat-form-field {
+        width: 300px;
+    }
+    .new-form-buttons {
+        width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
 
-  .new-form{
-      width: 80%;
-      border-radius: 15px;
-      margin: auto;
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+@media only screen and (min-width: 768px) {
+    .section{
+        height: 85vh;
+        bottom: 4px;
+    }
+    .new-form {
+        width: 60%;
+    }
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
+}
 
-      background-color: rgba($color: #dbd3d39f, $alpha: .67);
+p {
+    text-align: center;
 
-      .mat-form-field{
-          width: 300px;
-      }
-      .new-form-buttons{
-          width: 300px;
-          display: flex;
-          justify-content: space-evenly;
-      }
-  }
-
-  p{
-      text-align: center;
-
-      a{
-          text-decoration: none;
-          color: white;
-      }
-      a:hover {
-          text-decoration: none;
-          color: white;
-      }
-      a:visited {
+    a {
         text-decoration: none;
         color: white;
     }
-  }
-  small{
-      font-size: x-small;
-  }
-  .alert{
-      color: red;
-  }
+    a:hover {
+        text-decoration: none;
+        color: white;
+    }
+    a:visited {
+        text-decoration: none;
+        color: white;
+    }
+}
+small {
+    font-size: x-small;
+}
+.alert {
+    color: red;
+}

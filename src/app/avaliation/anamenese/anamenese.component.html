@@ -20,7 +20,6 @@
 
               <div class="check-box">
                 <mat-checkbox i18n="Label" #Q11="ngModel" name="Q11" [(ngModel)]="student.Q11">Saude</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q12="ngModel" name="Q12" [(ngModel)]="student.Q12">Moda</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q15="ngModel" name="Q15" [(ngModel)]="student.Q15">Terapêutico
                 </mat-checkbox>
                 <mat-checkbox i18n="Label" #QEST="ngModel" name="QEST" [(ngModel)]="student.QEST">Estético
@@ -33,12 +32,10 @@
                     Emagrecimento</mat-checkbox>
                 </div>
                 <mat-checkbox i18n="Label" #Q16="ngModel" name="Q16" [(ngModel)]="student.Q16">Prevenção</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q20="ngModel" name="Q20" [(ngModel)]="student.Q20">Performaçe de Alto
-                  Rendimento</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q20="ngModel" name="Q20" [(ngModel)]="student.Q20">Alto Rendimento</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q14="ngModel" name="Q14" [(ngModel)]="student.Q14">Lazer</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q17="ngModel" name="Q17" [(ngModel)]="student.Q17">Condincionamento Fisico
                   Geral</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q18="ngModel" name="Q18" [(ngModel)]="student.Q18">Social</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q19="ngModel" name="Q19" [(ngModel)]="student.Q19">Outros</mat-checkbox>
               </div>
               <mat-form-field *ngIf="Q19.value" class="input-lg">
@@ -110,7 +107,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form #fev="ngForm" (submit)="saveEstiloVida(fev.value)">
-          <mat-card>
+         <!--  <mat-card>
             <mat-card-content>
               <mat-radio-group aria-label="Select an option" #Q6="ngModel" name="Q6" [(ngModel)]="student.Q6">
                 <label i18n="Label">Estilo</label>
@@ -173,7 +170,7 @@
 
             </mat-card-content>
           </mat-card>
-
+ -->
           <mat-card>
             <mat-card-header>
               <mat-card-subtitle i18n="Label">Nível de Actividade Fisica</mat-card-subtitle>
@@ -196,7 +193,7 @@
                 </mat-tab>
                 <mat-tab label=" B ">
 
-                  <p i18n>Partecipa regularmente de recreação ou em trabalhos que requerem actividade fisica modesta,
+                  <p i18n>Participa regularmente de recreação ou em trabalhos que requerem atividade fisica modesta,
                     como
                     golfe, andar a cavalo,
                     movimentos calisténicos, ténis de mesa ...</p>
@@ -207,10 +204,9 @@
                 </mat-tab>
                 <mat-tab label=" C">
 
-                  <p i18n>Partecipa regularmente em exercicios fisicos pesados, como corridas ou trotes, natação,
-                    ciclismo,
-                    remo, pular corda, corrida estacionária,
-                    ou se engaja em exercicios com actividades aeróbias vigorosas como ténis ou basquetebol.</p>
+                  <p i18n>Participa regularmente em exercícios físicos pesados, como corridas ou trotes, natação, ciclismo,
+                     remo, pular corda, corrida estacionária, ou se engaja em exercícios com atividades aeróbias vigorosas 
+                     como ténis ou basquetebol..</p>
                   <mat-radio-group aria-label="Select an option" #nafs="ngModel" name="nafs" [(ngModel)]="student.nafs">
                     <mat-radio-button value="4" i18n>Corre menos de 1,6Km por semana ou gasta menos de 30 minutos<br />
                       por
@@ -237,9 +233,21 @@
             </mat-card-header>
             <mat-card-content>
               <mat-radio-group #classe="ngModel" name="classe" [(ngModel)]="student.classe">
-                <mat-radio-button i18n value="1">Iniciante</mat-radio-button>
-                <mat-radio-button i18n value="2">Intermediário</mat-radio-button>
-                <mat-radio-button i18n value="3">Avançado</mat-radio-button>
+                <mat-radio-button i18n value="1">
+                  Iniciante <span (click)="openDialogHelp('Iniciante', 'Sujeito sedentário, que nunca fez atividade física, ou que está a mais de 6 meses sem fazer uma atividade física regular, pelo menos 2 vezes semanais. Sujeito que possui classificação FRACO na avaliação da aptidão física.', '')">
+                    <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
+                  </span> 
+                </mat-radio-button> 
+                <mat-radio-button i18n value="2">
+                  Intermediário <span (click)="openDialogHelp('Intermediário', 'Sujeito ativo, que frequenta um programa de condicionamento físico irregularmente (não muito assíduo) há mais de 6 meses entre 2 a 3 vezes por semana. Na última avaliação teve uma classificação REGULAR ou BOM.', '')">
+                    <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
+                  </span> 
+                </mat-radio-button>
+                <mat-radio-button i18n value="3">
+                  Avançado <span (click)="openDialogHelp('Avançado', 'Atleta ou sujeito que pratica uma atividade física há mais de 1 ano, com regularidade e frequência semanal de 3 vezes ou mais. Na última avaliação teve uma classificação MUITO BOM ou EXECELENTE.c', '')">
+                    <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
+                  </span>
+                </mat-radio-button>
               </mat-radio-group>
             </mat-card-content>
           </mat-card>
@@ -531,14 +539,14 @@
               <mat-label i18n>Tabagismo</mat-label>
               <mat-radio-group aria-label="Select an option" #fumante="ngModel" name="fumante"
                 [(ngModel)]="student.fumante">
-                <mat-radio-button value="N" i18n>Não Fumador</mat-radio-button>
-                <mat-radio-button value="S" i18n>Fumador</mat-radio-button>
+                <mat-radio-button value="N" i18n>Não Fumante</mat-radio-button>
+                <mat-radio-button value="S" i18n>Fumante</mat-radio-button>
                 <mat-radio-button value="E" i18n>Eventual</mat-radio-button>
               </mat-radio-group>
               <br />
-              <mat-form-field class="input-lg" *ngIf="fumante.value=='S' || fumante.value=='E'">
+              <mat-form-field class="input-md" *ngIf="fumante.value=='S' || fumante.value=='E'">
                 <mat-label i18n>Quantos por dia?</mat-label>
-                <input matInput i18n placeholder="nº de cigarros" #qtos="ngModel" name="qtos"
+                <input matInput  class="input-md" i18n placeholder="nº de cigarros" #qtos="ngModel" name="qtos"
                   [(ngModel)]="student.qtos">
               </mat-form-field>
               <mat-label i18n *ngIf="fumante.value=='S' || fumante.value=='E'">Há quanto tempo?</mat-label>
@@ -585,9 +593,9 @@
               <mat-form-field class="input-sm" *ngIf="Q4BB.value==1">
                 <input matInput i18n placeholder="meses" #Q4BBM="ngModel" name="Q4BBM" [(ngModel)]="student.Q4BBM">
               </mat-form-field>
-              <mat-form-field class="input-lg" *ngIf="Q4BB.value==1">
+              <mat-form-field class="input-md" *ngIf="Q4BB.value==1">
                 <mat-label i18n>Quantas vezes por semana?</mat-label>
-                <input matInput i18n placeholder="vezes" #Q4BBVEZES="ngModel" name="Q4BBVEZES"
+                <input matInput  class="input-md" i18n placeholder="vezes" #Q4BBVEZES="ngModel" name="Q4BBVEZES"
                   [(ngModel)]="student.Q4BBVEZES">
               </mat-form-field>
               <mat-form-field class="input-lg">
@@ -661,7 +669,7 @@
             <mat-card-content>
               <mat-label i18n>Alimentação</mat-label>
               <br />
-              <mat-label i18n>Está em dieta para ganhar ou perder peso?</mat-label>
+              <mat-label i18n>Está em dieta?</mat-label>
               <mat-radio-group aria-label="Select an option" #Q4E="ngModel" name="Q4E" [(ngModel)]="student.Q4E">
                 <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                 <mat-radio-button value="2" i18n>não</mat-radio-button>
@@ -729,7 +737,7 @@
                 <mat-checkbox i18n="Label" #Q57="ngModel" name="Q57" [(ngModel)]="student.Q57">Dores nas pernas
                 </mat-checkbox>
                 <mat-checkbox i18n="Label" #Q58="ngModel" name="Q58" [(ngModel)]="student.Q58">Arritemias</mat-checkbox>
-                <mat-checkbox i18n="Label" #Q59="ngModel" name="Q59" [(ngModel)]="student.Q59">Tensão pré-menstrual
+                <mat-checkbox *ngIf="student.sexo == 'F'" i18n="Label" #Q59="ngModel" name="Q59" [(ngModel)]="student.Q59">Tensão pré-menstrual
                 </mat-checkbox>
                 <mat-checkbox i18n="Label" #Q510="ngModel" name="Q510" [(ngModel)]="student.Q510">Dores nas costas
                 </mat-checkbox>

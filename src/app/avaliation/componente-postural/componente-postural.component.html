@@ -431,19 +431,22 @@
                                     <span *ngIf="oldData[pointer].vpesc">Abduzidas<br /></span>
                                     <span *ngIf="oldData[pointer].vpescal">Aladas<br /></span>
                                 </td>
-                                <td *ngIf="addForm" style="text-align: left;">
-                                    <mat-checkbox name="esc_simetrica_vp" #esc_simetrica_vp="ngModel"
-                                        [(ngModel)]="newData.esc_simetrica_vp" type="number">Simétricas</mat-checkbox>
-                                    <br />
-                                    <mat-checkbox name="esc_assimetricas_vp" #esc_assimetricas_vp="ngModel"
-                                        [(ngModel)]="newData.esc_assimetricas_vp" type="number">Assimétricas
-                                    </mat-checkbox><br />
-                                    <mat-checkbox name="vpescad" #vpescad="ngModel" [(ngModel)]="newData.vpescad"
-                                        type="number">Aduzidas</mat-checkbox><br />
-                                    <mat-checkbox name="vpesc" #vpesc="ngModel" [(ngModel)]="newData.vpesc"
-                                        type="number">Abduzidas</mat-checkbox><br />
-                                    <mat-checkbox name="vpescal" #vpescal="ngModel" [(ngModel)]="newData.vpescal"
-                                        type="number">Aladas</mat-checkbox>
+                                <td *ngIf="addForm">
+                                    <div style="width:120px; margin: auto; text-align: left;">
+                                        <mat-checkbox name="esc_simetrica_vp" #esc_simetrica_vp="ngModel"
+                                            [(ngModel)]="newData.esc_simetrica_vp" type="number">Simétricas
+                                        </mat-checkbox>
+                                        <br />
+                                        <mat-checkbox name="esc_assimetricas_vp" #esc_assimetricas_vp="ngModel"
+                                            [(ngModel)]="newData.esc_assimetricas_vp" type="number">Assimétricas
+                                        </mat-checkbox><br />
+                                        <mat-checkbox name="vpescad" #vpescad="ngModel" [(ngModel)]="newData.vpescad"
+                                            type="number">Aduzidas</mat-checkbox><br />
+                                        <mat-checkbox name="vpesc" #vpesc="ngModel" [(ngModel)]="newData.vpesc"
+                                            type="number">Abduzidas</mat-checkbox><br />
+                                        <mat-checkbox name="vpescal" #vpescal="ngModel" [(ngModel)]="newData.vpescal"
+                                            type="number">Aladas</mat-checkbox>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -655,7 +658,8 @@
                         </button>
                     </div>
                 </div>
-                <div *ngIf="!view" style="height: 200px;"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                <div *ngIf="!view" style="height: 200px;" (swiperight)="swipeRight($event)"
+                    (swipeleft)="swipeLeft($event)">
                     &nbsp;
                 </div>
 

@@ -1,37 +1,20 @@
 .container {
-  height: 94vh;
-  width: 100vw;
-    background-image: url("../../../assets/img/measurement-1698856.jpg");
-    background-repeat: no-repeat;
-    background-blend-mode: normal;
-    background-size: cover;
-    background-position: center; 
-    overflow: auto;
+  background-image: url("../../../assets/img/measurement-1698856.jpg");
+  background-repeat: no-repeat;
+  background-blend-mode: normal;
+  background-size: cover;
+  background-position: center;
+}
+.mat-expansion-panel {
+  background-color: rgba(247, 238, 238, 0.704);
 }
 
-.main {
-  width: 96%;
-  height: 75%;
-  position: absolute;
-  bottom: 8%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  flex-direction: column-reverse;
-  overflow: auto;
-
-  mat-expansion-panel {
-    background-color: rgba(247, 238, 238, 0.704);
-    border-radius: 4px;
+@media only screen and (min-width: 768px) {
+  .section {
+    width: 50%;
   }
-  mat-expansion-panel-body {
-    padding: 0;
-  }
-
-  .mat-card {
-    height: 30px;
-    //  background-color: rgba(14, 13, 13, 0.904);
-    margin-bottom: 1px;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
   }
 }
-

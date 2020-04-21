@@ -1,10 +1,16 @@
+@media only screen and (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+  }
+}
+
 table {
   width: 100%;
 }
 th,
 td {
   height: 28px;
-  // background-color: blanchedalmond;
   border-bottom: 1px #999 solid;
   text-align: center;
 }

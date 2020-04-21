@@ -1,5 +1,5 @@
-.container-fluid{
-    position: relative;
+.container{
+    // position: relative;
     background-image: url("../../../assets/img/scott-webb-KblIFRq1jkg-unsplash.jpg");
 /*     background-repeat: no-repeat;
     background-blend-mode: normal; */
@@ -29,7 +29,11 @@
       width: 300px;
     }
   }
-
+  @media only screen and (min-width: 768px) {
+    .dash-form{
+      width: 50%;
+    }
+  }
   .dash-buttons-action{
     width: 100%;
     display: flex;

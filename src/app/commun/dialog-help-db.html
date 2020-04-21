@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.type}}</h1>
+<div mat-dialog-content>
+  <p>{{help.info}}</p>
+    <img [src]="help.image1" width="200" alt="info">
+    
+</div>
+<div mat-dialog-actions>
+  <button mat-mini-fab color="default" (click)="onNoClick()">Fechar
+    <!-- <mat-icon class="mat-18">close</mat-icon> -->
+  </button>
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Location} from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-anamenese',
@@ -21,12 +21,17 @@ export class AnameneseComponent implements OnInit {
   CardioParentesco: any = [];
   HiperParentesco: any = [];
 
-  constructor(private location: Location, private dataService: DataService, private actRoute: ActivatedRoute) {
+
+  constructor(private location: Location,
+              private dataService: DataService,
+              private dialog: MatDialog
+              ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
       (resp: any) => {
         if (resp.length > 0) {
           this.student = resp[0];
+          this.student.profissao = this.selectedStudent.profissao;
           this.dataObj = this.student.DT_OBJ;
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
@@ -124,4 +129,34 @@ export class AnameneseComponent implements OnInit {
     );
   }
 
+  openDialogHelp(title, info, image): void {
+    const dialogRef = this.dialog.open(DialogHelp, {
+      width: '250px',
+      data: { title, info, image }
+    });
+  }
+
 }
+
+
+/* HELP DIALOG  */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-help',
+  templateUrl: '../../commun/dialog-help.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogHelp {
+  help: any = [];
+  constructor(
+    public dialogRef: MatDialogRef<DialogHelp>,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+

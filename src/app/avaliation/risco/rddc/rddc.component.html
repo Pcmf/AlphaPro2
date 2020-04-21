@@ -5,7 +5,17 @@
     </div>
 
     <div class="section">
-        <form #f="ngForm" (submit)="save(f.value)">
+        <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
+<!--             <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Data da Avaliação</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-select [(ngModel)]="modelName" placeholder="">
+                        <mat-option *ngFor="let dt of datas" [value]="dt">{{dt}}</mat-option>
+                    </mat-select>
+                </mat-card-content>
+            </mat-card> -->
             <mat-card>
                 <mat-card-header>
                     <mat-card-subtitle i18n>Idade</mat-card-subtitle>

@@ -1,15 +1,9 @@
 .container {
-  position: relative;
   background-image: url("../../../assets/img/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg");
   background-repeat: no-repeat;
   background-blend-mode: normal;
   background-size: cover;
   background-position: center;
-  // background-color: rgba(75, 73, 73, 0.404);
-  height: 94vh;
-  width: 98vw;
-  margin: auto;
-  overflow: auto;
 }
 
 .mat-expansion-panel {
@@ -31,7 +25,6 @@
 }
 
 .check-box {
-  // background-color: rgba(241, 235, 235, 0.767);
   margin-bottom: 20px;
 }
 
@@ -83,4 +76,16 @@ mat-label {
 .input-sm {
   width: 60px;
   margin-left: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .section {
+    width: 50%;
+  }
+  .new-form {
+    width: 60%;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
 }

@@ -29,11 +29,11 @@ export class JP3Component implements OnInit {
   fatChanged = false;
 
   constructor(private location: Location, private dataService: DataService,
-    private datapipe: DatePipe,
-    private ageService: AgeService,
-    private snackBar: MatSnackBar,
-    private protocolos: ProtcolosDobrasService,
-    private prepareChart: PrepareChartService
+              private datapipe: DatePipe,
+              private ageService: AgeService,
+              private snackBar: MatSnackBar,
+              private protocolos: ProtcolosDobrasService,
+              private prepareChart: PrepareChartService,
   ) {
 
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -86,7 +86,7 @@ export class JP3Component implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-    // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e 
+    // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e
     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       (respa: any[]) => {
         if (respa.length) {

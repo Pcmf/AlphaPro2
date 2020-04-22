@@ -6,7 +6,7 @@
     <div class="section">
         <mat-accordion>
             <mat-expansion-panel class="accordion">
-                <mat-expansion-panel-header [routerLink]="['/eval']">
+                <mat-expansion-panel-header routerLink="/eval">
                     <mat-panel-title i18n="Title | area de avaliação">
                         DADOS COMPLEMENTARES
                     </mat-panel-title>
@@ -14,7 +14,7 @@
             </mat-expansion-panel>
 
             <mat-expansion-panel>
-                <mat-expansion-panel-header [routerLink]="['/anamn']">
+                <mat-expansion-panel-header routerLink="/anamn">
                     <mat-panel-title i18n="Title | area de avaliação">
                         ANAMNESE
                     </mat-panel-title>
@@ -29,26 +29,25 @@
                 </mat-expansion-panel-header>
 
                 <mat-card>
-                    <mat-card-header [routerLink]="['/qpaf/']">
+                    <mat-card-header routerLink="/qpaf/">
                         <mat-card-subtitle>Questionário de prontidão para a actividade fisica (PAR-Q)
                         </mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/rdc/']">
+                    <mat-card-header routerLink="/rdc/">
                         <mat-card-subtitle>Risco de desenvolvimento de cardiopatia</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/rddc/']">
+                    <mat-card-header routerLink="/rddc/">
                         <mat-card-subtitle>Risco de desnvolvimento de dor na coluna</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
-
             </mat-expansion-panel>
-
-
-            <mat-expansion-panel>
+            <!--   COMPONENTE MORFOLÓGICA -->
+            <mat-expansion-panel (click)="changeMorfoExpanded()" 
+                                 [expanded]="morfoExpanded">
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title | area de avaliação">
                         COMPONENTE MORFOLÓGICA
@@ -56,39 +55,39 @@
                 </mat-expansion-panel-header>
 
                 <mat-card>
-                    <mat-card-header [routerLink]="['/pdc/']">
+                    <mat-card-header routerLink="/pdc/">
                         <mat-card-subtitle i18n="Subtitle">Perímetros e Diâmetros Corporais</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/cc/']">
+                    <mat-card-header routerLink="/cc/">
                         <mat-card-subtitle i18n="Subtitle">Composição Corporal</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/imc/']">
+                    <mat-card-header routerLink="/imc/">
                         <mat-card-subtitle i18n="Subtitle">Indice Massa Corporal</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/ircq/']">
+                    <mat-card-header routerLink="/ircq/">
                         <mat-card-subtitle i18n="Subtitle">Indice Relação Cintura/Quadril</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/st/']">
+                    <mat-card-header routerLink="/st/">
                         <mat-card-subtitle i18n="Subtitle">Soma Tipo</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
             </mat-expansion-panel>
             <mat-expansion-panel>
-                <mat-expansion-panel-header [routerLink]="['/cpost/']">
+                <mat-expansion-panel-header routerLink="/cpost/">
                     <mat-panel-title i18n="Title">
                         COMPONENTE POSTURAL
                     </mat-panel-title>
                 </mat-expansion-panel-header>
             </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         COMPONENTE NEUROMUSCULAR
@@ -96,44 +95,44 @@
                 </mat-expansion-panel-header>
 
                 <mat-card>
-                    <mat-card-header [routerLink]="['/flex/']">
+                    <mat-card-header routerLink="/flex/">
                         <mat-card-subtitle i18n="Subtitle">Flexidade</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/frm/']">
+                    <mat-card-header routerLink="/frm/">
                         <mat-card-subtitle i18n="Subtitle">Força e Resistência muscular</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
             </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         COMPONENTE CARDIOPULMONAR
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/tcam/']">
+                    <mat-card-header routerLink="/tcam/">
                         <mat-card-subtitle i18n="Subtitle">Teste de Caminhada</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/tcorr/']">
+                    <mat-card-header routerLink="/tcorr/">
                         <mat-card-subtitle i18n="Subtitle">Teste de Corrida</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/tbic/']">
+                    <mat-card-header routerLink="/tbic/">
                         <mat-card-subtitle i18n="Subtitle">Teste de Bicicleta</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
                 <mat-card>
-                    <mat-card-header [routerLink]="['/toutros/']">
+                    <mat-card-header routerLink="/toutros/">
                         <mat-card-subtitle i18n="Subtitle">Outros Testes</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
             </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         PERFIL FINAL DE AVALIAÇÃO
@@ -151,7 +150,7 @@
 
     </div>
     <div class="footer">
-        <a mat-mini-fab color="primary" routerLink="/dash">
+        <a mat-mini-fab color="primary" (click)="morfoExpanded=true; changeMorfoExpanded();" routerLink="/dash">
             <mat-icon>home</mat-icon>
         </a>
     </div>

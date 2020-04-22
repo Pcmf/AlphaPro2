@@ -27,15 +27,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><span>Classificação</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xclass}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_xclass}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_xclass" #c_xclass="ngModel" [(ngModel)]="newEvaluation.c_xclass" type="text"
-                                style="width: 110px;">
-                        </td>
-                    </tr>
-                    <tr>
                         <th>% Gordura</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percg}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_percg}}</td>
@@ -44,6 +35,16 @@
                                 step="0.1">
                         </td>
                     </tr>
+                    <tr>
+                        <th><span>Classificação</span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xclass}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_xclass}}</td>
+                        <td *ngIf="addEval">
+                            <input name="c_xclass" #c_xclass="ngModel" [(ngModel)]="newEvaluation.c_xclass" type="text"
+                                style="width: 110px;">
+                        </td>
+                    </tr>
+
                     <tr>
                         <th>Massa Gorda</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_gorda}}</td>

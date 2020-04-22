@@ -29,7 +29,7 @@ export class EvaluationComponent implements OnInit {
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
         } else {
-          this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
@@ -69,7 +69,7 @@ export class EvaluationComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
     if (this.evaluation[this.pointer]) {
       this.newEvaluation.altura = this.evaluation[this.pointer].altura;

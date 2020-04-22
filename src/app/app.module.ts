@@ -47,7 +47,6 @@ import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
 import { BalancaComponent } from './avaliation/composicao-corporal/balanca/balanca.component';
 import { TranWeltmanComponent } from './avaliation/antropometria/tran-weltman/tran-weltman.component';
-import { DeurembergComponent } from './avaliation/antropometria/deuremberg/deuremberg.component';
 import { WeltmanComponent } from './avaliation/antropometria/weltman/weltman.component';
 import { FlexDashComponent } from './avaliation/flexibilidade/flex-dash/flex-dash.component';
 import { BancoWellsDillonComponent } from './avaliation/flexibilidade/banco-wells-dillon/banco-wells-dillon.component';
@@ -80,6 +79,8 @@ import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
 import { ChartDobrasComponent } from './commun/chart-dobras/chart-dobras.component';
 import { PrepareChartService } from './services/prepare-chart.service';
 import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
+import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
+import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -121,7 +122,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     WillComponent,
     BalancaComponent,
     TranWeltmanComponent,
-    DeurembergComponent,
     WeltmanComponent,
     FlexDashComponent,
     BancoWellsDillonComponent,
@@ -151,6 +151,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DEXAComponent,
     ChartDobrasComponent,
     ChartPieComponent,
+    MayhewEtAlComponent,
+    WeltmanSeipTranComponent
   ],
   imports: [
     BrowserModule,

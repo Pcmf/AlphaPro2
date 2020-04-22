@@ -213,8 +213,20 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  // Tran & Waltmen
-  protocoloDeuremberg(morfo, gorduraDesejada) {
+  //  Waltmen Seip & Tran
+  protocoloWeltmanSpeinTran(morfo, gorduraDesejada) {
+    console.table(morfo);
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    // Precisa da formula
+    this.perGordura = 0.31457 * morfo.abdomen - 0.10969 * morfo.peso + 10.8336;
+    const answer = this.createAnswer();
+    console.table(answer);
+    return answer;
+  }
+
+  // Waltmen
+  protocoloWeltman(morfo, gorduraDesejada) {
     console.table(morfo);
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
@@ -225,8 +237,8 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-    // Tran & Waltmen
-    protocoloWeltman(morfo, gorduraDesejada) {
+    // Mayhew et al
+    protocoloMayhewEtAl(morfo, gorduraDesejada) {
       console.table(morfo);
       this.gorduraDesejada = gorduraDesejada;
       this.morfo = morfo;
@@ -236,8 +248,6 @@ export class ProtcolosDobrasService {
       console.table(answer);
       return answer;
     }
-
-
 
   getGorduraDesejada() {
     return 20;  // só para testes

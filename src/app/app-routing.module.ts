@@ -27,7 +27,6 @@ import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
 import { BalancaComponent } from './avaliation/composicao-corporal/balanca/balanca.component';
 import { TranWeltmanComponent } from './avaliation/antropometria/tran-weltman/tran-weltman.component';
-import { DeurembergComponent } from './avaliation/antropometria/deuremberg/deuremberg.component';
 import { WeltmanComponent } from './avaliation/antropometria/weltman/weltman.component';
 import { FlexDashComponent } from './avaliation/flexibilidade/flex-dash/flex-dash.component';
 import { GoniometroComponent } from './avaliation/flexibilidade/goniometro/goniometro.component';
@@ -55,6 +54,8 @@ import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.com
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
+import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
+import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 
 
 const routes: Routes = [
@@ -76,7 +77,8 @@ const routes: Routes = [
   {path: 'dexa', component: DEXAComponent},
 
   {path: 'tw', component: TranWeltmanComponent},
-  {path: 'deur', component: DeurembergComponent},
+  {path: 'wst', component: WeltmanSeipTranComponent},
+  {path: 'metal', component: MayhewEtAlComponent},
   {path: 'welt', component: WeltmanComponent},
 // Flexidade
   {path: 'flex', component: FlexDashComponent},

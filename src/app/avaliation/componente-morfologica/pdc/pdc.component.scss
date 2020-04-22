@@ -26,6 +26,13 @@ td > input {
   width: 60px;
 }
 
+th > span{
+  cursor: pointer;
+}
+th > span:hover{
+  font-weight: 600;
+}
+
 .action {
   width: 260px;
   margin: auto;

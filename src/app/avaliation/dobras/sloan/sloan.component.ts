@@ -97,8 +97,8 @@ export class SloanComponent implements OnInit {
                 this.single = this.prepareChart.getSingle1(proto);
                 Object.assign(this, this.single);
                 // Create graphic 2
-                const single2 = this.prepareChart.getSingle2(proto);
-                Object.assign(this, { single2 });
+                this.single2 = this.prepareChart.getSingle2(proto);
+                Object.assign(this, this.single2);
               } else {
                 this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
               }

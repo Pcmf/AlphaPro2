@@ -36,7 +36,7 @@ export class StComponent implements OnInit {
           this.pointer = this.maxPointer - 1;
           this.moreData();
         } else {
-          this.newEvaluation.dt_avaliacao = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }

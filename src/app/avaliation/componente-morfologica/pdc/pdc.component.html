@@ -22,7 +22,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th (click)="openDialog('Torax')">Tórax</th>
+                                <th><span (click)="openDialog('Torax')">Tórax</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].torax}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].torax}}</td>
                                 <td *ngIf="addPerim">
@@ -31,7 +31,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Cintura')">Cintura</th>
+                                <th><span (click)="openDialog('Cintura')">Cintura</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].cintura}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].cintura}}</td>
                                 <td *ngIf="addPerim">
@@ -40,7 +40,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Abdomen')">Abdómen</th>
+                                <th><span (click)="openDialog('Abdomen')">Abdómen</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].abdomen}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].abdomen}}</td>
                                 <td *ngIf="addPerim">
@@ -49,7 +49,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Quadril')">Quadril</th>
+                                <th><span (click)="openDialog('Quadril')">Quadril</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].quadril}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].quadril}}</td>
                                 <td *ngIf="addPerim">
@@ -58,7 +58,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Braço Drt')">Braço Drt</th>
+                                <th><span (click)="openDialog('Braço Drt')">Braço Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].bracod}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracod}}</td>
                                 <td *ngIf="addPerim">
@@ -67,7 +67,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Braço Esq')">Braço Esq</th>
+                                <th><span (click)="openDialog('Braço Esq')">Braço Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoe}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoe}}</td>
                                 <td *ngIf="addPerim">
@@ -76,7 +76,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Antebraço Drt')">Antebraço Drt</th>
+                                <th><span (click)="openDialog('Antebraço Drt')">Antebraço Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracod}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].antebracod}}</td>
                                 <td *ngIf="addPerim">
@@ -85,7 +85,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Antebraço Esq')">Antebraço Esq</th>
+                                <th><span (click)="openDialog('Antebraço Esq')">Antebraço Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracoe}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].antebracoe}}</td>
                                 <td *ngIf="addPerim">
@@ -94,7 +94,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Coxa Drt')">Coxa Drt</th>
+                                <th><span (click)="openDialog('Coxa Drt')">Coxa Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxad}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxad}}</td>
                                 <td *ngIf="addPerim">
@@ -103,7 +103,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Coxa Drt')">Coxa Esq</th>
+                                <th><span (click)="openDialog('Coxa Drt')">Coxa Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxae}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxae}}</td>
                                 <td *ngIf="addPerim">
@@ -112,7 +112,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Perna Drt')">Perna Drt</th>
+                                <th><span (click)="openDialog('Perna Drt')">Perna Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].pernad}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pernad}}</td>
                                 <td *ngIf="addPerim">
@@ -121,7 +121,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Perna Esq')">Perna Esq</th>
+                                <th><span (click)="openDialog('Perna Esq')">Perna Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].pernae}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pernae}}</td>
                                 <td *ngIf="addPerim">
@@ -175,7 +175,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th (click)="openDialog('Radio-ulnar (punho)')">Radio-ulnar<br /> (Punho)</th>
+                                <th><span (click)="openDialog('Radio-ulnar (punho)')">Radio-ulnar<br /> (Punho)</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].punho}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].punho}}</td>
                                 <td *ngIf="addDiam">
@@ -184,7 +184,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Bi-epicôndilo Umeral (Cotovelo)')">Bi-epicôndilo Umeral<br /> (Cotovelo)</th>
+                                <th><span (click)="openDialog('Bi-epicôndilo Umeral (Cotovelo)')">Bi-epicôndilo Umeral<br /> (Cotovelo)</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].cotovelo}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].cotovelo}}</td>
                                 <td *ngIf="addDiam">
@@ -193,7 +193,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Bi-côndilo Fermural (Joelho)')">Bi-côndilo Fermural<br /> (Joelho)</th>
+                                <th><span (click)="openDialog('Bi-côndilo Fermural (Joelho)')">Bi-côndilo Fermural<br /> (Joelho)</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].joelho}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].joelho}}</td>
                                 <td *ngIf="addDiam">
@@ -249,7 +249,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th (click)="openDialog('Coxa Inferior Drt')">Coxa<br /> Inferior Drt</th>
+                                <th><span (click)="openDialog('Coxa Inferior Drt')">Coxa<br /> Inferior Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaid}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxaid}}</td>
                                 <td *ngIf="addOutros">
@@ -258,7 +258,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Inferior Esq</th>
+                                <th><span (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Inferior Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaie}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxaie}}</td>
                                 <td *ngIf="addOutros">
@@ -267,7 +267,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Coxa Medial Drt')">Coxa<br /> Medial Drt</th>
+                                <th><span (click)="openDialog('Coxa Medial Drt')">Coxa<br /> Medial Drt</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxamd}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxamd}}</td>
                                 <td *ngIf="addOutros">
@@ -276,7 +276,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Medial Esq</th>
+                                <th><span (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Medial Esq</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].coxame}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxame}}</td>
                                 <td *ngIf="addOutros">
@@ -285,7 +285,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Pescoço')">Pescoço</th>
+                                <th><span (click)="openDialog('Pescoço')">Pescoço</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].pescoco}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pescoco}}</td>
                                 <td *ngIf="addOutros">
@@ -294,7 +294,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th (click)="openDialog('Braço contraido')">Braço contraido</th>
+                                <th><span (click)="openDialog('Braço contraido')">Braço contraido</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoc}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoc}}</td>
                                 <td *ngIf="addOutros">

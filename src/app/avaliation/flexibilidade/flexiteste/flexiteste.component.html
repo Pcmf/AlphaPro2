@@ -4,22 +4,20 @@
     </div>
 
 
-    <div class="main">
-        <mat-accordion>
-            <mat-expansion-panel class="accordion">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title | area de avaliação">
-                        Punho
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+    <div class="section">
+        <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
+
+            <mat-tab i18n label="Punho">
 
                 <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -27,16 +25,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão</span></th>
+                            <tr>
+                                <th class="sub-line"><span>Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}
+                                    <!-- <app-flex-class [inFlexClass]="evaluation[pointer-1].punhof"></app-flex-class> -->
+                                </td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhof" #punhof="ngModel" (ngModel)="newEvaluation.punhof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                              <!--       <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof" type="number" step="1"> -->
                                 </td>
                             </tr>
                             <tr>
@@ -50,16 +58,14 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tpunhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tpunhof}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tpunhof" #tpunhof="ngModel" [(ngModel)]="newEvaluation.tpunhof"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].punhof + +evaluation[pointer-1].punhofe}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].tpunhof + +evaluation[pointer].tpunhofe}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão</span></th>
+                            <tr>
+                                <th class="sub-line"><span>Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -81,15 +87,15 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tpunhoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tpunhoe}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tpunhoe" #tpunhoe="ngModel" [(ngModel)]="newEvaluation.tpunhoe"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].punhoe + +evaluation[pointer-1].punhoee}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].punhoe + +evaluation[pointer].punhoee}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
+
                     <div class="action">
                         <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
                             (click)="pointer=pointer-1">
@@ -98,8 +104,8 @@
                         <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
@@ -110,22 +116,22 @@
                         </button>
                     </div>
                 </form>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-punho-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Cotovelo
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+            <mat-tab i18n label="Cotovelo">
+                <form #fd="ngForm" (submit)="save(fd.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -134,7 +140,7 @@
                         </thead>
                         <tbody>
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão</span></th>
+                                <th><span>Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -150,22 +156,21 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelofe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotovelofe" #cotovelofe="ngModel" [(ngModel)]="newEvaluation.cotovelofe"
-                                        type="number" step="1">
+                                    <input name="cotovelofe" #cotovelofe="ngModel"
+                                        [(ngModel)]="newEvaluation.cotovelofe" type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tcotovelof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tcotovelof}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tcotovelof" #tcotovelof="ngModel" [(ngModel)]="newEvaluation.tcotovelof"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].cotovelof + +evaluation[pointer-1].cotovelofe}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].cotovelof + +evaluation[pointer].cotovelofe}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão</span></th>
+                                <th><span>Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -181,18 +186,17 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotoveloee" #cotoveloee="ngModel" [(ngModel)]="newEvaluation.cotoveloee"
-                                        type="number" step="1">
+                                    <input name="cotoveloee" #cotoveloee="ngModel"
+                                        [(ngModel)]="newEvaluation.cotoveloee" type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tcotoveloe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tcotoveloe}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tcotoveloe" #tcotoveloe="ngModel" [(ngModel)]="newEvaluation.tcotoveloe"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].cotoveloe + +evaluation[pointer-1].cotoveloee}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].cotoveloe + +evaluation[pointer].cotoveloee}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
@@ -216,23 +220,22 @@
                         </button>
                     </div>
                 </form>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-cotovelo-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Ombro
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+            <mat-tab i18n label="Ombro">
+                <form #fom="ngForm" (submit)="save(fom.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -241,7 +244,7 @@
                         </thead>
                         <tbody>
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Abdução</span></th>
+                                <th><span>Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -254,53 +257,34 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroad}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroabe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroabe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad"
+                                    <input name="ombroabe" #ombroabe="ngModel" [(ngModel)]="newEvaluation.ombroabe"
                                         type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tombro}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tombro}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tombro" #tombro="ngModel" [(ngModel)]="newEvaluation.tombro"
-                                        type="number" step="0.1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].ombroab + +evaluation[pointer-1].ombroabe}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].ombroab + +evaluation[pointer].ombroabe}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão Horizontal</span></th>
+                                <th><span>Extensão</span></th>
                             </tr>
                             <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroe}}</td>
+                                <th>Horizontal</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="ombroe" #ombroe="ngModel" [(ngModel)]="newEvaluation.ombroe"
+                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
                                         type="number" step="1">
                                 </td>
                             </tr>
-<!--                             <tr>
-                                <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall"
-                                        type="number" step="0.1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall"
-                                        type="number" step="0.1">
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
                     <div class="action">
@@ -323,22 +307,22 @@
                         </button>
                     </div>
                 </form>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-ombro-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Tronco
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+            <mat-tab i18n label="Tronco">
+                <form #ft="ngForm" (submit)="save(ft.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -346,63 +330,54 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão</span></th>
+                            <tr>
+                                <th>Flexão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncof}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncof}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="troncof" #troncof="ngModel" [(ngModel)]="newEvaluation.troncof"
+                                        type="number" step="1">
+                                </td>
                             </tr>
                             <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
+                                <th>Extensão</th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncoe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncoe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf"
+                                    <input name="troncoe" #troncoe="ngModel" [(ngModel)]="newEvaluation.troncoe"
                                         type="number" step="1">
                                 </td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão</span></th>
+                                <th><span>Flexão Lateral</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombare}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombare}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncold}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncold}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
-
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão Lateral</span></th>
-                            </tr>
-                            <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl"
+                                    <input name="troncold" #troncold="ngModel" [(ngModel)]="newEvaluation.troncold"
                                         type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncole}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncole}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr"
+                                    <input name="troncole" #troncole="ngModel" [(ngModel)]="newEvaluation.troncole"
                                         type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ttronco}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ttronco}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="ttronco" #ttronco="ngModel" [(ngModel)]="newEvaluation.ttronco"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].troncold + +evaluation[pointer-1].troncole}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].troncold + +evaluation[pointer].troncole}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-                            
                         </tbody>
                     </table>
                     <div class="action">
@@ -425,22 +400,22 @@
                         </button>
                     </div>
                 </form>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-tronco-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Quadril
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+            <mat-tab i18n label="Quadril">
+                <form #fq="ngForm" (submit)="save(fq.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -449,7 +424,7 @@
                         </thead>
                         <tbody>
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão</span></th>
+                                <th><span>Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -471,16 +446,15 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tquadrilf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tquadrilf}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tquadrilf" #tquadrilf="ngModel" [(ngModel)]="newEvaluation.tquadrilf"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].quadrilf + +evaluation[pointer-1].quadrilfe}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].quadrilf + +evaluation[pointer].quadrilfe}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão</span></th>
+                                <th><span>Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -502,16 +476,14 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tquadrile}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tquadrile}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tquadrile" #tquadrile="ngModel" [(ngModel)]="newEvaluation.tquadrile"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].quadrile + +evaluation[pointer-1].quadrilee}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].quadrile + +evaluation[pointer].quadrilee}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Abdução</span></th>
+                                <th><span>Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -527,22 +499,21 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilabe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilabe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilabe" #quadrilabe="ngModel" [(ngModel)]="newEvaluation.quadrilabe"
-                                        type="number" step="1">
+                                    <input name="quadrilabe" #quadrilabe="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrilabe" type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tquadrilab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tquadrilab}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tquadrilab" #tquadrilab="ngModel" [(ngModel)]="newEvaluation.tquadrilab"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].quadrilab + +evaluation[pointer-1].quadrilabe}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].quadrilab + +evaluation[pointer].quadrilabe}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Adução</span></th>
+                                <th><span>Adução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -558,18 +529,17 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilade}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilade}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilade" #quadrilade="ngModel" [(ngModel)]="newEvaluation.quadrilade"
-                                        type="number" step="1">
+                                    <input name="quadrilade" #quadrilade="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrilade" type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad"
-                                        type="number" step="1">
-                                </td>
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].quadrilad + +evaluation[pointer-1].quadrilade}}</td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].quadrilad + +evaluation[pointer].quadrilade}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
@@ -593,23 +563,22 @@
                         </button>
                     </div>
                 </form>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-quadril-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Joelho
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+            <mat-tab i18n label="Joelho">
+                <form #fj="ngForm" (submit)="save(fj.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -618,7 +587,7 @@
                         </thead>
                         <tbody>
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão</span></th>
+                                <th><span>Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -640,16 +609,15 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tjoelhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tjoelhof}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tjoelhof" #tjoelhof="ngModel" [(ngModel)]="newEvaluation.tjoelhof"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].joelhof + +evaluation[pointer-1].joelhofe}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].joelhof + +evaluation[pointer].joelhofe}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Extensão</span></th>
+                                <th><span>Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -666,20 +634,17 @@
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoee}}</td>
                                 <td *ngIf="addEval">
                                     <input name="joelhoee" #joelhoee="ngModel" [(ngModel)]="newEvaluation.joelhoee"
-                                        type="number" step="0.1">
+                                        type="number" step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tjoelhoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tjoelhoe}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="tjoelhoe" #tjoelhoe="ngModel" [(ngModel)]="newEvaluation.tjoelhoe"
-                                        type="number" step="0.1">
+                                <td *ngIf="pointer>=1">
+                                    {{+evaluation[pointer-1].joelhoe + +evaluation[pointer-1].joelhoee}}</td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].joelhoe + +evaluation[pointer].joelhoee}}
                                 </td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-
-
                         </tbody>
                     </table>
                     <div class="action">
@@ -702,20 +667,22 @@
                         </button>
                     </div>
                 </form>
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Pés
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-joelho-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
+
+            <mat-tab i18n label="Pés">
+                <form #fpe="ngForm" (submit)="save(fpe.value)">
+                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                </th>
                                 <th class="th-top" *ngIf="addEval">
                                     <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                         style="width: 110px;">
@@ -724,68 +691,62 @@
                         </thead>
                         <tbody>
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão dorsal</span></th>
+                                <th><span>Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelod}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesf}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesf}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="tornozelod" #tornozelod="ngModel" [(ngModel)]="newEvaluation.tornozelod"
-                                        type="number" step="1">
+                                    <input name="pesf" #pesf="ngModel" [(ngModel)]="newEvaluation.pesf" type="number"
+                                        step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozeolp}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeolp}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesfe}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesfe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="tornozeolp" #tornozeolp="ngModel" [(ngModel)]="newEvaluation.tornozeolp"
-                                        type="number" step="1">
+                                    <input name="pesfe" #pesfe="ngModel" [(ngModel)]="newEvaluation.pesfe" type="number"
+                                        step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ttornozelod}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ttornozelod}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="ttornozelod" #ttornozelod="ngModel" [(ngModel)]="newEvaluation.ttornozelod"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">{{+evaluation[pointer-1].pesf + +evaluation[pointer-1].pesfe}}
                                 </td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].pesf + +evaluation[pointer].pesfe}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Flexão planar</span></th>
+                                <th><span>Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozeloab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeloab}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pese}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].pese}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="tornozeloab" #tornozeloab="ngModel" [(ngModel)]="newEvaluation.tornozeloab"
-                                        type="number" step="1">
+                                    <input name="pese" #pese="ngModel" [(ngModel)]="newEvaluation.pese" type="number"
+                                        step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozeload}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeload}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesee}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="tornozeload" #tornozeload="ngModel" [(ngModel)]="newEvaluation.tornozeload"
-                                        type="number" step="1">
+                                    <input name="pesee" #pesee="ngModel" [(ngModel)]="newEvaluation.pesee" type="number"
+                                        step="1">
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ttornozeloab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ttornozeloab}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="ttornozeloab" #ttornozeloab="ngModel" [(ngModel)]="newEvaluation.ttornozeloab"
-                                        type="number" step="1">
+                                <td *ngIf="pointer>=1">{{+evaluation[pointer-1].pese + +evaluation[pointer-1].pesee}}
                                 </td>
+                                <td *ngIf="pointer>=0">{{+evaluation[pointer].pese + +evaluation[pointer].pesee}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-
-                            
                         </tbody>
                     </table>
                     <div class="action">
@@ -808,147 +769,130 @@
                         </button>
                     </div>
                 </form>
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title i18n="Title">
-                        Totais
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form #f="ngForm" (submit)="save(f.value)">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
-                                <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
-                                        style="width: 110px;">
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Membros Superiores</span></th>
-                            </tr>
-                            <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalmsupdr}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalmsupdr}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalmsupdr" #totalmsupdr="ngModel" [(ngModel)]="newEvaluation.totalmsupdr"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalmsupesq}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalmsupesq}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalmsupesq" #totalmsupesq="ngModel" [(ngModel)]="newEvaluation.totalmsupesq"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalmsup}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalmsup}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalmsup" #totalmsup="ngModel" [(ngModel)]="newEvaluation.totalmsup"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
+                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br/><br/>
+                    <img src="./assets/img/flex-pes-lg.gif" alt="classificação">
+                </div>
+            </mat-tab>
 
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Membros Inferiores</span></th>
-                            </tr>
-                            <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalminfd}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalminfd}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalminfd" #totalminfd="ngModel" [(ngModel)]="newEvaluation.totalminfd"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalminfe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalminfe}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalminfe" #totalminfe="ngModel" [(ngModel)]="newEvaluation.totalminfe"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalminf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].totalminf}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="totalminf" #totalminf="ngModel" [(ngModel)]="newEvaluation.totalminf"
-                                        type="number" step="1">
-                                </td>
-                            </tr>
+            <mat-tab i18n label="Totais">
+                <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            </th>
+                            <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="sub-line">
+                            <th><span>Membros Superiores</span></th>
+                        </tr>
+                        <tr>
+                            <th>Direito</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membsuperior}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].membsuperior}}</td>
+                        </tr>
+                        <tr>
+                            <th>Esquerdo</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membsuperiore}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].membsuperiore}}</td>
+                            <td *ngIf="addEval">
+                                <input name="membsuperiore" #membsuperiore="ngModel"
+                                    [(ngModel)]="newEvaluation.membsuperiore" type="number" step="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td *ngIf="pointer>=1">
+                                {{+evaluation[pointer-1].membsuperior + +evaluation[pointer-1].membsuperiore}}</td>
+                            <td *ngIf="pointer>=0">
+                                {{+evaluation[pointer].membsuperior + +evaluation[pointer].membsuperiore}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
 
-                            <tr class="sub-line">
-                                <th [attr.colspan]="pointer+2"><span>Total Geral</span></th>
-                            </tr>
-                            <tr>
-                                <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
-                                        type="number" step="0.1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhofe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhofe}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="punhofe" #punhofe="ngModel" [(ngModel)]="newEvaluation.punhofe"
-                                        type="number" step="0.1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
-                                <td *ngIf="addEval">
-                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
-                                        type="number" step="0.1">
-                                </td>
-                            </tr>
-
-                            
-                        </tbody>
-                    </table>
-                    <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
-                            <mat-icon class="mat-14">chevron_left</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
-                            <mat-icon class="mat-18">add</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
-                            <mat-icon class="mat-14">chevron_right</mat-icon>
-                        </button>
-                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
-                            <mat-icon class="mat-18">close</mat-icon>
-                        </button>
-                        <button *ngIf="addEval" mat-fab>
-                            <mat-icon class="mat-18">check</mat-icon>
-                        </button>
-                    </div>
-                </form>
-            </mat-expansion-panel>
-
-        </mat-accordion>
-
+                        <tr class="sub-line">
+                            <th><span>Membros Inferiores</span></th>
+                        </tr>
+                        <tr>
+                            <th>Direito</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiores}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiores}}</td>
+                            <td *ngIf="addEval">
+                                <input name="membinferiores" #membinferiores="ngModel"
+                                    [(ngModel)]="newEvaluation.membinferiores" type="number" step="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Esquerdo</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiorese}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiorese}}</td>
+                            <td *ngIf="addEval">
+                                <input name="membinferiorese" #membinferiorese="ngModel"
+                                    [(ngModel)]="newEvaluation.membinferiorese" type="number" step="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td *ngIf="pointer>=1">
+                                {{+evaluation[pointer-1].membinferiores + +evaluation[pointer-1].membinferiorese}}</td>
+                            <td *ngIf="pointer>=0">
+                                {{+evaluation[pointer].membinferiores + +evaluation[pointer].membinferiorese}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr class="sub-line">
+                            <th><span>Total Geral</span></th>
+                        </tr>
+                        <tr>
+                            <th>Direito</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgeral}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].totalgeral}}</td>
+                            <td *ngIf="addEval">
+                                <input name="totalgeral" #totalgeral="ngModel" [(ngModel)]="newEvaluation.totalgeral"
+                                    type="number" step="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Esquerdo</th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgerale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].totalgerale}}</td>
+                            <td *ngIf="addEval">
+                                <input name="totalgerale" #totalgerale="ngModel" [(ngModel)]="newEvaluation.totalgerale"
+                                    type="number" step="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td *ngIf="pointer>=1">
+                                {{+evaluation[pointer-1].totalgeral + +evaluation[pointer-1].totalgerale}}</td>
+                            <td *ngIf="pointer>=0">
+                                {{+evaluation[pointer].totalgeral + +evaluation[pointer].totalgerale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="action">
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                        <mat-icon class="mat-18">add</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                        mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                        <mat-icon class="mat-18">close</mat-icon>
+                    </button>
+                    <button *ngIf="addEval" mat-fab>
+                        <mat-icon class="mat-18">check</mat-icon>
+                    </button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
     <div class="footer">
         <button mat-mini-fab color="primary" (click)="goBack()">

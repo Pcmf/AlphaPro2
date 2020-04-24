@@ -81,6 +81,7 @@ import { PrepareChartService } from './services/prepare-chart.service';
 import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
 import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
+import { FlexClassComponent } from './commun/flex-class/flex-class.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -152,7 +153,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ChartDobrasComponent,
     ChartPieComponent,
     MayhewEtAlComponent,
-    WeltmanSeipTranComponent
+    WeltmanSeipTranComponent,
+    FlexClassComponent
   ],
   imports: [
     BrowserModule,

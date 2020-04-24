@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
+
 
 @Component({
   selector: 'app-flexiteste',
@@ -9,27 +11,25 @@ import { Location, DatePipe } from '@angular/common';
   styleUrls: ['./flexiteste.component.scss']
 })
 export class FlexitesteComponent implements OnInit {
-  panelOpenState = false;
   evaluation: any = [];
   addEval = false;
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   selectedStudent: any = [];
-  sex: string;
+  selectedTab = 0;
 
   constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
-              private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
+              private dialog: MatDialog,
+              private datapipe: DatePipe
+              ) {
+
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
-    this.sex = this.selectedStudent.sexo;
     this.getData();
   }
 
   getData() {
-    this.dataService.getData('clients/flex/' + this.id).subscribe(
+    this.dataService.getData('clients/flex/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -48,7 +48,7 @@ export class FlexitesteComponent implements OnInit {
 
   save(form) {
     console.table(form);
-    this.dataService.setData('clients/flex/' + this.id, form).subscribe(
+    this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
@@ -69,6 +69,57 @@ export class FlexitesteComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  swipeLeft(event) {
+    if (this.selectedTab < 7) {
+      this.selectedTab++;
+    }
+  }
+  swipeRight(event) {
+    if (this.selectedTab > 0) {
+      this.selectedTab--;
+    }
+  }
+
+    // Help Dialog
+    openDialog(type): void {
+      const dialogRef = this.dialog.open(DialogHelpDB, {
+        width: '250px',
+        data: { type }
+      });
+    }
+
+}
+
+
+/* HELP DIALOG  */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-help-db',
+  templateUrl: '../../../commun/dialog-help-db.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogHelpDBf {
+  help: any = [];
+  constructor(
+    public dialogRef: MatDialogRef<DialogHelpDBf>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dataService: DataService
+  ) {
+    this.dataService.getData('help/' + data.type).subscribe(
+      resp => {
+        if (resp[0]) {
+          this.help = resp[0];
+        } else {
+          this.help.info = 'Não existe informação!.';
+        }
+      }
+    );
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

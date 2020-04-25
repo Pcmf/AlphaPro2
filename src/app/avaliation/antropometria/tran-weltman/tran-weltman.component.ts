@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 @Component({
   selector: 'app-tran-weltman',
@@ -34,7 +36,8 @@ export class TranWeltmanComponent implements OnInit {
               private ageService: AgeService,
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
-              private prepareChart: PrepareChartService
+              private prepareChart: PrepareChartService,
+              private dialog: MatDialog
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
@@ -49,8 +52,12 @@ export class TranWeltmanComponent implements OnInit {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
+          // update age for every evaluation with evaluation date and birthdate
+          this.evaluation.map((elem) => {
+            elem.idade = this.ageService.getAgeFromDate1(elem.data, this.student.dt_nasc);
+          });
           this.pointer = this.maxPointer - 1;
-          this.moreData();
+          /* this.moreData(); */
           this.setEvaluation(this.evaluation[this.pointer]);
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
@@ -80,10 +87,9 @@ export class TranWeltmanComponent implements OnInit {
   // Iniciar os graficos
   startGraphics(evaluation) {
     // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e 
-    this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
+/*     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       (respa: any[]) => {
-        if (respa.length) {
-
+        if (respa.length) { */
                 const proto = this.protocolos.protocoloTranWeltman(evaluation, this.gorduraDesejada);
                 // Create graphic
                 this.showChart = true;
@@ -93,14 +99,15 @@ export class TranWeltmanComponent implements OnInit {
                 this.single2 = this.prepareChart.getSingle2(proto);
                 Object.assign(this, this.single2);
 
-        } else {
+/*         } else {
           this.openSnackBar('Atenção: Não existem avaliações complementares para esta data!', '');
           this.showChart = false;
         }
       }
-    );
+    ); */
   }
-  moreData() {
+
+/*   moreData() {
     const evaluationFinal = this.evaluation.forEach(elem => {
       this.dataService.getData('clients/eval/' + this.student.id + '/' + elem.data).subscribe(
         (respa: any[]) => {
@@ -120,7 +127,7 @@ export class TranWeltmanComponent implements OnInit {
       );
     });
     return evaluationFinal;
-  }
+  } */
 
 
   ngOnInit(): void {
@@ -142,8 +149,23 @@ export class TranWeltmanComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addEval = true;
+    this.dataService.getLastEvaluation(this.student.id).subscribe(
+      resp => {
+        if (resp) {
+          if (resp[0].difdias > 2) {
+            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+          }
+          this.newEvaluation.altura = resp[0].altura;
+          this.newEvaluation.peso = resp[0].peso;
+          this.newEvaluation.idade = this.age;
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+          console.log(this.newEvaluation);
+          this.addEval = true;
+        } else {
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+        }
+      }
+    );
   }
 
   closeInput() {
@@ -157,4 +179,45 @@ export class TranWeltmanComponent implements OnInit {
     });
   }
 
+    // Help Dialog
+    openHelpDialog(type): void {
+      this.dialog.open(DialogHelpDB, {
+        width: '250px',
+        data: { type }
+      });
+    }
+
 }
+
+
+/* HELP DIALOG  */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-help-db',
+  templateUrl: '../../../commun/dialog-help-db.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogHelpDBc {
+  help: any = [];
+  constructor(
+    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dataService: DataService
+  ) {
+    this.dataService.getData('help/' + data.type).subscribe(
+      resp => {
+        if (resp[0]) {
+          this.help = resp[0];
+        } else {
+          this.help.info = 'Não existe informação!.';
+        }
+      }
+    );
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+

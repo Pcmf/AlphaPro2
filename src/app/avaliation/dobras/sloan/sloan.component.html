@@ -4,6 +4,8 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden"  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
+            <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
             <table>
                 <thead>
                     <tr>
@@ -26,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr *ngIf="sexo=='M'">
-                        <th i18n>Subescapular</th>
+                        <th i18n><span (click)="openHelpDialog('Subescapular')">Subescapular</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
                         <td *ngIf="addEval">
@@ -35,7 +37,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="sexo=='F'">
-                        <th i18n>Tricipital</th>
+                        <th i18n><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tricipital}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tricipital}}</td>
                         <td *ngIf="addEval">
@@ -44,7 +46,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="sexo=='M'">
-                        <th i18n>Coxa</th>
+                        <th i18n><span (click)="openHelpDialog('Coxa')">Coxa</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
                         <td *ngIf="addEval">
@@ -53,7 +55,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="sexo=='F'">
-                        <th i18n>Suprailiaca</th>
+                        <th i18n><span (click)="openHelpDialog('Suprailiaca')">Suprailiaca</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].Suprailiaca}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].Suprailiaca}}</td>
                         <td *ngIf="addEval">

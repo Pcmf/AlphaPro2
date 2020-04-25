@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="header">
+        <h2 i18n>IC - Índice de Conicidade</h2>
+    </div>
+
+    <div class="section">
+                <form #f="ngForm" (submit)="save(f.value)" >
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="addEval">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        style="width: 110px;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th i18n>Altura <small>(m)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number"
+                                        step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Peso <small>(Kg)</small></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].peso}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number"
+                                        step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n><span (click)="openDialog('Cintura')">Cintura <small>(cm)</small></span></th>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].cintura}}</td>
+                                <td *ngIf="addEval">
+                                    <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number"
+                                        step="0.1" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th i18n>Classificação</th>
+                                <td *ngIf="pointer>=1"> TO DO</td>
+                                <td *ngIf="pointer>=0"> TO DO</td>
+                            </tr>
+                         
+                        </tbody>
+                    </table>
+
+                    <div class="action">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                            <mat-icon class="mat-18">add</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+                        <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                            <mat-icon class="mat-18">close</mat-icon>
+                        </button>
+                        <button *ngIf="addEval" mat-fab>
+                            <mat-icon class="mat-18">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>
+
+
+

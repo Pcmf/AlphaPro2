@@ -56,6 +56,7 @@ import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
+import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 
 
 const routes: Routes = [
@@ -110,6 +111,7 @@ const routes: Routes = [
   {path: 'cpost', component: ComponentePosturalComponent},
   {path: 'cc', component: CCComponent},
   {path: 'imc', component: IMComponent},
+  {path: 'ic', component: IndiceConicidadeComponent},
   {path: 'ircq', component: IRCQComponent},
   {path: 'st', component: StComponent},
   {path: 'rddc', component: RDDCComponent},

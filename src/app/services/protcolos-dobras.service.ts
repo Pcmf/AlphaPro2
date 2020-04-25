@@ -269,6 +269,7 @@ export class ProtcolosDobrasService {
       pesoResidual: this.calcPesoResidual().toFixed(2),
       pesoMuscular: this.calcPesoMuscular().toFixed(2)
     };
+    console.table(resp);
     return resp;
   }
 
@@ -292,9 +293,9 @@ export class ProtcolosDobrasService {
 
   calcPesoOsseo() {
     // Difere de masculino para feminino ? 
-    // MASCULINO   pesoOsseo = 0.302 * (altura.m ^2 * (punho/100) * (joelho/100) * 400)^0.72
-    return Math.pow(3.02 * Math.pow(+this.morfo.altura, 2)
-      * +this.morfo.punho / 100 * +this.morfo.joelho / 100 * 400, 0.72);
+    // MASCULINO   pesoOsseo = 0.302 * (altura.m ^2 * (punho/10) * (joelho/10) * 400)^0.72
+    return 3.02 * Math.pow(Math.pow(+this.morfo.altura, 2)
+      * (+this.morfo.punho / 100) * (+this.morfo.joelho / 100) * 400, 0.72);
   }
 
   calcPesoResidual() {

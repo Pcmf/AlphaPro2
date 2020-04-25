@@ -35,38 +35,11 @@ export class IMComponent implements OnInit {
     );
   }
 
-
-
   ngOnInit(): void {
   }
-
-/*   save(form) {
-    console.table(form);
-    this.dataService.setData('clients/eval/' + this.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
-  } */
 
   goBack() {
     this.location.back();
   }
-
-/*   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
-    this.newEvaluation.avaliador = this.dataService.getUserName();
-    if (this.evaluation[this.pointer].altura) {
-      this.newEvaluation.altura = this.evaluation[this.pointer].altura;
-    }
-    this.addEval = true;
-  } */
-/* 
-  closeInput() {
-    this.newEvaluation = [];
-    this.addEval = false;
-  } */
 
 }

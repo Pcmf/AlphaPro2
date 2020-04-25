@@ -82,14 +82,22 @@ import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
 import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { FlexClassComponent } from './commun/flex-class/flex-class.component';
+import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
-  overrides = {
+/*   overrides = {
     swipe: { direction: Hammer.DIRECTION_ALL },
     pinch: { enable: false },
     rotate: { enable: false }
-  } as any;
+  } as any; */
+  buildHammer(element: HTMLElement) {
+    const mc = new Hammer(element, {
+      touchAction: 'pan-y'
+    });
+
+    return mc;
+  }
 }
 
 @NgModule({
@@ -154,7 +162,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ChartPieComponent,
     MayhewEtAlComponent,
     WeltmanSeipTranComponent,
-    FlexClassComponent
+    FlexClassComponent,
+    IndiceConicidadeComponent
   ],
   imports: [
     BrowserModule,

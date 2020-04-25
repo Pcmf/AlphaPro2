@@ -4,6 +4,8 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden"  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
+            <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
             <table>
                 <thead>
                     <tr>
@@ -26,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Abdominal</th>
+                        <th i18n><span (click)="openHelpDialog('Abdominal')">Abdominal</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
                         <td *ngIf="addEval">
@@ -35,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Coxa</th>
+                        <th i18n><span (click)="openHelpDialog('Coxa')">Coxa</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
                         <td *ngIf="addEval">

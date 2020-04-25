@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 @Component({
   selector: 'app-jp3',
@@ -28,12 +30,14 @@ export class JP3Component implements OnInit {
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
 
-  constructor(private location: Location, private dataService: DataService,
+  constructor(private location: Location,
+              private dataService: DataService,
               private datapipe: DatePipe,
               private ageService: AgeService,
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
+              private dialog: MatDialog
   ) {
 
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -45,6 +49,7 @@ export class JP3Component implements OnInit {
     if (this.student.sexo === 'F' && (this.age < 18 || this.age > 55)) {
       this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
     }
+    //
 
     this.getData();
   }
@@ -86,41 +91,35 @@ export class JP3Component implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-    // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e
-    this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
-      (respa: any[]) => {
-        if (respa.length) {
-          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
-            (respm: any[]) => {
-              if (respm.length) {
-                const morfo = respm.pop();
-                evaluation.altura = respa[0].altura;
-                evaluation.peso = respa[0].peso;
-                evaluation.punho = morfo.punho;
-                evaluation.joelho = morfo.joelho;
-                evaluation.idade = this.age;
-                evaluation.sexo = this.student.sexo;
-                const proto = this.protocolos.protocoloJacksonPollok3d(evaluation, this.gorduraDesejada);
-                // Create graphic
-                this.showChart = true;
-                this.single = this.prepareChart.getSingle1(proto);
-                Object.assign(this, this.single);
-                // Create graphic 2
-                this.single2 = this.prepareChart.getSingle2(proto);
-                Object.assign(this, this.single2);
-              } else {
-                this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
-                this.showChart = false;
-              }
-            }
-          );
+    // Obter os dados da avaliação Corporal para obter o punho e joelho
+    this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
+      (respm: any[]) => {
+        if (respm.length) {
+          const corporal = respm.pop();
+          evaluation.punho = corporal.punho;
+          evaluation.joelho = corporal.joelho;
+          if (corporal.punho == 0 || corporal.joelho == 0) {
+            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+            this.showChart = false;
+          } else {
+            evaluation.idade = this.age;
+            evaluation.sexo = this.student.sexo;
+            const proto = this.protocolos.protocoloJacksonPollok3d(evaluation, this.gorduraDesejada);
+            // Create graphic
+            this.showChart = true;
+            this.single = this.prepareChart.getSingle1(proto);
+            Object.assign(this, this.single);
+            // Create graphic 2
+            this.single2 = this.prepareChart.getSingle2(proto);
+            Object.assign(this, this.single2);
+          }
+
         } else {
-          this.openSnackBar('Atenção: Não existem avaliações complementares para esta data!', '');
+          this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
           this.showChart = false;
         }
       }
     );
-
   }
 
   ngOnInit(): void {
@@ -143,8 +142,22 @@ export class JP3Component implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addEval = true;
+    this.dataService.getLastEvaluation(this.student.id).subscribe(
+      resp => {
+        if (resp) {
+          if (resp[0].difdias > 2) {
+            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+          }
+          this.newEvaluation.altura = resp[0].altura;
+          this.newEvaluation.peso = resp[0].peso;
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+          console.log(this.newEvaluation);
+          this.addEval = true;
+        } else {
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+        }
+      }
+    );
   }
 
   closeInput() {
@@ -157,4 +170,45 @@ export class JP3Component implements OnInit {
       duration: 3000, verticalPosition: 'top'
     });
   }
+
+    // Help Dialog
+    openHelpDialog(type): void {
+      this.dialog.open(DialogHelpDB, {
+        width: '250px',
+        data: { type }
+      });
+    }
+
+}
+
+
+/* HELP DIALOG  */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-help-db',
+  templateUrl: '../../../commun/dialog-help-db.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogHelpDBc {
+  help: any = [];
+  constructor(
+    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dataService: DataService
+  ) {
+    this.dataService.getData('help/' + data.type).subscribe(
+      resp => {
+        if (resp[0]) {
+          this.help = resp[0];
+        } else {
+          this.help.info = 'Não existe informação!.';
+        }
+      }
+    );
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

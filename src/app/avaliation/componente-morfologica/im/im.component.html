@@ -30,26 +30,26 @@
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].imc}}</td>
                             </tr>
                             <tr>
-                                <th i18n>Classificação</th>
+                                <th i18n>Classificação<br/>Sobrepeso</th>
                                 <td *ngIf="pointer>=1">
-                                    <span *ngIf="evaluation[pointer-1].imc < 18.5"><img src="./assets/img/peso_blue.gif" width="30px" alt="peso"></span>
-                                    <span *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25"><img src="./assets/img/peso_green.gif" width="30px" alt="peso"></span>
-                                    <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30"><img src="./assets/img/peso_orange.gif" width="30px" alt="peso"></span>
-                                    <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35"><img src="./assets/img/peso_orange2.gif" width="30px" alt="peso"></span>
-                                    <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40"><img src="./assets/img/peso_red.gif" width="30px" alt="peso"></span>
-                                    <span *ngIf="evaluation[pointer-1].imc >= 40"><img src="./assets/img/peso_black.gif" width="30px" alt="peso"></span>
+                                    <span *ngIf="evaluation[pointer-1].imc < 18.5">Abaixo do Normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25">Normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Acima do Normal</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade I</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade II</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 40">Obesidade Extrema</span>
                                 </td>
                                 <td *ngIf="pointer>=0">
-                                        <span *ngIf="evaluation[pointer].imc < 18.5"><img src="./assets/img/peso_blue.gif" width="30px" alt="peso"></span>
-                                        <span *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25"><img src="./assets/img/peso_green.gif" width="30px" alt="peso"></span>
-                                        <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30"><img src="./assets/img/peso_orange.gif" width="30px" alt="peso"></span>
-                                        <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35"><img src="./assets/img/peso_orange2.gif" width="30px" alt="peso"></span>
-                                        <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40"><img src="./assets/img/peso_red.gif" width="30px" alt="peso"></span>
-                                        <span *ngIf="evaluation[pointer].imc >= 40"><img src="./assets/img/peso_black.gif" width="30px" alt="peso"></span>
+                                        <span *ngIf="evaluation[pointer].imc < 18.5">Abaixo do Normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25">Normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Acima do Normal</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade I</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade II</span>
+                                        <span *ngIf="evaluation[pointer].imc >= 40">Obesidade Extrema</span>
                                 </td>
                             </tr>
                             <tr>
-                                <th i18n>Risco</th>
+                                <th i18n>Risco de Saúde</th>
                                 <td *ngIf="pointer>=1">
                                     <div *ngIf="student.sexo=='M'">
                                         <span *ngIf="evaluation[pointer-1].imc < 19">Baixo</span>

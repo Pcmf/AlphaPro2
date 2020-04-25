@@ -35,6 +35,10 @@ export class DataService {
     );
   }
 
+  getLastEvaluation(id: number) {
+    return this.http.get(this.ADDRESS + 'clients/last/eval/' + id);
+  }
+
 
   checkUser(credenciais: any, type) {
     return this.http.post(this.ADDRESS + type,

@@ -1,0 +1,42 @@
+@media only screen and (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+  }
+}
+
+table {
+  width: 100%;
+}
+th,
+td {
+  height: 28px;
+  border-bottom: 1px #999 solid;
+  text-align: center;
+}
+th {
+  font-weight: 500 !important;
+  text-align: left;
+  padding-left: 5px;
+}
+.th-top {
+  text-align: center;
+}
+td > input {
+  width: 60px;
+}
+
+th > span{
+  cursor: pointer;
+}
+th > span:hover{
+  font-weight: 600;
+}
+
+.action {
+  width: 260px;
+  margin: auto;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+}

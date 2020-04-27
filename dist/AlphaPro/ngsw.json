@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1587726232097,
+  "timestamp": 1587822332504,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.ea9ed2a1b88e97ec75bf.js",
-        "/main-es5.ea9ed2a1b88e97ec75bf.js",
+        "/main-es2015.eb8d1c80343ef337643a.js",
+        "/main-es5.eb8d1c80343ef337643a.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.84a9d3b6a8d094850e33.js",
         "/polyfills-es5.3968023a4d8f57f98d1d.js",
@@ -112,9 +112,9 @@
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
     "/dobras1.5566608538deda103951.jpg": "ff841c930982e0159c9f103d7352592fd4d60363",
     "/favicon.ico": "72705bff9dcbd5767f72620f49d289393221ea15",
-    "/index.html": "5999646ba7cb028888cca1ca874653f691a20bb5",
-    "/main-es2015.ea9ed2a1b88e97ec75bf.js": "5800ee6251ef3fbc64d36624843ced51b7676f50",
-    "/main-es5.ea9ed2a1b88e97ec75bf.js": "59d13a16686e3ace0502e76ae47f045c6b79ead6",
+    "/index.html": "ec692487c82b8e70c72e3ffba84050233fffb04b",
+    "/main-es2015.eb8d1c80343ef337643a.js": "edc8be28a6c466dca15d80b0d49f05d422dcdee7",
+    "/main-es5.eb8d1c80343ef337643a.js": "66083b4c4c0b7ed9d183b896a499d3ccaa5ccd8a",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.0c487634ef3b141fe9c9.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.84a9d3b6a8d094850e33.js": "18cdd59332ca4958b599b881779911133e5bc7a8",

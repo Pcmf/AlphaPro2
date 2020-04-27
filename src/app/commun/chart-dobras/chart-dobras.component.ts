@@ -8,8 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ChartDobrasComponent implements OnInit {
 
     // graphics
-    single: any[];
-    single2: any[];
     view: any[] = [300, 300];
 
     // options
@@ -24,21 +22,14 @@ export class ChartDobrasComponent implements OnInit {
     };
     @Input() chart1: any[];
     @Input() chart2: any[];
-    @Input() doneApp: boolean;
-
 
   ngOnInit(): void {
-    console.log(this.doneApp);
     setTimeout(() => {
-      console.log(this.chart1);
-      const single = this.chart1;
-      const single2 = this.chart2;
-      Object.assign(this, { single });
-      Object.assign(this, { single2 });
+      Object.assign(this,  this.chart1 );
+      Object.assign(this,  this.chart2 );
     }, 700);
 
   }
-
 
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

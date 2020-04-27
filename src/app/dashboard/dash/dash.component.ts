@@ -10,7 +10,7 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class DashComponent implements OnInit {
   students: any =  [];
-  student = {};
+  student: any = [];
   selectedS = false;
   constructor(private dataService: DataService, private menuService: MenuService) {
 
@@ -30,6 +30,7 @@ export class DashComponent implements OnInit {
       this.student = JSON.parse(sessionStorage.getItem('selectedStudent'));
       this.selected(JSON.parse(sessionStorage.getItem('selectedStudent')));
      }
+    console.log(this.student.nome);
   }
 
   selected(student) {

@@ -133,25 +133,39 @@
         </form>
         <br />
         <hr />
-        <h4 style="text-align: center; color: blue;">
-            {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
-        </h4>
+
         <div *ngIf="showChart">
         <div style="text-align: center; color: blue;">
-            <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
-            <mat-slider min="10" max="30" step="1" thumbLabel="true"  [(ngModel)]="gorduraDesejada" [disabled]="!fatChanged"
+            <div>
+                <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
+                <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}</mat-button-toggle>
+                <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
+            </mat-button-toggle-group>
+            </div>
+            <div  *ngIf="chartSelected=='pie'">
+                <mat-label i18n >% Gordura Desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
+                <mat-slider min="10" max="30" step="1" thumbLabel="true"  [(ngModel)]="gorduraDesejada" [disabled]="!fatChanged"
                 (change)="getNewEvaluation()">
-            </mat-slider>
-            <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
-                <mat-icon>save</mat-icon>
-            </button>
+                </mat-slider>
+                <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
         </div>
         <!-- charts -->
-            <app-chart-pie [values]="single"></app-chart-pie>
-            <app-chart-pie [values]="single2"></app-chart-pie>
+        
+            <div class="chart-pie" *ngIf="chartSelected=='pie'">
+                <app-chart-pie [values]="single"></app-chart-pie>
+                <app-chart-pie [values]="single2"></app-chart-pie>
+            </div>
+            <div *ngIf="chartSelected=='compare'">
+                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada"></app-chart-compare> 
+            </div>
+
+
         </div>
 
     </div>

@@ -22,8 +22,10 @@ export class JP3Component implements OnInit {
   maxPointer = -1;
   newEvaluation: any = [];
   age: number;
+  protocolo = 3;
 
   // graphics
+  chartSelected = 'pie';
   single: any[];
   single2: any[];
   showChart = false;

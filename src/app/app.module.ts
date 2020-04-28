@@ -83,6 +83,7 @@ import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/may
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { FlexClassComponent } from './commun/flex-class/flex-class.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
+import { ChartCompareComponent } from './commun/chart-compare/chart-compare.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -163,7 +164,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     MayhewEtAlComponent,
     WeltmanSeipTranComponent,
     FlexClassComponent,
-    IndiceConicidadeComponent
+    IndiceConicidadeComponent,
+    ChartCompareComponent
   ],
   imports: [
     BrowserModule,

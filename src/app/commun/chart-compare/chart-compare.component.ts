@@ -3,13 +3,6 @@ import { DataService } from 'src/app/services/data.service';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { AgeService } from 'src/app/services/age.service';
 
-/* export class DadosGorduras {
-  gorduraAtual: number;
-  gorduraExcesso: number;
-  gorduraLivre: number;
-  gorduraDesejada: number;
-} */
-
 @Component({
   selector: 'app-chart-compare',
   templateUrl: './chart-compare.component.html',
@@ -31,7 +24,7 @@ export class ChartCompareComponent implements OnInit {
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = true;
+  gradient = false;
   showLegend = true;
   showXAxisLabel = true;
   xAxisLabel = 'Avaliações';
@@ -44,7 +37,7 @@ export class ChartCompareComponent implements OnInit {
   groupPadding = 5;
 
   colorScheme = {
-    domain: ['#5AA454', '#ff0000', '#C7B42C', '#AAAAAA']
+    domain: ['#87CEEB', '#00BFFF', '#1E90FF', '#0000FF', '#0000CD', '#191970']
   };
 
   result: any = [];

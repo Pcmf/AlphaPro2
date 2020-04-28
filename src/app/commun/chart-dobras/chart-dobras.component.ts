@@ -16,7 +16,7 @@ export class ChartDobrasComponent implements OnInit {
     showLegend = true;
     showLabels = false;
     isDoughnut = false;
-    legendPosition = 'top';
+    legendPosition = 'bellow';
 
     colorScheme = {
       domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#1010FF', '#BF00FF', '#00FFFF']

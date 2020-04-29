@@ -5,7 +5,6 @@ import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -38,7 +37,7 @@ export class GuedesComponent implements OnInit {
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
-              private dialog: MatDialog
+              public dialog: MatDialog
               ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.sexo = this.student.sexo;
@@ -188,10 +187,10 @@ openSnackBar(message: string, action: string) {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBc {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

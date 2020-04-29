@@ -24,7 +24,7 @@ export class AnameneseComponent implements OnInit {
 
   constructor(private location: Location,
               private dataService: DataService,
-              private dialog: MatDialog
+              public dialog: MatDialog
               ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(

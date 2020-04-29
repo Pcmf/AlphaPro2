@@ -1,18 +1,18 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { AgeService } from 'src/app/services/age.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
-  selector: 'app-dw4',
-  templateUrl: './dw4.component.html',
-  styleUrls: ['./dw4.component.scss']
+  selector: 'app-all-dobras',
+  templateUrl: './all-dobras.component.html',
+  styleUrls: ['./all-dobras.component.scss']
 })
-export class DW4Component implements OnInit {
+export class AllDobrasComponent implements OnInit {
   evaluation: any = [];
   selectedEvaluation: any = [];
   addEval = false;
@@ -20,7 +20,9 @@ export class DW4Component implements OnInit {
   maxPointer = -1;
   newEvaluation: any = [];
   student: any = [];
+  sex: string;
   age: number;
+
   // graphics
   single: any[];
   single2: any[];
@@ -32,21 +34,17 @@ export class DW4Component implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private ageService: AgeService,
-              private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
+              private snackBar: MatSnackBar,
               private prepareChart: PrepareChartService,
-              public dialog: MatDialog
-               ) {
+              public dialog: MatDialog,
+              private ageService: AgeService
+  ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
+    this.sex = this.student.sexo;
     this.age = this.ageService.getAge(this.student.dt_nasc);
-    if (this.student.sexo == 'M' && (this.age < 17 || this.age > 72)) {
-          this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
-        }
-    if (this.student.sexo == 'F' && (this.age < 16 || this.age > 68)) {
-          this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
-        }
+    // start
     this.getData();
   }
 
@@ -63,16 +61,16 @@ export class DW4Component implements OnInit {
     );
     this.fatChanged = false;
   }
+
   getData() {
-    // Protocolo DW4 - 5
-    this.dataService.getData('clients/morfo/5/' + this.student.id).subscribe(
+    /* Protocolo Jackson Pollok 7d - 4 */
+    this.dataService.getData('clients/morfo/4/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
-
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -80,50 +78,50 @@ export class DW4Component implements OnInit {
       }
     );
   }
-
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
     this.startGraphics(evaluation);
   }
 
-    // Iniciar os graficos
-    startGraphics(evaluation) {
-      // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e 
-      this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
-        (respm: any[]) => {
-          if (respm.length) {
-            const corporal = respm.pop();
-            evaluation.punho = corporal.punho;
-            evaluation.joelho = corporal.joelho;
-            if (corporal.punho == 0 || corporal.joelho == 0) {
-              this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
-              this.showChart = false;
-            } else {
-              evaluation.sexo = this.student.sexo;
-              const proto = this.protocolos.protocoloDurninWormersley4d(evaluation, this.gorduraDesejada);
-              // Create graphic
-              this.showChart = true;
-              this.single = this.prepareChart.getSingle1(proto);
-              Object.assign(this, this.single);
-              // Create graphic 2
-              this.single2 = this.prepareChart.getSingle2(proto);
-              Object.assign(this, this.single2);
-            }
-          } else {
-            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação!', '');
+  // Iniciar os graficos
+  startGraphics(evaluation) {
+    // Obter os dados da avaliação Corporal para obter o punho e joelho
+    this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
+      (respm: any[]) => {
+        if (respm.length) {
+          const corporal = respm.pop();
+          evaluation.punho = corporal.punho;
+          evaluation.joelho = corporal.joelho;
+          if (corporal.punho == 0 || corporal.joelho == 0) {
+            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
             this.showChart = false;
+          } else {
+            evaluation.idade = this.age;
+            evaluation.sexo = this.student.sexo;
+            const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+            // Create graphic
+            this.showChart = true;
+            this.single = this.prepareChart.getSingle1(proto);
+            Object.assign(this, this.single);
+            // Create graphic 2
+            this.single2 = this.prepareChart.getSingle2(proto);
+            Object.assign(this, this.single2);
           }
-        }
-      );
-    }
 
+        } else {
+          this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+          this.showChart = false;
+        }
+      }
+    );
+  }
 
   ngOnInit(): void {
   }
 
   save(form) {
-    form.protocolo = 5;
+    form.protocolo = 4;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
@@ -167,13 +165,13 @@ export class DW4Component implements OnInit {
     });
   }
 
-  // Help Dialog
-  openHelpDialog(type): void {
-    this.dialog.open(DialogHelpDB, {
-      width: '250px',
-      data: { type }
-    });
-  }
+    // Help Dialog
+    openHelpDialog(type): void {
+      this.dialog.open(DialogHelpDB, {
+        width: '250px',
+        data: { type }
+      });
+    }
 
 }
 
@@ -208,4 +206,3 @@ export class DialogHelpDB {
   }
 
 }
-

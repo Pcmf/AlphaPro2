@@ -57,6 +57,7 @@ import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.compon
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
+import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,7 @@ const routes: Routes = [
   {path: 'wb2', component: WB2Component},
   {path: 'wb3', component: WB3Component},
   {path: 'will', component: WillComponent},
+  {path: 'all', component: AllDobrasComponent},
 
   {path: 'balanca', component: BalancaComponent},
   {path: 'scaner', component: ScanerComponent},

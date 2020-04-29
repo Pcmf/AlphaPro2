@@ -22,7 +22,7 @@ import { MenuComponent } from './commun/menu/menu.component';
 import { LoginComponent } from './login/login/login.component';
 import { DashComponent } from './dashboard/dash/dash.component';
 import { NewComponent } from './register/new/new.component';
-import { AnameneseComponent } from './avaliation/anamenese/anamenese.component';
+import { AnameneseComponent, DialogHelp } from './avaliation/anamenese/anamenese.component';
 import { AvDashComponent } from './avaliation/av-dash/av-dash.component';
 import { PreDashComponent } from './prescription/pre-dash/pre-dash.component';
 import { RepDashComponent } from './reports/rep-dash/rep-dash.component';
@@ -30,12 +30,12 @@ import { DateFormat } from './date-format';
 import { QPAFComponent } from './avaliation/risco/qpaf/qpaf.component';
 import { RDCComponent } from './avaliation/risco/rdc/rdc.component';
 import { RDDCComponent } from './avaliation/risco/rddc/rddc.component';
-import { PDCComponent } from './avaliation/componente-morfologica/pdc/pdc.component';
+import { PDCComponent, DialogHelpDB } from './avaliation/componente-morfologica/pdc/pdc.component';
 import { CCComponent } from './avaliation/composicao-corporal/cc.component';
 import { IMComponent } from './avaliation/componente-morfologica/im/im.component';
 import { EvaluationComponent } from './avaliation/evaluation/evaluation.component';
 import { SlaugtherComponent } from './avaliation/dobras/slaugther/slaugther.component';
-import { JP3Component } from './avaliation/dobras/jp3/jp3.component';
+import { JP3Component, DialogMedidasDB } from './avaliation/dobras/jp3/jp3.component';
 import { DW4Component } from './avaliation/dobras/dw4/dw4.component';
 import { SloanComponent } from './avaliation/dobras/sloan/sloan.component';
 import { GuedesComponent } from './avaliation/dobras/guedes/guedes.component';
@@ -84,14 +84,11 @@ import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-sei
 import { FlexClassComponent } from './commun/flex-class/flex-class.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { ChartCompareComponent } from './commun/chart-compare/chart-compare.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
-/*   overrides = {
-    swipe: { direction: Hammer.DIRECTION_ALL },
-    pinch: { enable: false },
-    rotate: { enable: false }
-  } as any; */
   buildHammer(element: HTMLElement) {
     const mc = new Hammer(element, {
       touchAction: 'pan-y'
@@ -165,7 +162,12 @@ export class MyHammerConfig extends HammerGestureConfig {
     WeltmanSeipTranComponent,
     FlexClassComponent,
     IndiceConicidadeComponent,
-    ChartCompareComponent
+    ChartCompareComponent,
+    DialogMedidasDB,
+    DialogHelpDB,
+    DialogPosturalHelp,
+    DialogHelp,
+    AllDobrasComponent
   ],
   imports: [
     BrowserModule,
@@ -182,7 +184,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
-    DialogPosturalHelp
+    DialogPosturalHelp,
+    DialogHelpDB,
+    DialogHelp,
+    DialogMedidasDB
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -191,6 +196,9 @@ export class MyHammerConfig extends HammerGestureConfig {
               {
                 provide: HAMMER_GESTURE_CONFIG,
                 useClass: MyHammerConfig,
+              },
+              {
+                provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}
               },
               AgeService,
               ProtcolosDobrasService,

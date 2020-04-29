@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 
 @Component({
@@ -20,7 +19,7 @@ export class FlexitesteComponent implements OnInit {
   selectedTab = 0;
 
   constructor(private location: Location, private dataService: DataService,
-              private dialog: MatDialog,
+              public dialog: MatDialog,
               private datapipe: DatePipe
               ) {
 
@@ -100,10 +99,10 @@ export class FlexitesteComponent implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBf {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBf>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

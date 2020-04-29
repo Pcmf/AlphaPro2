@@ -1,11 +1,11 @@
 <div class="container">
     <div class="header">
-        <h3 i18n>Jackson & Pollock - 3 dobras (1978)</h3>
+        <h3 i18n>Jackson & Pollock - 3 dobras</h3>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
-            <input type="hidden"  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
-            <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
+            <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
             <table>
                 <thead>
                     <tr>
@@ -21,7 +21,8 @@
                             </button>
                         </th>
                         <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" style="width: 110px;">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                style="width: 110px;">
                         </th>
                     </tr>
                 </thead>
@@ -40,8 +41,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
                         <td *ngIf="addEval">
-                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number"
-                                step="0.1">
+                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                                type="number" step="0.1">
                         </td>
                     </tr>
                     <tr *ngIf="student.sexo == 'M'">
@@ -135,39 +136,38 @@
         <hr />
 
         <div *ngIf="showChart">
-        <div style="text-align: center; color: blue;">
-            <div>
-                <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}</mat-button-toggle>
-                <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
-            </mat-button-toggle-group>
+            <div style="text-align: center; color: blue;">
+                <div>
+                    <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
+                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                        </mat-button-toggle>
+                        <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div *ngIf="chartSelected=='pie'">
+                    <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
+                    <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
+                        [disabled]="!fatChanged" (change)="getNewEvaluation()">
+                    </mat-slider>
+                    <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </div>
             </div>
-            <div  *ngIf="chartSelected=='pie'">
-                <mat-label i18n >% Gordura Desejada <small>[{{gorduraDesejada}}]</small> :  </mat-label>
-                <mat-slider min="10" max="30" step="1" thumbLabel="true"  [(ngModel)]="gorduraDesejada" [disabled]="!fatChanged"
-                (change)="getNewEvaluation()">
-                </mat-slider>
-                <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
-                    <mat-icon>save</mat-icon>
-                </button>
-            </div>
-        </div>
-        <!-- charts -->
-        
+            <!-- charts -->
+
             <div class="chart-pie" *ngIf="chartSelected=='pie'">
                 <app-chart-pie [values]="single"></app-chart-pie>
                 <app-chart-pie [values]="single2"></app-chart-pie>
             </div>
             <div *ngIf="chartSelected=='compare'">
-                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada"></app-chart-compare> 
+                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada">
+                </app-chart-compare>
             </div>
-
-
         </div>
-
     </div>
 
     <div class="footer">

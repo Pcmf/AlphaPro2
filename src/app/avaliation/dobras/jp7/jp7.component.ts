@@ -5,7 +5,6 @@ import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 import { AgeService } from 'src/app/services/age.service';
 
 @Component({
@@ -38,7 +37,7 @@ export class JP7Component implements OnInit {
               private protocolos: ProtcolosDobrasService,
               private snackBar: MatSnackBar,
               private prepareChart: PrepareChartService,
-              private dialog: MatDialog,
+              public dialog: MatDialog,
               private ageService: AgeService
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -184,10 +183,10 @@ export class JP7Component implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBc {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

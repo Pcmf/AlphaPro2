@@ -60,6 +60,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: blue;
   font-weight: 600;
 }
+
+.mat-dialog-actions{
+  display: flex; justify-content: center;
+}
   
 @media only screen and (min-width: 768px) {
   /* For desktop: */

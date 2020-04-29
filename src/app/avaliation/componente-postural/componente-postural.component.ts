@@ -47,7 +47,7 @@ export class ComponentePosturalComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private dialog: MatDialog
+              public dialog: MatDialog
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();

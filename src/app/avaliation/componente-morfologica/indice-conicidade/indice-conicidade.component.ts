@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Location, DatePipe } from '@angular/common';
-import { DialogHelpDB } from '../pdc/pdc.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-indice-conicidade',
@@ -22,9 +21,9 @@ export class IndiceConicidadeComponent implements OnInit {
 
   constructor(private location: Location,
               private dataService: DataService,
-              private dialog: MatDialog,
               private datapipe: DatePipe,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog
               ) {
 
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
@@ -105,7 +104,7 @@ export class IndiceConicidadeComponent implements OnInit {
 
     // Help Dialog
     openDialog(type): void {
-      const dialogRef = this.dialog.open(DialogHelpDB, {
+      this.dialog.open(DialogHelpDB, {
         width: '250px',
         data: { type }
       });
@@ -123,10 +122,10 @@ export class IndiceConicidadeComponent implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBf {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBf>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

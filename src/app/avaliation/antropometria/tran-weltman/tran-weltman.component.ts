@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 @Component({
   selector: 'app-tran-weltman',
@@ -37,7 +36,7 @@ export class TranWeltmanComponent implements OnInit {
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
-              private dialog: MatDialog
+              public dialog: MatDialog
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
@@ -197,10 +196,10 @@ export class TranWeltmanComponent implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBc {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

@@ -6,7 +6,6 @@ import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.servic
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { AgeService } from 'src/app/services/age.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 @Component({
   selector: 'app-will',
@@ -38,7 +37,7 @@ export class WillComponent implements OnInit {
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
               private ageService: AgeService,
-              private dialog: MatDialog
+              public dialog: MatDialog
                ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
@@ -182,10 +181,10 @@ export class WillComponent implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBc {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {

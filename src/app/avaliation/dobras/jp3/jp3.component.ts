@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogHelpDB } from '../../componente-morfologica/pdc/pdc.component';
 
 @Component({
   selector: 'app-jp3',
@@ -24,7 +23,7 @@ export class JP3Component implements OnInit {
   age: number;
   protocolo = 3;
 
-  // graphics
+ // graphics
   chartSelected = 'pie';
   single: any[];
   single2: any[];
@@ -39,7 +38,7 @@ export class JP3Component implements OnInit {
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
-              private dialog: MatDialog
+              public dialog: MatDialog
   ) {
 
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -94,14 +93,20 @@ export class JP3Component implements OnInit {
   // Iniciar os graficos
   startGraphics(evaluation) {
     // Obter os dados da avaliação Corporal para obter o punho e joelho
-    this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
+    this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (respm: any[]) => {
         if (respm.length) {
           const corporal = respm.pop();
+/*           if (corporal.difdias > 2 ) {
+            this.openSnackBar('Atenção! As avaliações dos diametros já tem ' + corporal.difdias + ' dias.', '');
+          // this.openMedidasDialog('As avaliações dos diametros já tem ' + corporal.difdias + ' dias.', 'diametros');
+          } */
           evaluation.punho = corporal.punho;
           evaluation.joelho = corporal.joelho;
           if (corporal.punho == 0 || corporal.joelho == 0) {
-            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+          //  this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+            this.openMedidasDialog('0 - Faltam algumas medições para esta avaliação!', 'corporal');
+
             this.showChart = false;
           } else {
             evaluation.idade = this.age;
@@ -117,7 +122,8 @@ export class JP3Component implements OnInit {
           }
 
         } else {
-          this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+      //    this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
+          this.openMedidasDialog('Faltam algumas medições para esta avaliação!', 'corporal');
           this.showChart = false;
         }
       }
@@ -145,18 +151,32 @@ export class JP3Component implements OnInit {
 
   addEvaluation() {
     this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
-        if (resp) {
+      (resp: any[]) => {
+        if (resp.length > 0) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+            // this.openSnackBar('Atenção! A ultima avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
+            this.openMedidasDialog('A ultima avaliação complementar já tem ' + resp[0].difdias + ' dias.', 'avaliacao');
           }
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          console.log(this.newEvaluation);
+          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
+            (respc: any[]) => {
+              console.log(respc);
+              if (respc.length > 0) {
+                const corporal = respc.pop();
+                if (corporal.difdias > 2) {
+                  this.openMedidasDialog('A ultima avaliação corporal já tem ' + corporal.difdias + ' dias.', 'corporal');
+                }
+              } else {
+                this.openMedidasDialog('Faltam elementos para os calculos.', 'corporal');
+              }
+            }
+          );
           this.addEval = true;
         } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+        //  this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+            this.openMedidasDialog('Não existe nenhuma avaliação de altura e peso.', 'avaliacao');
         }
       }
     );
@@ -173,15 +193,95 @@ export class JP3Component implements OnInit {
     });
   }
 
-    // Help Dialog
-    openHelpDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
-    }
+  // Help Dialog
+  openHelpDialog(type): void {
+    this.dialog.open(DialogHelpDB, {
+      width: '250px',
+      data: { type }
+    });
+  }
+
+  // diametros Dialog
+  openMedidasDialog(msg, tipo): void {
+    const dialogRef = this.dialog.open(DialogMedidasDB, {
+      width: '350px',
+      data: { student : this.student, msg , tipo, evaluation: this.newEvaluation}
+    });
+    dialogRef.afterClosed().subscribe(
+      result => {
+        console.log(result);
+        if (result === 'Atualizado') {
+          this.openSnackBar('Dados atualizados com sucesso', '');
+        }
+      }
+    );
+  }
 
 }
+
+
+
+/* Altura, Peso, Punho e Joelho. Dialog - para introduzir estas medidas quando não existem.  */
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-medidas-db',
+  templateUrl: '../../../commun/dialog-medidas-db.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class DialogMedidasDB {
+  ev: any = [];
+  question = true;
+  constructor(
+                public dialogRef: MatDialogRef<DialogMedidasDB>,
+                @Inject(MAT_DIALOG_DATA) public data,
+                private dataService: DataService,
+                private datapipe: DatePipe
+  ) {
+    console.log(data);
+
+  }
+
+  save() {
+    console.log(this.ev);
+    const form: any = {};
+    form.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+
+
+    if (this.data.tipo === 'avaliacao') {
+      form.altura = this.ev.altura;
+      form.peso = this.ev.peso;
+      form.avaliador = this.dataService.getUserName();
+      let sexParam = 0;
+      this.data.student.sexo === 'M' ? sexParam = 5 : sexParam = -161;
+      form.tmb = 10 * this.ev.peso + 6.25 * this.ev.altura * 100 - 5 * this.data.student.idade + sexParam;
+      form.imc = this.ev.peso / Math.pow(this.ev.altura, 2);
+      this.dataService.setData('clients/eval/' + this.data.student.id, form).subscribe(
+        resp => {
+          console.log(resp);
+          this.dialogRef.close('Atualizado');
+        }
+      );
+    }
+    if (this.data.tipo === 'corporal') {
+      form.altura = this.data.evaluation.altura;
+      form.peso = this.data.evaluation.peso;
+      form.punho = this.ev.punho;
+      form.joelho = this.ev.joelho;
+      this.dataService.setData('clients/corporal/' + this.data.student.id, form).subscribe(
+        resp => {
+          console.log(resp);
+          this.dialogRef.close('Atualizado');
+        }
+      );
+    }
+
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
 
 
 /* HELP DIALOG  */
@@ -191,10 +291,10 @@ export class JP3Component implements OnInit {
   templateUrl: '../../../commun/dialog-help-db.html',
 })
 // tslint:disable-next-line: component-class-suffix
-export class DialogHelpDBc {
+export class DialogHelpDB {
   help: any = [];
   constructor(
-    public dialogRef: MatDialogRef<DialogHelpDBc>,
+    public dialogRef: MatDialogRef<DialogHelpDB>,
     @Inject(MAT_DIALOG_DATA) public data,
     private dataService: DataService
   ) {
@@ -208,7 +308,6 @@ export class DialogHelpDBc {
       }
     );
   }
-
   onNoClick(): void {
     this.dialogRef.close();
   }

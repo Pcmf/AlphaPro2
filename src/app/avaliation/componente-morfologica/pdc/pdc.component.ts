@@ -24,7 +24,7 @@ export class PDCComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private dialog: MatDialog
+              public dialog: MatDialog
   ) {
     this.studentId = JSON.parse(sessionStorage.selectedStudent).id;
     this.getData();

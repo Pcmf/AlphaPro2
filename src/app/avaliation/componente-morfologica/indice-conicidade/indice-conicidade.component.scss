@@ -33,6 +33,19 @@ th > span:hover{
   font-weight: 600;
 }
 
+.section-info{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.section-info-image{
+  width: 80%;
+  img{
+    width:100%;
+  }
+}
+
+
 .action {
   width: 260px;
   margin: auto;
@@ -40,3 +53,5 @@ th > span:hover{
   display: flex;
   justify-content: space-around;
 }
+
+

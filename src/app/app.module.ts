@@ -198,7 +198,7 @@ export class MyHammerConfig extends HammerGestureConfig {
                 useClass: MyHammerConfig,
               },
               {
-                provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}
+                provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}
               },
               AgeService,
               ProtcolosDobrasService,

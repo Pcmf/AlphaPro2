@@ -52,21 +52,12 @@ export class ChartCompareComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.id).subscribe(
       (resp: any []) => {
-    //    console.log(resp);
         resp.map((ln) => {
-          this.dataService.getData('clients/corporal/' + this.id + '/' + ln.data).subscribe(
-            (respc: any []) => {
               ln.sexo = this.student.sexo;
               ln.idade = this.ageService.getAgeFromDate1(ln.data, this.student.dt_nasc);
-              ln.joelho = respc[0].joelho;
-              ln.punho = respc[0].punho;
               const dados: any =  this.protocolos.protocoloJacksonPollok3d(ln, this.percgd);
               dados.data = ln.data;
               this.result.push(dados);
-            }
-
-          );
-
         });
         setTimeout(() => {
         console.log(this.result);
@@ -144,7 +135,6 @@ export class ChartCompareComponent implements OnInit {
         ];
         Object.assign(this, {multi});
         Object.assign(this, {multi2});
-
         }, 700);
       }
     );

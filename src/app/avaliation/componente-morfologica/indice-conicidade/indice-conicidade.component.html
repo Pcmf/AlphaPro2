@@ -46,11 +46,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th i18n>Classificação</th>
-                                <td *ngIf="pointer>=1"> TO DO</td>
-                                <td *ngIf="pointer>=0"> TO DO</td>
+                                <th i18n>IC</th>
+                                <td *ngIf="pointer>=1">{{getIC(evaluation[pointer-1])}}</td>
+                                <td *ngIf="pointer>=0">{{getIC(evaluation[pointer])}}</td>
                             </tr>
-                         
+                            <tr>
+                                <th i18n>Classificação*</th>
+                                <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
+                                <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><small><em>*Pitanga & Lessa - IC como descriminador de risco coronário.</em></small></td>
+                            </tr>
                         </tbody>
                     </table>
 

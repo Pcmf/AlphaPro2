@@ -18,6 +18,7 @@ export class IndiceConicidadeComponent implements OnInit {
   lastEvaluation: any = [];
   selectedStudent: any = [];
   selectedTab = 0;
+  private coefRisco = 1.25;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -80,6 +81,20 @@ export class IndiceConicidadeComponent implements OnInit {
     this.addEval = true;
   }
 
+  getIC(evaluation) {
+    return ((evaluation.cintura / 100) / (0.109 * Math.sqrt((evaluation.peso / evaluation.altura)))).toFixed(2);
+  }
+
+  getClasse(evaluation) {
+    if (this.selectedStudent.sexo === 'F') {
+      this.coefRisco = 1.18;
+    }
+    if (+this.getIC(evaluation) >= this.coefRisco) {
+        return 'Risco Elevado';
+      }
+    return 'Risco Baixo';
+  }
+
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
@@ -139,6 +154,8 @@ export class DialogHelpDB {
       }
     );
   }
+
+
 
   onNoClick(): void {
     this.dialogRef.close();

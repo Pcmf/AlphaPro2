@@ -60,10 +60,29 @@
          </div>
      </form>
 
-    <div class="videos">
+<!--     <div class="videos">
         <mat-video [autoplay]="true" [preload]="true" spinner="spin" [loop]="true" [muted]="false">
-        <source matVideoSource src="./assets/videos/BANCO.mp4" type="video/mp4">
-    </mat-video>
+            <source matVideoSource src="./assets/videos/BANCO.mp4" type="video/mp4">
+        </mat-video>
+    </div> -->
+    <div class="section-info">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Banco Wells & Dillon</mat-card-title>
+                <mat-card-subtitle>Descrição do Teste de Flexibilidade</mat-card-subtitle>
+            </mat-card-header>
+                <mat-video [autoplay]="true" [preload]="true" spinner="spin" [loop]="true" [muted]="false">
+                    <source matVideoSource src="./assets/videos/BANCO.mp4" type="video/mp4">
+                </mat-video>
+            <mat-card-content>
+                <p>O Avaliado deve sentar no solo, com membros inferiores estendidos, 
+                    com a região plantar apoiada no banco (encostado na parede).</p>
+                <p> Com os braços estendidos sobre a cabeça e mãos paralelas, realizando três tentativas, com intervalos de
+                    recuperação, e flexionar lentamente o tronco até o máximo, mantendo os membros inferiores
+                    estendidos.</p>
+                <p> Devendo registrar o maior índice alcançado (ACSM, 2000).</p>
+            </mat-card-content>
+        </mat-card>
     </div>
 
 </div>

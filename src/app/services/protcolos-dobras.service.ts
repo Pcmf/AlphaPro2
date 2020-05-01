@@ -201,7 +201,7 @@ export class ProtcolosDobrasService {
   }
 
   // PROTOCOLOS DE ANTROPOMETRIA
-  // Tran & Waltmen
+  // Tran & Weltman
   protocoloTranWeltman(morfo, gorduraDesejada) {
     console.table(morfo);
     this.gorduraDesejada = gorduraDesejada;
@@ -213,19 +213,19 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  //  Waltmen Seip & Tran
+  //  Weltman Seip & Tran
   protocoloWeltmanSpeinTran(morfo, gorduraDesejada) {
     console.table(morfo);
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
-    // Precisa da formula
+    //  formula
     this.perGordura = 0.31457 * morfo.abdomen - 0.10969 * morfo.peso + 10.8336;
     const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
 
-  // Waltmen
+  // Weltman
   protocoloWeltman(morfo, gorduraDesejada) {
     console.table(morfo);
     this.gorduraDesejada = gorduraDesejada;
@@ -249,6 +249,7 @@ export class ProtcolosDobrasService {
       return answer;
     }
 
+  // não está a ser usada.
   getGorduraDesejada() {
     return 20;  // só para testes
   }

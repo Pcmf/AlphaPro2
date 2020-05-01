@@ -1,36 +1,35 @@
 <h1 mat-dialog-title>Atenção</h1>
 <div mat-dialog-content>
-  <p>{{data.msg}}</p>
-  <div *ngIf="question">
-    <p>Pretende adicionar novos valores?</p>
-  </div>
-  <div *ngIf="!question">
-  <mat-form-field class="input-sm" *ngIf="data.tipo=='corporal'">
-    <mat-label>Diâmetro do Punho</mat-label>
-    <input matInput type="number" [(ngModel)]="ev.punho" placeholder="cm">
-  </mat-form-field>
-  <mat-form-field *ngIf="data.tipo=='corporal'">
-    <mat-label>Diâmetro do Joelho</mat-label>
-    <input matInput type="number" [(ngModel)]="ev.joelho" placeholder="cm">
-  </mat-form-field>
-  <mat-form-field class="input-sm" *ngIf="data.tipo=='avaliacao'">
-    <mat-label>Altura</mat-label>
+  <p>{{msg}}</p>
+
+  <div>
+  <mat-form-field class="input-sm">
+    <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
+    <mat-label *ngIf="!erroAltura">Altura</mat-label>
     <input matInput type="number" [(ngModel)]="ev.altura" placeholder="m">
   </mat-form-field>
-  <mat-form-field *ngIf="data.tipo=='avaliacao'">
-    <mat-label>Peso</mat-label>
+  <mat-form-field>
+    <mat-label *ngIf="erroPeso" style="color: red;">Peso</mat-label>
+    <mat-label *ngIf="!erroPeso">Peso</mat-label>
     <input matInput type="number" [(ngModel)]="ev.peso" placeholder="Kg">
   </mat-form-field>
+  <mat-form-field class="input-sm">
+    <mat-label *ngIf="erroPunho" style="color: red;">Diâmetro do Punho</mat-label>
+    <mat-label *ngIf="!erroPunho">Diâmetro do Punho</mat-label>
+    <input matInput type="number" [(ngModel)]="ev.punho" placeholder="cm">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label *ngIf="erroJoelho" style="color: red;">Diâmetro do Joelho</mat-label>
+    <mat-label *ngIf="!erroJoelho">Diâmetro do Joelho</mat-label>
+    <input matInput type="number" [(ngModel)]="ev.joelho" placeholder="cm">
+  </mat-form-field>
+
   </div>
 </div>
 <div mat-dialog-actions>
-  <div *ngIf="question">
-    <button mat-mini-fab color="default" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-    <button mat-mini-fab (click)="question = !question" cdkFocusInitial><mat-icon>check</mat-icon></button>
-  </div>
-  <div *ngIf="!question">
-      <button mat-mini-fab color="default" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-      <button mat-mini-fab (click)="save()" cdkFocusInitial><mat-icon>save</mat-icon></button>
+
+  <div>
+      <button mat-mini-fab (click)="save()" cdkFocusInitial><mat-icon>check</mat-icon></button>
   </div>
 
 </div>

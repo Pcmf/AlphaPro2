@@ -6,17 +6,19 @@
         <form #f="ngForm" (submit)="save(f.value)">
             <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
             <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
+            <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
+            <input type="hidden" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho">
             <table>
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer])">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
                                 {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>

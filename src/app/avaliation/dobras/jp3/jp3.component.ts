@@ -259,11 +259,17 @@ export class DialogMedidasDB {
     if (data.newAv && data.daysAv) {
       this.msg += 'A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
     }
+    if (data.newAv && !data.daysAv) {
+      this.msg += 'Não existem avaliações de altura e/ou peso. ';
+    }
     if (data.newCorporal && data.daysCorporal) {
-      this.msg += '\n A ultima medição do punho e joelho já tem ' + data.daysCorporal + ' dias.';
+      this.msg += ' A ultima medição do punho e joelho já tem ' + data.daysCorporal + ' dias.';
+    }
+    if (data.newCorporal && data.daysCorporal) {
+      this.msg += ' Não existem medições de punho e/ou joelho.';
     }
     if (this.msg) {
-      this.msg += '\n Altere ou adicione novos:';
+      this.msg += ' Altere ou adicione novos:';
     }
     this.ev.altura = data.lastAv.altura;
     this.ev.peso = data.lastAv.peso;

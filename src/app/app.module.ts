@@ -41,7 +41,7 @@ import { SloanComponent } from './avaliation/dobras/sloan/sloan.component';
 import { GuedesComponent } from './avaliation/dobras/guedes/guedes.component';
 import { PB4Component } from './avaliation/dobras/pb4/pb4.component';
 import { CarterComponent } from './avaliation/dobras/carter/carter.component';
-import { JP7Component } from './avaliation/dobras/jp7/jp7.component';
+import { JP7Component, DialogMedidasDB7 } from './avaliation/dobras/jp7/jp7.component';
 import { WB2Component } from './avaliation/dobras/wb2/wb2.component';
 import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
@@ -163,11 +163,12 @@ export class MyHammerConfig extends HammerGestureConfig {
     FlexClassComponent,
     IndiceConicidadeComponent,
     ChartCompareComponent,
-    DialogMedidasDB,
     DialogHelpDB,
     DialogPosturalHelp,
     DialogHelp,
-    AllDobrasComponent
+    AllDobrasComponent,
+    DialogMedidasDB,
+    DialogMedidasDB7
   ],
   imports: [
     BrowserModule,
@@ -187,7 +188,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogPosturalHelp,
     DialogHelpDB,
     DialogHelp,
-    DialogMedidasDB
+    DialogMedidasDB,
+    DialogMedidasDB7
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},

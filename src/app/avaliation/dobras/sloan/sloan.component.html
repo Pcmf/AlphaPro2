@@ -6,17 +6,19 @@
         <form #f="ngForm" (submit)="save(f.value)">
             <input type="hidden"  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
             <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
+            <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
+            <input type="hidden" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho">
             <table>
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button" (click)="setEvaluation(evaluation[pointer])">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
                                 {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
                             </button>
                         </th>
@@ -124,26 +126,36 @@
             </div>
         </form>
         <div *ngIf="showChart">
-            <br />
-            <hr />
-            <h4 style="text-align: center; color: blue;">
-                {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
-            </h4>
             <div style="text-align: center; color: blue;">
-                <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small>: </mat-label>
-                <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
-                    [disabled]="!fatChanged" (change)="getNewEvaluation()">
-                </mat-slider>
-                <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
-                    <mat-icon>save</mat-icon>
-                </button>
+                <div>
+                    <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
+                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                        </mat-button-toggle>
+                        <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div *ngIf="chartSelected=='pie'">
+                    <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
+                    <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
+                        [disabled]="!fatChanged" (change)="getNewEvaluation()">
+                    </mat-slider>
+                    <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </div>
             </div>
-
-            <app-chart-pie [values]="single"></app-chart-pie>
-            <app-chart-pie [values]="single2"></app-chart-pie>
+            <!-- charts -->
+            <div class="chart-pie" *ngIf="chartSelected=='pie'">
+                <app-chart-pie [values]="single"></app-chart-pie>
+                <app-chart-pie [values]="single2"></app-chart-pie>
+            </div>
+            <div *ngIf="chartSelected=='compare'">
+                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada">
+                </app-chart-compare>
+            </div>
         </div>
     </div>
 

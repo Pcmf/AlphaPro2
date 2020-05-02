@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
+
 
 @Component({
   selector: 'app-pdc',
@@ -24,7 +25,7 @@ export class PDCComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              public dialog: MatDialog
+              private dialogService: DialogService
   ) {
     this.studentId = JSON.parse(sessionStorage.selectedStudent).id;
     this.getData();
@@ -131,41 +132,6 @@ export class PDCComponent implements OnInit {
 
   // Help Dialog
   openDialog(type): void {
-    const dialogRef = this.dialog.open(DialogHelpDB, {
-      width: '250px',
-      data: { type }
-    });
+    this.dialogService.openHelp(type);
   }
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
-        } else {
-          this.help.info = 'Não existe informação!.';
-        }
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

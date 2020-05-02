@@ -30,18 +30,18 @@ import { DateFormat } from './date-format';
 import { QPAFComponent } from './avaliation/risco/qpaf/qpaf.component';
 import { RDCComponent } from './avaliation/risco/rdc/rdc.component';
 import { RDDCComponent } from './avaliation/risco/rddc/rddc.component';
-import { PDCComponent, DialogHelpDB } from './avaliation/componente-morfologica/pdc/pdc.component';
+import { PDCComponent } from './avaliation/componente-morfologica/pdc/pdc.component';
 import { CCComponent } from './avaliation/composicao-corporal/cc.component';
 import { IMComponent } from './avaliation/componente-morfologica/im/im.component';
 import { EvaluationComponent } from './avaliation/evaluation/evaluation.component';
 import { SlaugtherComponent } from './avaliation/dobras/slaugther/slaugther.component';
-import { JP3Component, DialogMedidasDB } from './avaliation/dobras/jp3/jp3.component';
+import { JP3Component } from './avaliation/dobras/jp3/jp3.component';
 import { DW4Component } from './avaliation/dobras/dw4/dw4.component';
 import { SloanComponent } from './avaliation/dobras/sloan/sloan.component';
 import { GuedesComponent } from './avaliation/dobras/guedes/guedes.component';
 import { PB4Component } from './avaliation/dobras/pb4/pb4.component';
 import { CarterComponent } from './avaliation/dobras/carter/carter.component';
-import { JP7Component, DialogMedidasDB7 } from './avaliation/dobras/jp7/jp7.component';
+import { JP7Component } from './avaliation/dobras/jp7/jp7.component';
 import { WB2Component } from './avaliation/dobras/wb2/wb2.component';
 import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
@@ -70,7 +70,7 @@ import { YMCAComponent } from './avaliation/CardioPulmunar/ymca/ymca.component';
 import { BancoComponent } from './avaliation/CardioPulmunar/banco/banco.component';
 import { NatacaoComponent } from './avaliation/CardioPulmunar/natacao/natacao.component';
 import { AgeService } from './services/age.service';
-import { ComponentePosturalComponent, DialogPosturalHelp } from './avaliation/componente-postural/componente-postural.component';
+import { ComponentePosturalComponent } from './avaliation/componente-postural/componente-postural.component';
 import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.component';
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
@@ -86,6 +86,9 @@ import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/i
 import { ChartCompareComponent } from './commun/chart-compare/chart-compare.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
+import { DialogMedidas } from './services/dialogs/dialog-medidas.component';
+import { DialogService } from './services/dialog.service';
+import { DialogHelpComponent } from './services/dialogs/dialog-help/dialog-help.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -163,12 +166,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     FlexClassComponent,
     IndiceConicidadeComponent,
     ChartCompareComponent,
-    DialogHelpDB,
-    DialogPosturalHelp,
     DialogHelp,
     AllDobrasComponent,
-    DialogMedidasDB,
-    DialogMedidasDB7
+    DialogMedidas,
+    DialogHelpComponent
   ],
   imports: [
     BrowserModule,
@@ -185,11 +186,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
-    DialogPosturalHelp,
-    DialogHelpDB,
     DialogHelp,
-    DialogMedidasDB,
-    DialogMedidasDB7
+    DialogMedidas
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -204,7 +202,8 @@ export class MyHammerConfig extends HammerGestureConfig {
               },
               AgeService,
               ProtcolosDobrasService,
-              PrepareChartService
+              PrepareChartService,
+              DialogService
             ],
   bootstrap: [AppComponent]
 })

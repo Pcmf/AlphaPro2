@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data}}</h1>
+<div mat-dialog-content>
+  <p>{{help.info}}</p>
+    <img *ngIf="help.image1" [src]="help.image1" width="200" alt="info">
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: center;">
+  <button mat-mini-fab color="default" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
+</div>

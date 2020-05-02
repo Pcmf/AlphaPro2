@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-componente-postural',
@@ -47,7 +47,7 @@ export class ComponentePosturalComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              public dialog: MatDialog
+              private dialogService: DialogService
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
@@ -200,42 +200,8 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   openDialog(type): void {
-    const dialogRef = this.dialog.open(DialogPosturalHelp, {
-      width: '250px',
-      data: { type }
-    });
+    this.dialogService.openHelp(type);
   }
 
-
-}
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-postural-help',
-  templateUrl: 'dialog-postural-help.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogPosturalHelp {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogPosturalHelp>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
-        } else {
-          this.help.info = 'Não existe informação!.';
-        }
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
 }

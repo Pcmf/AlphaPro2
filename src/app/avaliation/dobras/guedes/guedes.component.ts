@@ -5,7 +5,7 @@ import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-guedes',
@@ -22,33 +22,43 @@ export class GuedesComponent implements OnInit {
   student: any = [];
   sexo: string;
   age: number;
+  protocolo = 4;
+  private newAv: boolean;
+  private newCorporal: boolean;
+  private lastAv: any = [];
+  private lastCorporal: any = [];
+  private daysAv = 0;
+  private daysCorporal = 0;
 
-   // graphics
-   single: any[];
-   single2: any[];
-   showChart = false;
+  // graphics
+  chartSelected = 'pie';
+  single: any[];
+  single2: any[];
+  showChart = false;
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
 
-  constructor(private location: Location, private dataService: DataService,
-              private datapipe: DatePipe,
-              private ageService: AgeService,
-              private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService,
-              private prepareChart: PrepareChartService,
-              public dialog: MatDialog
-              ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private ageService: AgeService,
+    private snackBar: MatSnackBar,
+    private protocolos: ProtcolosDobrasService,
+    private prepareChart: PrepareChartService,
+    private dialogService: DialogService
+  ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.sexo = this.student.sexo;
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);
     if (this.student.sexo === 'M' && this.age > 73) {
-          this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
-        }
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
     if (this.student.sexo === 'F' && this.age > 69) {
-          this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
-        }
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
     this.getData();
   }
 
@@ -66,7 +76,7 @@ export class GuedesComponent implements OnInit {
     this.fatChanged = false;
   }
 
-getData() {
+  getData() {
     // PProtocolo Guesde - 1
     this.dataService.getData('clients/morfo/1/' + this.student.id).subscribe(
       (resp: any[]) => {
@@ -76,55 +86,36 @@ getData() {
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
     );
-   }
- // Seleciona a data que está a mostrar
- setEvaluation(evaluation) {
-  this.selectedEvaluation = evaluation;
-  this.startGraphics(evaluation);
-}
+  }
+  // Seleciona a data que está a mostrar
+  setEvaluation(evaluation) {
+    this.selectedEvaluation = evaluation;
+    this.startGraphics(evaluation);
+  }
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-    // Obter os dados da avaliação Corporal para obter o punho e joelho
-    this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
-      (respm: any[]) => {
-        if (respm.length) {
-          const corporal = respm.pop();
-          evaluation.punho = corporal.punho;
-          evaluation.joelho = corporal.joelho;
-          if (corporal.punho == 0 || corporal.joelho == 0) {
-            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
-            this.showChart = false;
-          } else {
-            evaluation.idade = this.age;
-            evaluation.sexo = this.student.sexo;
-            const proto = this.protocolos.protocoloGuedes3d(evaluation, this.gorduraDesejada);
-            // Create graphic
-            this.showChart = true;
-            this.single = this.prepareChart.getSingle1(proto);
-            Object.assign(this, this.single);
-            // Create graphic 2
-            this.single2 = this.prepareChart.getSingle2(proto);
-            Object.assign(this, this.single2);
-          }
-
-        } else {
-          this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
-          this.showChart = false;
-        }
-      }
-    );
+    evaluation.idade = this.age;
+    evaluation.sexo = this.student.sexo;
+    const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    // Create graphic
+    this.showChart = true;
+    this.single = this.prepareChart.getSingle1(proto);
+    Object.assign(this, this.single);
+    // Create graphic 2
+    this.single2 = this.prepareChart.getSingle2(proto);
+    Object.assign(this, this.single2);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
   }
 
-save(form) {
+  save(form) {
     form.protocolo = 1;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
@@ -135,79 +126,106 @@ save(form) {
     );
   }
 
-goBack() {
+  goBack() {
     this.location.back();
   }
 
+  // Add new Evaluation
   addEvaluation() {
+    // Obter os dados da ultima Avaliação complementar
     this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
-        if (resp) {
-          if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+      (resp: any[]) => {
+        this.newAv = false;
+        if (resp.length > 0) {
+          // tslint:disable-next-line: no-conditional-assignment
+          if ((this.daysAv = resp[0].difdias) > 2) {
+            this.newAv = true;
           }
-          this.newEvaluation.altura = resp[0].altura;
-          this.newEvaluation.peso = resp[0].peso;
-          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          console.log(this.newEvaluation);
-          this.addEval = true;
+          this.lastAv = resp.pop();
         } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+          this.newAv = true;
         }
+        // Obter os dados da ultima avaliação corporal - punho e joelho
+        this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
+          (respc: []) => {
+            if (respc.length > 0) {
+              this.lastCorporal = respc.pop();
+              this.newCorporal = false;
+              // tslint:disable-next-line: no-conditional-assignment
+              if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
+                || +this.lastCorporal.punho == 0
+                || +this.lastCorporal.joelho == 0) {
+                this.newCorporal = true;
+              }
+            } else {
+              this.newCorporal = true;
+            }
+            // decide se vai mostrar dialog
+            if (this.newAv || this.newCorporal) {
+              this.openMedidasDialog(
+                this.daysAv,
+                this.daysCorporal,
+                this.newAv,
+                this.newCorporal,
+                this.lastAv,
+                this.lastCorporal
+              );
+            }
+            this.newEvaluation.altura = this.lastAv.altura;
+            this.newEvaluation.peso = this.lastAv.peso;
+            this.newEvaluation.punho = this.lastCorporal.punho;
+            this.newEvaluation.joelho = this.lastCorporal.joelho;
+          }
+        );
       }
     );
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    this.addEval = true;
   }
 
-closeInput() {
+  closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
   }
 
-openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000, verticalPosition: 'top'
     });
   }
 
-    // Help Dialog
-    openHelpDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
-    }
+  // Help Dialog
+  openHelpDialog(type): void {
+    this.dialogService.openHelp(type);
+  }
 
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
+  openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
+    const options = {
+      daysAv,
+      daysCorporal,
+      newAv,
+      newCorporal,
+      lastAv,
+      lastCorporal,
+      idade: this.age,
+      sexo: this.student.sexo,
+      id: this.student.id
+    };
+    this.dialogService.openMedidas(options);
+    this.dialogService.confirmedMedidas().subscribe(
+      result => {
+        if (result) {
+          this.newEvaluation.altura = result.altura;
+          this.newEvaluation.peso = result.peso;
+          this.newEvaluation.punho = result.punho;
+          this.newEvaluation.joelho = result.joelho;
+          this.openSnackBar('Dados atualizados com sucesso', '');
+          this.addEvaluation();
         } else {
-          this.help.info = 'Não existe informação!.';
+          this.closeInput();
         }
       }
     );
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }
-

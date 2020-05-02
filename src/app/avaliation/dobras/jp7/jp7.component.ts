@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { AgeService } from 'src/app/services/age.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 
 @Component({
@@ -40,14 +40,15 @@ export class JP7Component implements OnInit {
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private protocolos: ProtcolosDobrasService,
-              private snackBar: MatSnackBar,
-              private prepareChart: PrepareChartService,
-              private ageService: AgeService,
-              public dialog: MatDialog
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private protocolos: ProtcolosDobrasService,
+    private snackBar: MatSnackBar,
+    private prepareChart: PrepareChartService,
+    private ageService: AgeService,
+    private dialogService: DialogService
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
@@ -95,16 +96,16 @@ export class JP7Component implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-      evaluation.idade = this.age;
-      evaluation.sexo = this.student.sexo;
-      const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
-      // Create graphic
-      this.showChart = true;
-      this.single = this.prepareChart.getSingle1(proto);
-      Object.assign(this, this.single);
-      // Create graphic 2
-      this.single2 = this.prepareChart.getSingle2(proto);
-      Object.assign(this, this.single2);
+    evaluation.idade = this.age;
+    evaluation.sexo = this.student.sexo;
+    const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    // Create graphic
+    this.showChart = true;
+    this.single = this.prepareChart.getSingle1(proto);
+    Object.assign(this, this.single);
+    // Create graphic 2
+    this.single2 = this.prepareChart.getSingle2(proto);
+    Object.assign(this, this.single2);
   }
 
   ngOnInit(): void {
@@ -125,15 +126,15 @@ export class JP7Component implements OnInit {
     this.location.back();
   }
 
-   // Add new Evaluation
-   addEvaluation() {
+  // Add new Evaluation
+  addEvaluation() {
     // Obter os dados da ultima Avaliação complementar
     this.dataService.getLastEvaluation(this.student.id).subscribe(
       (resp: any[]) => {
         this.newAv = false;
         if (resp.length > 0) {
           // tslint:disable-next-line: no-conditional-assignment
-          if ( (this.daysAv = resp[0].difdias) > 2) {
+          if ((this.daysAv = resp[0].difdias) > 2) {
             this.newAv = true;
           }
           this.lastAv = resp.pop();
@@ -148,23 +149,23 @@ export class JP7Component implements OnInit {
               this.newCorporal = false;
               // tslint:disable-next-line: no-conditional-assignment
               if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
-                  || +this.lastCorporal.punho == 0
-                  || +this.lastCorporal.joelho == 0) {
+                || +this.lastCorporal.punho == 0
+                || +this.lastCorporal.joelho == 0) {
                 this.newCorporal = true;
               }
             } else {
               this.newCorporal = true;
             }
-           // decide se vai mostrar dialog
+            // decide se vai mostrar dialog
             if (this.newAv || this.newCorporal) {
               this.openMedidasDialog(
-                                      this.daysAv,
-                                      this.daysCorporal,
-                                      this.newAv,
-                                      this.newCorporal,
-                                      this.lastAv,
-                                      this.lastCorporal
-                                    );
+                this.daysAv,
+                this.daysCorporal,
+                this.newAv,
+                this.newCorporal,
+                this.lastAv,
+                this.lastCorporal
+              );
             }
             this.newEvaluation.altura = this.lastAv.altura;
             this.newEvaluation.peso = this.lastAv.peso;
@@ -189,180 +190,38 @@ export class JP7Component implements OnInit {
     });
   }
 
-    // Help Dialog
-    openHelpDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
-    }
-
-
-    // Medidas Dialog
-    openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
-      const dialogRef = this.dialog.open(DialogMedidasDB7, {
-        width: '350px',
-        data: {
-                student: this.student,
-                daysAv,
-                daysCorporal,
-                evaluation: this.newEvaluation,
-                newAv, newCorporal,
-                lastAv,
-                lastCorporal
-              }
-      });
-      dialogRef.afterClosed().subscribe(
-        result => {
-          if (result) {
-            this.newEvaluation.altura = result.altura;
-            this.newEvaluation.peso = result.peso;
-            this.newEvaluation.punho = result.punho;
-            this.newEvaluation.joelho = result.joelho;
-            this.openSnackBar('Dados atualizados com sucesso', '');
-            this.addEvaluation();
-          }
-        }
-      );
-    }
-
-}
-
-
-
-/* Altura, Peso, Punho e Joelho. Dialog - para introduzir estas medidas quando não existem.  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-medidas-db7',
-  templateUrl: 'dialog-medidas-db7.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogMedidasDB7 {
-  ev: any = [];
-  question = true;
-  msg = '';
-  erroAltura = false;
-  erroPeso = false;
-  erroPunho = false;
-  erroJoelho = false;
-  erro = false;
-  constructor(
-    public dialogRef: MatDialogRef<DialogMedidasDB7>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService,
-    private datapipe: DatePipe
-  ) {
-    console.log(data);
-    if (data.newAv && data.daysAv) {
-      this.msg += 'A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
-    }
-    if (data.newAv && !data.daysAv) {
-      this.msg += 'Não existem avaliações de altura e/ou peso. ';
-    }
-    if (data.newCorporal && data.daysCorporal) {
-      this.msg += ' A ultima medição do punho e joelho já tem ' + data.daysCorporal + ' dias.';
-    }
-    if (data.newCorporal && data.daysCorporal) {
-      this.msg += ' Não existem medições de punho e/ou joelho.';
-    }
-    if (this.msg) {
-      this.msg += ' Altere ou adicione novos:';
-    }
-    this.ev.altura = data.lastAv.altura;
-    this.ev.peso = data.lastAv.peso;
-    this.ev.punho = data.lastCorporal.punho;
-    this.ev.joelho = data.lastCorporal.joelho;
-
+  // Help Dialog
+  openHelpDialog(type): void {
+    this.dialogService.openHelp(type);
   }
 
-  save() {
-    this.erroAltura = false;
-    this.erroPeso = false;
-    this.erroPunho = false;
-    this.erroJoelho = false;
-    this.erro = false;
-    console.log(this.ev);
-    if (!this.ev.altura || +this.ev.altura == 0) {
-      this.erroAltura = true;
-      this.erro = true;
-    }
-    if (!this.ev.peso || +this.ev.peso == 0) {
-      this.erroPeso = true;
-      this.erro = true;
-    }
-    if (!this.ev.punho || +this.ev.punho == 0) {
-      this.erroPunho = true;
-      console.log(this.erroPunho);
-      this.erro = true;
-    }
-    if (!this.ev.joelho || +this.ev.joelho == 0) {
-      this.erroJoelho = true;
-      this.erro = true;
-    }
-
-    if (!this.erro) {
-      const form: any = {};
-      form.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-
-
-      form.altura = this.ev.altura;
-      form.peso = this.ev.peso;
-      form.avaliador = this.dataService.getUserName();
-      let sexParam = 0;
-      this.data.student.sexo === 'M' ? sexParam = 5 : sexParam = -161;
-      form.tmb = 10 * this.ev.peso + 6.25 * this.ev.altura * 100 - 5 * this.data.student.idade + sexParam;
-      form.imc = this.ev.peso / Math.pow(this.ev.altura, 2);
-      this.dataService.setData('clients/eval/' + this.data.student.id, form).subscribe(
-          resp => {
-            console.log(resp);
-            form.altura = this.ev.altura;
-            form.peso = this.ev.peso;
-            form.punho = this.ev.punho;
-            form.joelho = this.ev.joelho;
-            this.dataService.setData('clients/corporal/' + this.data.student.id, form).subscribe(
-                respc => {
-                console.log(respc);
-                this.dialogRef.close(this.ev);
-                }
-            );
-          }
-      );
-    }
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
+  openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
+    const options = {
+      daysAv,
+      daysCorporal,
+      newAv,
+      newCorporal,
+      lastAv,
+      lastCorporal,
+      idade: this.age,
+      sexo: this.student.sexo,
+      id: this.student.id
+    };
+    this.dialogService.openMedidas(options);
+    this.dialogService.confirmedMedidas().subscribe(
+      result => {
+        if (result) {
+          this.newEvaluation.altura = result.altura;
+          this.newEvaluation.peso = result.peso;
+          this.newEvaluation.punho = result.punho;
+          this.newEvaluation.joelho = result.joelho;
+          this.openSnackBar('Dados atualizados com sucesso', '');
+          this.addEvaluation();
         } else {
-          this.help.info = 'Não existe informação!.';
+          this.closeInput();
         }
       }
     );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 
 }

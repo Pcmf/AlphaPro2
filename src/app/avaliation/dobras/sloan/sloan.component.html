@@ -58,10 +58,10 @@
                     </tr>
                     <tr *ngIf="sexo=='F'">
                         <th i18n><span (click)="openHelpDialog('Suprailiaca')">Suprailiaca</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].Suprailiaca}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].Suprailiaca}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
                         <td *ngIf="addEval">
-                            <input name="Suprailiaca" #Suprailiaca="ngModel" [(ngModel)]="newEvaluation.Suprailiaca"
+                            <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
                                 type="number" step="0.1">
                         </td>
                     </tr>

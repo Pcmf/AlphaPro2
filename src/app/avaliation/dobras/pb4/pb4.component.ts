@@ -22,7 +22,7 @@ export class PB4Component implements OnInit {
   student: any = [];
   sex: string;
   age: number;
-  protocolo = 4;
+  protocolo = 10;
   private newAv: boolean;
   private newCorporal: boolean;
   private lastAv: any = [];
@@ -72,7 +72,7 @@ export class PB4Component implements OnInit {
 
   getData() {
     // Protocolo Petroski  - 10
-    this.dataService.getData('clients/morfo/10/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -97,7 +97,7 @@ export class PB4Component implements OnInit {
   startGraphics(evaluation) {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
-    const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    const proto = this.protocolos.protocoloPetroski(evaluation, this.gorduraDesejada);
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -111,7 +111,7 @@ export class PB4Component implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 10;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

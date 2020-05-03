@@ -5,7 +5,6 @@ import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class DW4Component implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   age: number;
-  protocolo = 4;
+  protocolo = 5;
   private newAv: boolean;
   private newCorporal: boolean;
   private lastAv: any = [];
@@ -75,7 +74,7 @@ export class DW4Component implements OnInit {
   }
   getData() {
     // Protocolo DW4 - 5
-    this.dataService.getData('clients/morfo/5/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -101,7 +100,7 @@ export class DW4Component implements OnInit {
   startGraphics(evaluation) {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
-    const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    const proto = this.protocolos.protocoloDurninWormersley4d(evaluation, this.gorduraDesejada);
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -116,7 +115,7 @@ export class DW4Component implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 5;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

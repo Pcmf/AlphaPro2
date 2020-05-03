@@ -22,7 +22,7 @@ export class WB2Component implements OnInit {
   student: any = [];
   sexo: string;
   age: number;
-  protocolo = 4;
+  protocolo = 16;
   private newAv: boolean;
   private newCorporal: boolean;
   private lastAv: any = [];
@@ -74,7 +74,7 @@ export class WB2Component implements OnInit {
   }
   getData() {
     // Protocolo Wilmore & Behnke - 16
-    this.dataService.getData('clients/morfo/16/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -99,7 +99,7 @@ export class WB2Component implements OnInit {
   startGraphics(evaluation) {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
-    const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    const proto = this.protocolos.protocoloWilmoreBehnk2d(evaluation, this.gorduraDesejada);
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -114,7 +114,7 @@ export class WB2Component implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 16;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

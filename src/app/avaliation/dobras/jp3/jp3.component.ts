@@ -77,7 +77,7 @@ export class JP3Component implements OnInit {
 
   getData() {
     /* Protocolo Jackson Pollok 3d - 3 */
-    this.dataService.getData('clients/morfo/3/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -117,7 +117,7 @@ export class JP3Component implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 3;
+    form.protocolo = this.protocolo;
     console.log(this.student.id);
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {

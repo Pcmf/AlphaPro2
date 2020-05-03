@@ -74,7 +74,7 @@ export class JP7Component implements OnInit {
 
   getData() {
     /* Protocolo Jackson Pollock 7d - 4 */
-    this.dataService.getData('clients/morfo/4/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -112,7 +112,7 @@ export class JP7Component implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 4;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

@@ -21,7 +21,7 @@ export class WillComponent implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   age: number;
-  protocolo = 4;
+  protocolo = 11;
   private newAv: boolean;
   private newCorporal: boolean;
   private lastAv: any = [];
@@ -69,7 +69,7 @@ export class WillComponent implements OnInit {
 
   getData() {
     // Protocolo Williams - 11
-    this.dataService.getData('clients/morfo/11/' + this.student.id).subscribe(
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -94,7 +94,7 @@ export class WillComponent implements OnInit {
  startGraphics(evaluation) {
   evaluation.idade = this.age;
   evaluation.sexo = this.student.sexo;
-  const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+  const proto = this.protocolos.protocoloWilliams4d(evaluation, this.gorduraDesejada);
   // Create graphic
   this.showChart = true;
   this.single = this.prepareChart.getSingle1(proto);
@@ -107,7 +107,7 @@ export class WillComponent implements OnInit {
   }
 
   save(form) {
-    form.protocolo = 11;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

@@ -77,10 +77,10 @@ export class ProtcolosDobrasService {
     this.morfo = morfo;
     const somatorio = +morfo.biciptal + +morfo.triciptal + +morfo.subescapular;
     if (morfo.sexo == 'M') { // Masculino
-      const DC = 1.1765 - 0.0744 * Math.log(somatorio);
+      const DC = 1.1765 - 0.0744 * Math.log10(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Feminino
-      const DC = 1.1567 - 0.0717 * Math.log(somatorio);
+      const DC = 1.1567 - 0.0717 * Math.log10(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
     const answer = this.createAnswer();
@@ -107,18 +107,18 @@ export class ProtcolosDobrasService {
   }
 
   protocoloGuedes3d(morfo, gorduraDesejada) {
-    // Masculino  Dc=1,17136 - 06706 log(somat dobras)   ---- (tríceps, abdominal,suprailíaca)
-    // Feminino  DC=1,16650 - 07063 log(somat dobras)  ----- (subescapular,coxa, suprailíaca) em milimetros
+    // Masculino  Dc=1,17136 - 06706 log10(somat dobras)   ---- (tríceps, abdominal,suprailíaca)
+    // Feminino  DC=1,16650 - 07063 log10(somat dobras)  ----- (subescapular,coxa, suprailíaca) em milimetros
     // %G=[(4,95/Dc) - 4,50]*100
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     if (morfo.sexo == 'M') { // Masculino
       const somatorio = +morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca;
-      const DC = 1.17136 - 0.06706 * Math.log(somatorio);
+      const DC = 1.17136 - 0.06706 * Math.log10(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Feminino
       const somatorio = +morfo.subescapular + +morfo.crural + +morfo.suprailiaca;
-      const DC = 1.16650 - 0.07063 * Math.log(somatorio);
+      const DC = 1.16650 - 0.07063 * Math.log10(somatorio);
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     }
     const answer = this.createAnswer();
@@ -126,7 +126,12 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  protocoloCarter6d() { }
+  protocoloCarter6d(morfo, gorduraDesejada) {
+
+   }
+
+  protocoloDeuremberg(morfo, gorduraDesejada) {
+  }
 
   protocoloJacksonPollok7d(morfo, gorduraDesejada) {
     // Masc  DC = 1,1120 -0,00043499 somat dobras +0,00000055 somat dobras ^2 -0,00028826 idade

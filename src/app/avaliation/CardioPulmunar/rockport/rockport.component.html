@@ -8,8 +8,16 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
+                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button" (click)="setEvaluation(evaluation[pointer])">
+                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                 style="width: 110px;">
@@ -18,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Minuto/FC 0'</th>
+                        <th i18n>FC ao minuto 0'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
@@ -27,7 +35,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 2'</th>
+                        <th i18n>FC ao minuto 2'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">
@@ -36,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 4'</th>
+                        <th i18n>FC ao minuto 4'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                         <td *ngIf="addEval">
@@ -45,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 6'</th>
+                        <th i18n>FC ao minuto 6'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
@@ -54,7 +62,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 8'</th>
+                        <th i18n>FC ao minuto 8'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">
@@ -63,7 +71,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 10'</th>
+                        <th i18n>FC ao minuto 10'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                         <td *ngIf="addEval">
@@ -72,7 +80,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 12'</th>
+                        <th i18n>FC ao minuto 12'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
@@ -81,7 +89,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 14'</th>
+                        <th i18n>FC ao minuto 14'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">
@@ -90,7 +98,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 16'</th>
+                        <th i18n>FC ao minuto 16'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                         <td *ngIf="addEval">
@@ -99,7 +107,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 18'</th>
+                        <th i18n>FC ao minuto 18'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
@@ -108,7 +116,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 20'</th>
+                        <th i18n>FC ao minuto 20'</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">

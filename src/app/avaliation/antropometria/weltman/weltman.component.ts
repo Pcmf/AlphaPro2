@@ -21,12 +21,14 @@ export class WeltmanComponent implements OnInit {
   student: any = [];
   sex: string;
   age: number;
+  protocolo = 13;
   // graphics
   single: any[];
   single2: any[];
   showChart = false;
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  chartSelected = 'pie';
 
   constructor(private location: Location,
               private dataService: DataService,

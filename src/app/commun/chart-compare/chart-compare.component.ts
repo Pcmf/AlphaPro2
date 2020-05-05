@@ -52,6 +52,38 @@ export class ChartCompareComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.protocolo === 9 || this.protocolo === 13 || this.protocolo === 14 || this.protocolo === 17 || this.protocolo === 18) {
+      this.dataService.getData('clients/corporal/' + this.id).subscribe(
+        (respc: any[]) => {
+          respc.map((ln) => {
+            ln.sexo = this.student.sexo;
+            ln.idade = this.ageService.getAgeFromDate1(ln.data, this.student.dt_nasc);
+            switch (+this.protocolo) {
+              case 9:
+                this.dados = this.protocolos.protocoloDeuremberg(ln, this.percgd);
+                break;
+              case 13:
+                this.dados = this.protocolos.protocoloWeltman(ln, this.percgd);
+                break;
+              case 14:
+                this.dados = this.protocolos.protocoloTranWeltman(ln, this.percgd);
+                break;
+              case 17:
+                  this.dados = this.protocolos.protocoloWeltmanSpeinTran(ln, this.percgd);
+                  break;
+              case 18:
+                this.dados = this.protocolos.protocoloMayhewEtAl(ln, this.percgd);
+                break;
+            }
+            this.dados.data = ln.data;
+            this.result.push(this.dados);
+            this.startCharts();
+          });
+
+        }
+      );
+
+    } else {
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.id).subscribe(
       (resp: any[]) => {
         resp.map((ln) => {
@@ -77,9 +109,6 @@ export class ChartCompareComponent implements OnInit {
             case 6:
               this.dados = this.protocolos.protocoloSlaughter2d(ln, this.percgd);
               break;
-            case 9:
-              this.dados = this.protocolos.protocoloDeuremberg(ln, this.percgd);
-              break;
             case 10:
               this.dados = this.protocolos.protocoloPetroski(ln, this.percgd);
               break;
@@ -88,12 +117,6 @@ export class ChartCompareComponent implements OnInit {
               break;
             case 12:
               this.dados = this.protocolos.protocoloSloan2d(ln, this.percgd);
-              break;
-            case 13:
-              this.dados = this.protocolos.protocoloWeltman(ln, this.percgd);
-              break;
-            case 14:
-              this.dados = this.protocolos.protocoloTranWeltman(ln, this.percgd);
               break;
             case 15:
               this.dados = this.protocolos.protocoloWilmoreBehnk3d(ln, this.percgd);
@@ -106,86 +129,92 @@ export class ChartCompareComponent implements OnInit {
           }
           this.dados.data = ln.data;
           this.result.push(this.dados);
+          this.startCharts();
         });
-        setTimeout(() => {
-          console.log(this.result);
-          // % gorduras
-          const gorduras = [];
-          const excessos = [];
-          const livres = [];
-          const desejadas = [];
-          // pesos
-          const pesoAtual = [];
-          const pesoExcesso = [];
-          const pesoSugerido = [];
-          const pesoOsseo = [];
-          const pesoResidual = [];
-          const pesoMuscular = [];
-
-          this.result.forEach(element => {
-            gorduras.push({ name: element.data, value: element.perGordura });
-            excessos.push({ name: element.data, value: element.gorduraExcesso });
-            livres.push({ name: element.data, value: element.percLivreGordura });
-            desejadas.push({ name: element.data, value: element.gorduraDesejada });
-
-            pesoAtual.push({ name: element.data, value: element.pesoAtual });
-            pesoExcesso.push({ name: element.data, value: element.pesoExcesso });
-            pesoSugerido.push({ name: element.data, value: element.pesoSugerido });
-            pesoOsseo.push({ name: element.data, value: element.pesoOsseo });
-            pesoResidual.push({ name: element.data, value: element.pesoResidual });
-            pesoMuscular.push({ name: element.data, value: element.pesoMuscular });
-          });
-
-          const multi = [
-            {
-              name: '% Gordura',
-              series: [...gorduras]
-            },
-            {
-              name: '% Excesso',
-              series: [...excessos]
-            },
-            {
-              name: '% Livre',
-              series: [...livres]
-            },
-            {
-              name: '% Desejada',
-              series: [...desejadas]
-            }
-          ];
-
-          const multi2 = [
-            {
-              name: 'Peso',
-              series: [...pesoAtual]
-            },
-            {
-              name: 'Sugerido',
-              series: [...pesoSugerido]
-            },
-            {
-              name: 'Excesso',
-              series: [...pesoExcesso]
-            },
-            {
-              name: 'Muscular',
-              series: [...pesoMuscular]
-            },
-            {
-              name: 'Osseo',
-              series: [...pesoOsseo]
-            },
-            {
-              name: 'Residual',
-              series: [...pesoResidual]
-            }
-          ];
-          Object.assign(this, { multi });
-          Object.assign(this, { multi2 });
-        }, 700);
       }
     );
+    }
+  }
+
+
+  startCharts() {
+    setTimeout(() => {
+      console.log(this.result);
+      // % gorduras
+      const gorduras = [];
+      const excessos = [];
+      const livres = [];
+      const desejadas = [];
+      // pesos
+      const pesoAtual = [];
+      const pesoExcesso = [];
+      const pesoSugerido = [];
+      const pesoOsseo = [];
+      const pesoResidual = [];
+      const pesoMuscular = [];
+
+      this.result.forEach(element => {
+        gorduras.push({ name: element.data, value: element.perGordura });
+        excessos.push({ name: element.data, value: element.gorduraExcesso });
+        livres.push({ name: element.data, value: element.percLivreGordura });
+        desejadas.push({ name: element.data, value: element.gorduraDesejada });
+
+        pesoAtual.push({ name: element.data, value: element.pesoAtual });
+        pesoExcesso.push({ name: element.data, value: element.pesoExcesso });
+        pesoSugerido.push({ name: element.data, value: element.pesoSugerido });
+        pesoOsseo.push({ name: element.data, value: element.pesoOsseo });
+        pesoResidual.push({ name: element.data, value: element.pesoResidual });
+        pesoMuscular.push({ name: element.data, value: element.pesoMuscular });
+      });
+
+      const multi = [
+        {
+          name: '% Gordura',
+          series: [...gorduras]
+        },
+        {
+          name: '% Excesso',
+          series: [...excessos]
+        },
+        {
+          name: '% Livre',
+          series: [...livres]
+        },
+        {
+          name: '% Desejada',
+          series: [...desejadas]
+        }
+      ];
+
+      const multi2 = [
+        {
+          name: 'Peso',
+          series: [...pesoAtual]
+        },
+        {
+          name: 'Sugerido',
+          series: [...pesoSugerido]
+        },
+        {
+          name: 'Excesso',
+          series: [...pesoExcesso]
+        },
+        {
+          name: 'Muscular',
+          series: [...pesoMuscular]
+        },
+        {
+          name: 'Osseo',
+          series: [...pesoOsseo]
+        },
+        {
+          name: 'Residual',
+          series: [...pesoResidual]
+        }
+      ];
+      Object.assign(this, { multi });
+      Object.assign(this, { multi2 });
+    }, 700);
   }
 
 }

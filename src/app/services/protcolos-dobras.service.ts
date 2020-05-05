@@ -98,7 +98,7 @@ export class ProtcolosDobrasService {
       const DC = 1.10430 - 0.00133 * +morfo.crural - 0.00131 * morfo.subescapular;
       this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     } else {  // Feminino
-      const DC = 1.07640 - 0.00081 * +morfo.suprailiaca - 0.00088 * morfo.tríceps;
+      const DC = 1.07640 - 0.00081 * +morfo.suprailiaca - 0.00088 * +morfo.triciptal;
       this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     }
     const answer = this.createAnswer();

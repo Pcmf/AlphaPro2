@@ -21,20 +21,22 @@ export class MayhewEtAlComponent implements OnInit {
   student: any = [];
   sex: string;
   age: number;
+  protocolo = 18;
   // graphics
   single: any[];
   single2: any[];
   showChart = false;
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  chartSelected = 'pie';
 
   constructor(private location: Location,
-    private dataService: DataService,
-    private datapipe: DatePipe,
-    private ageService: AgeService,
-    private snackBar: MatSnackBar,
-    private protocolos: ProtcolosDobrasService,
-    private prepareChart: PrepareChartService
+              private dataService: DataService,
+              private datapipe: DatePipe,
+              private ageService: AgeService,
+              private snackBar: MatSnackBar,
+              private protocolos: ProtcolosDobrasService,
+              private prepareChart: PrepareChartService
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);

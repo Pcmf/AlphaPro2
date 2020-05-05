@@ -4,12 +4,21 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
             <table>
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
+                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
+                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                            </button>
+                        </th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                 style="width: 110px;">
@@ -18,32 +27,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span>Balança</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tanita}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].tanita}}</td>
+                        <th><span>Peso</span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso}}</td>
                         <td *ngIf="addEval">
-                            <input name="tanita" #tanita="ngModel" [(ngModel)]="newEvaluation.tanita" type="number"
+                            <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number"
                                 step="0.1">
                         </td>
                     </tr>
                     <tr>
                         <th>% Gordura</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percg}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_percg}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura_bl}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura_bl}}</td>
                         <td *ngIf="addEval">
-                            <input name="c_percg" #c_percg="ngModel" [(ngModel)]="newEvaluation.c_percg" type="number"
+                            <input name="perc_gordura_bl" #perc_gordura_bl="ngModel" [(ngModel)]="newEvaluation.perc_gordura_bl" type="number"
                                 step="0.1">
                         </td>
                     </tr>
-                    <tr>
-                        <th><span>Classificação</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_xclass}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_xclass}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_xclass" #c_xclass="ngModel" [(ngModel)]="newEvaluation.c_xclass" type="text"
-                                style="width: 110px;">
-                        </td>
-                    </tr>
+
 
                     <tr>
                         <th>Massa Gorda</th>
@@ -133,6 +134,12 @@
                                 type="number" step="0.1">
                         </td>
                     </tr>
+                    <tr>
+                        <th><span>Classificação</span></th>
+                        <td *ngIf="pointer>=1">TODO</td>
+                        <td *ngIf="pointer>=0">TODO</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -156,7 +163,13 @@
                 </button>
             </div>
         </form>
-
+ 
+        <div class="graphics">
+            <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="chartValues" [gradient]="gradient"
+                [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
+                >
+            </ngx-charts-pie-chart>
+        </div>
     </div>
 
     <div class="footer">

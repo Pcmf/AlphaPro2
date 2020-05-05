@@ -71,13 +71,13 @@
                             {{(+evaluation[pointer-1].subescapular + +evaluation[pointer-1].crural) / 2 |number: '1.2-2'}}
                         </td>
                         <td *ngIf="pointer>=1 && sexo =='F'">
-                            {{(+evaluation[pointer-1].tricipital + +evaluation[pointer-1].suprailiaca) / 2 |number: '1.2-2'}}
+                            {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].suprailiaca) / 2 |number: '1.2-2'}}
                         </td>
                         <td *ngIf="pointer>=0 && sexo == 'M'">
                             {{(+evaluation[pointer].subescapular + +evaluation[pointer].crural) / 2 |number: '1.2-2'}}
                         </td>
                         <td *ngIf="pointer>=0 && sexo == 'F'">
-                            {{(+evaluation[pointer].tricipital + +evaluation[pointer].suprailiaca) / 2 |number: '1.2-2'}}
+                            {{(+evaluation[pointer].triciptal + +evaluation[pointer].suprailiaca) / 2 |number: '1.2-2'}}
                         </td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>

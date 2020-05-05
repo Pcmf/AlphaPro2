@@ -22,12 +22,14 @@ export class TranWeltmanComponent implements OnInit {
   student: any = [];
   sex: string;
   age: number;
+  protocolo = 14;
   // graphics
   single: any[];
   single2: any[];
   showChart = false;
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  chartSelected = 'pie';
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -85,10 +87,6 @@ export class TranWeltmanComponent implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-    // Obter os dados do aluno: Avaliações e Corporal para obter o peso, altura, punho e 
-/*     this.dataService.getData('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
-      (respa: any[]) => {
-        if (respa.length) { */
                 const proto = this.protocolos.protocoloTranWeltman(evaluation, this.gorduraDesejada);
                 // Create graphic
                 this.showChart = true;
@@ -97,37 +95,7 @@ export class TranWeltmanComponent implements OnInit {
                 // Create graphic 2
                 this.single2 = this.prepareChart.getSingle2(proto);
                 Object.assign(this, this.single2);
-
-/*         } else {
-          this.openSnackBar('Atenção: Não existem avaliações complementares para esta data!', '');
-          this.showChart = false;
-        }
-      }
-    ); */
   }
-
-/*   moreData() {
-    const evaluationFinal = this.evaluation.forEach(elem => {
-      this.dataService.getData('clients/eval/' + this.student.id + '/' + elem.data).subscribe(
-        (respa: any[]) => {
-          if (respa.length > 0) {
-            elem.idade = this.ageService.getAgeFromDate1(elem.data, this.student.dt_nasc);
-            elem.peso = respa[0].peso;
-            elem.altura = respa[0].altura;
-            elem.imc = respa[0].imc;
-          } else {
-            elem.idade = 1;
-            elem.peso = 1;
-            elem.altura = 1;
-            elem.imc = 1;
-          }
-          console.table(elem);
-        }
-      );
-    });
-    return evaluationFinal;
-  } */
-
 
   ngOnInit(): void {
   }

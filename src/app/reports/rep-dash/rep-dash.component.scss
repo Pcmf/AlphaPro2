@@ -1,0 +1,21 @@
+.container{
+    background-image: url("../../../assets/img/humphrey-muleba-dDp-6pXrYik-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+  }
+  
+  .mat-expansion-panel {
+    background-color: rgba(247, 238, 238, 0.704);
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .section {
+      width: 50%;
+    }
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+    }
+  }
+  

@@ -89,6 +89,7 @@ import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.co
 import { DialogMedidas } from './services/dialogs/dialog-medidas.component';
 import { DialogService } from './services/dialog.service';
 import { DialogHelpComponent } from './services/dialogs/dialog-help/dialog-help.component';
+import { ChartCardioComponent } from './commun/chart-cardio/chart-cardio.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -169,7 +170,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogHelp,
     AllDobrasComponent,
     DialogMedidas,
-    DialogHelpComponent
+    DialogHelpComponent,
+    ChartCardioComponent
   ],
   imports: [
     BrowserModule,

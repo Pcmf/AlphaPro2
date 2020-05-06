@@ -1,15 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-chart-cardio',
   templateUrl: './chart-cardio.component.html',
-  styleUrls: ['./chart-cardio.component.scss']
+  styleUrls: ['./chart-cardio.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartCardioComponent implements OnInit {
 
   @Input() id: number;
   @Input() protocolo: number;
+  @Input() evaluation: Observable <any>;
 
   multi: any[];
   view: any[] = [360, 340];
@@ -30,19 +32,15 @@ export class ChartCardioComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#E44D25', '#3333FF', '#7aa3e5', '#a8385d', '#aae3f5']
   };
-
-  constructor(
-    private dataService: DataService
-  ) { }
+  constructor( ) { }
 
   ngOnInit(): void {
-    const multi = [];
-    this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.id).subscribe(
-      (resp: any[]) => {
+    let multi = [];
+    this.evaluation.forEach(
+      (ln) => {
         // Caminhada Rockport
         if (this.protocolo === 20) {
-          resp.forEach((ln) => {
-            multi.push({
+            multi = [ ...multi, {
               name: ln.data,
               series: [
                 {
@@ -94,14 +92,12 @@ export class ChartCardioComponent implements OnInit {
                   value: ln.fc
                 }
               ]
-            });
-          });
+            }];
+       //   });
         }
         // Corrida Cooper
         if (this.protocolo === 25) {
-          console.log('Cooper ref');
-          resp.forEach((ln) => {
-            multi.push({
+          multi.push({
               name: ln.data,
               series: [
                 {
@@ -134,9 +130,7 @@ export class ChartCardioComponent implements OnInit {
                 }
               ]
             });
-          });
         }
-
         Object.assign(this, { multi });
       }
     );

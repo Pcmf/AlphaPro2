@@ -9,6 +9,7 @@ import { Location, DatePipe } from '@angular/common';
 })
 export class RockportComponent implements OnInit {
   evaluation: any = [];
+  paramEvaluation: any = [];
   addEval = false;
   pointer = -1;
   maxPointer = -1;
@@ -19,7 +20,7 @@ export class RockportComponent implements OnInit {
   sex: string;
   protocolo = 20;
 
-  constructor(private location: Location, 
+  constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe
              ) {
@@ -34,6 +35,7 @@ export class RockportComponent implements OnInit {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
+          this.paramEvaluation = resp;
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
         } else {
@@ -61,6 +63,7 @@ export class RockportComponent implements OnInit {
     this.dataService.setData('clients/cardio/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
+        this.paramEvaluation = [];
         this.addEval = false;
         this.getData();
       }

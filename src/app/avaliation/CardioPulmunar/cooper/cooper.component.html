@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3 i18n>Corrida - Cooper (1968) - 12min</h3>
+        <h1 i18n>Corrida - Cooper - <small>12min</small></h1>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
@@ -120,8 +120,8 @@
                 </button>
             </div>
         </form>
-        <div class="charts">
-            <app-chart-cardio [id]="selectedStudent.id" [protocolo]="protocolo"></app-chart-cardio>
+        <div class="charts" *ngIf="paramEvaluation !=''">
+            <app-chart-cardio [evaluation]="paramEvaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
     </div>
 

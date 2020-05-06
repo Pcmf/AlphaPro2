@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3 i18n>Caminhada - Rockport (1987) - 1609m</h3>
+        <h1 i18n>Caminhada - Rockport - <small>1609 metros</small></h1>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
@@ -165,8 +165,8 @@
                 </button>
             </div>
         </form>
-        <div class="charts">
-            <app-chart-cardio [id]="selectedStudent.id" [protocolo]="protocolo"></app-chart-cardio>
+        <div class="charts" *ngIf="paramEvaluation !=''">
+            <app-chart-cardio [evaluation]="paramEvaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
     </div>
 

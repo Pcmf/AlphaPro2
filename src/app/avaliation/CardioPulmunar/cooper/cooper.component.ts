@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CooperComponent implements OnInit {
   evaluation: any = [];
+  paramEvaluation: any = [];
   addEval = false;
   pointer = -1;
   maxPointer = -1;
@@ -35,9 +36,9 @@ export class CooperComponent implements OnInit {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
+          this.paramEvaluation = resp;
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
-          console.log(this.evaluation);
         } else {
           this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -64,8 +65,8 @@ export class CooperComponent implements OnInit {
     this.dataService.setData('clients/cardio/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
+        this.paramEvaluation = [];
         this.addEval = false;
-        window.location.reload();
         this.getData();
       }
     );

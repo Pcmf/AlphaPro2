@@ -1,7 +1,9 @@
+$min-width: 1024px;
+
 .menu-toolbar{
   width: 100%;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $min-width) {
   .menu-toolbar{
     width: 60vw;
     margin: auto;

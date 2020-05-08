@@ -46,7 +46,7 @@ mat-label {
 }
 
 .mat-card {
-  width: 90%;
+  width: 280px;
   margin: auto;
 }
 
@@ -78,12 +78,7 @@ mat-label {
   margin-left: 20px;
 }
 @media only screen and (min-width: 768px) {
-  .section {
-    width: 50%;
-  }
-  .new-form {
-    width: 60%;
-  }
+
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */

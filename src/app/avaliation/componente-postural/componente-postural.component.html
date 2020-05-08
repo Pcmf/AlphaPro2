@@ -9,7 +9,7 @@
             <!-- TAB - Vista anterior -->
             <mat-tab i18n label="Vista Anterior">
                 <form #fa="ngForm" (submit)="saveDataForm(fa)">
-                    <table id="VP" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" id="VP" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -173,7 +173,7 @@
             <!-- Vista Lateral -->
             <mat-tab i18n label="Vista Lateral">
                 <form #fl="ngForm" (submit)="saveDataForm(fl)">
-                    <table id="VL" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" id="VL" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -384,7 +384,7 @@
             <!-- Vista Posterior -->
             <mat-tab i18n label="Vista Posterior">
                 <form #fp="ngForm" (submit)="saveDataForm(fp)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -570,7 +570,7 @@
             <!--   FOTOS -->
             <mat-tab i18n label="Fotos">
 
-                <table>
+                <table class="section-table">
                     <thead>
                         <tr>
                             <th class="th-top" *ngIf="pointer>=0">

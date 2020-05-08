@@ -6,34 +6,31 @@
     background-position: center;
 }
 .new-form {
-    width: 80%;
     border-radius: 15px;
     margin: auto;
     padding: 20px;
     display: flex;
+    justify-self: center;
     flex-wrap: wrap;
     justify-content: space-around;
-
     background-color: rgba($color: #dbd3d39f, $alpha: 0.67);
+    width: 80%;
 
     .mat-form-field {
-        width: 300px;
+        width: 250px;
     }
     .new-form-buttons {
-        width: 300px;
+        width: 250px;
         display: flex;
         justify-content: space-evenly;
     }
 }
 
-@media only screen and (min-width: 768px) {
-    .section{
-        height: 85vh;
-        bottom: 4px;
-    }
-    .new-form {
+@media only screen and (min-width: 1024px) {
+    .new-form{
         width: 60%;
     }
+
     ::-webkit-scrollbar {
         width: 0px;
         background: transparent; /* make scrollbar transparent */
@@ -45,15 +42,15 @@ p {
 
     a {
         text-decoration: none;
-        color: white;
+        color: darkblue;
     }
     a:hover {
         text-decoration: none;
-        color: white;
+        color: darkblue;
     }
     a:visited {
         text-decoration: none;
-        color: white;
+        color: darkblue;
     }
 }
 small {

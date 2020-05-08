@@ -120,7 +120,7 @@ export class PDCComponent implements OnInit {
   }
 
   swipeLeft(event) {
-    if (this.selectedTab < 2) {
+    if (this.selectedTab < 3) {
       this.selectedTab++;
     }
   }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3 i18n>Guedes - 3 dobras</h3>
+        <h1 i18n>Guedes - 3 dobras</h1>
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
@@ -8,7 +8,7 @@
             <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
             <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
             <input type="hidden" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho">
-            <table>
+            <table class="section-table">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>

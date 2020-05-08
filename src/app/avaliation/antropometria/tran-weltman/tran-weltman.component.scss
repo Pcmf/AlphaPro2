@@ -1,32 +1,5 @@
 .section{
-    table{
-      width: 100%;
-    }
-    th, td{
-      height: 28px;
-     // background-color: blanchedalmond;
-      border-bottom: 1px #999 solid;
-      text-align: center;
-    }
-    th{
-        font-weight: 500 !important;
-        text-align: left;
-        padding-left: 5px;
-    }
-    .th-top{
-        text-align: center;
-    }
-    td>input{
-      width: 60px;
-    }
-  
-    .action{
-        width: 260px;
-        margin: auto;
-        margin-top: 5px;
-        display: flex;
-        justify-content: space-around;
-  
-    }
+  flex-direction: column;
+  justify-content: start;
 }
 

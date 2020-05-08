@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h3 i18n="Title">Flexiteste</h3>
+        <h1 i18n="Title">Flexiteste</h1>
     </div>
 
 
@@ -10,7 +10,7 @@
             <mat-tab i18n label="Punho">
 
                 <form #f="ngForm" (submit)="save(f.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -124,7 +124,7 @@
 
             <mat-tab i18n label="Cotovelo">
                 <form #fd="ngForm" (submit)="save(fd.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -228,7 +228,7 @@
 
             <mat-tab i18n label="Ombro">
                 <form #fom="ngForm" (submit)="save(fom.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -315,7 +315,7 @@
 
             <mat-tab i18n label="Tronco">
                 <form #ft="ngForm" (submit)="save(ft.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -408,7 +408,7 @@
 
             <mat-tab i18n label="Quadril">
                 <form #fq="ngForm" (submit)="save(fq.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -571,7 +571,7 @@
 
             <mat-tab i18n label="Joelho">
                 <form #fj="ngForm" (submit)="save(fj.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -675,7 +675,7 @@
 
             <mat-tab i18n label="Pés">
                 <form #fpe="ngForm" (submit)="save(fpe.value)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -776,7 +776,7 @@
             </mat-tab>
 
             <mat-tab i18n label="Totais">
-                <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                     <thead>
                         <tr>
                             <th>&nbsp;</th>

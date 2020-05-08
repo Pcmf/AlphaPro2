@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <h1 class="header-title" i18n>Anamnese</h1>
+    <h1 i18n>Anamnese</h1>
   </div>
 
   <div class="section">
@@ -107,70 +107,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form #fev="ngForm" (submit)="saveEstiloVida(fev.value)">
-         <!--  <mat-card>
-            <mat-card-content>
-              <mat-radio-group aria-label="Select an option" #Q6="ngModel" name="Q6" [(ngModel)]="student.Q6">
-                <label i18n="Label">Estilo</label>
-                <mat-radio-button value="1" i18n="Label">Activo</mat-radio-button>
-                <mat-radio-button value="2" i18n="Label">Sedentário</mat-radio-button>
-              </mat-radio-group>
-              <mat-form-field>
-                <mat-label i18n="Label">Categoria</mat-label>
-                <mat-select #Q6CAT="ngModel" name="Q6CAT" [(ngModel)]="student.Q6CAT">
-                  <mat-option value="1" i18n>Cardiopatas</mat-option>
-                  <mat-option value="2" i18n>Obesos</mat-option>
-                  <mat-option value="3" i18n>Hipertensos</mat-option>
-                  <mat-option value="4" i18n>Diabéticos</mat-option>
-                  <mat-option value="5" i18n>Gestantes</mat-option>
-                  <mat-option value="6" i18n>Assintomáticos</mat-option>
-                  <mat-option value="7" i18n>Recuperação de Lesão</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div>
-                <label i18n="Label">Há quanto tempo?</label>
-                <mat-form-field class="input-sm">
-                  <mat-label i18n="Label">anos</mat-label>
-                  <input matInput type="number" i18n placeholder="anos" #Q6TA="ngModel" name="Q6TA"
-                    [(ngModel)]="student.Q6TA">
-                </mat-form-field>
-                <mat-form-field class="input-sm">
-                  <input matInput type="number" i18n placeholder="meses" #Q6TM="ngModel" name="Q6TM"
-                    [(ngModel)]="student.Q6TM">
-                </mat-form-field>
-              </div>
-              <div>
-                <label i18n="Label">Nº vezes na semana?</label>
-                <mat-form-field class="input-sm">
-                  <mat-label></mat-label>
-                  <input matInput type="number" i18n placeholder="nº vezes" #afs="ngModel" name="afs"
-                    [(ngModel)]="student.afs">
-                </mat-form-field>
-              </div>
-            </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-            <mat-card-header>
-              <mat-card-subtitle i18n="Label">Programa Actual</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-
-              <mat-form-field>
-                <mat-label i18n="Label">Nº de treinos por semana</mat-label>
-                <input matInput type="number" #treinos="ngModel" name="treinos" [(ngModel)]="student.treinos">
-              </mat-form-field>
-
-              <mat-form-field appearance="">
-                <mat-label i18n="Label" i18n="Label">Data para inicio do programa</mat-label>
-                <input matInput #dt_prevista name="dt_prevista" [(ngModel)]="dataIniPgm" [matDatepicker]="pickerP"
-                  placeholder="Ex: 01/03/2021" required>
-                <mat-datepicker-toggle matSuffix [for]="pickerP"></mat-datepicker-toggle>
-                <mat-datepicker #pickerP startView="month" [startAt]="startDate"></mat-datepicker>
-              </mat-form-field>
-
-            </mat-card-content>
-          </mat-card>
- -->
+        
           <mat-card>
             <mat-card-header>
               <mat-card-subtitle i18n="Label">Nível de Actividade Fisica</mat-card-subtitle>

@@ -6,8 +6,15 @@
   background-position: center;
 }
 
+.section{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .mat-card{
   height: 30px;
+  width: 280px;
   background-color: rgba(247, 238, 238, 0.704);
   margin-bottom: 1px;
 }

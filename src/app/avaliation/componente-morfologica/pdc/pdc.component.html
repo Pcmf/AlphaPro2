@@ -7,7 +7,7 @@
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Perímetros">
                 <form #fp="ngForm" (submit)="savePerimetros(fp)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -160,7 +160,7 @@
             </mat-tab>
             <mat-tab i18n label="Diâmetros">
                 <form #fd="ngForm" (submit)="saveDiametros(fd)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -175,7 +175,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><span (click)="openDialog('Radio-ulnar (punho)')">Radio-ulnar<br /> (Punho)</span></th>
+                                <th><span (click)="openDialog('Radio-ulnar (punho)')">Radio-ulnar<br /> (Punho)</span>
+                                </th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].punho}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].punho}}</td>
                                 <td *ngIf="addDiam">
@@ -184,7 +185,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Bi-epicôndilo Umeral (Cotovelo)')">Bi-epicôndilo Umeral<br /> (Cotovelo)</span></th>
+                                <th><span (click)="openDialog('Bi-epicôndilo Umeral (Cotovelo)')">Bi-epicôndilo
+                                        Umeral<br /> (Cotovelo)</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].cotovelo}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].cotovelo}}</td>
                                 <td *ngIf="addDiam">
@@ -193,7 +195,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Bi-côndilo Fermural (Joelho)')">Bi-côndilo Fermural<br /> (Joelho)</span></th>
+                                <th><span (click)="openDialog('Bi-côndilo Fermural (Joelho)')">Bi-côndilo Fermural<br />
+                                        (Joelho)</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].joelho}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].joelho}}</td>
                                 <td *ngIf="addDiam">
@@ -234,7 +237,7 @@
             <!-- Mais Perimetros Corporais -->
             <mat-tab i18n label="Outros Perimetros">
                 <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)">
-                    <table (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -329,6 +332,88 @@
                         </button>
                     </div>
                 </form>
+                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                </div>
+            </mat-tab>
+            <!-- Assimetrias -->
+            <mat-tab i18n label="Assimetrias">
+                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd-LL-yyyy'}}
+                                </th>
+                                <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd-LL-yyyy'}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Braços</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].bracod - +medidas[pointer-1].bracoe}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].bracod - +medidas[pointer].bracoe}}</td>
+ <!--                                <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) < 0)">
+                                   <span>D &lt; E</span> em {{+medidas[pointer-1].bracoe - +medidas[pointer-1].bracod}}
+                                </td>
+                                <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) < 0)">
+                                   <span>D &lt; E</span> em {{+medidas[pointer].bracoe - +medidas[pointer].bracod}}
+                                </td>
+                                <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) > 0)">
+                                    <span>D &gt; E</span> em {{medidas[pointer-1].bracod - medidas[pointer-1].bracoe}}
+                                 </td>
+                                 <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) > 0)">
+                                    <span>D &gt; E</span> em {{+medidas[pointer].bracod - +medidas[pointer].bracoe}}
+                                 </td>
+                                 <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) == 0)">
+                                    <span>D = E</span>
+                                 </td>
+                                 <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) == 0)">
+                                    <span>D = E</span>
+                                 </td> -->
+                            </tr>
+                            <tr>
+                                <th>Antebraços</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].antebracod - +medidas[pointer-1].antebracoe}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].antebracod - +medidas[pointer].antebracoe}}</td>
+                            </tr>
+                            <tr>
+                                <th>Coxas</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].coxad - +medidas[pointer-1].coxae}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].coxad - +medidas[pointer].coxae}}</td>
+                            </tr>
+                            <tr>
+                                <th>Pernas</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].pernad - +medidas[pointer-1].pernae}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].pernad - +medidas[pointer].pernae}}</td>
+                            </tr>
+                            <tr>
+                                <th>Coxas Medial</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].coxamd - +medidas[pointer-1].coxame}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].coxamd - +medidas[pointer].coxame}}</td>
+                            </tr>
+                            <tr>
+                                <th>Coxas Inferior</th>
+                                <td *ngIf="pointer>=1">{{+medidas[pointer-1].coxaid - +medidas[pointer-1].coxaie}}</td>
+                                <td *ngIf="pointer>=0">{{+medidas[pointer].coxaid - +medidas[pointer].coxaie}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <small class="advise-sm">*Todas as medidas são em centimetros</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="action">
+                        <button type="button" *ngIf="!addOutros" [disabled]="pointer<=1" mat-mini-fab color="default"
+                            (click)="pointer=pointer-1">
+                            <mat-icon class="mat-14">chevron_left</mat-icon>
+                        </button>
+
+                        <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                            color="default" (click)="pointer=pointer+1">
+                            <mat-icon class="mat-14">chevron_right</mat-icon>
+                        </button>
+
+                    </div>
                 <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
                 </div>
             </mat-tab>

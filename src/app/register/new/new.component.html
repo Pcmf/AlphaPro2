@@ -2,74 +2,79 @@
   <div class="header">
     <h1 i18n="titulo"><span *ngIf="student.id">Editar</span><span *ngIf="!student.id">Registar Novo</span> Aluno</h1>
   </div>
-    <div class="section">
-      <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | nome do aluno" #nome>Nome</mat-label>
-          <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
-        </mat-form-field>
 
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
-          <input #dt_nasc="ngModel" [(ngModel)]="date" name="dt_nasc" matInput [matDatepicker]="picker"
-            placeholder="Ex: 01/03/2001" (ngModelChange)="checkIfExistsClient(f.value)" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | Sexo">Sexo <small>(1)</small></mat-label>
-          <mat-select #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
-            <mat-option i18n="genero masculino" value="M" [attr.selected]="student.sexo == 'M'">Masculino</mat-option>
-            <mat-option i18n="genero feminino" value="F" [attr.selected]="student.sexo == 'F'">Feminino</mat-option>
-          </mat-select>
-        </mat-form-field>
+  <div class="section">
+    <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | nome do aluno" #nome>Nome</mat-label>
+        <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
+      </mat-form-field>
 
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | mobile phone number">Telemovel/Celular</mat-label>
-          <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | Phone number">Telefone</mat-label>
-          <input #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput>
-        </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
+        <input #dt_nasc="ngModel" [(ngModel)]="date" name="dt_nasc" matInput [matDatepicker]="picker"
+          placeholder="Ex: 01/03/2001" (ngModelChange)="checkIfExistsClient(f.value)" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | Sexo">Sexo <small>(1)</small></mat-label>
+        <mat-select #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
+          <mat-option i18n="genero masculino" value="M" [attr.selected]="student.sexo == 'M'">Masculino</mat-option>
+          <mat-option i18n="genero feminino" value="F" [attr.selected]="student.sexo == 'F'">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | email">Email</mat-label>
-          <input #email="ngModel" [ngModel]="student.email" name="email" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | profissional activity">Profissão</mat-label>
-          <input #profissao="ngModel" [ngModel]="student.profissao" name="profissao" matInput>
-        </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | mobile phone number">Telemovel/Celular</mat-label>
+        <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | Phone number">Telefone</mat-label>
+        <input #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput>
+      </mat-form-field>
 
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | address">Morada/Endereço</mat-label>
-          <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | city name">Localidade</mat-label>
-          <input #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="">
-          <mat-label i18n="Label | postal code">Codigo Postal</mat-label>
-          <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput>
-        </mat-form-field>
-        <mat-form-field *ngIf="student.id">
-          <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
-          <input [value]="student.lastaccess" matInput>
-        </mat-form-field>
-        <!-- Botões -->
-        <div class="new-form-buttons">
-          <button mat-fab type="button" (click)="cancel()" color="default">
-            <mat-icon class="mat-18">close</mat-icon>
-          </button>
-          <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
-            <mat-icon class="mat-18">check</mat-icon>
-          </button>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | email">Email</mat-label>
+        <input #email="ngModel" [ngModel]="student.email" name="email" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | profissional activity">Profissão</mat-label>
+        <input #profissao="ngModel" [ngModel]="student.profissao" name="profissao" matInput>
+      </mat-form-field>
 
-        </div>
-        <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span>
-      </form>
-      <p><a href="#"><small>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da
-            saúde.</small></a></p>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | address">Morada/Endereço</mat-label>
+        <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | city name">Localidade</mat-label>
+        <input #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | postal code">Codigo Postal</mat-label>
+        <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput>
+      </mat-form-field>
+      <mat-form-field *ngIf="student.id">
+        <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
+        <input [value]="student.lastaccess" matInput>
+      </mat-form-field>
+      <!-- Botões -->
+      <div class="new-form-buttons">
+        <button mat-fab type="button" (click)="cancel()" color="default">
+          <mat-icon class="mat-18">close</mat-icon>
+        </button>
+        <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
+          <mat-icon class="mat-18">check</mat-icon>
+        </button>
+
+      </div>
+      <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span>
+    
+    <p>
+      <a href="#">
+        <small>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</small>
+      </a>
+    </p>
+  </form>
   </div>

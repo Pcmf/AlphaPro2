@@ -1,3 +1,11 @@
+.container {
+    background-image: url("../../../../assets/img/CON 012.JPG");
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-size: cover;
+    background-position: center; 
+}
+
 .header {
     h1 {
         font-size: 16px;
@@ -5,6 +13,7 @@
 }
 
 .mat-card{
+    width: 280px;
     margin-bottom: 4px;
 }
 .flex-radio-group{
@@ -28,13 +37,7 @@ em {
 
 
 @media only screen and (min-width: 768px) {
-    .container {
-        background-image: url("../../../../assets/img/CON 012.JPG");
-        background-repeat: no-repeat;
-        background-blend-mode: normal;
-        background-size: cover;
-        background-position: center; 
-    }
+
     .section {
         width: 60%;
     }

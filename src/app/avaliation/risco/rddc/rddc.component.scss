@@ -1,15 +1,36 @@
+.container {
+    background-image: url("../../../../assets/img/CON 012.JPG");
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+    background-size: cover;
+    background-position: center; 
+}
+
+.section{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+}
+
+.text-box{
+    width: 96%;
+    margin: auto;
+    border: 1px rgb(58, 57, 57) solid;
+    color: white;
+    font-size: smaller;
+}
+
+
 @media only screen and (min-width: 768px){
-    .container {
-        background-image: url("../../../../assets/img/CON 012.JPG");
-        background-repeat: no-repeat;
-        background-blend-mode: normal;
-        background-size: cover;
-        background-position: center; 
+
+    
+    .section{
+        width: 540px;
     }
-    .flex-form{
-        width: 50%;
-        margin: auto;
-    }
+
+
+
     ::-webkit-scrollbar {
         width: 0px;
         background: transparent; /* make scrollbar transparent */
@@ -18,9 +39,9 @@
 
 
 .mat-card{
-    width: 90%;
+    width: 280px;
     margin-bottom: 4px;
-    display: inline-flex;
+   /*  display: inline-flex; */
 }
 
 .action{
@@ -30,28 +51,9 @@
     justify-content: space-between;
 }
 
-.information{
-    width: 98%;
-    margin: auto;
-    
-    
-    .mat-card{
-        background-color: lightgray;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    h1, h2{
-        display: inline;
-    }
 
-    .text-box{
-        width: 96%;
-        margin: auto;
-        border: 1px darkgrey solid;
-        font-size: smaller;
-    }
-}
+
+
 
 .mat-radio-button{
     padding-right: 20px;

@@ -39,7 +39,6 @@ import { CuretonComponent } from './avaliation/CardioPulmunar/cureton/cureton.co
 import { TesteCaminhadaComponent } from './avaliation/CardioPulmunar/teste-caminhada/teste-caminhada.component';
 import { TesteCorridaComponent } from './avaliation/CardioPulmunar/teste-corrida/teste-corrida.component';
 import { TesteBicicletaComponent } from './avaliation/CardioPulmunar/teste-bicicleta/teste-bicicleta.component';
-import { TesteOutrosComponent } from './avaliation/CardioPulmunar/teste-outros/teste-outros.component';
 import { CooperComponent } from './avaliation/CardioPulmunar/cooper/cooper.component';
 import { GeorgeComponent } from './avaliation/CardioPulmunar/george/george.component';
 import { AstrandRyhmingComponent } from './avaliation/CardioPulmunar/astrand-ryhming/astrand-ryhming.component';
@@ -58,6 +57,8 @@ import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/may
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
 import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
+import { TestePiscinaComponent } from './avaliation/CardioPulmunar/teste-piscina/teste-piscina.component';
+import { TesteBancoComponent } from './avaliation/CardioPulmunar/teste-banco/teste-banco.component';
 
 
 const routes: Routes = [
@@ -95,7 +96,8 @@ const routes: Routes = [
   {path: 'tcam', component: TesteCaminhadaComponent},
   {path: 'tcorr', component: TesteCorridaComponent},
   {path: 'tbic', component: TesteBicicletaComponent},
-  {path: 'toutros', component: TesteOutrosComponent},
+  {path: 'tpiscina', component: TestePiscinaComponent},
+  {path: 'tbanco', component: TesteBancoComponent},
   {path: 'rock', component: RockportComponent},
   {path: 'ukk', component: UKKComponent},
   {path: 'cureton', component: CuretonComponent},

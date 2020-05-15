@@ -56,7 +56,6 @@ import { FRMComponent } from './avaliation/frm/frm.component';
 import { TesteCaminhadaComponent } from './avaliation/CardioPulmunar/teste-caminhada/teste-caminhada.component';
 import { TesteCorridaComponent } from './avaliation/CardioPulmunar/teste-corrida/teste-corrida.component';
 import { TesteBicicletaComponent } from './avaliation/CardioPulmunar/teste-bicicleta/teste-bicicleta.component';
-import { TesteOutrosComponent } from './avaliation/CardioPulmunar/teste-outros/teste-outros.component';
 import { RockportComponent } from './avaliation/CardioPulmunar/rockport/rockport.component';
 import { UKKComponent } from './avaliation/CardioPulmunar/ukk/ukk.component';
 import { CuretonComponent } from './avaliation/CardioPulmunar/cureton/cureton.component';
@@ -90,6 +89,8 @@ import { DialogService } from './services/dialog.service';
 import { DialogHelpComponent } from './services/dialogs/dialog-help/dialog-help.component';
 import { ChartCardioComponent } from './commun/chart-cardio/chart-cardio.component';
 import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
+import { TestePiscinaComponent } from './avaliation/CardioPulmunar/teste-piscina/teste-piscina.component';
+import { TesteBancoComponent } from './avaliation/CardioPulmunar/teste-banco/teste-banco.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -142,7 +143,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     TesteCaminhadaComponent,
     TesteCorridaComponent,
     TesteBicicletaComponent,
-    TesteOutrosComponent,
     RockportComponent,
     UKKComponent,
     CuretonComponent,
@@ -171,7 +171,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogMedidas,
     DialogHelpComponent,
     ChartCardioComponent,
-    Faulkner4Component
+    Faulkner4Component,
+    TestePiscinaComponent,
+    TesteBancoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-teste-bicicleta',
@@ -8,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./teste-bicicleta.component.scss']
 })
 export class TesteBicicletaComponent implements OnInit {
-  studentId: number;
-  constructor(private location: Location, private actRoute: ActivatedRoute) {
-    this.studentId = this.actRoute.snapshot.params.id;
+  constructor(private location: Location) {
    }
 
   ngOnInit(): void {

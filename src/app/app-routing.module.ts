@@ -20,7 +20,6 @@ import { DW4Component } from './avaliation/dobras/dw4/dw4.component';
 import { SloanComponent } from './avaliation/dobras/sloan/sloan.component';
 import { GuedesComponent } from './avaliation/dobras/guedes/guedes.component';
 import { PB4Component } from './avaliation/dobras/pb4/pb4.component';
-import { CarterComponent } from './avaliation/dobras/carter/carter.component';
 import { JP7Component } from './avaliation/dobras/jp7/jp7.component';
 import { WB2Component } from './avaliation/dobras/wb2/wb2.component';
 import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
@@ -58,6 +57,7 @@ import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-sei
 import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
+import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
 
 
 const routes: Routes = [
@@ -68,7 +68,7 @@ const routes: Routes = [
   {path: 'sloan2', component: SloanComponent},
   {path: 'guedes3', component: GuedesComponent},
   {path: 'pb4', component: PB4Component},
-  {path: 'carter', component: CarterComponent},
+  {path: 'faulkner', component: Faulkner4Component},
   {path: 'jp7', component: JP7Component},
   {path: 'wb2', component: WB2Component},
   {path: 'wb3', component: WB3Component},

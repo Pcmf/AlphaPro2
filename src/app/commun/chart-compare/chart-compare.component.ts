@@ -95,7 +95,7 @@ export class ChartCompareComponent implements OnInit {
               this.dados = this.protocolos.protocoloGuedes3d(ln, this.percgd);
               break;
             case 2:
-              this.dados = this.protocolos.protocoloCarter6d(ln, this.percgd);
+              this.dados = this.protocolos.protocoloFaulkner4d(ln, this.percgd);
               break;
             case 3:
               this.dados = this.protocolos.protocoloJacksonPollok3d(ln, this.percgd);

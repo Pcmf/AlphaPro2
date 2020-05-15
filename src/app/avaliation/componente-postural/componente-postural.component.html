@@ -9,10 +9,11 @@
             <!-- TAB - Vista anterior -->
             <mat-tab i18n label="Vista Anterior">
                 <form #fa="ngForm" (submit)="saveDataForm(fa)">
-                    <table class="section-table" id="VP" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table front-view" id="VP" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
@@ -21,14 +22,15 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação da Cabeça</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabi}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vacabi="ngModel" name="vacabi" [(ngModel)]="newData.vacabi"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -37,11 +39,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação da Cabeça')">Rotação da Cabeça</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabr}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabr}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -50,11 +54,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnivel de Ombros')">Desnivel de Ombros</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaombrodesn}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaombrodesn}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombrodesn="ngModel" name="vaombrodesn"
-                                            [(ngModel)]="newData.vaombrodesn" placeholder="selecionar">
+                                            [(ngModel)]="newData.vaombrodesn" placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -64,13 +70,14 @@
 
                             <tr>
                                 <th><span (click)="openDialog('Rotação do Tronco')">Rotação do Tronco</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaquadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadril="ngModel" name="vaquadril"
-                                            [(ngModel)]="newData.vaquadril" placeholder="selecionar">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            [(ngModel)]="newData.vaquadril" placeholder="selecione">
                                             <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -78,11 +85,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Triangulo de Thales')">Triangulo de Thales</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpthalesd}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpthalesd}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpthalesd="ngModel" name="vpthalesd"
-                                            [(ngModel)]="newData.vpthalesd" placeholder="selecionar">
+                                            [(ngModel)]="newData.vpthalesd" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -93,11 +101,12 @@
                             <tr>
                                 <th><span (click)="openDialog('Altura das Cristas Iliacas')">Altura das<br />Cristas
                                         Iliacas</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].aci_va}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].aci_va}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #aci_va="ngModel" name="aci_va" [(ngModel)]="newData.aci_va"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -108,11 +117,13 @@
 
                             <tr>
                                 <th><span (click)="openDialog('Desnivel da Pelve')">Desnivel da Pelve</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaquadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadril="ngModel" name="vaquadril"
-                                            [(ngModel)]="newData.vaquadril" placeholder="selecionar">
+                                            [(ngModel)]="newData.vaquadril" placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -121,11 +132,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vajoelho}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vajoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelho="ngModel" name="vajoelho" [(ngModel)]="newData.vajoelho"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -134,11 +147,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés')">Pés</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vape}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vape}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vape="ngModel" name="vape" [(ngModel)]="newData.vape"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Abduzidos">Abduzidos</mat-option>
                                             <mat-option value="Aduzidos">Aduzidos</mat-option>
                                         </mat-select>
@@ -167,16 +182,17 @@
                         </button>
                     </div>
                 </form>
-                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
-                </div>
+
+                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;</div>
             </mat-tab>
             <!-- Vista Lateral -->
             <mat-tab i18n label="Vista Lateral">
                 <form #fl="ngForm" (submit)="saveDataForm(fl)">
-                    <table class="section-table" id="VL" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table side-view" id="VL" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
@@ -187,11 +203,13 @@
                         <tbody>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlcab}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcab}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcab="ngModel" name="vlcab" [(ngModel)]="newData.vlcab"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Protraido">Protraido</mat-option>
                                             <mat-option value="Retraido">Retraido</mat-option>
                                         </mat-select>
@@ -200,11 +218,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cervical')">Cervical</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlcervical}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcervical}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcervical="ngModel" name="vlcervical"
-                                            [(ngModel)]="newData.vlcervical" placeholder="selecionar">
+                                            [(ngModel)]="newData.vlcervical" placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -213,11 +233,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros')">Ombros</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombro="ngModel" name="vlombro" [(ngModel)]="newData.vlombro"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Protraidos">Protraidos</mat-option>
                                             <mat-option value="Retraidos">Retraidos</mat-option>
                                         </mat-select>
@@ -227,13 +249,14 @@
                             <tr>
                                 <th><span (click)="openDialog('Membro Superior Direito')">Membro
                                         Superior<br />Direito</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].msd}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].msd}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #msd="ngModel" name="msd" [(ngModel)]="newData.msd"
-                                            placeholder="selecionar">
-                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
+                                            placeholder="selecione">
                                             <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
                                             <mat-option value="Posteriorizado">Posteriorizado</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -242,13 +265,14 @@
                             <tr>
                                 <th><span (click)="openDialog('Membro Superior Esquerdo')">Membro
                                         Superior<br />Esquerdo</span></th>
-                                <td *ngIf="pointer>=0">{{oldData[pointer].mse}}</td>
+                                        <td *ngIf="pointer>=1">{{oldData[pointer-1].mse}}</td>
+                                        <td *ngIf="pointer>=0">{{oldData[pointer].mse}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #mse="ngModel" name="mse" [(ngModel)]="newData.mse"
-                                            placeholder="selecionar">
-                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
+                                            placeholder="selecione">
                                             <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
                                             <mat-option value="Posteriorizado">Posteriorizado</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -256,11 +280,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Dorsal')">Dorsal</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vldorsal}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vldorsal}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vldorsal="ngModel" name="vldorsal" [(ngModel)]="newData.vldorsal"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Hipercifótica">Hipercifótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -269,13 +295,14 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação do Tronco')">Rotação do Tronco</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].pescoco}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].pescoco}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #carga_peso="ngModel" name="carga_peso"
-                                            [(ngModel)]="newData.carga_peso" placeholder="selecionar">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            [(ngModel)]="newData.carga_peso" placeholder="selecione">
                                             <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -283,6 +310,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Abdómen')">Abdómen</span></th>
+                                <td *ngIf="pointer>=1"><span *ngIf="oldData[pointer-1].vlprotusao">Protusão</span></td>
                                 <td *ngIf="pointer>=0"><span *ngIf="oldData[pointer].vlprotusao">Protusão</span></td>
                                 <td *ngIf="addForm">
 
@@ -293,11 +321,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Lombar')">Lombar</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vllombar}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vllombar}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vllombar="ngModel" name="vllombar" [(ngModel)]="newData.vllombar"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
@@ -306,11 +336,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril')">Quadril</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].quadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].quadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #quadril="ngModel" name="quadril" [(ngModel)]="newData.quadril"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Antepulsão">Antepulsão</mat-option>
                                             <mat-option value="Retropulsão">Retropulsão</mat-option>
                                         </mat-select>
@@ -319,11 +351,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pelve')">Pelve</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlquadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlquadril="ngModel" name="vlquadril"
-                                            [(ngModel)]="newData.vlquadril" placeholder="selecionar">
+                                            [(ngModel)]="newData.vlquadril" placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Anteversão">Anteversão</mat-option>
                                             <mat-option value="Retroversão">Retroversão</mat-option>
                                         </mat-select>
@@ -332,11 +366,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vljoelho}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vljoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelho="ngModel" name="vljoelho" [(ngModel)]="newData.vljoelho"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Flexos">Flexos</mat-option>
                                             <mat-option value="Recurvatos">Recurvatos</mat-option>
                                         </mat-select>
@@ -345,11 +381,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés')">Pés</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlpe}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpe}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpe="ngModel" name="vlpe" [(ngModel)]="newData.vlpe"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
+                                            <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Cavos">Cavos</mat-option>
                                             <mat-option value="Planos">Planos</mat-option>
                                         </mat-select>
@@ -379,15 +417,17 @@
                         </button>
                     </div>
                 </form>
+                <div style="height: 100px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;</div>
             </mat-tab>
 
             <!-- Vista Posterior -->
             <mat-tab i18n label="Vista Posterior">
                 <form #fp="ngForm" (submit)="saveDataForm(fp)">
-                    <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <table class="section-table back-view" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
@@ -398,11 +438,12 @@
                         <tbody>
                             <tr>
                                 <th><span (click)="openDialog('Ombros')">Ombros</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpombro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombro="ngModel" name="vpombro" [(ngModel)]="newData.vpombro"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Deprimidos">Deprimidos</mat-option>
                                             <mat-option value="Elevados">Elevados</mat-option>
                                         </mat-select>
@@ -411,11 +452,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnível')">Desnível</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpombrodesn}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpombrodesn}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombrodesn="ngModel" name="vpombrodesn"
-                                            [(ngModel)]="newData.vpombrodesn" placeholder="selecionar">
+                                            [(ngModel)]="newData.vpombrodesn" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -424,6 +466,13 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escápulas')">Escápulas</span></th>
+                                <td *ngIf="pointer>=1">
+                                    <span *ngIf="oldData[pointer-1].esc_simetrica_vp">Simétricas<br /></span>
+                                    <span *ngIf="oldData[pointer-1].esc_assimetricas_vp">Assimétricas<br /></span>
+                                    <span *ngIf="oldData[pointer-1].vpescad">Aduzidas<br /></span>
+                                    <span *ngIf="oldData[pointer-1].vpesc">Abduzidas<br /></span>
+                                    <span *ngIf="oldData[pointer-1].vpescal">Aladas<br /></span>
+                                </td>
                                 <td *ngIf="pointer>=0">
                                     <span *ngIf="oldData[pointer].esc_simetrica_vp">Simétricas<br /></span>
                                     <span *ngIf="oldData[pointer].esc_assimetricas_vp">Assimétricas<br /></span>
@@ -451,11 +500,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escápulas Aladas')">Escápulas Aladas</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].esc_alada_l}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].esc_alada_l}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #esc_alada_l="ngModel" name="esc_alada_l"
-                                            [(ngModel)]="newData.esc_alada_l" placeholder="selecionar">
+                                            [(ngModel)]="newData.esc_alada_l" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -464,11 +514,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Gibosidade Torácica')">Gibosidade Torácica</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].gibosidade}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].gibosidade}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #gibosidade="ngModel" name="gibosidade"
-                                            [(ngModel)]="newData.gibosidade" placeholder="selecionar">
+                                            [(ngModel)]="newData.gibosidade" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Ausente">Ausente</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -478,11 +529,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Dorsal')">Escoliose Dorsal</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpdorsal}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpdorsal}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpdorsal="ngModel" name="vpdorsal" [(ngModel)]="newData.vpdorsal"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -491,11 +543,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Lombar')">Escoliose Lombar</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vplombar}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vplombar}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vplombar="ngModel" name="vplombar" [(ngModel)]="newData.vplombar"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -504,11 +557,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Desnivel da Pelve')">Desnivel da Pelve</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpquadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpquadril="ngModel" name="vpquadril"
-                                            [(ngModel)]="newData.vpquadril" placeholder="selecionar">
+                                            [(ngModel)]="newData.vpquadril" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
@@ -517,11 +571,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos')">Joelhos</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpjoelho}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpjoelho}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelho="ngModel" name="vpjoelho" [(ngModel)]="newData.vpjoelho"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -530,11 +585,12 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelos')">Tornozelos</span></th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vppe}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vppe}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppe="ngModel" name="vppe" [(ngModel)]="newData.vppe"
-                                            placeholder="selecionar">
+                                            placeholder="selecione">
                                             <mat-option value="Valgo">Valgo</mat-option>
                                             <mat-option value="Varo">Varo</mat-option>
                                         </mat-select>
@@ -564,7 +620,7 @@
                         </button>
                     </div>
                 </form>
-                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                 </div>
             </mat-tab>
             <!--   FOTOS -->

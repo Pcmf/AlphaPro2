@@ -40,7 +40,6 @@ import { DW4Component } from './avaliation/dobras/dw4/dw4.component';
 import { SloanComponent } from './avaliation/dobras/sloan/sloan.component';
 import { GuedesComponent } from './avaliation/dobras/guedes/guedes.component';
 import { PB4Component } from './avaliation/dobras/pb4/pb4.component';
-import { CarterComponent } from './avaliation/dobras/carter/carter.component';
 import { JP7Component } from './avaliation/dobras/jp7/jp7.component';
 import { WB2Component } from './avaliation/dobras/wb2/wb2.component';
 import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
@@ -90,6 +89,7 @@ import { DialogMedidas } from './services/dialogs/dialog-medidas.component';
 import { DialogService } from './services/dialog.service';
 import { DialogHelpComponent } from './services/dialogs/dialog-help/dialog-help.component';
 import { ChartCardioComponent } from './commun/chart-cardio/chart-cardio.component';
+import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -126,7 +126,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     SloanComponent,
     GuedesComponent,
     PB4Component,
-    CarterComponent,
     JP7Component,
     WB2Component,
     WB3Component,
@@ -171,7 +170,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     AllDobrasComponent,
     DialogMedidas,
     DialogHelpComponent,
-    ChartCardioComponent
+    ChartCardioComponent,
+    Faulkner4Component
   ],
   imports: [
     BrowserModule,

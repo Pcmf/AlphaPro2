@@ -31,7 +31,6 @@
                             <tr>
                                 <th>Direito</th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}
-                                    <!-- <app-flex-class [inFlexClass]="evaluation[pointer-1].punhof"></app-flex-class> -->
                                 </td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
                                 <td *ngIf="addEval">
@@ -44,7 +43,6 @@
                                             <mat-option value="4">4 - Excelente</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                              <!--       <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof" type="number" step="1"> -->
                                 </td>
                             </tr>
                             <tr>
@@ -52,15 +50,24 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhofe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="punhofe" #punhofe="ngModel" [(ngModel)]="newEvaluation.punhofe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhofe" #punhofe="ngModel" (ngModel)="newEvaluation.punhofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total</th>
                                 <td *ngIf="pointer>=1">
-                                    {{+evaluation[pointer-1].punhof + +evaluation[pointer-1].punhofe}}</td>
-                                <td *ngIf="pointer>=0">{{+evaluation[pointer].tpunhof + +evaluation[pointer].tpunhofe}}
+                                    {{+evaluation[pointer-1].punhof + +evaluation[pointer-1].punhofe}}
+                                </td>
+                                <td *ngIf="pointer>=0">
+                                    {{+evaluation[pointer].punhof + +evaluation[pointer].punhofe}}
                                 </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
@@ -72,8 +79,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoe" #punhoe="ngModel" (ngModel)="newEvaluation.punhoe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -81,8 +95,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhoee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="punhoee" #punhoee="ngModel" [(ngModel)]="newEvaluation.punhoee"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoee" #punhoee="ngModel" (ngModel)="newEvaluation.punhoee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -147,8 +168,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelof" #cotovelof="ngModel" (ngModel)="newEvaluation.cotovelof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -156,8 +184,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelofe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotovelofe" #cotovelofe="ngModel"
-                                        [(ngModel)]="newEvaluation.cotovelofe" type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelofe" #cotovelofe="ngModel" (ngModel)="newEvaluation.cotovelofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -177,8 +212,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloe" #cotoveloe="ngModel" (ngModel)="newEvaluation.cotoveloe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -186,8 +228,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotoveloee" #cotoveloee="ngModel"
-                                        [(ngModel)]="newEvaluation.cotoveloee" type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloee" #cotoveloee="ngModel" (ngModel)="newEvaluation.cotoveloee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -251,8 +300,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroab}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombroab}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroab" #ombroab="ngModel" (ngModel)="newEvaluation.ombroab" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -260,8 +316,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroabe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombroabe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="ombroabe" #ombroabe="ngModel" [(ngModel)]="newEvaluation.ombroabe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroabe" #ombroabe="ngModel" (ngModel)="newEvaluation.ombroabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -278,11 +341,18 @@
                             </tr>
                             <tr>
                                 <th>Horizontal</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
+                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombromedial" #ombromedial="ngModel" (ngModel)="newEvaluation.ombromedial" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                         </tbody>
@@ -335,8 +405,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncof}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="troncof" #troncof="ngModel" [(ngModel)]="newEvaluation.troncof"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncof" #troncof="ngModel" (ngModel)="newEvaluation.troncof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -344,8 +421,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncoe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="troncoe" #troncoe="ngModel" [(ngModel)]="newEvaluation.troncoe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncoe" #troncoe="ngModel" (ngModel)="newEvaluation.troncoe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
 
@@ -357,8 +441,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncold}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncold}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="troncold" #troncold="ngModel" [(ngModel)]="newEvaluation.troncold"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncold" #troncold="ngModel" (ngModel)="newEvaluation.troncold" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -366,8 +457,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncole}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncole}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="troncole" #troncole="ngModel" [(ngModel)]="newEvaluation.troncole"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncole" #troncole="ngModel" (ngModel)="newEvaluation.troncole" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -431,8 +529,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilf" #quadrilf="ngModel" (ngModel)="newEvaluation.quadrilf" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -440,8 +545,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilfe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilfe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilfe" #quadrilfe="ngModel" [(ngModel)]="newEvaluation.quadrilfe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilfe" #quadrilfe="ngModel" (ngModel)="newEvaluation.quadrilfe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -461,8 +573,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrile}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrile}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrile" #quadrile="ngModel" (ngModel)="newEvaluation.quadrile" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -470,8 +589,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilee" #quadrilee="ngModel" [(ngModel)]="newEvaluation.quadrilee"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilee" #quadrilee="ngModel" (ngModel)="newEvaluation.quadrilee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -490,8 +616,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilab}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilab}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilab" #quadrilab="ngModel" (ngModel)="newEvaluation.quadrilab" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -499,8 +632,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilabe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilabe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilabe" #quadrilabe="ngModel"
-                                        [(ngModel)]="newEvaluation.quadrilabe" type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilabe" #quadrilabe="ngModel" (ngModel)="newEvaluation.quadrilabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -520,8 +660,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilad" #quadrilad="ngModel" (ngModel)="newEvaluation.quadrilad" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -529,8 +676,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilade}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilade}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="quadrilade" #quadrilade="ngModel"
-                                        [(ngModel)]="newEvaluation.quadrilade" type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilade" #quadrilade="ngModel" (ngModel)="newEvaluation.quadrilade" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -594,8 +748,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhof" #joelhof="ngModel" (ngModel)="newEvaluation.joelhof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -603,8 +764,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhofe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="joelhofe" #joelhofe="ngModel" [(ngModel)]="newEvaluation.joelhofe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhofe" #joelhofe="ngModel" (ngModel)="newEvaluation.joelhofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -624,8 +792,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="joelhoe" #joelhoe="ngModel" [(ngModel)]="newEvaluation.joelhoe"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoe" #joelhoe="ngModel" (ngModel)="newEvaluation.joelhoe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -633,8 +808,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhoee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="joelhoee" #joelhoee="ngModel" [(ngModel)]="newEvaluation.joelhoee"
-                                        type="number" step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoee" #joelhoee="ngModel" (ngModel)="newEvaluation.joelhoee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -698,8 +880,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesf}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="pesf" #pesf="ngModel" [(ngModel)]="newEvaluation.pesf" type="number"
-                                        step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesf" #pesf="ngModel" (ngModel)="newEvaluation.pesf" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -707,8 +896,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesfe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesfe}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="pesfe" #pesfe="ngModel" [(ngModel)]="newEvaluation.pesfe" type="number"
-                                        step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesfe" #pesfe="ngModel" (ngModel)="newEvaluation.pesfe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -727,8 +923,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].pese}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pese}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="pese" #pese="ngModel" [(ngModel)]="newEvaluation.pese" type="number"
-                                        step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pese" #pese="ngModel" (ngModel)="newEvaluation.pese" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -736,8 +939,15 @@
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesee}}</td>
                                 <td *ngIf="addEval">
-                                    <input name="pesee" #pesee="ngModel" [(ngModel)]="newEvaluation.pesee" type="number"
-                                        step="1">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesee" #pesee="ngModel" (ngModel)="newEvaluation.pesee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
@@ -798,18 +1008,15 @@
                             <th>Esquerdo</th>
                             <td *ngIf="pointer>=1">{{evaluation[pointer-1].membsuperiore}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].membsuperiore}}</td>
-                            <td *ngIf="addEval">
-                                <input name="membsuperiore" #membsuperiore="ngModel"
-                                    [(ngModel)]="newEvaluation.membsuperiore" type="number" step="1">
-                            </td>
                         </tr>
                         <tr>
                             <th>Total</th>
                             <td *ngIf="pointer>=1">
-                                {{+evaluation[pointer-1].membsuperior + +evaluation[pointer-1].membsuperiore}}</td>
+                                {{+evaluation[pointer-1].membsuperior + +evaluation[pointer-1].membsuperiore}}
+                            </td>
                             <td *ngIf="pointer>=0">
-                                {{+evaluation[pointer].membsuperior + +evaluation[pointer].membsuperiore}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                                {{+evaluation[pointer].membsuperior + +evaluation[pointer].membsuperiore}}
+                            </td>
                         </tr>
 
                         <tr class="sub-line">
@@ -819,19 +1026,11 @@
                             <th>Direito</th>
                             <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiores}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiores}}</td>
-                            <td *ngIf="addEval">
-                                <input name="membinferiores" #membinferiores="ngModel"
-                                    [(ngModel)]="newEvaluation.membinferiores" type="number" step="1">
-                            </td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
                             <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiorese}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiorese}}</td>
-                            <td *ngIf="addEval">
-                                <input name="membinferiorese" #membinferiorese="ngModel"
-                                    [(ngModel)]="newEvaluation.membinferiorese" type="number" step="1">
-                            </td>
                         </tr>
                         <tr>
                             <th>Total</th>
@@ -839,7 +1038,6 @@
                                 {{+evaluation[pointer-1].membinferiores + +evaluation[pointer-1].membinferiorese}}</td>
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].membinferiores + +evaluation[pointer].membinferiorese}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                         <tr class="sub-line">
                             <th><span>Total Geral</span></th>
@@ -848,19 +1046,11 @@
                             <th>Direito</th>
                             <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgeral}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].totalgeral}}</td>
-                            <td *ngIf="addEval">
-                                <input name="totalgeral" #totalgeral="ngModel" [(ngModel)]="newEvaluation.totalgeral"
-                                    type="number" step="1">
-                            </td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
                             <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgerale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].totalgerale}}</td>
-                            <td *ngIf="addEval">
-                                <input name="totalgerale" #totalgerale="ngModel" [(ngModel)]="newEvaluation.totalgerale"
-                                    type="number" step="1">
-                            </td>
                         </tr>
                         <tr>
                             <th>Total</th>
@@ -868,7 +1058,6 @@
                                 {{+evaluation[pointer-1].totalgeral + +evaluation[pointer-1].totalgerale}}</td>
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].totalgeral + +evaluation[pointer].totalgerale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                     </tbody>
                 </table>
@@ -877,18 +1066,9 @@
                         (click)="pointer=pointer-1">
                         <mat-icon class="mat-14">chevron_left</mat-icon>
                     </button>
-                    <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
-                    </button>
                     <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
                         mat-mini-fab color="default" (click)="pointer=pointer+1">
                         <mat-icon class="mat-14">chevron_right</mat-icon>
-                    </button>
-                    <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
-                    </button>
-                    <button *ngIf="addEval" mat-fab>
-                        <mat-icon class="mat-18">check</mat-icon>
                     </button>
                 </div>
             </mat-tab>

@@ -6,6 +6,31 @@
 .form-select-sm {
   width: 100px;
 }
+.form-select-sm{
+  width: 75px;
+}
+.mat-form-field{
+  font-size: small;
+}
+
+
+table.front-view{
+    background-image: url("../../../assets/img/front_view.jpg");
+  }
+table.side-view{
+    background-image: url("../../../assets/img/side_view.jpg");
+  }
+table.back-view{
+    background-image: url("../../../assets/img/back_view.jpg");
+  }
+table{
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  background-size: contain;
+  background-position: center;
+  background-color: rgba(255, 254, 254, 0.861);
+
+}
 
 .photos {
   margin: 20px 0;
@@ -22,4 +47,3 @@
     }
   }
 }
-

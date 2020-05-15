@@ -32,8 +32,12 @@ export class IRCQComponent implements OnInit {
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          this.maxPointer = resp.length;
-          this.evaluation = resp;
+          this.evaluation = resp.filter((elem) => {
+            if (elem.cintura > 0 && elem.quadril > 0) {
+              return elem;
+            }
+          });
+          this.maxPointer = this.evaluation.length;
           this.pointer = this.maxPointer - 1;
         } else {
           this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');

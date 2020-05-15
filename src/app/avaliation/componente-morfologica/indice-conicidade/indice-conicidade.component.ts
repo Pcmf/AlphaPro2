@@ -32,7 +32,6 @@ export class IndiceConicidadeComponent implements OnInit {
     this.dataService.getLastEvaluation(this.selectedStudent.id).subscribe(
       resp => {
         this.lastEvaluation = resp[0];
-        console.log(this.lastEvaluation);
         if (this.lastEvaluation.difdias > 1) {
           this.openSnackBar('Atenção! Esta avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
         }
@@ -45,9 +44,14 @@ export class IndiceConicidadeComponent implements OnInit {
     this.dataService.getData('clients/corporal/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          this.maxPointer = resp.length;
-          this.evaluation = resp;
+          this.evaluation =  resp.filter((elem) => {
+                if (elem.altura > 0 && elem.peso > 0 && elem.cintura > 0){
+                  return elem;
+                }
+          });
+          this.maxPointer = this.evaluation.length;
           this.pointer = this.maxPointer - 1;
+
         } else {
           this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;

@@ -126,8 +126,21 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  protocoloCarter6d(morfo, gorduraDesejada) {
-
+  protocoloFaulkner4d(morfo, gorduraDesejada) {
+    this.gorduraDesejada = gorduraDesejada;
+    this.morfo = morfo;
+    let constantFaulkner = 1.14;
+    if (morfo.tipoaluno === 'Nadadores') {
+      constantFaulkner = 1.09;
+    }
+    if (morfo.tipoaluno === 'Futebolistas') {
+      constantFaulkner = 1.12;
+    }
+    this.perGordura = (+morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca + +morfo.subescapular) * 0.153 + 5.783;
+    const answer = this.createAnswer();
+    answer.pesoSugerido = (answer.pesoAtual - +answer.pesoGordo) * constantFaulkner;
+    console.table(answer);
+    return answer;
    }
 
   protocoloDeuremberg(morfo, gorduraDesejada) {
@@ -262,18 +275,18 @@ export class ProtcolosDobrasService {
   // Criar JSON com resposta
   createAnswer() {
     const resp = {
-      perGordura: this.perGordura.toFixed(2),
-      gorduraDesejada: this.gorduraDesejada,
-      gorduraExcesso: this.calcGorduraExcesso().toFixed(2),
-      percLivreGordura: this.calcLivreGordura().toFixed(2),
-      massaIsentaGordura: this.calcMassaIsentaGordura().toFixed(2),
-      pesoGordo: this.calcPesoGordura().toFixed(2),
-      pesoAtual: this.morfo.peso,
-      pesoSugerido: this.calcPesoSugerido().toFixed(2),
-      pesoExcesso: this.calcPesoExcesso().toFixed(2),
-      pesoOsseo: this.calcPesoOsseo().toFixed(2),
-      pesoResidual: this.calcPesoResidual().toFixed(2),
-      pesoMuscular: this.calcPesoMuscular().toFixed(2)
+      perGordura: +this.perGordura.toFixed(2),
+      gorduraDesejada: +this.gorduraDesejada,
+      gorduraExcesso: +this.calcGorduraExcesso().toFixed(2),
+      percLivreGordura: +this.calcLivreGordura().toFixed(2),
+      massaIsentaGordura: +this.calcMassaIsentaGordura().toFixed(2),
+      pesoGordo: +this.calcPesoGordura().toFixed(2),
+      pesoAtual: +this.morfo.peso,
+      pesoSugerido: +this.calcPesoSugerido().toFixed(2),
+      pesoExcesso: +this.calcPesoExcesso().toFixed(2),
+      pesoOsseo: +this.calcPesoOsseo().toFixed(2),
+      pesoResidual: +this.calcPesoResidual().toFixed(2),
+      pesoMuscular: +this.calcPesoMuscular().toFixed(2)
     };
     console.table(resp);
     return resp;

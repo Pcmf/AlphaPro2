@@ -171,17 +171,17 @@
             <mat-card-content>
               <mat-radio-group #classe="ngModel" name="classe" [(ngModel)]="student.classe">
                 <mat-radio-button i18n value="1">
-                  Iniciante <span (click)="openDialogHelp('Iniciante', 'Sujeito sedentário, que nunca fez atividade física, ou que está a mais de 6 meses sem fazer uma atividade física regular, pelo menos 2 vezes semanais. Sujeito que possui classificação FRACO na avaliação da aptidão física.', '')">
+                  Iniciante <span (click)="openDialogHelp('Iniciante', 'Sujeito sedentário, que nunca fez ou que está a mais de 6 meses sem fazer um programa de exercícios físicos regular, pelo menos 2 vezes semanais.', '')">
                     <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
                   </span> 
                 </mat-radio-button> 
                 <mat-radio-button i18n value="2">
-                  Intermediário <span (click)="openDialogHelp('Intermediário', 'Sujeito ativo, que frequenta um programa de condicionamento físico irregularmente (não muito assíduo) há mais de 6 meses entre 2 a 3 vezes por semana. Na última avaliação teve uma classificação REGULAR ou BOM.', '')">
+                  Intermediário <span (click)="openDialogHelp('Intermediário', 'Sujeito ativo, que frequenta um programa de exercício físico irregularmente (não muito assíduo) há mais de 6 meses entre 2 a 3 vezes por semana. Realiza exercícios de baixa/média intensidade (respiração aumentada e capaz de calar) entre 100 a 150 min por semana.', '')">
                     <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
                   </span> 
                 </mat-radio-button>
                 <mat-radio-button i18n value="3">
-                  Avançado <span (click)="openDialogHelp('Avançado', 'Atleta ou sujeito que pratica uma atividade física há mais de 1 ano, com regularidade e frequência semanal de 3 vezes ou mais. Na última avaliação teve uma classificação MUITO BOM ou EXECELENTE.c', '')">
+                  Avançado <span (click)="openDialogHelp('Avançado', 'Atleta ou sujeito que pratica um programa de exercício físico de forma regular há mais de 1 ano, com frequência semanal de 3 ou mais vezes. Realiza exercícios vigorosos (respiração rápida e dificuldade de falar) pelo menos 75 minutos por semana.', '')">
                     <small style="color: blue; text-decoration: underline; cursor: pointer;">+ info</small>
                   </span>
                 </mat-radio-button>

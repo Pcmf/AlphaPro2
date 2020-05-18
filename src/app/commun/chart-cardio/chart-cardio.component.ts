@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.service';
 
 @Component({
   selector: 'app-chart-cardio',
@@ -9,14 +10,15 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class ChartCardioComponent implements OnInit {
 
-  @Input() id: number;
+  @Input() classe: number;
   @Input() protocolo: number;
   @Input() evaluation: Observable <any>;
 
   multi: any[];
-  view: any[] = [360, 340];
+  multi2: any[];
+  view: any[] = [340, 260];
 
-  // options
+  // options - FC line chart
   legend = true;
   legendPosition = 'below';
   showLabels = true;
@@ -32,9 +34,30 @@ export class ChartCardioComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#E44D25', '#3333FF', '#7aa3e5', '#a8385d', '#aae3f5']
   };
-  constructor( ) { }
+
+    // options  - VO2 - bar chart
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel2 = true;
+    xAxisLabel2 = '';
+    showYAxisLabel2 = true;
+    yAxisLabel1 = 'ml/Kg/min';
+    legendTitle = '';
+    barPadding = 0;
+    groupPadding = 5;
+
+  private dados: any = [];
+  result: any = [];
+  ready: boolean;
+
+  constructor(
+    private protocolosCardio: ProtocolosCardioService,
+  ) { }
 
   ngOnInit(): void {
+    // FC charts
     let multi = [];
     this.evaluation.forEach(
       (ln) => {
@@ -93,7 +116,9 @@ export class ChartCardioComponent implements OnInit {
                 }
               ]
             }];
-       //   });
+
+            this.dados.VO2Obt = this.protocolosCardio.getVO2ObtRockport(ln);
+            this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
         }
         // Corrida Cooper
         if (this.protocolo === 25) {
@@ -131,10 +156,36 @@ export class ChartCardioComponent implements OnInit {
               ]
             });
         }
-        Object.assign(this, { multi });
-      }
-    );
 
-  }
+        this.dados.data = ln.data;
+        this.result.push(this.dados);
+        this.dados = [];
+
+      });
+
+    const VO2Obt = [];
+    const VO2Est = [];
+
+    this.result.forEach(element => {
+          VO2Obt.push({ name: element.data, value: element.VO2Obt });
+          VO2Est.push({ name: element.data, value: element.VO2Est });
+        });
+
+    const multi2 = [
+          {
+            name: 'VO2 Obtido',
+            series: [...VO2Obt]
+          },
+          {
+            name: 'VO2 Estimado',
+            series: [...VO2Est]
+          }
+        ];
+  //  this.ready = true;
+    console.table(multi2);
+    Object.assign(this, { multi });
+    Object.assign(this, { multi2 });
+
+    }
 
 }

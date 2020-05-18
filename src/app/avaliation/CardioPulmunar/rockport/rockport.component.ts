@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
   selector: 'app-rockport',
@@ -8,24 +9,27 @@ import { Location, DatePipe } from '@angular/common';
   styleUrls: ['./rockport.component.scss']
 })
 export class RockportComponent implements OnInit {
+  // All evaluations loaded from db
   evaluation: any = [];
+  // evaluations to push to charts
   paramEvaluation: any = [];
+  // student phisical condition
+  classe: number;
+
   addEval = false;
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
   selectedEvaluation: any = [];
-  id: number;
   selectedStudent: any = [];
-  sex: string;
   protocolo = 20;
 
   constructor(private location: Location,
               private dataService: DataService,
-              private datapipe: DatePipe
-             ) {
+              private datapipe: DatePipe,
+              private ageService: AgeService
+  ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
-    this.sex = this.selectedStudent.sexo;
     this.getData();
   }
 
@@ -33,18 +37,43 @@ export class RockportComponent implements OnInit {
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          this.maxPointer = resp.length;
-          this.evaluation = resp;
-          this.paramEvaluation = resp;
-          this.pointer = this.maxPointer - 1;
-          this.setEvaluation(this.evaluation[this.pointer]);
+          this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
+            respa => {
+              this.maxPointer = resp.length;
+              this.evaluation = resp;
+              this.pointer = this.maxPointer - 1;
+              if (respa) {
+                this.classe = respa[0].classe;
+              } else {
+                alert('Faltam dados para o calculo do VO2 Estimado');
+              }
+              resp.map((ln) => {
+                this.dataService.getData('clients/eval/' + this.selectedStudent.id + '/' + ln.data).subscribe(
+                  (respe: any[]) => {
+                    if (respe && respe.length > 0) {
+                      ln.peso = respe[0].peso;
+                      ln.altura = respe[0].altura;
+                      ln.idade = this.ageService.getAgeFromDate1(ln.data, this.selectedStudent.dt_nasc);
+                      ln.sexo = this.selectedStudent.sexo;
+                      return ln;
+                    }
+                  }
+                );
+              });
+              setTimeout(() => {
+                this.paramEvaluation = resp;
+              }, 700);
+
+              this.setEvaluation(this.evaluation[this.pointer]);
+            }
+          );
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
     );
-   }
+  }
 
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
@@ -75,7 +104,7 @@ export class RockportComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.addEval = true;
   }
 

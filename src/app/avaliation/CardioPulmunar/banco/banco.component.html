@@ -58,7 +58,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai}}</td>
                         <td *ngIf="addEval">
-                            <input name="c_fai" #c_fai="ngModel" [(ngModel)]="newEvaluation.c_fai" type="text">
+                            <input name="c_fai" #c_fai="ngModel" [(ngModel)]="newEvaluation.c_fai" type="number" step="0.1">
                         </td>
                     </tr> 
                     <tr>

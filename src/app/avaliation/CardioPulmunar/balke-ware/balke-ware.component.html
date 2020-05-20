@@ -58,7 +58,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min6}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min6}}</td>
                         <td *ngIf="addEval">
-                            <input name="min6" #min6="ngModel" [(ngModel)]="newEvaluation.min6" type="text">
+                            <input name="min6" #min6="ngModel" [(ngModel)]="newEvaluation.min6" type="number" step="0.1">
                         </td>
                     </tr> 
                     <tr>
@@ -84,7 +84,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min12}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min12}}</td>
                         <td *ngIf="addEval">
-                            <input name="min12" #min12="ngModel" [(ngModel)]="newEvaluation.min12" type="text">
+                            <input name="min12" #min12="ngModel" [(ngModel)]="newEvaluation.min12" type="number" step="0.1">
                         </td>
                     </tr>    
                     <tr>
@@ -110,7 +110,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min18}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min18}}</td>
                         <td *ngIf="addEval">
-                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="text">
+                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="number" step="0.1">
                         </td>
                     </tr>                    
                 </tbody>

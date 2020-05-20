@@ -2,3 +2,21 @@
   flex-direction: column;
   justify-content: start;
 }
+.section-info{
+  margin: auto;
+  margin-top: 20px;
+}
+
+.mat-card{
+  padding: 20px;
+}
+
+.mat-card-header{
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px){
+  .section-info{
+    width: 60%;
+  }
+}

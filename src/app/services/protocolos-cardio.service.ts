@@ -32,15 +32,16 @@ export class ProtocolosCardioService {
   }
 
   getVO2ObtCooper(evaluation) {
-      return +((evaluation.distancia - 504) / 45);
+    console.log(evaluation.distancia);
+    return +((evaluation.distancia - 504) / 45);
   }
 
   getVO2ObtAstrand(evaluation) {
     if (evaluation.sexo === 'M') {
-      return +(((1000 * ((195 - 61) / (((evaluation.fc2 + evaluation.fc) / 2) - 61))
+      return +(((1000 * ((195 - 61) / (((evaluation.min10 + evaluation.fc) / 2) - 61))
       * (((0.014 * evaluation.carga) + 0.129))) / evaluation.peso) * evaluation.idade);
     } else {
-      return +(((1000 * ((198 - 72) / (((evaluation.fc2 + evaluation.fc) / 2) - 72))
+      return +(((1000 * ((198 - 72) / (((evaluation.min10 + evaluation.fc) / 2) - 72))
       * (((0.014 * evaluation.carga) + 0.129))) / evaluation.peso) * evaluation.idade);
     }
   }

@@ -16,7 +16,8 @@ export class ChartCardioComponent implements OnInit {
 
   multi: any[];
   multi2: any[];
-  view: any[] = [340, 260];
+  view: any[] = [340, 310];
+  view2: any[] = [340, 230];
 
   // options - FC line chart
   legend = true;
@@ -41,7 +42,7 @@ export class ChartCardioComponent implements OnInit {
     gradient = false;
     showLegend = false;
     showXAxisLabel2 = true;
-    xAxisLabel2 = '';
+    xAxisLabel2 = 'VO2 Máximo';
     showYAxisLabel2 = true;
     yAxisLabel1 = 'ml/Kg/min';
     legendTitle = '';
@@ -122,7 +123,7 @@ export class ChartCardioComponent implements OnInit {
         }
         // Corrida Cooper
         if (this.protocolo === 25) {
-          multi.push({
+          multi = [ ...multi, {
               name: ln.data,
               series: [
                 {
@@ -154,8 +155,51 @@ export class ChartCardioComponent implements OnInit {
                   value: ln.fc
                 }
               ]
-            });
+            }];
+
+          this.dados.VO2Obt = this.protocolosCardio.getVO2ObtCooper(ln);
+          this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
         }
+                // Bicicleta Astrand
+        if (this.protocolo === 30) {
+                  multi = [ ...multi, {
+                      name: ln.data,
+                      series: [
+                        {
+                          name: 0,
+                          value: ln.min0
+                        },
+                        {
+                          name: 2,
+                          value: ln.min2
+                        },
+                        {
+                          name: 4,
+                          value: ln.min4
+                        },
+                        {
+                          name: 6,
+                          value: ln.min6
+                        },
+                        {
+                          name: 8,
+                          value: ln.min8
+                        },
+                        {
+                          name: 10,
+                          value: ln.min10
+                        },
+                        {
+                          name: 'Final',
+                          value: ln.fc
+                        }
+                      ]
+                    }];
+                  console.log(ln);
+                  this.dados.VO2Obt = this.protocolosCardio.getVO2ObtAstrand(ln);
+                  this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
+                  console.log(this.dados);
+                }
 
         this.dados.data = ln.data;
         this.result.push(this.dados);
@@ -173,11 +217,11 @@ export class ChartCardioComponent implements OnInit {
 
     const multi2 = [
           {
-            name: 'VO2 Obtido',
+            name: 'Obtido',
             series: [...VO2Obt]
           },
           {
-            name: 'VO2 Estimado',
+            name: 'Estimado',
             series: [...VO2Est]
           }
         ];

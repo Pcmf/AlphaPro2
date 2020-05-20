@@ -92,6 +92,7 @@ import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.comp
 import { TestePiscinaComponent } from './avaliation/CardioPulmunar/teste-piscina/teste-piscina.component';
 import { TesteBancoComponent } from './avaliation/CardioPulmunar/teste-banco/teste-banco.component';
 import { ProtocolosCardioService } from './services/protocolos-cardio.service';
+import { DialogCardioComponent } from './services/dialogs/dialog-cardio/dialog-cardio.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -174,7 +175,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ChartCardioComponent,
     Faulkner4Component,
     TestePiscinaComponent,
-    TesteBancoComponent
+    TesteBancoComponent,
+    DialogCardioComponent
   ],
   imports: [
     BrowserModule,

@@ -19,47 +19,33 @@
                 <tbody>
                     <tr>
                         <th i18n>Tempo final</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_tempo}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_tempo}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
+                            <input name="c_tempo" #c_tempo="ngModel" [(ngModel)]="newEvaluation.c_tempo" type="number"
                                 step="0.1">
                         </td>
                     </tr>                  
                     <tr>
                         <th i18n>FC final</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
+                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
                                 step="0.1">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>IMC</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
-                        <td *ngIf="addEval">
-                            <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
-                                step="0.1">
-                        </td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].imc}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>Idade</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
-                        <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
-                                step="0.1">
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <th i18n>Sexo</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
-                        <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="text">
-                        </td>
+                        <th i18n>Classificação</th>
+                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
+                        <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>                      
                 </tbody>
             </table>
@@ -85,6 +71,19 @@
             </div>
         </form>
 
+        <div class="section-info">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Especificações</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Destinado a: </strong> crianças e jovens.</p>
+                    <p><strong>Faixa etária:</strong> 8 a 17 anos.</p>
+                    <p><strong>Objetivo:</strong> completar o percurso de 1609 metros (1 milha), 
+                        correndo e/ou caminhado o mais rápido possivél. </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 
     <div class="footer">

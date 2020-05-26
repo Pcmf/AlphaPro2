@@ -1,0 +1,162 @@
+<div class="container">
+    <div class="header">
+        <h1 i18n>YMCA - 3 minutos</h1>
+    </div>
+    <div class="section">
+        <form #f="ngForm" (submit)="save(f.value)">
+            <table class="section-table">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="addEval">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                style="width: 110px;">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th i18n>FC final</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>
+                        <td *ngIf="addEval">
+                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
+                                step="0.1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th i18n>Classificação</th>
+                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
+                        <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>                  
+                    
+                </tbody>
+            </table>
+
+            <div class="action">
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                    (click)="pointer=pointer-1">
+                    <mat-icon class="mat-14">chevron_left</mat-icon>
+                </button>
+                <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                    <mat-icon class="mat-18">add</mat-icon>
+                </button>
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                    mat-mini-fab color="default" (click)="pointer=pointer+1">
+                    <mat-icon class="mat-14">chevron_right</mat-icon>
+                </button>
+                <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                    <mat-icon class="mat-18">close</mat-icon>
+                </button>
+                <button *ngIf="addEval" mat-fab>
+                    <mat-icon class="mat-18">check</mat-icon>
+                </button>
+            </div>
+        </form>
+        <div class="section-info">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Especificações</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Destinado a: </strong></p>
+                    <p><strong>Faixa etária:</strong> Adultos maiores de 18 anos, homens e mulheres.</p>
+                    <p><strong>Objetivo:</strong> Subir e descer um banco num .... durante 3 minutos.</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Faixa etária</th>
+                        <th>18-25</th>
+                        <th>26-35</th>
+                        <th>36-45</th>
+                        <th>46-55</th>
+                        <th>56-65</th>
+                        <th>65+</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Excelente</th>
+                        <td>70-78</td>
+                        <td>73-79</td>
+                        <td>72-82</td>
+                        <td>78-84</td>
+                        <td>72-82</td>
+                        <td>72-86</td>
+                    </tr>
+                    <tr>
+                        <th>Boa</th>
+                        <td>82-88</td>
+                        <td>83-88</td>
+                        <td>86-94</td>
+                        <td>89-96</td>
+                        <td>89-97</td>
+                        <td>89-95</td>
+                    </tr>
+                    <tr>
+                        <th>Acima da média</th>
+                        <td>91-97</td>
+                        <td>91-97</td>
+                        <td>98-102</td>
+                        <td>99-103</td>
+                        <td>98-101</td>
+                        <td>97-102</td>
+                    </tr>
+                    <tr>
+                        <th>Média</th>
+                        <td>101-104</td>
+                        <td>101-106</td>
+                        <td>105-111</td>
+                        <td>109-105</td>
+                        <td>105-111</td>
+                        <td>104-113</td>
+                    </tr>
+                    <tr>
+                        <th>Abaixo da média</th>
+                        <td>107-114</td>
+                        <td>109-116</td>
+                        <td>113-118</td>
+                        <td>118-121</td>
+                        <td>113-118</td>
+                        <td>114-119</td>
+                    </tr>
+                    <tr>
+                        <th>Pobre</th>
+                        <td>118-126</td>
+                        <td>119-126</td>
+                        <td>120-128</td>
+                        <td>124-130</td>
+                        <td>122-128</td>
+                        <td>122-128</td>
+                    </tr>
+                    <tr>
+                        <th>Abaixo da média</th>
+                        <td>131-164</td>
+                        <td>130-164</td>
+                        <td>132-163</td>
+                        <td>135-158</td>
+                        <td>131-150</td>
+                        <td>133-152</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+    </div>
+
+    <div class="footer">
+        <a mat-mini-fab color="primary" (click)="goBack()">
+            <mat-icon>undo</mat-icon>
+        </a>
+    </div>
+</div>
+
+
+

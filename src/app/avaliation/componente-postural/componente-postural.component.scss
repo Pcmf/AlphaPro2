@@ -3,6 +3,12 @@
   justify-content: start;
 }
 
+.form-subtitle{
+  text-align: start;
+  font-size: small;
+  color: blue;
+}
+
 .form-select-sm {
   width: 100px;
 }
@@ -28,7 +34,7 @@ table{
   background-blend-mode: soft-light;
   background-size: contain;
   background-position: center;
-  background-color: rgba(255, 254, 254, 0.861);
+  background-color: rgba(255, 254, 254, 0.961);
 
 }
 

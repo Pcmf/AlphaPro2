@@ -15,7 +15,6 @@ export class DialogCardioComponent implements OnInit {
   msg = '';
   erroAltura = false;
   erroPeso = false;
-  erroClasse = false;
   erro = false;
   constructor(
     public dialogRef: MatDialogRef<DialogMedidas>,
@@ -23,9 +22,7 @@ export class DialogCardioComponent implements OnInit {
     private dataService: DataService,
     private datapipe: DatePipe
   ) {
-    if (data.classe === 0) {
-      this.msg += 'É necessário indicar o tipo de aluno. ';
-    }
+
 
     if (data.newAv && data.daysAv) {
       this.msg += ' A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
@@ -40,11 +37,9 @@ export class DialogCardioComponent implements OnInit {
     if (data.lastAv) {
       this.ev.altura = data.lastAv.altura;
       this.ev.peso = data.lastAv.peso;
-      this.ev.classe = data.lastAv.classe;
     } else {
       this.ev.altura = '';
       this.ev.peso = '';
-      this.ev.classe = '';
     }
   }
   ngOnInit() {}
@@ -52,9 +47,7 @@ export class DialogCardioComponent implements OnInit {
   save() {
     this.erroAltura = false;
     this.erroPeso = false;
-    this.erroClasse = false;
     this.erro = false;
-    console.log(this.ev);
     if (!this.ev.altura || +this.ev.altura === 0) {
       this.erroAltura = true;
       this.erro = true;
@@ -65,7 +58,6 @@ export class DialogCardioComponent implements OnInit {
       this.erro = true;
     }
     if (!this.ev.classe || +this.ev.classe === 0) {
-      this.erroClasse = true;
       this.erro = true;
     }
 
@@ -81,7 +73,6 @@ export class DialogCardioComponent implements OnInit {
           resp => {
             form.altura = this.ev.altura;
             form.peso = this.ev.peso;
-            form.classe = this.ev.classe;
             this.dataService.setData('clients/anamnese/' + this.data.id, form).subscribe(
                 respc => {
                 this.dialogRef.close(this.ev);

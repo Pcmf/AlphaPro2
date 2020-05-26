@@ -69,7 +69,9 @@ export class ComponentePosturalComponent implements OnInit {
   getData() {
     this.dataService.getData('clients/post/' + this.student.id).subscribe(
       (resp: any[]) => {
+        console.log(resp);
         this.maxPointer = resp.length;
+        console.log(this.maxPointer);
         if (this.maxPointer > 0) {
           this.oldData = resp;
           this.pointer = this.maxPointer - 1;

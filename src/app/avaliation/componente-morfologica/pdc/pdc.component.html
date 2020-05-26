@@ -351,24 +351,6 @@
                                 <th>Braços</th>
                                 <td *ngIf="pointer>=1">{{+medidas[pointer-1].bracod - +medidas[pointer-1].bracoe}}</td>
                                 <td *ngIf="pointer>=0">{{+medidas[pointer].bracod - +medidas[pointer].bracoe}}</td>
- <!--                                <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) < 0)">
-                                   <span>D &lt; E</span> em {{+medidas[pointer-1].bracoe - +medidas[pointer-1].bracod}}
-                                </td>
-                                <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) < 0)">
-                                   <span>D &lt; E</span> em {{+medidas[pointer].bracoe - +medidas[pointer].bracod}}
-                                </td>
-                                <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) > 0)">
-                                    <span>D &gt; E</span> em {{medidas[pointer-1].bracod - medidas[pointer-1].bracoe}}
-                                 </td>
-                                 <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) > 0)">
-                                    <span>D &gt; E</span> em {{+medidas[pointer].bracod - +medidas[pointer].bracoe}}
-                                 </td>
-                                 <td *ngIf="pointer>=1 && ((medidas[pointer-1].bracod - medidas[pointer-1].bracoe) == 0)">
-                                    <span>D = E</span>
-                                 </td>
-                                 <td *ngIf="pointer>=0 && ((medidas[pointer].bracod - medidas[pointer].bracoe) == 0)">
-                                    <span>D = E</span>
-                                 </td> -->
                             </tr>
                             <tr>
                                 <th>Antebraços</th>
@@ -397,6 +379,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3">
+                                    <small class="advise-sm">*Um valor negativo indica que o lado esquerdo é maior que o direito</small>
                                     <small class="advise-sm">*Todas as medidas são em centimetros</small>
                                 </td>
                             </tr>

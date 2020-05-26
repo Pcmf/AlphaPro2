@@ -117,9 +117,8 @@ export class ChartCardioComponent implements OnInit {
                 }
               ]
             }];
-
-            this.dados.VO2Obt = this.protocolosCardio.getVO2ObtRockport(ln);
-            this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
+            this.dados.VO2Est = ln.c_vo2e;
+            this.dados.VO2Obt = ln.c_vo2m;
         }
         // Corrida Cooper
         if (this.protocolo === 25) {
@@ -156,9 +155,8 @@ export class ChartCardioComponent implements OnInit {
                 }
               ]
             }];
-
-          this.dados.VO2Obt = this.protocolosCardio.getVO2ObtCooper(ln);
-          this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
+          this.dados.VO2Est = ln.c_vo2e;
+          this.dados.VO2Obt = ln.c_vo2m;
         }
                 // Bicicleta Astrand
         if (this.protocolo === 30) {
@@ -207,6 +205,7 @@ export class ChartCardioComponent implements OnInit {
 
       });
 
+// GRAFICO BARRAS DO VO2
     const VO2Obt = [];
     const VO2Est = [];
 
@@ -226,7 +225,6 @@ export class ChartCardioComponent implements OnInit {
           }
         ];
   //  this.ready = true;
-    console.table(multi2);
     Object.assign(this, { multi });
     Object.assign(this, { multi2 });
 

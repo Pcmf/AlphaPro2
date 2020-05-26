@@ -7,19 +7,11 @@ export class ProtocolosCardioService {
 
   constructor() { }
 
-  getVO2Est(evaluation, classe) {
-    if (evaluation.sexo === 'M' && classe === 1) {
-      return +(57.8 - 0.445 * +evaluation.idade);
-    }
-    if (evaluation.sexo === 'M' && classe > 1) {
-      return +(69.7 - 0.612 * +evaluation.idade);
-    }
-    if (evaluation.sexo === 'F' && classe === 1) {
-      return +(42.3 - 0.356 * +evaluation.idade);
-    }
-    if (evaluation.sexo === 'F' && classe > 1) {
-      return +(42.9 - 0.312 * +evaluation.idade);
-    }
+  getVO2Est(evaluation) {
+    let genero = 0;
+    evaluation.sexo === 'M' ? genero = 1 : genero = 0;
+    return +(0.133 * +evaluation.idade - 0.005 * Math.pow(+evaluation.idade, 2) + 11.405 * genero + 1.463 * +evaluation.nafs
+            + 9.17 * +evaluation.altura - 0.254 * +evaluation.peso + 34.142);
   }
 
   getVO2ObtRockport(ln) {

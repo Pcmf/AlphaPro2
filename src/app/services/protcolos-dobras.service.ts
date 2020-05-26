@@ -243,17 +243,33 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  // Weltman
-  protocoloWeltman(morfo, gorduraDesejada) {
+  // Weltman et al
+  protocoloWeltmanEtAl(morfo, gorduraDesejada) {
     console.table(morfo);
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
-    // Precisa da formula
-    this.perGordura = 22.00;
+    if (morfo.sexo === 'M') {
+      this.perGordura = 0.31457 * (morfo.abdomen + morfo.abdomen2) / 2 - 0.10969 * morfo.peso + 10.8336;
+    } else {
+      this.perGordura = 0.11077 * (morfo.abdomen + morfo.abdomen2) / 2 - 0.17666 * morfo.altura - 0.14354 * morfo.peso + 51.03301;
+    }
     const answer = this.createAnswer();
     console.table(answer);
     return answer;
   }
+
+      // Vogel et al
+    protocoloVogel(morfo, gorduraDesejada) {
+      console.table(morfo);
+      this.gorduraDesejada = gorduraDesejada;
+      this.morfo = morfo;
+      // Precisa da formula
+      this.perGordura = 0.173 * morfo.quadril + 105.328 * Math.log10(morfo.peso) - 0.515 * morfo.altura
+                        - 1.574 * morfo.antebracod - 0.533 * morfo.pescoco - 0.2 * (morfo.abdomen + morfo.abdomen2) / 2 - 35.6;
+      const answer = this.createAnswer();
+      console.table(answer);
+      return answer;
+    }
 
     // Mayhew et al
     protocoloMayhewEtAl(morfo, gorduraDesejada) {

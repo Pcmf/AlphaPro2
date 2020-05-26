@@ -59,6 +59,9 @@ import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.co
 import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
 import { TestePiscinaComponent } from './avaliation/CardioPulmunar/teste-piscina/teste-piscina.component';
 import { TesteBancoComponent } from './avaliation/CardioPulmunar/teste-banco/teste-banco.component';
+import { YmcaBancoComponent } from './avaliation/CardioPulmunar/ymca-banco/ymca-banco.component';
+import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component';
+import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
 
 
 const routes: Routes = [
@@ -79,7 +82,9 @@ const routes: Routes = [
   {path: 'balanca', component: BalancaComponent},
   {path: 'scaner', component: ScanerComponent},
   {path: 'dexa', component: DEXAComponent},
-
+// Antropometria
+  {path: 'vogel', component: VogelComponent},
+  {path: 'weltal', component: WeltmanEtAlComponent},
   {path: 'tw', component: TranWeltmanComponent},
   {path: 'wst', component: WeltmanSeipTranComponent},
   {path: 'metal', component: MayhewEtAlComponent},
@@ -107,6 +112,7 @@ const routes: Routes = [
   {path: 'astryh', component: AstrandRyhmingComponent},
   {path: 'balke', component: BalkeWareComponent},
   {path: 'ymca', component: YMCAComponent},
+  {path: 'bancoymca', component: YmcaBancoComponent},
   {path: 'banco', component: BancoComponent},
   {path: 'natacao', component: NatacaoComponent},
 

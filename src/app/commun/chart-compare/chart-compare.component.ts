@@ -63,7 +63,7 @@ export class ChartCompareComponent implements OnInit {
                 this.dados = this.protocolos.protocoloDeuremberg(ln, this.percgd);
                 break;
               case 13:
-                this.dados = this.protocolos.protocoloWeltman(ln, this.percgd);
+                this.dados = this.protocolos.protocoloWeltmanEtAl(ln, this.percgd);
                 break;
               case 14:
                 this.dados = this.protocolos.protocoloTranWeltman(ln, this.percgd);

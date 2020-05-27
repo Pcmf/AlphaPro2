@@ -12,8 +12,6 @@ import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.serv
   styleUrls: ['./rockport.component.scss']
 })
 export class RockportComponent implements OnInit {
-  // Time mask
-  timemask = [/\d/, /\d/, ':', /\d/, /\d/];
   // All evaluations loaded from db
   evaluation: any = [];
   // evaluations to push to charts
@@ -79,7 +77,7 @@ export class RockportComponent implements OnInit {
     form.protocolo = this.protocolo;
     form.c_vo2e = this.protocoloCardio.getVO2Est(form);
     form.c_vo2m = this.protocoloCardio.getVO2ObtRockport(form);
-    this.dataService.setData('clients/cardio/' + this.student.id, form).subscribe(
+    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.refresh = false;;
@@ -97,7 +95,7 @@ export class RockportComponent implements OnInit {
       if (this.selectedEvaluation && this.selectedEvaluation.data === this.datapipe.transform(Date(), 'yyyy-MM-dd')) {
         this.newEvaluation = this.selectedEvaluation;
       }
-        // Obter dados da anamnese com o tipo de aluno
+        // Obter dados da anamnese com o nivel de atividade do aluno
       this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
           (respa: any[]) => {
             this.newAv = false;
@@ -137,7 +135,6 @@ export class RockportComponent implements OnInit {
                 this.newEvaluation.idade = this.ageService.getAge( this.student.dt_nasc);
                 this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
                 this.addEval = true;
-                console.log(this.newEvaluation);
               }
             );
           }

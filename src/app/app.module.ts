@@ -17,8 +17,6 @@ import { MatVideoModule } from 'mat-video';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {WebcamModule} from 'ngx-webcam';
 
-import { TextMaskModule } from 'angular2-text-mask';
-
 import { DataService } from './services/data.service';
 import { MenuComponent } from './commun/menu/menu.component';
 import { LoginComponent } from './login/login/login.component';
@@ -98,6 +96,7 @@ import { DialogCardioComponent } from './services/dialogs/dialog-cardio/dialog-c
 import { YmcaBancoComponent } from './avaliation/CardioPulmunar/ymca-banco/ymca-banco.component';
 import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component';
 import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
+import { TimePipe } from './commun/time.pipe';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -184,7 +183,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogCardioComponent,
     YmcaBancoComponent,
     VogelComponent,
-    WeltmanEtAlComponent
+    WeltmanEtAlComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
@@ -197,7 +197,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxChartsModule,
     HammerModule,
     WebcamModule,
-    TextMaskModule,
     NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

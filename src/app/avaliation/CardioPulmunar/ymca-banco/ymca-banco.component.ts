@@ -68,4 +68,8 @@ export class YmcaBancoComponent implements OnInit {
     this.addEval = false;
   }
 
+  getClasse(value) {
+
+  }
+
 }

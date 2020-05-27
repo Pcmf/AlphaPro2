@@ -194,8 +194,8 @@ export class ChartCardioComponent implements OnInit {
                       ]
                     }];
                   console.log(ln);
-                  this.dados.VO2Obt = this.protocolosCardio.getVO2ObtAstrand(ln);
-                  this.dados.VO2Est = this.protocolosCardio.getVO2Est(ln, this.classe);
+                  this.dados.VO2Est = ln.c_vo2e;
+                  this.dados.VO2Obt = ln.c_vo2m;
                   console.log(this.dados);
                 }
 

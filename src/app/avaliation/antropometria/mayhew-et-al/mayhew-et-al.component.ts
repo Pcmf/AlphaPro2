@@ -86,7 +86,7 @@ export class MayhewEtAlComponent implements OnInit {
       (respa: any[]) => {
         if (respa.length) {
 
-          const proto = this.protocolos.protocoloWeltman(evaluation, this.gorduraDesejada);
+          const proto = this.protocolos.protocoloWeltmanEtAl(evaluation, this.gorduraDesejada);
           // Create graphic
           this.showChart = true;
           this.single = this.prepareChart.getSingle1(proto);

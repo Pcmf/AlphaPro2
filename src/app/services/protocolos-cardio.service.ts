@@ -17,14 +17,14 @@ export class ProtocolosCardioService {
   getVO2ObtRockport(ln) {
     let sexFx = 0;
     if (ln.sexo === 'M') { sexFx = 6.315; }
-    const res = +(132.853 - 0.0769 * +ln.peso * 2.205 - 0.3877 * +ln.idade + +sexFx - 3.2649 *
-          (Math.trunc(+ln.c_tempo) + (+ln.c_tempo - Math.trunc(+ln.c_tempo)) / 60 )
-          - 0.1565 * +ln.fc);
+    const min = this.getMinutes(ln.c_tempo);
+    const sec = this.getSeconds(ln.c_tempo);
+    const res = +(132.853 - 0.0769 * +ln.peso * 2.205 - 0.3877 * +ln.idade + +sexFx - 3.2649 * min + sec / 60 - 0.1565 * +ln.fc);
     return res.toFixed(2);
   }
 
+
   getVO2ObtCooper(evaluation) {
-    console.log(evaluation.distancia);
     return +((evaluation.distancia - 504) / 45);
   }
 
@@ -36,5 +36,13 @@ export class ProtocolosCardioService {
       return +(((1000 * ((198 - 72) / (((evaluation.min10 + evaluation.fc) / 2) - 72))
       * (((0.014 * evaluation.carga) + 0.129))) / evaluation.peso) * evaluation.idade);
     }
+  }
+
+
+  private getSeconds(tempo: string) {
+    return +(tempo.slice(-2));
+  }
+  private getMinutes(tempo: string) {
+    return +(tempo.slice(0, 2));
   }
 }

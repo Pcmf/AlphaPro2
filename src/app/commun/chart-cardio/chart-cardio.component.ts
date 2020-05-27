@@ -10,7 +10,6 @@ import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.serv
 })
 export class ChartCardioComponent implements OnInit {
 
-  @Input() classe: number;
   @Input() protocolo: number;
   @Input() evaluation: Observable <any>;
 

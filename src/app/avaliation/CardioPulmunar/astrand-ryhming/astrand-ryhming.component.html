@@ -4,6 +4,11 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+            <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -108,8 +113,8 @@
                 </button>
             </div>
         </form>
-        <div class="charts" *ngIf="paramEvaluation !=''">
-            <app-chart-cardio [evaluation]="paramEvaluation" [protocolo]="protocolo" [classe]="classe"></app-chart-cardio>
+        <div class="charts" *ngIf="refresh">
+            <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
     </div>
 

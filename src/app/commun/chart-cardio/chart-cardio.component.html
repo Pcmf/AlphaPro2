@@ -1,6 +1,7 @@
 <div class="charts">
     <!-- FC -->
-    <ngx-charts-line-chart 
+    <ngx-charts-line-chart
+            *ngIf="showLineChart" 
             [view]="view" 
             [scheme]="colorScheme" 
             [legend]="legend" 

@@ -22,7 +22,7 @@ export class DialogCardioComponent implements OnInit {
     private dataService: DataService,
     private datapipe: DatePipe
   ) {
-    if (!data.nafs) {
+    if ( data.nafs < 0 ) {
       this.msg += ' O nivél de atividade fisica não foi definido na anamnese. Não será possivél calcular o VO2 estimado.';
     }
 
@@ -57,9 +57,6 @@ export class DialogCardioComponent implements OnInit {
 
     if (!this.ev.peso || +this.ev.peso === 0) {
       this.erroPeso = true;
-      this.erro = true;
-    }
-    if (!this.ev.classe || +this.ev.classe === 0) {
       this.erro = true;
     }
 

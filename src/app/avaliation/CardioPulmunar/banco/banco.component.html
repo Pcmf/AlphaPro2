@@ -4,6 +4,11 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+            <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -27,58 +32,14 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>FC máx.estimada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_fcmax" #c_fcmax="ngModel" [(ngModel)]="newEvaluation.c_fcmax" type="number"
-                                step="0.1">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n>FC reserva</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcreserva}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_fcreserva" #c_fcreserva="ngModel" [(ngModel)]="newEvaluation.c_fcreserva" type="number"
-                                step="0.1">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n>% FC máx.alcançada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcteste}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcteste}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_fcteste" #c_fcteste="ngModel" [(ngModel)]="newEvaluation.c_fcteste" type="number"
-                                step="0.1">
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <th i18n>Indice aeróbico funcional</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai}}</td>
-                        <td *ngIf="addEval">
-                            <input name="c_fai" #c_fai="ngModel" [(ngModel)]="newEvaluation.c_fai" type="number" step="0.1">
-                        </td>
-                    </tr> 
-                    <tr>
                         <th i18n>Passadas min</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].min0}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].min0}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
+                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number"
                                 step="0.1">
                         </td>
                     </tr>
-                    <tr>
-                        <th i18n>Metrônomo</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
-                        <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
-                                step="0.1">
-                        </td>
-                    </tr>                  
                                          
                 </tbody>
             </table>
@@ -104,6 +65,9 @@
             </div>
         </form>
 
+        <div class="charts" *ngIf="refresh">
+            <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
+        </div>
     </div>
 
     <div class="footer">

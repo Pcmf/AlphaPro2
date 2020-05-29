@@ -4,6 +4,11 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+            <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -27,7 +32,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 0'</th>
+                        <th i18n>FC ao minuto 0</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min0}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min0}}</td>
                         <td *ngIf="addEval">
@@ -36,7 +41,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 2'</th>
+                        <th i18n>FC ao minuto 2</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min2}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min2}}</td>
                         <td *ngIf="addEval">
@@ -45,7 +50,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 4'</th>
+                        <th i18n>FC ao minuto 4</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min4}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min4}}</td>
                         <td *ngIf="addEval">
@@ -54,7 +59,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 6'</th>
+                        <th i18n>FC ao minuto 6</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min6}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min6}}</td>
                         <td *ngIf="addEval">
@@ -62,7 +67,7 @@
                         </td>
                     </tr> 
                     <tr>
-                        <th i18n>Minuto/FC 8'</th>
+                        <th i18n>FC ao minuto 8</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min8}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min8}}</td>
                         <td *ngIf="addEval">
@@ -71,7 +76,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 10'</th>
+                        <th i18n>FC ao minuto 10</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min10}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min10}}</td>
                         <td *ngIf="addEval">
@@ -80,7 +85,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 12'</th>
+                        <th i18n>FC ao minuto 12</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min12}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min12}}</td>
                         <td *ngIf="addEval">
@@ -88,7 +93,7 @@
                         </td>
                     </tr>    
                     <tr>
-                        <th i18n>Minuto/FC 14'</th>
+                        <th i18n>FC ao minuto 14</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min14}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min14}}</td>
                         <td *ngIf="addEval">
@@ -97,7 +102,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Minuto/FC 16'</th>
+                        <th i18n>FC ao minuto 16</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min16}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min16}}</td>
                         <td *ngIf="addEval">
@@ -106,7 +111,7 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <th i18n>Minuto/FC 18'</th>
+                        <th i18n>FC ao minuto 18</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].min18}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].min18}}</td>
                         <td *ngIf="addEval">
@@ -136,7 +141,9 @@
                 </button>
             </div>
         </form>
-
+        <div class="charts" *ngIf="refresh">
+            <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
+        </div>
     </div>
 
     <div class="footer">

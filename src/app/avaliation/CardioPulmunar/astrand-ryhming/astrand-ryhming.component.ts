@@ -31,7 +31,8 @@ export class AstrandRyhmingComponent implements OnInit {
   lastAv: any;
   refresh: boolean;
 
-  constructor(private location: Location,
+  constructor(
+    private location: Location,
     private dataService: DataService,
     private datapipe: DatePipe,
     private ageService: AgeService,
@@ -107,7 +108,7 @@ export class AstrandRyhmingComponent implements OnInit {
             this.newAv = false;
             if (resp.length > 0) {
               // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysAv = resp[0].difdias) > 2) {
+              if ((this.daysAv = resp[0].difdias) > 7) {
                 this.newAv = true;
               }
               this.lastAv = resp.pop();

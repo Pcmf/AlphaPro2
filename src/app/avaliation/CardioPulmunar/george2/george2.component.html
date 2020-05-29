@@ -4,6 +4,12 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
+            <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+            <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
+            <input type="hidden" name="imc" #imc="ngModel" [ngModel]="newEvaluation.imc">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -37,26 +43,12 @@
                     </tr>
                     <tr>
                         <th i18n>Tempo</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_tempo}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_tempo}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_tempo | mask: '00:00'}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_tempo | mask: '00:00'}}</td>
                         <td *ngIf="addEval">
-                            <input name="c_tempo" #c_tempo="ngModel" [(ngModel)]="newEvaluation.c_tempo" type="number"
-                                step="0.1">
+                            <input name="c_tempo" mask="00:00" #c_tempo="ngModel" [(ngModel)]="newEvaluation.c_tempo" placeholder="mm:ss">
                         </td>
                     </tr>
-                    <tr>
-                        <th i18n>VO2</th>
-                        <td *ngIf="pointer>=1">{{getVO2(evaluation[pointer-1])}}</td>
-                        <td *ngIf="pointer>=0">{{getVO2(evaluation[pointer])}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>                  
-                    <tr>
-                        <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
-                        <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr> 
-                 
                 </tbody>
             </table>
 
@@ -80,6 +72,11 @@
                 </button>
             </div>
         </form>
+
+        <div class="charts" *ngIf="refresh">
+            <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
+        </div>
+                
         <div class="section-info">
             <mat-card>
                 <mat-card-header>

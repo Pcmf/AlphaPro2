@@ -6,12 +6,18 @@
     <mat-form-field>
         <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
         <mat-label *ngIf="!erroAltura">Altura</mat-label>
-        <input matInput type="number" [(ngModel)]="ev.altura" placeholder="Kg">
+        <input matInput type="number" [(ngModel)]="ev.altura" placeholder="metros">
     </mat-form-field>
   <mat-form-field>
     <mat-label *ngIf="erroPeso" style="color: red;">Peso</mat-label>
     <mat-label *ngIf="!erroPeso">Peso</mat-label>
     <input matInput type="number" [(ngModel)]="ev.peso" placeholder="Kg">
+  </mat-form-field>
+  <!-- FC Repouso  -->
+  <mat-form-field>
+    <mat-label *ngIf="erroFC2" style="color: red;">FC Repouso</mat-label>
+    <mat-label *ngIf="!erroFC2">FC Repouso</mat-label>
+    <input matInput type="number" [(ngModel)]="ev.fc" placeholder="bpm">
   </mat-form-field>
 
   </div>

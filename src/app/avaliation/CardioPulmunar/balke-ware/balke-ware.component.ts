@@ -73,21 +73,6 @@ export class BalkeWareComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  save(form) {
-    console.log(form);
-    form.protocolo = this.protocolo;
-    form.c_vo2e = this.protocoloCardio.getVO2Est(form);
-    form.c_vo2m = this.protocoloCardio.getVO2ObtBalke(form);
-    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.refresh = false;
-        this.addEval = false;
-        this.getData();
-      }
-    );
-  }
-
   goBack() {
     this.location.back();
   }
@@ -112,6 +97,9 @@ export class BalkeWareComponent implements OnInit {
                 this.newAv = true;
               }
               this.lastAv = resp.pop();
+              if (+this.lastAv.fc === 0) {
+                this.newAv = true;
+              }
             } else {
               this.newAv = true;
             }
@@ -126,6 +114,7 @@ export class BalkeWareComponent implements OnInit {
             } else {
               this.newEvaluation.altura = this.lastAv.altura;
               this.newEvaluation.peso = this.lastAv.peso;
+              this.newEvaluation.fc2 = this.lastAv.fc;
             }
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
@@ -133,6 +122,26 @@ export class BalkeWareComponent implements OnInit {
             this.addEval = true;
           }
         );
+      }
+    );
+  }
+
+
+  save(form) {
+    console.log(form);
+    form.protocolo = this.protocolo;
+    form.c_vo2e = this.protocoloCardio.getVO2Est(form);
+    form.c_vo2m = this.protocoloCardio.getVO2ObtBalke(form);
+    form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
+    form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
+    form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
+    form.c_fcmax = this.protocoloCardio.getFCEstimada(form.idade);
+    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
+      resp => {
+        this.newEvaluation = [];
+        this.refresh = false;
+        this.addEval = false;
+        this.getData();
       }
     );
   }

@@ -5,6 +5,12 @@
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
             <table class="section-table">
+                <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+                <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+                <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+                <input type="hidden" name="fc2" #fc2="ngModel" [ngModel]="newEvaluation.fc2">
+                <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+                <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
@@ -22,8 +28,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>
                         <td *ngIf="addEval">
-                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
-                                step="0.1">
+                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number" step="0.1">
                         </td>
                     </tr>
                     <tr>
@@ -31,8 +36,44 @@
                         <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
                         <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
-                    </tr>                  
-                    
+                    </tr>
+                    <!--  resultados -->
+                    <tr>
+                        <th i18n>FC Estimada</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>FC Reserva</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcreserva}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>% FC Máx. Alcançada</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>Indice Aeróbico Funcional</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>VO2 Máx. Estimado</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>VO2 Máx Obtido</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2m}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -69,84 +110,84 @@
             </mat-card>
         </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Faixa etária</th>
-                        <th>18-25</th>
-                        <th>26-35</th>
-                        <th>36-45</th>
-                        <th>46-55</th>
-                        <th>56-65</th>
-                        <th>65+</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Excelente</th>
-                        <td>70-78</td>
-                        <td>73-79</td>
-                        <td>72-82</td>
-                        <td>78-84</td>
-                        <td>72-82</td>
-                        <td>72-86</td>
-                    </tr>
-                    <tr>
-                        <th>Boa</th>
-                        <td>82-88</td>
-                        <td>83-88</td>
-                        <td>86-94</td>
-                        <td>89-96</td>
-                        <td>89-97</td>
-                        <td>89-95</td>
-                    </tr>
-                    <tr>
-                        <th>Acima da média</th>
-                        <td>91-97</td>
-                        <td>91-97</td>
-                        <td>98-102</td>
-                        <td>99-103</td>
-                        <td>98-101</td>
-                        <td>97-102</td>
-                    </tr>
-                    <tr>
-                        <th>Média</th>
-                        <td>101-104</td>
-                        <td>101-106</td>
-                        <td>105-111</td>
-                        <td>109-105</td>
-                        <td>105-111</td>
-                        <td>104-113</td>
-                    </tr>
-                    <tr>
-                        <th>Abaixo da média</th>
-                        <td>107-114</td>
-                        <td>109-116</td>
-                        <td>113-118</td>
-                        <td>118-121</td>
-                        <td>113-118</td>
-                        <td>114-119</td>
-                    </tr>
-                    <tr>
-                        <th>Pobre</th>
-                        <td>118-126</td>
-                        <td>119-126</td>
-                        <td>120-128</td>
-                        <td>124-130</td>
-                        <td>122-128</td>
-                        <td>122-128</td>
-                    </tr>
-                    <tr>
-                        <th>Abaixo da média</th>
-                        <td>131-164</td>
-                        <td>130-164</td>
-                        <td>132-163</td>
-                        <td>135-158</td>
-                        <td>131-150</td>
-                        <td>133-152</td>
-                    </tr>
-                </tbody>
-            </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Faixa etária</th>
+                    <th>18-25</th>
+                    <th>26-35</th>
+                    <th>36-45</th>
+                    <th>46-55</th>
+                    <th>56-65</th>
+                    <th>65+</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Excelente</th>
+                    <td>70-78</td>
+                    <td>73-79</td>
+                    <td>72-82</td>
+                    <td>78-84</td>
+                    <td>72-82</td>
+                    <td>72-86</td>
+                </tr>
+                <tr>
+                    <th>Boa</th>
+                    <td>82-88</td>
+                    <td>83-88</td>
+                    <td>86-94</td>
+                    <td>89-96</td>
+                    <td>89-97</td>
+                    <td>89-95</td>
+                </tr>
+                <tr>
+                    <th>Acima da média</th>
+                    <td>91-97</td>
+                    <td>91-97</td>
+                    <td>98-102</td>
+                    <td>99-103</td>
+                    <td>98-101</td>
+                    <td>97-102</td>
+                </tr>
+                <tr>
+                    <th>Média</th>
+                    <td>101-104</td>
+                    <td>101-106</td>
+                    <td>105-111</td>
+                    <td>109-105</td>
+                    <td>105-111</td>
+                    <td>104-113</td>
+                </tr>
+                <tr>
+                    <th>Abaixo da média</th>
+                    <td>107-114</td>
+                    <td>109-116</td>
+                    <td>113-118</td>
+                    <td>118-121</td>
+                    <td>113-118</td>
+                    <td>114-119</td>
+                </tr>
+                <tr>
+                    <th>Pobre</th>
+                    <td>118-126</td>
+                    <td>119-126</td>
+                    <td>120-128</td>
+                    <td>124-130</td>
+                    <td>122-128</td>
+                    <td>122-128</td>
+                </tr>
+                <tr>
+                    <th>Abaixo da média</th>
+                    <td>131-164</td>
+                    <td>130-164</td>
+                    <td>132-163</td>
+                    <td>135-158</td>
+                    <td>131-150</td>
+                    <td>133-152</td>
+                </tr>
+            </tbody>
+        </table>
 
 
     </div>
@@ -157,6 +198,3 @@
         </a>
     </div>
 </div>
-
-
-

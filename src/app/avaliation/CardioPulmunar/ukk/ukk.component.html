@@ -11,6 +11,7 @@
                 <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
                 <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
                 <input type="hidden" name="imc" #imc="ngModel" [ngModel]="newEvaluation.imc">
+                <input type="hidden" name="fc2" #fc2="ngModel" [ngModel]="newEvaluation.fc2">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
@@ -44,6 +45,43 @@
                         <th i18n>IMC</th>
                         <td *ngIf="pointer>=1">{{+evaluation[pointer-1].imc}}</td>
                         <td *ngIf="pointer>=0">{{+evaluation[pointer].imc}}</td>
+                    </tr>
+                    <!--  resultados -->
+                    <tr>
+                        <th i18n>FC Estimada</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>FC Reserva</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcreserva}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>% FC Máx. Alcançada</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>Indice Aeróbico Funcional</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>VO2 Máx. Estimado</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th i18n>VO2 Máx Obtido</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2m}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>         
                     
                 </tbody>

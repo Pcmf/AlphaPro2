@@ -15,6 +15,7 @@ export class DialogCardioComponent implements OnInit {
   msg = '';
   erroAltura = false;
   erroPeso = false;
+  erroFC2 = false;
   erro = false;
   constructor(
     public dialogRef: MatDialogRef<DialogMedidas>,
@@ -27,10 +28,10 @@ export class DialogCardioComponent implements OnInit {
     }
 
     if (data.newAv && data.daysAv) {
-      this.msg += ' A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
+      this.msg += ' A ultima avaliação complementar já tem ' + data.daysAv + ' dias.';
     }
     if (data.newAv && !data.daysAv) {
-      this.msg += ' Não existem avaliações de altura e peso. ';
+      this.msg += ' Não existem avaliações complementares. ';
     }
 
     if (this.msg) {
@@ -39,9 +40,11 @@ export class DialogCardioComponent implements OnInit {
     if (data.lastAv) {
       this.ev.altura = data.lastAv.altura;
       this.ev.peso = data.lastAv.peso;
+      this.ev.fc = data.lastAv.fc;
     } else {
       this.ev.altura = '';
       this.ev.peso = '';
+      this.ev.fc = '';
     }
   }
   ngOnInit() {}
@@ -49,6 +52,7 @@ export class DialogCardioComponent implements OnInit {
   save() {
     this.erroAltura = false;
     this.erroPeso = false;
+    this.erroFC2 = false;
     this.erro = false;
     if (!this.ev.altura || +this.ev.altura === 0) {
       this.erroAltura = true;
@@ -60,10 +64,17 @@ export class DialogCardioComponent implements OnInit {
       this.erro = true;
     }
 
+    if (!this.ev.fc || +this.ev.fc === 0) {
+      this.erroFC2 = true;
+      this.erro = true;
+    }
+
     if (!this.erro) {
       const form: any = {};
       form.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+      form.altura = this.ev.altura;
       form.peso = this.ev.peso;
+      form.fc = this.ev.fc;  // FC repouso no cad_avalia - fc
       let sexParam = 0;
       this.data.sexo === 'M' ? sexParam = 5 : sexParam = -161;
       form.tmb = 10 * this.ev.peso + 6.25 * this.ev.altura * 100 - 5 * this.data.idade + sexParam;

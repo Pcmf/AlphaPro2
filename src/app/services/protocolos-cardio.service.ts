@@ -16,14 +16,48 @@ export class ProtocolosCardioService {
             + 9.17 * +evaluation.altura - 0.254 * +evaluation.peso + 34.142);
   }
 
+  getFAI(vo2e, vo2o) {
+    return +((vo2e - vo2o) / vo2e * 100);
+  }
+  getClasseFAI(fai) {
+    if (+fai < 10) { return 'Eficiência Miocárdica e bom condicionamento'; }
+    if (+fai >= 10 && +fai < 25 ) { return 'Baixo condicionamento físico'; }
+    if (+fai >= 25) { return 'Muito baixo condicionamento físico ou presença de cardiopatia'; }
+  }
+
+  getFCReserva(form) {
+    const FC = [];
+    FC[0] = form.fc;
+    FC[1] = form.min0;
+    FC[2] = form.min2;
+    FC[3] = form.min4;
+    FC[4] = form.min6;
+    FC[5] = form.min8;
+    FC[6] = form.min10;
+    FC[7] = form.min12;
+    FC[8] = form.min14;
+    FC[9] = form.min16;
+    FC[10] = form.min18;
+    FC[11] = form.min20;
+
+    let FCMax = Math.max(...FC.map( o => o));
+    if (!FCMax) { FCMax = form.fc; }
+    return +(FCMax - +form.fc2);
+  }
+
+  getFCEstimada(idade) {
+    return +(205.8 - 0.685 * +idade);
+  }
+
   getVO2ObtRockport(ln) {
     let sexFx = 0;
     if (ln.sexo === 'M') { sexFx = 6.315; }
     const min = this.getMinutes(ln.c_tempo);
     const sec = this.getSeconds(ln.c_tempo);
-    const res = +(132.853 - 0.0769 * +ln.peso * 2.205 - 0.3877 * +ln.idade + +sexFx - 3.2649 * min + sec / 60 - 0.1565 * +ln.fc);
+    const res = +(132.853 - 0.0769 * +ln.peso * 2.205 - 0.3877 * +ln.idade + +sexFx - 3.2649 * (min + sec / 60) - 0.1565 * +ln.fc);
     return res.toFixed(2);
   }
+
 
 
   getVO2ObtCooper(evaluation) {
@@ -37,7 +71,7 @@ export class ProtocolosCardioService {
     if (evaluation.sexo === 'M') {
       return +(184 - 4.65 * (min + sec / 60) - 0.22 * evaluation.fc - 0.26 * evaluation.idade - 1.05 * evaluation.imc);
     } else {
-      return +(116.2 - 2.98 * evaluation.c_tempo - 0.11 * evaluation.fc - 0.38 * evaluation.imc);
+      return +(116.2 - 2.98 * (min + sec / 60) - 0.11 * evaluation.fc - 0.38 * evaluation.imc);
     }
   }
   // Caminhada Cureton et al

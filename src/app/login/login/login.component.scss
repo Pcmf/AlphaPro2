@@ -9,7 +9,7 @@
   }
 
   .login-form{
-    width: 200px;
+    width: 250px;
     height: 190px;
     position: absolute;
     top: 50%;
@@ -18,6 +18,9 @@
     background-color: rgba($color: whitesmoke, $alpha: .60);
     color: black;
     border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .center-form {

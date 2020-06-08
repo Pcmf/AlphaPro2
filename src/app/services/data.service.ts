@@ -26,8 +26,8 @@ export class DataService {
     return this.http.put( this.ADDRESS + param, JSON.stringify(data) );
   }
   // Delete data form DB
-  delete( param, data) {
-    return this.http.delete( this.ADDRESS + param + data ).pipe(
+  delete(param) {
+    return this.http.delete( this.ADDRESS + param ).pipe(
       map(
         resp => console.log(resp),
         error => console.log('Erro ' + error)

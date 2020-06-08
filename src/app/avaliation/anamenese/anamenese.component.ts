@@ -1,12 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {Location} from '@angular/common';
+import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-anamenese',
   templateUrl: './anamenese.component.html',
-  styleUrls: ['./anamenese.component.scss']
+  styleUrls: ['./anamenese.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AnameneseComponent implements OnInit {
   step: number;
@@ -18,52 +19,96 @@ export class AnameneseComponent implements OnInit {
   dataUltimoExame: any;
 
   Parentesco: any = [];
+  patologiasFamiliar: any = [];
   CardioParentesco: any = [];
   HiperParentesco: any = [];
+  DiabetesParentesco: any = [];
+  OutraDoencaParentesco: any = [];
 
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              public dialog: MatDialog
-              ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    public dialog: MatDialog,
+  ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
+  }
+
+  ngOnInit(): void {
     this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
       (resp: any) => {
         if (resp.length > 0) {
           this.student = resp[0];
           this.student.profissao = this.selectedStudent.profissao;
+          this.student.Q31 == 0 ? this.student.Q31 = false : this.student.Q31 = true;
+          this.student.Q32 == 0 ? this.student.Q32 = false : this.student.Q32 = true;
+          this.student.Q33 == 0 ? this.student.Q33 = false : this.student.Q33 = true;
+          this.student.Q34 == 0 ? this.student.Q34 = false : this.student.Q34 = true;
           this.dataObj = this.student.DT_OBJ;
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
+          this.dataService.getData('patfam/' + this.selectedStudent.id).subscribe(
+            respp => {
+              this.patologiasFamiliar = respp;
+              this.patologiasFamiliar.forEach((el) => {
+                if (el.patologia === 'Cardiopatia') {
+                  el.maior60 == 0 ? el.maior60 = false : el.maior60 = true;
+                  this.CardioParentesco.push(el);
+                }
+                if (el.patologia === 'Hipertensão') {
+                  el.maior60 == 0 ? el.maior60 = false : el.maior60 = true;
+                  this.HiperParentesco.push(el);
+                }
+                if (el.patologia === 'Diabetes') {
+                  el.maior60 == 0 ? el.maior60 = false : el.maior60 = true;
+                  this.DiabetesParentesco.push(el);
+                }
+                if (el.patologia === 'OutraDoenca') {
+                  el.maior60 == 0 ? el.maior60 = false : el.maior60 = true;
+                  this.OutraDoencaParentesco.push(el);
+                }
+              });
+            }
+          );
         } else {
           this.student = [];
-
+          this.CardioParentesco = [];
+          this.HiperParentesco = [];
+          this.DiabetesParentesco = [];
+          this.OutraDoencaParentesco = [];
         }
-        this.CardioParentesco = [{parentesco: 'Pai', mais60: '1', patologia: 'Cardipatia'},
-        {parentesco: 'Mãe', mais60: false, patologia: 'Cardipatia'}];
       }
     );
-   }
+  }
 
-   showCardParent(form, patology) {
-     console.log(form);
-     this.CardioParentesco = [];
-     form.forEach(element => {
-       this.CardioParentesco.push({parentesco: element, mais60: false, patologia: patology});
-     });
-     console.log(this.CardioParentesco);
-   }
-   showHiperParent(form, patology) {
-    console.log(form);
+
+  showCardParent(form, patology) {
+    this.CardioParentesco = [];
+    form.forEach(element => {
+      this.CardioParentesco.push({ parentesco: element, maior60: false, patologia: patology });
+    });
+  }
+
+  showHiperParent(form, patology) {
     this.HiperParentesco = [];
     form.forEach(element => {
-      this.HiperParentesco.push({parentesco: element, mais60: false, patologia: patology});
+      this.HiperParentesco.push({ parentesco: element, maior60: false, patologia: patology });
     });
-    console.log(this.HiperParentesco);
+  }
+  showDiabetesParent(form, patology) {
+    this.DiabetesParentesco = [];
+    form.forEach(element => {
+      this.DiabetesParentesco.push({ parentesco: element, maior60: false, patologia: patology });
+    });
+  }
+  showOutraDoencaParent(form, patology) {
+    this.OutraDoencaParentesco = [];
+    form.forEach(element => {
+      this.OutraDoencaParentesco.push({ parentesco: element, maior60: false, patologia: patology });
+    });
   }
 
-  ngOnInit(): void {
-  }
+
 
   setStep(index: number) {
     this.step = index;
@@ -82,7 +127,7 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveObjetivos(form) {
-    console.table(form);
+
     if (!form.QEST) {
       form.Q201 = '';
       form.Q13 = '';
@@ -103,7 +148,42 @@ export class AnameneseComponent implements OnInit {
   }
 
   savePatologiaFamiliar(form) {
-    console.table(form);
+    if (!this.student.Q31) {
+      this.CardioParentesco = [];
+      this.dataService.delete('patfam/' + this.selectedStudent.id + '/Cardiopatia').subscribe(
+        resd => console.log(resd)
+      );
+    }
+    this.dataService.setData('patfam/' + this.selectedStudent.id, this.CardioParentesco).subscribe(
+      res1 => console.log(res1)
+    );
+    if (!this.student.Q32) {
+      this.HiperParentesco = [];
+      this.dataService.delete('patfam/' + this.selectedStudent.id + '/Hipertensao').subscribe(
+        resd => console.log(resd)
+      );
+    }
+    this.dataService.setData('patfam/' + this.selectedStudent.id, this.HiperParentesco).subscribe(
+      res2 => console.log(res2)
+    );
+    if (!this.student.Q33) {
+      this.DiabetesParentesco = [];
+      this.dataService.delete('patfam/' + this.selectedStudent.id + '/Diabetes').subscribe(
+        resd => console.log(resd)
+      );
+    }
+    this.dataService.setData('patfam/' + this.selectedStudent.id, this.DiabetesParentesco).subscribe(
+      res2 => console.log(res2)
+    );
+    if (!this.student.Q34) {
+      this.OutraDoencaParentesco = [];
+      this.dataService.delete('patfam/' + this.selectedStudent.id + '/OutraDoenca').subscribe(
+        resd => console.log(resd)
+      );
+    }
+    this.dataService.setData('patfam/' + this.selectedStudent.id, this.OutraDoencaParentesco).subscribe(
+      res2 => console.log(res2)
+    );
     this.saveData(form);
   }
 

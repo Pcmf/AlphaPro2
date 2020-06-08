@@ -6,6 +6,12 @@
   background-position: center;
 }
 
+.mat-accordion{
+  width: 360px;
+  
+}
+
+
 .mat-expansion-panel {
   background-color: rgba(247, 238, 238, 0.704);
 }
@@ -24,6 +30,11 @@
   margin-left: 8px;
 }
 
+.mat-card {
+  width: 300px;
+  margin: auto;
+}
+
 .check-box {
   margin-bottom: 20px;
 }
@@ -37,7 +48,7 @@
   font-size: small;
 }
 
-mat-label {
+.mat-label {
   display: block;
 }
 
@@ -45,15 +56,12 @@ mat-label {
   width: 100%;
 }
 
-.mat-card {
-  width: 280px;
-  margin: auto;
-}
+
 
 .mat-radio-button {
   display: block;
   margin-top: 5px;
-  font-size: x-small;
+  font-size: small;
 }
 
 .patologico {
@@ -78,6 +86,14 @@ mat-label {
   margin-left: 20px;
 }
 @media only screen and (min-width: 768px) {
+
+  .mat-accordion{
+    width: 520px;
+  }
+  .mat-card{
+    max-width: 490px;
+    margin: auto;
+  }
 
   ::-webkit-scrollbar {
     width: 0px;

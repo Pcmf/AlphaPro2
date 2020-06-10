@@ -63,6 +63,9 @@ export class NewComponent implements OnInit {
       // edit student
       this.dataService.setData('entity/clients/' + this.dataService.getPTId() + '/' + this.student.id, form).subscribe(
         resp => {
+          const aluno = JSON.parse(sessionStorage.selectedStudent);
+          aluno.profissao = form.profissao;
+          sessionStorage.selectedStudent = JSON.stringify(aluno);
           this.location.back();
         }
       );

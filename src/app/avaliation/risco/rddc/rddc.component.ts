@@ -16,38 +16,47 @@ export class RDDCComponent implements OnInit {
   smoker = '0';
   student: any = [];
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private ageService: AgeService
-              ) {
-      this.student = JSON.parse(sessionStorage.selectedStudent);
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private ageService: AgeService
+  ) {
+    this.student = JSON.parse(sessionStorage.selectedStudent);
 
-      if (this.student.fumante == 'S' || this.student.fumante == 'E') {
-            this.smoker = '1';
-            this.points += 1;
-          }
-      this.age = this.ageService.getAge(this.student.dt_nasc);
-      if (this.age < 30 ) {
-            this.points += 0;
-          } else if (this.age < 40) {
-            this.points += 1;
-          } else if (this.age < 65) {
-            this.points += 2;
-          } else {
-            this.points += 3;
-          }
-      this.dataService.getData('clients/column/' + this.student.id).subscribe(
-            respd => {
-              if (respd[0]) {
-                this.data = respd[0];
-              }
-              this.data.smoker = this.smoker;
-            }
-          );
-        }
+    if (this.student.fumante == 'S' || this.student.fumante == 'E') {
+      this.smoker = '1';
+      this.points += 1;
+    }
+    this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.age < 30) {
+      this.points += 0;
+    } else if (this.age < 40) {
+      this.points += 1;
+    } else if (this.age < 65) {
+      this.points += 2;
+    } else {
+      this.points += 3;
+    }
+  }
 
 
   ngOnInit(): void {
+    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+      resp => {
+        this.dataService.getData('clients/column/' + this.student.id).subscribe(
+          respd => {
+            if (respd[0]) {
+              this.data = respd[0];
+              this.data.dor = '0';
+              if (resp[0].Q510 == 1) {
+                this.data.dor = '3';
+              }
+            }
+            this.data.smoker = this.smoker;
+          }
+        );
+      }
+    );
   }
 
   goBack() {

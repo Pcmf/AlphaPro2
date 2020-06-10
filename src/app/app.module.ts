@@ -97,6 +97,7 @@ import { YmcaBancoComponent } from './avaliation/CardioPulmunar/ymca-banco/ymca-
 import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component';
 import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
 import { TimePipe } from './commun/time.pipe';
+import { MetronomeComponent } from './commun/metronome/metronome.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -184,7 +185,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     YmcaBancoComponent,
     VogelComponent,
     WeltmanEtAlComponent,
-    TimePipe
+    TimePipe,
+    MetronomeComponent
   ],
   imports: [
     BrowserModule,

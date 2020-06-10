@@ -136,7 +136,8 @@ export class YmcaBancoComponent implements OnInit {
     form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
     form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
     form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
-    form.c_fcmax = this.protocoloCardio.getFCEstimada(form.idade);
+    form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
+    form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
@@ -176,6 +177,7 @@ export class YmcaBancoComponent implements OnInit {
 
   getClasse(evaluation) {
     evaluation.idade = this.ageService.getAgeFromDate1(evaluation.data , this.student.dt_nasc);
+    evaluation.sexo = this.student.sexo;
     return this.protocoloCardio.getClassBancoYMCA(evaluation);
   }
 

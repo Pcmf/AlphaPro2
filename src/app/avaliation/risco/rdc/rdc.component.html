@@ -165,13 +165,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Familares doentes coronarios > 60</mat-label>
-                                <mat-select #hf="ngModel" name="hf" [ngModel]="rdcData.hf" disabled>
-                                    <mat-option value="0">0</mat-option>
-                                    <mat-option value="1">1</mat-option>
-                                    <mat-option value="2">2</mat-option>
-                                    <mat-option value="3">3</mat-option>
-                                </mat-select>
-
+                                <input matInput #hf="ngModel" name="hf" [ngModel]="rdcData.hf" readonly>
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -191,12 +185,18 @@
                     </mat-list>
                 </mat-card-content>
             </mat-card>
-            <div class="result">
-                <span i18n *ngIf="risco <= 1">Baixo</span>
-                <span i18n *ngIf="risco == 2">Moderado</span>
-                <span i18n *ngIf="risco == 3">Alto</span>
-                <span i18n *ngIf="risco > 3">Muito Alto</span>
-            </div>
+            <mat-card class="mat-card-resultado">
+                <mat-card-header>
+                    <mat-card-subtitle>NÍVEL DE RISCO</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                        <span i18n *ngIf="risco <= 1">Baixo</span>
+                        <span i18n *ngIf="risco == 2">Moderado</span>
+                        <span i18n *ngIf="risco == 3">Alto</span>
+                        <span i18n *ngIf="risco > 3">Muito Alto</span>
+                </mat-card-content>
+            </mat-card>
+
             <div class="action">
                 <button mat-fab type="button" color="default" (click)="goBack()">
                     <mat-icon>close</mat-icon>

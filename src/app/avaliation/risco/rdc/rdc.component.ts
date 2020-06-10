@@ -16,11 +16,12 @@ export class RDCComponent implements OnInit {
   sex: string;
   risco = 0;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private ageService: AgeService,
-              private router: Router
-              ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private ageService: AgeService,
+    private router: Router
+  ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.idade = this.ageService.getAge(this.student.dt_nasc);
     this.sex = this.student.sexo;
@@ -28,21 +29,26 @@ export class RDCComponent implements OnInit {
       resp => {
         if (resp[0]) {
           this.rdcData = resp[0];
-        }
-        this.dataService.getData('clients/eval/' + this.student.id).subscribe(
-          (respe: any []) => {
-            if (respe) {
-                const lastEval = respe.pop();
-                this.rdcData.qtas = lastEval.tamax;
-                this.rdcData.qtad = lastEval.tamin;
-            }
+          if (this.rdcData.qtas == 0 || this.rdcData.qtad == 0) {
+              this.dataService.getData('clients/eval/' + this.student.id).subscribe(
+              (respe: any[]) => {
+                if (respe) {
+                  const lastEval = respe.pop();
+                  this.rdcData.qtas = lastEval.tamax;
+                  this.rdcData.qtad = lastEval.tamin;
+                }
+              }
+            );
           }
-        );
-        // historic cardio family from arq_quest - Q31QTDE
-        this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-          respq => this.rdcData.hf = respq[0].Q31QTDE
-        );
-        this.calcRisco();
+            // historic cardio family from pat_familiar
+          this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
+              (respq: any[]) => {
+                console.log(respq.length);
+                this.rdcData.hf = respq.length;
+              }
+            );
+          this.calcRisco();
+          }
       }
     );
   }

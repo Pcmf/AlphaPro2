@@ -40,8 +40,8 @@
                     <!--  resultados -->
                     <tr>
                         <th i18n>FC Estimada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcestimada}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
@@ -52,8 +52,8 @@
                     </tr>
                     <tr>
                         <th i18n>% FC Máx. Alcançada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percfcm}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@
                     <th>65+</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="student.sexo =='M'">
                 <tr>
                     <th>Excelente</th>
                     <td>70-78</td>
@@ -187,7 +187,73 @@
                     <td>133-152</td>
                 </tr>
             </tbody>
+            <tbody *ngIf="student.sexo =='F'">
+                <tr>
+                    <th>Excelente</th>
+                    <td>72-73</td>
+                    <td>72-86</td>
+                    <td>74-87</td>
+                    <td>76-93</td>
+                    <td>74-92</td>
+                    <td>73-86</td>
+                </tr>
+                <tr>
+                    <th>Boa</th>
+                    <td>88-97</td>
+                    <td>91-97</td>
+                    <td>903-101</td>
+                    <td>96-102</td>
+                    <td>97-103/td>
+                    <td>93-100</td>
+                </tr>
+                <tr>
+                    <th>Acima da média</th>
+                    <td>100-106</td>
+                    <td>103-110</td>
+                    <td>104-109</td>
+                    <td>106-113</td>
+                    <td>106-111</td>
+                    <td>104-114</td>
+                </tr>
+                <tr>
+                    <th>Média</th>
+                    <td>110-116</td>
+                    <td>112-118</td>
+                    <td>111-117</td>
+                    <td>117-120</td>
+                    <td>113-117</td>
+                    <td>117-121</td>
+                </tr>
+                <tr>
+                    <th>Abaixo da média</th>
+                    <td>118-124</td>
+                    <td>121-127</td>
+                    <td>120-127</td>
+                    <td>121-126</td>
+                    <td>1119-127</td>
+                    <td>123-127</td>
+                </tr>
+                <tr>
+                    <th>Pobre</th>
+                    <td>128-137</td>
+                    <td>129-135</td>
+                    <td>130-138</td>
+                    <td>127-133</td>
+                    <td>129-136</td>
+                    <td>129-134</td>
+                </tr>
+                <tr>
+                    <th>Abaixo da média</th>
+                    <td>142-155</td>
+                    <td>141-154</td>
+                    <td>143-152</td>
+                    <td>138-152</td>
+                    <td>142-151</td>
+                    <td>135-151</td>
+                </tr>
+            </tbody>
         </table>
+        <em>Morrow, JR; Jackson, A.; Disch, J. e Mood, D. (2003). Medida e Avaliação do Desempenho Humano. 2ªed. Porto Alegre. ArtMed.</em>
 
 
     </div>

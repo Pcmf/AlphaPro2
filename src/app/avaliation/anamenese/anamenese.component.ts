@@ -68,6 +68,7 @@ export class AnameneseComponent implements OnInit {
                   this.OutraDoencaParentesco.push(el);
                 }
               });
+
             }
           );
         } else {

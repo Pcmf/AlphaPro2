@@ -2,3 +2,30 @@
     flex-direction: column;
     justify-content: start;
   }
+
+  .section-info{
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4{
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
+  
+  .table{
+    font-size: smaller;
+    td, th {
+      border: 1px solid #999;
+      padding: 0.5rem;
+    }
+  }
+  
+  @media only screen and (min-width: 768px){
+    .section-info{
+      width: 64%;
+    }
+  }

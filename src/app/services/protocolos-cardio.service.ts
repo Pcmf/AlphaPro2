@@ -13,11 +13,11 @@ export class ProtocolosCardioService {
     let genero = 0;
     evaluation.sexo === 'M' ? genero = 1 : genero = 0;
     return +(0.133 * +evaluation.idade - 0.005 * Math.pow(+evaluation.idade, 2) + 11.405 * genero + 1.463 * +evaluation.nafs
-            + 9.17 * +evaluation.altura - 0.254 * +evaluation.peso + 34.142);
+            + 9.17 * +evaluation.altura - 0.254 * +evaluation.peso + 34.142).toFixed(2);
   }
 
   getFAI(vo2e, vo2o) {
-    return +((vo2e - vo2o) / vo2e * 100);
+    return +((vo2e - vo2o) / vo2e * 100).toFixed(2);
   }
   getClasseFAI(fai) {
     if (+fai < 10) { return 'Eficiência Miocárdica e bom condicionamento'; }
@@ -25,28 +25,37 @@ export class ProtocolosCardioService {
     if (+fai >= 25) { return 'Muito baixo condicionamento físico ou presença de cardiopatia'; }
   }
 
-  getFCReserva(form) {
+  getFCMax(form) {
     const FC = [];
-    FC[0] = form.fc;
-    FC[1] = form.min0;
-    FC[2] = form.min2;
-    FC[3] = form.min4;
-    FC[4] = form.min6;
-    FC[5] = form.min8;
-    FC[6] = form.min10;
-    FC[7] = form.min12;
-    FC[8] = form.min14;
-    FC[9] = form.min16;
-    FC[10] = form.min18;
-    FC[11] = form.min20;
+    FC[0] = +form.fc;
+    FC[1] = +form.min0;
+    FC[2] = +form.min2;
+    FC[3] = +form.min4;
+    FC[4] = +form.min6;
+    FC[5] = +form.min8;
+    FC[6] = +form.min10;
+    FC[7] = +form.min12;
+    FC[8] = +form.min14;
+    FC[9] = +form.min16;
+    FC[10] = +form.min18;
+    FC[11] = +form.min20;
+    let FCMax = 0;
+    FC.map( (el) => {
+        if (el > FCMax) {
+          FCMax = el;
+        }
+    });
+    return FCMax;
+  }
 
-    let FCMax = Math.max(...FC.map( o => o));
+  getFCReserva(form) {
+    let FCMax = this.getFCMax(form);
     if (!FCMax) { FCMax = form.fc; }
-    return +(FCMax - +form.fc2);
+    return +(FCMax - +form.fc2).toFixed(2);
   }
 
   getFCEstimada(idade) {
-    return +(205.8 - 0.685 * +idade);
+    return +(205.8 - 0.685 * +idade).toFixed(2);
   }
 
   getVO2ObtRockport(ln) {
@@ -58,7 +67,9 @@ export class ProtocolosCardioService {
     return res.toFixed(2);
   }
 
-
+  getPercFCMax(evaluation) {
+    return +((this.getFCMax(evaluation) - this.getFCEstimada(evaluation.idade)) / 100).toFixed(2);
+  }
 
   getVO2ObtCooper(evaluation) {
     return +((evaluation.distancia - 504) / 45);
@@ -69,9 +80,9 @@ export class ProtocolosCardioService {
     const sec = this.getSeconds(evaluation.c_tempo);
     console.log(sec);
     if (evaluation.sexo === 'M') {
-      return +(184 - 4.65 * (min + sec / 60) - 0.22 * evaluation.fc - 0.26 * evaluation.idade - 1.05 * evaluation.imc);
+      return +(184 - 4.65 * (min + sec / 60) - 0.22 * evaluation.fc - 0.26 * evaluation.idade - 1.05 * evaluation.imc).toFixed(2);
     } else {
-      return +(116.2 - 2.98 * (min + sec / 60) - 0.11 * evaluation.fc - 0.38 * evaluation.imc);
+      return +(116.2 - 2.98 * (min + sec / 60) - 0.11 * evaluation.fc - 0.38 * evaluation.imc).toFixed(2);
     }
   }
   // Caminhada Cureton et al
@@ -80,7 +91,7 @@ export class ProtocolosCardioService {
     const sec = this.getSeconds(evaluation.c_tempo);
     evaluation.sexo === 'M' ? this.cx = 1 : this.cx = 0;
     return +(108.94 - 8.41 * (min + sec / 60) + Math.pow(0.34 * (min + sec / 60), 2)
-          - 0.21 * evaluation.idade * this.cx - 0.84 * evaluation.imc);
+          - 0.21 * evaluation.idade * this.cx - 0.84 * evaluation.imc).toFixed(2);
   }
 
   // Corrida Geroge et al 1609m
@@ -211,60 +222,118 @@ export class ProtocolosCardioService {
 
   // Banco YMCA 3 minutos
   getClassBancoYMCA(evaluation) {
-      if (evaluation.idade >= 18 && evaluation.idade < 26) {
-        if ( evaluation.fc >= 70 && evaluation.fc <= 78) { return 'Excelente'; }
-        if ( evaluation.fc >= 82 && evaluation.fc <= 88) { return 'Boa'; }
-        if ( evaluation.fc >= 91 && evaluation.fc <= 97) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 101 && evaluation.fc <= 104) { return 'Média'; }
-        if ( evaluation.fc >= 107 && evaluation.fc <= 114) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 118 && evaluation.fc <= 126) { return 'Pobre'; }
-        if ( evaluation.fc >= 131 && evaluation.fc <= 164) { return 'Muito Pobre'; }
+    if (evaluation.sexo == 'M') {
+      if (+evaluation.idade >= 18 && +evaluation.idade < 26) {
+        if ( +evaluation.fc >= 70 && +evaluation.fc <= 78) { return 'Excelente'; }
+        if ( +evaluation.fc >= 82 && +evaluation.fc <= 88) { return 'Boa'; }
+        if ( +evaluation.fc >= 91 && +evaluation.fc <= 97) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 101 && +evaluation.fc <= 104) { return 'Média'; }
+        if ( +evaluation.fc >= 107 && +evaluation.fc <= 114) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 118 && +evaluation.fc <= 126) { return 'Pobre'; }
+        if ( +evaluation.fc >= 131 && +evaluation.fc <= 164) { return 'Muito Pobre'; }
       }
-      if (evaluation.idade >= 26 && evaluation.idade < 36) {
-        if ( evaluation.fc >= 73 && evaluation.fc <= 79) { return 'Excelente'; }
-        if ( evaluation.fc >= 83 && evaluation.fc <= 88) { return 'Boa'; }
-        if ( evaluation.fc >= 91 && evaluation.fc <= 97) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 101 && evaluation.fc <= 106) { return 'Média'; }
-        if ( evaluation.fc >= 109 && evaluation.fc <= 116) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 119 && evaluation.fc <= 126) { return 'Pobre'; }
-        if ( evaluation.fc >= 130 && evaluation.fc <= 164) { return 'Muito Pobre'; }
+      if (+evaluation.idade >= 26 && +evaluation.idade < 36) {
+        if ( +evaluation.fc >= 73 && +evaluation.fc <= 79) { return 'Excelente'; }
+        if ( +evaluation.fc >= 83 && +evaluation.fc <= 88) { return 'Boa'; }
+        if ( +evaluation.fc >= 91 && +evaluation.fc <= 97) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 101 && +evaluation.fc <= 106) { return 'Média'; }
+        if ( +evaluation.fc >= 109 && +evaluation.fc <= 116) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 119 && +evaluation.fc <= 126) { return 'Pobre'; }
+        if ( +evaluation.fc >= 130 && +evaluation.fc <= 164) { return 'Muito Pobre'; }
       }
-      if (evaluation.idade >= 36 && evaluation.idade < 46) {
-        if ( evaluation.fc >= 72 && evaluation.fc <= 82) { return 'Excelente'; }
-        if ( evaluation.fc >= 86 && evaluation.fc <= 94) { return 'Boa'; }
-        if ( evaluation.fc >= 98 && evaluation.fc <= 102) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 105 && evaluation.fc <= 111) { return 'Média'; }
-        if ( evaluation.fc >= 113 && evaluation.fc <= 118) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 120 && evaluation.fc <= 128) { return 'Pobre'; }
-        if ( evaluation.fc >= 132 && evaluation.fc <= 163) { return 'Muito Pobre'; }
+      if (+evaluation.idade >= 36 && +evaluation.idade < 46) {
+        if ( +evaluation.fc >= 72 && +evaluation.fc <= 82) { return 'Excelente'; }
+        if ( +evaluation.fc >= 86 && +evaluation.fc <= 94) { return 'Boa'; }
+        if ( +evaluation.fc >= 98 && +evaluation.fc <= 102) { return 'Acima da Média'; }
+        if ( ++evaluation.fc >= 105 && ++evaluation.fc <= 111) { return 'Média'; }
+        if ( +evaluation.fc >= 113 && +evaluation.fc <= 118) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 120 && +evaluation.fc <= 128) { return 'Pobre'; }
+        if ( +evaluation.fc >= 132 && +evaluation.fc <= 163) { return 'Muito Pobre'; }
       }
-      if (evaluation.idade >= 46 && evaluation.idade < 56) {
-        if ( evaluation.fc >= 78 && evaluation.fc <= 84) { return 'Excelente'; }
-        if ( evaluation.fc >= 89 && evaluation.fc <= 96) { return 'Boa'; }
-        if ( evaluation.fc >= 99 && evaluation.fc <= 103) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 109 && evaluation.fc <= 105) { return 'Média'; }
-        if ( evaluation.fc >= 118 && evaluation.fc <= 121) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 124 && evaluation.fc <= 130) { return 'Pobre'; }
-        if ( evaluation.fc >= 135 && evaluation.fc <= 158) { return 'Muito Pobre'; }
+      if (+evaluation.idade >= 46 && +evaluation.idade < 56) {
+        if ( +evaluation.fc >= 78 && +evaluation.fc <= 84) { return 'Excelente'; }
+        if ( +evaluation.fc >= 89 && +evaluation.fc <= 96) { return 'Boa'; }
+        if ( +evaluation.fc >= 99 && +evaluation.fc <= 103) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 109 && +evaluation.fc <= 105) { return 'Média'; }
+        if ( +evaluation.fc >= 118 && +evaluation.fc <= 121) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 124 && +evaluation.fc <= 130) { return 'Pobre'; }
+        if ( +evaluation.fc >= 135 && +evaluation.fc <= 158) { return 'Muito Pobre'; }
       }
-      if (evaluation.idade >= 56 && evaluation.idade < 66) {
-        if ( evaluation.fc >= 72 && evaluation.fc <= 82) { return 'Excelente'; }
-        if ( evaluation.fc >= 89 && evaluation.fc <= 97) { return 'Boa'; }
-        if ( evaluation.fc >= 98 && evaluation.fc <= 101) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 105 && evaluation.fc <= 111) { return 'Média'; }
-        if ( evaluation.fc >= 113 && evaluation.fc <= 118) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 122 && evaluation.fc <= 128) { return 'Pobre'; }
-        if ( evaluation.fc >= 131 && evaluation.fc <= 150) { return 'Muito Pobre'; }
+      if (+evaluation.idade >= 56 && +evaluation.idade < 66) {
+        if ( +evaluation.fc >= 72 && +evaluation.fc <= 82) { return 'Excelente'; }
+        if ( +evaluation.fc >= 89 && +evaluation.fc <= 97) { return 'Boa'; }
+        if ( +evaluation.fc >= 98 && +evaluation.fc <= 101) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 105 && +evaluation.fc <= 111) { return 'Média'; }
+        if ( +evaluation.fc >= 113 && +evaluation.fc <= 118) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 122 && +evaluation.fc <= 128) { return 'Pobre'; }
+        if ( +evaluation.fc >= 131 && +evaluation.fc <= 150) { return 'Muito Pobre'; }
       }
-      if (evaluation.idade >= 66) {
-        if ( evaluation.fc >= 72 && evaluation.fc <= 86) { return 'Excelente'; }
-        if ( evaluation.fc >= 89 && evaluation.fc <= 95) { return 'Boa'; }
-        if ( evaluation.fc >= 97 && evaluation.fc <= 102) { return 'Acima da Média'; }
-        if ( evaluation.fc >= 104 && evaluation.fc <= 113) { return 'Média'; }
-        if ( evaluation.fc >= 114 && evaluation.fc <= 119) { return 'Abaixo da Média'; }
-        if ( evaluation.fc >= 122 && evaluation.fc <= 128) { return 'Pobre'; }
-        if ( evaluation.fc >= 133 && evaluation.fc <= 152) { return 'Muito Pobre'; }
+      if (+evaluation.idade >= 66) {
+        if ( +evaluation.fc >= 72 && +evaluation.fc <= 86) { return 'Excelente'; }
+        if ( +evaluation.fc >= 89 && +evaluation.fc <= 95) { return 'Boa'; }
+        if ( +evaluation.fc >= 97 && +evaluation.fc <= 102) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 104 && +evaluation.fc <= 113) { return 'Média'; }
+        if ( +evaluation.fc >= 114 && +evaluation.fc <= 119) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 122 && +evaluation.fc <= 128) { return 'Pobre'; }
+        if ( +evaluation.fc >= 133 && +evaluation.fc <= 152) { return 'Muito Pobre'; }
       }
+    }
+    if (evaluation.sexo == 'F') {
+      if (+evaluation.idade >= 18 && +evaluation.idade < 26) {
+        if ( +evaluation.fc >= 72 && +evaluation.fc <= 83) { return 'Excelente'; }
+        if ( +evaluation.fc >= 88 && +evaluation.fc <= 97) { return 'Boa'; }
+        if ( +evaluation.fc >= 100 && +evaluation.fc <= 106) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 110 && +evaluation.fc <= 116) { return 'Média'; }
+        if ( +evaluation.fc >= 118 && +evaluation.fc <= 124) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 128 && +evaluation.fc <= 128) { return 'Pobre'; }
+        if ( +evaluation.fc >= 142 && +evaluation.fc <= 155) { return 'Muito Pobre'; }
+      }
+      if (+evaluation.idade >= 26 && +evaluation.idade < 36) {
+        if ( +evaluation.fc >= 72 && +evaluation.fc <= 79) { return 'Excelente'; }
+        if ( +evaluation.fc >= 91 && +evaluation.fc <= 88) { return 'Boa'; }
+        if ( +evaluation.fc >= 103 && +evaluation.fc <= 97) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 112 && +evaluation.fc <= 106) { return 'Média'; }
+        if ( +evaluation.fc >= 121 && +evaluation.fc <= 116) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 129 && +evaluation.fc <= 126) { return 'Pobre'; }
+        if ( +evaluation.fc >= 141 && +evaluation.fc <= 164) { return 'Muito Pobre'; }
+      }
+      if (+evaluation.idade >= 36 && +evaluation.idade < 46) {
+        if ( +evaluation.fc >= 74 && +evaluation.fc <= 87) { return 'Excelente'; }
+        if ( +evaluation.fc >= 93 && +evaluation.fc <= 101) { return 'Boa'; }
+        if ( +evaluation.fc >= 104 && +evaluation.fc <= 109) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 110 && +evaluation.fc <= 117) { return 'Média'; }
+        if ( +evaluation.fc >= 120 && +evaluation.fc <= 127) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 130 && +evaluation.fc <= 138) { return 'Pobre'; }
+        if ( +evaluation.fc >= 143 && +evaluation.fc <= 152) { return 'Muito Pobre'; }
+      }
+      if (+evaluation.idade >= 46 && +evaluation.idade < 56) {
+        if ( +evaluation.fc >= 76 && +evaluation.fc <= 93) { return 'Excelente'; }
+        if ( +evaluation.fc >= 96 && +evaluation.fc <= 102) { return 'Boa'; }
+        if ( +evaluation.fc >= 106 && +evaluation.fc <= 113) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 117 && +evaluation.fc <= 120) { return 'Média'; }
+        if ( +evaluation.fc >= 121 && +evaluation.fc <= 126) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 127 && +evaluation.fc <= 133) { return 'Pobre'; }
+        if ( +evaluation.fc >= 138 && +evaluation.fc <= 152) { return 'Muito Pobre'; }
+      }
+      if (+evaluation.idade >= 56 && +evaluation.idade < 66) {
+        if ( +evaluation.fc >= 74 && +evaluation.fc <= 92) { return 'Excelente'; }
+        if ( +evaluation.fc >= 97 && +evaluation.fc <= 103) { return 'Boa'; }
+        if ( +evaluation.fc >= 106 && +evaluation.fc <= 111) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 113 && +evaluation.fc <= 117) { return 'Média'; }
+        if ( +evaluation.fc >= 119 && +evaluation.fc <= 127) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 129 && +evaluation.fc <= 136) { return 'Pobre'; }
+        if ( +evaluation.fc >= 142 && +evaluation.fc <= 151) { return 'Muito Pobre'; }
+      }
+      if (+evaluation.idade >= 66) {
+        if ( +evaluation.fc >= 73 && +evaluation.fc <= 86) { return 'Excelente'; }
+        if ( +evaluation.fc >= 93 && +evaluation.fc <= 100) { return 'Boa'; }
+        if ( +evaluation.fc >= 104 && +evaluation.fc <= 114) { return 'Acima da Média'; }
+        if ( +evaluation.fc >= 117 && +evaluation.fc <= 121) { return 'Média'; }
+        if ( +evaluation.fc >= 123 && +evaluation.fc <= 127) { return 'Abaixo da Média'; }
+        if ( +evaluation.fc >= 129 && +evaluation.fc <= 134) { return 'Pobre'; }
+        if ( +evaluation.fc >= 135 && +evaluation.fc <= 151) { return 'Muito Pobre'; }
+      }
+    }
   }
 
   private getSeconds(tempo: string) {

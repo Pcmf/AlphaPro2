@@ -106,6 +106,101 @@
                 </button>
             </div>
         </form>
+
+        <div class="section-info">
+            <h4>Diretrizes para classificação do sobrepeso e obesidade em adultos.</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IMC</th>
+                        <th>Classificação de Sobrepeso</th>
+                        <th>Classe de Obesidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>&lt; 18,5</th>
+                        <td>Peso abaixo do normal</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>18,5 a 24,9</th>
+                        <td>Peso normal</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>25 a 29,9</th>
+                        <td>Peso acima do normal</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>30 a 34,5</th>
+                        <td>Obesidade</td>
+                        <td>I</td>
+                    </tr>
+                    <tr>
+                        <th>35 a 39,9</th>
+                        <td>Obesidade</td>
+                        <td>II</td>
+                    </tr>
+                    <tr>
+                        <th>&gt; 40</th>
+                        <td>Obesidade extrema</td>
+                        <td>III</td>
+                    </tr>
+                </tbody>
+            </table>
+            <em>Fonte: National Heart, Lung and Blood Institute, 1998.</em>
+            <br/>
+            <h4>Classificação relativamente aos riscos de saúde.</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IMC</th>
+                        <th>Classificação</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="student.sexo=='M'">
+                    <tr>
+                        <th>17,9 a 18,9</th>
+                        <td>Risco baixo</td>
+                    </tr>
+                    <tr>
+                        <th>19 a 24,9</th>
+                        <td>Ideal</td>
+                    </tr>
+                    <tr>
+                        <th>25 a 27,7</th>
+                        <td>Risco moderado</td>
+                    </tr>
+                    <tr>
+                        <th>&gt; 27,8</th>
+                        <td>Risco elevado</td>
+                    </tr>                    
+                </tbody>
+                <tbody *ngIf="student.sexo=='F'">
+                    <tr>
+                        <th>15 a 17,9</th>
+                        <td>Risco baixo</td>
+                    </tr>
+                    <tr>
+                        <th>18 a 24,4</th>
+                        <td>Ideal</td>
+                    </tr>
+                    <tr>
+                        <th>24,5 a 27,2</th>
+                        <td>Risco moderado</td>
+                    </tr>
+                    <tr>
+                        <th>&gt; 27,3</th>
+                        <td>Risco elevado</td>
+                    </tr>                    
+                </tbody>
+            </table>
+            <em>Fonte: Corbin & Lindey, 1994</em>
+
+        </div>
+
     </div>
 
     <div class="footer">

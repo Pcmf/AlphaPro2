@@ -125,8 +125,8 @@
                     <!--  resultados -->
                     <tr>
                         <th i18n>FC Estimada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcestimada}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
@@ -137,8 +137,8 @@
                     </tr>
                     <tr>
                         <th i18n>% FC Máx. Alcançada</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcmax}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcmax}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percfcm}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>

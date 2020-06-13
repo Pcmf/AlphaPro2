@@ -73,6 +73,7 @@ export class AnameneseComponent implements OnInit {
           );
         } else {
           this.student = [];
+          this.student.profissao = this.selectedStudent.profissao;
           this.CardioParentesco = [];
           this.HiperParentesco = [];
           this.DiabetesParentesco = [];
@@ -144,7 +145,6 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveHistoricoPatologico(form) {
-    console.table(form);
     this.saveData(form);
   }
 

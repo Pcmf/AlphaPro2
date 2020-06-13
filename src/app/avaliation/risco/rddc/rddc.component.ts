@@ -41,20 +41,23 @@ export class RDDCComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-      resp => {
-        this.dataService.getData('clients/column/' + this.student.id).subscribe(
-          respd => {
-            if (respd[0]) {
-              this.data = respd[0];
-              this.data.dor = '0';
+
+    this.dataService.getData('clients/column/' + this.student.id).subscribe(
+      respd => {
+        if (respd[0]) {
+          console.log(respd);
+          this.data = respd[0];
+          this.data.smoker = this.smoker;
+        } else {
+          this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+            resp => {
+              this.data.smoker = this.smoker;
               if (resp[0].Q510 == 1) {
                 this.data.dor = '3';
               }
             }
-            this.data.smoker = this.smoker;
-          }
-        );
+          );
+        }
       }
     );
   }

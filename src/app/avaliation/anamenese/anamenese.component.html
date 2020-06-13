@@ -9,7 +9,7 @@
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title i18n="Title | objectivos a alcançar">
-            Objectivos*
+            Objetivos*
           </mat-panel-title>
           <mat-panel-description>&nbsp;<mat-icon>adjust</mat-icon>
           </mat-panel-description>
@@ -49,13 +49,13 @@
 
             <mat-card-content>
               <mat-form-field class="input-lg">
-                <mat-label i18n>Objectivo a alcançar</mat-label>
+                <mat-label i18n>Objetivo a alcançar</mat-label>
                 <textarea matInput #OBJETIVO="ngModel" name="OBJETIVO" [(ngModel)]="student.OBJETIVO" i18n
                   placeholder="especificar..."></textarea>
               </mat-form-field>
 
               <mat-form-field appearance="">
-                <mat-label i18n="Label">Data para alcançar o objectivo</mat-label>
+                <mat-label i18n="Label">Data para alcançar o objetivo</mat-label>
                 <input matInput #DT_OBJ="ngModel" name="DT_OBJ" [(ngModel)]="dataObj" [matDatepicker]="pickerAmn"
                   placeholder="Ex: 25/01/2021" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerAmn"></mat-datepicker-toggle>
@@ -63,29 +63,29 @@
               </mat-form-field>
 
               <div>
-                <mat-label i18n>Interesse pelo objectivo </mat-label>
+                <mat-label i18n>Interesse pelo objetivo </mat-label>
                 <mat-slider #INTERESSE="ngModel" name="INTERESSE" [(ngModel)]="student.INTERESSE" thumbLabel
                   tickInterval="1" min="1" max="10">
                 </mat-slider>
               </div>
               <div>
-                <mat-label i18n>É um objectivo alcançável?</mat-label>
+                <mat-label i18n>É um objetivo alcançável?</mat-label>
                 <mat-slider #ALCANCA="ngModel" name="ALCANCA" [(ngModel)]="student.ALCANCA" thumbLabel tickInterval="1"
                   min="1" max="10">
                 </mat-slider>
               </div>
               <div>
-                <mat-label i18n>Depende de você mesmo alcançar o objectivo?</mat-label>
+                <mat-label i18n>Depende de você mesmo alcançar o objetivo?</mat-label>
                 <mat-slider #DEPENDE="ngModel" name="DEPENDE" [(ngModel)]="student.DEPENDE" thumbLabel tickInterval="1"
                   min="1" max="10"></mat-slider>
               </div>
               <mat-radio-group aria-label="Select an option" #ANTES="ngModel" name="ANTES" [(ngModel)]="student.ANTES">
-                <mat-label i18n>Se deve alcançar outros objectivos antes?</mat-label>
+                <mat-label i18n>Se deve alcançar outros objetivos antes?</mat-label>
                 <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                 <mat-radio-button value="2" i18n>Não</mat-radio-button>
               </mat-radio-group>
               <mat-form-field class="input-lg">
-                <mat-label i18n>Critérios para decidir se alcança o objectivo.</mat-label>
+                <mat-label i18n>Critérios para decidir se alcança o objetivo.</mat-label>
                 <textarea #CRITERIOS="ngModel" name="CRITERIOS" [(ngModel)]="student.CRITERIOS" matInput i18n
                   placeholder="especificar..."></textarea>
               </mat-form-field>
@@ -110,18 +110,18 @@
 
           <mat-card>
             <mat-card-header>
-              <mat-card-subtitle i18n="Label">Nível de Actividade Fisica</mat-card-subtitle>
+              <mat-card-subtitle i18n="Label">Nível de Atividade Fisica</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
               <mat-tab-group>
                 <mat-tab label=" A ">
 
-                  <p i18n>Não participa regularmente em desporto e recreações programadas ou actividades fisicas
+                  <p i18n>Não participa regularmente em desporto e recreações programadas ou atividades fisicas
                     intensas.
                   </p>
 
                   <mat-radio-group aria-label="Select an option" #nafs="ngModel" name="nafs" [(ngModel)]="student.nafs">
-                    <mat-radio-button value="0" i18n>Evita caminhar ou esforçar-se. Prefere usaro elevador, <br />
+                    <mat-radio-button value="0" i18n>Evita caminhar ou esforçar-se. Prefere usar o elevador, <br />
                       dirige
                       sempre que possivél em vez de caminhar.</mat-radio-button>
                     <mat-radio-button value="1" i18n>Caminha por prazer, usa escadas rotineiramente,<br />exercita-se o
@@ -452,7 +452,7 @@
               </ul>
 
               <!-- OutraDoenca -->
-              <mat-checkbox i18n="Label" #Q34="ngModel" name="Q34" [(ngModel)]="student.Q34">OutraDoenca</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q34="ngModel" name="Q34" [(ngModel)]="student.Q34">Outra Doença</mat-checkbox>
               <mat-form-field class="" *ngIf="Q34.value">
                 <mat-label i18n="Label">Grau de parentesco</mat-label>
                 <mat-select i18n placeholder="selecione" multiple #outraDoencaParentesco="ngModel" name="outraDoencaParentesco"
@@ -522,6 +522,7 @@
                 <input matInput class="input-md" i18n placeholder="nº de cigarros" #qtos="ngModel" name="qtos"
                   [(ngModel)]="student.qtos">
               </mat-form-field>
+              <br/>
               <mat-label i18n *ngIf="fumante.value=='S' || fumante.value=='E'">Há quanto tempo?</mat-label>
               <mat-form-field class="input-sm" *ngIf="fumante.value=='S' || fumante.value=='E'">
                 <input matInput i18n placeholder="anos" #Q4ATA="ngModel" name="Q4ATA" [(ngModel)]="student.Q4ATA">
@@ -628,9 +629,9 @@
               <mat-label i18n>Profissão: {{student.profissao}}</mat-label>
               <br />
               <mat-label i18n>Quais as posturas que mais adopta durante o dia?</mat-label>
-              <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="student.Q4D1">Sentado</mat-checkbox>
-              <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="student.Q4D2">Em pé</mat-checkbox>
-              <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="student.Q4D3">Deitado</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="!!student.Q4D1">Sentado</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="!!student.Q4D2">Em pé</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="!!student.Q4D3">Deitado</mat-checkbox>
               <mat-form-field class="input-lg">
                 <mat-label i18n="Label">Observações</mat-label>
                 <textarea matInput placeholder="" #Q45OBS="ngModel" name="Q45OBS"

@@ -49,9 +49,7 @@ export class ProtocolosCardioService {
   }
 
   getFCReserva(form) {
-    let FCMax = this.getFCMax(form);
-    if (!FCMax) { FCMax = form.fc; }
-    return +(FCMax - +form.fc2).toFixed(2);
+    return +(this.getFCEstimada(form.idade) - +form.fc2).toFixed(2);
   }
 
   getFCEstimada(idade) {
@@ -68,7 +66,7 @@ export class ProtocolosCardioService {
   }
 
   getPercFCMax(evaluation) {
-    return +((this.getFCMax(evaluation) - this.getFCEstimada(evaluation.idade)) / 100).toFixed(2);
+    return +((this.getFCMax(evaluation) / this.getFCEstimada(evaluation.idade)) * 100).toFixed(2);
   }
 
   getVO2ObtCooper(evaluation) {

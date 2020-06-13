@@ -79,8 +79,8 @@
                         <th>TMB - Taxa Metabólica<br />Basal <small>(kCal/dia)</small></th>
                         <td *ngIf="pointer>=1">{{calcTMB(evaluation[pointer-1])}}</td>
                         <td *ngIf="pointer>=0">{{calcTMB(evaluation[pointer])}}</td>
-                        <td *ngIf="addEval">
-                            <input name="fc" #fc="ngModel" [ngModel] [value]="calcTMB(newEvaluation)" readonly>
+                        <td *ngIf="addEval">&nbsp;
+                          <!--   <input name="fc" #fc="ngModel" [ngModel] [value]="calcTMB(newEvaluation)" readonly> -->
                         </td>
                     </tr>
                 </tbody>

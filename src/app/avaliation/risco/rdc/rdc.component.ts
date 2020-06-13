@@ -29,8 +29,16 @@ export class RDCComponent implements OnInit {
       resp => {
         if (resp[0]) {
           this.rdcData = resp[0];
-          if (this.rdcData.qtas == 0 || this.rdcData.qtad == 0) {
-              this.dataService.getData('clients/eval/' + this.student.id).subscribe(
+        }
+        // Obter dados quantos cigarros dia
+        dataService.getData('clients/' + this.student.id).subscribe(
+          respa => {
+            this.rdcData.qtos = respa[0].qtos;
+          }
+        );
+
+    //    if (this.rdcData.qtas == 0 || this.rdcData.qtad == 0) {
+        this.dataService.getData('clients/eval/' + this.student.id).subscribe(
               (respe: any[]) => {
                 if (respe) {
                   const lastEval = respe.pop();
@@ -39,16 +47,16 @@ export class RDCComponent implements OnInit {
                 }
               }
             );
-          }
+      //    }
             // historic cardio family from pat_familiar
-          this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
+        this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
               (respq: any[]) => {
                 console.log(respq.length);
                 this.rdcData.hf = respq.length;
               }
             );
-          this.calcRisco();
-          }
+        this.calcRisco();
+        //  }
       }
     );
   }

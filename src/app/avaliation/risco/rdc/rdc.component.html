@@ -36,7 +36,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Cigarros por dia</mat-label>
-                                <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="student.qtos">
+                                <input matInput readonly #qtos="ngModel" name="qtos" [ngModel]="rdcData.qtos">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -139,7 +139,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Frequência Semanal</mat-label>
-                                <input matInput #afs="ngModel" name="afs" [(ngModel)]="student.afs" readonly>
+                                <input matInput #afs="ngModel" name="afs" [(ngModel)]="student.afs" placeholder="vezes por semana">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>

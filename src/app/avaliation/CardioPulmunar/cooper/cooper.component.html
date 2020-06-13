@@ -118,15 +118,9 @@
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>Indice Aeróbico Funcional</th>
+                        <th i18n>Indice Aeróbico Funcional (FAI)</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n>VO2 Máx. Estimado</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
@@ -135,8 +129,15 @@
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th i18n>VO2 Máx. Estimado</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
+            <em>*Frequência Cardiaca (FC) em batimentos por minuto (bpm)</em>
 
             <div class="action">
                 <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"

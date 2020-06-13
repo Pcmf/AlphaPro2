@@ -11,9 +11,13 @@
   align-items: center;
 }
 
+.section-cards{
+  width: 360px;
+  margin: auto;
+}
+
 .mat-card{
   height: 30px;
-  width: 280px;
   background-color: rgba(247, 238, 238, 0.704);
   margin-bottom: 1px;
 }

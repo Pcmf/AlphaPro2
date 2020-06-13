@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./metronome.component.scss']
 })
 export class MetronomeComponent implements OnInit {
-  bmp = 40;
+  bpm = 40;
   playing = false;
   
   constructor() { }
@@ -14,4 +14,5 @@ export class MetronomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  playStop() {}
 }

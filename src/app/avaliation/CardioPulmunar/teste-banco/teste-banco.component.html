@@ -2,20 +2,23 @@
     <div class="header">
         <h1 i18n>Testes de Banco</h1>
     </div>
-    
+
 
     <div class="section">
-        <mat-card>
-            <mat-card-header [routerLink]="['/banco']">
-                <mat-card-subtitle i18n="Subtitle">Katch & McArdle (1984) - 3min</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-        <mat-card>
-            <mat-card-header [routerLink]="['/bancoymca']">
-                <mat-card-subtitle i18n="Subtitle">YMCA - 3min</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
+        <div class="section-cards">
+            <mat-card>
+                <mat-card-header [routerLink]="['/banco']">
+                    <mat-card-subtitle i18n="Subtitle">Katch & McArdle (1984) - 3min</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-header [routerLink]="['/bancoymca']">
+                    <mat-card-subtitle i18n="Subtitle">YMCA - 3min</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+        </div>
     </div>
+
     <div class="footer">
         <a mat-mini-fab color="primary" (click)="goBack()">
             <mat-icon>undo</mat-icon>

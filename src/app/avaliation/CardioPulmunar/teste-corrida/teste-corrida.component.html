@@ -2,25 +2,27 @@
     <div class="header">
         <h1 i18n>Testes de Corrida</h1>
     </div>
-    
+
 
     <div class="section">
+        <div class="section-cards">
+            <mat-card>
+                <mat-card-header [routerLink]="['/cooper']">
+                    <mat-card-subtitle i18n="Subtitle">Cooper - 12min</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-header [routerLink]="['/george']">
+                    <mat-card-subtitle i18n="Subtitle">George et Al - 1609m</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-header [routerLink]="['/george2']">
+                    <mat-card-subtitle i18n="Subtitle">George et Al - 3min</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+        </div>
 
-                <mat-card>
-                    <mat-card-header [routerLink]="['/cooper']">
-                        <mat-card-subtitle i18n="Subtitle">Cooper - 12min</mat-card-subtitle>
-                    </mat-card-header>
-                </mat-card>
-                <mat-card>
-                    <mat-card-header [routerLink]="['/george']">
-                        <mat-card-subtitle i18n="Subtitle">George et Al - 1609m</mat-card-subtitle>
-                    </mat-card-header>
-                </mat-card>
-                <mat-card>
-                    <mat-card-header [routerLink]="['/george2']">
-                        <mat-card-subtitle i18n="Subtitle">George et Al - 3min</mat-card-subtitle>
-                    </mat-card-header>
-                </mat-card>
     </div>
     <div class="footer">
         <a mat-mini-fab color="primary" (click)="goBack()">
@@ -28,4 +30,3 @@
         </a>
     </div>
 </div>
-

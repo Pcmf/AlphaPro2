@@ -5,7 +5,7 @@
     <mat-slider [(ngModel)]="bpm" min="40" max="200" step="1"></mat-slider>
 
     <div class="action">
-        <button mat-fab (click)="onClick">
+        <button mat-fab (click)="playStop()">
             <mat-icon *ngIf="!playing" class="mat-18">play_arrow</mat-icon>
             <mat-icon *ngIf="playing" class="mat-18">stop</mat-icon>
         </button>

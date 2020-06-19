@@ -65,16 +65,18 @@
 
 
       <!-- Botões -->
-      <div class="new-form-buttons">
+      <div class="section-action">
+        <div class="new-form-buttons">
         <button mat-fab type="button" (click)="cancel()" color="default">
           <mat-icon class="mat-18">close</mat-icon>
         </button>
         <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
           <mat-icon class="mat-18">check</mat-icon>
         </button>
-
       </div>
-      <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span>
+      <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span> 
+      </div>
+
 
       <p>
         <a href="#">

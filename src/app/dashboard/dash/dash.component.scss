@@ -6,6 +6,10 @@
     height: 95vh;
   }
 
+  .inactive{
+    color: orangered;
+  }
+
   .dash-form{
     width: 84%;
     height: 230px;
@@ -30,6 +34,12 @@
   @media only screen and (min-width: 768px) {
     .dash-form{
       width: 50%;
+      top: 50%;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .dash-form{
+      width: 30%;
       top: 50%;
     }
   }

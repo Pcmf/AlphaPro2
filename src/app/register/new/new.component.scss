@@ -25,6 +25,11 @@
         justify-content: space-evenly;
     }
 }
+.section-action{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 @media only screen and (min-width: 1024px) {
     .new-form{

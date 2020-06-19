@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Location} from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   templateUrl: './qpaf.component.html',
   styleUrls: ['./qpaf.component.scss']
 })
-export class QPAFComponent implements OnInit {
+export class QPAFComponent implements OnInit, OnDestroy {
   student: any = [];
   id: number;
+  formS: any = [];
   constructor(private location: Location,
               private dataService: DataService,
               private router: Router
@@ -30,17 +31,21 @@ export class QPAFComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.dataService.setData('clients/parq/' + this.id, this.formS).subscribe(
+      resp => {
+        console.log(resp);
+      }
+    );
+  }
+
   goBack() {
     this.location.back();
   }
 
   save(form) {
-    this.dataService.setData('clients/parq/' + this.id, form).subscribe(
-      resp => {
-        console.log(resp);
-        this.router.navigate(['rdc/']);
-      }
-    );
+    this.formS = form;
+    this.router.navigate(['/rdc']);
   }
 
 }

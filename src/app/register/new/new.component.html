@@ -59,6 +59,11 @@
         <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
         <input [value]="student.lastaccess" matInput>
       </mat-form-field>
+      <div style="width: 250px; margin-bottom: 20px;">
+        <mat-checkbox i18n="Label" [(ngModel)]="student.active"  name="active" #active="ngModel" color="primary">Ativo</mat-checkbox>
+      </div>
+
+
       <!-- Botões -->
       <div class="new-form-buttons">
         <button mat-fab type="button" (click)="cancel()" color="default">
@@ -70,11 +75,12 @@
 
       </div>
       <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span>
-    
-    <p>
-      <a href="#">
-        <small>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</small>
-      </a>
-    </p>
-  </form>
+
+      <p>
+        <a href="#">
+          <small>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</small>
+        </a>
+      </p>
+    </form>
   </div>
+</div>

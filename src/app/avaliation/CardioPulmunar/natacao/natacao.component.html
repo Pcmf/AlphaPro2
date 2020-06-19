@@ -69,6 +69,88 @@
                 </mat-card-content>
             </mat-card>
         </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Faixa Etária (anos)</th>
+                    <th>Muito Baixa</th>
+                    <th>Baixa</th>
+                    <th>Média</th>
+                    <th>Boa</th>
+                    <th>Excelente</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="student.sexo == 'F'">
+                <tr>
+                    <th> &lt; 30</th>
+                    <td>&lt; 380</td>
+                    <td>380 - 460</td>
+                    <td>461 - 560</td>
+                    <td>561 - 660</td>
+                    <td> &gt; 660</td>
+                </tr>
+                <tr>
+                    <th>30 - 39</th>
+                    <td>&lt; 340</td>
+                    <td>340 - 420</td>
+                    <td>421 - 520</td>
+                    <td>521 - 620</td>
+                    <td> &gt; 620</td>
+                </tr>
+                <tr>
+                    <th>40 - 49</th>
+                    <td>&lt; 300</td>
+                    <td>300 - 380</td>
+                    <td>381 - 460</td>
+                    <td>461 - 580</td>
+                    <td> &gt; 580</td>
+                </tr>
+                <tr>
+                    <th> &gt; 50</th>
+                    <td>&lt; 260</td>
+                    <td>260 - 340</td>
+                    <td>341 - 420</td>
+                    <td>421 - 540</td>
+                    <td> &gt; 540</td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="student.sexo == 'M'">
+                <tr>
+                    <th> &lt; 30</th>
+                    <td>&lt; 400</td>
+                    <td>400 - 500</td>
+                    <td>501 - 600</td>
+                    <td>601 - 700</td>
+                    <td> &gt; 700</td>
+                </tr>
+                <tr>
+                    <th>30 - 39</th>
+                    <td>&lt; 380</td>
+                    <td>380 - 460</td>
+                    <td>461 - 560</td>
+                    <td>561 - 660</td>
+                    <td> &gt; 660</td>
+                </tr>
+                <tr>
+                    <th>40 - 49</th>
+                    <td>&lt; 340</td>
+                    <td>340 - 420</td>
+                    <td>421 - 520</td>
+                    <td>521 - 620</td>
+                    <td> &gt; 620</td>
+                </tr>
+                <tr>
+                    <th> &gt; 50</th>
+                    <td>&lt; 320</td>
+                    <td>320 - 400</td>
+                    <td>401 - 500</td>
+                    <td>501 - 600</td>
+                    <td> &gt; 600</td>
+                </tr>
+            </tbody>
+        </table>
+        <em>Distância percorrida em metros</em>
     </div>
 
     <div class="footer">

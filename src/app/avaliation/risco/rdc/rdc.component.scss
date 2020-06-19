@@ -1,3 +1,5 @@
+
+
 @media only screen and (min-width: 768px){
     .container {
         background-image: url("./../../../../assets/img/CON 012.JPG");
@@ -15,22 +17,12 @@
         background: transparent; /* make scrollbar transparent */
     }
 }
+
+
 .mat-card {
     width: 90%;
     margin-bottom: 4px;
     display: inline-flex;
-}
-
-.result {
-    width: 80%;
-    margin: auto;
-}
-
-.action {
-    width: 200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
 }
 
 .mat-card-resultado{
@@ -46,3 +38,14 @@
     }
 
 }
+
+
+
+
+.action {
+    width: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+

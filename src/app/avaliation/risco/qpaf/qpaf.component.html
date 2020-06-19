@@ -104,20 +104,15 @@
             </mat-card>
 
             <em i18n>Fonte: Sociadade Canadense de Fisiologia do Exercicio, in ACSM (2003)</em>
-            <div class="action">
-                <button mat-mini-fab>
-                    <mat-icon>check</mat-icon>
+
+            <div class="footer">
+                <button mat-mini-fab color="primary" (click)="goBack()">
+                    <mat-icon>undo</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary">  
+                    <mat-icon>redo</mat-icon>
                 </button>
             </div>
-
         </form>
-    </div>
-    <div class="footer">
-        <button mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </button>
-        <a mat-mini-fab color="primary" [routerLink]="['/rdc']">
-            <mat-icon>redo</mat-icon>
-        </a>
     </div>
 </div>

@@ -62,6 +62,7 @@ import { TesteBancoComponent } from './avaliation/CardioPulmunar/teste-banco/tes
 import { YmcaBancoComponent } from './avaliation/CardioPulmunar/ymca-banco/ymca-banco.component';
 import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component';
 import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
+import { ConfigsComponent } from './dashboard/configs/configs.component';
 
 
 const routes: Routes = [
@@ -132,6 +133,7 @@ const routes: Routes = [
   {path: 'avDash', component: AvDashComponent},
   {path: 'preDash', component: PreDashComponent},
   {path: 'eval' , component: EvaluationComponent },
+  {path: 'configs' , component: ConfigsComponent },
   {path: 'new' , component: NewComponent },
   {path: 'dash' , component: DashComponent },
   {path: '**' , component: LoginComponent }

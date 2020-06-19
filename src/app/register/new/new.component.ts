@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -17,7 +17,6 @@ export class NewComponent implements OnInit {
 
   constructor(private location: Location,
               private dataService: DataService,
-              private actRoute: ActivatedRoute,
               private route: Router,
               private menuService: MenuService,
               private datapipe: DatePipe) { }
@@ -25,6 +24,7 @@ export class NewComponent implements OnInit {
   ngOnInit(): void {
     if (sessionStorage.selectedStudent) {
           this.student = JSON.parse(sessionStorage.selectedStudent);
+          this.student.active === '0' ? this.student.active = false : this.student.active = true;
           this.date = this.student.dt_nasc;
     }
   }

@@ -1,35 +1,24 @@
-.container {
-    background-image: url("./../../../../assets/img/CON 012.JPG");
-    background-repeat: no-repeat;
-    background-blend-mode: normal;
-    background-size: cover;
-    background-position: center; 
-}
-
-.section{
-    width: 98%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-items: center;
-}
-
-.text-box{
-    width: 96%;
-    margin: auto;
-    border: 1px rgb(58, 57, 57) solid;
-    color: white;
-    font-size: smaller;
-}
-
 
 @media only screen and (min-width: 768px){
 
-    
-    .section{
-        width: 540px;
+    .container {
+        background-image: url("./../../../../assets/img/rddc.jpg");
+        background-repeat: no-repeat;
+        background-blend-mode: normal;
+        background-size: cover;
+        background-position: center; 
     }
 
 
+    
+  /*   .section{
+        width: 540px;
+    }
+ */
+ .flex-form{
+    width: 50%;
+    margin: auto;
+}
 
     ::-webkit-scrollbar {
         width: 0px;
@@ -39,9 +28,9 @@
 
 
 .mat-card{
-    width: 280px;
+    width: 90%;
     margin-bottom: 4px;
-   /*  display: inline-flex; */
+    background-color: rgba(255, 255, 255, .7);
 }
 
 .action{
@@ -51,10 +40,19 @@
     justify-content: space-between;
 }
 
-
-
-
-
 .mat-radio-button{
     padding-right: 20px;
+}
+.mat-card-resultado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(117, 132, 218);
+    color: white;
+
+    span{
+        font-size: large;
+        font-weight: 600;
+    }
+
 }

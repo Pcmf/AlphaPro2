@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
@@ -9,12 +9,13 @@ import { AgeService } from 'src/app/services/age.service';
   templateUrl: './rdc.component.html',
   styleUrls: ['./rdc.component.scss']
 })
-export class RDCComponent implements OnInit {
+export class RDCComponent implements OnInit, OnDestroy {
 
   student: any = [];
   rdcData: any = [];
   sex: string;
   risco = 0;
+  formS: any = [];
 
   constructor(
     private location: Location,
@@ -69,11 +70,15 @@ export class RDCComponent implements OnInit {
   }
 
   save(form) {
-    console.table(form);
-    this.dataService.setData('clients/rdc/' + this.student.id, form).subscribe(
+    this.formS = form;
+    this.router.navigate(['rddc/']);
+
+  }
+
+  ngOnDestroy() {
+    this.dataService.setData('clients/rdc/' + this.student.id, this.formS).subscribe(
       resp => {
         console.log(resp);
-        this.router.navigate(['rddc/']);
       }
     );
   }
@@ -119,8 +124,6 @@ export class RDCComponent implements OnInit {
     if (this.student.idade > 50) {
       this.risco++;
     }
-
-
   }
 
 }

@@ -1,16 +1,28 @@
 $min-width: 1024px;
 
+
 .menu-toolbar{
   width: 100%;
 }
+
 @media only screen and (min-width: $min-width) {
   .menu-toolbar{
     width: 60vw;
     margin: auto;
   }
+  .alphapro{
+    font-family: 'Fredoka One', cursive;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .menu-icon {
+    padding: 0 16px;
+  }
 }
+
 .menu-icon {
-    padding: 0 14px;
+    padding: 0 7px;
   }
   
   .menu-spacer {

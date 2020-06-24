@@ -7,7 +7,7 @@
         <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle i18n>Pressão Arterial(mm/Hg)</mat-card-subtitle>
+                    <mat-card-subtitle i18n>Pressão Arterial (mm/Hg)</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-list>
@@ -43,7 +43,7 @@
             </mat-card>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle i18n>Lipídios Sanguíneos(mg/dl)</mat-card-subtitle>
+                    <mat-card-subtitle i18n>Lipídios Sanguíneos (mg/dl)</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-list>
@@ -96,7 +96,7 @@
             </mat-card>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle i18n>Gordura Corporal(%)</mat-card-subtitle>
+                    <mat-card-subtitle i18n>Gordura Corporal (%)</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-list>
@@ -131,14 +131,14 @@
             </mat-card>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle i18n>Actividade Fisica</mat-card-subtitle>
+                    <mat-card-subtitle i18n>Atividade Fisica</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Frequência Semanal</mat-label>
-                                <input matInput #afs="ngModel" name="afs" [(ngModel)]="student.afs"
+                                <input matInput #fs="ngModel" name="fs" [(ngModel)]="rdcData.fs"
                                     placeholder="vezes por semana" (change)="calcRisco()">
                             </mat-form-field>
                         </mat-list-item>
@@ -164,7 +164,7 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-form-field>
-                                <mat-label i18n>Familares doentes coronarios > 60</mat-label>
+                                <mat-label i18n>Familiares doentes coronários > 60</mat-label>
                                 <input matInput #hf="ngModel" name="hf" [ngModel]="rdcData.hf" readonly>
                             </mat-form-field>
                         </mat-list-item>

@@ -215,7 +215,7 @@
           <mat-card>
             <mat-card-content>
               <mat-radio-group aria-label="Select an option" #Q2A="ngModel" name="Q2A" [(ngModel)]="student.Q2A">
-                <mat-label i18n="Label">Cirugia</mat-label>
+                <mat-label i18n="Label">Cirurgia</mat-label>
                 <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
                 <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
               </mat-radio-group>
@@ -327,9 +327,11 @@
           <!-- Sangue -->
           <mat-card>
             <mat-card-content>
-              <mat-label i18n="Label">Sangue</mat-label>
-              <mat-form-field>
-                <mat-label i18n="Label">Tipo de Sangue</mat-label>
+              <mat-label i18n="Label">Sangue </mat-label>
+              <br/><br/>
+              <div style="text-align: center;">
+              <mat-form-field style="width: 40%;">
+                <mat-label i18n="Label">Tipo de Sangue </mat-label>
                 <mat-select #Q2DTIPO="ngModel" name="Q2DTIPO" [(ngModel)]="student.Q2DTIPO">
                   <mat-option value="A">A</mat-option>
                   <mat-option value="B">B</mat-option>
@@ -337,13 +339,14 @@
                   <mat-option value="AB">AB</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field style="width: 40%;">
                 <mat-label i18n="Label">Factor RH</mat-label>
                 <mat-select #Q2ERH="ngModel" name="Q2ERH" [(ngModel)]="student.Q2ERH">
                   <mat-option value="P" i18n="Label">Positivo</mat-option>
                   <mat-option value="N" i18n="Label">Negativo</mat-option>
                 </mat-select>
               </mat-form-field>
+              </div>
               <mat-form-field class="input-lg">
                 <mat-label i18n="Label">Observações</mat-label>
                 <textarea matInput placeholder="" #Q26OBS="ngModel" name="Q26OBS"

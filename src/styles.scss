@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 $min-width: 1024px;
 
 html,
@@ -9,6 +9,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.alphapro{
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 em{

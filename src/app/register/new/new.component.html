@@ -26,7 +26,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="">
-        <mat-label i18n="Label | mobile phone number">Telemovel/Celular</mat-label>
+        <mat-label i18n="Label | mobile phone number">Celular</mat-label>
         <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
@@ -44,7 +44,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="">
-        <mat-label i18n="Label | address">Morada/Endereço</mat-label>
+        <mat-label i18n="Label | address">Endereço</mat-label>
         <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
@@ -53,11 +53,11 @@
       </mat-form-field>
       <mat-form-field appearance="">
         <mat-label i18n="Label | postal code">Codigo Postal</mat-label>
-        <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput>
+        <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput mask="99999-999">
       </mat-form-field>
       <mat-form-field *ngIf="student.id">
         <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
-        <input [value]="student.lastaccess" matInput>
+        <input [value]="student.lastaccess" matInput readonly>
       </mat-form-field>
       <div style="width: 250px; margin-bottom: 20px;">
         <mat-checkbox i18n="Label" [(ngModel)]="student.active"  name="active" #active="ngModel" color="primary">Ativo</mat-checkbox>

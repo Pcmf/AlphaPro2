@@ -65,6 +65,16 @@ export class NewComponent implements OnInit {
         resp => {
           const aluno = JSON.parse(sessionStorage.selectedStudent);
           aluno.profissao = form.profissao;
+          aluno.nome = form.nome;
+          aluno.dt_nasc = form.dt_nasc;
+          aluno.email = form.email;
+          aluno.localidade = form.localidade;
+          aluno.morada = form.morada;
+          aluno.sexo = form.sexo;
+          aluno.telefone = form.telefone;
+          aluno.telemovel = form.telemovel;
+          aluno.cp = form.cp;
+          aluno.active = form.active;
           sessionStorage.selectedStudent = JSON.stringify(aluno);
           this.location.back();
         }

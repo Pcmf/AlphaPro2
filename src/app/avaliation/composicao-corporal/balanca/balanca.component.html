@@ -46,11 +46,11 @@
                     </tr>
                     <tr>
                         <th>Gordura Total <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura_bl}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura_bl}}</td>
-                        <td *ngIf="addEval">
-                            <input name="perc_gordura_bl" #perc_gordura_bl="ngModel" [(ngModel)]="newEvaluation.perc_gordura_bl" type="number"
-                                step="0.1">
+                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].massa_gorda + +evaluation[pointer-1].gordura_visceral}}</td>
+                        <td *ngIf="pointer>=0">{{+evaluation[pointer].massa_gorda + +evaluation[pointer].gordura_visceral}}</td>
+                        <td *ngIf="addEval">&nbsp;
+                            <!-- <input name="massa_gorda" #massa_gorda="ngModel" [(ngModel)]="newEvaluation.massa_gorda" type="number"
+                                step="0.1"> -->
                         </td>
                     </tr>
                     <tr>
@@ -83,48 +83,48 @@
 
                     <tr><th class="form-subtitle">Massa Muscular</th></tr>
                     <tr>
-                        <th>Membros Superiores Drt <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral}}</td>
+                        <th>Membros Superiores Dir <small>(kg)</small></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_supd}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].mm_supd}}</td>
                         <td *ngIf="addEval">
-                            <input name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number" step="0.1">
+                            <input name="mm_supd" #mm_supd="ngModel"
+                                [(ngModel)]="newEvaluation.mm_supd" type="number" step="0.1">
                         </td>
                     </tr>
                     <tr>
                         <th>Membros Superiores Esq <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_msupe}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].mm_msupe}}</td>
                         <td *ngIf="addEval">
-                            <input name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number" step="0.1">
+                            <input name="mm_msupe" #mm_msupe="ngModel"
+                                [(ngModel)]="newEvaluation.mm_msupe" type="number" step="0.1">
                         </td>
                     </tr>
                     <tr>
-                        <th>Membros Inferiores Drt <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral}}</td>
+                        <th>Membros Inferiores Dir <small>(kg)</small></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_minfd}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].mm_minfd}}</td>
                         <td *ngIf="addEval">
-                            <input name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number" step="0.1">
+                            <input name="mm_minfd" #mm_minfd="ngModel"
+                                [(ngModel)]="newEvaluation.mm_minfd" type="number" step="0.1">
                         </td>
                     </tr>
                     <tr>
                         <th>Membros Inferiores Esq <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_minfe}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].mm_minfe}}</td>
                         <td *ngIf="addEval">
-                            <input name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number" step="0.1">
+                            <input name="mm_minfe" #mm_minfe="ngModel"
+                                [(ngModel)]="newEvaluation.mm_minfe" type="number" step="0.1">
                         </td>
                     </tr>
                     <tr>
                         <th>Tronco <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_tronco}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].mm_tronco}}</td>
                         <td *ngIf="addEval">
-                            <input name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number" step="0.1">
+                            <input name="mm_tronco" #mm_tronco="ngModel"
+                                [(ngModel)]="newEvaluation.mm_tronco" type="number" step="0.1">
                         </td>
                     </tr>
 
@@ -132,8 +132,8 @@
                         <th>Taxa Metabólica Basal</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tmb}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tmb}}</td>
-                        <td *ngIf="addEval">
-                            <input name="tmb" #tmb="ngModel" [(ngModel)]="newEvaluation.tmb" type="number" step="0.1">
+                        <td *ngIf="addEval">&nbsp;
+                           <!--  <input name="tmb" #tmb="ngModel" [(ngModel)]="newEvaluation.tmb" type="number" step="0.1"> -->
                         </td>
                     </tr>
                     <tr>
@@ -167,8 +167,8 @@
                         <th>Nivel de Atividade Fisica</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].naf}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].naf}}</td>
-                        <td *ngIf="addEval">
-                            <input name="naf" #naf="ngModel" [(ngModel)]="newEvaluation.naf" type="number" step="0.1">
+                        <td *ngIf="addEval">%&nbsp;
+                            <!-- <input name="naf" #naf="ngModel" [(ngModel)]="newEvaluation.naf" type="number" step="0.1"> -->
                         </td>
                     </tr>
                     <tr>

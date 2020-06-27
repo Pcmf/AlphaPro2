@@ -14,21 +14,20 @@ export class FleximetroComponent implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   selectedStudent: any = [];
-  sex: string;
+  protocolo = 41;
 
-  constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
-              private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
+  constructor(
+              private location: Location,
+              private dataService: DataService,
+              private datapipe: DatePipe
+  ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
-    this.sex = this.selectedStudent.sexo;
     this.getData();
   }
 
   getData() {
-    this.dataService.getData('clients/flex/' + this.id).subscribe(
+    this.dataService.getData('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -47,7 +46,8 @@ export class FleximetroComponent implements OnInit {
 
   save(form) {
     console.table(form);
-    this.dataService.setData('clients/flex/' + this.id, form).subscribe(
+    form.protocolo = this.protocolo;
+    this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;

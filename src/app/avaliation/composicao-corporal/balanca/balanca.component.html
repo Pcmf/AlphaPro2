@@ -46,11 +46,11 @@
                     </tr>
                     <tr>
                         <th>Gordura Total <small>(kg)</small></th>
-                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].massa_gorda + +evaluation[pointer-1].gordura_visceral}}</td>
-                        <td *ngIf="pointer>=0">{{+evaluation[pointer].massa_gorda + +evaluation[pointer].gordura_visceral}}</td>
-                        <td *ngIf="addEval">&nbsp;
-                            <!-- <input name="massa_gorda" #massa_gorda="ngModel" [(ngModel)]="newEvaluation.massa_gorda" type="number"
-                                step="0.1"> -->
+                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].gordura_total }}</td>
+                        <td *ngIf="pointer>=0">{{+evaluation[pointer].gordura_total}}</td>
+                        <td *ngIf="addEval">
+                            <input name="gordura_total" #gordura_total="ngModel" [(ngModel)]="newEvaluation.gordura_total" type="number"
+                                step="0.1">
                         </td>
                     </tr>
                     <tr>

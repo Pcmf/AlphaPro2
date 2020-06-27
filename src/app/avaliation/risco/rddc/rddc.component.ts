@@ -37,7 +37,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
           console.log(respd);
           this.data = respd[0];
           this.data.smoker = this.smoker;
-          this.calcRisco();
+          this.calcRisco(this.data);
         } else {
           this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
             resp => {
@@ -45,7 +45,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
               if (resp[0].Q510 == 1) {
                 this.data.dor = '3';
               }
-              this.calcRisco();
+              this.calcRisco(this.data);
             }
           );
         }
@@ -72,7 +72,8 @@ export class RDDCComponent implements OnInit, OnDestroy {
     );
   }
 
-  calcRisco() {
+  calcRisco(form) {
+    console.log(form);
     let points = 0;
     if (this.student.fumante == 'S' || this.student.fumante == 'E') {
       this.smoker = '1';
@@ -88,6 +89,10 @@ export class RDDCComponent implements OnInit, OnDestroy {
       points += 3;
     }
     this.risco = points + +this.data.objetos + +this.data.alonga + +this.data.peso + +this.data.dor;
+    if (form) {
+      form.pontos = +this.risco;
+      this.formS = form;
+    }
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
   selector: 'app-frm',
@@ -14,21 +15,21 @@ export class FRMComponent implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
-  id: number;
   selectedStudent: any = [];
-  sex: string;
+  protocolo = 42;
 
-  constructor(private location: Location, private dataService: DataService,
-              private actRoute: ActivatedRoute,
-              private datapipe: DatePipe ) {
-    this.id = this.actRoute.snapshot.params.id;
+  constructor(
+              private location: Location,
+              private dataService: DataService,
+              private datapipe: DatePipe,
+              private ageService: AgeService
+  ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
-    this.sex = this.selectedStudent.sexo;
     this.getData();
   }
 
   getData() {
-    this.dataService.getData('clients/flex/' + this.id).subscribe(
+    this.dataService.getData('clients/testf/' + this.selectedStudent.id + '/' + this.protocolo).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -47,7 +48,8 @@ export class FRMComponent implements OnInit {
 
   save(form) {
     console.table(form);
-    this.dataService.setData('clients/flex/' + this.id, form).subscribe(
+    form.protocolo = this.protocolo;
+    this.dataService.setData('clients/testf/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
@@ -68,6 +70,198 @@ export class FRMComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  getClassAgachamento(value) {
+    if (value > 50) { return 'Excelente'; }
+    if ( value > 40) { return 'Muito Bom'; }
+    if ( value > 30) { return 'Bom'; }
+    if ( value > 20) { return 'Regular'; }
+    if (value <= 20 ) { return 'Fraco'; }
+  }
+
+  getClassAbdominal(value) {
+    const idade = this.ageService.getAge(this.selectedStudent.dt_nasc);
+    if (this.selectedStudent.sexo === 'M') {
+      if (idade >= 15 && idade < 20 ) {
+        if (value >= 48) { return 'Excelente'; }
+        if (value >= 42) { return 'Muito Bom'; }
+        if (value >= 38) { return 'Bom'; }
+        if (value >= 33) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 20 && idade < 30 ) {
+        if (value >= 43) { return 'Excelente'; }
+        if (value >= 37) { return 'Muito Bom'; }
+        if (value >= 33) { return 'Bom'; }
+        if (value >= 29) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 30 && idade < 40 ) {
+        if (value >= 36) { return 'Excelente'; }
+        if (value >= 31) { return 'Muito Bom'; }
+        if (value >= 27) { return 'Bom'; }
+        if (value >= 21) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 40 && idade < 50 ) {
+        if (value >= 31) { return 'Excelente'; }
+        if (value >= 26) { return 'Muito Bom'; }
+        if (value >= 22) { return 'Bom'; }
+        if (value >= 17) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 50 && idade < 60 ) {
+        if (value >= 26) { return 'Excelente'; }
+        if (value >= 22) { return 'Muito Bom'; }
+        if (value >= 18) { return 'Bom'; }
+        if (value >= 13) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 60 && idade < 70 ) {
+        if (value >= 23) { return 'Excelente'; }
+        if (value >= 17) { return 'Muito Bom'; }
+        if (value >= 12) { return 'Bom'; }
+        if (value >= 6) { return 'Regular'; }
+        return 'Fraco';       }
+    }
+    // FEMALE
+    if (this.selectedStudent.sexo === 'F') {
+      if (idade >= 15 && idade < 20 ) {
+        if (value >= 42) { return 'Excelente'; }
+        if (value >= 36) { return 'Muito Bom'; }
+        if (value >= 32) { return 'Bom'; }
+        if (value >= 27) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 20 && idade < 30 ) {
+        if (value >= 36) { return 'Excelente'; }
+        if (value >= 31) { return 'Muito Bom'; }
+        if (value >= 25) { return 'Bom'; }
+        if (value >= 21) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 30 && idade < 40 ) {
+        if (value >= 29) { return 'Excelente'; }
+        if (value >= 24) { return 'Muito Bom'; }
+        if (value >= 20) { return 'Bom'; }
+        if (value >= 15) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 40 && idade < 50 ) {
+        if (value >= 25) { return 'Excelente'; }
+        if (value >= 20) { return 'Muito Bom'; }
+        if (value >= 15) { return 'Bom'; }
+        if (value >= 7) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 50 && idade < 60 ) {
+        if (value >= 19) { return 'Excelente'; }
+        if (value >= 12) { return 'Muito Bom'; }
+        if (value >= 5) { return 'Bom'; }
+        if (value >= 3) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 60 && idade < 70 ) {
+        if (value >= 16) { return 'Excelente'; }
+        if (value >= 12) { return 'Muito Bom'; }
+        if (value >= 4) { return 'Bom'; }
+        if (value >= 2) { return 'Regular'; }
+        return 'Fraco';
+      }
+    }
+  }
+
+  getClassFlex(value) {
+    const idade = this.ageService.getAge(this.selectedStudent.dt_nasc);
+    if (this.selectedStudent.sexo === 'M') {
+      if (idade >= 15 && idade < 20 ) {
+        if (value >= 39) { return 'Excelente'; }
+        if (value >= 29) { return 'Muito Bom'; }
+        if (value >= 23) { return 'Bom'; }
+        if (value >= 18) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 20 && idade < 30 ) {
+        if (value >= 36) { return 'Excelente'; }
+        if (value >= 29) { return 'Muito Bom'; }
+        if (value >= 22) { return 'Bom'; }
+        if (value >= 17) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 30 && idade < 40 ) {
+        if (value >= 30) { return 'Excelente'; }
+        if (value >= 22) { return 'Muito Bom'; }
+        if (value >= 17) { return 'Bom'; }
+        if (value >= 12) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 40 && idade < 50 ) {
+        if (value >= 22) { return 'Excelente'; }
+        if (value >= 17) { return 'Muito Bom'; }
+        if (value >= 13) { return 'Bom'; }
+        if (value >= 10) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 50 && idade < 60 ) {
+        if (value >= 21) { return 'Excelente'; }
+        if (value >= 13) { return 'Muito Bom'; }
+        if (value >= 10) { return 'Bom'; }
+        if (value >= 7) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 60 && idade < 70 ) {
+        if (value >= 18) { return 'Excelente'; }
+        if (value >= 11) { return 'Muito Bom'; }
+        if (value >= 8) { return 'Bom'; }
+        if (value >= 5) { return 'Regular'; }
+        return 'Fraco';       }
+    }
+    // FEMALE
+    if (this.selectedStudent.sexo === 'F') {
+      if (idade >= 15 && idade < 20 ) {
+        if (value >= 33) { return 'Excelente'; }
+        if (value >= 25) { return 'Muito Bom'; }
+        if (value >= 18) { return 'Bom'; }
+        if (value >= 12) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 20 && idade < 30 ) {
+        if (value >= 30) { return 'Excelente'; }
+        if (value >= 21) { return 'Muito Bom'; }
+        if (value >= 15) { return 'Bom'; }
+        if (value >= 10) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 30 && idade < 40 ) {
+        if (value >= 27) { return 'Excelente'; }
+        if (value >= 20) { return 'Muito Bom'; }
+        if (value >= 13) { return 'Bom'; }
+        if (value >= 8) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 40 && idade < 50 ) {
+        if (value >= 24) { return 'Excelente'; }
+        if (value >= 15) { return 'Muito Bom'; }
+        if (value >= 11) { return 'Bom'; }
+        if (value >= 5) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 50 && idade < 60 ) {
+        if (value >= 21) { return 'Excelente'; }
+        if (value >= 11) { return 'Muito Bom'; }
+        if (value >= 7) { return 'Bom'; }
+        if (value >= 2) { return 'Regular'; }
+        return 'Fraco';
+      }
+      if (idade >= 60 && idade < 70 ) {
+        if (value >= 17) { return 'Excelente'; }
+        if (value >= 12) { return 'Muito Bom'; }
+        if (value >= 5) { return 'Bom'; }
+        if (value >= 2) { return 'Regular'; }
+        return 'Fraco';
+      }
+    }
   }
 
 }

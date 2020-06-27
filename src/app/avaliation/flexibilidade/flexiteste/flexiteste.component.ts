@@ -17,18 +17,21 @@ export class FlexitesteComponent implements OnInit {
   newEvaluation: any = [];
   selectedStudent: any = [];
   selectedTab = 0;
+  protocolo = 40;
+  
 
-  constructor(private location: Location, private dataService: DataService,
+  constructor(
+              private location: Location,
+              private dataService: DataService,
               public dialog: MatDialog,
               private datapipe: DatePipe
-              ) {
-
+  ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }
 
   getData() {
-    this.dataService.getData('clients/flex/' + this.selectedStudent.id).subscribe(
+    this.dataService.getData('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -47,6 +50,7 @@ export class FlexitesteComponent implements OnInit {
 
   save(form) {
     console.table(form);
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

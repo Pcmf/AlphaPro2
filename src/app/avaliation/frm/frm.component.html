@@ -22,40 +22,57 @@
                     </tr>
                     <tr>
                         <th i18n>Agachamento</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].agachamento}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].agachamento}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
-                                step="0.1">
+                            <input name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento"
+                                type="number" step="0.1">
                         </td>
+                    </tr>
+                    <tr>
+                        <th i18n>Classificação</th>
+                        <td *ngIf="pointer>=1">{{getClassAgachamento(evaluation[pointer-1].agachamento)}}</td>
+                        <td *ngIf="pointer>=0">{{getClassAgachamento(evaluation[pointer].agachamento)}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
 
                     <tr class="sub-line">
                         <th [attr.colspan]="pointer+2" i18n><span>Abdominal</span></th>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <th i18n>Flexão do Tronco</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
-                                step="0.1">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
+                                type="number" step="0.1">
                         </td>
+                    </tr>
+                    <tr>
+                        <th i18n>Classificação</th>
+                        <td *ngIf="pointer>=1">{{getClassAbdominal(evaluation[pointer-1].abdominal)}}</td>
+                        <td *ngIf="pointer>=0">{{getClassAbdominal(evaluation[pointer].abdominal)}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
 
                     <tr class="sub-line">
                         <th [attr.colspan]="pointer+2" i18n><span>Membros Superiores</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão e extensão<br/>dos cotovelos no chão</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
+                        <th i18n>Flexão e extensão<br />dos cotovelos no chão</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].flexb}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].flexb}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
+                            <input name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number"
                                 step="0.1">
                         </td>
                     </tr>
-
+                    <tr>
+                        <th i18n>Classificação</th>
+                        <td *ngIf="pointer>=1">{{getClassFlex(evaluation[pointer-1].flexb)}}</td>
+                        <td *ngIf="pointer>=0">{{getClassFlex(evaluation[pointer].flexb)}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -80,6 +97,271 @@
             </div>
         </form>
 
+        <div class="section-info">
+            <h5>AGACHAMENTOS</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Resultado</th>
+                        <th>Nível</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&gt; 50</td>
+                        <td>Excelente</td>
+                    </tr>
+                    <tr>
+                        <td>41 - 50</td>
+                        <td>Muito Bom</td>
+                    </tr>
+                    <tr>
+                        <td>31 - 40</td>
+                        <td>Bom</td>
+                    </tr>
+                    <tr>
+                        <td>20 - 30</td>
+                        <td>Regular</td>
+                    </tr>
+                    <tr>
+                        <td>&lt; 20</td>
+                        <td>Fraco</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <br />
+            <h5>FLEXÕES ABDOMINAIS</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Faxa Etária</th>
+                        <th>Excelente</th>
+                        <th>Muito Bom</th>
+                        <th>Bom</th>
+                        <th>Regular</th>
+                        <th>Fraco</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="selectedStudent.sexo == 'M'">
+                    <tr>
+                        <th>15 - 19</th>
+                        <td>&gt; 47</td>
+                        <td>42 - 47</td>
+                        <td>38 - 41</td>
+                        <td>33 - 37</td>
+                        <td>&lt; 33</td>
+                    </tr>
+                    <tr>
+                        <th>20 - 29</th>
+                        <td>&gt; 42</td>
+                        <td>37 - 42</td>
+                        <td>33 - 36</td>
+                        <td>29 - 32</td>
+                        <td>&lt; 29</td>
+                    </tr>
+                    <tr>
+                        <th>30 - 39</th>
+                        <td>&gt; 35</td>
+                        <td>31 - 35</td>
+                        <td>27 - 30</td>
+                        <td>22 - 36</td>
+                        <td>&lt; 22</td>
+                    </tr>
+                    <tr>
+                        <th>40 - 49</th>
+                        <td>&gt; 30</td>
+                        <td>26 - 30</td>
+                        <td>22 - 25</td>
+                        <td>17 - 21</td>
+                        <td>&lt; 17</td>
+                    </tr>
+                    <tr>
+                        <th>50 - 59</th>
+                        <td>&gt; 25</td>
+                        <td>22 - 25</td>
+                        <td>18 - 21</td>
+                        <td>13 - 17</td>
+                        <td>&lt; 13</td>
+                    </tr>
+                    <tr>
+                        <th>60 - 69</th>
+                        <td>&gt; 22</td>
+                        <td>17 - 22</td>
+                        <td>12 - 16</td>
+                        <td>7 - 11</td>
+                        <td>&lt; 7</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="selectedStudent.sexo == 'F'">
+                    <tr>
+                        <th>15 - 19</th>
+                        <td>&gt; 41</td>
+                        <td>36 - 41</td>
+                        <td>32 - 35</td>
+                        <td>27 - 31</td>
+                        <td>&lt; 27</td>
+                    </tr>
+                    <tr>
+                        <th>20 - 29</th>
+                        <td>&gt; 35</td>
+                        <td>31 - 35</td>
+                        <td>25 - 30</td>
+                        <td>21 - 24</td>
+                        <td>&lt; 21</td>
+                    </tr>
+                    <tr>
+                        <th>30 - 39</th>
+                        <td>&gt; 28</td>
+                        <td>24 - 28</td>
+                        <td>20 - 23</td>
+                        <td>15 - 19</td>
+                        <td>&lt; 15</td>
+                    </tr>
+                    <tr>
+                        <th>40 - 49</th>
+                        <td>&gt; 24</td>
+                        <td>20 - 24</td>
+                        <td>15 - 19</td>
+                        <td>7 - 14</td>
+                        <td>&lt; 7</td>
+                    </tr>
+                    <tr>
+                        <th>50 - 59</th>
+                        <td>&gt; 18</td>
+                        <td>12 - 18</td>
+                        <td>5 - 11</td>
+                        <td>3 - 4</td>
+                        <td>&lt; 3</td>
+                    </tr>
+                    <tr>
+                        <th>60 - 69</th>
+                        <td>&gt; 15</td>
+                        <td>12 - 15</td>
+                        <td>4 - 11</td>
+                        <td>2 - 3</td>
+                        <td>&lt; 3</td>
+                    </tr>
+                </tbody>
+            </table>
+            <em>Fonte: Pollock, M. L. & Wilmore J. H., 1993</em>
+            <br />
+            <h5>FLEXÃO DE BRAÇO</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Faxa Etária</th>
+                        <th>Excelente</th>
+                        <th>Muito Bom</th>
+                        <th>Bom</th>
+                        <th>Regular</th>
+                        <th>Fraco</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="selectedStudent.sexo == 'M'">
+                    <tr>
+                        <th>15 - 19</th>
+                        <td>&gt; 38</td>
+                        <td>29 - 38</td>
+                        <td>23 - 28</td>
+                        <td>18 - 22</td>
+                        <td>&lt; 18</td>
+                    </tr>
+                    <tr>
+                        <th>20 - 29</th>
+                        <td>&gt; 35</td>
+                        <td>29 - 35</td>
+                        <td>22 - 28</td>
+                        <td>17 - 21</td>
+                        <td>&lt; 17</td>
+                    </tr>
+                    <tr>
+                        <th>30 - 39</th>
+                        <td>&gt; 29</td>
+                        <td>22 - 29</td>
+                        <td>17 - 21</td>
+                        <td>12 - 16</td>
+                        <td>&lt; 12</td>
+                    </tr>
+                    <tr>
+                        <th>40 - 49</th>
+                        <td>&gt; 21</td>
+                        <td>17 - 21</td>
+                        <td>13 - 16</td>
+                        <td>10 - 12</td>
+                        <td>&lt; 10</td>
+                    </tr>
+                    <tr>
+                        <th>50 - 59</th>
+                        <td>&gt; 20</td>
+                        <td>13 - 20</td>
+                        <td>10 - 12</td>
+                        <td>7 - 9</td>
+                        <td>&lt; 7</td>
+                    </tr>
+                    <tr>
+                        <th>60 - 69</th>
+                        <td>&gt; 17</td>
+                        <td>11 - 17</td>
+                        <td>8 - 10</td>
+                        <td>5 - 7</td>
+                        <td>&lt; 5</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="selectedStudent.sexo == 'F'">
+                    <tr>
+                        <th>15 - 19</th>
+                        <td>&gt; 32</td>
+                        <td>25 - 32</td>
+                        <td>18 - 24</td>
+                        <td>12 - 17</td>
+                        <td>&lt; 12</td>
+                    </tr>
+                    <tr>
+                        <th>20 - 29</th>
+                        <td>&gt; 29</td>
+                        <td>21 - 29</td>
+                        <td>15 - 20</td>
+                        <td>10 - 14</td>
+                        <td>&lt; 10</td>
+                    </tr>
+                    <tr>
+                        <th>30 - 39</th>
+                        <td>&gt; 26</td>
+                        <td>20 - 26</td>
+                        <td>13 - 19</td>
+                        <td>8 - 12</td>
+                        <td>&lt; 8</td>
+                    </tr>
+                    <tr>
+                        <th>40 - 49</th>
+                        <td>&gt; 23</td>
+                        <td>15 - 23</td>
+                        <td>11 - 14</td>
+                        <td>5 - 10</td>
+                        <td>&lt; 5</td>
+                    </tr>
+                    <tr>
+                        <th>50 - 59</th>
+                        <td>&gt; 20</td>
+                        <td>11 - 20</td>
+                        <td>7 - 10</td>
+                        <td>2 - 6</td>
+                        <td>&lt; 2</td>
+                    </tr>
+                    <tr>
+                        <th>60 - 69</th>
+                        <td>&gt; 16</td>
+                        <td>12 - 16</td>
+                        <td>5 - 11</td>
+                        <td>2 - 4</td>
+                        <td>&lt; 2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <em>Fonte: Pollock, M. L. & Wilmore J. H., 1993</em>
+        </div>
     </div>
 
     <div class="footer">

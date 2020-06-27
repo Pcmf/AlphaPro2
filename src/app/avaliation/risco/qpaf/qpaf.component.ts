@@ -48,4 +48,8 @@ export class QPAFComponent implements OnInit, OnDestroy {
     this.router.navigate(['/rdc']);
   }
 
+  calcRisco(form) {
+    this.formS = form;
+  }
+
 }

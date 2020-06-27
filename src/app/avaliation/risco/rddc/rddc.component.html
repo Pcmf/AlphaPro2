@@ -5,16 +5,6 @@
 
     <div class="section">
         <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
-            <!--             <mat-card>
-                <mat-card-header>
-                    <mat-card-title>Data da Avaliação</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-select [(ngModel)]="modelName" placeholder="">
-                        <mat-option *ngFor="let dt of datas" [value]="dt">{{dt}}</mat-option>
-                    </mat-select>
-                </mat-card-content>
-            </mat-card> -->
             <mat-card>
                 <mat-card-header>
                     <mat-card-subtitle i18n>Idade</mat-card-subtitle>
@@ -40,7 +30,7 @@
                                 <mat-label i18n>Frequência semanal</mat-label>
                                 <mat-select #objetos="ngModel" name="objetos" 
                                             [(ngModel)]="data.objetos" 
-                                            (selectionChange)="calcRisco()">
+                                            (selectionChange)="calcRisco(f.value)">
                                     <mat-option value="0" i18n>Nunca</mat-option>
                                     <mat-option value="1" i18n>1 a 2</mat-option>
                                     <mat-option value="2" i18n>3 a 4</mat-option>
@@ -64,7 +54,7 @@
                                 <mat-label i18n>Frequência semanal</mat-label>
                                 <mat-select #alonga="ngModel" name="alonga" 
                                             [(ngModel)]="data.alonga" 
-                                            (selectionChange)="calcRisco()">
+                                            (selectionChange)="calcRisco(f.value)">
                                     <mat-option value="3" i18n>Não faz</mat-option>
                                     <mat-option value="2" i18n>1 vez</mat-option>
                                     <mat-option value="1" i18n>2 vezes</mat-option>
@@ -85,7 +75,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Selecione</mat-label>
-                                <mat-select #peso="ngModel" name="peso" [(ngModel)]="data.peso" (selectionChange)="calcRisco()">
+                                <mat-select #peso="ngModel" name="peso" [(ngModel)]="data.peso" (selectionChange)="calcRisco(f.value)">
                                     <mat-option value="0" i18n>Não</mat-option>
                                     <mat-option value="1" i18n>0 a 2,9Kg</mat-option>
                                     <mat-option value="2" i18n>3 a 5,9Kg</mat-option>
@@ -123,7 +113,7 @@
                         <mat-list-item>
                             <mat-radio-group aria-label="Selecione" #dor="ngModel" name="dor" 
                                             [(ngModel)]="data.dor" 
-                                            (selectionChange)="calcRisco()">
+                                            (change)="calcRisco(f.value)">
                                 <mat-radio-button value="3" i18n>Sim</mat-radio-button>
                                 <mat-radio-button value="0" i18n>Não</mat-radio-button>
                             </mat-radio-group>

@@ -593,7 +593,7 @@
                 <mat-radio-button value="0" i18n>Não</mat-radio-button>
               </mat-radio-group>
               <mat-form-field appearance="">
-                <mat-label i18n="Label">Data do ultimo exame</mat-label>
+                <mat-label i18n="Label">Data do último exame</mat-label>
                 <input matInput #Q4BDATA="ngModel" name="Q4BDATA" [(ngModel)]="student.Q4BDATA"
                   placeholder="Ex: mês passado">
               </mat-form-field>
@@ -631,7 +631,7 @@
               <br />
               <mat-label i18n>Profissão: {{student.profissao}}</mat-label>
               <br />
-              <mat-label i18n>Quais as posturas que mais adopta durante o dia?</mat-label>
+              <mat-label i18n>Quais as posturas que mais adota durante o dia?</mat-label>
               <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="!!student.Q4D1">Sentado</mat-checkbox>
               <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="!!student.Q4D2">Em pé</mat-checkbox>
               <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="!!student.Q4D3">Deitado</mat-checkbox>
@@ -714,7 +714,7 @@
                 <mat-checkbox i18n="Label" #Q56="ngModel" name="Q56" [(ngModel)]="student.Q56">Alergias</mat-checkbox>
                 <mat-checkbox i18n="Label" #Q57="ngModel" name="Q57" [(ngModel)]="student.Q57">Dores nas pernas
                 </mat-checkbox>
-                <mat-checkbox i18n="Label" #Q58="ngModel" name="Q58" [(ngModel)]="student.Q58">Arritemias</mat-checkbox>
+                <mat-checkbox i18n="Label" #Q58="ngModel" name="Q58" [(ngModel)]="student.Q58">Arritmias</mat-checkbox>
                 <mat-checkbox *ngIf="student.sexo == 'F'" i18n="Label" #Q59="ngModel" name="Q59"
                   [(ngModel)]="student.Q59">Tensão pré-menstrual
                 </mat-checkbox>

@@ -11,6 +11,17 @@
   margin: auto;
 }
 
+.table{
+  width: 100%;
+  margin: auto;
+  font-size: smaller;
+  td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+  }
+}
+
+
 @media only screen and (min-width: 768px){
   .section-info{
     width: 60%;

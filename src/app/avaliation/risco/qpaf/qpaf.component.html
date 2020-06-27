@@ -12,7 +12,7 @@
                     </p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq1="ngModel" name="parq1"
-                            [(ngModel)]="student.parq1">
+                            [(ngModel)]="student.parq1" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -25,7 +25,7 @@
                     <p i18n>2) Você sente dor no peito quando realiza uma atividade física?</p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq2="ngModel" name="parq2"
-                            [(ngModel)]="student.parq2">
+                            [(ngModel)]="student.parq2" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -38,7 +38,7 @@
                     </p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq3="ngModel" name="parq3"
-                            [(ngModel)]="student.parq3">
+                            [(ngModel)]="student.parq3" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -52,7 +52,7 @@
                     </p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq4="ngModel" name="parq4"
-                            [(ngModel)]="student.parq4">
+                            [(ngModel)]="student.parq4" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -66,7 +66,7 @@
                         em sua atividade física?</p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq5="ngModel" name="parq5"
-                            [(ngModel)]="student.parq5">
+                            [(ngModel)]="student.parq5" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -80,7 +80,7 @@
                         Pressão arterial ou algum problema cardíaco?</p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq6="ngModel" name="parq6"
-                            [(ngModel)]="student.parq6">
+                            [(ngModel)]="student.parq6" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>
@@ -94,7 +94,7 @@
                         física?</p>
                     <div class="flex-radio-group">
                         <mat-radio-group aria-label="Select an option" #parq7="ngModel" name="parq7"
-                            [(ngModel)]="student.parq7">
+                            [(ngModel)]="student.parq7" (change)="calcRisco(f.value)">
                             <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                             <mat-radio-button value="0" i18n>Não</mat-radio-button>
                         </mat-radio-group>

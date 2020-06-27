@@ -1,7 +1,7 @@
 <mat-toolbar class="menu-toolbar" color="primary">
     <span class="alphapro"><a routerLink="/dash">AlphaProSystem</a></span>
     <span class="menu-spacer"></span>
-    <span class="menu-username" *ngIf="selectedStudent.id"><a routerLink="/new/{{selectedStudent.id}}">{{selectedStudent.nome}}</a></span>
+    <span class="menu-username" *ngIf="selectedStudent.id"><a routerLink="/new">{{selectedStudent.nome}}</a></span>
     <a [routerLink]="['/configs']">
         <mat-icon class="menu-icon" aria-hidden="false" aria-label="menu">settings</mat-icon>
     </a>

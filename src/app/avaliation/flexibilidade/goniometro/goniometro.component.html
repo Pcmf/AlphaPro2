@@ -6,7 +6,7 @@
     <div class="section">
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Membros Superiores">
-                <form #fp="ngForm" (submit)="saveMesures(fp)">
+                <form #fp="ngForm" (submit)="saveMesures(fp.value)">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -181,7 +181,7 @@
                 </form>
             </mat-tab>
             <mat-tab i18n label="Membros Inferiores">
-                <form #fd="ngForm" (submit)="saveMesures(fd)">
+                <form #fd="ngForm" (submit)="saveMesures(fd.value)">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -330,7 +330,7 @@
             </mat-tab>
             <!-- Coluna Vertebral -->
             <mat-tab i18n label="Coluna Vertebral">
-                <form #fo="ngForm" (submit)="saveMesures(fo)">
+                <form #fo="ngForm" (submit)="saveMesures(fo.value)">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>

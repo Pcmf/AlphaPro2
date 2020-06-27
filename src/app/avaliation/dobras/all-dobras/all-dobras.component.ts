@@ -22,7 +22,7 @@ export class AllDobrasComponent implements OnInit {
   student: any = [];
   sex: string;
   age: number;
-
+  protocolo = 8;
   // graphics
   single: any[];
   single2: any[];
@@ -53,18 +53,18 @@ export class AllDobrasComponent implements OnInit {
     this.fatChanged = true;
   }
 
-  saveFatChange() {
+/*   saveFatChange() {
     this.student.percgd = this.gorduraDesejada;
     sessionStorage.selectedStudent = JSON.stringify(this.student);
     this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
       resp => this.getData()
     );
     this.fatChanged = false;
-  }
+  } */
 
   getData() {
-    /* Protocolo Jackson Pollok 7d - 4 */
-    this.dataService.getData('clients/morfo/4/' + this.student.id).subscribe(
+    /* Protocolo Soma todas as dobras */
+    this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
@@ -86,42 +86,23 @@ export class AllDobrasComponent implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-    // Obter os dados da avaliação Corporal para obter o punho e joelho
-    this.dataService.getData('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
-      (respm: any[]) => {
-        if (respm.length) {
-          const corporal = respm.pop();
-          evaluation.punho = corporal.punho;
-          evaluation.joelho = corporal.joelho;
-          if (corporal.punho == 0 || corporal.joelho == 0) {
-            this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
-            this.showChart = false;
-          } else {
-            evaluation.idade = this.age;
-            evaluation.sexo = this.student.sexo;
-            const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+      /* Grafico 1 com as goduras
+      Grafico 2 com outra coisa a decidir */
             // Create graphic
-            this.showChart = true;
+/*             this.showChart = true;
             this.single = this.prepareChart.getSingle1(proto);
             Object.assign(this, this.single);
             // Create graphic 2
             this.single2 = this.prepareChart.getSingle2(proto);
-            Object.assign(this, this.single2);
-          }
+            Object.assign(this, this.single2); */
 
-        } else {
-          this.openSnackBar('Atenção: Faltam algumas medições para esta avaliação! Diametro do punho e/ou do joelho.', '');
-          this.showChart = false;
-        }
-      }
-    );
   }
 
   ngOnInit(): void {
   }
 
   save(form) {
-    form.protocolo = 4;
+    form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];

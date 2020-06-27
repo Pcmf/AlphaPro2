@@ -37,25 +37,25 @@ export class RDCComponent implements OnInit, OnDestroy {
         );
 
         if (this.rdcData.qtas == 0 || this.rdcData.qtad == 0) {
-            this.dataService.getData('clients/eval/' + this.student.id).subscribe(
-              (respe: any[]) => {
-                if (respe) {
-                  const lastEval = respe.pop();
-                  console.log(lastEval);
-                  this.rdcData.qtas = lastEval.tamax;
-                  this.rdcData.qtad = lastEval.tamin;
-                }
+          this.dataService.getData('clients/eval/' + this.student.id).subscribe(
+            (respe: any[]) => {
+              if (respe) {
+                const lastEval = respe.pop();
+                console.log(lastEval);
+                this.rdcData.qtas = lastEval.tamax;
+                this.rdcData.qtad = lastEval.tamin;
               }
-            );
+            }
+          );
         }
-            // historic cardio family from pat_familiar
+        // historic cardio family from pat_familiar
         this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
-              (respq: any[]) => {
-                console.log(respq.length);
-                this.rdcData.hf = respq.length;
-              }
-            );
-        this.calcRisco();
+          (respq: any[]) => {
+            console.log(respq.length);
+            this.rdcData.hf = respq.length;
+          }
+        );
+        this.calcRisco(this.rdcData);
         //  }
       }
     );
@@ -71,18 +71,19 @@ export class RDCComponent implements OnInit, OnDestroy {
   save(form) {
     this.formS = form;
     this.router.navigate(['rddc/']);
-
   }
 
   ngOnDestroy() {
+    console.log(this.formS);
     this.dataService.setData('clients/rdc/' + this.student.id, this.formS).subscribe(
-      resp => {
-        console.log(resp);
-      }
-    );
+        resp => {
+          console.log(resp);
+        }
+      );
   }
 
-  calcRisco() {
+  calcRisco(form) {
+    this.formS = form;
     this.risco = 0;
     if (this.rdcData.qtas >= 140) {
       this.risco++;

@@ -9,7 +9,7 @@ import { MenuService } from './services/menu.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'ALPHA PRO soluções em avaliações e prescrição de exercicios';
+  title = 'ALPHA PRO SYSTEM soluções em avaliações e prescrição de exercicios';
   isLoged: boolean;
   subscription: Subscription;
 

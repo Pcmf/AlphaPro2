@@ -1001,21 +1001,21 @@
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membsuperior}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].membsuperior}}</td>
+                            <td *ngIf="pointer>=1">{{+evaluation[pointer-1].msd}}</td>
+                            <td *ngIf="pointer>=0">{{+evaluation[pointer].msd}}</td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membsuperiore}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].membsuperiore}}</td>
+                            <td *ngIf="pointer>=1">{{+evaluation[pointer-1].mse}}</td>
+                            <td *ngIf="pointer>=0">{{+evaluation[pointer].mse}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
                             <td *ngIf="pointer>=1">
-                                {{+evaluation[pointer-1].membsuperior + +evaluation[pointer-1].membsuperiore}}
+                                {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mse}}
                             </td>
                             <td *ngIf="pointer>=0">
-                                {{+evaluation[pointer].membsuperior + +evaluation[pointer].membsuperiore}}
+                                {{+evaluation[pointer].msd + +evaluation[pointer].mse}}
                             </td>
                         </tr>
 
@@ -1024,40 +1024,52 @@
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiores}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiores}}</td>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].mid}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].mid}}</td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].membinferiorese}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].membinferiorese}}</td>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].mie}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].mie}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
                             <td *ngIf="pointer>=1">
-                                {{+evaluation[pointer-1].membinferiores + +evaluation[pointer-1].membinferiorese}}</td>
+                                {{+evaluation[pointer-1].mid + +evaluation[pointer-1].mie}}</td>
                             <td *ngIf="pointer>=0">
-                                {{+evaluation[pointer].membinferiores + +evaluation[pointer].membinferiorese}}</td>
+                                {{+evaluation[pointer].mid + +evaluation[pointer].mie}}</td>
                         </tr>
                         <tr class="sub-line">
                             <th><span>Total Geral</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgeral}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].totalgeral}}</td>
+                            <td *ngIf="pointer>=1">
+                                {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mid + +evaluation[pointer-1].outrosd}}
+                                </td>
+                            <td *ngIf="pointer>=0">
+                                {{+evaluation[pointer].msd + +evaluation[pointer].mid + +evaluation[pointer].outrosd}}
+                            </td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].totalgerale}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].totalgerale}}</td>
+                            <td *ngIf="pointer>=1">
+                                {{+evaluation[pointer-1].mse + +evaluation[pointer-1].mie + +evaluation[pointer-1].outrose}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{+evaluation[pointer].mse + +evaluation[pointer].mie + +evaluation[pointer].outrose}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
                             <td *ngIf="pointer>=1">
-                                {{+evaluation[pointer-1].totalgeral + +evaluation[pointer-1].totalgerale}}</td>
+                                {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mse 
+                                    + +evaluation[pointer-1].mid + +evaluation[pointer-1].mie
+                                    + +evaluation[pointer-1].outrosd + +evaluation[pointer-1].outros}}
+                                </td>
                             <td *ngIf="pointer>=0">
-                                {{+evaluation[pointer].totalgeral + +evaluation[pointer].totalgerale}}</td>
+                                {{+evaluation[pointer].msd + +evaluation[pointer].mse 
+                                    + +evaluation[pointer].mid + +evaluation[pointer].mie
+                                    + +evaluation[pointer].outrosd + +evaluation[pointer].outrose + +evaluation[pointer].outros}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

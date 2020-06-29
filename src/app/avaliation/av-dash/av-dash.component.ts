@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvDashComponent implements OnInit {
   morfoExpanded = false;
+  videoExpanded = false;
 
   constructor() {
 
@@ -18,11 +19,21 @@ export class AvDashComponent implements OnInit {
     } else {
       sessionStorage.morfoExpanded = false;
     }
+    if (sessionStorage.videoExpanded) {
+      this.videoExpanded = sessionStorage.videoExpanded;
+    } else {
+      sessionStorage.videoExpanded = false;
+    }
   }
 
   changeMorfoExpanded() {
     this.morfoExpanded = !this.morfoExpanded;
     sessionStorage.morfoExpanded = this.morfoExpanded;
+  }
+
+  changeVideoExpanded() {
+    this.videoExpanded = !this.videoExpanded;
+    sessionStorage.videoExpanded = this.videoExpanded;
   }
 
 }

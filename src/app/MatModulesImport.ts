@@ -20,10 +20,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {LayoutModule} from '@angular/cdk/layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { LayoutModule } from '@angular/cdk/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatVideoModule } from 'mat-video';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import {LayoutModule} from '@angular/cdk/layout';
         MatSnackBarModule,
         MatSlideToggleModule,
         MatButtonToggleModule,
-        LayoutModule
+        LayoutModule,
+        BrowserAnimationsModule,
+        MatVideoModule
     ],
     exports: [
         MatInputModule,
@@ -77,6 +81,8 @@ import {LayoutModule} from '@angular/cdk/layout';
         MatSnackBarModule,
         MatSlideToggleModule,
         MatButtonToggleModule,
-        LayoutModule
+        LayoutModule,
+        BrowserAnimationsModule,
+        MatVideoModule
     ]
 }) export class MatModulesImports { }

@@ -63,6 +63,7 @@ import { YmcaBancoComponent } from './avaliation/CardioPulmunar/ymca-banco/ymca-
 import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component';
 import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
 import { ConfigsComponent } from './dashboard/configs/configs.component';
+import { VideoComponent } from './commun/video/video.component';
 
 
 const routes: Routes = [
@@ -118,6 +119,7 @@ const routes: Routes = [
   {path: 'natacao', component: NatacaoComponent},
 
   // outros
+  {path: 'video/:video', component: VideoComponent},
   {path: 'pdc', component: PDCComponent},
   {path: 'cpost', component: ComponentePosturalComponent},
   {path: 'cc', component: CCComponent},

@@ -99,6 +99,7 @@ import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/w
 import { TimePipe } from './commun/time.pipe';
 import { MetronomeComponent } from './commun/metronome/metronome.component';
 import { ConfigsComponent } from './dashboard/configs/configs.component';
+import { VideoComponent } from './commun/video/video.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -188,7 +189,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     WeltmanEtAlComponent,
     TimePipe,
     MetronomeComponent,
-    ConfigsComponent
+    ConfigsComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,

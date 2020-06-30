@@ -1,17 +1,35 @@
-<div class="container-dialog">
-    <h2>METRONOMO</h2>
+<div class="container">
+    <div class="header">
+        <h1>METRÔNOMO</h1>
+    </div>
+    <div class="section">
 
-    <h1>{{bpm}}</h1>
-    <mat-slider [(ngModel)]="bpm" min="40" max="200" step="1"></mat-slider>
+    <div class="boxs">
+        <div class="box1" [class]="fill1"></div>
+        <div class="box2"  [class]="fill2"></div>
+    </div>
+
+    
+
+    <h1>{{bpm}} bpm</h1>
+    <h1>{{cronTime}} <span>s</span></h1>
 
     <div class="action">
-        <button mat-fab (click)="playStop()">
-            <mat-icon *ngIf="!playing" class="mat-18">play_arrow</mat-icon>
-            <mat-icon *ngIf="playing" class="mat-18">stop</mat-icon>
+        <button mat-fab>
+            <mat-icon *ngIf="!playing" class="mat-18" (click)="start()">play_arrow</mat-icon>
+            <mat-icon *ngIf="playing" class="mat-18" (click)="stop()">stop</mat-icon>
         </button>
     </div>
 
-    <div class="box1"></div>
-    <div class="box2"></div>
+    </div>
+    <div class="footer">
+        <div class="footer">
+            <a mat-mini-fab color="primary" (click)="goBack()">
+                <mat-icon>undo</mat-icon>
+            </a>
+        </div>
+    </div>
 
 </div>
+
+  

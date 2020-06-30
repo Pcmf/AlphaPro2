@@ -24,6 +24,16 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <th i18n>Metrônomo
+                        <span *ngIf="!addEval" class="metronomo-button">
+                            <button mat-mini-fab color="warn" routerLink="/metro/">
+                                <mat-icon class="mat-18">arrow_right</mat-icon>
+                            </button>
+                        </span>
+                        </th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <th i18n>FC final</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>

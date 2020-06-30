@@ -64,6 +64,7 @@ import { VogelComponent } from './avaliation/antropometria/vogel/vogel.component
 import { WeltmanEtAlComponent } from './avaliation/antropometria/weltman-et-al/weltman-et-al.component';
 import { ConfigsComponent } from './dashboard/configs/configs.component';
 import { VideoComponent } from './commun/video/video.component';
+import { MetronomeComponent } from './commun/metronome/metronome.component';
 
 
 const routes: Routes = [
@@ -120,6 +121,7 @@ const routes: Routes = [
 
   // outros
   {path: 'video/:video', component: VideoComponent},
+  {path: 'metro', component: MetronomeComponent},
   {path: 'pdc', component: PDCComponent},
   {path: 'cpost', component: ComponentePosturalComponent},
   {path: 'cc', component: CCComponent},

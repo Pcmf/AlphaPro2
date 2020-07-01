@@ -25,14 +25,15 @@ export class NewComponent implements OnInit {
     if (sessionStorage.selectedStudent) {
           this.student = JSON.parse(sessionStorage.selectedStudent);
           this.student.active === '0' ? this.student.active = false : this.student.active = true;
-          this.date = this.student.dt_nasc;
+          this.student.dt_nasc = this.datapipe.transform( this.student.dt_nasc, 'dd/MM/yyyy');
     }
   }
 
   checkIfExistsClient(form) {
-    const data = this.datapipe.transform( this.date, 'yyyy-MM-dd');
+   // const data = this.datapipe.transform( this.student.dt_nasc, 'yyyy-MM-dd');
+    const data = this.convertData(form);
     const obj = {nome: form.nome, data};
-    this.dataService.setData('clients/check/' + this.dataService.getPTId(), obj).subscribe(
+    this.dataService.setData('clients/check/' + this.dataService.getPTId(), form).subscribe(
       resp => {
         if (resp[0]) {
           this.erroRepeatCliente = true;
@@ -44,7 +45,7 @@ export class NewComponent implements OnInit {
   }
 
   saveForm(form) {
-    form.dt_nasc = this.datapipe.transform( this.date, 'yyyy-MM-dd');
+    form.dt_nasc = this.convertData(form);
     if (!this.student.id) {
       // new student
       this.dataService.setData('entity/clients/' + this.dataService.getPTId(), form).subscribe(
@@ -86,6 +87,13 @@ export class NewComponent implements OnInit {
     this.location.back();
   }
 
+  private convertData(form) {
+    const ano = form.dt_nasc.substr(-4);
+    const dia = form.dt_nasc.substr(0, 2);
+    const mes = form.dt_nasc.substr(2, 2);
 
+    const data = ano + '-' + mes + '-' + dia;
+    return data;
+  }
 
 }

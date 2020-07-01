@@ -29,7 +29,7 @@ export class EvaluationComponent implements OnInit {
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform( Date(), 'dd/MM/yyyy'); // this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }

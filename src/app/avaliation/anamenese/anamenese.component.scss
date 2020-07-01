@@ -6,6 +6,8 @@
   background-position: center;
 }
 
+
+
 .mat-accordion{
   width: 360px;
   margin: auto;
@@ -56,13 +58,31 @@
   width: 100%;
 }
 
-
+.escalas{
+  display: flex;
+  flex-direction: column;
+}
 
 .mat-radio-button {
-  display: block;
-  margin-top: 5px;
-  font-size: small;
+  display: inline;
+  margin: 5px;
 }
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.mat-radio-label {
+    white-space: normal !important;
+    padding-bottom: 10px !important; 
+  }
+
+.wrap-label {
+    white-space: normal;
+    font-size: small;
+    margin: 5px;
+}
+
+
 
 .patologico {
   .mat-radio-button {
@@ -85,18 +105,23 @@
   width: 60px;
   margin-left: 20px;
 }
+
 @media only screen and (min-width: 768px) {
 
   .mat-accordion{
-    width: 520px;
+    width: 520px !important;
   }
-  .mat-card{
-    max-width: 490px;
+  .mat-card {
+    width: 440px !important;
     margin: auto;
   }
+  ::ng-deep .mat-tab-header-pagination {
+    display: none !important;
+}
 
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }
 }
+

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <h1 i18n="titulo"><span *ngIf="student.id">Editar</span><span *ngIf="!student.id">Registar Novo</span> Aluno</h1>
+    <h1 i18n="titulo"><span *ngIf="student.id">Editar</span><span *ngIf="!student.id">Registrar Novo</span> Aluno</h1>
   </div>
 
   <div class="section">
@@ -10,13 +10,18 @@
         <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
       </mat-form-field>
 
-      <mat-form-field appearance="">
+<!--       <mat-form-field appearance="">
         <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
         <input #dt_nasc="ngModel" [(ngModel)]="date" name="dt_nasc" matInput [matDatepicker]="picker"
           placeholder="Ex: 01/03/2001" (ngModelChange)="checkIfExistsClient(f.value)" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field> -->
+      <mat-form-field appearance="">
+        <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
+        <input matInput type="text" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" name="dt_nasc" mask="00/00/0000" placeholder="Ex: 01/03/2001">
       </mat-form-field>
+
       <mat-form-field appearance="">
         <mat-label i18n="Label | Sexo">Sexo <small>(1)</small></mat-label>
         <mat-select #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
@@ -48,15 +53,15 @@
         <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | city name">Localidade</mat-label>
+        <mat-label i18n="Label | city name">Cidade</mat-label>
         <input #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | postal code">Codigo Postal</mat-label>
+        <mat-label i18n="Label | postal code">Código Postal</mat-label>
         <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput mask="99999-999">
       </mat-form-field>
       <mat-form-field *ngIf="student.id">
-        <mat-label i18n="Label | last access">Ultimo acesso</mat-label>
+        <mat-label i18n="Label | last access">Último acesso</mat-label>
         <input [value]="student.lastaccess" matInput readonly>
       </mat-form-field>
       <div style="width: 250px; margin-bottom: 20px;">
@@ -74,14 +79,14 @@
           <mat-icon class="mat-18">check</mat-icon>
         </button>
       </div>
-      <span class="alert" *ngIf="erroRepeatCliente">Já existe registo com estes dados.</span> 
+      <span class="alert" *ngIf="erroRepeatCliente">Já existe registro com estes dados.</span> 
       </div>
 
 
       <p>
-        <a href="#">
-          <small>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</small>
-        </a>
+        <!-- <a href="#"> -->
+          <em>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</em>
+        <!-- </a> -->
       </p>
     </form>
   </div>

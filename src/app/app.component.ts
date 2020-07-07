@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './services/data.service';
-import { Subscription, interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MenuService } from './services/menu.service';
 
 @Component({

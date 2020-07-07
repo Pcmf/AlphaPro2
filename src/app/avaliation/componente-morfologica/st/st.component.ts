@@ -108,13 +108,26 @@ export class StComponent implements OnInit {
   }
 
   getEndomorfia(evaluation) {
-    return 0.858 * evaluation.cotovelo + 0.601 * evaluation.joelho + 0.188 * (evaluation.bracoc - evaluation.triciptal / 10)
-          + 0.161 * (evaluation.pernad - evaluation.geminal / 10) - 0.131 * evaluation.altura * 100 + 4.5;
+    const somaDobras = +evaluation.triciptal + +evaluation.subescapular + +evaluation.geminal + +evaluation.suprailiaca;
+    console.log(somaDobras);
+    return +(-0.7182 + 0.1551 * +somaDobras - 0.00068 * Math.pow(+somaDobras, 2) + 0.0000014 * Math.pow(+somaDobras, 3)).toFixed(2);
   }
 
   getMesomorfia(evaluation) {
-    return  0.858 * evaluation.cotovelo + 0.601 * evaluation.joelho + 0.188 * ( evaluation.bracoc - evaluation.pernad / 10)
-             + 0.161 * (evaluation.pernad - evaluation.geminal / 10) - 0.131 * (evaluation.altura * 100) + 4.5;
+    return  +(0.858 * +evaluation.cotovelo + 0.601 * +evaluation.joelho + 0.188 * ( +evaluation.bracoc - evaluation.triciptal / 10)
+             + 0.161 * (+evaluation.pernad - evaluation.geminal / 10) - 0.131 * (+evaluation.altura * 100) + 4.5).toFixed(2);
+  }
+
+  getEctomorfia(evaluation) {
+    const ip = (+evaluation.altura * 100) / Math.pow(+evaluation.peso , (1 / 3));
+    console.log(ip);
+    if (+ip > 40.75) {
+      return (+ip * 0.732 - 28.58).toFixed(2);
+    }
+    if (+ip > 38.28 && +ip <= 40.75) {
+      return (+ip * 0.463 - 17.63).toFixed(2);
+    }
+    return 0.1;
   }
 
   getX(evaluation) {

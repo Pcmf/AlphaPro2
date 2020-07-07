@@ -74,6 +74,25 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].pernad | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].pernad | number: '': locale}}</td>
                     </tr>
+                    <!-- RESULTADOS -->
+                    <tr>
+                        <th i18n class="sub-line">RESULTADOS</th>
+                    </tr>
+                    <tr>
+                        <th i18n>Endomorfia</th>
+                        <td *ngIf="pointer>=1">{{getEndomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{getEndomorfia(evaluation[pointer]) | number: '': locale}}</td>
+                    </tr>
+                    <tr>
+                        <th i18n>Mesomorfia</th>
+                        <td *ngIf="pointer>=1">{{getMesomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{getMesomorfia(evaluation[pointer]) | number: '': locale}}</td>
+                    </tr>
+                    <tr>
+                        <th i18n>Ectomorfia</th>
+                        <td *ngIf="pointer>=1">{{getEctomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{getEctomorfia(evaluation[pointer]) | number: '': locale}}</td>
+                    </tr>
                 </tbody>
             </table>
 

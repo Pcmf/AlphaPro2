@@ -36,6 +36,7 @@ export class SlaugtherComponent implements OnInit {
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  locale: string;
 
   constructor(
     private location: Location,
@@ -47,7 +48,7 @@ export class SlaugtherComponent implements OnInit {
     private prepareChart: PrepareChartService,
     private dialogService: DialogService
   ) {
-
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     if (this.ageService.getAge(this.student.dt_nasc) > 16) {

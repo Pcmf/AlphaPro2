@@ -29,6 +29,7 @@ export class GuedesComponent implements OnInit {
   private lastCorporal: any = [];
   private daysAv = 0;
   private daysCorporal = 0;
+  locale: string;
 
   // graphics
   chartSelected = 'pie';
@@ -49,6 +50,7 @@ export class GuedesComponent implements OnInit {
     private prepareChart: PrepareChartService,
     private dialogService: DialogService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.sexo = this.student.sexo;
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;

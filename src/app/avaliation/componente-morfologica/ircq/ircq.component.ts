@@ -18,12 +18,14 @@ export class IRCQComponent implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   age: number;
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
               private ageService: AgeService
            ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
     this.getData();

@@ -36,6 +36,7 @@ export class JP3Component implements OnInit {
   private lastCorporal: any = [];
   private daysAv = 0;
   private daysCorporal = 0;
+  locale: string;
 
   constructor(
     private location: Location,
@@ -47,7 +48,7 @@ export class JP3Component implements OnInit {
     private prepareChart: PrepareChartService,
     private dialogService: DialogService
   ) {
-
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);

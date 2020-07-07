@@ -14,9 +14,11 @@ export class IMComponent implements OnInit {
   maxPointer = -1;
   newEvaluation: any = [];
   student: any = [];
+  locale: string;
 
   constructor(private location: Location, private dataService: DataService,
               private datapipe: DatePipe ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }

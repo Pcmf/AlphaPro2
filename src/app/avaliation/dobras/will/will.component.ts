@@ -37,6 +37,7 @@ export class WillComponent implements OnInit {
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -47,6 +48,7 @@ export class WillComponent implements OnInit {
               private ageService: AgeService,
               private dialogService: DialogService
                ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);

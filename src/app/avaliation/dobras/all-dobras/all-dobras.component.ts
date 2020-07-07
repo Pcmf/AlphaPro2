@@ -27,6 +27,7 @@ export class AllDobrasComponent implements OnInit {
   single: any[];
   single2: any[];
   showChart = false;
+  locale: string;
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
@@ -40,6 +41,7 @@ export class AllDobrasComponent implements OnInit {
               public dialog: MatDialog,
               private ageService: AgeService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sex = this.student.sexo;

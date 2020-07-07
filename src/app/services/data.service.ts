@@ -95,6 +95,11 @@ export class DataService {
     }
   }
 
+  getCountryId() {
+    const token = sessionStorage.getItem('token');
+    return this.helper.decodeToken(token).countryid;
+  }
+
   logout() {
     sessionStorage.clear();
     window.location.replace('/');

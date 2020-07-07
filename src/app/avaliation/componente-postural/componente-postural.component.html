@@ -14,9 +14,9 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">
@@ -44,8 +44,7 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input type="number" name="vacabig" #vacabig="ngModel" [(ngModel)]="newData.vacabig"
-                                        placeholder="graus">
+                                    <input class="hidde-arrows" type="number" name="vacabig" #vacabig="ngModel" [(ngModel)]="newData.vacabig" placeholder="graus">
                                 </td>
                             </tr>
                             <tr>
@@ -518,11 +517,11 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                    <input class="hidde-arrows" name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">
                                 </th>
                             </tr>
@@ -885,9 +884,9 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd-LL-yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd-LL-yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
                                     <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
                                         style="width: 110px;">
@@ -946,7 +945,7 @@
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel"
+                                    <input class="hidde-arrows" type="number" name="vpescolioseg" #vpescolioseg="ngModel"
                                         [(ngModel)]="newData.vpescolioseg" placeholder="graus">
                                 </td>
                             </tr>
@@ -1095,7 +1094,7 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
+                                    <input class="hidde-arrows" type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
                                         [(ngModel)]="newData.vpescoliosedorsalg" placeholder="graus">
                                 </td>
                             </tr>
@@ -1115,7 +1114,7 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
+                                    <input class="hidde-arrows" type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
                                         [(ngModel)]="newData.vpescolioselombarg" placeholder="graus">
                                 </td>
                             </tr>
@@ -1365,7 +1364,7 @@
                                     color="default" (click)="pointer=pointer-1">
                                     <mat-icon class="mat-14">chevron_left</mat-icon>
                                 </button>
-                                {{oldData[pointer].data | date:'dd-LL-yyyy'}}
+                                {{oldData[pointer].data | date:'dd/LL/yyyy'}}
                                 <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1" mat-mini-fab
                                     color="default" (click)="pointer=pointer+1">
                                     <mat-icon class="mat-14">chevron_right</mat-icon>

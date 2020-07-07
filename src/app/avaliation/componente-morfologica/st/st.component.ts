@@ -16,11 +16,13 @@ export class StComponent implements OnInit {
   maxPointer = -1;
   newEvaluation: any = [];
   student: any = [];
+  locale: string;
 
   constructor(private location: Location, private dataService: DataService,
               private datapipe: DatePipe,
               private ageService: AgeService
             ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }

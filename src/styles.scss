@@ -17,6 +17,12 @@ body {
   font-weight: 500;
 }
 
+.hidde-arrows::-webkit-inner-spin-button, 
+.hidde-arrows::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 em{
   font-size: smaller;
 }
@@ -127,7 +133,17 @@ td > input {
 }
 }
 
+.mat-radio-label{
+  margin-top: 5px;
+}
+.mat-radio-label:last-of-type {
+  margin-bottom: 5px;
+}
 
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: rgba(0,0,0,.94) !important;
+  font-size: medium !important; 
+}
 
 @media only screen and (min-width: $min-width) {
   /* For desktop: */

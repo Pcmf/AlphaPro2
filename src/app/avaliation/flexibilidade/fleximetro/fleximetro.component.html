@@ -8,8 +8,8 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                 style="width: 110px;">
@@ -25,8 +25,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -34,8 +33,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -43,8 +41,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                         <td *ngIf="addEval">
-                            <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number">
                         </td>
                     </tr>
 
@@ -56,8 +53,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombrof}}</td>
                         <td *ngIf="addEval">
-                            <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -65,8 +61,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroad}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombroad}}</td>
                         <td *ngIf="addEval">
-                            <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -74,8 +69,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
                         <td *ngIf="addEval">
-                            <input name="ombromedial" #ombromedial="ngModel" [(ngModel)]="newEvaluation.ombromedial" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="ombromedial" #ombromedial="ngModel" [(ngModel)]="newEvaluation.ombromedial" type="number">
                         </td>
                     </tr>
 
@@ -87,8 +81,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
                         <td *ngIf="addEval">
-                            <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof" type="number">
                         </td>
                     </tr>
  
@@ -100,8 +93,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].antbsp}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].antbsp}}</td>
                         <td *ngIf="addEval">
-                            <input name="antbsp" #antbsp="ngModel" [(ngModel)]="newEvaluation.antbsp" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="antbsp" #antbsp="ngModel" [(ngModel)]="newEvaluation.antbsp" type="number">
                         </td>
                     </tr>
 
@@ -113,8 +105,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
                         <td *ngIf="addEval">
-                            <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -122,8 +113,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoe}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
                         <td *ngIf="addEval">
-                            <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe" type="number">
                         </td>
                     </tr>
 
@@ -135,8 +125,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
                         <td *ngIf="addEval">
-                            <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -144,8 +133,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
                         <td *ngIf="addEval">
-                            <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -153,8 +141,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilmedial}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilmedial}}</td>
                         <td *ngIf="addEval">
-                            <input name="quadrilmedial" #quadrilmedial="ngModel" [(ngModel)]="newEvaluation.quadrilmedial" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="quadrilmedial" #quadrilmedial="ngModel" [(ngModel)]="newEvaluation.quadrilmedial" type="number">
                         </td>
                     </tr>
 
@@ -166,8 +153,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
                         <td *ngIf="addEval">
-                            <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number">
                         </td>
                     </tr>
 
@@ -179,8 +165,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelod}}</td>
                         <td *ngIf="addEval">
-                            <input name="tornozelod" #tornozelod="ngModel" [(ngModel)]="newEvaluation.tornozelod" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="tornozelod" #tornozelod="ngModel" [(ngModel)]="newEvaluation.tornozelod" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -188,8 +173,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelop}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelop}}</td>
                         <td *ngIf="addEval">
-                            <input name="tornozelop" #tornozelop="ngModel" [(ngModel)]="newEvaluation.tornozelop" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="tornozelop" #tornozelop="ngModel" [(ngModel)]="newEvaluation.tornozelop" type="number">
                         </td>
                     </tr>
 
@@ -201,8 +185,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
                         <td *ngIf="addEval">
-                            <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -210,8 +193,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
                         <td *ngIf="addEval">
-                            <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -219,8 +201,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
                         <td *ngIf="addEval">
-                            <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number">
                         </td>
                     </tr>
 

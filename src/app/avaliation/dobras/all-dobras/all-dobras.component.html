@@ -12,12 +12,12 @@
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
                             <button type="button" (click)="setEvaluation(evaluation[pointer-1])">
-                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
                             <button type="button" (click)="setEvaluation(evaluation[pointer])">
-                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="addEval">
@@ -29,83 +29,74 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal')">Abdominal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Axilar')">Axilar</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].axilar}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].axilar}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].axilar | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].axilar | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Biciptal')">Biciptal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].biciptal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].biciptal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].biciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].biciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Coxa')">Coxa</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].crural | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Geminal')">Geminal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Peitoral')">Peitoral</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peitoral}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peitoral}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peitoral | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].peitoral | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="peitoral" #peitoral="ngModel" [(ngModel)]="newEvaluation.peitoral"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="peitoral" #peitoral="ngModel" [(ngModel)]="newEvaluation.peitoral" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Subescalar')">Subescalar</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Suprailiaca')">Suprailiaca</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number">
                         </td>
                     </tr>
 
@@ -115,13 +106,13 @@
                             {{(+evaluation[pointer-1].biciptal + +evaluation[pointer-1].geminal + +evaluation[pointer-1].triciptal
                                + +evaluation[pointer-1].peitoral + +evaluation[pointer-1].subescapular 
                                + +evaluation[pointer-1].axilar + +evaluation[pointer-1].suprailiaca + +evaluation[pointer-1].abdominal 
-                               + +evaluation[pointer-1].crural) / 7 | number: '1.2-2'}}
+                               + +evaluation[pointer-1].crural) / 7 | number: '1.2-2': locale}}
                         </td>
                         <td *ngIf="pointer>=0">
                             {{(+evaluation[pointer].biciptal + +evaluation[pointer].geminal + +evaluation[pointer].triciptal
                                 + +evaluation[pointer].peitoral + +evaluation[pointer].subescapular 
                                 + +evaluation[pointer].axilar + +evaluation[pointer].suprailiaca + +evaluation[pointer].abdominal 
-                                + +evaluation[pointer].crural) / 7 | number: '1.2-2'}}
+                                + +evaluation[pointer].crural) / 7 | number: '1.2-2': locale}}
                         </td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
@@ -131,13 +122,13 @@
                             {{+evaluation[pointer-1].biciptal + +evaluation[pointer-1].geminal + +evaluation[pointer-1].triciptal
                                 + +evaluation[pointer-1].peitoral + +evaluation[pointer-1].subescapular 
                                 + +evaluation[pointer-1].axilar + +evaluation[pointer-1].suprailiaca + +evaluation[pointer-1].abdominal 
-                                + +evaluation[pointer-1].crural | number: '1.2-2'}}
+                                + +evaluation[pointer-1].crural | number: '1.2-2': locale}}
                         </td>
                         <td *ngIf="pointer>=0">
                             {{+evaluation[pointer].biciptal + +evaluation[pointer].geminal + +evaluation[pointer].triciptal
                                 + +evaluation[pointer].peitoral + +evaluation[pointer].subescapular 
                                 + +evaluation[pointer].axilar + +evaluation[pointer].suprailiaca + +evaluation[pointer].abdominal 
-                                + +evaluation[pointer].crural | number: '1.2-2'}}
+                                + +evaluation[pointer].crural | number: '1.2-2': locale}}
                         </td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
@@ -174,7 +165,7 @@
             <br />
             <hr />
             <h4 style="text-align: center; color: blue;">
-                {{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
             </h4>
 <!--             <div style="text-align: center; color: blue;">
                 <mat-label i18n>% Gordura desejada <small>[{{gorduraDesejada}}]</small>: </mat-label>

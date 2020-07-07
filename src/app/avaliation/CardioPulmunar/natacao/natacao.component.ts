@@ -29,6 +29,7 @@ export class NatacaoComponent implements OnInit {
   newAv: boolean;
   daysAv: any;
   lastAv: any;
+  locale: string;
 
   constructor(
     private location: Location,
@@ -39,6 +40,7 @@ export class NatacaoComponent implements OnInit {
     private snackBar: MatSnackBar,
     private protocoloCardio: ProtocolosCardioService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }

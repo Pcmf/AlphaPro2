@@ -1,0 +1,19 @@
+.section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.box1, .box2{
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    border: darkgray;
+    padding: 20px;
+}
+
+.action{
+    width: 100%;
+    text-align: center;
+}

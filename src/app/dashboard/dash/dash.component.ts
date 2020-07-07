@@ -12,8 +12,10 @@ export class DashComponent implements OnInit {
   students: any =  [];
   student: any = [];
   selectedS = false;
-  constructor(private dataService: DataService, private menuService: MenuService) {
-
+  constructor(
+    private dataService: DataService,
+    private menuService: MenuService,
+  ) {
       const id = this.dataService.getPTId();
       this.dataService.getData('entity/clients/' + id).subscribe(
         resp =>  {

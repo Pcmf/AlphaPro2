@@ -19,6 +19,7 @@ export class IndiceConicidadeComponent implements OnInit {
   selectedStudent: any = [];
   selectedTab = 0;
   private coefRisco = 1.25;
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -26,7 +27,7 @@ export class IndiceConicidadeComponent implements OnInit {
               private snackBar: MatSnackBar,
               public dialog: MatDialog
               ) {
-
+    this.locale = this.dataService.getCountryId();
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
     this.dataService.getLastEvaluation(this.selectedStudent.id).subscribe(

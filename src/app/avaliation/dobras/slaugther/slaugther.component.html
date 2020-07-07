@@ -14,12 +14,12 @@
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
                             <button type="button" (click)="chartSelected='pie';setEvaluation(evaluation[pointer-1])">
-                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
                             <button type="button" (click)="chartSelected='pie';setEvaluation(evaluation[pointer])">
-                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="addEval">
@@ -30,38 +30,37 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                                type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Geminal')">Geminal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number"
-                                step="0.1">
+                            <input class="hidde-arrows" name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>Media</th>
                         <td *ngIf="pointer>=1">
-                            {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal)/2 | number: '1.2-2' }}
+                            {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal)/2 | number: '1.2-2': locale }}
                         </td>
                         <td *ngIf="pointer>=0">
-                            {{(+evaluation[pointer].triciptal + +evaluation[pointer].geminal)/2 | number: '1.2-2' }}
+                            {{(+evaluation[pointer].triciptal + +evaluation[pointer].geminal)/2 | number: '1.2-2': locale }}
                         </td>
                         <td *ngIf="addEval">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>Somatório</th>
-                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal}}
+                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].triciptal + +evaluation[pointer-1].geminal | number: '1.2-2': locale}}
                         </td>
-                        <td *ngIf="pointer>=0">{{+evaluation[pointer].triciptal + +evaluation[pointer].geminal}}</td>
+                        <td *ngIf="pointer>=0">{{+evaluation[pointer].triciptal + +evaluation[pointer].geminal | number: '1.2-2': locale}}</td>
                         <td *ngIf="addEval">
                         </td>
                     </tr>
@@ -97,7 +96,7 @@
             <div style="text-align: center; color: blue;">
                 <div>
                     <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
                         </mat-button-toggle>
                         <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
                     </mat-button-toggle-group>

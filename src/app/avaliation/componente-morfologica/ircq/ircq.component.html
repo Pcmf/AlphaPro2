@@ -8,27 +8,27 @@
             <thead>
                 <tr>
                     <th>&nbsp;</th>
-                    <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                    <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                    <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                    <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th i18n>Cintura <small>(cm)</small></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen}}</td>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
                 </tr>
                 <tr>
                     <th i18n>Quadril <small>(cm)</small></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadril}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].quadril}}</td>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
                 </tr>
                 <tr>
                     <th i18n>IRCQ</th>
                     <td *ngIf="pointer>=1">
-                        {{+evaluation[pointer-1].abdomen / +evaluation[pointer-1].quadril | number:'1.2-2'}}</td>
+                        {{+evaluation[pointer-1].abdomen / +evaluation[pointer-1].quadril | number:'1.2-2': locale}}</td>
                     <td *ngIf="pointer>=0">
-                        {{+evaluation[pointer].abdomen / +evaluation[pointer].quadril | number:'1.2-2'}}</td>
+                        {{+evaluation[pointer].abdomen / +evaluation[pointer].quadril | number:'1.2-2': locale}}</td>
                 </tr>
                 <tr>
                     <th i18n>Classificação</th>
@@ -50,8 +50,7 @@
         </table>
 
         <div class="action">
-            <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                (click)="pointer=pointer-1">
+            <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default" (click)="pointer=pointer-1">
                 <mat-icon class="mat-14">chevron_left</mat-icon>
             </button>
             <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab

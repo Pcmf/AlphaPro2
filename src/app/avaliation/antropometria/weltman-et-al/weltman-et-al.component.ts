@@ -30,6 +30,7 @@ export class WeltmanEtAlComponent implements OnInit {
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
   chartSelected = 'pie';
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -40,6 +41,7 @@ export class WeltmanEtAlComponent implements OnInit {
               private prepareChart: PrepareChartService,
               public dialog: MatDialog
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
     this.sex = this.student.sexo;

@@ -38,6 +38,7 @@ export class SloanComponent implements OnInit {
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  locale: string;
 
   constructor(
     private location: Location,
@@ -49,6 +50,7 @@ export class SloanComponent implements OnInit {
     private ageService: AgeService,
     private dialogService: DialogService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sexo = this.student.sexo;

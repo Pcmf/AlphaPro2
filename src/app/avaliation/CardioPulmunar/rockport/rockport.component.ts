@@ -30,6 +30,7 @@ export class RockportComponent implements OnInit {
   daysAv: any;
   lastAv: any;
   refresh: boolean;
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -39,6 +40,7 @@ export class RockportComponent implements OnInit {
               private snackBar: MatSnackBar,
               private protocoloCardio: ProtocolosCardioService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }

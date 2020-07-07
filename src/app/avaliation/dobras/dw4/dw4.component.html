@@ -14,12 +14,12 @@
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
                             <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
-                                {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
                             <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
-                                {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                                {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="addEval">
@@ -34,8 +34,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
                         <td *ngIf="addEval">
-                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                                type="number">
                         </td>
                     </tr>
                     <tr>
@@ -43,8 +43,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
                         <td *ngIf="addEval">
-                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                                type="number">
                         </td>
                     </tr>
                     <tr>
@@ -52,8 +52,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].biciptal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].biciptal}}</td>
                         <td *ngIf="addEval">
-                            <input name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"
+                                type="number">
                         </td>
                     </tr>
                     <tr>
@@ -61,8 +61,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
                         <td *ngIf="addEval">
-                            <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
-                                type="number" step="0.1">
+                            <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
+                                type="number">
                         </td>
                     </tr>
                     <tr>
@@ -120,7 +120,7 @@
         <div *ngIf="showChart">
             <div style="text-align: center; color: blue;">
                     <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
                         </mat-button-toggle>
                         <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
                     </mat-button-toggle-group>

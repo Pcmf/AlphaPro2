@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-chart-cardio',
@@ -53,10 +54,14 @@ export class ChartCardioComponent implements OnInit {
   ready: boolean;
 
   showLineChart = true;
+  locale: string;
 
   constructor(
     private protocolosCardio: ProtocolosCardioService,
-  ) { }
+    private dataService: DataService
+  ) {
+    this.locale = this.dataService.getCountryId();
+   }
 
   ngOnInit(): void {
     // FC charts

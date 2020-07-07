@@ -8,33 +8,33 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th i18n>Altura <small>(m)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].altura}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Peso <small>(Kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n class="sub-line">Diâmetros</th>
                     </tr>
                     <tr>
                         <th i18n>Joelho <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelho}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].joelho}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelho | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].joelho | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Cotovelo <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelo}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelo}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelo | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelo | number: '': locale}}</td>
                     </tr>
 
                     <tr>
@@ -42,23 +42,23 @@
                     </tr>
                     <tr>
                         <th i18n>Tríciptal <small>(mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Subescapular <small>(mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Geminal <small>(mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Suprailiaca <small>(mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                     </tr>
 
                     <tr>
@@ -66,13 +66,13 @@
                     </tr>
                     <tr>
                         <th i18n>Braço contraido <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].bracoc}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].bracoc}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].bracoc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].bracoc | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Perna <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].pernad}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].pernad}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].pernad | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].pernad | number: '': locale}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -10,8 +10,8 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd-LL-yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                                 style="width: 110px;">
@@ -20,12 +20,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Distância</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].distancia}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].distancia}}</td>
+                        <th i18n>Distância <small>(m)</small></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].distancia | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].distancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number"
-                                step="0.1" placeholder="metros">
+                            <input class="hidde-arrows" name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number">
                         </td>
                     </tr>                  
                     <tr>

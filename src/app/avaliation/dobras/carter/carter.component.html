@@ -14,12 +14,12 @@
                     <th>&nbsp;</th>
                     <th class="th-top" *ngIf="pointer>=1">
                         <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
-                            {{evaluation[pointer-1].data | date:'dd-LL-yyyy'}}
+                            {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                         </button>
                     </th>
                     <th class="th-top" *ngIf="pointer>=0">
                         <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
-                            {{evaluation[pointer].data | date:'dd-LL-yyyy'}}
+                            {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                         </button>
                     </th>
                     <th class="th-top" *ngIf="addEval">
@@ -31,56 +31,56 @@
              <tbody>
                  <tr>
                      <th><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal}}</td>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                      <td *ngIf="addEval">
-                         <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                              type="number" step="0.1">
+                         <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
+                              type="number">
                      </td>
                  </tr>
                  <tr>
                      <th><span (click)="openHelpDialog('Subescapular')">Subescapular</span></th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular}}</td>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
                      <td *ngIf="addEval">
-                         <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
-                             type="number" step="0.1">
+                         <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
+                             type="number">
                      </td>
                  </tr>
                 <tr>
                     <th><span (click)="openHelpDialog('Abdominal')">Abdominal</span></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal | number: '': locale}}</td>
                     <td *ngIf="addEval">
-                        <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                            type="number" step="0.1">
+                        <input class="hidde-arrows" name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
+                            type="number">
                     </td>
                 </tr>
                 <tr>
                     <th><span (click)="openHelpDialog('Coxa')">Coxa</span></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].crural}}</td>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].crural | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].crural | number: '': locale}}</td>
                     <td *ngIf="addEval">
-                        <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural"
-                             type="number" step="0.1">
+                        <input class="hidde-arrows" name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural"
+                             type="number">
                     </td>
                 </tr>
                  <tr>
                      <th><span (click)="openHelpDialog('Geminal')">Geminal</span></th>
-                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal}}</td>
-                     <td *ngIf="pointer>=0">{{evaluation[pointer].geminal}}</td>
+                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                     <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
                      <td *ngIf="addEval">
-                         <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal"
-                             type="number" step="0.1">
+                         <input class="hidde-arrows" name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal"
+                             type="number">
                      </td>
                  </tr>
                  <tr>
                     <th><span (click)="openHelpDialog('Suprailiaca')">Suprailiaca</span></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca}}</td>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                     <td *ngIf="addEval">
-                        <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
-                            type="number" step="0.1">
+                        <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
+                            type="number">
                     </td>
                 </tr>
                  <tr>
@@ -89,17 +89,17 @@
                         {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].subescapular
                                               + +evaluation[pointer-1].abdominal + +evaluation[pointer-1].crural
                                               + +evaluation[pointer-1].geminal + +evaluation[pointer-1].suprailiaca)
-                                            / 6 | number: '1-2-2'}}
+                                            / 6 | number: '1-2-2': locale}}
                     </td>
                     <td *ngIf="pointer>=0">
                         {{(+evaluation[pointer].triciptal + +evaluation[pointer].subescapular
                             + +evaluation[pointer].abdominal + +evaluation[pointer].crural
                             + +evaluation[pointer].geminal + +evaluation[pointer].suprailiaca)
-                          / 6 | number: '1-2-2'}}
+                          / 6 | number: '1-2-2': locale}}
                     </td>
                     <td *ngIf="addEval">
-                        <input name="c_xmedia" #c_xmedia="ngModel" [(ngModel)]="newEvaluation.c_xmedia"
-                            type="number" step="0.1">
+                        <input class="hidde-arrows" name="c_xmedia" #c_xmedia="ngModel" [(ngModel)]="newEvaluation.c_xmedia"
+                            type="number">
                     </td>
                 </tr>
                  <tr>
@@ -108,17 +108,17 @@
                         {{+evaluation[pointer-1].triciptal + +evaluation[pointer-1].subescapular
                             + +evaluation[pointer-1].abdominal + +evaluation[pointer-1].crural
                             + +evaluation[pointer-1].geminal + +evaluation[pointer-1].suprailiaca
-                           | number: '1-2-2'}}
+                           | number: '1-2-2': locale}}
                      </td>
                      <td *ngIf="pointer>=0">
                         {{+evaluation[pointer].triciptal + +evaluation[pointer].subescapular
                             + +evaluation[pointer].abdominal + +evaluation[pointer].crural
                             + +evaluation[pointer].geminal + +evaluation[pointer].suprailiaca
-                           | number: '1-2-2'}}
+                           | number: '1-2-2': locale}}
                      </td>
                      <td *ngIf="addEval">
-                         <input name="c_xtot" #c_xtot="ngModel" [(ngModel)]="newEvaluation.c_xtot"
-                             type="number" step="0.1">
+                         <input class="hidde-arrows" name="c_xtot" #c_xtot="ngModel" [(ngModel)]="newEvaluation.c_xtot"
+                             type="number">
                      </td>
                  </tr>
                 </tbody>
@@ -148,7 +148,7 @@
         <div style="text-align: center; color: blue;">
             <div>
                 <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                    <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd-LL-yyyy'}}
+                    <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
                     </mat-button-toggle>
                     <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
                 </mat-button-toggle-group>

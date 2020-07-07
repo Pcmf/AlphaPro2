@@ -15,7 +15,7 @@ import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { MatVideoModule } from 'mat-video';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {WebcamModule} from 'ngx-webcam';
+import { WebcamModule} from 'ngx-webcam';
 
 import { DataService } from './services/data.service';
 import { MenuComponent } from './commun/menu/menu.component';
@@ -100,6 +100,11 @@ import { TimePipe } from './commun/time.pipe';
 import { MetronomeComponent } from './commun/metronome/metronome.component';
 import { ConfigsComponent } from './dashboard/configs/configs.component';
 import { VideoComponent } from './commun/video/video.component';
+
+import { registerLocaleData } from '@angular/common';
+import pt from '@angular/common/locales/pt';
+import br from '@angular/common/locales/br';
+import en from '@angular/common/locales/en';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
@@ -229,8 +234,11 @@ export class MyHammerConfig extends HammerGestureConfig {
             ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private dateAdapter: DateAdapter<Date>) {
+  export class AppModule {
+    constructor(private dateAdapter: DateAdapter<Date>) {
     dateAdapter.setLocale('pt-PT'); // DD/MM/YYYY
+    registerLocaleData( pt );
+    registerLocaleData( br );
+    registerLocaleData( en );
   }
  }

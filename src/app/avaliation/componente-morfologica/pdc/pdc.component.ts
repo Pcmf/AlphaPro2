@@ -4,6 +4,9 @@ import { DataService } from 'src/app/services/data.service';
 import { DialogService } from 'src/app/services/dialog.service';
 
 
+
+
+
 @Component({
   selector: 'app-pdc',
   templateUrl: './pdc.component.html',
@@ -21,12 +24,14 @@ export class PDCComponent implements OnInit {
   newDiametros: any = [];
   newOutros: any = [];
   selectedTab = 0;
+  locale: string;
 
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
               private dialogService: DialogService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.studentId = JSON.parse(sessionStorage.selectedStudent).id;
     this.getData();
   }
@@ -48,7 +53,9 @@ export class PDCComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
   }
+
 
 
   goBack() {

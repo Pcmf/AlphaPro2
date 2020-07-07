@@ -29,6 +29,7 @@ export class CarterComponent implements OnInit {
   private lastCorporal: any = [];
   private daysAv = 0;
   private daysCorporal = 0;
+  
 
   // graphics
   chartSelected = 'pie';

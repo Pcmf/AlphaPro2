@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
   selector: 'app-evaluation',
@@ -15,10 +16,17 @@ export class EvaluationComponent implements OnInit {
   maxPointer = -1;
   newEvaluation: any = [];
   student: any = [];
+  locale: string;
 
-  constructor(private location: Location, private dataService: DataService,
-              private datapipe: DatePipe ) {
+  constructor(
+              private location: Location,
+              private dataService: DataService,
+              private datapipe: DatePipe,
+              private ageService: AgeService
+  ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
+    this.student.idade = this.ageService.getAge(this.student.dt_nasc);
     this.getData();
   }
   getData() {

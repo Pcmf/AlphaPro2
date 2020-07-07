@@ -24,7 +24,7 @@ export class DialogCardioComponent implements OnInit {
     private datapipe: DatePipe
   ) {
     if ( data.nafs < 0 ) {
-      this.msg += ' O nivél de atividade fisica não foi definido na anamnese. Não será possivél calcular o VO2 estimado.';
+      this.msg += ' O nivél de atividade física não foi definido na anamnese. Não será possivél calcular o VO2 estimado.';
     }
 
     if (data.newAv && data.daysAv) {

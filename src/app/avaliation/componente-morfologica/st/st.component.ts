@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { AgeService } from 'src/app/services/age.service';
+import {  MatSnackBar } from '@angular/material/snack-bar';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-st',
@@ -17,10 +18,14 @@ export class StComponent implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   locale: string;
+  private tempAltura: number;
+  private tempPeso: number;
+  private protocolo = 43; // Somatotipo
 
   constructor(private location: Location, private dataService: DataService,
               private datapipe: DatePipe,
-              private ageService: AgeService
+              private snackBar: MatSnackBar,
+              private dialogService: DialogService
             ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -81,12 +86,77 @@ export class StComponent implements OnInit {
     );
   }
 
+  addEvaluation() {
+    this.dataService.getLastEvaluation(this.student.id).subscribe(
+      resp => {
+        if (resp) {
+          if (resp[0].difdias > 2) {
+            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+          }
+          this.newEvaluation.altura = resp[0].altura;
+          this.newEvaluation.peso = resp[0].peso;
+          this.newEvaluation.altura = resp[0].altura;
+          this.newEvaluation.peso = resp[0].peso;
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+          console.log(this.newEvaluation);
+          this.addEval = true;
+        } else {
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+        }
+      }
+    );
+  }
+
+  save(form) {
+    console.log(form);
+    if (form.peso != this.tempPeso || form.altura != this.tempAltura) {
+      // gravar avaliação
+      this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
+        resp => {
+                  this.newEvaluation = [];
+                  this.addEval = false;
+                  this.getData();
+        }
+      );
+    }
+
+    form.protocolo = this.protocolo;
+    this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
+      resp0 => {
+        this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+          resp => {
+                    this.newEvaluation = [];
+                    this.addEval = false;
+                    this.getData();
+          }
+        );
+      }
+    );
+  }
+
+  closeInput() {
+    this.newEvaluation = [];
+    this.addEval = false;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, verticalPosition: 'top'
+    });
+  }
+
+
   ngOnInit(): void {
   }
 
   goBack() {
     this.location.back();
   }
+
+    // Help Dialog
+    openDialog(type): void {
+      this.dialogService.openHelp(type);
+    }
 
 
   calcIP(evaluation) {

@@ -4,92 +4,126 @@
     </div>
 
     <div class="section">
+        <form #f="ngForm" (submit)="save(f.value)">
             <table class="section-table">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="addEval">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" style="width: 110px;">
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Altura <small>(m)</small></th>
+                        <th i18n><span (click)="openDialog('Altura')">Altura</span> <small>(m)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Peso <small>(Kg)</small></th>
+                        <th i18n><span (click)="openDialog('Peso')">Peso</span> <small>(Kg)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
+                        </td>
                     </tr>
                     <tr>
                         <th i18n class="sub-line">Diâmetros</th>
                     </tr>
                     <tr>
-                        <th i18n>Joelho <small>(cm)</small></th>
+                        <th i18n><span (click)="openDialog('Joelho')">Joelho</span> <small>(cm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelho | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].joelho | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Cotovelo <small>(cm)</small></th>
+                        <th i18n><span (click)="openDialog('Cotovelo')">Cotovelo</span> <small>(cm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelo | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelo | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newEvaluation.cotovelo" type="number">
+                        </td>
                     </tr>
 
                     <tr>
                         <th i18n class="sub-line">Dobras Cutâneas</th>
                     </tr>
                     <tr>
-                        <th i18n>Tríciptal <small>(mm)</small></th>
+                        <th i18n><span (click)="openDialog('Triciptal')">Triciptal</span> <small>(mm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Subescapular <small>(mm)</small></th>
+                        <th i18n><span (click)="openDialog('Subescapular')">Subescapular</span> <small>(mm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Geminal <small>(mm)</small></th>
+                        <th i18n><span (click)="openDialog('Geminal')">Geminal</span> <small>(mm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Suprailiaca <small>(mm)</small></th>
+                        <th i18n><span (click)="openDialog('Suprailiaca')">Suprailiaca</span> <small>(mm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca" type="number">
+                        </td>
                     </tr>
 
                     <tr>
                         <th i18n class="sub-line">Perimetros</th>
                     </tr>
                     <tr>
-                        <th i18n>Braço contraido <small>(cm)</small></th>
+                        <th i18n><span (click)="openDialog('Braço Contraido')">Braço contraido</span> <small>(cm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].bracoc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].bracoc | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="bracoc" #bracoc="ngModel" [(ngModel)]="newEvaluation.bracoc" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th i18n>Perna <small>(cm)</small></th>
+                        <th i18n><span (click)="openDialog('Perna')">Perna</span> <small>(cm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].pernad | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].pernad | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="pernad" #pernad="ngModel" [(ngModel)]="newEvaluation.pernad" type="number">
+                        </td>
                     </tr>
                     <!-- RESULTADOS -->
                     <tr>
                         <th i18n class="sub-line">RESULTADOS</th>
                     </tr>
                     <tr>
-                        <th i18n>Endomorfia</th>
+                        <th i18n><span (click)="openDialog('Endomorfia')">Endomorfia</span></th>
                         <td *ngIf="pointer>=1">{{getEndomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getEndomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
-                        <th i18n>Mesomorfia</th>
+                        <th i18n><span (click)="openDialog('Mesomorfia')">Mesomorfia</span></th>
                         <td *ngIf="pointer>=1">{{getMesomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getMesomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
-                        <th i18n>Ectomorfia</th>
+                        <th i18n><span (click)="openDialog('Ectomorfia')">Ectomorfia</span></th>
                         <td *ngIf="pointer>=1">{{getEctomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getEctomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
@@ -101,11 +135,22 @@
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
+                <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                    <mat-icon class="mat-18">add</mat-icon>
+                </button>
                 <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>
+                <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                    <mat-icon class="mat-18">close</mat-icon>
+                </button>
+                <button *ngIf="addEval" mat-fab>
+                    <mat-icon class="mat-18">check</mat-icon>
+                </button>
             </div>
+
+        </form>
     </div>
 
     <div class="footer">

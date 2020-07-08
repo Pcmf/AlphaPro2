@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ADDRESS: 'https://alphapro.test.jsalgado.com/papRest/'
+  ADDRESS: 'https://alphapro.jsalgado.com/papRest/'
 };

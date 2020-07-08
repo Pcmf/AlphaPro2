@@ -15,7 +15,7 @@
                         </th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data"
-                                type="date" style="width: 110px;">
+                                type="date" class="data-input">
                         </th>
                     </tr>
                 </thead>
@@ -47,23 +47,33 @@
                     </tr>
                     <tr>
                         <th>Evergadura <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].envergadura | number:'1.0-1': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].envergadura | number:'1.0-1': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].envergadura | number:'1.1-1': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].envergadura | number:'1.1-1': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="envergadura" #envergadura="ngModel" [(ngModel)]="newEvaluation.envergadura" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>Pressão Arterial<br />em Repouso <small>(mm/Hg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tamax}} - {{evaluation[pointer-1].tamin}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].tamax}} - {{evaluation[pointer].tamin}}</td>
+                    </tr>
+                    <tr>
+                        <th>Máxima</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tamax}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tamax}}</td>
                         <td *ngIf="addEval">
-                            <input name="tamax" #tamax="ngModel" [(ngModel)]="newEvaluation.tamax" type="number" placeholder="max"> -
-                            <input name="tamin" #tamin="ngModel" [(ngModel)]="newEvaluation.tamin" type="number" placeholder="min">
+                            <input class="hidde-arrows" name="tamax" #tamax="ngModel" [(ngModel)]="newEvaluation.tamax" type="number">
                         </td>
                     </tr>
                     <tr>
-                        <th>Frequência Cardiaca<br />em Repouso <small>(bpm)</small></th>
+                        <th>Mínima</th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tamin}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tamin}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="tamin" #tamin="ngModel" [(ngModel)]="newEvaluation.tamin" type="number">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frequência Cardíaca<br />em Repouso <small>(bpm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>
                         <td *ngIf="addEval">

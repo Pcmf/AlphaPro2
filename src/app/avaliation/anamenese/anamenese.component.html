@@ -137,8 +137,8 @@
                 </mat-tab>
                 <mat-tab label=" B ">
 
-                  <p i18n>Participa regularmente de recreação ou em trabalhos que requerem atividade
-                    física modesta, como golfe, andar a cavalo, movimentos calistênicos, tênis de mesa ...</p>
+                  <p i18n>Participa regularmente de atividades esportivas moderadas ou recreacionais programadas,
+                     tais como golfe, andar a cavalo, movimentos calistênicos, tênis de mesa, ...</p>
                   <mat-radio-group aria-label="Select an option" #nafs="ngModel" name="nafs" [(ngModel)]="student.nafs">
                     <mat-radio-button value="2" i18n> 10 a 60 minutos por semana.</mat-radio-button>
                     <mat-radio-button value="3" i18n> Acima de 1 hora por semana.</mat-radio-button>
@@ -146,9 +146,8 @@
                 </mat-tab>
                 <mat-tab label=" C">
 
-                  <p i18n>Participa regularmente em exercícios físicos pesados, como corridas ou trotes, natação,
-                    ciclismo, remo, pular corda, corrida estacionária, ou se engaja em exercícios com atividades
-                    aeróbias vigorosas como tênis ou basquetebol..</p>
+                  <p i18n>Participa regularmente de exercícios físicos intensos, tais como corrida ao ar livre, 
+                    corrida em esteira, remo, natação, ciclismo ou participa de atividades aeróbias vigorosas tais como tênis, basquetebol, ...</p>
                   <mat-radio-group aria-label="Select an option" #nafs="ngModel" name="nafs" [(ngModel)]="student.nafs">
                     <mat-radio-button value="4" i18n>
                       <span class="wrap-label"> Corre menos de 1,6Km por semana ou gasta menos de 30 minutos
@@ -298,7 +297,7 @@
                 <mat-select #Q2BLTIPO="ngModel" name="Q2BLTIPO" [(ngModel)]="student.Q2BLTIPO">
                   <mat-option value="0" i18n="Label">Muscular</mat-option>
                   <mat-option value="1" i18n="Label">Articular</mat-option>
-                  <mat-option value="2" i18n="Label">Ossea</mat-option>
+                  <mat-option value="2" i18n="Label">Óssea</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="input-lg" *ngIf="Q2BLSN.value==1">

@@ -6,12 +6,14 @@
   background-position: center;
 }
 
+
+
 form {
   display: flex;
   flex-direction: column;
   background-color: rgba(245, 245, 245, 0.7);
   width: 500px;
-  height: 400px;
+  min-height: 400px;
   padding: 15px;
   border-radius: 7px;
   margin: auto;

@@ -26,6 +26,7 @@ export class NewComponent implements OnInit {
           this.student = JSON.parse(sessionStorage.selectedStudent);
           this.student.active === '0' ? this.student.active = false : this.student.active = true;
           this.student.dt_nasc = this.datapipe.transform( this.student.dt_nasc, 'dd/MM/yyyy');
+          this.student.lastaccess = this.datapipe.transform( this.student.lastaccess, 'dd/MM/yyyy');
     }
   }
 

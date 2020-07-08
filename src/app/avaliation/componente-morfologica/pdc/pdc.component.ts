@@ -52,9 +52,7 @@ export class PDCComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
 
 

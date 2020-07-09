@@ -15,6 +15,7 @@ export class RDCComponent implements OnInit, OnDestroy {
   rdcData: any = [];
   risco = 0;
   formS: any = [];
+  classRisco: string;
 
   constructor(
     private location: Location,
@@ -24,19 +25,22 @@ export class RDCComponent implements OnInit, OnDestroy {
   ) {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.idade = this.ageService.getAge(this.student.dt_nasc);
+  }
+
+  ngOnInit(): void {
     this.dataService.getData('clients/rdc/' + this.student.id).subscribe(
       resp => {
         if (resp[0]) {
           this.rdcData = resp[0];
         }
         // Obter dados quantos cigarros dia
-        dataService.getData('clients/' + this.student.id).subscribe(
+        this.dataService.getData('clients/' + this.student.id).subscribe(
           respa => {
             this.rdcData.qtos = respa[0].qtos;
           }
         );
-
-        if (this.rdcData.qtas == 0 || this.rdcData.qtad == 0) {
+        console.log(this.rdcData.qtas);
+        if (!this.rdcData.qtas || this.rdcData.qtas == 0 || !this.rdcData.qtad || this.rdcData.qtad == 0) {
           this.dataService.getData('clients/eval/' + this.student.id).subscribe(
             (respe: any[]) => {
               if (respe) {
@@ -59,9 +63,6 @@ export class RDCComponent implements OnInit, OnDestroy {
         //  }
       }
     );
-  }
-
-  ngOnInit(): void {
   }
 
   goBack() {
@@ -123,6 +124,13 @@ export class RDCComponent implements OnInit, OnDestroy {
     }
     if (this.student.idade > 50) {
       this.risco++;
+    }
+    if (this.risco <= 1) {
+      this.classRisco = 'background-green';
+    } else if (this.risco > 3) {
+      this.classRisco = 'background-red';
+    } else {
+      this.classRisco = 'background-yellow';
     }
   }
 

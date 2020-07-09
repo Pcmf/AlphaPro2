@@ -12,14 +12,25 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-card>
+                    <mat-card-header routerLink="/all">
+                        <mat-card-subtitle i18n="Subtitle">Somatório de Dobras</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
                     <mat-card-header routerLink="/dw4">
                         <mat-card-subtitle i18n="Subtitle">Durnin & Wormersley - 4 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Homens: dos 17 aos 72 anos;<br /> Mulheres: dos 16 aos 68 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/faulkner">
                         <mat-card-subtitle i18n="Subtitle">Faulkner - 4 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <!--                     <mat-card-footer>
+                        <small>Homens: 17 a 72 Anos; Mulheres: 16 a 68 Anos;</small>
+                    </mat-card-footer> -->
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/guedes3">
@@ -30,51 +41,71 @@
                     <mat-card-header routerLink="/jp3">
                         <mat-card-subtitle i18n="Subtitle">Jackson & Pollock - 3 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Homens: dos 18 aos 61 anos;<br /> Mulheres: dos 18 aos 55 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/jp7">
                         <mat-card-subtitle i18n="Subtitle">Jackson & Pollock - 7 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Dos 18 aos 55 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/pb4">
                         <mat-card-subtitle i18n="Subtitle">Petroski - 4 dobras</mat-card-subtitle>
                     </mat-card-header>
-                </mat-card>                
+                    <mat-card-footer>
+                        <small>Homens: dos 18 aos 66 anos;<br /> Mulheres: dos 18 aos 51 anos;</small>
+                    </mat-card-footer>
+                </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/slau">
-                        <mat-card-subtitle i18n="Subtitle" >Slaugther - 2 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle">Slaugther - 2 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Até aos 16 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/sloan2">
                         <mat-card-subtitle i18n="Subtitle">Sloan - 2 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Homens: dos 18 aos 26 anos;<br /> Mulheres: dos 17 aos 25 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/will">
                         <mat-card-subtitle i18n="Subtitle">Williams - 4 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Homens: todas idades;<br /> Mulheres: dos 34 aos 84 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/wb2">
                         <mat-card-subtitle i18n="Subtitle">Wilmore & Behnke - 2 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Homens: dos 16 aos 37 anos</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/wb3">
                         <mat-card-subtitle i18n="Subtitle">Wilmore & Behnke - 3 dobras</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Mulheres: todas as idades;</small>
+                    </mat-card-footer>
                 </mat-card>
 
-                <mat-card>
-                    <mat-card-header routerLink="/all">
-                        <mat-card-subtitle i18n="Subtitle">Somatório de Dobras</mat-card-subtitle>
-                    </mat-card-header>
-                </mat-card>
+
             </mat-expansion-panel>
 
-            <mat-expansion-panel  (opened)="panelOpenState = true">
+            <mat-expansion-panel (opened)="panelOpenState = true">
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         BIOIMPEDÂNCIA
@@ -105,7 +136,7 @@
                         ANTROPOMETRIA
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-<!--                 <mat-card>
+                <!--                 <mat-card>
                     <mat-card-header routerLink="/metal">
                         <mat-card-subtitle i18n="Subtitle">Mayhew et al</mat-card-subtitle>
                     </mat-card-header>
@@ -125,12 +156,12 @@
                         <mat-card-subtitle i18n="Subtitle">Weltman et al</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
-<!--                 <mat-card>
+                <!--                 <mat-card>
                     <mat-card-header routerLink="/welt">
                         <mat-card-subtitle i18n="Subtitle">Weltman</mat-card-subtitle>
                     </mat-card-header>
-                </mat-card>  -->              
-<!--                 <mat-card>
+                </mat-card>  -->
+                <!--                 <mat-card>
                     <mat-card-header routerLink="/wst">
                         <mat-card-subtitle i18n="Subtitle">Weltman, Seip & Tran</mat-card-subtitle>
                     </mat-card-header>

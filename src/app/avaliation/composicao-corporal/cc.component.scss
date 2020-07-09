@@ -24,8 +24,19 @@ mat-expansion-panel-body {
   padding: 0;
 }
 .mat-card {
-  height: 30px;
+  min-height: 30px;
   align-self: center;
   margin-bottom: 1px;
+
 }
 
+.mat-card-subtitle{
+  text-align: center;
+  font-weight: 600;
+}
+
+.mat-card-footer{
+  font-style: oblique;
+  color: rgba(97, 98, 98, 0.804);
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h1 i18n>Perimetros e Diâmetros Corporais</h1>
+        <h1 i18n>Perímetros e Diâmetros Corporais</h1>
     </div>
 
     <div class="section">
@@ -38,7 +38,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Abdomen')">Abdómen</span></th>
+                                <th><span (click)="openDialog('Abdômen')">Abdômen</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].abdomen | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].abdomen | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
@@ -224,7 +224,7 @@
                 </div>
             </mat-tab>
             <!-- Mais Perimetros Corporais -->
-            <mat-tab i18n label="Outros Perimetros">
+            <mat-tab i18n label="Outros Perímetros">
                 <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>

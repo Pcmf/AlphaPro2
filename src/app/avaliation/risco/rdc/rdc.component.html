@@ -119,10 +119,10 @@
                             <mat-form-field>
                                 <mat-select #st="ngModel" name="st" [(ngModel)]="rdcData.st" (selectionChange)="calcRisco(f.value)">
                                     <mat-option value="0" i18n>Nunca</mat-option>
-                                    <mat-option value="1" i18n>quase nunca</mat-option>
-                                    <mat-option value="2" i18n>às vezes</mat-option>
-                                    <mat-option value="3" i18n>frequentemente</mat-option>
-                                    <mat-option value="4" i18n>quase sempre</mat-option>
+                                    <mat-option value="1" i18n>Quase nunca</mat-option>
+                                    <mat-option value="2" i18n>Às vezes</mat-option>
+                                    <mat-option value="3" i18n>Frequentemente</mat-option>
+                                    <mat-option value="4" i18n>Quase sempre</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </mat-list-item>
@@ -131,7 +131,7 @@
             </mat-card>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-subtitle i18n>Atividade Fisica</mat-card-subtitle>
+                    <mat-card-subtitle i18n>Atividade Física</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-list>
@@ -146,10 +146,10 @@
                             <mat-form-field>
                                 <mat-label i18n>Minutos/Semana</mat-label>
                                 <mat-select #af50="ngModel" name="af50" [(ngModel)]="rdcData.af50" (selectionChange)="calcRisco(f.value)">
-                                    <mat-option value="0">120</mat-option>
-                                    <mat-option value="1">90</mat-option>
-                                    <mat-option value="2">30</mat-option>
-                                    <mat-option value="3">0</mat-option>
+                                    <mat-option value="120">Maior ou igual 120</mat-option>
+                                    <mat-option value="90">Mais de 90</mat-option>
+                                    <mat-option value="30">30 ou mais</mat-option>
+                                    <mat-option value="29">Menos de 30</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </mat-list-item>
@@ -163,7 +163,7 @@
                 <mat-card-content>
                     <mat-list>
                         <mat-list-item>
-                            <mat-form-field>
+                            <mat-form-field style="width: 200px;"> 
                                 <mat-label i18n>Familiares doentes coronários > 60</mat-label>
                                 <input matInput #hf="ngModel" name="hf" [ngModel]="rdcData.hf" readonly>
                             </mat-form-field>
@@ -185,12 +185,12 @@
                     </mat-list>
                 </mat-card-content>
             </mat-card>
-            <mat-card class="mat-card-resultado">
+            <mat-card class="mat-card-resultado {{classRisco}}">
                 <mat-card-header>
                     <mat-card-title>NÍVEL DE RISCO</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <span i18n *ngIf="risco <= 1">Baixo</span>
+                    <span i18n *ngIf="!risco || risco <= 1">Baixo</span>
                     <span i18n *ngIf="risco == 2">Moderado</span>
                     <span i18n *ngIf="risco == 3">Alto</span>
                     <span i18n *ngIf="risco > 3">Muito Alto</span>

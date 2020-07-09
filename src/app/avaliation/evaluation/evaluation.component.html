@@ -47,8 +47,8 @@
                     </tr>
                     <tr>
                         <th>Evergadura <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].envergadura | number:'1.1-1': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].envergadura | number:'1.1-1': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].envergadura | number:'': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].envergadura | number:'': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="envergadura" #envergadura="ngModel" [(ngModel)]="newEvaluation.envergadura" type="number">
                         </td>

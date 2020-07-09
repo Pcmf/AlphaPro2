@@ -149,6 +149,23 @@ td > input {
   width: 125px;
 }
 
+.background-green {
+  background-color: rgb(189, 228, 121) !important;
+}
+
+.background-yellow {
+  background-color: rgba(230, 230, 134, 0.76) !important;
+}
+
+.background-red{
+  background-color: lightcoral !important;
+}
+
+.mat-card-subtitle{
+  text-align: center;
+  font-weight: 600;
+}
+
 @media only screen and (min-width: $min-width) {
   /* For desktop: */
   .container{

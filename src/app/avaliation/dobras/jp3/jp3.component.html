@@ -74,7 +74,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n><span (click)="openHelpDialog('Media')">Media</span></th>
+                        <th i18n><span (click)="openHelpDialog('Media')">Média</span></th>
                         <td *ngIf="pointer>=1 && student.sexo=='M'">
                             {{(+evaluation[pointer-1].peitoral + +evaluation[pointer-1].abdominal + +evaluation[pointer-1].crural) / 3 | number : '1.2-2': locale}}
                         </td>

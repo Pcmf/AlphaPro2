@@ -190,6 +190,11 @@ export class AnameneseComponent implements OnInit {
 
   saveHabitosSociais(form) {
     console.table(form);
+    if (form.fumante === 'N') {
+      form.qtos = 0;
+      form.Q4ATA = 0;
+      form.Q4ATA = 0;
+    }
     form.Q4BDATA = this.dataUltimoExame;
     this.saveData(form);
   }

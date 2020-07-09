@@ -179,11 +179,11 @@ export class ChartCompareComponent implements OnInit {
         {
           name: '% Livre',
           series: [...livres]
-        },
+        }/* ,
         {
           name: '% Desejada',
           series: [...desejadas]
-        }
+        } */
       ];
 
       const multi2 = [
@@ -204,7 +204,7 @@ export class ChartCompareComponent implements OnInit {
           series: [...pesoMuscular]
         },
         {
-          name: 'Osseo',
+          name: 'Ósseo',
           series: [...pesoOsseo]
         },
         {

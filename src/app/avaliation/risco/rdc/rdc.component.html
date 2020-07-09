@@ -185,7 +185,7 @@
                     </mat-list>
                 </mat-card-content>
             </mat-card>
-            <mat-card class="mat-card-resultado {{classRisco}}">
+            <mat-card *ngIf="risco >= 0" class="mat-card-resultado {{classRisco}}">
                 <mat-card-header>
                     <mat-card-title>NÍVEL DE RISCO</mat-card-title>
                 </mat-card-header>

@@ -18,8 +18,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -521,8 +520,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input class="hidde-arrows" name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -888,8 +886,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -1371,8 +1368,7 @@
                                 </button>
                             </th>
                             <th class="th-top" *ngIf="addForm">
-                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                    style="width: 110px;">
+                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
                             </th>
                         </tr>
 

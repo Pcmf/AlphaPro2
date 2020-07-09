@@ -21,8 +21,7 @@
                                 {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                         </th>
                         <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [ngModel]="newEvaluation.data" type="date"
-                                style="width: 110px;" readonly>
+                            <input name="data" #data="ngModel" [ngModel]="newEvaluation.data" type="date" class="data-input" readonly>
                         </th>
                     </tr>
                 </thead>

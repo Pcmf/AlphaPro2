@@ -15,8 +15,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addPerim">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newPerimetros.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newPerimetros.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -158,8 +157,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addDiam">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newDiametros.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newDiametros.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -234,8 +232,7 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addOutros">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newOutros.data" type="date"
-                                        style="width: 110px;">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newOutros.data" type="date" class="data-input">
                                 </th>
                             </tr>
                         </thead>

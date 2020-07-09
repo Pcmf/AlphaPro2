@@ -123,12 +123,12 @@
             </mat-card>
 
             <!-- Resultado -->
-            <mat-card class="mat-card-resultado {{classRisco}}">
+            <mat-card *ngIf="risco >= 0" class="mat-card-resultado {{classRisco}}">
                 <mat-card-header>
                     <mat-card-title>NÍVEL DE RISCO</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <h4>{{+risco}} - 
+                    <h4>{{risco}} - 
                     <span i18n *ngIf="risco == 0">Muito Baixo</span>
                     <span i18n *ngIf="risco >= 1 && risco < 5">Baixo</span>
                     <span i18n *ngIf="risco >= 5 && risco < 9">Potencial</span>

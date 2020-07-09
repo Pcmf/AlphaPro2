@@ -85,8 +85,8 @@ export class RDDCComponent implements OnInit, OnDestroy {
   }
 
   calcRisco(form) {
-    console.log(form);
     let points = 0;
+    this.risco = 0;
     if (form.smoker && form.smoker == '1') {
       points += 1;
     }

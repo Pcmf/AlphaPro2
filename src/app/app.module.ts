@@ -27,7 +27,7 @@ import { AvDashComponent } from './avaliation/av-dash/av-dash.component';
 import { PreDashComponent } from './prescription/pre-dash/pre-dash.component';
 import { RepDashComponent } from './reports/rep-dash/rep-dash.component';
 import { DateFormat } from './date-format';
-import { QPAFComponent } from './avaliation/risco/qpaf/qpaf.component';
+import { QPAFComponent, DialogParq } from './avaliation/risco/qpaf/qpaf.component';
 import { RDCComponent } from './avaliation/risco/rdc/rdc.component';
 import { RDDCComponent } from './avaliation/risco/rddc/rddc.component';
 import { PDCComponent } from './avaliation/componente-morfologica/pdc/pdc.component';
@@ -193,7 +193,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     WeltmanEtAlComponent,
     MetronomeComponent,
     ConfigsComponent,
-    VideoComponent
+    VideoComponent,
+    DialogParq
   ],
   imports: [
     BrowserModule,
@@ -211,7 +212,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   entryComponents: [
     DialogHelp,
-    DialogMedidas
+    DialogMedidas,
+    DialogParq
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},

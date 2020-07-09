@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Location} from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-qpaf',
@@ -14,7 +15,8 @@ export class QPAFComponent implements OnInit, OnDestroy {
   formS: any = [];
   constructor(private location: Location,
               private dataService: DataService,
-              private router: Router
+              private router: Router,
+              public dialog: MatDialog
               ) {
     this.id = JSON.parse(sessionStorage.selectedStudent).id;
     this.dataService.getData('clients/parq/' + this.id).subscribe(
@@ -35,6 +37,7 @@ export class QPAFComponent implements OnInit, OnDestroy {
     this.dataService.setData('clients/parq/' + this.id, this.formS).subscribe(
       resp => {
         console.log(resp);
+
       }
     );
   }
@@ -45,11 +48,31 @@ export class QPAFComponent implements OnInit, OnDestroy {
 
   save(form) {
     this.formS = form;
-    this.router.navigate(['/rdc']);
+    if (Object.values(form).includes('1')) {
+      this.openDialog();
+    } else {
+      this.router.navigate(['/rdc']);
+    }
   }
 
   calcRisco(form) {
     this.formS = form;
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogParq);
+    dialogRef.afterClosed().subscribe(
+      resp => this.router.navigate(['/rdc'])
+    );
+  }
+
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-parq',
+  templateUrl: 'dialog-parq.html',
+})
+  export class DialogParq {
 
 }

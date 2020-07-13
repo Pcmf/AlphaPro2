@@ -18,6 +18,7 @@ export class AnameneseComponent implements OnInit {
   dataIniPgm: any;
   dataUltimoExame: any;
 
+  doencasList: any = [];
   Parentesco: any = [];
   patologiasFamiliar: any = [];
   CardioParentesco: any = [];
@@ -69,6 +70,14 @@ export class AnameneseComponent implements OnInit {
                 }
               });
 
+            }
+          );
+          this.dataService.getData('doencas/' + this.selectedStudent.id).subscribe(
+            (respd: any[]) => {
+              this.doencasList.doencas = respd.map((el) => {
+                return el.doenca;
+                }
+              );
             }
           );
         } else {
@@ -145,6 +154,10 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveHistoricoPatologico(form) {
+    console.log(this.doencasList.doencas);
+    this.dataService.setData('doencas/' + this.selectedStudent.id, this.doencasList.doencas).subscribe(
+      resp => console.log(resp)
+    );
     this.saveData(form);
   }
 

@@ -274,8 +274,23 @@
                 <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
               </mat-radio-group>
               <mat-form-field class="input-lg" *ngIf="Q2B.value==1">
-                <mat-label i18n="Label">Qual(is)</mat-label>
-                <input matInput placeholder="" #Q2BQ="ngModel" name="Q2BQ" [(ngModel)]="student.Q2BQ">
+                <mat-label i18n="Label">Doenças</mat-label>
+                <mat-select i18n placeholder="selecione" multiple #doencas="ngModel" name="doencas"
+                  [(ngModel)]="doencasList.doencas">
+                  <mat-option value="Artrite reumatóide">Artrite reumatóide</mat-option>
+                  <mat-option value="Bronquite asmática">Bronquite asmática</mat-option>
+                  <mat-option value="Câncer">Câncer</mat-option>
+                  <mat-option value="Diabetes tipo I">Diabetes tipo I</mat-option>
+                  <mat-option value="Diabetes tipo II">Diabetes tipo II</mat-option>
+                  <mat-option value="Doenças cardíacas">Doenças cardíacas</mat-option>
+                  <mat-option value="Hipertensão">Hipertensão</mat-option>
+                  <mat-option value="Osteopenia">Osteopenia</mat-option>
+                  <mat-option value="Osteoporose">Osteoporose</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="input-lg" *ngIf="Q2B.value==1">
+                <mat-label i18n="Label">Outras</mat-label>
+                <input matInput placeholder="Qual(is)" #Q2BQ="ngModel" name="Q2BQ" [(ngModel)]="student.Q2BQ">
               </mat-form-field>
               <mat-form-field class="input-lg">
                 <mat-label i18n="Label">Observações</mat-label>

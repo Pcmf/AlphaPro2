@@ -88,8 +88,8 @@ export class StComponent implements OnInit {
 
   addEvaluation() {
     this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
-        if (resp) {
+      (resp: any[]) => {
+        if (resp.length > 0) {
           if (resp[0].difdias > 2) {
             this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
           }

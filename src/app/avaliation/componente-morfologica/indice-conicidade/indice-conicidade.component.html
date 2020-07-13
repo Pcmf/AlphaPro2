@@ -38,7 +38,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cintura | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrrows" name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number" style="width: 60px;">
+                            <input class="hidde-arrows" name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number" style="width: 60px;">
                         </td>
                     </tr>
                     <tr>
@@ -48,8 +48,8 @@
                     </tr>
                     <tr>
                         <th i18n>Classificação*</th>
-                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1]) | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
+                        <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
                     </tr>
                     <tr>
                         <td colspan="3"><small><em>*Pitanga & Lessa - IC como descriminador de risco coronário.</em></small></td>

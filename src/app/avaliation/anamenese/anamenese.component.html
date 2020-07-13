@@ -685,7 +685,7 @@
                 <input matInput i18n placeholder="Meses" #Q4ATM="ngModel" name="Q4ATM" [(ngModel)]="student.Q4ATM">
               </mat-form-field>
               <mat-label i18n *ngIf="fumante.value == 'N'">Se parou, há quanto tempo?</mat-label>
-              <mat-form-field class="input-sm" *ngIf="fumante.value == 0">
+              <mat-form-field class="input-sm" *ngIf="fumante.value == 'N'">
                 <input matInput placeholder="Anos" #Q4APA="ngModel" name="Q4APA" [(ngModel)]="student.Q4APA">
               </mat-form-field>
               <mat-form-field class="input-sm" *ngIf="fumante.value == 'N'">

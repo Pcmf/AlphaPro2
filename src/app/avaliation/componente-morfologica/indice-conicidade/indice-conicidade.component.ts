@@ -21,21 +21,26 @@ export class IndiceConicidadeComponent implements OnInit {
   private coefRisco = 1.25;
   locale: string;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private snackBar: MatSnackBar,
-              public dialog: MatDialog
-              ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {
     this.locale = this.dataService.getCountryId();
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
     this.dataService.getLastEvaluation(this.selectedStudent.id).subscribe(
-      resp => {
-        this.lastEvaluation = resp[0];
-        if (this.lastEvaluation.difdias > 1) {
-          this.openSnackBar('Atenção! Esta avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
-        }
+      (resp: any[]) => {
+        if (resp.length > 0) {
+          this.lastEvaluation = resp[0];
+          if (this.lastEvaluation.difdias > 1) {
+            this.openSnackBar('Atenção! Esta avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
+          }
+        }/*  else {
+          this.openSnackBar('Atenção! Faltam algumas avaliações complementares!', '');
+        } */
       }
     );
 
@@ -45,21 +50,21 @@ export class IndiceConicidadeComponent implements OnInit {
     this.dataService.getData('clients/corporal/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          this.evaluation =  resp.filter((elem) => {
-                if (elem.altura > 0 && elem.peso > 0 && elem.cintura > 0){
-                  return elem;
-                }
+          this.evaluation = resp.filter((elem) => {
+            if (elem.altura > 0 && elem.peso > 0 && elem.cintura > 0) {
+              return elem;
+            }
           });
           this.maxPointer = this.evaluation.length;
           this.pointer = this.maxPointer - 1;
 
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
     );
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -82,7 +87,7 @@ export class IndiceConicidadeComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.altura = this.lastEvaluation.altura;
     this.newEvaluation.peso = this.lastEvaluation.peso;
-    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.addEval = true;
   }
 
@@ -95,8 +100,8 @@ export class IndiceConicidadeComponent implements OnInit {
       this.coefRisco = 1.18;
     }
     if (+this.getIC(evaluation) >= this.coefRisco) {
-        return 'Risco Elevado';
-      }
+      return 'Risco Elevado';
+    }
     return 'Risco Baixo';
   }
 
@@ -122,13 +127,13 @@ export class IndiceConicidadeComponent implements OnInit {
     });
   }
 
-    // Help Dialog
-    openDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
-    }
+  // Help Dialog
+  openDialog(type): void {
+    this.dialog.open(DialogHelpDB, {
+      width: '250px',
+      data: { type }
+    });
+  }
 
 
 

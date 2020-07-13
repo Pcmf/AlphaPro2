@@ -23,7 +23,6 @@ export class DialogMedidas {
       private dataService: DataService,
       private datapipe: DatePipe
     ) {
-      console.log(data);
       if (data.newAv && data.daysAv) {
         this.msg += 'A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
       }

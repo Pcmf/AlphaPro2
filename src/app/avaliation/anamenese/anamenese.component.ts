@@ -154,10 +154,16 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveHistoricoPatologico(form) {
-    console.log(this.doencasList.doencas);
-    this.dataService.setData('doencas/' + this.selectedStudent.id, this.doencasList.doencas).subscribe(
-      resp => console.log(resp)
-    );
+    console.log(form);
+    if (form.Q2B === '1') {
+      this.dataService.setData('doencas/' + this.selectedStudent.id, this.doencasList.doencas).subscribe(
+        resp => console.log(resp)
+      );
+    } else {
+      this.dataService.delete('doencas/' + this.selectedStudent.id).subscribe(
+        resp => console.log(resp)
+      );
+    }
     this.saveData(form);
   }
 

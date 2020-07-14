@@ -4,3 +4,18 @@
     justify-content: flex-start;
   }
   
+  .section-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+
+  text{
+    font-size: small;
+  }
+
+  .title-text{
+    font-size: large;
+    font-weight: 600;
+  }

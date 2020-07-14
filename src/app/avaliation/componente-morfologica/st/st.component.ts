@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import {  MatSnackBar } from '@angular/material/snack-bar';
@@ -98,7 +98,6 @@ export class StComponent implements OnInit {
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          console.log(this.newEvaluation);
           this.addEval = true;
         } else {
           this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
@@ -108,7 +107,6 @@ export class StComponent implements OnInit {
   }
 
   save(form) {
-    console.log(form);
     if (form.peso != this.tempPeso || form.altura != this.tempAltura) {
       // gravar avaliação
       this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
@@ -160,37 +158,35 @@ export class StComponent implements OnInit {
 
 
   calcIP(evaluation) {
-    return evaluation.altura * 100 / Math.pow(+evaluation.peso, 1 / 3);
+    return (+evaluation.altura * 100 / Math.pow(+evaluation.peso, 1 / 3)).toFixed(2);
   }
 
   fatorX(evaluation) {
-    const IP = this.calcIP(evaluation);
+    const IP = +this.calcIP(evaluation);
     let fx = 0;
     if (IP > 40.75) {
-      fx = (evaluation.triciptal + evaluation.subescapular + evaluation.suprailiaca) / 10 * 170.18 / evaluation.altura * 100;
+      fx = (+evaluation.triciptal + +evaluation.subescapular + +evaluation.suprailiaca) / 10 * 170.18 / +evaluation.altura * 100;
     } else if ( IP > 38.28 && IP <=  40.75) {
-      fx = 4 + (evaluation.cotovelo + evaluation.joelho + evaluation.bracoc - evaluation.triciptal / 10
-                + evaluation.pernad - evaluation.geminal / 10) / 8;
+      fx = 4 + (+evaluation.cotovelo + +evaluation.joelho + +evaluation.bracoc - +evaluation.triciptal / 10
+                + +evaluation.pernad - +evaluation.geminal / 10) / 8;
     } else {
-      fx = (evaluation.altura * 100) / Math.pow(evaluation.peso, 1 / 3);
+      fx = (+evaluation.altura * 100) / Math.pow(+evaluation.peso, 1 / 3);
     }
     return fx;
   }
 
   getEndomorfia(evaluation) {
     const somaDobras = +evaluation.triciptal + +evaluation.subescapular + +evaluation.geminal + +evaluation.suprailiaca;
-    console.log(somaDobras);
     return +(-0.7182 + 0.1551 * +somaDobras - 0.00068 * Math.pow(+somaDobras, 2) + 0.0000014 * Math.pow(+somaDobras, 3)).toFixed(2);
   }
 
   getMesomorfia(evaluation) {
-    return  +(0.858 * +evaluation.cotovelo + 0.601 * +evaluation.joelho + 0.188 * ( +evaluation.bracoc - evaluation.triciptal / 10)
-             + 0.161 * (+evaluation.pernad - evaluation.geminal / 10) - 0.131 * (+evaluation.altura * 100) + 4.5).toFixed(2);
+    return  +(0.858 * +evaluation.cotovelo + 0.601 * +evaluation.joelho + 0.188 * ( +evaluation.bracoc - +evaluation.triciptal / 10)
+             + 0.161 * (+evaluation.pernad - +evaluation.geminal / 10) - 0.131 * (+evaluation.altura * 100) + 4.5).toFixed(2);
   }
 
   getEctomorfia(evaluation) {
     const ip = (+evaluation.altura * 100) / Math.pow(+evaluation.peso , (1 / 3));
-    console.log(ip);
     if (+ip > 40.75) {
       return (+ip * 0.732 - 28.58).toFixed(2);
     }
@@ -201,11 +197,15 @@ export class StComponent implements OnInit {
   }
 
   getX(evaluation) {
-    return this.fatorX(evaluation) - this.getEndomorfia(evaluation);
+    const X =  (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
+    console.log(X);
+    return (220 + +X * 10);
   }
 
   getY(evaluation) {
-    return 2 * this.getMesomorfia(evaluation) - this.getEndomorfia(evaluation) - this.fatorX(evaluation);
+    const Y =  +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
+    console.log(Y);
+    return (240 - +Y * 10);
   }
 
 }

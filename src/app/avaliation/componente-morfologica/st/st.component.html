@@ -127,6 +127,29 @@
                         <td *ngIf="pointer>=1">{{getEctomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getEctomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
+                    <tr>
+                        <th i18n><span (click)="openDialog('X')">X</span></th>
+                        <td *ngIf="pointer>=1">{{(getX(evaluation[pointer-1]) - 220) / 10 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{(getX(evaluation[pointer]) - 220) /10 | number: '': locale}}</td>
+                    </tr>
+                    <tr>
+                        <th i18n><span (click)="openDialog('Y')">Y</span></th>
+                        <td *ngIf="pointer>=1">{{(getY(evaluation[pointer-1]) - 240) / -10 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{(getY(evaluation[pointer]) - 240) / -10 | number: '': locale}}</td>
+                    </tr>
+                    <tr>
+                        <th i18n>&nbsp;</th>
+                        <td *ngIf="pointer>=1">
+                            <svg width="20" height="20">
+                                <circle cx="10" cy="10" r="10" fill="black"></circle>
+                            </svg>
+                        </td>
+                        <td *ngIf="pointer>=0">
+                            <svg width="20" height="20">
+                                <circle cx="10" cy="10" r="10" fill="red"></circle>
+                            </svg>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -148,6 +171,61 @@
                 <button *ngIf="addEval" mat-fab>
                     <mat-icon class="mat-18">check</mat-icon>
                 </button>
+            </div>
+
+            <div class="section-info">
+                <svg width="420" height="490">
+
+                    <rect x="20" y="40" width="400" height="400" style="fill:rgb(200,200,205);stroke-width:3;stroke:rgb(0,0,0)" />
+
+                    <line x1="0" y1="90" x2="420" y2="90" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="140" x2="420" y2="140" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="190" x2="420" y2="190" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="240" x2="420" y2="240" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="290" x2="420" y2="290" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="340" x2="420" y2="340" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="20" y1="390" x2="420" y2="390" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+
+                    <line x1="70" y1="40" x2="70" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="120" y1="40" x2="120" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="170" y1="40" x2="170" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="220" y1="40" x2="220" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="270" y1="40" x2="270" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="320" y1="40" x2="320" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="370" y1="40" x2="370" y2="440" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+
+                    <line x1="20" y1="40" x2="420" y2="440" style="stroke:rgb(35, 89, 240);stroke-width:2" />
+                    <line x1="20" y1="440" x2="420" y2="40" style="stroke:rgb(238, 16, 16);stroke-width:2" />
+                    <line x1="220" y1="40" x2="220" y2="440" style="stroke:rgb(15, 105, 3);stroke-width:2" />
+
+                    <text x="0" y="50" fill="darkblue">20</text>
+                    <text x="0" y="90" fill="darkblue">15</text>
+                    <text x="0" y="140" fill="darkblue">10</text>
+                    <text x="5" y="190" fill="darkblue">5</text>
+                    <text x="5" y="240" fill="darkblue">0</text>
+                    <text x="0" y="290" fill="darkblue">-5</text>
+                    <text x="0" y="340" fill="darkblue">-10</text>
+                    <text x="0" y="390" fill="darkblue">-15</text>
+                    <text x="0" y="440" fill="darkblue">-20</text>
+
+                    <text x="10" y="460" fill="darkblue">-20</text>
+                    <text x="60" y="460" fill="darkblue">-15</text>
+                    <text x="110" y="460" fill="darkblue">-10</text>
+                    <text x="170" y="460" fill="darkblue">-5</text>
+                    <text x="218" y="460" fill="darkblue">0</text>
+                    <text x="270" y="460" fill="darkblue">5</text>
+                    <text x="310" y="460" fill="darkblue">10</text>
+                    <text x="360" y="460" fill="darkblue">15</text>
+                    <text x="406" y="460" fill="darkblue">20</text>
+
+                    <text class="title-text" x="160" y="30" fill="blue">Mesomorfismo</text>
+                    <text class="title-text" x="20" y="480" fill="blue">Endomorfismo</text>
+                    <text class="title-text" x="300" y="480" fill="blue">Ectomorfismo</text>
+
+                    <circle *ngIf="pointer>=1" [attr.cx]="getX(evaluation[pointer-1])" [attr.cy]="getY(evaluation[pointer-1])" r="5" stroke="black" fill="black" />
+                    <circle *ngIf="pointer>=0" [attr.cx]="getX(evaluation[pointer])" [attr.cy]="getY(evaluation[pointer])" r="5" stroke="red" fill="red" />
+                    Sorry, your browser does not support inline SVG.  
+                </svg>
             </div>
 
         </form>

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-indice-conicidade',
@@ -26,7 +26,7 @@ export class IndiceConicidadeComponent implements OnInit {
     private dataService: DataService,
     private datapipe: DatePipe,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
@@ -38,9 +38,7 @@ export class IndiceConicidadeComponent implements OnInit {
           if (this.lastEvaluation.difdias > 1) {
             this.openSnackBar('Atenção! Esta avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
           }
-        }/*  else {
-          this.openSnackBar('Atenção! Faltam algumas avaliações complementares!', '');
-        } */
+        }
       }
     );
 
@@ -127,48 +125,7 @@ export class IndiceConicidadeComponent implements OnInit {
     });
   }
 
-  // Help Dialog
   openDialog(type): void {
-    this.dialog.open(DialogHelpDB, {
-      width: '250px',
-      data: { type }
-    });
+    this.dialogService.openHelp(type);
   }
-
-
-
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
-        } else {
-          this.help.info = 'Não existe informação!.';
-        }
-      }
-    );
-  }
-
-
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

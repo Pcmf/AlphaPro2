@@ -124,7 +124,7 @@
                 <app-chart-pie [values]="single2"></app-chart-pie>
             </div>
             <div *ngIf="chartSelected=='compare'">
-                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada">
+                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada" [evaluations] = "evaluation">
                 </app-chart-compare>
             </div>
         </div>

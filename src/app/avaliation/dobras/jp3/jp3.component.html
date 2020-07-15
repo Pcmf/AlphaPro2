@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="student.sexo == 'F'">
-                        <th i18n><span (click)="openHelpDialog('Suprailiaca')">Suprailiaca</span></th>
+                        <th i18n><span (click)="openHelpDialog('Suprailíaca')">Suprailíaca</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="addEval">

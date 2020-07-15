@@ -5,7 +5,7 @@ import { AgeService } from 'src/app/services/age.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-vogel',
@@ -39,7 +39,7 @@ export class VogelComponent implements OnInit {
               private snackBar: MatSnackBar,
               private protocolos: ProtcolosDobrasService,
               private prepareChart: PrepareChartService,
-              public dialog: MatDialog
+              public dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -53,8 +53,11 @@ export class VogelComponent implements OnInit {
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          this.maxPointer = resp.length;
-          this.evaluation = resp;
+          // Select only the ones that have all values 
+          this.evaluation = resp.filter((el) => {
+            return el.pescoco > 0 && el.antebracod > 0 && el.abdomen > 0 && el.abdomen2 > 0  && el.quadril > 0;
+          });
+          this.maxPointer = this.evaluation.length;
           // update age for every evaluation with evaluation date and birthdate
           this.evaluation.map((elem) => {
             elem.idade = this.ageService.getAgeFromDate1(elem.data, this.student.dt_nasc);
@@ -149,43 +152,8 @@ export class VogelComponent implements OnInit {
 
     // Help Dialog
     openHelpDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
+      this.dialogService.openHelp(type);
     }
-
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
-        } else {
-          this.help.info = 'Não existe informação!.';
-        }
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
 }
 

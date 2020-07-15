@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Altura <small>(m)</small></th>
+                        <th i18n><span (click)="openDialog('Altura')">Altura <small> (m)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -26,7 +26,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Peso <small>(Kg)</small></th>
+                        <th i18n><span (click)="openDialog('Peso')">Peso <small> (Kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -42,7 +42,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>IC</th>
+                        <th i18n><span (click)="openDialog('IC')">IC</span></th>
                         <td *ngIf="pointer>=1">{{getIC(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getIC(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>

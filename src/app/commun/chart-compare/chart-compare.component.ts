@@ -14,6 +14,7 @@ export class ChartCompareComponent implements OnInit {
   @Input() id: number;
   @Input() protocolo: number;
   @Input() percgd: number;
+  @Input() evaluations: any[];
 
   // Grafico
   multi: any[];
@@ -52,17 +53,20 @@ export class ChartCompareComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.protocolo === 9 || this.protocolo === 13 || this.protocolo === 14 || this.protocolo === 17 || this.protocolo === 18) {
-      this.dataService.getData('clients/corporal/' + this.id).subscribe(
-        (respc: any[]) => {
-          respc.map((ln) => {
+    if (this.protocolo === 9 || this.protocolo === 32 || this.protocolo === 33 || this.protocolo === 14 ||
+       this.protocolo === 17 || this.protocolo === 18) {
+
+          this.evaluations.map((ln) => {
             ln.sexo = this.student.sexo;
             ln.idade = this.ageService.getAgeFromDate1(ln.data, this.student.dt_nasc);
             switch (+this.protocolo) {
               case 9:
                 this.dados = this.protocolos.protocoloDeuremberg(ln, this.percgd);
                 break;
-              case 13:
+              case 32:
+                  this.dados = this.protocolos.protocoloVogel(ln, this.percgd);
+                  break;
+              case 33:
                 this.dados = this.protocolos.protocoloWeltmanEtAl(ln, this.percgd);
                 break;
               case 14:
@@ -80,8 +84,6 @@ export class ChartCompareComponent implements OnInit {
             this.startCharts();
           });
 
-        }
-      );
 
     } else {
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.id).subscribe(

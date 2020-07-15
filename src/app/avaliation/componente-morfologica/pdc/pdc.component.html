@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><span (click)="openDialog('Torax')">Tórax</span></th>
+                                <th><span (click)="openDialog('Tórax')">Tórax</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].torax | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].torax | number: '': locale}}</td>
                                 <td *ngIf="addPerim">

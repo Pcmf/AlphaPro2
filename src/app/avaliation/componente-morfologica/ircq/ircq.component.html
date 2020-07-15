@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-        <h1 i18n>Indice de Relação Cintura/Quadril</h1>
+        <h1 i18n>Índice de Relação Cintura/Quadril</h1>
     </div>
 
     <div class="section">
@@ -14,21 +14,21 @@
             </thead>
             <tbody>
                 <tr>
-                    <th i18n>Cintura <small>(cm)</small></th>
-                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
-                    <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
+                    <th i18n><span (click)="openDialog('Cintura')">Cintura <small>(cm)</small></span></th>
+                    <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
+                    <td *ngIf="pointer>=0">{{evaluation[pointer].cintura | number: '': locale}}</td>
                 </tr>
                 <tr>
-                    <th i18n>Quadril <small>(cm)</small></th>
+                    <th i18n><span (click)="openDialog('Quadril')">Quadril <small>(cm)</small></span></th>
                     <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
                     <td *ngIf="pointer>=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
                 </tr>
                 <tr>
-                    <th i18n>IRCQ</th>
+                    <th i18n><span (click)="openDialog('IRCQ')">IRCQ</span></th>
                     <td *ngIf="pointer>=1">
-                        {{+evaluation[pointer-1].abdomen / +evaluation[pointer-1].quadril | number:'1.2-2': locale}}</td>
+                        {{+evaluation[pointer-1].cintura / +evaluation[pointer-1].quadril | number:'1.2-2': locale}}</td>
                     <td *ngIf="pointer>=0">
-                        {{+evaluation[pointer].abdomen / +evaluation[pointer].quadril | number:'1.2-2': locale}}</td>
+                        {{+evaluation[pointer].cintura / +evaluation[pointer].quadril | number:'1.2-2': locale}}</td>
                 </tr>
                 <tr>
                     <th i18n>Classificação</th>

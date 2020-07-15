@@ -64,7 +64,7 @@ export class EvaluationComponent implements OnInit {
 
   save(form) {
     form.tmb = this.calcTMB(form);
-    form.imc = this.calcIMC(form);
+   // form.imc = this.calcIMC(form);
     console.table(form);
     this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
       resp => {

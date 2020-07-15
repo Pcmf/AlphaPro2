@@ -203,7 +203,7 @@ export class BalancaComponent implements OnInit {
   }
 
   // Help Dialog
-  openHelpDialog(type): void {
+  openDialog(type): void {
     this.dialogService.openHelp(type);
   }
 

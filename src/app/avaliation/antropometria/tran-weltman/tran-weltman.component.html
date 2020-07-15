@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Altura</th>
+                        <th><span (click)="openHelpDialog('Altura')">Altura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
@@ -111,7 +111,7 @@
                 <app-chart-pie [values]="single2"></app-chart-pie>
             </div>
             <div *ngIf="chartSelected=='compare'">
-                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada">
+                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada" [evaluations]="evaluation">
                 </app-chart-compare>
             </div>
         </div>

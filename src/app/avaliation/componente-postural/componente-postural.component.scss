@@ -10,13 +10,16 @@
 }
 
 .form-select-sm {
-  width: 100px;
+  width: 90px;
 }
-.form-select-sm{
-  width: 75px;
-}
+
 .mat-form-field{
   font-size: small;
+}
+/* altera o label do input */
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: rgba(94, 91, 91, 0.94) !important;
+  font-size: small !important; 
 }
 
 

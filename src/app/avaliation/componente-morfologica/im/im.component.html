@@ -15,48 +15,42 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Altura <small>(m)</small></th>
+                        <th i18n><span (click)="openDialog('Altura')">Altura <small>(m)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                     </tr>
                     <tr>
-                        <th i18n>Peso <small>(Kg)</small></th>
+                        <th i18n><span (click)="openDialog('Peso')">Peso <small>(Kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                     </tr>
                     <tr>
-                        <th i18n>IMC</th>
+                        <th i18n><span (click)="openDialog('IMC')">IMC</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].imc | number: '': locale}}</td>
                     </tr>
                     <tr>
-                        <th i18n>Classificação<br />Sobrepeso</th>
+                        <th i18n><span (click)="openDialog('Classificação Sobrepeso')">Classificação<br />Sobrepeso</span></th>
                         <td *ngIf="pointer>=1">
                             <span *ngIf="evaluation[pointer-1].imc < 18.5">Abaixo do Normal</span>
                             <span
                                 *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25">Normal</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Acima do
-                                Normal</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade
-                                I</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade
-                                II</span>
+                            <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Acima do Normal</span>
+                            <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade I</span>
+                            <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade II</span>
                             <span *ngIf="evaluation[pointer-1].imc >= 40">Obesidade Extrema</span>
                         </td>
                         <td *ngIf="pointer>=0">
                             <span *ngIf="evaluation[pointer].imc < 18.5">Abaixo do Normal</span>
                             <span *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25">Normal</span>
-                            <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Acima do
-                                Normal</span>
-                            <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade
-                                I</span>
-                            <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade
-                                II</span>
+                            <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Acima do Normal</span>
+                            <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade I</span>
+                            <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade II</span>
                             <span *ngIf="evaluation[pointer].imc >= 40">Obesidade Extrema</span>
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Risco de Saúde</th>
+                        <th i18n><span (click)="openDialog('Risco de Saúde')">Risco de Saúde</span></th>
                         <td *ngIf="pointer>=1">
                             <div *ngIf="student.sexo=='M'">
                                 <span *ngIf="evaluation[pointer-1].imc < 19">Baixo</span>

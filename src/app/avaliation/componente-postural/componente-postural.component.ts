@@ -19,6 +19,7 @@ export class ComponentePosturalComponent implements OnInit {
   newData: any = [];
   data: string;
   selectedTab = 0;
+  locale: string;
   // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
@@ -49,6 +50,7 @@ export class ComponentePosturalComponent implements OnInit {
               private datapipe: DatePipe,
               private dialogService: DialogService
   ) {
+    this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
   }

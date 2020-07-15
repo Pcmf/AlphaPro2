@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span>Peso</span></th>
+                        <th><span (click)="openDialog('Peso')">Peso</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -34,7 +34,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura_bl | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura_bl | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -42,7 +42,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Gordura Total <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Gordura Total')">Gordura Total <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{+evaluation[pointer-1].gordura_total  | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{+evaluation[pointer].gordura_total | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Massa Gorda <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Massa Gorda')">Massa Gorda <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_gorda | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].massa_gorda | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -58,7 +58,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Massa Magra <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Massa Magra')">Massa Magra <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_magra | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].massa_magra | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -66,7 +66,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Gordura Visceral <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Gordura Visceral')">Gordura Visceral <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -77,7 +77,7 @@
 
                     <tr><th class="form-subtitle">Massa Muscular</th></tr>
                     <tr>
-                        <th>Membros Superiores Dir <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Membros Superiores Dir')">Membros Superiores Dir <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_supd | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].mm_supd | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -86,7 +86,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Membros Superiores Esq <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Membros Superiores Esq')">Membros Superiores Esq <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_msupe | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].mm_msupe | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -95,7 +95,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Membros Inferiores Dir <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Membros Inferiores Dir')">Membros Inferiores Dir <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_minfd | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].mm_minfd | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -104,7 +104,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Membros Inferiores Esq <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Membros Inferiores Esq')">Membros Inferiores Esq <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_minfe | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].mm_minfe | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -113,7 +113,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Tronco <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Tronco')">Tronco <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_tronco | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].mm_tronco | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -123,15 +123,14 @@
                     </tr>
 
                     <tr>
-                        <th>Taxa Metabólica Basal</th>
+                        <th><span (click)="openDialog('Taxa Metabólica Basal')">Taxa Metabólica Basal</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tmb | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tmb | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;
-                           <!--  <input class="number" name="tmb" #tmb="ngModel" [(ngModel)]="newEvaluation.tmb" type="number"> -->
                         </td>
                     </tr>
                     <tr>
-                        <th>Reactância</th>
+                        <th><span (click)="openDialog('Reactância')">Reactância</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].reactancia | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].reactancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -140,7 +139,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Estrutura Ossea</th>
+                        <th><span (click)="openDialog('Estrutura Óssea')">Estrutura Óssea</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].estrutura_ossea | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].estrutura_ossea | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -149,7 +148,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Peso Desejado <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Peso Desejado')">Peso Desejado <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso_desejado | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso_desejado | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -158,15 +157,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Nivel de Atividade Fisica</th>
+                        <th><span (click)="openDialog('Nível de Atividade Física')">Nível de Atividade Física</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].naf | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].naf | number: '': locale}}</td>
                         <td *ngIf="addEval">%&nbsp;
-                            <!-- <input class="number" name="naf" #naf="ngModel" [(ngModel)]="newEvaluation.naf" type="number"> -->
                         </td>
                     </tr>
                     <tr>
-                        <th>Água Extracelular <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Água Extracelular')">Água Extracelular <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -175,7 +173,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Água Corporal Total <small>(kg)</small></th>
+                        <th><span (click)="openDialog('Água Corporal Total')">Água Corporal Total <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -184,7 +182,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Impedância</th>
+                        <th><span (click)="openDialog('Impedância')">Impedância</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].impedancia | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].impedancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -193,7 +191,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Relação AT/AEC</th>
+                        <th><span (click)="openDialog('Relação AT/AEC')">Relação AT/AEC</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].impedancia | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].impedancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -203,8 +201,8 @@
                     </tr>
                     <tr>
                         <th><span>Classificação</span></th>
-                        <td *ngIf="pointer>=1">TODO</td>
-                        <td *ngIf="pointer>=0">TODO</td>
+                        <td *ngIf="pointer>=1">TO DO</td>
+                        <td *ngIf="pointer>=0">TO DO</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                 </tbody>

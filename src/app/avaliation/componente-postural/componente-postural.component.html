@@ -18,7 +18,8 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -29,10 +30,8 @@
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da cabeça')">Inclinação</span></th>
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabi}}
-                                    <span *ngIf="oldData[pointer-1].vacabig"><br />{{oldData[pointer-1].vacabig}}</span>
                                 </td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}
-                                    <span *ngIf="oldData[pointer].vacabig"><br />{{oldData[pointer].vacabig}}</span>
                                 </td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -43,7 +42,15 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input class="hidde-arrows" type="number" name="vacabig" #vacabig="ngModel" [(ngModel)]="newData.vacabig" placeholder="graus">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Graus</th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabig | number: '': locale}}</td>
+                                <td *ngIf="pointer>=0">{{oldData[pointer].vacabig | number: '': locale}}</td>
+                                <td *ngIf="addForm">
+                                    <input class="hidde-arrows" type="number" name="vacabig" #vacabig="ngModel"
+                                        [(ngModel)]="newData.vacabig">
                                 </td>
                             </tr>
                             <tr>
@@ -112,8 +119,15 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input type="number" name="vatrocoinclinacaog" #vatrocoinclinacaog="ngModel"
-                                        [(ngModel)]="newData.vatrocoinclinacaog" placeholder="graus">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Graus</th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatroncoinclinacaog | number: '': locale}}</td>
+                                <td *ngIf="pointer>=0">{{oldData[pointer].vatroncoinclinacaog | number: '': locale}}</td>
+                                <td *ngIf="addForm">
+                                    <input class="hidde-arrows" type="number" name="vatrocoinclinacaog"
+                                        #vatrocoinclinacaog="ngModel" [(ngModel)]="newData.vatrocoinclinacaog">
                                 </td>
                             </tr>
                             <tr>
@@ -141,8 +155,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vathales}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vathales="ngModel" name="vathales"
-                                            [(ngModel)]="newData.vathales" placeholder="selecione">
+                                        <mat-select #vathales="ngModel" name="vathales" [(ngModel)]="newData.vathales"
+                                            placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -160,8 +174,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapelveinclinacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vapelveinclinacao="ngModel" name="vapelveinclinacao" [(ngModel)]="newData.vapelveinclinacao"
-                                            placeholder="selecione">
+                                        <mat-select #vapelveinclinacao="ngModel" name="vapelveinclinacao"
+                                            [(ngModel)]="newData.vapelveinclinacao" placeholder="selecione">
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Simétrico">Simétrico</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -175,8 +189,8 @@
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapelverotacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
-                                        <mat-select #vapelverotacao="ngModel" name="vapelverotacao" [(ngModel)]="newData.vapelverotacao"
-                                            placeholder="selecione">
+                                        <mat-select #vapelverotacao="ngModel" name="vapelverotacao"
+                                            [(ngModel)]="newData.vapelverotacao" placeholder="selecione">
                                             <mat-option value="Normal">Normal</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -520,7 +534,8 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -599,7 +614,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros Anteriorizados (rotação interna)')">Anteriorizados
-                                        <br/><small>(rotação interna)</small></span></th>
+                                        <br /><small>(rotação interna)</small></span></th>
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroanteriorizados}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroanteriorizados}}</td>
                                 <td *ngIf="addForm">
@@ -616,7 +631,7 @@
                             <tr>
                                 <th><span
                                         (click)="openDialog('Ombros Posteriorizados (rotação externa)')">Posteriorizados
-                                        <br/><small>(rotação interna)</small></span></th>
+                                        <br /><small>(rotação interna)</small></span></th>
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroposteriorizados}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroposteriorizados}}</td>
                                 <td *ngIf="addForm">
@@ -886,7 +901,8 @@
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
@@ -942,8 +958,15 @@
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input class="hidde-arrows" type="number" name="vpescolioseg" #vpescolioseg="ngModel"
-                                        [(ngModel)]="newData.vpescolioseg" placeholder="graus">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Graus</th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpescolioseg | number: '': locale}}</td>
+                                <td *ngIf="pointer>=0">{{oldData[pointer].vpescolioseg | number: '': locale}}</td>
+                                <td *ngIf="addForm">
+                                    <input class="hidde-arrows" type="number" name="vpescolioseg"
+                                        #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
                                 </td>
                             </tr>
                             <!-- OMBROS -->
@@ -1091,8 +1114,16 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                    <input class="hidde-arrows" type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
-                                        [(ngModel)]="newData.vpescoliosedorsalg" placeholder="graus">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Graus</th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpescoliosedorsalg | number: '': locale}}
+                                </td>
+                                <td *ngIf="pointer>=0">{{oldData[pointer].vpescoliosedorsalg | number: '': locale}}</td>
+                                <td *ngIf="addForm">
+                                    <input class="hidde-arrows" type="number" name="vpescoliosedorsalg"
+                                        #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                             </tr>
                             <!-- ESCOLIOSE LOMBAR -->
@@ -1111,8 +1142,15 @@
                                             <mat-option value="Direita">Direita</mat-option>
                                         </mat-select>
                                     </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Graus</th>
+                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vpescolioselombarg | number: '': locale}}</td>
+                                <td *ngIf="pointer>=0">{{oldData[pointer].vpescolioselombarg | number: '': locale}}</td>
+                                <td>
                                     <input class="hidde-arrows" type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
-                                        [(ngModel)]="newData.vpescolioselombarg" placeholder="graus">
+                                     [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                             </tr>
                             <!-- PELVE -->
@@ -1368,7 +1406,8 @@
                                 </button>
                             </th>
                             <th class="th-top" *ngIf="addForm">
-                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
+                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                    class="data-input">
                             </th>
                         </tr>
 

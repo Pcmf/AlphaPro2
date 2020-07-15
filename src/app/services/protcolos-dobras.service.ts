@@ -40,11 +40,11 @@ export class ProtcolosDobrasService {
 
     if (morfo.sexo == 'M') { // Masculino
       const somatorio = +morfo.peitoral + +morfo.abdominal + +morfo.crural;
-      const DC = 1.109380 - 0.0008267 * somatorio + 0.0000016 * Math.pow(somatorio, 2) - 0.0002574 * morfo.idade;
+      const DC = 1.109380 - 0.0008267 * somatorio + 0.0000016 * Math.pow(somatorio, 2) - 0.0002574 * +morfo.idade;
       this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     } else {  // Femenino
       const somatorio = +morfo.triciptal + +morfo.suprailiaca + +morfo.crural;
-      const DC = 1.0994921 - 0.0009929 * somatorio + 0.0000023 * Math.pow(somatorio, 2) - 0.0001392 * morfo.idade;
+      const DC = 1.0994921 - 0.0009929 * somatorio + 0.0000023 * Math.pow(somatorio, 2) - 0.0001392 * +morfo.idade;
       this.perGordura = +(((5.26 / DC) - 4.83) * 100).toFixed(2);
     }
     const answer = this.createAnswer();
@@ -95,7 +95,7 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     if (morfo.sexo == 'M') { // Masculino
-      const DC = 1.10430 - 0.00133 * +morfo.crural - 0.00131 * morfo.subescapular;
+      const DC = 1.10430 - 0.00133 * +morfo.crural - 0.00131 * +morfo.subescapular;
       this.perGordura = +(((4.57 / DC) - 4.142) * 100).toFixed(2);
     } else {  // Feminino
       const DC = 1.07640 - 0.00081 * +morfo.suprailiaca - 0.00088 * +morfo.triciptal;
@@ -153,7 +153,7 @@ export class ProtcolosDobrasService {
     this.morfo = morfo;
     const somatorio = +morfo.abdominal + +morfo.triciptal + +morfo.suprailiaca + +morfo.subescapular
       + +morfo.peitoral + +morfo.axilar + +morfo.crural;
-    const DC = 1.1120 - 0.00043499 * somatorio + 0.00000055 * Math.pow(somatorio, 2) - 0.00028826 * morfo.idade;
+    const DC = 1.1120 - 0.00043499 * somatorio + 0.00000055 * Math.pow(somatorio, 2) - 0.00028826 * +morfo.idade;
     this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     const answer = this.createAnswer();
     console.table(answer);
@@ -165,7 +165,7 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     const somatorio = +morfo.abdominal + +morfo.crural;
-    const DC = 1.08543 - 0.000886 * morfo.abdominal - 0.0004 * morfo.crural;
+    const DC = 1.08543 - 0.000886 * +morfo.abdominal - 0.0004 * +morfo.crural;
     this.perGordura = +(((4.95 / DC) - 4.50) * 100).toFixed(2);
     const answer = this.createAnswer();
     console.table(answer);
@@ -237,7 +237,7 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     //  formula
-    this.perGordura = 0.31457 * morfo.abdomen - 0.10969 * morfo.peso + 10.8336;
+    this.perGordura = 0.31457 * +morfo.abdomen - 0.10969 * +morfo.peso + 10.8336;
     const answer = this.createAnswer();
     console.table(answer);
     return answer;
@@ -249,9 +249,9 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     if (morfo.sexo === 'M') {
-      this.perGordura = 0.31457 * (morfo.abdomen + morfo.abdomen2) / 2 - 0.10969 * morfo.peso + 10.8336;
+      this.perGordura = 0.31457 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 0.10969 * +morfo.peso + 10.8336;
     } else {
-      this.perGordura = 0.11077 * (morfo.abdomen + morfo.abdomen2) / 2 - 0.17666 * morfo.altura - 0.14354 * morfo.peso + 51.03301;
+      this.perGordura = 0.11077 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 0.17666 * +morfo.altura - 0.14354 * +morfo.peso + 51.03301;
     }
     const answer = this.createAnswer();
     console.table(answer);
@@ -264,8 +264,8 @@ export class ProtcolosDobrasService {
       this.gorduraDesejada = gorduraDesejada;
       this.morfo = morfo;
       // Precisa da formula
-      this.perGordura = 0.173 * morfo.quadril + 105.328 * Math.log10(morfo.peso) - 0.515 * morfo.altura
-                        - 1.574 * morfo.antebracod - 0.533 * morfo.pescoco - 0.2 * (morfo.abdomen + morfo.abdomen2) / 2 - 35.6;
+      this.perGordura = 0.173 * +morfo.quadril + 105.328 * Math.log10(+morfo.peso) - 0.515 * +morfo.altura
+                        - 1.574 * +morfo.antebracod - 0.533 * +morfo.pescoco - 0.2 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 35.6;
       const answer = this.createAnswer();
       console.table(answer);
       return answer;

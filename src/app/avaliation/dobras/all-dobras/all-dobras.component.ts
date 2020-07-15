@@ -1,11 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PrepareChartService } from 'src/app/services/prepare-chart.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AgeService } from 'src/app/services/age.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-all-dobras',
@@ -35,10 +33,8 @@ export class AllDobrasComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private protocolos: ProtcolosDobrasService,
               private snackBar: MatSnackBar,
-              private prepareChart: PrepareChartService,
-              public dialog: MatDialog,
+              public dialogService: DialogService,
               private ageService: AgeService
   ) {
     this.locale = this.dataService.getCountryId();
@@ -54,15 +50,6 @@ export class AllDobrasComponent implements OnInit {
     this.setEvaluation(this.selectedEvaluation);
     this.fatChanged = true;
   }
-
-/*   saveFatChange() {
-    this.student.percgd = this.gorduraDesejada;
-    sessionStorage.selectedStudent = JSON.stringify(this.student);
-    this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
-      resp => this.getData()
-    );
-    this.fatChanged = false;
-  } */
 
   getData() {
     /* Protocolo Soma todas as dobras */
@@ -83,21 +70,6 @@ export class AllDobrasComponent implements OnInit {
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
-    this.startGraphics(evaluation);
-  }
-
-  // Iniciar os graficos
-  startGraphics(evaluation) {
-      /* Grafico 1 com as goduras
-      Grafico 2 com outra coisa a decidir */
-            // Create graphic
-/*             this.showChart = true;
-            this.single = this.prepareChart.getSingle1(proto);
-            Object.assign(this, this.single);
-            // Create graphic 2
-            this.single2 = this.prepareChart.getSingle2(proto);
-            Object.assign(this, this.single2); */
-
   }
 
   ngOnInit(): void {
@@ -149,43 +121,8 @@ export class AllDobrasComponent implements OnInit {
   }
 
     // Help Dialog
-    openHelpDialog(type): void {
-      this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
+    openDialog(type): void {
+      this.dialogService.openHelp(type);
     }
-
-}
-
-
-/* HELP DIALOG  */
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dialog-help-db',
-  templateUrl: '../../../commun/dialog-help-db.html',
-})
-// tslint:disable-next-line: component-class-suffix
-export class DialogHelpDB {
-  help: any = [];
-  constructor(
-    public dialogRef: MatDialogRef<DialogHelpDB>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private dataService: DataService
-  ) {
-    this.dataService.getData('help/' + data.type).subscribe(
-      resp => {
-        if (resp[0]) {
-          this.help = resp[0];
-        } else {
-          this.help.info = 'Não existe informação!.';
-        }
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
 }

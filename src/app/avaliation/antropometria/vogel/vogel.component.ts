@@ -57,6 +57,8 @@ export class VogelComponent implements OnInit {
           this.evaluation = resp.filter((el) => {
             return el.pescoco > 0 && el.antebracod > 0 && el.abdomen > 0 && el.abdomen2 > 0  && el.quadril > 0;
           });
+        }
+        if (this.evaluation.length > 0) {
           this.maxPointer = this.evaluation.length;
           // update age for every evaluation with evaluation date and birthdate
           this.evaluation.map((elem) => {

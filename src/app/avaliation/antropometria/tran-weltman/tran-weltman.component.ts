@@ -58,6 +58,8 @@ export class TranWeltmanComponent implements OnInit {
           this.evaluation = resp.filter((el) => {
             return el.altura > 0 && el.cintura > 0 && el.quadril > 0;
           });
+        }
+        if (this.evaluation.length > 0) {
           this.maxPointer = this.evaluation.length;
           this.evaluation.map((elem) => {
             elem.idade = this.ageService.getAgeFromDate1(elem.data, this.student.dt_nasc);

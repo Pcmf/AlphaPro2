@@ -5,9 +5,9 @@
     </div>
     <div class="section">
         <form #f="ngForm" (submit)="save(f.value)">
-            <input type="hidden"  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
-            <input type="hidden"  name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
-            <input type="hidden"  name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
+            <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
+            <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
+            <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -23,7 +23,8 @@
                             </button>
                         </th>
                         <th class="th-top" *ngIf="addEval">
-                            <input class="hidde-arrows" name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date">
+                            <input class="hidde-arrows" name="data" #data="ngModel" [(ngModel)]="newEvaluation.data"
+                                type="date">
                         </th>
                     </tr>
                 </thead>
@@ -33,7 +34,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].pescoco | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].pescoco | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="pescoco" #pescoco="ngModel" [(ngModel)]="newEvaluation.pescoco" type="number">
+                            <input class="hidde-arrows" name="pescoco" #pescoco="ngModel"
+                                [(ngModel)]="newEvaluation.pescoco" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +43,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].antebracod | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].antebracod | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="antebracod" #antebracod="ngModel" [(ngModel)]="newEvaluation.antebracod" type="number">
+                            <input class="hidde-arrows" name="antebracod" #antebracod="ngModel"
+                                [(ngModel)]="newEvaluation.antebracod" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -49,7 +52,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number">
+                            <input class="hidde-arrows" name="abdomen2" #abdomen2="ngModel"
+                                [(ngModel)]="newEvaluation.abdomen2" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +61,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
+                            <input class="hidde-arrows" name="abdomen" #abdomen="ngModel"
+                                [(ngModel)]="newEvaluation.abdomen" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +70,8 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number">
+                            <input class="hidde-arrows" name="quadril" #quadril="ngModel"
+                                [(ngModel)]="newEvaluation.quadril" type="number">
                         </td>
                     </tr>
                 </tbody>
@@ -93,39 +99,42 @@
         </form>
         <br />
         <hr />
-        <h4 style="text-align: center; color: blue;">
-            {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-        </h4>
-        <div *ngIf="showChart">
-            <div style="text-align: center; color: blue;">
-                <div>
-                    <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                        <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-                        </mat-button-toggle>
-                        <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
-                    </mat-button-toggle-group>
+        <div *ngIf="selectedEvaluation">
+            <h4 style="text-align: center; color: blue;">
+                {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
+            </h4>
+            <div *ngIf="showChart">
+                <div style="text-align: center; color: blue;">
+                    <div>
+                        <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
+                            <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
+                            </mat-button-toggle>
+                            <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                    <div *ngIf="chartSelected=='pie'">
+                        <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
+                        <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
+                            [disabled]="!fatChanged" (change)="getNewEvaluation()">
+                        </mat-slider>
+                        <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
                 </div>
-                <div *ngIf="chartSelected=='pie'">
-                    <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
-                    <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
-                        [disabled]="!fatChanged" (change)="getNewEvaluation()">
-                    </mat-slider>
-                    <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
-                        <mat-icon>save</mat-icon>
-                    </button>
+                <!-- charts -->
+                <div class="chart-pie" *ngIf="chartSelected=='pie'">
+                    <app-chart-pie [values]="single"></app-chart-pie>
+                    <app-chart-pie [values]="single2"></app-chart-pie>
                 </div>
-            </div>
-            <!-- charts -->
-            <div class="chart-pie" *ngIf="chartSelected=='pie'">
-                <app-chart-pie [values]="single"></app-chart-pie>
-                <app-chart-pie [values]="single2"></app-chart-pie>
-            </div>
-            <div *ngIf="chartSelected=='compare'">
-                <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada" [evaluations] = "evaluation">
-                </app-chart-compare>
+                <div *ngIf="chartSelected=='compare'">
+                    <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada"
+                        [evaluations]="evaluation">
+                    </app-chart-compare>
+                </div>
             </div>
         </div>
 

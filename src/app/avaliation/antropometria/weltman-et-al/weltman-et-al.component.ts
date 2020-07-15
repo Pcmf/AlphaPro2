@@ -58,6 +58,8 @@ export class WeltmanEtAlComponent implements OnInit {
           this.evaluation = resp.filter((el) => {
             return el.peso > 0 && el.altura > 0 && el.abdomen > 0 && el.abdomen2 > 0;
           });
+        }
+        if (this.evaluation.length > 0) {
           this.maxPointer = this.evaluation.length;
           this.evaluation.map((elem) => {
             elem.idade = this.ageService.getAgeFromDate1(elem.data, this.student.dt_nasc);
@@ -91,14 +93,14 @@ export class WeltmanEtAlComponent implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
-                const proto = this.protocolos.protocoloWeltmanEtAl(evaluation, this.gorduraDesejada);
-                // Create graphic
-                this.showChart = true;
-                this.single = this.prepareChart.getSingle1(proto);
-                Object.assign(this, this.single);
-                // Create graphic 2
-                this.single2 = this.prepareChart.getSingle2(proto);
-                Object.assign(this, this.single2);
+    const proto = this.protocolos.protocoloWeltmanEtAl(evaluation, this.gorduraDesejada);
+    // Create graphic
+    this.showChart = true;
+    this.single = this.prepareChart.getSingle1(proto);
+    Object.assign(this, this.single);
+    // Create graphic 2
+    this.single2 = this.prepareChart.getSingle2(proto);
+    Object.assign(this, this.single2);
   }
 
   ngOnInit(): void {
@@ -150,9 +152,9 @@ export class WeltmanEtAlComponent implements OnInit {
     });
   }
 
-    // Help Dialog
-    openHelpDialog(type): void {
-      this.dialogService.openHelp(type);
-    }
+  // Help Dialog
+  openHelpDialog(type): void {
+    this.dialogService.openHelp(type);
+  }
 
 }

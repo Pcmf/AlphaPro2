@@ -64,8 +64,8 @@
                     </tr>
                     <tr *ngIf="sex == 'M'">
                         <th i18n><span (click)="openHelpDialog('Tipo aluno')">Tipo aluno</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tipoaluno | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].tipoaluno | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tipoaluno}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tipoaluno}}</td>
                         <td *ngIf="addEval">
                             <mat-form-field>
                                 <mat-label>Tipo Aluno</mat-label>

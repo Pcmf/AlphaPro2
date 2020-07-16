@@ -77,14 +77,79 @@ export class AllDobrasComponent implements OnInit {
 
   save(form) {
     form.protocolo = this.protocolo;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
+    this.saveToDB(form);
+
+    /* Durnim & Womersley - 4 dobras  - protocolo 5 */
+    if (form.triciptal > 0 && form.subescapular > 0 && form.biciptal > 0 && form.suprailiaca > 0) {
+      form.protocolo = 5;
+      this.saveToDB(form);
+    }
+    /* Faulkner - 4 dobras  - protocolo 2 */
+    if (form.triciptal > 0 && form.subescapular > 0 && form.abdominal > 0 && form.suprailiaca > 0
+          &&  this.student.sexo == 'F') {
+      form.protocolo = 2;
+      this.saveToDB(form);
+    }
+    /* Guedes - 3 dobras  - protocolo 1 */
+    if (form.triciptal > 0  && form.abdominal > 0 && form.suprailiaca > 0) {
+      form.protocolo = 1;
+      this.saveToDB(form);
+    }
+    /* JP3 - 3 dobras  - protocolo 3 */
+    if ((this.student.sexo == 'M' && form.peitoral > 0  && form.abdominal > 0)
+        || (this.student.sexo == 'F' && form.triciptal  > 0 && form.suprailiaca > 0) && form.crural > 0) {
+      form.protocolo = 3;
+      this.saveToDB(form);
+    }
+    /* JP7 - 7 dobras  - protocolo 4 */
+    if (form.triciptal > 0 && form.subescapular > 0 && form.peitoral > 0 && form.suprailiaca > 0
+      && form.axilar > 0 && form.abdominal > 0 && form.crural > 0) {
+      form.protocolo = 4;
+      this.saveToDB(form);
+    }
+    /* Petroski - 4 dobras  - protocolo 10 */
+    if ((this.student.sexo == 'M' && form.triciptal > 0 && form.subescapular > 0)
+        || (this.student.sexo == 'F' && form.axilar > 0 && form.crural > 0) && form.geminal > 0 && form.suprailiaca > 0) {
+      form.protocolo = 10;
+      this.saveToDB(form);
+    }
+    /* Slaugther - 2 dobras  - protocolo 6 */
+    if (form.triciptal > 0 && form.geminal > 0) {
+      form.protocolo = 6;
+      this.saveToDB(form);
+    }
+    /* Sloan - 2 dobras  - protocolo 12 */
+    if ((this.student.sexo == 'M' && form.crural > 0 && form.subescapular > 0)
+        || (this.student.sexo == 'F' && form.triciptal > 0 && form.suprailiaca > 0)) {
+      form.protocolo = 12;
+      this.saveToDB(form);
+    }
+        /* Williams - 4 dobras  - protocolo 11 */
+    if (form.triciptal > 0 && form.subescapular > 0 && form.geminal > 0 && form.abdominal > 0) {
+      form.protocolo = 11;
+      this.saveToDB(form);
+    }
+    /* Wilmore & Benk - 2 dobras  - protocolo 16 */
+    if (this.student.sexo == 'M' && form.crural > 0 && form.abdominal > 0) {
+      form.protocolo = 16;
+      this.saveToDB(form);
+    }
+    /* Wilmore & Benk - Mulheres - 3 dobras  - protocolo 15 */
+    if (this.student.sexo == 'F' && form.crural > 0 && form.subescapular > 0 && form.triciptal > 0) {
+      form.protocolo = 15;
+      this.saveToDB(form);
+    }
+    this.newEvaluation = [];
+    this.addEval = false;
+    this.getData();
   }
+
+  // Save to DB
+  saveToDB(form) {
+    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe( resp => {});
+    return;
+  }
+
 
   goBack() {
     this.location.back();

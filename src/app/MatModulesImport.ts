@@ -23,6 +23,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatVideoModule } from 'mat-video';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { MatVideoModule } from 'mat-video';
         MatButtonToggleModule,
         LayoutModule,
         BrowserAnimationsModule,
-        MatVideoModule
+        MatVideoModule,
+        MatTooltipModule
     ],
     exports: [
         MatInputModule,
@@ -74,6 +76,7 @@ import { MatVideoModule } from 'mat-video';
         MatButtonToggleModule,
         LayoutModule,
         BrowserAnimationsModule,
-        MatVideoModule
+        MatVideoModule,
+        MatTooltipModule
     ]
 }) export class MatModulesImports { }

@@ -37,7 +37,6 @@ export class QPAFComponent implements OnInit, OnDestroy {
     this.dataService.setData('clients/parq/' + this.id, this.formS).subscribe(
       resp => {
         console.log(resp);
-
       }
     );
   }

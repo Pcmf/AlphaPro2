@@ -211,13 +211,13 @@ export class StComponent implements OnInit {
   getXSm(evaluation) {
     const X =  (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
     console.log(X);
-    return (110 + +X * 5);
+    return (115 + +X * 5);
   }
 
   getYSm(evaluation) {
     const Y =  +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
     console.log(Y);
-    return (110 - +Y * 5);
+    return (120 - +Y * 5);
   }
 
 }

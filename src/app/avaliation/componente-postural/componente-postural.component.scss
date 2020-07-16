@@ -47,12 +47,17 @@ table{
   display: flex;
   justify-content: space-around;
 
+  img {
+    width: 100%;
+  }
+
   .photo {
     width: 27%;
     max-height: 100%;
     margin: auto;
-    img {
-      width: 100%;
-    }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
   }
 }

@@ -12,10 +12,34 @@
   }
 
   text{
-    font-size: small;
+    font-size: xx-small;
   }
 
   .title-text{
-    font-size: large;
-    font-weight: 600;
+    font-size: small;
+    font-weight: 400;
+  }
+
+  .somatotipo-lg{
+    display: none;
+  }
+  .somatotipo-sm{
+    display: block;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .somatotipo-lg{
+      display: block;
+    }
+    .somatotipo-sm{
+      display: none;
+    }
+    text{
+      font-size: small;
+    }
+  
+    .title-text{
+      font-size: large;
+      font-weight: 600;
+    }
   }

@@ -174,7 +174,7 @@
             </div>
 
             <div class="section-info">
-                <svg width="420" height="490">
+                <svg class="somatotipo-lg" width="420" height="490">
 
                     <rect x="20" y="40" width="400" height="400" style="fill:rgb(200,200,205);stroke-width:3;stroke:rgb(0,0,0)" />
 
@@ -224,6 +224,59 @@
 
                     <circle *ngIf="pointer>=1" [attr.cx]="getX(evaluation[pointer-1])" [attr.cy]="getY(evaluation[pointer-1])" r="5" stroke="black" fill="black" />
                     <circle *ngIf="pointer>=0" [attr.cx]="getX(evaluation[pointer])" [attr.cy]="getY(evaluation[pointer])" r="5" stroke="red" fill="red" />
+                    Sorry, your browser does not support inline SVG.  
+                </svg>
+                <!-- For mobiles -->
+                <svg class="somatotipo-sm" width="220" height="300">
+
+                    <rect x="15" y="20" width="200" height="200" style="fill:rgb(200,200,205);stroke-width:1;stroke:rgb(0,0,0)" />
+
+                    <line x1="15" y1="45" x2="215" y2="45" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="70" x2="215" y2="70" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="95" x2="215" y2="95" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="120" x2="215" y2="120" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="145" x2="215" y2="145" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="170" x2="215" y2="170" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="15" y1="195" x2="215" y2="195" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+
+                    <line x1="40" y1="20" x2="40" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="65" y1="20" x2="65" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="90" y1="20" x2="90" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="115" y1="20" x2="115" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="140" y1="20" x2="140" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="170" y1="20" x2="170" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+                    <line x1="190" y1="20" x2="190" y2="220" style="stroke:rgb(168, 168, 168);stroke-width:1" />
+
+                    <line x1="15" y1="20" x2="215" y2="220" style="stroke:rgb(35, 89, 240);stroke-width:2" />
+                    <line x1="15" y1="220" x2="215" y2="20" style="stroke:rgb(238, 16, 16);stroke-width:2" />
+                    <line x1="115" y1="20" x2="115" y2="220" style="stroke:rgb(15, 105, 3);stroke-width:2" />
+
+                    <text x="0" y="25" fill="darkblue">20</text>
+                    <text x="0" y="45" fill="darkblue">15</text>
+                    <text x="0" y="70" fill="darkblue">10</text>
+                    <text x="7" y="95" fill="darkblue">5</text>
+                    <text x="7" y="120" fill="darkblue">0</text>
+                    <text x="0" y="145" fill="darkblue">-5</text>
+                    <text x="0" y="170" fill="darkblue">-10</text>
+                    <text x="0" y="193" fill="darkblue">-15</text>
+                    <text x="0" y="214" fill="darkblue">-20</text>
+
+                    <text x="10" y="230" fill="darkblue">-20</text>
+                    <text x="35" y="230" fill="darkblue">-15</text>
+                    <text x="60" y="230" fill="darkblue">-10</text>
+                    <text x="90" y="230" fill="darkblue">-5</text>
+                    <text x="113" y="230" fill="darkblue">0</text>
+                    <text x="138" y="230" fill="darkblue">5</text>
+                    <text x="164" y="230" fill="darkblue">10</text>
+                    <text x="184" y="230" fill="darkblue">15</text>
+                    <text x="205" y="230" fill="darkblue">20</text>
+
+                    <text class="title-text" x="67" y="15" fill="blue">Mesomorfismo</text>
+                    <text class="title-text" x="15" y="245" fill="blue">Endomorfismo</text>
+                    <text class="title-text" x="135" y="245" fill="blue">Ectomorfismo</text>
+
+                    <circle *ngIf="pointer>=1" [attr.cx]="getXSm(evaluation[pointer-1])" [attr.cy]="getYSm(evaluation[pointer-1])" r="3" stroke="black" fill="black" />
+                    <circle *ngIf="pointer>=0" [attr.cx]="getXSm(evaluation[pointer])" [attr.cy]="getYSm(evaluation[pointer])" r="3" stroke="red" fill="red" />
                     Sorry, your browser does not support inline SVG.  
                 </svg>
             </div>

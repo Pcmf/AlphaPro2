@@ -10,12 +10,12 @@
                     <tr>
                         <th>&nbsp;</th>
                         <th class="th-top" *ngIf="pointer>=1">
-                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
+                            <button type="button">
                                 {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
                         <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
+                            <button type="button">
                                 {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                             </button>
                         </th>
@@ -28,77 +28,71 @@
                     <tr><th class="form-subtitle">Tríceps</th></tr>
                     <tr>
                         <th><span>Qualidade Muscular</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tri_qualidade | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tri_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
+                            <input class="hidde-arrows" name="tri_qualidade" #tri_qualidade="ngModel" [(ngModel)]="newEvaluation.tri_qualidade" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>% Gordura</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura_bl | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura_bl | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tri_perc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tri_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="perc_gordura_bl" #perc_gordura_bl="ngModel" [(ngModel)]="newEvaluation.perc_gordura_bl" type="number">
+                            <input class="hidde-arrows" name="tri_perc" #tri_perc="ngModel" [(ngModel)]="newEvaluation.tri_perc" type="number">
                         </td>
                     </tr>
 
                     <tr><th class="form-subtitle">Abdominal</th></tr>
                     <tr>
                         <th>Qualidade Muscular</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura_bl | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura_bl | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abd_qualidade | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].abd_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="perc_gordura_bl" #perc_gordura_bl="ngModel" [(ngModel)]="newEvaluation.perc_gordura_bl" type="number">
+                            <input class="hidde-arrows" name="abd_qualidade" #abd_qualidade="ngModel" [(ngModel)]="newEvaluation.abd_qualidade" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>% Gordura</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_gorda | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].massa_gorda | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abd_perc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].abd_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="massa_gorda" #massa_gorda="ngModel" [(ngModel)]="newEvaluation.massa_gorda"
+                            <input class="hidde-arrows" name="abd_perc" #abd_perc="ngModel" [(ngModel)]="newEvaluation.abd_perc"
                                 type="number">
                         </td>
                     </tr>
                     <tr><th class="form-subtitle">Quadríceps</th></tr>
                     <tr>
                         <th>Qualidade Muscular</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_magra | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].massa_magra | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].qua_qualidade | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].qua_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="massa_magra" #massa_magra="ngModel" [(ngModel)]="newEvaluation.massa_magra"
+                            <input class="hidde-arrows" name="qua_qualidade" #qua_qualidade="ngModel" [(ngModel)]="newEvaluation.qua_qualidade"
                                 type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>% Gordura</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].qua_perc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].qua_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number">
+                            <input class="hidde-arrows" name="qua_perc" #qua_perc="ngModel"
+                                [(ngModel)]="newEvaluation.qua_perc" type="number">
                         </td>
                     </tr>
 
                     <tr><th class="form-subtitle">Total</th></tr>
                     <tr>
                         <th>Qualidade Muscular</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number">
-                        </td>
+                        <td *ngIf="pointer>=1">{{getTotal(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{getTotal(evaluation[pointer]) | number: '': locale}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
                         <th>% Gordura</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].gordura_visceral | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].gordura_visceral | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="gordura_visceral" #gordura_visceral="ngModel"
-                                [(ngModel)]="newEvaluation.gordura_visceral" type="number">
-                        </td>
+                        <td *ngIf="pointer>=1">{{getTotalPerc(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{getTotalPerc(evaluation[pointer]) | number: '': locale}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                 </tbody>
             </table>

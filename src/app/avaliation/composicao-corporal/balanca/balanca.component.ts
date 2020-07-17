@@ -38,8 +38,7 @@ export class BalancaComponent implements OnInit {
 
   showChart = false;
   chartSelected = 'pie';
-  gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
-  fatChanged = false;
+
   private newAv: boolean;
   private newCorporal: boolean;
   private lastAv: any = [];
@@ -58,7 +57,6 @@ export class BalancaComponent implements OnInit {
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
-    this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);
     //
     this.getData();
@@ -66,17 +64,9 @@ export class BalancaComponent implements OnInit {
 
   getNewEvaluation() {
     this.setEvaluation(this.selectedEvaluation);
-    this.fatChanged = true;
   }
 
-  saveFatChange() {
-    this.student.percgd = this.gorduraDesejada;
-    sessionStorage.selectedStudent = JSON.stringify(this.student);
-    this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
-      resp => this.getData()
-    );
-    this.fatChanged = false;
-  }
+
 
   getData() {
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
@@ -98,10 +88,10 @@ export class BalancaComponent implements OnInit {
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
-    this.startGraphics(evaluation);
+    /* this.startGraphics(evaluation); */
   }
 
-  // Iniciar os graficos
+/*   // Iniciar os graficos
   startGraphics(evaluation) {
     const chartValues =
      [
@@ -114,14 +104,14 @@ export class BalancaComponent implements OnInit {
     // Create graphic
     this.showChart = true;
     Object.assign(this, {chartValues});
-  }
+  } */
 
   ngOnInit(): void {
   }
 
   save(form) {
     form.protocolo = this.protocolo;
-    console.log(this.student.id);
+    console.log(form);
 
     // Obter a classificação
 
@@ -153,62 +143,65 @@ export class BalancaComponent implements OnInit {
         } else {
           this.newAv = true;
         }
-        // Obter os dados da ultima avaliação corporal - punho e joelho
-        this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
-          (respc: []) => {
-            if (respc.length > 0) {
-              this.lastCorporal = respc.pop();
-              this.newCorporal = false;
-              // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
-                || +this.lastCorporal.punho == 0
-                || +this.lastCorporal.joelho == 0) {
-                this.newCorporal = true;
-              }
-            } else {
-              this.newCorporal = true;
-            }
             // decide se vai mostrar dialog
-            if (this.newAv || this.newCorporal) {
+        if (this.newAv) {
               this.openMedidasDialog(
                 this.daysAv,
-                this.daysCorporal,
+                '',
                 this.newAv,
-                this.newCorporal,
+                '',
                 this.lastAv,
-                this.lastCorporal
+                ''
               );
             }
-            this.newEvaluation.altura = this.lastAv.altura;
-            this.newEvaluation.peso = this.lastAv.peso;
-            this.newEvaluation.punho = this.lastCorporal.punho;
-            this.newEvaluation.joelho = this.lastCorporal.joelho;
+        this.newEvaluation.altura = this.lastAv.altura;
+        this.newEvaluation.peso = this.lastAv.peso;
+        this.newEvaluation.tmb = this.lastAv.tmb;
+
           }
         );
+
+    // Obter o NAFS a partir da anamnese
+    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+      (resp: any[]) => {
+        this.newEvaluation.naf = resp[0].nafs;
+        this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+        this.addEval = true;
       }
     );
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addEval = true;
+
   }
 
-  closeInput() {
+  calcTMB(ln) {
+    console.log(this.student);
+    let sexParam = 0;
+    this.student.sexo == 'M' ? sexParam = 5 : sexParam = -161;
+    if (ln.peso > 0 && ln.altura > 0) {
+      const TMB = 10 * ln.peso + 6.25 * ln.altura * 100 - 5 * this.student.idade + sexParam;
+      return TMB;
+    }
+    return 0;
+  }
+
+
+closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
   }
 
-  openSnackBar(message: string, action: string) {
+openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000, verticalPosition: 'top'
     });
   }
 
   // Help Dialog
-  openDialog(type): void {
+openDialog(type): void {
     this.dialogService.openHelp(type);
   }
 
   // Medidas Dialog
-  openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
+openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
     const options = {
       daysAv,
       daysCorporal,

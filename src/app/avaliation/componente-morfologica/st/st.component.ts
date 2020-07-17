@@ -22,7 +22,9 @@ export class StComponent implements OnInit {
   private tempPeso: number;
   private protocolo = 43; // Somatotipo
 
-  constructor(private location: Location, private dataService: DataService,
+  constructor(
+              private location: Location,
+              private dataService: DataService,
               private datapipe: DatePipe,
               private snackBar: MatSnackBar,
               private dialogService: DialogService

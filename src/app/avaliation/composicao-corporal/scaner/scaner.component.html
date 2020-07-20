@@ -25,9 +25,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><th class="form-subtitle">Tríceps</th></tr>
+                    <tr><th class="form-subtitle"><span (click)="openDialog('Tríceps')">Tríceps</span></th></tr>
                     <tr>
-                        <th><span>Qualidade Muscular</span></th>
+                        <th><span (click)="openDialog('Qualidade Muscular')">Qualidade Muscular</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tri_qualidade | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tri_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tri_perc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tri_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -43,9 +43,9 @@
                         </td>
                     </tr>
 
-                    <tr><th class="form-subtitle">Abdominal</th></tr>
+                    <tr><th class="form-subtitle"><span (click)="openDialog('Abdominal')">Abdominal</span></th></tr>
                     <tr>
-                        <th>Qualidade Muscular</th>
+                        <th><span (click)="openDialog('Qualidade Muscular')">Qualidade Muscular</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abd_qualidade | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abd_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -53,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abd_perc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abd_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -61,9 +61,9 @@
                                 type="number">
                         </td>
                     </tr>
-                    <tr><th class="form-subtitle">Quadríceps</th></tr>
+                    <tr><th class="form-subtitle"><span (click)="openDialog('Quadríceps')">Quadríceps</span></th></tr>
                     <tr>
-                        <th>Qualidade Muscular</th>
+                        <th><span (click)="openDialog('Qualidade Muscular')">Qualidade Muscular</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].qua_qualidade | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].qua_qualidade | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -72,7 +72,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].qua_perc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].qua_perc | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -83,13 +83,13 @@
 
                     <tr><th class="form-subtitle">Total</th></tr>
                     <tr>
-                        <th>Qualidade Muscular</th>
+                        <th><span (click)="openDialog('Qualidade Muscular')">Qualidade Muscular</span></th>
                         <td *ngIf="pointer>=1">{{getTotal(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getTotal(evaluation[pointer]) | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{getTotalPerc(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getTotalPerc(evaluation[pointer]) | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
@@ -117,13 +117,7 @@
                 </button>
             </div>
         </form>
- 
-<!--         <div class="graphics">
-            <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="chartValues" [gradient]="gradient"
-                [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
-                >
-            </ngx-charts-pie-chart>
-        </div> -->
+
     </div>
 
     <div class="footer">

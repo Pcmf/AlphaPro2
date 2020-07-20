@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-dexa',
@@ -21,7 +22,8 @@ export class DEXAComponent implements OnInit {
   constructor(
     private location: Location,
     private dataService: DataService,
-    private datapipe: DatePipe
+    private datapipe: DatePipe,
+    private dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -87,8 +89,8 @@ export class DEXAComponent implements OnInit {
         }
         this.newEvaluation.altura = this.lastAv.altura;
         this.newEvaluation.peso = this.lastAv.peso;
-          }
-        );
+      }
+    );
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.addEval = true;
   }
@@ -100,6 +102,11 @@ export class DEXAComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  // Help Dialog
+  openDialog(type): void {
+    this.dialogService.openHelp(type);
   }
 
 }

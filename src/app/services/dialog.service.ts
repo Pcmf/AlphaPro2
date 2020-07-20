@@ -40,7 +40,6 @@ export class DialogService {
   }
 
   public openHelp(type) {
-    console.log(type);
-    this.dialogHelpRef = this.dialog.open(DialogHelpComponent, {width: '250px', data: type});
+    this.dialogHelpRef = this.dialog.open(DialogHelpComponent, {width: '300px', data: type});
   }
 }

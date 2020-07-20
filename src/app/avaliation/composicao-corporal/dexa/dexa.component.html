@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span>Peso</span></th>
+                        <th><span (click)="openDialog('Peso')">Peso</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -34,7 +34,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>% Gordura</th>
+                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].perc_gordura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].perc_gordura | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -42,7 +42,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>DMO <small>(g/cm2)</small></th>
+                        <th><span (click)="openDialog('DMO')">DMO</span> <small>(g/cm2)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].dmo | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].dmo | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>FAT <small>(g)</small></th>
+                        <th><span (click)="openDialog('FAT')">FAT</span> <small>(g)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].fat | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fat | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -58,7 +58,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>LEAN <small>(g)</small></th>
+                        <th><span (click)="openDialog('LEAN')">LEAN</span> <small>(g)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lean | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lean | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -66,7 +66,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Cabeça</th>
+                        <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cabeca | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cabeca | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -76,7 +76,7 @@
                     </tr>
 
                     <tr>
-                        <th>Membros Superiores</th>
+                        <th><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].membros_sup | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].membros_sup | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -85,7 +85,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Membros Inferiores</th>
+                        <th><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].membros_inf | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].membros_inf | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -94,7 +94,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Coluna</th>
+                        <th><span (click)="openDialog('Coluna')">Coluna</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].coluna | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].coluna | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -103,7 +103,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Tronco</th>
+                        <th><span (click)="openDialog('Tronco')">Tronco</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tronco | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tronco | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -113,7 +113,7 @@
                     </tr>
 
                     <tr>
-                        <th>Pelve</th>
+                        <th><span (click)="openDialog('Pelve')">Pelve</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].pelve | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].pelve | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -121,7 +121,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Costelas</th>
+                        <th><span (click)="openDialog('Costelas')">Costelas</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].costelas | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].costelas | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -139,7 +139,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>T escore</th>
+                        <th><span (click)="openDialog('T escore')">T escore</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tescore | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tescore | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -148,7 +148,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Z escore</th>
+                        <th><span (click)="openDialog('Z escore')">Z escore</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].zescore | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].zescore | number: '': locale}}</td>
                         <td *ngIf="addEval">

@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line">Ombro</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Ombro')">Ombro</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombro - Flexão')">Flexão <small>[180&#730;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrof}}</td>
@@ -57,7 +57,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Rot. Medial')">Rotação Medial <small>[90&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Ombro - Rotação Medial')">Rotação Medial <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
                                 <td *ngIf="addMesure">
@@ -66,7 +66,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Rot. Lateral')">Rotação Lateral <small>[90&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Ombro - Rotação Lateral')">Rotação Lateral <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrolateral}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombrolateral}}</td>
                                 <td *ngIf="addMesure">
@@ -74,7 +74,7 @@
                                         type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Cotovelo</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Cotovelo')">Cotovelo</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Cotovelo - Flexão')">Flexão <small>[145&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
@@ -93,7 +93,7 @@
                                         [(ngModel)]="newEvaluation.cotoveloe" type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Radioulnar</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Radioulnar')">Radioulnar</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Radioulnar - Pronação')">Pronação <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].radioulnarp}}</td>
@@ -110,7 +110,7 @@
                                     <input class="hidde-arrows" name="radioulnars" #radioulnars="ngModel" [(ngModel)]="newEvaluation.radioulnars" type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Punho</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Punho')">Punho</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Punho - Flexão')">Flexão <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
@@ -191,7 +191,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line">Quadril</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Quadril')">Quadril</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril - Flexão')">Flexão <small>[125&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
@@ -225,7 +225,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Rot. Medial')">Rot. Medial <small>[45&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Quadril - Rotação Medial')">Rotação Medial <small>[45&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilmedial}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilmedial}}</td>
                                 <td *ngIf="addMesure">
@@ -233,14 +233,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Rot. Lateral')">Rot. Lateral <small>[45&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Quadril - Rotação Lateral')">Rotação Lateral <small>[45&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrillateral}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrillateral}}</td>
                                 <td *ngIf="addMesure">
                                     <input class="hidde-arrows" name="quadrillateral" #quadrillateral="ngModel" [(ngModel)]="newEvaluation.quadrillateral" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Joelho</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Joelho')">Joelho</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho - Flexão')">Flexão <small>[140&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
@@ -249,7 +249,7 @@
                                     <input class="hidde-arrows" name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Tornozelo</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Tornozelo')">Tornozelo</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo - Flexão Dorsal')">Flexão Dorsal <small>[20&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
@@ -328,9 +328,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line">Cervical</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Cervical')">Cervical</span></th></tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Flexão')">Flexão <small>[65&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Cervical - Flexão')">Flexão <small>[65&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalf}}</td>
                                 <td *ngIf="addMesure">
@@ -338,7 +338,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Extensão')">Extensão <small>[50&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Cervical - Extensão')">Extensão <small>[50&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                                 <td *ngIf="addMesure">
@@ -346,7 +346,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Cervical - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                                 <td *ngIf="addMesure">
@@ -354,16 +354,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Rotação')">Rotação <small>[55&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Cervical - Rotação')">Rotação <small>[55&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                                 <td *ngIf="addMesure">
                                     <input class="hidde-arrows" name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line">Lombar</th></tr>
+                            <tr><th class="sub-line"><span (click)="openDialog('Lombar')">Lombar</span></th></tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Flexão')">Flexão <small>[95&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Lombar - Flexão')">Flexão <small>[95&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
                                 <td *ngIf="addMesure">
@@ -371,7 +371,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Extensão')">Extensão <small>[35&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Lombar - Extensão')">Extensão <small>[35&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombare}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].lombare}}</td>
                                 <td *ngIf="addMesure">
@@ -379,7 +379,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Lombar - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
                                 <td *ngIf="addMesure">
@@ -387,7 +387,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Coluna Vertebral - Rotação')">Rotação <small>[35&deg;]</small></span></th>
+                                <th><span (click)="openDialog('Lombar - Rotação')">Rotação <small>[35&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
                                 <td *ngIf="addMesure">

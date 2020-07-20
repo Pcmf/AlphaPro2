@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span>Flexibilidade</span></th>
+                        <th><span (click)="openDialog('Flexibilidade')">Flexibilidade</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].flex}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].flex}}</td>
                         <td *ngIf="addEval">

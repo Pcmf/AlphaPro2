@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class FlexitesteComponent implements OnInit {
               private location: Location,
               private dataService: DataService,
               public dialog: MatDialog,
-              private datapipe: DatePipe
+              private datapipe: DatePipe,
+              private dialogService: DialogService
   ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
@@ -87,11 +89,10 @@ export class FlexitesteComponent implements OnInit {
 
     // Help Dialog
     openDialog(type): void {
-      const dialogRef = this.dialog.open(DialogHelpDB, {
-        width: '250px',
-        data: { type }
-      });
+      this.dialogService.openHelp(type);
     }
+
+
 
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-fleximetro',
@@ -20,7 +21,8 @@ export class FleximetroComponent implements OnInit {
   constructor(
               private location: Location,
               private dataService: DataService,
-              private datapipe: DatePipe
+              private datapipe: DatePipe,
+              private dialogService: DialogService
   ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
@@ -68,6 +70,10 @@ export class FleximetroComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  openDialog(type) {
+    this.dialogService.openHelp(type);
   }
 
 }

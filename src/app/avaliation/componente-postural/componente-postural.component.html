@@ -25,10 +25,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="form-subtitle">CABEÇA</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Cabeça')">CABEÇA</span></td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Inclinação da cabeça')">Inclinação</span></th>
+                                <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação</span></th>
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabi}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}
@@ -70,7 +70,7 @@
                             </tr>
                             <!--  OMBROS -->
                             <tr>
-                                <td class="form-subtitle">OMBROS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Ombros')">OMBROS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Elevação de Ombros')">Elevação</span></th>
@@ -104,7 +104,7 @@
                             </tr>
                             <!-- TRONCO -->
                             <tr>
-                                <td class="form-subtitle">TRONCO</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Tronco')">TRONCO</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Inclinação do Tronco')">Inclinação</span></th>
@@ -147,7 +147,7 @@
                             </tr>
                             <!--   ANGULO DE THALES -->
                             <tr>
-                                <td class="form-subtitle">ANGULO DE THALES</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Angulo de Thales')">ANGULO DE THALES</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Angulo de Thales')">Angulo Maior</span></th>
@@ -166,7 +166,7 @@
                             </tr>
                             <!--   PELVE -->
                             <tr>
-                                <td class="form-subtitle">PELVE</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Pelve')">PELVE</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Pelve')">Inclinação</span></th>
@@ -200,7 +200,7 @@
                             </tr>
                             <!--   QUADRIL -->
                             <tr>
-                                <td class="form-subtitle">QUADRIL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Quadril')">QUADRIL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril Valgo')">Valgo</span></th>
@@ -234,7 +234,7 @@
                             </tr>
                             <!--   JOELHOS -->
                             <tr>
-                                <td class="form-subtitle">JOELHOS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Joelhos')">JOELHOS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho Valgo')">Valgo</span></th>
@@ -269,7 +269,7 @@
 
                             <!--   PATELAS -->
                             <tr>
-                                <td class="form-subtitle">PATELAS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Patelas')">PATELAS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Patela Lateralizada')">Lateralizada</span></th>
@@ -319,7 +319,7 @@
 
                             <!--   PERNA -->
                             <tr>
-                                <td class="form-subtitle">PERNA</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Perna')">PERNA</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Valgo')">Valgo</span></th>
@@ -383,7 +383,7 @@
                             </tr>
                             <!--   TORNOZELO -->
                             <tr>
-                                <td class="form-subtitle">TORNOZELO</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Tornozelo')">TORNOZELO</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo Valgo')">Valgo</span></th>
@@ -418,7 +418,7 @@
 
                             <!--   PÉS -->
                             <tr>
-                                <td class="form-subtitle">PÉS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Pés')">PÉS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Abduzidos')">Abduzidos</span></th>
@@ -542,7 +542,7 @@
                         <tbody>
                             <!-- CABEÇA -->
                             <tr>
-                                <td class="form-subtitle">CABEÇA</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Cabeça')">CABEÇA</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
@@ -561,7 +561,7 @@
                             </tr>
                             <!-- REGIÃO CERVICAL -->
                             <tr>
-                                <td class="form-subtitle">REGIÃO CERVICAL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Região Cervical')">REGIÃO CERVICAL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cervical')">Cervical</span></th>
@@ -580,7 +580,7 @@
                             </tr>
                             <!-- OMBROS -->
                             <tr>
-                                <td class="form-subtitle">OMBROS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Ombros')">OMBROS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros Protraidos')">Protraidos</span></th>
@@ -648,7 +648,7 @@
 
                             <!-- REGIÃO DORSAL -->
                             <tr>
-                                <td class="form-subtitle">REGIÃO DORSAL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Região Dorsal')">REGIÃO DORSAL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Região Dorsal')">Região Dorsal</span></th>
@@ -667,7 +667,7 @@
                             </tr>
                             <!-- TRONCO -->
                             <tr>
-                                <td class="form-subtitle">TRONCO</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Tronco')">TRONCO</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tronco Rotação')">Rotação</span></th>
@@ -686,7 +686,7 @@
                             </tr>
                             <!-- ABDOMEM -->
                             <tr>
-                                <td class="form-subtitle">ABDOMEM</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Abdomen')">ABDOMEM</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('abdomem')">abdomem</span></th>
@@ -705,7 +705,7 @@
                             </tr>
                             <!-- REGIÃO LOMBAR -->
                             <tr>
-                                <td class="form-subtitle">REGIÃO LOMBAR</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Região Lombar')">REGIÃO LOMBAR</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Região Lombar')">Região Lombar</span></th>
@@ -724,7 +724,7 @@
                             </tr>
                             <!-- QUADRIL -->
                             <tr>
-                                <td class="form-subtitle">QUADRIL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Quadril')">QUADRIL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril')">Quadril</span></th>
@@ -745,7 +745,7 @@
                             </tr>
                             <!-- JOELHOS -->
                             <tr>
-                                <td class="form-subtitle">JOELHOS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Joelhos')">JOELHOS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos Flexos')">Flexos</span></th>
@@ -780,7 +780,7 @@
 
                             <!-- TORNOZELOS -->
                             <tr>
-                                <td class="form-subtitle">TORNOZELOS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Tornozelos')">TORNOZELOS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelos Valgo')">Valgo</span></th>
@@ -815,7 +815,7 @@
 
                             <!-- PÈS -->
                             <tr>
-                                <td class="form-subtitle">PÉS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Pés')">PÉS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés Planos')">Plano</span></th>
@@ -909,7 +909,7 @@
                         <tbody>
                             <!-- CABEÇA -->
                             <tr>
-                                <td class="form-subtitle">CABEÇA</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Cabeça')">CABEÇA</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça Inclinação')">Inclinação</span></th>
@@ -943,7 +943,7 @@
                             </tr>
                             <!-- ESCOLIOSE CERVICAL -->
                             <tr>
-                                <td class="form-subtitle">ESCOLIOSE CERVICAL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Escoliose Cervical')">ESCOLIOSE CERVICAL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Cervical')">Escoliose Cervical</span></th>
@@ -971,7 +971,7 @@
                             </tr>
                             <!-- OMBROS -->
                             <tr>
-                                <td class="form-subtitle">OMBROS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Ombros')">OMBROS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros Elevação')">Elevação</span></th>
@@ -1006,7 +1006,7 @@
 
                             <!-- ESCÁPULAS -->
                             <tr>
-                                <td class="form-subtitle">ESCÁPULAS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Escápulas')">ESCÁPULAS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escápulas Elevação')">Elevação</span></th>
@@ -1081,7 +1081,7 @@
 
                             <!-- GIBOSIDADE TORÁXICA -->
                             <tr>
-                                <td class="form-subtitle">GIBOSIDADE TORÁXICA</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Gibosidade Toráxica')">GIBOSIDADE TORÁXICA</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Gibosidade Toráxica')">Gibosidade Toráxica</span></th>
@@ -1099,7 +1099,7 @@
                             </tr>
                             <!-- ESCOLIOSE DORSAL -->
                             <tr>
-                                <td class="form-subtitle">ESCOLIOSE DORSAL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Escoliose Dorsal')">ESCOLIOSE DORSAL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Dorsal')">Escoliose Dorsal</span></th>
@@ -1128,7 +1128,7 @@
                             </tr>
                             <!-- ESCOLIOSE LOMBAR -->
                             <tr>
-                                <td class="form-subtitle">ESCOLIOSE LOMBAR</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Escoliose Lombar')">ESCOLIOSE LOMBAR</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Lombar')">Escoliose Lombar</span></th>
@@ -1155,7 +1155,7 @@
                             </tr>
                             <!-- PELVE -->
                             <tr>
-                                <td class="form-subtitle">PELVE</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Pelve')">PELVE</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pelve Inclinação')">Inclinação</span></th>
@@ -1187,7 +1187,7 @@
                             </tr>
                             <!-- QUADRIL -->
                             <tr>
-                                <td class="form-subtitle">QUADRIL</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Quadril')">QUADRIL</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril Valgo')">Valgo</span></th>
@@ -1220,7 +1220,7 @@
 
                             <!-- JOELHOS -->
                             <tr>
-                                <td class="form-subtitle">JOELHOS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Joelhos')">JOELHOS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho Valgo')">Valgo</span></th>
@@ -1253,7 +1253,7 @@
 
                             <!-- TORNOZELOS -->
                             <tr>
-                                <td class="form-subtitle">TORNOZELOS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Tornozelos')">TORNOZELOS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo Valgo')">Valgo</span></th>
@@ -1285,7 +1285,7 @@
                             </tr>
                             <!--   PÉS -->
                             <tr>
-                                <td class="form-subtitle">PÉS</td>
+                                <td class="form-subtitle"><span (click)="openDialog('Pés')">PÉS</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Abduzidos')">Abduzidos</span></th>

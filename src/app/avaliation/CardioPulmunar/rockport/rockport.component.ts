@@ -192,4 +192,8 @@ export class RockportComponent implements OnInit {
     this.addEval = false;
   }
 
+  openDialog(type) {
+    this.dialogService.openHelp(type);
+  }
+
 }

@@ -194,4 +194,7 @@ export class BancoComponent implements OnInit {
     this.addEval = false;
   }
 
+  openDialog(type) {
+    this.dialogService.openHelp(type);
+  }
 }

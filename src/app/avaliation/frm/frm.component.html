@@ -17,10 +17,10 @@
                 </thead>
                 <tbody>
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Membros Inferiores</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Agachamento</th>
+                        <th i18n><span (click)="openDialog('Agachamento')">Agachamento</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].agachamento}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].agachamento}}</td>
                         <td *ngIf="addEval">
@@ -36,10 +36,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Abdominal</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Abdominal')">Abdominal</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão do Tronco</th>
+                        <th i18n><span (click)="openDialog('Flexão do Tronco')">Flexão do Tronco</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
                         <td *ngIf="addEval">
@@ -55,10 +55,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Membros Superiores</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão e extensão<br />dos cotovelos no chão</th>
+                        <th i18n><span (click)="openDialog('Flexão e extensão dos cotovelos no chão')">Flexão e extensão<br />dos cotovelos no chão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].flexb}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].flexb}}</td>
                         <td *ngIf="addEval">

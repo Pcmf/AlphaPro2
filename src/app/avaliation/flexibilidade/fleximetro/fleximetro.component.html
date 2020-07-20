@@ -17,10 +17,10 @@
                 </thead>
                 <tbody>
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Cervical</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Cervical')">Cervical</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Cervical - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
                         <td *ngIf="addEval">
@@ -28,7 +28,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Flexão Lateral</th>
+                        <th i18n><span (click)="openDialog('Cervical - Flexão Lateral')">Flexão Lateral</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
                         <td *ngIf="addEval">
@@ -36,7 +36,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Rotação</th>
+                        <th i18n><span (click)="openDialog('Cervical - Rotação')">Rotação</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
                         <td *ngIf="addEval">
@@ -45,10 +45,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Ombro</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Ombro')">Ombro</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Ombro - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombrof}}</td>
                         <td *ngIf="addEval">
@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Adução/Abdução</th>
+                        <th i18n><span (click)="openDialog('Ombro - Adução/Abdução')">Adução/Abdução</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroad}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombroad}}</td>
                         <td *ngIf="addEval">
@@ -64,7 +64,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Rotação</th>
+                        <th i18n><span (click)="openDialog('Ombro - Rotação')">Rotação</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
                         <td *ngIf="addEval">
@@ -73,10 +73,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Cotovelo</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Cotovelo')">Cotovelo</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Cotovelo - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
                         <td *ngIf="addEval">
@@ -85,10 +85,10 @@
                     </tr>
  
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Antebraço</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Antebraço')">Antebraço</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Supinação/Pronação</th>
+                        <th i18n><span (click)="openDialog('Antebraço - Supinação/Pronação')">Supinação/Pronação</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].antbsp}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].antbsp}}</td>
                         <td *ngIf="addEval">
@@ -97,10 +97,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Punho</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Punho')">Punho</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Punho - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
                         <td *ngIf="addEval">
@@ -108,7 +108,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Desvio ulnar/radial</th>
+                        <th i18n><span (click)="openDialog('Punho - Desvio Ulnar/Radial')">Desvio Ulnar/Radial</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoe}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
                         <td *ngIf="addEval">
@@ -117,10 +117,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Quadril</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Quadril')">Quadril</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Quadril - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
                         <td *ngIf="addEval">
@@ -128,7 +128,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Adução/Abdução</th>
+                        <th i18n><span (click)="openDialog('Quadril - Adução/Abdução')">Adução/Abdução</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
                         <td *ngIf="addEval">
@@ -136,7 +136,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Rotação</th>
+                        <th i18n><span (click)="openDialog('Quadril - Rotação')">Rotação</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilmedial}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilmedial}}</td>
                         <td *ngIf="addEval">
@@ -145,10 +145,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Joelho</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Joelho')">Joelho</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extenção</th>
+                        <th i18n><span (click)="openDialog('Joelho - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
                         <td *ngIf="addEval">
@@ -157,10 +157,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Tornozelo</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Tormnozelo')">Tornozelo</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão dorsal/plantar</th>
+                        <th i18n><span (click)="openDialog('Tornozelo - Flexão Dorsal/Planar')">Flexão Dorsal/Plantar</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelod}}</td>
                         <td *ngIf="addEval">
@@ -168,7 +168,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Inversão/Eversão</th>
+                        <th i18n><span (click)="openDialog('Tornozelo - Inversão/Eversão')">Inversão/Eversão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelop}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelop}}</td>
                         <td *ngIf="addEval">
@@ -177,10 +177,10 @@
                     </tr>
 
                     <tr class="sub-line">
-                        <th [attr.colspan]="pointer+2" i18n><span>Tronco</span></th>
+                        <th [attr.colspan]="pointer+2" i18n><span (click)="openDialog('Tronco')">Tronco</span></th>
                     </tr>
                     <tr>
-                        <th i18n>Flexão/Extensão</th>
+                        <th i18n><span (click)="openDialog('Tronco - Flexão/Extensão')">Flexão/Extensão</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
                         <td *ngIf="addEval">
@@ -188,7 +188,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Flexão lateral</th>
+                        <th i18n><span (click)="openDialog('Tronco - Flexão Lateral')">Flexão Lateral</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
                         <td *ngIf="addEval">
@@ -196,7 +196,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n>Rotação</th>
+                        <th i18n><span (click)="openDialog('Tronco - Rotação')">Rotação</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
                         <td *ngIf="addEval">

@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Metrônomo
+                        <th i18n><span (click)="openDialog('Metrônomo')">Metrônomo</span>
                         <span *ngIf="!addEval" class="metronomo-button">
                             <button mat-mini-fab color="warn" routerLink="/metro/">
                                 <mat-icon class="mat-18">arrow_right</mat-icon>
@@ -33,7 +33,7 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>FC final</th>
+                        <th i18n>FC Final</th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -48,37 +48,37 @@
                     </tr>
                     <!--  resultados -->
                     <tr>
-                        <th i18n>FC Estimada</th>
+                        <th i18n><span (click)="openDialog('FC Estimada')">FC Estimada</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcestimada | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>FC Reserva</th>
+                        <th i18n><span (click)="openDialog('FC Reserva')">FC Reserva</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcreserva | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>% FC Máx. Alcançada</th>
+                        <th i18n><span (click)="openDialog('% FC Máxima Alcançada')">% FC Máx. Alcançada</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percfcm | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>Indice Aeróbico Funcional (FAI)</th>
+                        <th i18n><span (click)="openDialog('Índice Aeróbico Funcional')">Índice Aeróbico Funcional (FAI)</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>                    
                     <tr>
-                        <th i18n>VO2 Máx Obtido</th>
+                        <th i18n><span (click)="openDialog('VO2 Máximo Obtido')">VO2 Máx Obtido</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2m | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
-                        <th i18n>VO2 Máx. Estimado</th>
+                        <th i18n><span (click)="openDialog('VO2 Máximo Estimado')">VO2 Máx. Estimado</span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>

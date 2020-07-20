@@ -188,4 +188,8 @@ export class AstrandRyhmingComponent implements OnInit {
     this.addEval = false;
   }
 
+  openDialog(type) {
+    this.dialogService.openHelp(type);
+  }
+
 }

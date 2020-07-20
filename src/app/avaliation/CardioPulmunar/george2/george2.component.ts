@@ -195,4 +195,8 @@ export class George2Component implements OnInit {
     this.addEval = false;
   }
 
+  openDialog(type) {
+    this.dialogService.openHelp(type);
+  }
+
 }

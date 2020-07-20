@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { AgeService } from 'src/app/services/age.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-frm',
@@ -22,7 +23,8 @@ export class FRMComponent implements OnInit {
               private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private ageService: AgeService
+              private ageService: AgeService,
+              private dialogservice: DialogService
   ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
@@ -70,6 +72,10 @@ export class FRMComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  openDialog(type) {
+    this.dialogservice.openHelp(type);
   }
 
   getClassAgachamento(value) {

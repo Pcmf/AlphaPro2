@@ -192,4 +192,8 @@ export class CooperComponent implements OnInit {
     this.addEval = false;
   }
 
+  openDialog(type) {
+    this.dialogService.openHelp(type);
+  }
+
 }

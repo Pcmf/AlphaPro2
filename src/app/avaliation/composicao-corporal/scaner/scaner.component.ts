@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-scaner',
@@ -22,7 +23,8 @@ export class ScanerComponent implements OnInit {
   constructor(
     private location: Location,
     private dataService: DataService,
-    private datapipe: DatePipe
+    private datapipe: DatePipe,
+    private dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -91,4 +93,9 @@ export class ScanerComponent implements OnInit {
     this.newEvaluation = [];
     this.addEval = false;
   }
+
+    // Help Dialog
+openDialog(type): void {
+  this.dialogService.openHelp(type);
+}
 }

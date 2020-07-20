@@ -14,6 +14,8 @@ export class MetronomeComponent implements OnInit {
   fill1 = 'fill1';
   fill2 = 'fill2';
   tempo: any;
+  audio = new Audio();
+
 
   private interval: number;
   private timer: any;
@@ -23,6 +25,7 @@ export class MetronomeComponent implements OnInit {
     private location: Location,
   ) {
         const student = JSON.parse(sessionStorage.selectedStudent);
+        this.audio.src = './assets/sounds/tok.mp3';
         if (student.sexo === 'M') {
           this.bpm = 96;
         } else {
@@ -41,7 +44,7 @@ export class MetronomeComponent implements OnInit {
         this.tick();
         this.playing = true;
         this.cronTime = 180;
-
+        this.audio.load();
     }
 
     stop() {
@@ -52,17 +55,17 @@ export class MetronomeComponent implements OnInit {
         this.fill2 = 'fill2';
     }
 
- /*    setInterval(interval: number) {
-        this.interval = interval;
-    } */
 
     private tick() {
         if (this.fill1) {
           this.fill1 = '';
           this.fill2 = 'fill2';
+          this.audio.play();
+
         } else {
           this.fill1 = 'fill1';
           this.fill2 = '';
+          this.audio.play();
         }
         this.timer = setTimeout(this.tick.bind(this), this.interval);
         this.cron = setTimeout(() => {
@@ -76,4 +79,8 @@ export class MetronomeComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+
+
+
 }

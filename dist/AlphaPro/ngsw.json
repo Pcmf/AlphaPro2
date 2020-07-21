@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1594977834639,
+  "timestamp": 1595266031289,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.3c4ddec8f86f10e3b3d2.js",
-        "/main-es5.3c4ddec8f86f10e3b3d2.js",
+        "/main-es2015.f11f682c87f52eda5736.js",
+        "/main-es5.f11f682c87f52eda5736.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.9a51c357b95f623a5ef5.js",
         "/polyfills-es5.7c63f4bac2a381dba54c.js",
@@ -312,6 +312,7 @@
         "/assets/old/icon72.ico",
         "/assets/old/icon80.ico",
         "/assets/old/icon96.ico",
+        "/assets/sounds/tok.mp3",
         "/assets/videos/BANCO.mp4",
         "/assets/videos/export.Mobile/Teste Napoleao.mp4",
         "/assets/videos/export.Mobile/Teste Neurodinaico do Nervo Femural.mp4",
@@ -647,6 +648,7 @@
     "/assets/old/icon72.ico": "c6f2bd277931d33bb0a25f5111314f89f2420616",
     "/assets/old/icon80.ico": "e0cc7e295da862d98305a368f0eafeb78a01e5ad",
     "/assets/old/icon96.ico": "eccb9e4f952216480b2667e15326993055170dba",
+    "/assets/sounds/tok.mp3": "229092cde8f1e2a50bee92afb0275be0b9db972d",
     "/assets/videos/BANCO.mp4": "48789abb4cbbc8d82e1e9cf0998606f5ad76d239",
     "/assets/videos/export.Mobile/Teste Napoleao.mp4": "fe32de45ef2acfac7ce59d03b84ce700d8f2abe2",
     "/assets/videos/export.Mobile/Teste Neurodinaico do Nervo Femural.mp4": "da169c0291a20845342b151b2c2f1797d7ef873b",
@@ -683,9 +685,9 @@
     "/fezbot2000-smWTOhdPvJc-unsplash.2c46be48d37a5f9e3624.jpg": "f54c5f918178f3939b2097d850ab8c22971549f3",
     "/front_view.d323b33a75a9562c6b0f.jpg": "af363d317e2b83cea1c7adfea1a63935576c554a",
     "/humphrey-muleba-dDp-6pXrYik-unsplash.a0f9f0e2b4272cc126bf.jpg": "a887b0338f215133e9428ce9b8d3196fd53e2aad",
-    "/index.html": "7f675abb67be3a6b7c017f218e951db455387aea",
-    "/main-es2015.3c4ddec8f86f10e3b3d2.js": "b64fb3622c63c907bbe3a245dd486e60bbff55d9",
-    "/main-es5.3c4ddec8f86f10e3b3d2.js": "f19588978aa76e3e43b28303023d4f2e36f68c43",
+    "/index.html": "393165d300cb5b6997dd79b76df2d61a0fff5a39",
+    "/main-es2015.f11f682c87f52eda5736.js": "1a9fb76f6b8ba2ac3cee77bce855dbd1d7b5621d",
+    "/main-es5.f11f682c87f52eda5736.js": "9fb820a8615abbfcd1eaf32c35e76ecb3949690f",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/mark-bertulfo-XKimW0pke6w-unsplash.0a68889228d03fa39645.jpg": "b627a621ad4e1eb1cbceaf8c760b2908fb159d95",
     "/measurement-1698856.743b6207429718ed218c.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",

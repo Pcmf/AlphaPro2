@@ -41,13 +41,24 @@ export class AnameneseComponent implements OnInit {
         if (resp.length > 0) {
           this.student = resp[0];
           this.student.profissao = this.selectedStudent.profissao;
+          this.student.Q2B == 0 ? this.student.Q2B = '0' : this.student.Q2B = '1';
           this.student.Q31 == 0 ? this.student.Q31 = false : this.student.Q31 = true;
           this.student.Q32 == 0 ? this.student.Q32 = false : this.student.Q32 = true;
           this.student.Q33 == 0 ? this.student.Q33 = false : this.student.Q33 = true;
           this.student.Q34 == 0 ? this.student.Q34 = false : this.student.Q34 = true;
+          this.student.artrite == 0 ? this.student.artrite = false : this.student.artrite = true;
+          this.student.bronquite == 0 ? this.student.bronquite = false : this.student.bronquite = true;
+          this.student.cancer == 0 ? this.student.cancer = false : this.student.cancer = true;
+          this.student.diabetes1 == 0 ? this.student.diabetes1 = false : this.student.diabetes1 = true;
+          this.student.diabetes2 == 0 ? this.student.diabetes2 = false : this.student.diabetes2 = true;
+          this.student.cardiacas == 0 ? this.student.cardiacas = false : this.student.cardiacas = true;
+          this.student.hipertenso == 0 ? this.student.hipertenso = false : this.student.hipertenso = true;
+          this.student.osteoporose == 0 ? this.student.osteoporose = false : this.student.osteoporose = true;
+          this.student.osteopenia == 0 ? this.student.osteopenia = false : this.student.osteopenia = true;
           this.dataObj = this.student.DT_OBJ;
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
+          this.checkHipertenso();
           this.dataService.getData('patfam/' + this.selectedStudent.id).subscribe(
             respp => {
               this.patologiasFamiliar = respp;
@@ -72,14 +83,6 @@ export class AnameneseComponent implements OnInit {
 
             }
           );
-          this.dataService.getData('doencas/' + this.selectedStudent.id).subscribe(
-            (respd: any[]) => {
-              this.doencasList.doencas = respd.map((el) => {
-                return el.doenca;
-                }
-              );
-            }
-          );
         } else {
           this.student = [];
           this.student.profissao = this.selectedStudent.profissao;
@@ -87,6 +90,20 @@ export class AnameneseComponent implements OnInit {
           this.HiperParentesco = [];
           this.DiabetesParentesco = [];
           this.OutraDoencaParentesco = [];
+          this.checkHipertenso();
+        }
+      }
+    );
+  }
+
+  private checkHipertenso() {
+    this.dataService.getLastEvaluation(this.selectedStudent.id).subscribe(
+      (resp: any[]) => {
+        if (resp && resp.length > 0) {
+          if (resp[0].tamax >= 140 || resp[0].tamin >= 90) {
+            this.student.Q2B = '1';
+            this.student.hipertenso = 1;
+          }
         }
       }
     );
@@ -138,7 +155,6 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveObjetivos(form) {
-
     if (!form.QEST) {
       form.Q201 = '';
       form.Q13 = '';
@@ -148,23 +164,29 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveEstiloVida(form) {
-    console.table(form);
     form.dt_prevista = this.dataIniPgm;
     this.saveData(form);
   }
 
   saveHistoricoPatologico(form) {
     console.log(form);
-    if (form.Q2B === '1') {
-      this.dataService.setData('doencas/' + this.selectedStudent.id, this.doencasList.doencas).subscribe(
-        resp => console.log(resp)
-      );
-    } else {
-      this.dataService.delete('doencas/' + this.selectedStudent.id).subscribe(
-        resp => console.log(resp)
-      );
-    }
     this.saveData(form);
+  }
+
+  clearDoencasInfo(parm) {
+    if (parm == 0) {
+      this.student.artrite = 0;
+      this.student.bronquite = 0;
+      this.student.cancer = 0;
+      this.student.canceronde = null;
+      this.student.diabetes1 = 0;
+      this.student.diabetes2 = 0;
+      this.student.cardiacas = 0;
+      this.student.cardiacasquais = null;
+      this.student.hipertenso = 0;
+      this.student.osteopenia = 0;
+      this.student.osteoporose = 0;
+    }
   }
 
   savePatologiaFamiliar(form) {
@@ -208,7 +230,6 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveHabitosSociais(form) {
-    console.table(form);
     if (form.fumante === 'N') {
       form.qtos = 0;
       form.Q4ATA = 0;
@@ -218,8 +239,29 @@ export class AnameneseComponent implements OnInit {
     this.saveData(form);
   }
 
+  clearBebidaInfo() {
+    this.student.qtos = null;
+    this.student.Q4BBA = null;
+    this.student.Q4BBM = null;
+    this.student.Q4BBVEZES = null;
+  }
+
+  clearAlimentacaoInfo() {
+    this.student.Q4ETIPO = null;
+    this.student.Q4EPROF = null;
+    this.student.Q4ENOME = null;
+    this.student.Q4ECONTATO = null;
+  }
+
+  clearFumanteInfo() {
+    this.student.qtos = null;
+    this.student.Q4ATA = null;
+    this.student.Q4ATM = null;
+    this.student.Q4APA = null;
+    this.student.Q4APM = null;
+  }
+
   saveQueixasAtuais(form) {
-    console.table(form);
     if (!form.Q510) {
       form.Q510TC = '';
       form.Q510TD = '';

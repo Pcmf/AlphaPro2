@@ -8,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class AvDashComponent implements OnInit {
   morfoExpanded = false;
   videoExpanded = false;
-
+  isLoged: boolean;
   constructor() {
 
   }
 
   ngOnInit(): void {
+
     if (sessionStorage.morfoExpanded) {
       this.morfoExpanded = sessionStorage.morfoExpanded;
     } else {

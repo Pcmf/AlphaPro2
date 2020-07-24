@@ -2,14 +2,16 @@ $min-width: 1024px;
 
 
 .menu-toolbar{
-  width: 100%;
+  width: 100vw;
+  height: 6vh;
+  background-color: rgb(115,240,242);
 }
 
 @media only screen and (min-width: $min-width) {
-  .menu-toolbar{
-    width: 60vw;
+/*   .menu-toolbar{
+    width: 100vw;
     margin: auto;
-  }
+  } */
   .alphapro{
     font-family: 'Fredoka One', cursive;
     font-size: 22px;

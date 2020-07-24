@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { MenuService } from 'src/app/services/menu.service';
 
@@ -6,7 +6,8 @@ import { MenuService } from 'src/app/services/menu.service';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
-  styleUrls: ['./dash.component.scss']
+  styleUrls: ['./dash.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashComponent implements OnInit {
   students: any =  [];

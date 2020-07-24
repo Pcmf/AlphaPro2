@@ -1,52 +1,51 @@
 <div class="container">
-
     <div class="dash-form">
-      <!--   <h2 class="title">ALPHA PRO SYSTEM</h2> -->
 
-        
+
         <!-- Selecionar Aluno -->
-        <mat-form-field>
-            <mat-label i18n>Aluno</mat-label>
-            <mat-select #f="ngModel"  [ngModel]="student"  (selectionChange)="selected(f.value)">
-                <mat-option *ngFor="let s of students" [value]="s">
-                    <span [class.inactive] = "s.active=='0'">
-                        {{s.nome}}
-                    </span>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <!-- Novo Registro -->
-        <div class="dash-button-new" *ngIf="!selectedS">
-            <a i18n="Novo aluno | Botão registrar aluno" mat-fab routerLink="/new" color="primary">
-                Novo
+        <div class="aluno-select">
+            <mat-form-field>
+                <mat-label style="color: whitesmoke; font-size: large; display: flex; justify-content: center;" i18n>
+                    ALUNO</mat-label>
+                <mat-select #f="ngModel" [ngModel]="student" (selectionChange)="selected(f.value)">
+                    <mat-option
+                        style="color: whitesmoke; display: flex; justify-content: center; background-color: rgba(119, 107, 107, 0.88)"
+                        *ngFor="let s of students" [value]="s">
+                        <span [class.inactive]="s.active=='0'">
+                            {{s.nome}}
+                        </span>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- Novo Registro -->
+            <a mat-button routerLink="/new" class="select-button" *ngIf="!selectedS">
+                <mat-icon>add</mat-icon>
+            </a>
+            <a mat-button (click)="reset()" class="select-button" *ngIf="selectedS">
+                <mat-icon>close</mat-icon>
             </a>
         </div>
 
+        <a mat-button class="dash-buttons-action_block" [routerLink]="['/repDash']" *ngIf="selectedS">
+            <mat-icon>description</mat-icon>
+            <span>relatórios</span>
+        </a>
+        <a mat-button class="dash-buttons-action_block" [routerLink]="['/preDash']" *ngIf="selectedS">
+            <mat-icon>directions_run</mat-icon>
+            <span>prescrição</span>
+        </a>
+        <a mat-button class="dash-buttons-action_block" [routerLink]="['/avDash']" *ngIf="selectedS">
+            <mat-icon>accessibility_new</mat-icon>
+            <span>avaliação</span>
+        </a>
+        <a mat-button class="dash-buttons-action_block" [routerLink]="['/new']" *ngIf="selectedS">
+            <mat-icon class="ico">account_circle</mat-icon>
+            <span class="lb">cadastro</span>
+        </a>
 
-        <div class="dash-buttons-action" *ngIf="selectedS">
-            <div  class="dash-buttons-action_block">
-                <a mat-fab [routerLink]="['/new']"><mat-icon>account_circle</mat-icon></a>
-                <label i18n="Label | registo">cadastro</label>
-            </div>
-            <div class="dash-buttons-action_block">
-                <a  mat-fab [routerLink]="['/avDash']"><mat-icon>accessibility_new</mat-icon></a>
-                <label i18n="Label | avaliação do aluno">avaliação</label>
-            </div>
-            <div class="dash-buttons-action_block">
-                <a  mat-fab [routerLink]="['/preDash']"><mat-icon>directions_run</mat-icon></a>
-                <label i18n="Label | prescrição de exercicios do aluno">prescrição</label>
-            </div>
-            <div  class="dash-buttons-action_block">
-                <a mat-fab [routerLink]="['/repDash']"><mat-icon>description</mat-icon></a>
-                <label i18n="Label | relatorios de evolução do aluno">relatorios</label>
-            </div>
-        </div>
-        <div class="dash-buttons-action" *ngIf="selectedS">
-            <button mat-fab color="default" (click)="reset()"><mat-icon>close</mat-icon></button>
-        </div>
-        
 
-        
+
+
     </div>
+
 </div>

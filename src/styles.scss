@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 $min-width: 1024px;
 
+@import '~@angular/cdk/text-field/text-field'; 
+
+// Set custom-autofill inputs to have no background and red text.
+input.custom-autofill {
+  @include cdk-text-field-autofill-color(transparent, white);
+}
+
+
 html,
 body {
   height: 100vh;
@@ -68,6 +76,7 @@ em{
 }
 
 .footer {
+  display: none;
   height: 42px;
   display: flex;
   flex-direction: row;

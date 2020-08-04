@@ -1,21 +1,35 @@
-.top-header{
+.top-header {
+    position: relative;
     width: 100vw;
     height: 5vh;
-    &-main{
+    &-main {
         height: 90%;
-        background-color: rgb(170,171,175);
+        background-color: rgb(170, 171, 175);
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
 
-        .logo{
-            height: 3vh;
-        }
-        .text{
-            height: 3vh;
+        .logo {
+            height: 4.5vh;
         }
     }
-    &-orange{
-        background-color: rgb(243,136,47);
+    &-orange {
+        background-color: rgb(243, 136, 47);
+    }
+
+    .mat-button {
+            position: absolute;
+            top: 2px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        .mat-icon {
+            height: 20px;
+            width: 20px;
+            color: whitesmoke;
+        }
     }
 }

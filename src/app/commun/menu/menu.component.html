@@ -1,9 +1,17 @@
 <mat-toolbar class="menu-toolbar">
-    <span class="alphapro"><a routerLink="/dash">AlphaProSystem</a></span>
-    <span class="menu-spacer"></span>
-    <span class="menu-username" *ngIf="selectedStudent.id"><a routerLink="/new">{{selectedStudent.nome}}</a></span>
-    <a [routerLink]="['/configs']">
-        <mat-icon class="menu-icon" aria-hidden="false" aria-label="menu">settings</mat-icon>
-    </a>
-    <mat-icon class="menu-icon" aria-hidden="false" aria-label="log out" (click)="logout()">power_settings_new</mat-icon>
+    <div class="menu-element">
+        <a routerLink="/dash">
+            <img src="../../../assets/svg/icons/home.svg" height="22">INICIO
+        </a>
+    </div>
+    <div class="menu-element">
+        <a routerLink="/dash">
+            <img src="../../../assets/svg/icons/previus.svg" height="16">VOLTAR
+        </a>
+    </div>    
+    <div class="menu-element">
+        <a href="" (click)="logout()">
+            <img src="../../../assets/svg/icons/out.png" height="20">SAIR
+        </a>
+    </div>
 </mat-toolbar>

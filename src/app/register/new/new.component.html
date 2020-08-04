@@ -4,7 +4,7 @@
   <div class="section">
     <h1 i18n="titulo">Cadastro</h1>
     <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
-      
+      <input type="hidden" [ngModel]="student.foto" #foto="ngModel" name="foto">
       <mat-form-field appearance="">
         <label i18n="Label | nome do aluno" #nome>Nome</label>
         <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
@@ -35,11 +35,16 @@
         </mat-form-field>
       </div>
       <div class="section-middle-right">
-        <label>Foto</label>
-        <div class="image-box" (click)="showPhotoUp = !showPhotoUp">
-          <mat-icon>camera</mat-icon>
+        <div class="top">
+          <label class="half">Foto: </label> 
+          <app-load-image class="half" (imageB64)="receiveImage($event)"></app-load-image>
         </div>
-        <app-load-image *ngIf="showPhotoUp" (imageB64)="receiveImage($event)"></app-load-image>
+        
+        <div class="image-box">
+          <img *ngIf="!student.foto" src="./../../../assets/img/nofoto.png" alt="No foto">
+          <img *ngIf="student.foto" [src]="student.foto" height="190"> 
+        </div>
+        
       </div>
       </div>
       <mat-form-field appearance="">

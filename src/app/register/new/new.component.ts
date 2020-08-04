@@ -14,7 +14,6 @@ export class NewComponent implements OnInit {
   date: Date;
   student: any = [];
   erroRepeatCliente = false;
-  showPhotoUp = false;
   imageB64: string;
 
   constructor(private location: Location,
@@ -29,6 +28,7 @@ export class NewComponent implements OnInit {
           this.student.active === '0' ? this.student.active = false : this.student.active = true;
           this.student.dt_nasc = this.datapipe.transform( this.student.dt_nasc, 'dd/MM/yyyy');
           this.student.lastaccess = this.datapipe.transform( this.student.lastaccess, 'dd/MM/yyyy');
+          
     }
   }
 
@@ -49,7 +49,7 @@ export class NewComponent implements OnInit {
 
   receiveImage(event) {
     console.log(event);
-    this.showPhotoUp = false;
+    this.student.foto = event;
   }
 
   saveForm(form) {
@@ -84,6 +84,7 @@ export class NewComponent implements OnInit {
           aluno.telemovel = form.telemovel;
           aluno.cp = form.cp;
           aluno.active = form.active;
+          aluno.foto = form.foto;
           sessionStorage.selectedStudent = JSON.stringify(aluno);
           this.location.back();
         }

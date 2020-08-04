@@ -1,23 +1,29 @@
-<div class="container-fluid">
-    <div class="login-form">
-      <form class="center-form panel" #f="ngForm" (submit)="submit(f.value)">
-        <h2 class="title">ALPHA PRO SYSTEM</h2>
-  
-        <mat-form-field class="center-full-width">
-          <input i18n="Utilizador | utilizador login" matInput placeholder="Utilizador" #user ngModel name="username" value="" required>
+<div class="container">
+  <form class="container-form" #f="ngForm" (submit)="submit(f.value)">
+
+    <div class="container-form__group">
+      <label>Usuário: </label>
+      <mat-form-field>
+      <input matInput type="text" i18n="Utilizador | utilizador login" #user ngModel name="username" value="" required>
         </mat-form-field>
-  
-        <mat-form-field class="center-full-width">
-          <input i18n="Senha | placeholder" matInput type="password" #pass ngModel placeholder="Senha" name="password" required minlength="3">
-        </mat-form-field>
-        <mat-error *ngIf="!f.valid && user.touched && pass.touched">
-          <small i18n="Erro Login">Campos obrigatórios</small>
-        </mat-error>
-        <mat-error *ngIf="erro">
-          <small i18n="Erro Login">Verifique utilizador e senha!</small>
-        </mat-error>
-        <button i18n="Botão entrar" [disabled]="!f.valid" mat-stroked-button type="submit" color="primary">Entrar</button>
-      </form>
     </div>
-  
-  </div>
+
+    <div class="container-form__group">
+      <label>Senha: </label>
+      <mat-form-field>
+          <input matInput i18n="Senha | placeholder" type="password" #pass ngModel name="password" required minlength="3">
+      </mat-form-field>
+    </div>
+
+    <div class="container-form__button">
+      <mat-error *ngIf="!f.valid && user.touched && pass.touched">
+        <small i18n="Erro Login">Campos obrigatórios</small>
+      </mat-error>
+      <mat-error *ngIf="erro">
+        <small i18n="Erro Login">Verifique utilizador e senha!</small>
+      </mat-error>
+
+      <button i18n="Botão entrar" [disabled]="!f.valid" mat-stroked-button type="submit" color="primary">Entrar</button>
+    </div>
+  </form>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { MenuService } from 'src/app/services/menu.service';
 
@@ -11,7 +12,11 @@ export class MenuComponent implements OnInit {
 
   selectedStudent: any = [];
 
-  constructor(private dataService: DataService, private menuService: MenuService) {
+  constructor(
+    private dataService: DataService,
+    private menuService: MenuService,
+    private location: Location
+  ) {
     this.menuService.getSelectedStudent().subscribe(
       resp => this.selectedStudent = resp
     );
@@ -24,6 +29,9 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  goBack() {
+    this.location.back();
+  }
 
   logout() {
     this.dataService.logout();

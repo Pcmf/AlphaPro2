@@ -4,7 +4,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export enum Icons {
   Logo = 'logo_extend',
-  
+  Home = 'home',
+  Save = 'save',
+  Out = 'out',
+  Previus = 'previus',
+  Settings = 'settings'
 
 }
 

@@ -1,5 +1,5 @@
-<button type="button" mat-mini-fab (click)="fileInput.click()">
-    <mat-icon>add_photo_alternate</mat-icon>
+<button type="button" mat-button color="default" (click)="fileInput.click()">
+    <mat-icon>add</mat-icon>
 </button>
 <input hidden ngModel (change)="handleInputChange($event)" #fileInput type="file"
     name="imagem" id="file" accept="image/jpeg, image/png">

@@ -108,6 +108,7 @@ import { TopHeaderComponent } from './commun/top-header/top-header.component';
 import { LoadImageComponent } from './commun/load-image/load-image.component';
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { IconService } from './services/icon.service';
+import { AuthGuardService } from './services/auth-guard-service.service';
 
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -237,7 +238,8 @@ export class MyHammerConfig extends HammerGestureConfig {
               PrepareChartService,
               DialogService,
               NgxImageCompressService,
-              IconService
+              IconService,
+              AuthGuardService
             ],
   bootstrap: [AppComponent]
 })

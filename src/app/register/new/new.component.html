@@ -1,67 +1,70 @@
 <div class="container">
-  <div class="header">
-    <h1 i18n="titulo"><span *ngIf="student.id">Editar</span><span *ngIf="!student.id">Registrar Novo</span> Aluno</h1>
-  </div>
+    
 
   <div class="section">
+    <h1 i18n="titulo">Cadastro</h1>
     <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
+      
       <mat-form-field appearance="">
-        <mat-label i18n="Label | nome do aluno" #nome>Nome</mat-label>
+        <label i18n="Label | nome do aluno" #nome>Nome</label>
         <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
       </mat-form-field>
 
-<!--       <mat-form-field appearance="">
-        <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
-        <input #dt_nasc="ngModel" [(ngModel)]="date" name="dt_nasc" matInput [matDatepicker]="picker"
-          placeholder="Ex: 01/03/2001" (ngModelChange)="checkIfExistsClient(f.value)" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-      </mat-form-field> -->
       <mat-form-field appearance="">
-        <mat-label i18n="Label | data de nascimento">Data de Nascimento</mat-label>
-        <input matInput type="text" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" name="dt_nasc" mask="00/00/0000" placeholder="Ex: 01/03/2001">
+        <label i18n="Label | data de nascimento">Data de Nascimento</label>
+        <input matInput type="text" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" name="dt_nasc" mask="00/00/0000">
       </mat-form-field>
 
-      <mat-form-field appearance="">
-        <mat-label i18n="Label | Sexo">Sexo <small>(1)</small></mat-label>
-        <mat-select #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
-          <mat-option i18n="genero masculino" value="M" [attr.selected]="student.sexo == 'M'">Masculino</mat-option>
-          <mat-option i18n="genero feminino" value="F" [attr.selected]="student.sexo == 'F'">Feminino</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="section-middle">
+        <div class="section-middle-left">
+        <mat-form-field appearance="">
+          <label i18n="Label | Sexo">Sexo <small>(1)</small></label>
+          <mat-select style="color: whitesmoke;" #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
+            <mat-option i18n="genero masculino" value="M" [attr.selected]="student.sexo == 'M'">Masculino</mat-option>
+            <mat-option i18n="genero feminino" value="F" [attr.selected]="student.sexo == 'F'">Feminino</mat-option>
+          </mat-select>
+        </mat-form-field>
 
+        <mat-form-field appearance="">
+          <label i18n="Label | mobile phone number">Celular</label>
+          <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="">
+          <label i18n="Label | Phone number">Telefone</label>
+          <input #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput>
+        </mat-form-field>
+      </div>
+      <div class="section-middle-right">
+        <label>Foto</label>
+        <div class="image-box" (click)="showPhotoUp = !showPhotoUp">
+          <mat-icon>camera</mat-icon>
+        </div>
+        <app-load-image *ngIf="showPhotoUp" (imageB64)="receiveImage($event)"></app-load-image>
+      </div>
+      </div>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | mobile phone number">Celular</mat-label>
-        <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
-      </mat-form-field>
-      <mat-form-field appearance="">
-        <mat-label i18n="Label | Phone number">Telefone</mat-label>
-        <input #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput>
-      </mat-form-field>
-
-      <mat-form-field appearance="">
-        <mat-label i18n="Label | email">Email</mat-label>
+        <label i18n="Label | email">Email</label>
         <input #email="ngModel" [ngModel]="student.email" name="email" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | profissional activity">Profissão</mat-label>
+        <label i18n="Label | profissional activity">Profissão</label>
         <input #profissao="ngModel" [ngModel]="student.profissao" name="profissao" matInput>
       </mat-form-field>
 
       <mat-form-field appearance="">
-        <mat-label i18n="Label | address">Endereço</mat-label>
+        <label i18n="Label | address">Endereço</label>
         <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | city name">Cidade</mat-label>
+        <label i18n="Label | city name">Cidade</label>
         <input #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput>
       </mat-form-field>
       <mat-form-field appearance="">
-        <mat-label i18n="Label | postal code">Código Postal</mat-label>
+        <label i18n="Label | postal code">Código Postal</label>
         <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput mask="99999-999">
       </mat-form-field>
       <mat-form-field *ngIf="student.id">
-        <mat-label i18n="Label | last access">Último acesso</mat-label>
+        <label i18n="Label | last access">Último acesso</label>
         <input [value]="student.lastaccess" matInput readonly>
       </mat-form-field>
       <div style="width: 250px; margin-bottom: 20px;">

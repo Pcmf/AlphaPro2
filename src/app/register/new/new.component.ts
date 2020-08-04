@@ -14,6 +14,8 @@ export class NewComponent implements OnInit {
   date: Date;
   student: any = [];
   erroRepeatCliente = false;
+  showPhotoUp = false;
+  imageB64: string;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -43,6 +45,11 @@ export class NewComponent implements OnInit {
         }
       }
     );
+  }
+
+  receiveImage(event) {
+    console.log(event);
+    this.showPhotoUp = false;
   }
 
   saveForm(form) {

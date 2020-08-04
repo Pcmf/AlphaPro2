@@ -1,0 +1,21 @@
+.top-header{
+    width: 100vw;
+    height: 5vh;
+    &-main{
+        height: 90%;
+        background-color: rgb(170,171,175);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .logo{
+            height: 3vh;
+        }
+        .text{
+            height: 3vh;
+        }
+    }
+    &-orange{
+        background-color: rgb(243,136,47);
+    }
+}

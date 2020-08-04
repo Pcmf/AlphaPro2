@@ -104,7 +104,10 @@ import { registerLocaleData } from '@angular/common';
 import pt from '@angular/common/locales/pt';
 import br from '@angular/common/locales/br';
 import en from '@angular/common/locales/en';
-
+import { TopHeaderComponent } from './commun/top-header/top-header.component';
+import { LoadImageComponent } from './commun/load-image/load-image.component';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import { IconService } from './services/icon.service';
 
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -194,7 +197,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     MetronomeComponent,
     ConfigsComponent,
     VideoComponent,
-    DialogParq
+    DialogParq,
+    TopHeaderComponent,
+    LoadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -230,7 +235,9 @@ export class MyHammerConfig extends HammerGestureConfig {
               ProtcolosDobrasService,
               ProtocolosCardioService,
               PrepareChartService,
-              DialogService
+              DialogService,
+              NgxImageCompressService,
+              IconService
             ],
   bootstrap: [AppComponent]
 })

@@ -5,8 +5,7 @@
         <!-- Selecionar Aluno -->
         <div class="aluno-select">
             <mat-form-field>
-                <mat-label style="color: whitesmoke; font-size: large; display: flex; justify-content: center;" i18n>
-                    ALUNO</mat-label>
+                <mat-label style="color: whitesmoke; font-size: large; display: flex; justify-content: center;" i18n>ALUNO</mat-label>
                 <mat-select #f="ngModel" [ngModel]="student" (selectionChange)="selected(f.value)">
                     <mat-option
                         style="color: whitesmoke; display: flex; justify-content: center; background-color: rgba(119, 107, 107, 0.88)"
@@ -27,16 +26,16 @@
         </div>
 
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/repDash']" *ngIf="selectedS">
-            <mat-icon>description</mat-icon>
-            <span>relatórios</span>
+            <mat-icon class="ico">description</mat-icon>
+            <span class="lb">relatórios</span>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/preDash']" *ngIf="selectedS">
-            <mat-icon>directions_run</mat-icon>
-            <span>prescrição</span>
+            <mat-icon class="ico">directions_run</mat-icon>
+            <span class="lb">prescrição</span>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/avDash']" *ngIf="selectedS">
-            <mat-icon>accessibility_new</mat-icon>
-            <span>avaliação</span>
+            <mat-icon class="ico">accessibility_new</mat-icon>
+            <span class="lb">avaliação</span>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/new']" *ngIf="selectedS">
             <mat-icon class="ico">account_circle</mat-icon>

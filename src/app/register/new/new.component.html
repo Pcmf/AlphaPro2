@@ -80,10 +80,10 @@
       <!-- Botões -->
       <div class="section-action">
         <div class="new-form-buttons">
-        <button mat-fab type="button" (click)="cancel()" color="default">
+        <button mat-stroked-button type="button" (click)="cancel()">
           <mat-icon class="mat-18">close</mat-icon>
         </button>
-        <button mat-fab type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
+        <button mat-stroked-button type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
           <mat-icon class="mat-18">check</mat-icon>
         </button>
       </div>

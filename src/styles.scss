@@ -58,11 +58,10 @@ em{
 
 
 .section {
-  width: 100%;
-  /* padding: 10px; */
-  display: flex;
+   width: 100%;
+/*  display: flex;
   flex: 1;
-  justify-content: center;
+  justify-content: center; */
   overflow: auto;
 }
 
@@ -182,7 +181,8 @@ td > input {
   font-weight: 600;
 }
 
-@media only screen and (min-width: $min-width) {
+
+@media only screen and (min-width: 768px) {
   /* For desktop: */
   .container{
     width: 100vw;

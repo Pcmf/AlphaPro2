@@ -9,8 +9,10 @@ export class AvDashComponent implements OnInit {
   morfoExpanded = false;
   videoExpanded = false;
   isLoged: boolean;
-  constructor() {
+  studentName: string;
 
+  constructor() {
+    this.studentName = JSON.parse(sessionStorage.selectedStudent).nome;
   }
 
   ngOnInit(): void {

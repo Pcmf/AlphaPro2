@@ -5,7 +5,8 @@
         <!-- Selecionar Aluno -->
         <div class="aluno-select">
             <mat-form-field>
-                <mat-label style="color: whitesmoke; font-size: large; display: flex; justify-content: center;" i18n>ALUNO</mat-label>
+                <mat-label style="color: whitesmoke; font-size: large; display: flex; justify-content: center;" i18n>
+                    ALUNO</mat-label>
                 <mat-select #f="ngModel" [ngModel]="student" (selectionChange)="selected(f.value)">
                     <mat-option
                         style="color: whitesmoke; display: flex; justify-content: center; background-color: rgba(119, 107, 107, 0.88)"
@@ -26,20 +27,28 @@
         </div>
 
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/repDash']" *ngIf="selectedS">
-            <mat-icon class="ico">description</mat-icon>
-            <span class="lb">relatórios</span>
+            <div class="button-block">
+                <img class="icons" src="./../../../assets/svg/icons/icon_reports.svg" alt="Report">
+                <span class="lb">relatórios</span>
+            </div>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/preDash']" *ngIf="selectedS">
-            <mat-icon class="ico">directions_run</mat-icon>
-            <span class="lb">prescrição</span>
+            <div class="button-block">
+                <img class="icons" src="./../../../assets/svg/icons/icon_prescription.svg" alt="Prescription">
+                <span class="lb">prescrição</span>
+            </div>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/avDash']" *ngIf="selectedS">
-            <mat-icon class="ico">accessibility_new</mat-icon>
-            <span class="lb">avaliação</span>
+            <div class="button-block">
+                <img class="icons" src="./../../../assets/svg/icons/icon_evaluation.svg" alt="Evaluation">
+                <span class="lb">avaliação</span>
+            </div>
         </a>
         <a mat-button class="dash-buttons-action_block" [routerLink]="['/new']" *ngIf="selectedS">
-            <mat-icon class="ico">account_circle</mat-icon>
-            <span class="lb">cadastro</span>
+            <div class="button-block">
+                <img class="icons" src="./../../../assets/svg/icons/icon_register.svg" alt="Report">
+                <span class="lb">cadastro</span>
+            </div>
         </a>
 
 

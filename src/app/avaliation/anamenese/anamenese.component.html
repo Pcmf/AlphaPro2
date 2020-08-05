@@ -1,9 +1,8 @@
 <div class="container">
-  <div class="header">
-    <h1 i18n>Anamnese</h1>
-  </div>
+  <app-header-name></app-header-name>
 
   <div class="section">
+    <h1 i18n="Title">Avaliação</h1>
     <mat-accordion class="headers-align">
       <!-- Objectivos -->
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
@@ -11,8 +10,7 @@
           <mat-panel-title i18n="Title | objectivos a alcançar">
             Objetivos*
           </mat-panel-title>
-          <mat-panel-description>&nbsp;<mat-icon>adjust</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
         <form #fs1="ngForm" (submit)="saveObjetivos(fs1.value)">
           <mat-card>
@@ -94,7 +92,7 @@
             </mat-card-content>
           </mat-card>
           <mat-action-row>
-            <button mat-button color="primary" i18n="Botão" (click)="nextStep()" 
+            <button mat-stroked-button color="primary" i18n="Botão" (click)="nextStep()" 
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -109,8 +107,7 @@
           <mat-panel-title i18n="Title">
             Estilo de Vida*
           </mat-panel-title>
-          <mat-panel-description>&nbsp;<mat-icon>rowing</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
         <form #fev="ngForm" (submit)="saveEstiloVida(fev.value)">
 
@@ -206,8 +203,8 @@
           </mat-card>
 
           <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-            <button mat-button color="primary" (click)="nextStep()" i18n="Label"
+            <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -222,9 +219,7 @@
           <mat-panel-title i18n="Title">
             Histórico Patológico
           </mat-panel-title>
-          <mat-panel-description>&nbsp;
-            <mat-icon>local_hospital</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
         <form #fhp="ngForm" (submit)="saveHistoricoPatologico(fhp.value)">
 
@@ -396,8 +391,8 @@
           </mat-card>
 
           <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-            <button mat-button color="primary" (click)="nextStep()" i18n="Label"
+            <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -412,9 +407,7 @@
           <mat-panel-title i18n="Label">
             Patologia Familiar
           </mat-panel-title>
-          <mat-panel-description>&nbsp;
-            <mat-icon>people</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
         <form #fpf="ngForm" (submit)="savePatologiaFamiliar(fpf.value)">
           <mat-card>
@@ -537,8 +530,8 @@
           </mat-card>
 
           <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-            <button mat-button color="primary" (click)="nextStep()" i18n="Label"
+            <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -551,10 +544,7 @@
       <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title i18n="Label">Hábitos Sociais</mat-panel-title>
-          <mat-panel-description>
-            &nbsp;
-            <mat-icon>people_outline</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
         <form #fhs="ngForm" (submit)="saveHabitosSociais(fhs.value)">
 
@@ -737,8 +727,8 @@
 
 
           <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-            <button mat-button color="primary" (click)="nextStep()" i18n="Label"
+            <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -751,10 +741,7 @@
       <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title i18n="Label">Queixas Atuais</mat-panel-title>
-          <mat-panel-description>
-            &nbsp;
-            <mat-icon>sentiment_dissatisfied</mat-icon>
-          </mat-panel-description>
+          <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
 
         <form #fqa="ngForm" (submit)="saveQueixasAtuais(fqa.value)">
@@ -793,8 +780,8 @@
           </mat-card>
 
           <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()" i18n="Label">Anterior</button>
-            <button mat-button color="primary" (click)="nextStep()" i18n="Label"
+            <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
+            <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
             matTooltip="Guardar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
@@ -806,9 +793,4 @@
     </mat-accordion>
   </div>
 
-  <div class="footer">
-    <button mat-mini-fab color="primary" (click)="goBack()">
-      <mat-icon>undo</mat-icon>
-    </button>
-  </div>
 </div>

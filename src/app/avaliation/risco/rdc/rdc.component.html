@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n>Risco de Desenvolvimento de Cardiopatia</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 i18n>Risco de Desenvolvimento de Cardiopatia</h1>
         <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
             <mat-card>
                 <mat-card-header>
@@ -197,12 +196,9 @@
                 </mat-card-content>
             </mat-card>
 
-            <div class="footer">
-                <button mat-mini-fab color="primary" (click)="goBack()">
-                    <mat-icon>undo</mat-icon>
-                </button>
-                <button mat-mini-fab color="primary">
-                    <mat-icon>redo</mat-icon>
+            <div class="action">
+                <button mat-stroked-button>
+                    Salvar
                 </button>
             </div>
         </form>

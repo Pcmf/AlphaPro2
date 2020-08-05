@@ -63,6 +63,21 @@
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+
+  .button-block{
+    width: 260px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    img{
+      width: 50px;
+      height: auto;
+    }
+    .lb{
+      width: 70%;
+    }
+  }
 }
 
 .mat-button {

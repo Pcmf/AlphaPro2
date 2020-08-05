@@ -1,9 +1,7 @@
 <div class="container">
-    <div class="header">
-        <h2 i18n>Dados Complementares</h2>
-    </div>
-
+    <app-header-name></app-header-name>
     <div class="section">
+        <h1>Dados Complementares</h1>
         <form #f="ngForm" (submit)="save(f.value)">
             <table class="section-table">
                 <thead>
@@ -96,17 +94,17 @@
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
                 <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>
-                <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
                     <mat-icon class="mat-18">close</mat-icon>
                 </button>
-                <button *ngIf="addEval" mat-fab>
+                <button *ngIf="addEval" mat-stroked-button>
                     <mat-icon class="mat-18">check</mat-icon>
                 </button>
             </div>
@@ -114,10 +112,4 @@
 
 
     </div>
-
-<!--     <div class="footer">
-        <button mat-mini-fab color="primary" routerLink="/avDash">
-            <mat-icon>undo</mat-icon>
-        </button>
-    </div> -->
 </div>

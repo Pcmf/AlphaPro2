@@ -1,26 +1,66 @@
 .container {
-  background-image: url("./../../../assets/img/measurement-1698856.jpg");
+  background-image: url("./../../../assets/img/avaliacao.jpg");
   background-repeat: no-repeat;
   background-blend-mode: normal;
   background-size: cover;
   background-position: center;
-}
-.mat-accordion{
-  width: 360px;
-  margin: auto;
-}
 
-.mat-expansion-panel {
-  background-color: rgba(247, 238, 238, 0.704);
-}
+  app-header-name{
+    width: 100%;
+  }
 
-.mat-card-subtitle{
-  text-align: left;
-}
-
-@media only screen and (min-width: 1024px) {
   .section {
-    width: 50%;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+
+    h1 {
+      margin-top: 80px;
+      width: 100%;
+      height: 60px;
+      background-color: rgba(119, 107, 107, 0.788);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+.mat-accordion {
+  width: 100%;
+}
+::ng-deep {
+  .mat-expansion-panel {
+    background-color: rgba(119, 107, 107, 0.788);
+    margin-bottom: 3px !important;
+    border-radius: unset;
+  }
+  .mat-expansion-panel-header-title {
+    color: white;
+  }
+  .mat-expansion-panel-header-description,
+  .mat-expansion-indicator::after {
+    color: white;
+  }
+  .mat-card {
+    background-color: transparent;
+  }
+  .mat-expansion-panel-content {
+    background-color: rgba(119, 107, 107, 0.1788);
+  }
+
+  .mat-card-subtitle {
+    text-align: left;
+    color: white;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .section {
+    width: 425px !important;
   }
   ::-webkit-scrollbar {
     width: 0px;

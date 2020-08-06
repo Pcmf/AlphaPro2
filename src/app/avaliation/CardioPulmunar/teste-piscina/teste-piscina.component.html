@@ -1,8 +1,7 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n>Testes em Piscina</h1>
-    </div>
+    <app-header-name></app-header-name>
     <div class="section">
+        <h1 class="h1-title" i18n>Testes em Piscina</h1>
         <div class="section-cards">
             <mat-card>
                 <mat-card-header [routerLink]="['/natacao']">
@@ -11,10 +10,5 @@
             </mat-card>
         </div>
 
-    </div>
-    <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </a>
     </div>
 </div>

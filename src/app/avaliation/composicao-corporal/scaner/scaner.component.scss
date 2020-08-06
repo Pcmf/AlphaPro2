@@ -1,7 +1,25 @@
+.container {
+  background-color: white;
+  background-image: unset;
+}
+
 .section {
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
-  
+  justify-content: flex-start;
+  align-items: center;
+
+  .h1-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px !important;
+  }
+  form {
+    width: 100% !important;
+  }
+
   table {
     width: 100%;
   }
@@ -25,8 +43,18 @@
   }
 }
 
-.form-subtitle{
+.form-subtitle {
   text-align: start;
   font-size: small;
   color: blue;
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    width: 100%;
+    form {
+      width: 90% !important;
+      margin: auto;
+    }
+  }
 }

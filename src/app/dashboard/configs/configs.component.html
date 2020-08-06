@@ -1,10 +1,7 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n="titulo"><span>Configurações</span></h1>
-    </div>
 
     <div class="section">
-
+        <h1 class="h1-title" i18n="titulo"><span>Configurações</span></h1>
         <div class="box1">
             <form #fb1="ngForm" (submit)="savePersonalData(fb1.value)">
                 <h2>Configurações</h2>
@@ -65,9 +62,5 @@
         </div>
 
     </div>
-    <div class="footer">
-        <button mat-mini-fab color="primary" routerLink="/avDash">
-            <mat-icon>undo</mat-icon>
-        </button>
-    </div>
+
 </div>

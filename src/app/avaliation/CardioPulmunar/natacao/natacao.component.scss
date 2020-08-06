@@ -1,34 +1,57 @@
-.section{
-    flex-direction: column;
-    justify-content: start;
-  }
-  
-  .section-info{
-    margin: auto;
-    margin-top: 20px;
-  }
-  
-  .mat-card{
-    padding: 20px;
-  }
-  
-  .mat-card-header{
-    justify-content: center;
+.container {
+  background-color: white;
+  background-image: unset;
+}
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .h1-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px !important;
   }
 
-  .table{
-    font-size: smaller;
-    td, th {
-      border: 1px solid #999;
-      padding: 0.5rem;
-    }
+  form {
+    width: 100%;
   }
-  
-  em{
-    font-size: x-small;
+}
+
+.section-info {
+  margin: auto;
+  margin-top: 20px;
+}
+
+.mat-card {
+  padding: 20px;
+}
+
+.mat-card-header {
+  justify-content: center;
+}
+
+.table {
+  font-size: smaller;
+  td,
+  th {
+    border: 1px solid #999;
+    padding: 0.5rem;
   }
-  @media only screen and (min-width: 768px){
-    .section-info{
-      width: 60%;
-    }
+}
+
+em {
+  font-size: x-small;
+}
+@media only screen and (min-width: 768px) {
+  form {
+    width: 90% !important;
+    margin: auto;
   }
+  .section-info {
+    width: 60%;
+  }
+}

@@ -1,6 +1,21 @@
+.container{
+  background-color: white;
+  background-image: unset;
+}
+
 .section{
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
+  align-items: center;
+
+  .h1-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px !important;
+  }
 }
 
 .form-subtitle{
@@ -59,5 +74,12 @@ table{
     justify-content: center;
     flex-wrap: wrap;
 
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .mat-tab-group {
+    width: 90% !important;
   }
 }

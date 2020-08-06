@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n>Goniômetro</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 class="h1-title" i18n>Goniômetro</h1>
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Membros Superiores">
                 <form #fp="ngForm" (submit)="saveMesures(fp.value)">
@@ -160,17 +159,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-fab (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-fab color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addMesure" mat-fab>
+                        <button *ngIf="addMesure" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -294,17 +293,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-fab (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-fab color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addMesure" mat-fab>
+                        <button *ngIf="addMesure" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -406,17 +405,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-fab (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-fab color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addMesure" mat-fab>
+                        <button *ngIf="addMesure" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -427,9 +426,4 @@
         </mat-tab-group>
     </div>
 
-    <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </a>
-    </div>
 </div>

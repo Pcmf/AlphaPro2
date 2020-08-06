@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1>Flexibilidade - Técnicas Utilizadas</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 class="h1-title">Flexibilidade - Técnicas Utilizadas</h1>
         <div class="section-cards">
             <mat-card>
                 <mat-card-header [routerLink]="['/goniometro/']">
@@ -31,11 +30,5 @@
             </mat-card>
         </div>
 
-    </div>
-
-    <div class="footer">
-        <button mat-mini-fab color="primary" type="button" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </button>
     </div>
 </div>

@@ -1,8 +1,7 @@
 <div class="container">
-    <div class="header">
-        <h3 i18n>Bicicleta - YMCA - Golding, Myers & Sinning, (1989) - 6min</h3>
-    </div>
+    <app-header-name></app-header-name>
     <div class="section">
+        <h1 class="h1-title" i18n>Bicicleta - YMCA - Golding, Myers & Sinning, (1989) - 6min</h1>
         <form #f="ngForm" (submit)="save(f.value)">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
             <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
@@ -148,17 +147,17 @@
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-fab (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
                 <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>
-                <button type="button" *ngIf="addEval" mat-fab color="default" (click)="closeInput()">
+                <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
                     <mat-icon class="mat-18">close</mat-icon>
                 </button>
-                <button *ngIf="addEval" mat-fab>
+                <button *ngIf="addEval" mat-stroked-button>
                     <mat-icon class="mat-18">check</mat-icon>
                 </button>
             </div>
@@ -166,11 +165,5 @@
         <div class="charts" *ngIf="refresh">
             <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
-    </div>
-
-    <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </a>
     </div>
 </div>

@@ -1,0 +1,26 @@
+.container{
+    background-color: white;
+    background-image: unset;
+}
+
+.section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+
+}
+
+@media only screen and (min-width: 768px) {
+    .section{
+        width: 628px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .section{
+        width: 800px;
+    }
+}

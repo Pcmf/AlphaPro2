@@ -1,25 +1,43 @@
 .container {
+  background-color: rgb(13, 85, 81);
   background-image: url("./../../../../assets/img/fezbot2000-smWTOhdPvJc-unsplash.jpg");
   background-repeat: no-repeat;
-  background-blend-mode: normal;
+  background-blend-mode: luminosity;
   background-size: cover;
   background-position: center;
 }
 .section{
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .section-cards{
-  width: 360px;
-  margin: auto;
+  width: 100%;
 }
 
 .mat-card{
   height: 30px;
-  background-color: rgba(247, 238, 238, 0.704);
-  margin-bottom: 1px;
+  background-color: rgba(119, 107, 107, 0.788);
+  margin-bottom: 3px;
+  
+}
+.mat-card-subtitle{
+  color: white;
+  font-size: 16px;
+  font-weight: unset;
+}
+
+.h1-title{
+  font-size: 22px;
+}
+
+@media only screen and (min-width: 768px){
+  .section{
+    width: 425px !important;
+  }
 }
 
   

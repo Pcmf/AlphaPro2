@@ -1,9 +1,7 @@
 <div class="container">
-    <div class="header">
-        <h1>METRÔNOMO</h1>
-    </div>
+    <app-header-name></app-header-name>
     <div class="section">
-
+    <h1 class="h1-title" i18n>METRÔNOMO</h1>
     <div class="boxs">
         <div class="box1" [class]="fill1"></div>
         <div class="box2"  [class]="fill2"></div>
@@ -15,19 +13,12 @@
     <h1>{{cronTime}} <span>s</span></h1>
 
     <div class="action">
-        <button mat-fab>
+        <button mat-fab color="default">
             <mat-icon *ngIf="!playing" class="mat-18" (click)="start()">play_arrow</mat-icon>
             <mat-icon *ngIf="playing" class="mat-18" (click)="stop()">stop</mat-icon>
         </button>
     </div>
 
-    </div>
-    <div class="footer">
-        <div class="footer">
-            <a mat-mini-fab color="primary" (click)="goBack()">
-                <mat-icon>undo</mat-icon>
-            </a>
-        </div>
     </div>
 
 </div>

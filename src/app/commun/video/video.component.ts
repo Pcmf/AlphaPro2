@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
-  selectedVideo = 'assets/videos/export.Mobile/'
+  selectedVideo = 'assets/videos/export.Mobile/';
   constructor(
     private route: ActivatedRoute,
     private location: Location

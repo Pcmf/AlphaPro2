@@ -2,7 +2,7 @@
   <app-header-name></app-header-name>
 
   <div class="section">
-    <h1 i18n="Title">Avaliação</h1>
+    <h1 class="h1-title" i18n="Title">Anamnese</h1>
     <mat-accordion class="headers-align">
       <!-- Objectivos -->
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
@@ -92,11 +92,12 @@
             </mat-card-content>
           </mat-card>
           <mat-action-row>
-            <button mat-stroked-button color="primary" i18n="Botão" (click)="nextStep()" 
+            <button mat-stroked-button i18n="Botão" (click)="nextStep()" 
             matTooltip="Guardar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-              Guardar<strong>&#8628;</strong></button>
+              Guardar<strong>&#8628;</strong>
+            </button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>

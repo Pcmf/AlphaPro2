@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n>Perímetros e Diâmetros Corporais</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 class="h1-title" i18n>Perímetros e Diâmetros Corporais</h1>
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Perímetros">
                 <form #fp="ngForm" (submit)="savePerimetros(fp)">
@@ -131,17 +130,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addPerim" mat-fab (click)="addPerimetros()">
+                        <button type="button" *ngIf="!addPerim" mat-stroked-button (click)="addPerimetros()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addPerim" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addPerim" mat-fab color="default" (click)="closeInputPerimetros()">
+                        <button type="button" *ngIf="addPerim" mat-stroked-button color="default" (click)="closeInputPerimetros()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addPerim" mat-fab>
+                        <button *ngIf="addPerim" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -203,17 +202,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addDiam" mat-fab (click)="addDiametros()">
+                        <button type="button" *ngIf="!addDiam" mat-stroked-button (click)="addDiametros()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addDiam" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addDiam" mat-fab color="default" (click)="closeInputDiametros()">
+                        <button type="button" *ngIf="addDiam" mat-stroked-button color="default" (click)="closeInputDiametros()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addDiam" mat-fab>
+                        <button *ngIf="addDiam" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -298,17 +297,17 @@
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addOutros" mat-fab (click)="addOutrosPerimetros()">
+                        <button type="button" *ngIf="!addOutros" mat-stroked-button (click)="addOutrosPerimetros()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addOutros" mat-fab color="default" (click)="closeInputOutros()">
+                        <button type="button" *ngIf="addOutros" mat-stroked-button color="default" (click)="closeInputOutros()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addOutros" mat-fab>
+                        <button *ngIf="addOutros" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
@@ -384,9 +383,4 @@
         </mat-tab-group>
     </div>
 
-    <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </a>
-    </div>
 </div>

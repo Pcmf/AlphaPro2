@@ -1,14 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 $min-width: 1024px;
 
-@import '~@angular/cdk/text-field/text-field'; 
-
-// Set custom-autofill inputs to have no background and red text.
-input.custom-autofill {
-  @include cdk-text-field-autofill-color(transparent, white);
-}
-
+@import "~@angular/cdk/text-field/text-field";
 
 html,
 body {
@@ -19,19 +13,44 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.alphapro{
-  font-family: 'Fredoka One', cursive;
-  font-size: 16px;
-  font-weight: 500;
+.mat-stroked-button {
+  width: 56px;
+  height: 56px;
+  mat-icon{
+    fill: rgb(36, 34, 34);
+    color: rgb(36, 34, 34);
+  }
 }
 
-.hidde-arrows::-webkit-inner-spin-button, 
-.hidde-arrows::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+::ng-deep {
+  .hidde-arrows::-webkit-inner-spin-button,
+  .hidde-arrows::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  // Para o painel não ficar em branco depois de clicado
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+      background: unset;
+  }
+  .mat-stroked-button {
+    width: 56px;
+    height: 56px;
+    mat-iconicon{
+      fill: rgb(36, 34, 34);
+      color: rgb(36, 34, 34);
+    }
+  }
+  .mat-stroked-button:not([disabled]) {
+    border-color: rgb(37, 36, 36);
+    color: rgb(36, 34, 34);
+  }
+  .mat-stroked-button:not([disabled]):hover {
+    border-color: rgb(37, 36, 36);
+    background-color: rgba(245, 245, 245, 0.555);
+  }
 }
 
-em{
+em {
   font-size: smaller;
 }
 
@@ -43,35 +62,39 @@ em{
   align-items: center;
 }
 
-
-.header {
-  display: flex-start;
-  height: 30px;
+app-header-name{
   width: 100%;
-  background-color: #3f51b5;
-  text-align: center;
-  color: white;
-  h1 {
-    font-size: 20px;
-  }
 }
 
-
 .section {
-   width: 100%;
-/*  display: flex;
-  flex: 1;
-  justify-content: center; */
+  width: 100%;
   overflow: auto;
+
+  app-header-name{
+    width: 100%;
+  }
+
+  .h1-title {
+    margin-top: 80px;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(119, 107, 107, 0.788);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+  }
 }
 
 // navigate and add,save and close buttons
 .action {
-  width: 260px;
+  width: 250px;
   margin: auto;
   margin-top: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .footer {
@@ -101,7 +124,6 @@ em{
   color: black !important;
 }
 
-
 .sub-line {
   color: blue;
   font-weight: 600;
@@ -113,11 +135,12 @@ em{
 }
 
 // Button to toggle between charts type on dobras ...
-.mat-button-toggle-group{
+.mat-button-toggle-group {
   margin: 10px;
 }
 
-.charts, .chart-pie{
+.charts,
+.chart-pie {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -127,27 +150,27 @@ em{
 .section-table {
   width: 100%;
 
-th,
-td {
-  height: 28px;
-  // background-color: blanchedalmond;
-  border-bottom: 1px #999 solid;
-  text-align: center;
-}
-th {
-  font-weight: 600 !important;
-  text-align: left;
-  padding-left: 5px;
-}
-.th-top {
-  text-align: center;
-}
-td > input {
-  width: 60px;
-}
+  th,
+  td {
+    height: 28px;
+    // background-color: blanchedalmond;
+    border-bottom: 1px #999 solid;
+    text-align: center;
+  }
+  th {
+    font-weight: 600 !important;
+    text-align: left;
+    padding-left: 5px;
+  }
+  .th-top {
+    text-align: center;
+  }
+  td > input {
+    width: 60px;
+  }
 }
 
-.mat-radio-label{
+.mat-radio-label {
   margin-top: 5px;
 }
 .mat-radio-label:last-of-type {
@@ -156,11 +179,11 @@ td > input {
 
 /* altera o label do input */
 .mat-form-field-appearance-legacy .mat-form-field-label {
-  color: rgba(0,0,0,.94) !important;
-  font-size: medium !important; 
+  color: rgba(0, 0, 0, 0.94) !important;
+  font-size: medium !important;
 }
 
-.data-input{
+.data-input {
   width: 125px;
 }
 
@@ -172,34 +195,33 @@ td > input {
   background-color: rgba(230, 230, 134, 0.76) !important;
 }
 
-.background-red{
+.background-red {
   background-color: lightcoral !important;
 }
 
-.mat-card-subtitle{
+.mat-card-subtitle {
   text-align: center;
   font-weight: 600;
 }
 
-
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  .container{
+  .container {
     width: 100vw;
     margin: 0;
-    -webkit-box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
   }
 
-  .header, .mat-toolbar{
-    -webkit-box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
+  .header,
+  .mat-toolbar {
+    -webkit-box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 0px 13px 0px rgba(0, 0, 0, 0.75);
   }
 
-
-  .section{
+  .section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -207,11 +229,15 @@ box-shadow: 10px 0px 13px 0px rgba(0,0,0,0.75);
     align-content: center;
   }
 
-
-
-
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
+  }
+}
+
+// impede o painel ficar a branco depois de clicado no mobile - accordion 
+@media (hover: none){
+    .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+      background: unset;
   }
 }

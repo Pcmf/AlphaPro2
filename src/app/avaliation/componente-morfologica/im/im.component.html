@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1 i18n>IMC - Índice de Massa Corporal</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 class="h1-title" i18n>IMC - Índice de Massa Corporal</h1>
         <form #f="ngForm">
             <table class="section-table">
                 <thead>
@@ -195,11 +194,5 @@
 
         </div>
 
-    </div>
-
-    <div class="footer">
-        <a mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </a>
     </div>
 </div>

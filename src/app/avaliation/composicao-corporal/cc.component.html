@@ -1,9 +1,8 @@
 <div class="container">
-    <div class="header">
-        <h1>Composição Corporal</h1>
-    </div>
+    <app-header-name></app-header-name>
 
     <div class="section">
+        <h1 class="h1-title">Composição Corporal</h1>
         <mat-accordion>
             <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
@@ -170,9 +169,5 @@
         </mat-accordion>
 
     </div>
-    <div class="footer">
-        <button mat-mini-fab color="primary" (click)="goBack()">
-            <mat-icon>undo</mat-icon>
-        </button>
-    </div>
+
 </div>

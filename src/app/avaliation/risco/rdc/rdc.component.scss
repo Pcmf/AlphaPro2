@@ -1,121 +1,115 @@
 .container {
-    background-color: rgb(35, 151, 155);
-    background-image: url("./../../../../assets/img/CON 012.JPG");
-    background-repeat: no-repeat;
-    background-blend-mode: hard-light;
-    background-size: cover;
-    background-position: center; 
-    
-    app-header-name{
-        width: 100%;
-    }
+  background-color: rgb(13, 137, 141);
+  background-image: url("./../../../../assets/img/avaliacao.jpg");
+  background-repeat: no-repeat;
+  background-blend-mode: luminosity;
+  background-size: cover;
+  background-position: center;
 }
-    .section{
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-    
-        .h1-title {
-          margin-top: 30px;
-          font-size: 16px;
+.section {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
 
-        }
-        form{
-          width: 100%;
-        }
-        .mat-card{
-            width: 100%;
-            background-color: rgba(119, 107, 107, 0.788);
-            color: white;
-            display: flex;
-            justify-content: space-evenly;
-            margin-bottom: 4px;
-            padding: 10px 0;
-            border-radius: unset;
-        }
+  .h1-title {
+    margin-top: 30px;
+    font-size: 16px;
+  }
+  form {
+    width: 100%;
+  }
+  .mat-card {
+    width: 100%;
+    background-color: rgba(119, 107, 107, 0.8788);
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4px;
+    padding: 10px 0;
+    border-radius: unset;
+  }
 
-        .mat-list-base .mat-list-item {
-            color: white;
-        }
-    }
+  .mat-list-base .mat-list-item {
+    color: white;
+  }
+}
 
 ::ng-deep {
-  
-    .mat-select-value {
-      color: whitesmoke !important;
-    }
-    .mat-select-value-text {
-      color: whitesmoke !important;
-    }
-    .mat-form-field-appearance-legacy .mat-form-field-underline {
-      background-color: white;
-    }
-/*     .mat-card {
-      background-color: transparent;
-      color: white;
-    } */
- 
-    .mat-card-subtitle {
-      text-align: left;
-      color: white;
-    }
-  
-    .mat-form-field-appearance-legacy .mat-form-field-label {
-      color: white !important;
-    }
-    label{
-      color: whitesmoke;
-    }
-  
-    .mat-stroked-button:not([disabled]) {
-      border-color: white;
-      color: white;
-    }
-    .mat-stroked-button:not([disabled]):hover {
-      border-color: white;
-      background-color: rgba(245, 245, 245, 0.555);
-    }
-    .mat-tab-label{
-      color: white;
-    }
-    .mat-select-arrow {
-      color: unset;
-    }
+  .mat-select-value {
+    color: whitesmoke !important;
   }
-  
-.mat-card-resultado{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .mat-select-value-text {
+    color: whitesmoke !important;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+  }
+
+  .mat-card-subtitle {
+    text-align: left;
     color: white;
+  }
 
-    span{
-        font-size: large;
-        font-weight: 600;
-    }
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: white !important;
+  }
+  label {
+    color: whitesmoke;
+  }
 
-}
-
-.action {
-    width: 100%;
+  .mat-stroked-button {
+    border-color: white;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-@media only screen and (min-width: 768px){
-    .section{
-        width: 425px !important;
-    }
-
-    ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent; /* make scrollbar transparent */
-    }
-
+.mat-stroked-button:not([disabled]) {
+    border-color: white;
+    color: white;
+}
+.mat-stroked-button:not([disabled]):hover {
+    border-color: white;
+    background-color: rgba(245, 245, 245, 0.555);
+}
+  .mat-tab-label {
+    color: white;
+  }
+  .mat-select-arrow {
+    color: unset;
+  }
 }
 
+.mat-card-resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
 
+  span {
+    font-size: large;
+    font-weight: 600;
+  }
+}
 
+.action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+
+    .section {
+      width: 425px !important;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+}

@@ -1,14 +1,12 @@
 .container {
     background-color: rgb(13, 137, 141);
-    background-image: url("./../../../../assets/img/CON 012.JPG");
+    background-image: url("./../../../../assets/img/avaliacao.jpg");
     background-repeat: no-repeat;
     background-blend-mode: luminosity;
     background-size: cover;
     background-position: center;
 
-    display: flex;
-    flex-direction: column;
-    
+
     .section{
         width: 100%;
         display: flex;
@@ -20,6 +18,11 @@
             margin-top: 40px;
             font-size: 30px;
         }
+
+        form {
+            width: 100% !important;
+        }
+
     }
 }
 
@@ -29,8 +32,8 @@ app-header-name {
 
 
 .mat-card {
-    width: 100%;
-    background-color: rgba(119, 107, 107, 0.788) !important;
+    width: calc(425px -32px);
+    background-color: rgba(119, 107, 107, 0.8788) !important;
     color: white;
     margin-bottom: 4px;
 }
@@ -54,7 +57,14 @@ em {
 }
 ::ng-deep {
     .mat-radio-outer-circle {
+        border-color: rgb(247, 244, 244);
+    }
+    .mat-stroked-button {
         border-color: white;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .mat-stroked-button:not([disabled]) {
         border-color: white;
@@ -67,14 +77,6 @@ em {
 }
 
 @media only screen and (min-width: 768px) {
-    .container {
-        background-color: rgb(13, 137, 141);
-        background-image: url("./../../../../assets/img/CON 012.JPG");
-        background-repeat: no-repeat;
-        background-blend-mode: luminosity;
-        background-size: cover;
-        background-position: center;
-    }
 
     .section {
         width: 425px !important;

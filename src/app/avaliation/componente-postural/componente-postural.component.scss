@@ -1,9 +1,11 @@
-.container{
-  background-color: white;
-  background-image: unset;
+.container {
+  background-image: url("./../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.section{
+.section {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,61 +20,69 @@
   }
 }
 
-.form-subtitle{
-  text-align: start;
-  font-size: small;
-  color: blue;
-}
 
-.mat-tab-group{
+
+.mat-tab-group {
   width: 100%;
 }
-::ng-deep{
-    .mat-stroked-button {
+::ng-deep {
+  .mat-stroked-button {
     outline: rgba(59, 58, 58, 0.94) !important;
   }
   .mat-stroked-button:not([disabled]) {
     border-color: rgba(59, 58, 58, 0.94);
     color: rgba(59, 58, 58, 0.94);
-}
+  }
   .mat-stroked-button:not([disabled]):hover {
     border-color: rgba(59, 58, 58, 0.94);
     background-color: rgba(245, 245, 245, 0.555);
-}
-}
+  }
 
+  .mat-tab-label-active{
+    color: yellow
+  }
+}
 
 .form-select-sm {
   width: 90px;
 }
 
-.mat-form-field{
+.mat-form-field {
   font-size: small;
 }
 /* altera o label do input */
 .mat-form-field-appearance-legacy .mat-form-field-label {
   color: rgba(94, 91, 91, 0.94) !important;
-  font-size: small !important; 
+  font-size: small !important;
 }
 
-
-table.front-view{
-    background-image: url("./../../../assets/img/front_view.jpg");
-  }
-table.side-view{
-    background-image: url("./../../../assets/img/side_view.jpg");
-  }
-table.back-view{
-    background-image: url("./../../../assets/img/back_view.jpg");
-  }
-table{
+table.front-view {
+  background-image: url("./../../../assets/img/corpo_frente.png");
+}
+table.side-view {
+  background-image: url("./../../../assets/img/corpo_lateral.png");
+}
+table.back-view {
+  background-image: url("./../../../assets/img/corpo_posterior.png");
+}
+table {
   background-repeat: no-repeat;
   background-blend-mode: soft-light;
   background-size: contain;
   background-position: center;
-  background-color: rgba(255, 254, 254, 0.961);
-
+  background-color: transparent;
 }
+
+.table-row-subtitle{
+   background-color: rgba(59, 58, 58, 0.94);
+}
+
+.form-subtitle {
+  text-align: start;
+  font-size: small;
+  color: rgb(37, 211, 211);
+}
+
 
 .photos {
   margin: 20px 0;
@@ -91,13 +101,11 @@ table{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
   }
 }
 
-
 @media only screen and (min-width: 768px) {
   .mat-tab-group {
-    width: 90% !important;
+    width: 520px !important;
   }
 }

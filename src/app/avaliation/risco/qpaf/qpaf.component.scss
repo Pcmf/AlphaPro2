@@ -16,7 +16,7 @@
 
         .h1-title{
             margin-top: 40px;
-            font-size: 30px;
+            font-size: 26px;
         }
 
         form {
@@ -26,16 +26,16 @@
     }
 }
 
-app-header-name {
-    width: 100%;
-}
-
 
 .mat-card {
-    width: calc(425px -32px);
     background-color: rgba(119, 107, 107, 0.8788) !important;
     color: white;
+    margin: auto;
     margin-bottom: 4px;
+}
+.mat-card-content{
+    width: 90%;
+    margin: auto;
 }
 
 .flex-radio-group {

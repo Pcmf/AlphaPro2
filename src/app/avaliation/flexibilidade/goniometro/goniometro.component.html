@@ -19,7 +19,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line"><span (click)="openDialog('Ombro')">Ombro</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro')">Ombro</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombro - Flexão')">Flexão <small>[180&#730;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombrof}}</td>
@@ -73,7 +75,9 @@
                                         type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Cotovelo')">Cotovelo</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo')">Cotovelo</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cotovelo - Flexão')">Flexão <small>[145&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
@@ -92,7 +96,8 @@
                                         [(ngModel)]="newEvaluation.cotoveloe" type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Radioulnar')">Radioulnar</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Radioulnar')">Radioulnar</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Radioulnar - Pronação')">Pronação <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].radioulnarp}}</td>
@@ -109,7 +114,9 @@
                                     <input class="hidde-arrows" name="radioulnars" #radioulnars="ngModel" [(ngModel)]="newEvaluation.radioulnars" type="number">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Punho')">Punho</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho')">Punho</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Punho - Flexão')">Flexão <small>[90&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}</td>
@@ -162,7 +169,7 @@
                         <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
@@ -190,7 +197,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line"><span (click)="openDialog('Quadril')">Quadril</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril')">Quadril</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril - Flexão')">Flexão <small>[125&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
@@ -239,7 +248,9 @@
                                     <input class="hidde-arrows" name="quadrillateral" #quadrillateral="ngModel" [(ngModel)]="newEvaluation.quadrillateral" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Joelho')">Joelho</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Joelho')">Joelho</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho - Flexão')">Flexão <small>[140&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
@@ -248,7 +259,8 @@
                                     <input class="hidde-arrows" name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Tornozelo')">Tornozelo</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tornozelo')">Tornozelo</span></th></tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo - Flexão Dorsal')">Flexão Dorsal <small>[20&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].tornozelod}}</td>
@@ -296,7 +308,7 @@
                         <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
@@ -327,7 +339,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><th class="sub-line"><span (click)="openDialog('Cervical')">Cervical</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cervical')">Cervical</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cervical - Flexão')">Flexão <small>[65&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalf}}</td>
@@ -360,7 +374,9 @@
                                     <input class="hidde-arrows" name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number" style="width: 60px;">
                                 </td>
                             </tr>
-                            <tr><th class="sub-line"><span (click)="openDialog('Lombar')">Lombar</span></th></tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Lombar')">Lombar</span></th>
+                            </tr>
                             <tr>
                                 <th><span (click)="openDialog('Lombar - Flexão')">Flexão <small>[95&deg;]</small></span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
@@ -408,7 +424,7 @@
                         <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>

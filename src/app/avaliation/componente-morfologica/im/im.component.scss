@@ -1,22 +1,25 @@
-  .container{
-    background-color: white;
-    background-image: unset;
-  }
-  
-  .section{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start !important;
-    align-items: center;
+.container {
+  background-image: url("./../../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-    .h1-title{
-      width: 100%;
-      height: 30px;
-      font-size: 20px;
-      margin-top: 10px !important;
-    }
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+
+  .h1-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px !important;
   }
+}
 
   form{
     width: 100%;
@@ -45,11 +48,14 @@
   }
   
   @media only screen and (min-width: 768px){
+    .section{
+      width: 520px !important;
+    }
     form{
-      width: 90%;
+      width: 100%;
       margin: auto;
     }
     .section-info{
-      width: 64%;
+      width: 74%;
     }
   }

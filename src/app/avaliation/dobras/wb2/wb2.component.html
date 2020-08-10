@@ -106,10 +106,10 @@
                     <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
                         [disabled]="!fatChanged" (change)="getNewEvaluation()">
                     </mat-slider>
-                    <button mat-mini-fab (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                    <button mat-mini-fab color="default" (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-mini-fab (click)="saveFatChange()" *ngIf="fatChanged">
+                    <button mat-mini-fab color="default" (click)="saveFatChange()" *ngIf="fatChanged">
                         <mat-icon>save</mat-icon>
                     </button>
                 </div>

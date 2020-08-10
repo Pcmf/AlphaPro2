@@ -1,13 +1,17 @@
 .container {
-  background-color: white;
-  background-image: unset;
+  background-image: url("./../../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
 .section {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  color: white;
 
   .h1-title {
     width: 100%;
@@ -34,12 +38,32 @@ img {
   width: 90%;
 }
 
-@media only screen and (min-width: 768px) {
-  .mat-tab-group {
-    width: 90% !important;
-    margin: auto;
+.table-row-subtitle{
+  background-color: rgba(59, 58, 58, 0.74);
+}
+
+.sub-line {
+ text-align: start;
+ color: rgb(37, 211, 211);
+}
+::ng-deep{
+  .mat-tab-label {
+    color: white;
   }
-  img {
-    width: 60%;
+
+  .mat-tab-label-active{
+    color: yellow
   }
 }
+@media only screen and (min-width: 768px) {
+  .section{
+    width: 520px !important;
+  }
+/*   .mat-tab-group {
+    width: 0% !important;
+    margin: auto;
+  } */
+/*   img {
+    width: 90%;
+  }*/
+} 

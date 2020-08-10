@@ -1,13 +1,17 @@
 .container {
-  background-color: white;
-  background-image: unset;
+  background-image: url("./../../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
 .section {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  color: white;
 
   .h1-title {
     width: 100%;
@@ -15,10 +19,18 @@
     font-size: 20px;
     margin-top: 10px !important;
   }
-
-  form {
-    width: 100%;
+  form{
+    width: 100% !important;
   }
+
+  .mat-card {
+    background-color: transparent;
+    color: white;
+  }
+  .mat-card-subtitle{
+    color: white;
+  }
+
 }
 
 
@@ -41,7 +53,10 @@
 
 
 @media only screen and (min-width: 768px){
-  form{
+  .section{
+    width: 520px !important;
+  }
+/*   form{
     width: 90% !important;
     margin: auto;
 
@@ -51,5 +66,5 @@
     width: 60%;
     margin: auto;
     margin-top: 20px;;
-  }
+  } */
 }

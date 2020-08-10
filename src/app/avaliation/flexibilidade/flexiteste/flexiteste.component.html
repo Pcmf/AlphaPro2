@@ -22,8 +22,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="sub-line"><span (click)="openDialog('Punho - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -68,8 +68,8 @@
                                 </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-                            <tr>
-                                <th class="sub-line"><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -136,7 +136,7 @@
                 </form>
                 <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                     <br/><br/>
-                    <img src="./assets/img/flex-punho-lg.gif" alt="classificação">
+                    <img src="./assets/img/punho.png" alt="classificação">
                 </div>
             </mat-tab>
 
@@ -156,8 +156,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Cotovelo - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -200,8 +200,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Cotovelo - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -287,8 +287,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Ombro - Abdução')">Abdução</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro - Abdução')">Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -331,8 +331,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Ombro - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Horizontal</th>
@@ -394,8 +394,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th><span (click)="openDialog('Tronco - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tronco - Flexão')">Flexão</span></th>
                                 <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncof}}</td>
                                 <td *ngIf="addEval">
@@ -427,8 +427,8 @@
                                 </td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Tronco - Flexão Lateral')">Flexão Lateral</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tronco - Flexão Lateral')">Flexão Lateral</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -514,8 +514,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Quadril - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -558,8 +558,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Quadril - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -601,8 +601,8 @@
                                     {{+evaluation[pointer].quadrile + +evaluation[pointer].quadrilee}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Quadril - Abdução')">Abdução</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Abdução')">Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -645,8 +645,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Quadril - Adução')">Adução</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Adução')">Adução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -732,8 +732,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Joelho - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Joelho - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -776,8 +776,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -863,8 +863,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Pés - Flexão')">Flexão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Pés - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -906,8 +906,8 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
-                            <tr class="sub-line">
-                                <th><span (click)="openDialog('Pés - Extensão')">Extensão</span></th>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Pés - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
@@ -987,8 +987,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="sub-line">
-                            <th><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
+                        <tr class="table-row-subtitle">
+                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>
@@ -1010,8 +1010,8 @@
                             </td>
                         </tr>
 
-                        <tr class="sub-line">
-                            <th><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
+                        <tr class="table-row-subtitle">
+                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>
@@ -1030,8 +1030,8 @@
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].mid + +evaluation[pointer].mie}}</td>
                         </tr>
-                        <tr class="sub-line">
-                            <th><span>Total Geral</span></th>
+                        <tr class="table-row-subtitle">
+                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span>Total Geral</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>

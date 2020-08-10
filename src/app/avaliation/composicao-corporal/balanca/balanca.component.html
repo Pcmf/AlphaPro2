@@ -74,7 +74,9 @@
                         </td>
                     </tr>
 
-                    <tr><th class="form-subtitle">Massa Muscular</th></tr>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">Massa Muscular</th>
+                    </tr>
                     <tr>
                         <th><span (click)="openDialog('Membros Superiores Dir')">Membros Superiores Dir <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_msupd | number: '': locale}}</td>

@@ -1,6 +1,8 @@
 .container {
-  background-color: white;
-  background-image: unset;
+  background-image: url("./../../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .section {
@@ -9,6 +11,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  color: white;
 
   .h1-title {
     width: 100%;
@@ -16,13 +19,17 @@
     font-size: 20px;
     margin-top: 10px !important;
   }
-  form {
+  form{
     width: 100% !important;
   }
+}
 
   table {
     width: 100%;
   }
+  .table-row-subtitle{
+    background-color: rgba(59, 58, 58, 0.74);
+ }
   th,
   td {
     height: 28px;
@@ -41,20 +48,15 @@
   td > input {
     width: 60px;
   }
-}
+
 
 .form-subtitle {
   text-align: start;
-  font-size: small;
-  color: blue;
+  color:rgb(37, 211, 211);
 }
 
 @media only screen and (min-width: 768px) {
   .section {
-    width: 100%;
-    form {
-      width: 90% !important;
-      margin: auto;
-    }
+    width: 520px !important;
   }
 }

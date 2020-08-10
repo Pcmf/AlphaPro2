@@ -32,8 +32,8 @@
                             <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
                         </td>
                     </tr>
-                    <tr>
-                        <th i18n class="sub-line">Diâmetros</th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" i18n class="sub-line">Diâmetros</th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Joelho')">Joelho</span> <small> (cm)</small></th>
@@ -52,8 +52,8 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <th i18n class="sub-line">Dobras Cutâneas</th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" i18n class="sub-line">Dobras Cutâneas</th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Triciptal')">Triciptal</span> <small> (mm)</small></th>
@@ -88,8 +88,8 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <th i18n class="sub-line">Perímetros</th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" i18n class="sub-line">Perímetros</th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Braço Contraído')">Braço contraído</span> <small> (cm)</small></th>
@@ -108,8 +108,8 @@
                         </td>
                     </tr>
                     <!-- RESULTADOS -->
-                    <tr>
-                        <th i18n class="sub-line">RESULTADOS</th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" i18n class="sub-line">RESULTADOS</th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Endomorfia')">Endomorfia</span></th>

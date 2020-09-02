@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-header-name',
@@ -9,8 +10,20 @@ export class HeaderNameComponent implements OnInit {
 
   studentName: string;
 
-  constructor() {
-    this.studentName = JSON.parse(sessionStorage.selectedStudent).nome;
+  constructor(
+    private dataService: DataService
+  ) {
+
+      this.dataService.currentAluno.subscribe(
+        (resp: any) => {
+          this.studentName = resp.nome;
+          console.log(this.studentName);
+          console.log(JSON.parse(sessionStorage.selectedStudent).nome);
+          if (!this.studentName) {
+            this.dataService.changeAluno(JSON.parse(sessionStorage.selectedStudent));
+          }
+        }
+      );
    }
 
   ngOnInit(): void {

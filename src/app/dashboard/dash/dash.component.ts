@@ -41,6 +41,7 @@ export class DashComponent implements OnInit {
       this.selectedS = true;
       this.menuService.setSelectedStudent(student);
       sessionStorage.selectedStudent = JSON.stringify(student);
+      this.dataService.changeAluno(student);
     } else {
       this.reset();
     }

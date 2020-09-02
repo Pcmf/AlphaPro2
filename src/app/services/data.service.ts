@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -9,10 +10,18 @@ import { environment } from '../../environments/environment';
 })
 export class DataService {
 
+  private aluno = new BehaviorSubject([]);
+  currentAluno = this.aluno.asObservable();
+
   private ADDRESS = environment.ADDRESS;
   private helper = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
+
+  /** aluno service  */
+  changeAluno(aluno: any[]) {
+    this.aluno.next(aluno);
+  }
   // Get data from DB
   getData(param) {
     return this.http.get(this.ADDRESS + param);

@@ -28,7 +28,7 @@
     font-size: large;
     color: white;
     width: 100%;
-    background-color: rgba(119, 107, 107, 0.788);
+    background-color: rgba(100, 100, 100, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,7 @@
   height: 81.3px;
   font-size: large;
   color: whitesmoke;
-  background-color: rgba(119, 107, 107, 0.788);
+  background-color: rgba(100, 100, 100, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,6 +96,7 @@
 }
 
 @media only screen and (min-width: 768px) {
+
   .dash-form {
     width: 425px;
   }

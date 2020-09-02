@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1597397465743,
+  "timestamp": 1599040047651,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.707bbabca1bf93bf162d.js",
-        "/main-es5.707bbabca1bf93bf162d.js",
+        "/main-es2015.02dd88942c981bd8944f.js",
+        "/main-es5.02dd88942c981bd8944f.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.9a51c357b95f623a5ef5.js",
         "/polyfills-es5.7c63f4bac2a381dba54c.js",
         "/runtime-es2015.1eba213af0b233498d9d.js",
         "/runtime-es5.1eba213af0b233498d9d.js",
-        "/styles.2b3cdd2182c1e105671b.css"
+        "/styles.bb3326878b3b23ce3179.css"
       ],
       "patterns": []
     },
@@ -26,6 +26,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "/000-telaentrada.e47ed9f0b1610c0d2cc7.jpg",
         "/Cadastro.3881573f89c81d7c8d0e.jpg",
         "/alphapro2.e316561caffd3a1c56ed.jpg",
         "/anamnese.3da0e5590fc27c4be93d.jpg",
@@ -270,6 +271,7 @@
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-76x76.png",
         "/assets/icons/icon-96x96.png",
+        "/assets/img/000-telaentrada.jpg",
         "/assets/img/CON 012.JPG",
         "/assets/img/Cadastro.jpg",
         "/assets/img/Slide1.jpg",
@@ -393,7 +395,6 @@
         "/postural_fundo.cff54498dc0fa44c025a.jpg",
         "/prescription.92d68fce1cb5ae85b693.jpg",
         "/reports.63c07f93d7278c545d4d.jpg",
-        "/samuel-girven-VJ2s0c20qCo-unsplash.c3a603a6ce1d030294d7.jpg",
         "/swimming-unsplash.018915ec515a02f96858.jpg"
       ],
       "patterns": []
@@ -401,6 +402,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/000-telaentrada.e47ed9f0b1610c0d2cc7.jpg": "bd3f1d846b8a5351e69c9ffb4c2b6b16dec140f0",
     "/Cadastro.3881573f89c81d7c8d0e.jpg": "8647195732e953da7b2e595f75508f2ba02512f0",
     "/alphapro2.e316561caffd3a1c56ed.jpg": "9781a2d1b32ded684f7fb603ae05740964908330",
     "/anamnese.3da0e5590fc27c4be93d.jpg": "17ea83230d36115fc486799e5034d4a1e5319e56",
@@ -645,6 +647,7 @@
     "/assets/icons/icon-72x72.png": "f2b6d69a483807dc3fc189670ecb0cd30247c10c",
     "/assets/icons/icon-76x76.png": "dca0d255636a3f1992e9e268f82f4555b244c2d5",
     "/assets/icons/icon-96x96.png": "d14daffb220b144090baf42f66146439e806967c",
+    "/assets/img/000-telaentrada.jpg": "bd3f1d846b8a5351e69c9ffb4c2b6b16dec140f0",
     "/assets/img/CON 012.JPG": "bd978f7b64c970ad4cf4079769b63dc6fe6ec4b8",
     "/assets/img/Cadastro.jpg": "8647195732e953da7b2e595f75508f2ba02512f0",
     "/assets/img/Slide1.jpg": "1862fb21dce3f976008e61365d34050d7459e793",
@@ -765,9 +768,9 @@
     "/dobras1.314a3a03cc8d6d42a9d3.jpg": "ff841c930982e0159c9f103d7352592fd4d60363",
     "/favicon.ico": "71d9a53781db117c0260e1e5bbbf2f54bbd14044",
     "/flexibilidade.76052fb46dcf23ed4e97.jpg": "a7b477386d61797da41cd00c2cb800b3996e43e5",
-    "/index.html": "be13b577288bfc03fa9ddf044953d23c955deb5e",
-    "/main-es2015.707bbabca1bf93bf162d.js": "5cd276fc7854a67f63238d30fc5f3a9745d10bd3",
-    "/main-es5.707bbabca1bf93bf162d.js": "ab7a4b876f186dce57a73f7f3985d97e923afa5e",
+    "/index.html": "c9431afcef6fdd7dc78372029c47e2463db5eb3e",
+    "/main-es2015.02dd88942c981bd8944f.js": "34d2620eea99e99345de73f04c65287755d2ebf1",
+    "/main-es5.02dd88942c981bd8944f.js": "f68fec64caeafb8c7f503ab9053573f0690bbd87",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.743b6207429718ed218c.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.9a51c357b95f623a5ef5.js": "19197b4a142bfb2d5afec097c1570ef3c378daf9",
@@ -777,8 +780,7 @@
     "/reports.63c07f93d7278c545d4d.jpg": "683cce3fad77ff6a7be4e0af495ed89e5b564b3c",
     "/runtime-es2015.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/runtime-es5.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/samuel-girven-VJ2s0c20qCo-unsplash.c3a603a6ce1d030294d7.jpg": "58c016aff174836f6f0e8f10b04870ff603bb837",
-    "/styles.2b3cdd2182c1e105671b.css": "364ed0c644a8b2bac4ac42a69eb1d40f569d5274",
+    "/styles.bb3326878b3b23ce3179.css": "f9c61a3c15557f6475c768109f17c78482df5913",
     "/swimming-unsplash.018915ec515a02f96858.jpg": "47b1bea97edd25fe2fe4eb38b8f61c431bbe6593"
   },
   "navigationUrls": [

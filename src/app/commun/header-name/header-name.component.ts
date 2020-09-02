@@ -11,22 +11,20 @@ export class HeaderNameComponent implements OnInit {
   studentName: string;
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
   ) {
 
-      this.dataService.currentAluno.subscribe(
+   }
+
+  ngOnInit(): void {
+          this.dataService.currentAluno.subscribe(
         (resp: any) => {
           this.studentName = resp.nome;
-          console.log(this.studentName);
-          console.log(JSON.parse(sessionStorage.selectedStudent).nome);
-          if (!this.studentName) {
+          if (!this.studentName && sessionStorage.selectedStudent) {
             this.dataService.changeAluno(JSON.parse(sessionStorage.selectedStudent));
           }
         }
       );
-   }
-
-  ngOnInit(): void {
   }
 
 }

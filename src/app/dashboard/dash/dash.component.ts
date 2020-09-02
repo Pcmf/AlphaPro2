@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { MenuService } from 'src/app/services/menu.service';
+// import { MenuService } from 'src/app/services/menu.service';
 
 
 @Component({
@@ -15,7 +15,8 @@ export class DashComponent implements OnInit {
   selectedS = false;
   constructor(
     private dataService: DataService,
-    private menuService: MenuService,
+  //  private menuService: MenuService,
+
   ) {
       const id = this.dataService.getPTId();
       this.dataService.getData('entity/clients/' + id).subscribe(
@@ -33,13 +34,12 @@ export class DashComponent implements OnInit {
       this.student = JSON.parse(sessionStorage.getItem('selectedStudent'));
       this.selected(JSON.parse(sessionStorage.getItem('selectedStudent')));
      }
-    console.log(this.student.nome);
   }
 
   selected(student) {
     if (student) {
       this.selectedS = true;
-      this.menuService.setSelectedStudent(student);
+     // this.menuService.setSelectedStudent(student);
       sessionStorage.selectedStudent = JSON.stringify(student);
       this.dataService.changeAluno(student);
     } else {
@@ -50,8 +50,9 @@ export class DashComponent implements OnInit {
   reset() {
     this.student = {};
     this.selectedS = false;
-    this.menuService.setSelectedStudent({});
+  //  this.menuService.setSelectedStudent({});
     sessionStorage.removeItem('selectedStudent');
+    this.dataService.changeAluno([]);
   }
 
 }

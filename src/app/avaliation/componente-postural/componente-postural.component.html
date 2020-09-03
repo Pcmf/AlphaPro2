@@ -1423,7 +1423,7 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa">
                             <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('a')">
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default" (click)="openTakePhoto('a')">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
@@ -1434,7 +1434,7 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol">
                             <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('l')">
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default" (click)="openTakePhoto('l')">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
@@ -1445,7 +1445,7 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop">
                             <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab (click)="openTakePhoto('p')">
+                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default" (click)="openTakePhoto('p')">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
 
@@ -1463,7 +1463,7 @@
                         <button mat-mini-fab color="default" (click)="view=''">
                             <mat-icon>close</mat-icon>
                         </button>
-                        <button mat-mini-fab class="actionBtn" (click)="triggerSnapshot();">
+                        <button mat-mini-fab color="default" class="actionBtn" (click)="triggerSnapshot();">
                             <mat-icon>camera</mat-icon>
                         </button>
                         <br />
@@ -1475,7 +1475,7 @@
                         <button mat-mini-fab color="default" (click)="webcamImage=null">
                             <mat-icon>undo</mat-icon>
                         </button>
-                        <button mat-mini-fab class="actionBtn" (click)="savePhoto();">
+                        <button mat-mini-fab color="default" class="actionBtn" (click)="savePhoto();">
                             <mat-icon>save</mat-icon>
                         </button>
                     </div>

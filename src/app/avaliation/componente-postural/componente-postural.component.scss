@@ -39,9 +39,16 @@
     background-color: rgba(245, 245, 245, 0.555);
   }
 
-  .mat-tab-label {
+  .mat-tab-label{
     color: white;
   }
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: rgb(250 250 250) !important;
+    font-size: medium !important;
+  }
+  .mat-select-arrow, .mat-select-value {
+    color: white !important;
+}
 
   .mat-tab-label-active{
     color: yellow

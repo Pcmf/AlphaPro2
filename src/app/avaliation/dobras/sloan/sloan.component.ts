@@ -55,6 +55,12 @@ export class SloanComponent implements OnInit {
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sexo = this.student.sexo;
     this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.student.sexo == 'M' && (this.age < 18 || this.age > 26)) {
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
+    if (this.student.sexo == 'F' && (this.age < 17 || this.age > 25)) {
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
     this.getData();
   }
 

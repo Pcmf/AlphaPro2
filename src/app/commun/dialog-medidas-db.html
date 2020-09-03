@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <p>{{msg}}</p>
 
-  <div>
+  <div class="dialog-inputs">
   <mat-form-field class="input-sm">
     <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
     <mat-label *ngIf="!erroAltura">Altura</mat-label>
@@ -29,7 +29,7 @@
 <div mat-dialog-actions>
 
   <div>
-      <button mat-mini-fab (click)="save()" cdkFocusInitial><mat-icon>check</mat-icon></button>
+      <button mat-mini-fab color="default" (click)="save()" cdkFocusInitial><mat-icon>check</mat-icon></button>
   </div>
 
 </div>

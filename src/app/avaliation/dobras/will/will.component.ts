@@ -52,6 +52,9 @@ export class WillComponent implements OnInit {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.student.sexo == 'F' && (this.age < 34 || this.age > 84)) {
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
     this.getData();
   }
 

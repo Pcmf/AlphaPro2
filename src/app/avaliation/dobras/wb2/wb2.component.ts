@@ -55,7 +55,7 @@ export class WB2Component implements OnInit {
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sexo = this.student.sexo;
     this.age = this.ageService.getAge(this.student.dt_nasc);
-    if (this.sexo == 'F') {
+    if (this.sexo == 'F' || (this.sexo == 'M' && (this.age < 16 || this.age > 37))) {
       this.openSnackBar('Atenção: Este protocolo não é apropriado para este aluno!', '');
     }
     this.getData();

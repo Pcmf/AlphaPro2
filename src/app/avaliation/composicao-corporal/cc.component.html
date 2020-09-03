@@ -17,7 +17,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/dw4">
-                        <mat-card-subtitle i18n="Subtitle">Durnin & Wormersley - 4 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle" 
+                        [style.color]="(age >= 17 && age <= 72 && sex=='M' || age >= 16 && age <= 68 && sex=='F') ? 'white' : '#AAAAAA'">
+                        Durnin & Wormersley - 4 dobras
+                    </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: dos 17 aos 72 anos;<br /> Mulheres: dos 16 aos 68 anos;</small>
@@ -38,7 +41,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/jp3">
-                        <mat-card-subtitle i18n="Subtitle">Jackson & Pollock - 3 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 18 && age <= 61 && sex=='M' || age >= 18 && age <= 55 && sex=='F') ? 'white' : '#AAAAAA'">
+                            Jackson & Pollock - 3 dobras
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: dos 18 aos 61 anos;<br /> Mulheres: dos 18 aos 55 anos;</small>
@@ -46,7 +52,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/jp7">
-                        <mat-card-subtitle i18n="Subtitle">Jackson & Pollock - 7 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 18 && age <= 55) ? 'white' : '#AAAAAA'">
+                            Jackson & Pollock - 7 dobras
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Dos 18 aos 55 anos;</small>
@@ -54,7 +63,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/pb4">
-                        <mat-card-subtitle i18n="Subtitle">Petroski - 4 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 18 && age <= 66 && sex=='M' || age >= 18 && age <= 51 && sex=='F') ? 'white' : '#AAAAAA'">
+                            Petroski - 4 dobras
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: dos 18 aos 66 anos;<br /> Mulheres: dos 18 aos 51 anos;</small>
@@ -62,7 +74,7 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/slau">
-                        <mat-card-subtitle i18n="Subtitle">Slaugther - 2 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle" [style.color]="age < 16 ? 'white' : '#AAAAAA'">Slaugther - 2 dobras</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Até aos 16 anos;</small>
@@ -70,7 +82,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/sloan2">
-                        <mat-card-subtitle i18n="Subtitle">Sloan - 2 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 18 && age <= 26 && sex=='M' || age >= 17 && age <= 25 && sex=='F') ? 'white' : '#AAAAAA'">
+                        Sloan - 2 dobras
+                    </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: dos 18 aos 26 anos;<br /> Mulheres: dos 17 aos 25 anos;</small>
@@ -78,7 +93,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/will">
-                        <mat-card-subtitle i18n="Subtitle">Williams - 4 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="( age >= 34 && age <= 84 && sex=='F') ? 'white' : '#AAAAAA'">
+                        Williams - 4 dobras
+                    </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: todas idades;<br /> Mulheres: dos 34 aos 84 anos;</small>
@@ -86,7 +104,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/wb2">
-                        <mat-card-subtitle i18n="Subtitle">Wilmore & Behnke - 2 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 17 && age <= 72 && sex==='M') ? 'white' : '#AAAAAA'">
+                        Wilmore & Behnke - 2 dobras
+                    </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Homens: dos 16 aos 37 anos</small>
@@ -94,7 +115,10 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/wb3">
-                        <mat-card-subtitle i18n="Subtitle">Wilmore & Behnke - 3 dobras</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="sex==='F' ? 'white' : '#AAAAAA'">
+                        Wilmore & Behnke - 3 dobras
+                    </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-footer>
                         <small>Mulheres: todas as idades;</small>

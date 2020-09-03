@@ -56,6 +56,9 @@ export class JP7Component implements OnInit {
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.sex = this.student.sexo;
     this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.age < 18 || this.age > 55) {
+      this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
+    }
     // start
     this.getData();
   }

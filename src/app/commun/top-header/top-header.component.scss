@@ -3,18 +3,19 @@
     width: 100vw;
     height: 5vh;
     &-main {
-        height: 90%;
+        height: 100%;
         background-color: rgb(170, 170, 170);
         display: flex;
         justify-content: center;
         align-items: center;
 
         .logo {
-            height: 4.5vh;
+            height: 88%;
         }
     }
     &-orange {
         background-color: rgb(245, 135, 50);
+        height: 20%;
     }
 
     .mat-button {

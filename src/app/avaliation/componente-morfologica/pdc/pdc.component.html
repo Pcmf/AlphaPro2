@@ -5,7 +5,7 @@
         <h1 class="h1-title" i18n>Perímetros e Diâmetros Corporais</h1>
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Perímetros">
-                <form #fp="ngForm" (submit)="savePerimetros(fp)">
+                <form #fp="ngForm" (submit)="savePerimetros(fp)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -147,7 +147,7 @@
                 </form>
             </mat-tab>
             <mat-tab i18n label="Diâmetros">
-                <form #fd="ngForm" (submit)="saveDiametros(fd)">
+                <form #fd="ngForm" (submit)="saveDiametros(fd)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -222,7 +222,7 @@
             </mat-tab>
             <!-- Mais Perimetros Corporais -->
             <mat-tab i18n label="Outros Perímetros">
-                <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)">
+                <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -278,11 +278,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Braço contraido')">Braço contraido</span></th>
+                                <th><span (click)="openDialog('Braço Dir Contraído ')">Braço Dir Contraído</span></th>
                                 <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoc | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoc | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
                                     <input class="hidde-arrows" name="bracoc" #bracoc="ngModel" [(ngModel)]="newOutros.bracoc" type="number" style="width: 60px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span (click)="openDialog('Braço Esq Contraído ')">Braço Esq Contraído</span></th>
+                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoce | number: '': locale}}</td>
+                                <td *ngIf="pointer>=0">{{medidas[pointer].bracoce | number: '': locale}}</td>
+                                <td *ngIf="addOutros">
+                                    <input class="hidde-arrows" name="bracoce" #bracoce="ngModel" [(ngModel)]="newOutros.bracoce" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>

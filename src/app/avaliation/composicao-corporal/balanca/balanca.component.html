@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span (click)="openDialog('Peso')">Peso</span></th>
+                        <th><span (click)="openDialog('Peso')">Peso <small>(Kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -41,27 +41,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('Gordura Total')">Gordura Total <small>(kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].gordura_total  | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{+evaluation[pointer].gordura_total | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="gordura_total" #gordura_total="ngModel" [(ngModel)]="newEvaluation.gordura_total" type="number">
-                        </td>
-                    </tr>
-                    <tr>
                         <th><span (click)="openDialog('Massa Gorda')">Massa Gorda <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_gorda | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].massa_gorda | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="massa_gorda" #massa_gorda="ngModel" [(ngModel)]="newEvaluation.massa_gorda" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span (click)="openDialog('Massa Magra')">Massa Magra <small>(kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_magra | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].massa_magra | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="massa_magra" #massa_magra="ngModel" [(ngModel)]="newEvaluation.massa_magra" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -73,10 +57,28 @@
                                 [(ngModel)]="newEvaluation.gordura_visceral" type="number">
                         </td>
                     </tr>
-
-                    <tr class="table-row-subtitle">
-                        <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">Massa Muscular</th>
+                    <tr class="form-subtitle">
+                        <td  [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th><span (click)="openDialog('Massa Magra')">Massa Magra <small>(kg)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_magra | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].massa_magra | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="massa_magra" #massa_magra="ngModel" [(ngModel)]="newEvaluation.massa_magra" type="number">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th><span (click)="openDialog('Massa Muscular')">Massa Muscular <small>(kg)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].massa_muscular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].massa_muscular | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="massa_muscular" #massa_muscular="ngModel"
+                                [(ngModel)]="newEvaluation.massa_muscular" type="number">
+                        </td>
+                    </tr>
+
                     <tr>
                         <th><span (click)="openDialog('Membros Superiores Dir')">Membros Superiores Dir <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].mm_msupd | number: '': locale}}</td>
@@ -122,18 +124,28 @@
                                 [(ngModel)]="newEvaluation.mm_tronco" type="number">
                         </td>
                     </tr>
-
                     <tr>
-                        <th><span (click)="openDialog('Taxa Metabólica Basal')">Taxa Metabólica Basal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tmb | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].tmb | number: '': locale}}</td>
+                        <th><span (click)="openDialog('Peso Ósseo')">Peso Ósseo <small>(Kg)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso_osseo | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso_osseo | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="tmb" #tmb="ngModel" [(ngModel)]="newEvaluation.tmb"
-                                [value]="calcTMB(newEvaluation)" type="number" readonly>
+                            <input class="hidde-arrows" name="peso_osseo" #peso_osseo="ngModel"
+                                [(ngModel)]="newEvaluation.peso_osseo" type="number">
                         </td>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('Reactância')">Reactância</span></th>
+                        <th><span (click)="openDialog('Peso Corporal Desejado')">Peso Corporal Desejado <small>(kg)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso_desejado | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso_desejado | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="peso_desejado" #peso_desejado="ngModel"
+                                [(ngModel)]="newEvaluation.peso_desejado" type="number">
+                        </td>
+                    </tr>
+
+                    <tr class="form-subtitle"><td  [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td></tr>
+                    <tr>
+                        <th><span (click)="openDialog('Reactância')">Reactância <small>(Ohms)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].reactancia | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].reactancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -142,43 +154,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('Estrutura Óssea')">Estrutura Óssea</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].estrutura_ossea | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].estrutura_ossea | number: '': locale}}</td>
+                        <th><span (click)="openDialog('Impedância')">Impedância <small>(Ohms)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].impedancia | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].impedancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="estrutura_ossea" #estrutura_ossea="ngModel"
-                                [(ngModel)]="newEvaluation.estrutura_ossea" type="number">
+                            <input class="hidde-arrows" name="impedancia" #impedancia="ngModel" [(ngModel)]="newEvaluation.impedancia"
+                                type="number">
                         </td>
                     </tr>
+
+                    <tr class="form-sub-title>"><td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td></tr>
                     <tr>
-                        <th><span (click)="openDialog('Peso Desejado')">Peso Desejado <small>(kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso_desejado | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso_desejado | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="peso_desejado" #peso_desejado="ngModel"
-                                [(ngModel)]="newEvaluation.peso_desejado" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span (click)="openDialog('Nível de Atividade Física')">Nível de Atividade Física</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].naf | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].naf | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="naf" #naf="ngModel"
-                                [(ngModel)]="newEvaluation.naf" type="number" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span (click)="openDialog('Água Extracelular')">Água Extracelular <small>(kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].agua_extracelular | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].agua_extracelular | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="agua_extracelular" #agua_extracelular="ngModel"
-                                [(ngModel)]="newEvaluation.agua_extracelular" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span (click)="openDialog('Água Corporal Total')">Água Corporal Total <small>(kg)</small></span></th>
+                        <th><span (click)="openDialog('Água Corporal Total')">Água Corporal Total <small>(l)</small></span></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].agua_corporal_total | number: '': locale}}</td>
                         <td *ngIf="addEval">
@@ -187,12 +174,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('Impedância')">Impedância</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].impedancia | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].impedancia | number: '': locale}}</td>
+                        <th><span (click)="openDialog('Água Extracelular')">Água Extracelular <small>(l)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].agua_extracelular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].agua_extracelular | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="impedancia" #impedancia="ngModel" [(ngModel)]="newEvaluation.impedancia"
-                                type="number">
+                            <input class="hidde-arrows" name="agua_extracelular" #agua_extracelular="ngModel"
+                                [(ngModel)]="newEvaluation.agua_extracelular" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -203,6 +190,25 @@
                             <input class="hidde-arrows" name="relacao_ataec" #relacao_ataec="ngModel" [(ngModel)]="newEvaluation.relacao_ataec"
                                 type="number">
                         </td>
+                    </tr>
+
+                    <tr>
+                        <th><span (click)="openDialog('Taxa Metabólica Basal')">Taxa Metabólica Basal <small>(Kcal)</small></span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tmb | number: '': locale}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].tmb | number: '': locale}}</td>
+                        <td *ngIf="addEval">
+                            <input class="hidde-arrows" name="tmb" #tmb="ngModel" [(ngModel)]="newEvaluation.tmb"
+                                [value]="calcTMB(newEvaluation)" type="number" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th><span (click)="openDialog('Classificação')">Classificação</span></th>
+                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].classificacao}}</td>
+                        <td *ngIf="pointer>=0">{{evaluation[pointer].classificacao}}</td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                 </tbody>
             </table>
@@ -228,11 +234,6 @@
             </div>
         </form>
  
-<!--         <div class="graphics">
-            <ngx-charts-pie-chart i18n [view]="view" [scheme]="colorScheme" [results]="chartValues" [gradient]="gradient"
-                [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
-                >
-            </ngx-charts-pie-chart>
-        </div> -->
+
     </div>
 </div>

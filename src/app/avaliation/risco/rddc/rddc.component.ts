@@ -15,6 +15,8 @@ export class RDDCComponent implements OnInit, OnDestroy {
   data: any = [];
   risco = 0;
   smoker = '0';
+  fumante = false;
+  qtos: number;
   student: any = [];
   formS: any = [];
   classRisco: string;
@@ -35,6 +37,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
     // Obter dados quantos cigarros dia
     this.dataService.getData('clients/' + this.student.id).subscribe(
       respa => {
+        this.qtos = respa[0].qtos;
         // Obter os dados guardados sobre coluna
         this.dataService.getData('clients/column/' + this.student.id).subscribe(
           respd => {
@@ -54,8 +57,12 @@ export class RDDCComponent implements OnInit, OnDestroy {
             }
             if (respa[0].fumante === 'S' || respa[0].fumante === 'E') {
               this.data.smoker = '1';
-            } else {
+              this.fumante = true;
+            } else if (respa[0].fumante === 'N') {
               this.data.smoker = '0';
+              this.fumante = true;
+            } else  {
+              this.data.smoker = null;
             }
             console.log(this.data.smoker);
             this.calcRisco(this.data);
@@ -81,6 +88,12 @@ export class RDDCComponent implements OnInit, OnDestroy {
       resp => {
         console.log(resp);
       }
+    );
+    if (this.formS.smoker === '1') {
+      this.formS.fumante = 'S';
+    }
+    this.dataService.setData('clients/anamnese/' + this.student.id, this.formS).subscribe(
+      res => console.log(res)
     );
   }
 

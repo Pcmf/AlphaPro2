@@ -7,7 +7,7 @@
 
             <!-- TAB - Vista anterior -->
             <mat-tab i18n label="Vista Anterior">
-                <form #fa="ngForm" (submit)="saveDataForm(fa)">
+                <form #fa="ngForm" (submit)="saveDataForm(fa)" autocomplete="off">
 
                     <table class="section-table front-view" id="VP" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
@@ -525,7 +525,7 @@
 
             <!-- Vista Lateral -->
             <mat-tab i18n label="Vista Lateral">
-                <form #fl="ngForm" (submit)="saveDataForm(fl)">
+                <form #fl="ngForm" (submit)="saveDataForm(fl)" autocomplete="off">
                     <table class="section-table side-view" id="VL" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
                         <thead>
@@ -892,7 +892,7 @@
 
             <!-- Vista Posterior -->
             <mat-tab i18n label="Vista Posterior">
-                <form #fp="ngForm" (submit)="saveDataForm(fp)">
+                <form #fp="ngForm" (submit)="saveDataForm(fp)" autocomplete="off">
                     <table class="section-table back-view" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
                         <thead>

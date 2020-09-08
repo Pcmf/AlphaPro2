@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <h1 class="h1-title" i18n>Risco de Dor na Coluna</h1>
-        <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
+        <form class="flex-form" #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <mat-card>
                 <mat-card-header>
                     <mat-card-subtitle i18n>Idade</mat-card-subtitle>
@@ -94,7 +94,7 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-radio-group aria-label="Selecione" #smoker="ngModel" name="smoker"
-                                [(ngModel)]="data.smoker" disabled>
+                                [(ngModel)]="data.smoker" [disabled]="fumante && qtos > 0">
                                 <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                                 <mat-radio-button value="0" i18n>Não</mat-radio-button>
                             </mat-radio-group>
@@ -127,7 +127,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     <h4>{{risco}} - 
-                    <span i18n *ngIf="risco == 0">Muito Baixo</span>
+                    <span i18n *ngIf="risco <= 0">Muito Baixo</span>
                     <span i18n *ngIf="risco >= 1 && risco < 5">Baixo</span>
                     <span i18n *ngIf="risco >= 5 && risco < 9">Potencial</span>
                     <span i18n *ngIf="risco >= 9 && risco < 13">Moderado</span>

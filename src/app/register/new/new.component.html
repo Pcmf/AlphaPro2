@@ -3,7 +3,7 @@
 
   <div class="section">
     <h1 i18n="titulo">Cadastro</h1>
-    <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)">
+    <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)" autocomplete="off">
       <input type="hidden" [ngModel]="student.foto" #foto="ngModel" name="foto">
       <mat-form-field appearance="">
         <label i18n="Label | nome do aluno" #nome>Nome</label>

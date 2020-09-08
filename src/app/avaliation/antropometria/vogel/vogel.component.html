@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <h1 class="h1-title" i18n>Vogel et al (1990) <small>[População feminina]</small></h1>
-        <form #f="ngForm" (submit)="save(f.value)">
+        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
             <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
             <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">

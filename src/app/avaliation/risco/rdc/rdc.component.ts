@@ -39,7 +39,6 @@ export class RDCComponent implements OnInit, OnDestroy {
             this.rdcData.qtos = respa[0].qtos;
           }
         );
-        console.log(this.rdcData.qtas);
         if (!this.rdcData.qtas || this.rdcData.qtas == 0 || !this.rdcData.qtad || this.rdcData.qtad == 0) {
           this.dataService.getData('clients/eval/' + this.student.id).subscribe(
             (respe: any[]) => {
@@ -77,10 +76,14 @@ export class RDCComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log(this.formS);
     this.dataService.setData('clients/rdc/' + this.student.id, this.formS).subscribe(
-        resp => {
-          console.log(resp);
-        }
-      );
+      resp => {
+        console.log(resp);
+
+      }
+    );
+    this.dataService.setData('clients/anamnese/' + this.student.id, this.formS).subscribe(
+      res => console.log(res)
+    );
   }
 
   calcRisco(form) {

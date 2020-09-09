@@ -56,7 +56,7 @@
                         <th [attr.colspan]="pointer>=1 ? 3 : 2" i18n class="sub-line">Dobras Cutâneas</th>
                     </tr>
                     <tr>
-                        <th i18n><span (click)="openDialog('Triciptal')">Triciptal</span> <small> (mm)</small></th>
+                        <th i18n><span (click)="openDialog('Tricipital')">Tricipital</span> <small> (mm)</small></th>
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">

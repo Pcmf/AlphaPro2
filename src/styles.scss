@@ -9,9 +9,9 @@ body {
   height: 100vh;
   margin: 0;
 }
-body {
+/* body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+} */
 
 .mat-stroked-button {
   width: 56px;
@@ -35,11 +35,6 @@ input[type=number] {
 }
 
 ::ng-deep {
-/*   .hidde-arrows::-webkit-inner-spin-button,
-  .hidde-arrows::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  } */
   // Para o painel não ficar em branco depois de clicado
   .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
       background: unset;
@@ -65,6 +60,9 @@ input[type=number] {
   .dialog-inputs {
     color: black;
   }
+  .mat-select-arrow {
+    color: whitesmoke !important;
+}
 }
 
 em {
@@ -175,7 +173,7 @@ app-header-name{
     text-align: center;
   }
   th {
-    font-weight: 600 !important;
+    font-weight: 400 !important;
     text-align: left;
     padding-left: 5px;
   }

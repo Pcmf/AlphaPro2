@@ -46,6 +46,9 @@ export class AnameneseComponent implements OnInit {
           this.student.Q32 == 0 ? this.student.Q32 = false : this.student.Q32 = true;
           this.student.Q33 == 0 ? this.student.Q33 = false : this.student.Q33 = true;
           this.student.Q34 == 0 ? this.student.Q34 = false : this.student.Q34 = true;
+          !this.student.Q4D1 || this.student.Q4D1 === '0' ? this.student.Q4D1 = false : this.student.Q4D1 = true;
+          !this.student.Q4D2 || this.student.Q4D2 === '0'  ? this.student.Q4D2 = false : this.student.Q4D2 = true;
+          !this.student.Q4D3 || this.student.Q4D3 === '0'  ? this.student.Q4D3 = false : this.student.Q4D3 = true;
           this.student.artrite == 0 ? this.student.artrite = false : this.student.artrite = true;
           this.student.bronquite == 0 ? this.student.bronquite = false : this.student.bronquite = true;
           this.student.cancer == 0 ? this.student.cancer = false : this.student.cancer = true;
@@ -230,6 +233,9 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveHabitosSociais(form) {
+    form.Q4D1 ? form.Q4D1 = '1' : form.Q4D1 = '0';
+    form.Q4D2 ? form.Q4D2 = '1' : form.Q4D2 = '0';
+    form.Q4D3 ? form.Q4D3 = '1' : form.Q4D3 = '0';
     if (form.fumante === 'N') {
       form.qtos = 0;
       form.Q4ATA = 0;

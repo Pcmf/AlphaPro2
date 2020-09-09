@@ -87,6 +87,7 @@ export class RDCComponent implements OnInit, OnDestroy {
   }
 
   calcRisco(form) {
+    console.log(form);
     this.formS = form;
     this.risco = 0;
     if (this.rdcData.qtas >= 140) {
@@ -135,6 +136,7 @@ export class RDCComponent implements OnInit, OnDestroy {
     } else {
       this.classRisco = 'background-yellow';
     }
+    console.log(this.risco);
   }
 
 }

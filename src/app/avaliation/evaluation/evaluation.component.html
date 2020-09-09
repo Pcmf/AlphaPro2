@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <h1 class="h1-title">Dados Complementares</h1>
-        <form #f="ngForm" (submit)="save(f.value)">
+        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <table class="section-table">
                 <thead>
                     <tr>
@@ -32,7 +32,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '1.2-2': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '1.2-2': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number">
+                            <input  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -40,7 +40,7 @@
                         <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '1.2-2': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '1.2-2': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
+                            <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
                         </td>
                     </tr>
                     <tr>

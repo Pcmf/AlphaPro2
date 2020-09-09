@@ -206,8 +206,8 @@
                     </tr>
                     <tr>
                         <th><span (click)="openDialog('Classificação')">Classificação</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].classificacao}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].classificacao}}</td>
+                        <td *ngIf="pointer>=1">{{ getClassificacao(evaluation[pointer-1].perc_gordura_bl)}}</td>
+                        <td *ngIf="pointer>=0">{{getClassificacao(evaluation[pointer].perc_gordura_bl)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                 </tbody>

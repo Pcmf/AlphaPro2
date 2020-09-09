@@ -24,7 +24,14 @@
   }
 }
 
-::ng-deep {
+::ng-deep {  
+  .mat-tab-label-active{
+    color: white !important;
+    font-weight: 600;
+    font-size: 16px;
+    opacity: 1  !important;
+  }  
+
   .mat-stroked-button {
     width: 56px;
     height: 56px;
@@ -39,11 +46,9 @@
 
   .mat-tab-label {
     color: white;
+    opacity: 1 !important;
   }
 
-  .mat-tab-label-active{
-    color: yellow
-  }
 }
 
 

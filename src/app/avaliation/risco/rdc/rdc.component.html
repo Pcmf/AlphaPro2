@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
 
     <div class="section">
-        <h1 class="h1-title" i18n>Risco de Desenvolvimento de Cardiopatia</h1>
+        <h1 class="h1-title" i18n>Risco de Cardiopatia</h1>
         <form class="flex-form" #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <mat-card>
                 <mat-card-header>
@@ -13,13 +13,13 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Sistólica</mat-label>
-                                <input matInput #qtas="ngModel" name="qtas" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtas" (change)="calcRisco(f.value)">
+                                <input matInput #qtas="ngModel" name="qtas" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtas" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Diastólica</mat-label>
-                                <input matInput #qtad="ngModel" name="qtad" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtad" (change)="calcRisco(f.value)">
+                                <input matInput #qtad="ngModel" name="qtad" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtad" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -49,25 +49,25 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Colesterol Total</mat-label>
-                                <input matInput #lsc="ngModel" name="lsc" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsc" (change)="calcRisco(f.value)">
+                                <input matInput #lsc="ngModel" name="lsc" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsc" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Fração CT/HDL-C</mat-label>
-                                <input matInput #lsf="ngModel" name="lsf" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsf" (change)="calcRisco(f.value)">
+                                <input matInput #lsf="ngModel" name="lsf" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsf" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Triglicerídeos</mat-label>
-                                <input matInput #lst="ngModel" name="lst" (focus)="$event.target.select()" [(ngModel)]="rdcData.lst" (change)="calcRisco(f.value)">
+                                <input matInput #lst="ngModel" name="lst" (focus)="$event.target.select()" [(ngModel)]="rdcData.lst" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Glicemia</mat-label>
-                                <input matInput #lsg="ngModel" name="lsg" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsg" (change)="calcRisco(f.value)">
+                                <input matInput #lsg="ngModel" name="lsg" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsg" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -102,7 +102,7 @@
                         <mat-list-item>
                             <mat-form-field>
                                 <mat-label i18n>Percentagem</mat-label>
-                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="rdcData.gc" (focus)="$event.target.select()" (change)="calcRisco(f.value)">
+                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="rdcData.gc" (focus)="$event.target.select()" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                     </mat-list>
@@ -138,7 +138,7 @@
                             <mat-form-field>
                                 <mat-label i18n>Frequência Semanal</mat-label>
                                 <input matInput #fs="ngModel" name="fs" [(ngModel)]="rdcData.fs"
-                                    placeholder="vezes por semana" (focus)="$event.target.select()" (change)="calcRisco(f.value)">
+                                    placeholder="vezes por semana" (focus)="$event.target.select()" (input)="calcRisco(f.value)">
                             </mat-form-field>
                         </mat-list-item>
                         <mat-list-item>

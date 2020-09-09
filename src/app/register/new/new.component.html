@@ -7,18 +7,21 @@
       <input type="hidden" [ngModel]="student.foto" #foto="ngModel" name="foto">
       <mat-form-field appearance="">
         <label i18n="Label | nome do aluno" #nome>Nome</label>
-        <input matInput #nome="ngModel" [ngModel]="student.nome" name="nome" required>
+        <input matInput type="search" #nome="ngModel" [ngModel]="student.nome" name="nome" required
+        autocomplete="off" (focus)="$event.target.select()">
       </mat-form-field>
 
       <mat-form-field appearance="">
         <label i18n="Label | data de nascimento">Data de Nascimento</label>
-        <input matInput type="text" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" name="dt_nasc" mask="00/00/0000">
+        <input matInput type="search" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" 
+        name="dt_nasc" mask="00/00/0000" autocomplete="off" 
+        (focus)="$event.target.select()">
       </mat-form-field>
 
       <div class="section-middle">
         <div class="section-middle-left">
         <mat-form-field appearance="">
-          <label i18n="Label | Sexo">Sexo <small>(1)</small></label>
+          <label i18n="Label | Sexo">Sexo </label>
           <mat-select style="color: whitesmoke;" #sexo="ngModel" [ngModel]="student.sexo" name="sexo" required>
             <mat-option i18n="genero masculino" value="M" [attr.selected]="student.sexo == 'M'">Masculino</mat-option>
             <mat-option i18n="genero feminino" value="F" [attr.selected]="student.sexo == 'F'">Feminino</mat-option>
@@ -27,11 +30,13 @@
 
         <mat-form-field appearance="">
           <label i18n="Label | mobile phone number">Celular</label>
-          <input #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput>
+          <input type="search" #telemovel="ngModel" [ngModel]="student.telemovel" name="telemovel" matInput 
+          autocomplete="off" (focus)="$event.target.select()">
         </mat-form-field>
         <mat-form-field appearance="">
           <label i18n="Label | Phone number">Telefone</label>
-          <input #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput>
+          <input type="search" #telefone="ngModel" [ngModel]="student.telefone" name="telefone" matInput 
+            autocomplete="off" (focus)="$event.target.select()">
         </mat-form-field>
       </div>
       <div class="section-middle-right">
@@ -49,24 +54,29 @@
       </div>
       <mat-form-field appearance="">
         <label i18n="Label | email">Email</label>
-        <input #email="ngModel" [ngModel]="student.email" name="email" matInput>
+        <input type="search" #email="ngModel" [ngModel]="student.email" name="email" matInput
+        autocomplete="off" (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field appearance="">
         <label i18n="Label | profissional activity">Profissão</label>
-        <input #profissao="ngModel" [ngModel]="student.profissao" name="profissao" matInput>
+        <input type="search" #profissao="ngModel" [ngModel]="student.profissao" name="profissao" matInput
+        autocomplete="off" (focus)="$event.target.select()">
       </mat-form-field>
 
       <mat-form-field appearance="">
         <label i18n="Label | address">Endereço</label>
-        <input #morada="ngModel" [ngModel]="student.morada" name="morada" matInput>
+        <input type="search" #morada="ngModel" [ngModel]="student.morada" name="morada" matInput
+        autocomplete="off"  (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field appearance="">
         <label i18n="Label | city name">Cidade</label>
-        <input #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput>
+        <input type="search" #localidade="ngModel" [ngModel]="student.localidade" name="localidade" matInput
+        autocomplete="off" (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field appearance="">
         <label i18n="Label | postal code">Código Postal</label>
-        <input #cp="ngModel" [ngModel]="student.cp" name="cp" matInput mask="99999-999">
+        <input type="search" #cp="ngModel" [ngModel]="student.cp" name="cp" matInput mask="99999-999"
+        autocomplete="off" (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field *ngIf="student.id">
         <label i18n="Label | last access">Último acesso</label>
@@ -93,7 +103,7 @@
 
       <p>
         <!-- <a href="#"> -->
-          <em>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</em>
+         <!--  <em>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</em> -->
         <!-- </a> -->
       </p>
     </form>

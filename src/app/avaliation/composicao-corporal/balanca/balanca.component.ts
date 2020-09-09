@@ -113,8 +113,6 @@ export class BalancaComponent implements OnInit {
     form.protocolo = this.protocolo;
     console.log(form);
 
-    // Obter a classificação
-    form.classificacao = this.getClassificacao(this.age, this.student.sexo, form.perc_gordura_bl);
     // Save
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
@@ -161,15 +159,8 @@ export class BalancaComponent implements OnInit {
 
           }
         );
-
-    // Obter o NAFS a partir da anamnese
- /*    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-      (resp: any[]) => {
-        this.newEvaluation.naf = resp[0].nafs; */
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.addEval = true;
-/*       }
-    ); */
 
   }
 
@@ -232,10 +223,10 @@ openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal
   }
 
 // Get classification from table
-getClassificacao(age, sex, percGordura) {
+getClassificacao(percGordura) {
   // Feminino
-  if (sex === 'F') {
-    if (age >= 20 && age < 40) {
+  if (this.student.sexo === 'F') {
+    if (this.age >= 20 && this.age < 40) {
       if (percGordura < 21) {
         return 'Baixo';
       } else if (percGordura >= 21 && percGordura < 33) {
@@ -245,7 +236,7 @@ getClassificacao(age, sex, percGordura) {
       } else {
         return 'Obesidade';
       }
-    } else if (age >= 40 && age < 60) {
+    } else if (this.age >= 40 && this.age < 60) {
       if (percGordura < 23) {
         return 'Baixo';
       } else if (percGordura >= 23 && percGordura < 34) {
@@ -255,7 +246,7 @@ getClassificacao(age, sex, percGordura) {
       } else {
         return 'Obesidade';
       }
-    } else if (age >= 60 && age < 80) {
+    } else if (this.age >= 60 && this.age < 80) {
       if (percGordura < 24) {
         return 'Baixo';
       } else if (percGordura >= 24 && percGordura < 36) {
@@ -268,8 +259,8 @@ getClassificacao(age, sex, percGordura) {
     }
   }
   // Masculino
-  if (sex === 'M') {
-    if (age >= 20 && age < 40) {
+  if (this.student.sexo === 'M') {
+    if (this.age >= 20 && this.age < 40) {
       if (percGordura < 8) {
         return 'Baixo';
       } else if (percGordura >= 8 && percGordura < 20) {
@@ -279,7 +270,7 @@ getClassificacao(age, sex, percGordura) {
       } else {
         return 'Obesidade';
       }
-    } else if (age >= 40 && age < 60) {
+    } else if (this.age >= 40 && this.age < 60) {
       if (percGordura < 11) {
         return 'Baixo';
       } else if (percGordura >= 11 && percGordura < 22) {
@@ -289,7 +280,7 @@ getClassificacao(age, sex, percGordura) {
       } else {
         return 'Obesidade';
       }
-    } else if (age >= 60 && age < 80) {
+    } else if (this.age >= 60 && this.age < 80) {
       if (percGordura < 13) {
         return 'Baixo';
       } else if (percGordura >= 13 && percGordura < 25) {

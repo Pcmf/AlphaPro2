@@ -93,10 +93,10 @@
           </mat-card>
           <mat-action-row>
             <button mat-stroked-button i18n="Botão" (click)="nextStep()" 
-            matTooltip="Guardar e avançar."
+            matTooltip="Salvar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-              Guardar<strong>&#8628;</strong>
+              Salvar<strong>&#8628;</strong>
             </button>
           </mat-action-row>
         </form>
@@ -206,10 +206,10 @@
           <mat-action-row>
             <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
             <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
-            matTooltip="Guardar e avançar."
+            matTooltip="Salvar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-            Guardar <strong>&#8628;</strong></button>
+            Salvar <strong>&#8628;</strong></button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>
@@ -273,7 +273,7 @@
           <mat-card>
             <mat-card-content>
               <mat-radio-group aria-label="Select an option" #Q2B="ngModel" name="Q2B" [(ngModel)]="student.Q2B" (change)="clearDoencasInfo(Q2B.value)">
-                <mat-label i18n="Label">Doença</mat-label>
+                <mat-label i18n="Label">Doença<small>(s)</small></mat-label>
                 <mat-radio-button value="1" i18n="Label">Sim</mat-radio-button>
                 <mat-radio-button value="0" i18n="Label">Não</mat-radio-button>
               </mat-radio-group>
@@ -394,10 +394,10 @@
           <mat-action-row>
             <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
             <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
-            matTooltip="Guardar e avançar."
+            matTooltip="Salvar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-            Guardar <strong>&#8628;</strong></button>
+            Salvar <strong>&#8628;</strong></button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>
@@ -533,10 +533,10 @@
           <mat-action-row>
             <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
             <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
-            matTooltip="Guardar e avançar."
+            matTooltip="Salvar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-            Guardar <strong>&#8628;</strong></button>
+            Salvar <strong>&#8628;</strong></button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>
@@ -655,9 +655,9 @@
               <mat-label i18n>Profissão: {{student.profissao}}</mat-label>
               <br />
               <mat-label i18n>Quais as posturas que mais adota durante o dia?</mat-label>
-              <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="!!student.Q4D1">Sentado</mat-checkbox>
-              <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="!!student.Q4D2">Em pé</mat-checkbox>
-              <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="!!student.Q4D3">Deitado</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D1="ngModel" name="Q4D1" [(ngModel)]="student.Q4D1">Sentado</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D2="ngModel" name="Q4D2" [(ngModel)]="student.Q4D2">Em pé</mat-checkbox>
+              <mat-checkbox i18n="Label" #Q4D3="ngModel" name="Q4D3" [(ngModel)]="student.Q4D3">Deitado</mat-checkbox>
               <mat-form-field class="input-lg">
                 <mat-label i18n="Label">Observações</mat-label>
                 <textarea matInput placeholder="" #Q45OBS="ngModel" name="Q45OBS"
@@ -698,7 +698,7 @@
                 <mat-radio-button value="E" i18n>Eventual</mat-radio-button>
               </mat-radio-group>
               <br />
-              <mat-form-field class="input-md" *ngIf="fumante.value=='S' || fumante.value=='E'">
+              <mat-form-field style="width: 200px" *ngIf="fumante.value=='S' || fumante.value=='E'">
                 <mat-label i18n>Quantos cigarros por dia?</mat-label>
                 <input matInput class="input-md" i18n placeholder="nº de cigarros" #qtos="ngModel" name="qtos"
                 (focus)="$event.target.select()" [(ngModel)]="student.qtos">
@@ -730,10 +730,10 @@
           <mat-action-row>
             <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
             <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
-            matTooltip="Guardar e avançar."
+            matTooltip="Salvar e avançar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-            Guardar <strong>&#8628;</strong></button>
+            Salvar <strong>&#8628;</strong></button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>
@@ -783,10 +783,10 @@
           <mat-action-row>
             <button mat-stroked-button (click)="prevStep()" i18n="Label">Anterior</button>
             <button mat-stroked-button color="primary" (click)="nextStep()" i18n="Label"
-            matTooltip="Guardar."
+            matTooltip="Salvar."
             matTooltipPosition="above"
             matTooltipHideDelay="2000">
-            Guardar</button>
+            Salvar</button>
           </mat-action-row>
         </form>
       </mat-expansion-panel>

@@ -94,7 +94,8 @@
                     <mat-list>
                         <mat-list-item>
                             <mat-radio-group aria-label="Selecione" #smoker="ngModel" name="smoker"
-                                [(ngModel)]="data.smoker" [disabled]="fumante && qtos > 0">
+                                [(ngModel)]="data.smoker" [disabled]="fumante"
+                                (change)="calcRisco(f.value)">
                                 <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                                 <mat-radio-button value="0" i18n>Não</mat-radio-button>
                             </mat-radio-group>

@@ -22,12 +22,24 @@ body {
   }
 }
 
+/* Para esconder as setas nos campos de texto */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 ::ng-deep {
-  .hidde-arrows::-webkit-inner-spin-button,
+/*   .hidde-arrows::-webkit-inner-spin-button,
   .hidde-arrows::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
+  } */
   // Para o painel não ficar em branco depois de clicado
   .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
       background: unset;

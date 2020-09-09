@@ -14,7 +14,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
   age: number;
   data: any = [];
   risco = 0;
-  smoker = '0';
+  // smoker = '0';
   fumante = false;
   qtos: number;
   student: any = [];
@@ -43,26 +43,24 @@ export class RDDCComponent implements OnInit, OnDestroy {
           respd => {
             if (respd[0]) {
               this.data = respd[0];
-            //  this.calcRisco(this.data);
-            } else {
               // obter se tem queixas de dor de costas
               this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
                 resp => {
-                  if (resp[0].Q510 == 1) {
+                  if (resp[0].Q510 == '1') {
                     this.data.dor = '3';
                   }
-                  // this.calcRisco(this.data);
                 }
               );
             }
             if (respa[0].fumante === 'S' || respa[0].fumante === 'E') {
               this.data.smoker = '1';
               this.fumante = true;
-            } else if (respa[0].fumante === 'N') {
+            } else if (respa[0].fumante === 'N' && this.qtos == 0) {
               this.data.smoker = '0';
               this.fumante = true;
             } else  {
               this.data.smoker = null;
+              this.fumante = false;
             }
             console.log(this.data.smoker);
             this.calcRisco(this.data);
@@ -98,9 +96,10 @@ export class RDDCComponent implements OnInit, OnDestroy {
   }
 
   calcRisco(form) {
+    console.log(form);
     let points = 0;
     this.risco = 0;
-    if (form.smoker && form.smoker == '1') {
+    if (form.smoker && form.smoker === '1') {
       points += 1;
     }
     if (this.age < 30) {
@@ -117,7 +116,9 @@ export class RDDCComponent implements OnInit, OnDestroy {
       form.pontos = +this.risco;
       this.formS = form;
     }
-    console.log(this.risco);
+    if (this.risco < 0 ) {
+      this.risco = 0;
+    }
     if (this.risco < 5) {
       this.classRisco = 'background-green';
     }

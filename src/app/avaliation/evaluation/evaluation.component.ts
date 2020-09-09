@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { AgeService } from 'src/app/services/age.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-evaluation',
@@ -22,7 +23,8 @@ export class EvaluationComponent implements OnInit {
               private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private ageService: AgeService
+              private ageService: AgeService,
+              private router: Router
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -70,7 +72,8 @@ export class EvaluationComponent implements OnInit {
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
-        this.getData();
+        // this.getData();
+        this.router.navigate(['/avDash']);
       }
     );
   }

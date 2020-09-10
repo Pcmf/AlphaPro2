@@ -39,22 +39,22 @@ export class RDCComponent implements OnInit, OnDestroy {
             this.rdcData.qtos = respa[0].qtos;
           }
         );
-        if (!this.rdcData.qtas || this.rdcData.qtas == 0 || !this.rdcData.qtad || this.rdcData.qtad == 0) {
-          this.dataService.getData('clients/eval/' + this.student.id).subscribe(
-            (respe: any[]) => {
-              if (respe) {
-                const lastEval = respe.pop();
-                console.log(lastEval);
+
+        this.dataService.getData('clients/eval/' + this.student.id).subscribe(
+          (respe: any ) => {
+            if (respe.length > 0) {
+              const lastEval = respe.pop();
+              if (this.rdcData.data <= lastEval.data) {
+                 // !this.rdcData.qtas || this.rdcData.qtas == 0 || !this.rdcData.qtad || this.rdcData.qtad == 0 ||
                 this.rdcData.qtas = lastEval.tamax;
                 this.rdcData.qtad = lastEval.tamin;
               }
             }
-          );
-        }
+          }
+        );
         // historic cardio family from pat_familiar
         this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
           (respq: any[]) => {
-            console.log(respq.length);
             this.rdcData.hf = respq.length;
           }
         );
@@ -69,21 +69,19 @@ export class RDCComponent implements OnInit, OnDestroy {
   }
 
   save(form) {
-    this.formS = form;
+    console.log(form);
+    this.dataService.setData('clients/rdc/' + this.student.id, form).subscribe(
+      resp => {
+        console.log(resp);
+      }
+    );
+    this.dataService.setData('clients/anamnese/' + this.student.id, form).subscribe(
+      res => console.log(res)
+    );
     this.router.navigate(['rddc/']);
   }
 
   ngOnDestroy() {
-    console.log(this.formS);
-    this.dataService.setData('clients/rdc/' + this.student.id, this.formS).subscribe(
-      resp => {
-        console.log(resp);
-
-      }
-    );
-    this.dataService.setData('clients/anamnese/' + this.student.id, this.formS).subscribe(
-      res => console.log(res)
-    );
   }
 
   calcRisco(form) {
@@ -96,7 +94,7 @@ export class RDCComponent implements OnInit, OnDestroy {
     if (this.rdcData.qtad >= 90) {
       this.risco++;
     }
-    if (this.student.qtos >= 20) {
+    if (this.rdcData.qtos >= 20) {
       this.risco++;
     }
     if (this.rdcData.lsc >= 250 || this.rdcData.lsf >= 4.5 || this.rdcData.lst >= 130 || this.rdcData.lsg >= 110) {
@@ -123,7 +121,7 @@ export class RDCComponent implements OnInit, OnDestroy {
     if (this.rdcData.hf > 2) {
       this.risco++;
     }
-    if (this.student.fs <= 1 || this.rdcData.af50 < 30) {
+    if (this.rdcData.fs <= 1 || this.rdcData.af50 < 30 || !this.rdcData.fs || !this.rdcData.af50) {
       this.risco++;
     }
     if (this.student.idade > 50) {
@@ -138,5 +136,7 @@ export class RDCComponent implements OnInit, OnDestroy {
     }
     console.log(this.risco);
   }
+
+
 
 }

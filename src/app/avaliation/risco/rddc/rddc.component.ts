@@ -76,30 +76,32 @@ export class RDDCComponent implements OnInit, OnDestroy {
 
   save(form) {
     form.pontos = +this.risco;
-    this.formS = form;
-    this.router.navigate(['/avDash']);
-
-  }
-
-  ngOnDestroy() {
-    this.dataService.setData('clients/column/' + this.student.id, this.formS).subscribe(
+    this.dataService.setData('clients/column/' + this.student.id, form).subscribe(
       resp => {
         console.log(resp);
       }
     );
-    if (this.formS.smoker === '1') {
-      this.formS.fumante = 'S';
+    if (form.smoker === '1') {
+      form.fumante = 'S';
     }
-    this.dataService.setData('clients/anamnese/' + this.student.id, this.formS).subscribe(
-      res => console.log(res)
+    this.dataService.setData('clients/anamnese/' + this.student.id, form).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/avDash']);
+      }
     );
+  }
+
+  ngOnDestroy() {
   }
 
   calcRisco(form) {
     console.log(form);
     let points = 0;
     this.risco = 0;
-    if (form.smoker && form.smoker === '1') {
+    console.log(form.smoker);
+    if ((form.smoker && form.smoker === '1') || (this.fumante && this.data.smoker != '0')) {
+      console.log('fumante');
       points += 1;
     }
     if (this.age < 30) {
@@ -111,7 +113,11 @@ export class RDDCComponent implements OnInit, OnDestroy {
     } else {
       points += 3;
     }
-    this.risco = points + +form.objetos + +form.alonga + +form.peso + +form.dor;
+    if (form.objetos) { this.risco += +form.objetos; }
+    if (form.alonga) { this.risco += +form.alonga; }
+    if (form.dor) { this.risco += +form.dor; }
+
+    this.risco += points;
     if (form) {
       form.pontos = +this.risco;
       this.formS = form;
@@ -128,6 +134,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
     if (this.risco >= 13) {
       this.classRisco = 'background-red';
     }
+    console.log(this.risco);
   }
 
 }

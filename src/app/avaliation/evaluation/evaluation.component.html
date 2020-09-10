@@ -7,9 +7,11 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                            {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                         </th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                        <th class="th-top" *ngIf="pointer>=0">
+                            {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                         </th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data"
@@ -20,7 +22,7 @@
                 <tbody>
                     <tr>
                         <th><span>Avaliador</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].avaliador}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].avaliador}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].avaliador}}</td>
                         <td *ngIf="addEval">
                             <input name="avaliador" #avaliador="ngModel" [(ngModel)]="newEvaluation.avaliador"
@@ -29,15 +31,18 @@
                     </tr>
                     <tr>
                         <th>Estatura <small>(m)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '1.2-2': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '1.2-2': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            {{evaluation[pointer-1].altura | number: '1.2-2': locale}}
+                        </td>
+                        <td *ngIf="pointer>=0">
+                            {{evaluation[pointer].altura | number: '1.2-2': locale}}</td>
                         <td *ngIf="addEval">
                             <input  name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>Peso <small>(Kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '1.2-2': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '1.2-2': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '1.2-2': locale}}</td>
                         <td *ngIf="addEval">
                             <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
@@ -45,7 +50,7 @@
                     </tr>
                     <tr>
                         <th>Evergadura <small>(cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].envergadura | number:'': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].envergadura | number:'': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].envergadura | number:'': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="envergadura" #envergadura="ngModel" [(ngModel)]="newEvaluation.envergadura" type="number">
@@ -56,7 +61,7 @@
                     </tr>
                     <tr>
                         <th>Máxima</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tamax}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].tamax}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tamax}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="tamax" #tamax="ngModel" [(ngModel)]="newEvaluation.tamax" type="number">
@@ -64,7 +69,7 @@
                     </tr>
                     <tr>
                         <th>Mínima</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].tamin}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].tamin}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].tamin}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="tamin" #tamin="ngModel" [(ngModel)]="newEvaluation.tamin" type="number">
@@ -72,7 +77,7 @@
                     </tr>
                     <tr>
                         <th>Frequência Cardíaca<br />em Repouso <small>(bpm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].fc}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number">
@@ -80,7 +85,7 @@
                     </tr>
                     <tr>
                         <th>TMB - Taxa Metabólica<br />Basal <small>(kCal/dia)</small></th>
-                        <td *ngIf="pointer>=1">{{calcTMB(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{calcTMB(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{calcTMB(evaluation[pointer]) | number: '': locale}}</td>
                         <td *ngIf="addEval">
                            <input name="fc" #fc="ngModel" [ngModel] [value]="calcTMB(newEvaluation)" readonly>

@@ -12,7 +12,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhof}}
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhof}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
                                 <td *ngIf="addEval">
@@ -44,7 +44,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhofe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].punhof + +evaluation[pointer-1].punhofe}}
                                 </td>
                                 <td *ngIf="pointer>=0">
@@ -73,7 +73,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -89,7 +89,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].punhoee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhoee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].punhoee}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -105,7 +105,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].punhoe + +evaluation[pointer-1].punhoee}}</td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].punhoe + +evaluation[pointer].punhoee}}
                                 </td>
@@ -146,7 +146,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelof}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotovelof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -177,7 +177,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotovelofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelofe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -193,7 +193,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].cotovelof + +evaluation[pointer-1].cotovelofe}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].cotovelof + +evaluation[pointer].cotovelofe}}</td>
@@ -205,7 +205,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotoveloe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -221,7 +221,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotoveloee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotoveloee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloee}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -237,7 +237,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].cotoveloe + +evaluation[pointer-1].cotoveloee}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].cotoveloe + +evaluation[pointer].cotoveloee}}</td>
@@ -277,7 +277,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -292,7 +292,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroab}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombroab}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombroab}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -308,7 +308,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombroabe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombroabe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombroabe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -324,7 +324,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].ombroab + +evaluation[pointer-1].ombroabe}}</td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].ombroab + +evaluation[pointer].ombroabe}}
                                 </td>
@@ -336,7 +336,7 @@
                             </tr>
                             <tr>
                                 <th>Horizontal</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].ombromedial}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombromedial}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -384,7 +384,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -396,7 +396,7 @@
                         <tbody>
                             <tr class="table-row-subtitle">
                                 <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tronco - Flexão')">Flexão</span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncof}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncof}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -412,7 +412,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tronco - Extensão')">Extensão</span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncoe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -432,7 +432,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncold}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncold}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncold}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -448,7 +448,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].troncole}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncole}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].troncole}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -464,7 +464,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].troncold + +evaluation[pointer-1].troncole}}</td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].troncold + +evaluation[pointer].troncole}}
                                 </td>
@@ -504,7 +504,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -519,7 +519,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilf}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -535,7 +535,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilfe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilfe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilfe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -551,7 +551,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].quadrilf + +evaluation[pointer-1].quadrilfe}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].quadrilf + +evaluation[pointer].quadrilfe}}</td>
@@ -563,7 +563,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrile}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrile}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrile}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -579,7 +579,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilee}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -595,7 +595,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].quadrile + +evaluation[pointer-1].quadrilee}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].quadrile + +evaluation[pointer].quadrilee}}</td>
@@ -606,7 +606,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilab}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilab}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilab}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -622,7 +622,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilabe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilabe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilabe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -638,7 +638,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].quadrilab + +evaluation[pointer-1].quadrilabe}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].quadrilab + +evaluation[pointer].quadrilabe}}</td>
@@ -650,7 +650,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilad}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilad}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -666,7 +666,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].quadrilade}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilade}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilade}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -682,7 +682,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].quadrilad + +evaluation[pointer-1].quadrilade}}</td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].quadrilad + +evaluation[pointer].quadrilade}}</td>
@@ -722,7 +722,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -737,7 +737,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhof}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhof}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -753,7 +753,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhofe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhofe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -769,7 +769,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].joelhof + +evaluation[pointer-1].joelhofe}}</td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].joelhof + +evaluation[pointer].joelhofe}}
                                 </td>
@@ -781,7 +781,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhoe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -797,7 +797,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelhoee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhoee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoee}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -813,7 +813,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">
+                                <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].joelhoe + +evaluation[pointer-1].joelhoee}}</td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].joelhoe + +evaluation[pointer].joelhoee}}
                                 </td>
@@ -853,7 +853,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
                                 </th>
@@ -868,7 +868,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesf}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesf}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesf}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -884,7 +884,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesfe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesfe}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesfe}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -900,7 +900,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{+evaluation[pointer-1].pesf + +evaluation[pointer-1].pesfe}}
+                                <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].pesf + +evaluation[pointer-1].pesfe}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].pesf + +evaluation[pointer].pesfe}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
@@ -911,7 +911,7 @@
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pese}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pese}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pese}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -927,7 +927,7 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].pesee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesee}}</td>
                                 <td *ngIf="pointer>=0">{{evaluation[pointer].pesee}}</td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
@@ -943,7 +943,7 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1">{{+evaluation[pointer-1].pese + +evaluation[pointer-1].pesee}}
+                                <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].pese + +evaluation[pointer-1].pesee}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].pese + +evaluation[pointer].pesee}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
@@ -981,7 +981,7 @@
                     <thead>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                            <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </th>
                             <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         </tr>
@@ -992,17 +992,17 @@
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">{{+evaluation[pointer-1].msd}}</td>
+                            <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].msd}}</td>
                             <td *ngIf="pointer>=0">{{+evaluation[pointer].msd}}</td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">{{+evaluation[pointer-1].mse}}</td>
+                            <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].mse}}</td>
                             <td *ngIf="pointer>=0">{{+evaluation[pointer].mse}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
-                            <td *ngIf="pointer>=1">
+                            <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mse}}
                             </td>
                             <td *ngIf="pointer>=0">
@@ -1015,17 +1015,17 @@
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].mid}}</td>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].mid}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].mid}}</td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].mie}}</td>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].mie}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].mie}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
-                            <td *ngIf="pointer>=1">
+                            <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].mid + +evaluation[pointer-1].mie}}</td>
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].mid + +evaluation[pointer].mie}}</td>
@@ -1035,7 +1035,7 @@
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1">
+                            <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mid + +evaluation[pointer-1].outrosd}}
                                 </td>
                             <td *ngIf="pointer>=0">
@@ -1044,14 +1044,14 @@
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1">
+                            <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].mse + +evaluation[pointer-1].mie + +evaluation[pointer-1].outrose}}
                             </td>
                             <td *ngIf="pointer>=0">{{+evaluation[pointer].mse + +evaluation[pointer].mie + +evaluation[pointer].outrose}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
-                            <td *ngIf="pointer>=1">
+                            <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mse 
                                     + +evaluation[pointer-1].mid + +evaluation[pointer-1].mie
                                     + +evaluation[pointer-1].outrosd + +evaluation[pointer-1].outros}}

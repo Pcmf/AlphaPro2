@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <h1 class="h1-title" i18n>Caminhada - Instituto UKK Finlândia (1987) - 1609m</h1>
-        <form #f="ngForm" (submit)="save(f.value)">
+        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <table class="section-table">
                 <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
                 <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
@@ -24,7 +24,7 @@
                 <tbody>
                     <tr>
                         <th i18n>Tempo Final</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_tempo | mask: '00:00'}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_tempo | mask: '00:00'}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_tempo | mask: '00:00'}}</td>
                         <td *ngIf="addEval">
                             <input name="c_tempo" mask="00:00" #c_tempo="ngModel" [(ngModel)]="newEvaluation.c_tempo" placeholder="mm:ss">
@@ -32,51 +32,51 @@
                     </tr>                  
                     <tr>
                         <th i18n>FC final</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].fc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].fc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].fc | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number">
+                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('IMC')">IMC</span></th>
-                        <td *ngIf="pointer>=1">{{+evaluation[pointer-1].imc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].imc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{+evaluation[pointer].imc | number: '': locale}}</td>
                     </tr>
                     <!--  resultados -->
                     <tr>
                         <th i18n><span (click)="openDialog('FC Estimada')">FC Estimada</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcestimada | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fcestimada | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('FC Reserva')">FC Reserva</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fcreserva | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fcreserva | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('% FC Máxima Alcançada')">% FC Máx. Alcançada</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_percfcm | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_percfcm | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Índice Aeróbico Funcional')">Índice Aeróbico Funcional (FAI)</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_fai | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fai | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('VO2 Máximo Obtido')">VO2 Máx Obtido</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2m | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2m | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>         
                     <tr>
                         <th i18n><span (click)="openDialog('VO2 Máximo Estimado')">VO2 Máx. Estimado</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].c_vo2e | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2e | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>                    

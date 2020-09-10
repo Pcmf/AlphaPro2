@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
@@ -17,7 +17,7 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openDialog('Altura')">Altura <small> (m)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number" style="width: 60px;">
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Peso')">Peso <small> (Kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number" style="width: 60px;">
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Cintura')">Cintura <small>(cm)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cintura | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number" style="width: 60px;">
@@ -41,12 +41,12 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('IC')">IC</span></th>
-                        <td *ngIf="pointer>=1">{{getIC(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getIC(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getIC(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>Classificação*</th>
-                        <td *ngIf="pointer>=1">{{getClasse(evaluation[pointer-1])}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClasse(evaluation[pointer-1])}}</td>
                         <td *ngIf="pointer>=0">{{getClasse(evaluation[pointer])}}</td>
                     </tr>
                     <tr>

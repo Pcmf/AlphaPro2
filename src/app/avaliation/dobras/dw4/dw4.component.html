@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
                             <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
@@ -29,7 +29,7 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Subescapular')">Subescapular</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular"
@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Biciptal')">Biciptal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].biciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].biciptal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].biciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="biciptal" #biciptal="ngModel" [(ngModel)]="newEvaluation.biciptal"
@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Suprailíaca')">Suprailíaca</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <th i18n>Média</th>
-                        <td *ngIf="pointer>=1">
+                        <td *ngIf="pointer>=1 && !addEval">
                             {{(+evaluation[pointer-1].biciptal + +evaluation[pointer-1].triciptal 
                             + +evaluation[pointer-1].subescapular + +evaluation[pointer-1].suprailiaca) / 4  | number: '': locale}}
                         </td>
@@ -77,7 +77,7 @@
                     </tr>
                     <tr>
                         <th i18n>Somatório</th>
-                        <td *ngIf="pointer>=1">
+                        <td *ngIf="pointer>=1 && !addEval">
                             {{+evaluation[pointer-1].biciptal + +evaluation[pointer-1].triciptal 
                             + +evaluation[pointer-1].subescapular + +evaluation[pointer-1].suprailiaca | number: '': locale}}
                         </td>

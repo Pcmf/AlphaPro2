@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
@@ -30,7 +30,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Cabeça')">Inclinação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabi}}
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vacabi}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabi}}
                                 </td>
@@ -47,16 +47,16 @@
                             </tr>
                             <tr>
                                 <th>Graus</th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabig | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vacabig | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabig | number: '': locale}}</td>
                                 <td *ngIf="addForm">
-                                    <input class="hidde-arrows" type="number" name="vacabig" #vacabig="ngModel"
+                                    <input type="number" name="vacabig" #vacabig="ngModel"
                                         [(ngModel)]="newData.vacabig">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação da Cabeça')">Rotação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vacabr}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vacabr}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vacabr}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -75,7 +75,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Elevação de Ombros')">Elevação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaombroelevacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vaombroelevacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaombroelevacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Depressão de Ombros')">Depressão</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaombrodeprecao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vaombrodeprecao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaombrodeprecao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -109,7 +109,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Inclinação do Tronco')">Inclinação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatroncoinclinacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vatroncoinclinacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vatroncoinclinacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -124,16 +124,16 @@
                             </tr>
                             <tr>
                                 <th>Graus</th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatroncoinclinacaog | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vatroncoinclinacaog | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vatroncoinclinacaog | number: '': locale}}</td>
                                 <td *ngIf="addForm">
-                                    <input class="hidde-arrows" type="number" name="vatrocoinclinacaog"
+                                    <input type="number" name="vatrocoinclinacaog"
                                         #vatrocoinclinacaog="ngModel" [(ngModel)]="newData.vatrocoinclinacaog">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação do Tronco')">Rotação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatroncorotacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vatroncorotacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vatroncorotacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -152,7 +152,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Angulo de Thales')">Angulo Maior</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vathales}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vathales}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vathales}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -171,7 +171,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Inclinação da Pelve')">Inclinação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapelveinclinacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapelveinclinacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapelveinclinacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -186,7 +186,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Rotação da Pelve')">Rotação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapelverotacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapelverotacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapelverotacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -205,7 +205,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril Valgo')">Valgo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaquadrilvalgo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vaquadrilvalgo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadrilvalgo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -220,7 +220,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril Varo')">Varo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vaquadrilvaro}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vaquadrilvaro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vaquadrilvaro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -239,7 +239,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho Valgo')">Valgo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vajoelhovalgo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vajoelhovalgo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vajoelhovalgo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -254,7 +254,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelho Varo')">Varo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vajoelhovaro}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vajoelhovaro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vajoelhovaro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -274,7 +274,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Patela Lateralizada')">Lateralizada</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapatelalateralizada}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapatelalateralizada}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapatelalateralizada}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -289,7 +289,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Patela Medializada')">Medializada</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapatelamedializada}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapatelamedializada}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapatelamedializada}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -304,7 +304,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Patela Elevada')">Elevada</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapatelaelevada}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapatelaelevada}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapatelaelevada}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -324,7 +324,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Valgo')">Valgo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapernavalgo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapernavalgo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapernavalgo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -339,7 +339,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Varo')">Varo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapernavaro}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapernavaro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapernavaro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -354,7 +354,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Rotação Interna')">Rotação Interna</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapernarotinterna}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapernarotinterna}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapernarotinterna}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -369,7 +369,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Rotação Externa')">Rotação Externa</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapernarotexterna}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapernarotexterna}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapernarotexterna}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -388,7 +388,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo Valgo')">Valgo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatornozelovalgo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vatornozelovalgo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vatornozelovalgo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -403,7 +403,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelo Varo')">Varo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vatornozelovaro}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vatornozelovaro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vatornozelovaro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -423,7 +423,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Abduzidos')">Abduzidos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapeabduzidos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapeabduzidos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapeabduzidos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -438,7 +438,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Aduzidos')">Aduzidos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapeaduzidos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapeaduzidos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapeaduzidos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -453,7 +453,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Plano')">Plano</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapeplano}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapeplano}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapeplano}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -468,7 +468,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Cavo')">Cavo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapecavo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapecavo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapecavo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -483,7 +483,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Equino')">Equino</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vapeequino}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vapeequino}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vapeequino}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -531,7 +531,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
@@ -547,7 +547,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlcabeca}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlcabeca}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcabeca}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -566,7 +566,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cervical')">Cervical</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlcervical}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlcervical}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlcervical}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -585,7 +585,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros Protraidos')">Protraidos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroprotraidos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlombroprotraidos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroprotraidos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -600,7 +600,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Ombros Retraidos')">Retraidos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroretraidos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlombroretraidos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroretraidos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -616,7 +616,7 @@
                             <tr>
                                 <th><span (click)="openDialog('Ombros Anteriorizados (rotação interna)')">Anteriorizados
                                         <br /><small>(rotação interna)</small></span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroanteriorizados}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlombroanteriorizados}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroanteriorizados}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -633,7 +633,7 @@
                                 <th><span
                                         (click)="openDialog('Ombros Posteriorizados (rotação externa)')">Posteriorizados
                                         <br /><small>(rotação interna)</small></span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlombroposteriorizados}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlombroposteriorizados}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlombroposteriorizados}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -653,7 +653,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Região Dorsal')">Região Dorsal</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlregiaodorsal}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlregiaodorsal}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlregiaodorsal}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -672,7 +672,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tronco Rotação')">Rotação</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vltroncorotacao}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vltroncorotacao}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vltroncorotacao}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -691,7 +691,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('abdomem')">abdomem</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlabdomem}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlabdomem}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlabdomem}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -710,7 +710,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Região Lombar')">Região Lombar</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlregiaolombar}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlregiaolombar}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlregiaolombar}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -729,7 +729,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril')">Quadril</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlquadril}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlquadril}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlquadril}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -750,7 +750,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos Flexos')">Flexos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vljoelhosflexos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vljoelhosflexos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vljoelhosflexos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -765,7 +765,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Joelhos Recurvados')">Recurvados</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vljoelhosrecurvados}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vljoelhosrecurvados}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vljoelhosrecurvados}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -785,7 +785,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelos Valgo')">Valgo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vltornozelosvalgo}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vltornozelosvalgo}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vltornozelosvalgo}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -800,7 +800,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tornozelos Varo')">Varo</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vltornozelosvaro}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vltornozelosvaro}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vltornozelosvaro}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -820,7 +820,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pés Planos')">Plano</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlpeplanos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlpeplanos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpeplanos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -835,7 +835,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Cavos')">Cavos</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlpecavos}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlpecavos}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpecavos}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -850,7 +850,7 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pé Equino')">Equino</span></th>
-                                <td *ngIf="pointer>=1">{{oldData[pointer-1].vlpeequino}}</td>
+                                <td *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].vlpeequino}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vlpeequino}}</td>
                                 <td *ngIf="addForm">
                                     <mat-form-field class="form-select-sm">
@@ -898,7 +898,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addForm">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{oldData[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addForm">
@@ -966,7 +966,7 @@
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vpescolioseg | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpescolioseg | number: '': locale}}</td>
                                 <td *ngIf="addForm">
-                                    <input class="hidde-arrows" type="number" name="vpescolioseg"
+                                    <input type="number" name="vpescolioseg"
                                         #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
                                 </td>
                             </tr>
@@ -1123,7 +1123,7 @@
                                 </td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpescoliosedorsalg | number: '': locale}}</td>
                                 <td *ngIf="addForm">
-                                    <input class="hidde-arrows" type="number" name="vpescoliosedorsalg"
+                                    <input type="number" name="vpescoliosedorsalg"
                                         #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                             </tr>
@@ -1150,7 +1150,7 @@
                                 <td *ngIf="pointer>=1">{{oldData[pointer-1].vpescolioselombarg | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{oldData[pointer].vpescolioselombarg | number: '': locale}}</td>
                                 <td *ngIf="addForm">
-                                    <input class="hidde-arrows" type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
                                      [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                             </tr>

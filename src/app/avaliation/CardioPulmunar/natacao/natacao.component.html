@@ -2,14 +2,14 @@
     <app-header-name></app-header-name>
     <div class="section">
         <h1 class="h1-title" i18n>Natação - nadar crawl na pescina - 12min</h1>
-        <form #f="ngForm" (submit)="save(f.value)">
+        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
             <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
             <table class="section-table">
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
@@ -19,15 +19,15 @@
                 <tbody>
                     <tr>
                         <th i18n>Distância <small>(m)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].distancia | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].distancia | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].distancia | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number">
+                            <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number">
                         </td>
                     </tr>                  
                     <tr>
                         <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1">{{getClassificacao(evaluation[pointer-1])}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClassificacao(evaluation[pointer-1])}}</td>
                         <td *ngIf="pointer>=0">{{getClassificacao(evaluation[pointer])}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>                                       

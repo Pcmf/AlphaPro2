@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
@@ -18,7 +18,7 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openDialog('Altura')">Altura</span> <small> (m)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number">
@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Peso')">Peso</span> <small> (Kg)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Joelho')">Joelho</span> <small> (cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].joelho | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelho | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].joelho | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho" type="number">
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Cotovelo')">Cotovelo</span> <small> (cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].cotovelo | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotovelo | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelo | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newEvaluation.cotovelo" type="number">
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Tricipital')">Tricipital</span> <small> (mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number">
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Subescapular')">Subescapular</span> <small> (mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number">
@@ -73,7 +73,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Geminal')">Geminal</span> <small> (mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number">
@@ -81,7 +81,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Suprailíaca')">Suprailíaca</span> <small> (mm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].suprailiaca | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca" type="number">
@@ -93,7 +93,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Braço Contraído')">Braço contraído</span> <small> (cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].bracoc | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].bracoc | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].bracoc | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="bracoc" #bracoc="ngModel" [(ngModel)]="newEvaluation.bracoc" type="number">
@@ -101,7 +101,7 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Perna')">Perna</span> <small> (cm)</small></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].pernad | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pernad | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].pernad | number: '': locale}}</td>
                         <td *ngIf="addEval">
                             <input class="hidde-arrows" name="pernad" #pernad="ngModel" [(ngModel)]="newEvaluation.pernad" type="number">
@@ -113,32 +113,32 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Endomorfia')">Endomorfia</span></th>
-                        <td *ngIf="pointer>=1">{{getEndomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getEndomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getEndomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Mesomorfia')">Mesomorfia</span></th>
-                        <td *ngIf="pointer>=1">{{getMesomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getMesomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getMesomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Ectomorfia')">Ectomorfia</span></th>
-                        <td *ngIf="pointer>=1">{{getEctomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getEctomorfia(evaluation[pointer-1]) | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{getEctomorfia(evaluation[pointer]) | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('X')">X</span></th>
-                        <td *ngIf="pointer>=1">{{(getX(evaluation[pointer-1]) - 220) / 10 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{(getX(evaluation[pointer-1]) - 220) / 10 | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{(getX(evaluation[pointer]) - 220) /10 | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Y')">Y</span></th>
-                        <td *ngIf="pointer>=1">{{(getY(evaluation[pointer-1]) - 240) / -10 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{(getY(evaluation[pointer-1]) - 240) / -10 | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{(getY(evaluation[pointer]) - 240) / -10 | number: '': locale}}</td>
                     </tr>
                     <tr>
                         <th i18n>&nbsp;</th>
-                        <td *ngIf="pointer>=1">
+                        <td *ngIf="pointer>=1 && !addEval">
                             <svg width="20" height="20">
                                 <circle cx="10" cy="10" r="10" fill="black"></circle>
                             </svg>
@@ -221,7 +221,7 @@
                     <text class="title-text" x="20" y="480" fill="blue">Endomorfismo</text>
                     <text class="title-text" x="300" y="480" fill="blue">Ectomorfismo</text>
 
-                    <circle *ngIf="pointer>=1" [attr.cx]="getX(evaluation[pointer-1])" [attr.cy]="getY(evaluation[pointer-1])" r="5" stroke="black" fill="black" />
+                    <circle *ngIf="pointer>=1 && !addEval" [attr.cx]="getX(evaluation[pointer-1])" [attr.cy]="getY(evaluation[pointer-1])" r="5" stroke="black" fill="black" />
                     <circle *ngIf="pointer>=0" [attr.cx]="getX(evaluation[pointer])" [attr.cy]="getY(evaluation[pointer])" r="5" stroke="red" fill="red" />
                     Sorry, your browser does not support inline SVG.  
                 </svg>
@@ -274,7 +274,7 @@
                     <text class="title-text" x="15" y="245" fill="blue">Endomorfismo</text>
                     <text class="title-text" x="135" y="245" fill="blue">Ectomorfismo</text>
 
-                    <circle *ngIf="pointer>=1" [attr.cx]="getXSm(evaluation[pointer-1])" [attr.cy]="getYSm(evaluation[pointer-1])" r="3" stroke="black" fill="black" />
+                    <circle *ngIf="pointer>=1 && !addEval" [attr.cx]="getXSm(evaluation[pointer-1])" [attr.cy]="getYSm(evaluation[pointer-1])" r="3" stroke="black" fill="black" />
                     <circle *ngIf="pointer>=0" [attr.cx]="getXSm(evaluation[pointer])" [attr.cy]="getYSm(evaluation[pointer])" r="3" stroke="red" fill="red" />
                     Sorry, your browser does not support inline SVG.  
                 </svg>

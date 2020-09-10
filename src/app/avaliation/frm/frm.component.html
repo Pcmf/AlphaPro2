@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
@@ -20,16 +20,16 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Agachamento')">Agachamento</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].agachamento}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].agachamento}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].agachamento}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento"
+                            <input name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento"
                                 type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1">{{getClassAgachamento(evaluation[pointer-1].agachamento)}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClassAgachamento(evaluation[pointer-1].agachamento)}}</td>
                         <td *ngIf="pointer>=0">{{getClassAgachamento(evaluation[pointer].agachamento)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
@@ -39,16 +39,16 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Flexão do Tronco')">Flexão do Tronco</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdominal}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdominal}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
                                 type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1">{{getClassAbdominal(evaluation[pointer-1].abdominal)}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClassAbdominal(evaluation[pointer-1].abdominal)}}</td>
                         <td *ngIf="pointer>=0">{{getClassAbdominal(evaluation[pointer].abdominal)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
@@ -58,15 +58,15 @@
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Flexão e extensão dos cotovelos no chão')">Flexão e extensão<br />dos cotovelos no chão</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].flexb}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].flexb}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].flexb}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number">
+                            <input name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1">{{getClassFlex(evaluation[pointer-1].flexb)}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClassFlex(evaluation[pointer-1].flexb)}}</td>
                         <td *ngIf="pointer>=0">{{getClassFlex(evaluation[pointer].flexb)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>

@@ -160,7 +160,7 @@ export class AllDobrasComponent implements OnInit {
       resp => {
         if (resp) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação de peso e altura já tem ' + resp[0].difdias + ' dias.', '');
           }
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;

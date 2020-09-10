@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
@@ -18,15 +18,15 @@
                 <tbody>
                     <tr>
                         <th><span (click)="openDialog('Flexibilidade')">Flexibilidade</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].flex}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].flex}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].flex}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="flex" #flex="ngModel" [(ngModel)]="newEvaluation.flex" type="number">
+                            <input name="flex" #flex="ngModel" [(ngModel)]="newEvaluation.flex" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th><span>Classificação</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].xclasse}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].xclasse}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].xclasse}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>

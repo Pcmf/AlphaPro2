@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
                             <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
@@ -28,18 +28,18 @@
                 <tbody>
                     <tr>
                         <th>Abdomen (cm)</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
+                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th>Peso (Kg)</th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
+                            <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number">
                         </td>
                     </tr>
                     

@@ -10,7 +10,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addPerim">
@@ -21,100 +21,100 @@
                         <tbody>
                             <tr>
                                 <th><span (click)="openDialog('Tórax')">Tórax</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].torax | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].torax | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].torax | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="torax" #torax="ngModel" [(ngModel)]="newPerimetros.torax" type="number">
+                                    <input  name="torax" #torax="ngModel" [(ngModel)]="newPerimetros.torax" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cintura')">Cintura</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].cintura | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].cintura | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].cintura | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="cintura" #cintura="ngModel" [(ngModel)]="newPerimetros.cintura" type="number">
+                                    <input  name="cintura" #cintura="ngModel" [(ngModel)]="newPerimetros.cintura" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Abdômen')">Abdômen</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].abdomen | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].abdomen | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].abdomen | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="abdomen" #abdomen="ngModel" [(ngModel)]="newPerimetros.abdomen" type="number">
+                                    <input  name="abdomen" #abdomen="ngModel" [(ngModel)]="newPerimetros.abdomen" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Quadril')">Quadril</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].quadril | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].quadril | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].quadril | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="quadril" #quadril="ngModel" [(ngModel)]="newPerimetros.quadril" type="number">
+                                    <input  name="quadril" #quadril="ngModel" [(ngModel)]="newPerimetros.quadril" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Braço Dir')">Braço Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracod | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].bracod | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracod | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="bracod" #bracod="ngModel" [(ngModel)]="newPerimetros.bracod" type="number">
+                                    <input  name="bracod" #bracod="ngModel" [(ngModel)]="newPerimetros.bracod" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Braço Esq')">Braço Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoe | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].bracoe | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoe | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="bracoe" #bracoe="ngModel" [(ngModel)]="newPerimetros.bracoe" type="number">
+                                    <input  name="bracoe" #bracoe="ngModel" [(ngModel)]="newPerimetros.bracoe" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Antebraço Dir')">Antebraço Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracod | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].antebracod | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].antebracod | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="antebracod" #antebracod="ngModel"
+                                    <input  name="antebracod" #antebracod="ngModel"
                                         [(ngModel)]="newPerimetros.antebracod" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Antebraço Esq')">Antebraço Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].antebracoe | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].antebracoe | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].antebracoe | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="antebracoe" #antebracoe="ngModel"
+                                    <input  name="antebracoe" #antebracoe="ngModel"
                                         [(ngModel)]="newPerimetros.antebracoe" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Dir')">Coxa Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxad | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].coxad | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxad | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="coxad" #coxad="ngModel" [(ngModel)]="newPerimetros.coxad" type="number">
+                                    <input  name="coxad" #coxad="ngModel" [(ngModel)]="newPerimetros.coxad" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Dir')">Coxa Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxae | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].coxae | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxae | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="coxae" #coxae="ngModel" [(ngModel)]="newPerimetros.coxae" type="number">
+                                    <input  name="coxae" #coxae="ngModel" [(ngModel)]="newPerimetros.coxae" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Dir')">Perna Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].pernad | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].pernad | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pernad | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="pernad" #pernad="ngModel" [(ngModel)]="newPerimetros.pernad" type="number">
+                                    <input  name="pernad" #pernad="ngModel" [(ngModel)]="newPerimetros.pernad" type="number">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Perna Esq')">Perna Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].pernae | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addPerim">{{medidas[pointer-1].pernae | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pernae | number: '': locale}}</td>
                                 <td *ngIf="addPerim">
-                                    <input  class="hidde-arrows" name="pernae" #pernae="ngModel" [(ngModel)]="newPerimetros.pernae" type="number">
+                                    <input  name="pernae" #pernae="ngModel" [(ngModel)]="newPerimetros.pernae" type="number">
                                 </td>
                             </tr>
                             <tr>
@@ -152,7 +152,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addDiam">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addDiam">
@@ -164,29 +164,29 @@
                             <tr>
                                 <th><span (click)="openDialog('Radio-ulnar (punho)')">Radio-ulnar<br /> (Punho)</span>
                                 </th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].punho | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addDiam">{{medidas[pointer-1].punho | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].punho | number: '': locale}}</td>
                                 <td *ngIf="addDiam">
-                                    <input class="hidde-arrows" name="punho" #punho="ngModel" [(ngModel)]="newDiametros.punho" type="number" style="width: 60px;">
+                                    <input name="punho" #punho="ngModel" [(ngModel)]="newDiametros.punho" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Bi-epicôndilo Umeral (Cotovelo)')">Bi-epicôndilo
                                         Umeral<br /> (Cotovelo)</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].cotovelo | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addDiam">{{medidas[pointer-1].cotovelo | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].cotovelo | number: '': locale}}</td>
                                 <td *ngIf="addDiam">
-                                    <input class="hidde-arrows" name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newDiametros.cotovelo"
+                                    <input name="cotovelo" #cotovelo="ngModel" [(ngModel)]="newDiametros.cotovelo"
                                         type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Bi-côndilo Fermural (Joelho)')">Bi-côndilo Fermural<br />
                                         (Joelho)</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].joelho | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addDiam">{{medidas[pointer-1].joelho | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].joelho | number: '': locale}}</td>
                                 <td *ngIf="addDiam">
-                                    <input class="hidde-arrows" name="joelho" #joelho="ngModel" [(ngModel)]="newDiametros.joelho"
+                                    <input name="joelho" #joelho="ngModel" [(ngModel)]="newDiametros.joelho"
                                         type="number" style="width: 60px;">
                                 </td>
                             </tr>
@@ -227,7 +227,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].data | date:'dd/LL/yyyy'}}
                                 </th>
                                 <th class="th-top" *ngIf="pointer>=0">{{medidas[pointer].data | date:'dd/LL/yyyy'}}</th>
                                 <th class="th-top" *ngIf="addOutros">
@@ -238,59 +238,59 @@
                         <tbody>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Inferior Dir')">Coxa<br /> Inferior Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaid | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].coxaid | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxaid | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="coxaid" #coxaid="ngModel" [(ngModel)]="newOutros.coxaid" type="number" style="width: 60px;">
+                                    <input name="coxaid" #coxaid="ngModel" [(ngModel)]="newOutros.coxaid" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Inferior Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxaie | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].coxaie | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxaie | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="coxaie" #coxaie="ngModel" [(ngModel)]="newOutros.coxaie" type="number" style="width: 60px;">
+                                    <input name="coxaie" #coxaie="ngModel" [(ngModel)]="newOutros.coxaie" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Medial Dir')">Coxa<br /> Medial Dir</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxamd | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].coxamd | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxamd | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="coxamd" #coxamd="ngModel" [(ngModel)]="newOutros.coxamd" type="number" style="width: 60px;">
+                                    <input name="coxamd" #coxamd="ngModel" [(ngModel)]="newOutros.coxamd" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Coxa Inferior Esq')">Coxa<br /> Medial Esq</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].coxame | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].coxame | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].coxame | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="coxame" #coxame="ngModel" [(ngModel)]="newOutros.coxame" type="number" style="width: 60px;">
+                                    <input name="coxame" #coxame="ngModel" [(ngModel)]="newOutros.coxame" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Pescoço')">Pescoço</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].pescoco | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].pescoco | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].pescoco | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="pescoco" #pescoco="ngModel" [(ngModel)]="newOutros.pescoco"
+                                    <input name="pescoco" #pescoco="ngModel" [(ngModel)]="newOutros.pescoco"
                                         type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Braço Dir Contraído ')">Braço Dir Contraído</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoc | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].bracoc | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoc | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="bracoc" #bracoc="ngModel" [(ngModel)]="newOutros.bracoc" type="number" style="width: 60px;">
+                                    <input name="bracoc" #bracoc="ngModel" [(ngModel)]="newOutros.bracoc" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Braço Esq Contraído ')">Braço Esq Contraído</span></th>
-                                <td *ngIf="pointer>=1">{{medidas[pointer-1].bracoce | number: '': locale}}</td>
+                                <td *ngIf="pointer>=1 && !addOutros">{{medidas[pointer-1].bracoce | number: '': locale}}</td>
                                 <td *ngIf="pointer>=0">{{medidas[pointer].bracoce | number: '': locale}}</td>
                                 <td *ngIf="addOutros">
-                                    <input class="hidde-arrows" name="bracoce" #bracoce="ngModel" [(ngModel)]="newOutros.bracoce" type="number" style="width: 60px;">
+                                    <input name="bracoce" #bracoce="ngModel" [(ngModel)]="newOutros.bracoce" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>

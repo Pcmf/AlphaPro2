@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
                             <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
                                 {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </button>
@@ -29,31 +29,31 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdomen2" #abdomen2="ngModel"
+                            <input name="abdomen2" #abdomen2="ngModel"
                                 [(ngModel)]="newEvaluation.abdomen2" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
                         <td *ngIf="addEval">
-                            <input class="hidde-arrows" name="abdomen" #abdomen="ngModel"
+                            <input name="abdomen" #abdomen="ngModel"
                                 [(ngModel)]="newEvaluation.abdomen" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                     <tr *ngIf="sex ==='F'">
                         <th i18n><span (click)="openHelpDialog('Altura')">Altura</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}</td>
                         <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>

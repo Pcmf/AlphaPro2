@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Atenção <mat-icon color="warn">warning</mat-icon></h1>
+<div mat-dialog-content>
+  <p>Vai eliminar esta avaliação:
+  <br/>{{data.dataAv}}
+  </p>
+  <p>Confirme ou cancele.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-mini-fab color="default" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
+  <button mat-mini-fab color="accent" [mat-dialog-close]="true" ><mat-icon>check</mat-icon></button>
+</div>

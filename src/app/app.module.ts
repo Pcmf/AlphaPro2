@@ -106,10 +106,11 @@ import br from '@angular/common/locales/br';
 import en from '@angular/common/locales/en';
 import { TopHeaderComponent } from './commun/top-header/top-header.component';
 import { LoadImageComponent } from './commun/load-image/load-image.component';
-import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { IconService } from './services/icon.service';
 import { AuthGuardService } from './services/auth-guard-service.service';
 import { HeaderNameComponent } from './commun/header-name/header-name.component';
+import { EditDelFormComponent, ConfirmDeleteDialog } from './commun/edit-del-form/edit-del-form.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -202,7 +203,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogParq,
     TopHeaderComponent,
     LoadImageComponent,
-    HeaderNameComponent
+    HeaderNameComponent,
+    EditDelFormComponent,
+    ConfirmDeleteDialog
   ],
   imports: [
     BrowserModule,
@@ -221,7 +224,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   entryComponents: [
     DialogHelp,
     DialogMedidas,
-    DialogParq
+    DialogParq,
+    ConfirmDeleteDialog
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},

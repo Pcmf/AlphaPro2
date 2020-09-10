@@ -1,0 +1,19 @@
+<div class="container-box">
+    <div *ngIf="!edit">
+        <button type="button" mat-icon-button>
+            <mat-icon color="accent" (click)="executeEdit()">edit</mat-icon>
+        </button>
+        <button type="button" mat-icon-button>
+            <mat-icon color="warn" (click)="openConfirmDialog()">delete</mat-icon>
+        </button>
+    </div>
+    <!-- show cancel or save edit -->
+    <div *ngIf="edit">
+        <button type="button" mat-icon-button>
+            <mat-icon color="warn" (click)="cancelEdit()">close</mat-icon>
+        </button>
+        <button type="button" mat-icon-button>
+            <mat-icon color="accent" (click)="saveEdit()">check</mat-icon>
+        </button>
+    </div>
+</div>

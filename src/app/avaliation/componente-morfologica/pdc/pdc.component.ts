@@ -22,8 +22,7 @@ export class PDCComponent implements OnInit {
   editPointer: number;
   editAv = false;
   medidas: any = [];
-  newPerimetros: any = [];
-  newDiametros: any = [];
+  newEvaluation: any = [];
   newOutros: any = [];
   selectedTab = 0;
   locale: string;
@@ -46,7 +45,7 @@ export class PDCComponent implements OnInit {
           this.medidas = resp;
           this.pointer = this.maxPointer - 1;
         } else {
-          this.newPerimetros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
@@ -72,17 +71,17 @@ export class PDCComponent implements OnInit {
   }
 
   openEditForm(evaluation, editPointer) {
-    this.newPerimetros = evaluation;
+    this.newEvaluation = evaluation;
     this.editAv = true;
     this.editPointer = editPointer;
   }
 
   saveEditForm() {
-    console.table(this.newPerimetros);
-    this.dataService.saveData('clients/corporal/' + this.studentId, this.newPerimetros).subscribe(
+    console.table(this.newEvaluation);
+    this.dataService.saveData('clients/corporal/' + this.studentId, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
-        this.newPerimetros = [];
+        this.newEvaluation = [];
         this.closeEditForm();
       }
     );
@@ -108,7 +107,7 @@ export class PDCComponent implements OnInit {
   }
 
   addPerimetros() {
-    this.newPerimetros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.addPerim = true;
   }
 
@@ -124,13 +123,13 @@ export class PDCComponent implements OnInit {
   }
 
   closeInputPerimetros() {
-    this.newPerimetros = [];
+    this.newEvaluation = [];
     this.addPerim = false;
   }
 
 
   addDiametros() {
-    this.newDiametros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.addDiam = true;
   }
 
@@ -145,7 +144,7 @@ export class PDCComponent implements OnInit {
     this.addDiam = false;
   }
   closeInputDiametros() {
-    this.newDiametros = [];
+    this.newEvaluation = [];
     this.addDiam = false;
   }
 

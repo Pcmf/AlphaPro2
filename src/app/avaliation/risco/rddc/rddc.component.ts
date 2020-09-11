@@ -62,7 +62,6 @@ export class RDDCComponent implements OnInit, OnDestroy {
               this.data.smoker = null;
               this.fumante = false;
             }
-            console.log(this.data.smoker);
             this.calcRisco(this.data);
           }
         );

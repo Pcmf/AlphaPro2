@@ -41,25 +41,23 @@ export class RDCComponent implements OnInit, OnDestroy {
         );
 
         this.dataService.getData('clients/eval/' + this.student.id).subscribe(
-          (respe: any ) => {
+          (respe: any) => {
             if (respe.length > 0) {
               const lastEval = respe.pop();
-              if (this.rdcData.data <= lastEval.data) {
-                 // !this.rdcData.qtas || this.rdcData.qtas == 0 || !this.rdcData.qtad || this.rdcData.qtad == 0 ||
+              if ((this.rdcData.data <= lastEval.data) || (!this.rdcData.data && lastEval.data)) {
                 this.rdcData.qtas = lastEval.tamax;
                 this.rdcData.qtad = lastEval.tamin;
               }
             }
+            // historic cardio family from pat_familiar
+            this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
+              (respq: any[]) => {
+                this.rdcData.hf = respq.length;
+              }
+            );
+            this.calcRisco(this.rdcData);
           }
         );
-        // historic cardio family from pat_familiar
-        this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
-          (respq: any[]) => {
-            this.rdcData.hf = respq.length;
-          }
-        );
-        this.calcRisco(this.rdcData);
-        //  }
       }
     );
   }

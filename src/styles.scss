@@ -37,8 +37,9 @@ input[type=number] {
 ::ng-deep {
   // Para o painel não ficar em branco depois de clicado
   .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
-      background: unset;
+      background: rgba(100,100,100,0.7);
   }
+
   .mat-stroked-button {
     width: 56px;
     height: 56px;

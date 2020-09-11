@@ -19,6 +19,8 @@ export class PDCComponent implements OnInit {
   studentId: number;
   maxPointer = -1;
   pointer = -1;
+  editPointer: number;
+  editAv = false;
   medidas: any = [];
   newPerimetros: any = [];
   newDiametros: any = [];
@@ -54,6 +56,51 @@ export class PDCComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newPerimetros = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newPerimetros);
+    this.dataService.saveData('clients/corporal/' + this.studentId, this.newPerimetros).subscribe(
+      resp => {
+        console.log(resp);
+        this.newPerimetros = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/eval/' + this.studentId + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+      }
+    );
+  }
 
 
   goBack() {

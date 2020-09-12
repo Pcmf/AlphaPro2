@@ -93,7 +93,7 @@ export class PDCComponent implements OnInit {
   }
 
   delete(evaluation) {
-    this.dataService.delete('clients/eval/' + this.studentId + '/' + evaluation.data).subscribe(
+    this.dataService.delete('clients/corporal/' + this.studentId + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
         this.getData();

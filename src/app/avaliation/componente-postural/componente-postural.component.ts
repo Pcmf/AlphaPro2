@@ -15,6 +15,8 @@ export class ComponentePosturalComponent implements OnInit {
   student: any = [];
   maxPointer = -1;
   pointer = -1;
+  editPointer: number;
+  editAv = false;
   oldData: any = [];
   newData: any = [];
   data: string;
@@ -82,6 +84,52 @@ export class ComponentePosturalComponent implements OnInit {
           this.pointer = -1;
         }
         /* console.table(this.oldData); */
+      }
+    );
+  }
+
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newData = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newData);
+    this.dataService.setData('clients/post/' + this.student.id, this.newData).subscribe(
+      resp => {
+        console.log(resp);
+        this.newData = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/post/' + this.student.id + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
       }
     );
   }

@@ -19,9 +19,10 @@ export class PDCComponent implements OnInit {
   studentId: number;
   maxPointer = -1;
   pointer = -1;
+  editPointer: number;
+  editAv = false;
   medidas: any = [];
-  newPerimetros: any = [];
-  newDiametros: any = [];
+  newEvaluation: any = [];
   newOutros: any = [];
   selectedTab = 0;
   locale: string;
@@ -44,7 +45,7 @@ export class PDCComponent implements OnInit {
           this.medidas = resp;
           this.pointer = this.maxPointer - 1;
         } else {
-          this.newPerimetros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
@@ -54,6 +55,51 @@ export class PDCComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newEvaluation = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newEvaluation);
+    this.dataService.saveData('clients/corporal/' + this.studentId, this.newEvaluation).subscribe(
+      resp => {
+        console.log(resp);
+        this.newEvaluation = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/corporal/' + this.studentId + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+      }
+    );
+  }
 
 
   goBack() {
@@ -61,7 +107,7 @@ export class PDCComponent implements OnInit {
   }
 
   addPerimetros() {
-    this.newPerimetros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.addPerim = true;
   }
 
@@ -77,13 +123,13 @@ export class PDCComponent implements OnInit {
   }
 
   closeInputPerimetros() {
-    this.newPerimetros = [];
+    this.newEvaluation = [];
     this.addPerim = false;
   }
 
 
   addDiametros() {
-    this.newDiametros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.addDiam = true;
   }
 
@@ -98,7 +144,7 @@ export class PDCComponent implements OnInit {
     this.addDiam = false;
   }
   closeInputDiametros() {
-    this.newDiametros = [];
+    this.newEvaluation = [];
     this.addDiam = false;
   }
 

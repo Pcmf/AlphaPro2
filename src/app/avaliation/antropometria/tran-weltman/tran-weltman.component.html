@@ -29,20 +29,30 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Cintura')">Cintura</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].cintura | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].cintura | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cintura | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="cintura" #cintura="ngModel"
-                                [(ngModel)]="newEvaluation.cintura" type="number">
+                            <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Quadril')">Quadril</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="quadril" #quadril="ngModel"
-                                [(ngModel)]="newEvaluation.quadril" type="number">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -57,18 +67,32 @@
                         <td *ngIf="pointer>=0">{{evaluation[pointer].idade | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
             <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>

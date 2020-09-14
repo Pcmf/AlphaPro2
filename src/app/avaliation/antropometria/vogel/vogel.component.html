@@ -29,48 +29,88 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Pescoço')">Pescoço</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pescoco | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].pescoco | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].pescoco | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="pescoco" #pescoco="ngModel" [(ngModel)]="newEvaluation.pescoco" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].pescoco | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="pescoco" #pescoco="ngModel" [(ngModel)]="newEvaluation.pescoco" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="pescoco" #pescoco="ngModel"
-                                [(ngModel)]="newEvaluation.pescoco" type="number">
+                            <input name="pescoco" #pescoco="ngModel" [(ngModel)]="newEvaluation.pescoco" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Antebraço direito')">Antebraço direito</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].antebracod | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].antebracod | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].antebracod | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="antebracod" #antebracod="ngModel" [(ngModel)]="newEvaluation.antebracod" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].antebracod | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="antebracod" #antebracod="ngModel" [(ngModel)]="newEvaluation.antebracod" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="antebracod" #antebracod="ngModel"
-                                [(ngModel)]="newEvaluation.antebracod" type="number">
+                            <input name="antebracod" #antebracod="ngModel" [(ngModel)]="newEvaluation.antebracod" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="abdomen2" #abdomen2="ngModel"
-                                [(ngModel)]="newEvaluation.abdomen2" type="number">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="abdomen" #abdomen="ngModel"
-                                [(ngModel)]="newEvaluation.abdomen" type="number">
+                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Quadril')">Quadril</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
-                        <td *ngIf="addEval">
-                            <input name="quadril" #quadril="ngModel"
-                                [(ngModel)]="newEvaluation.quadril" type="number">
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number" (focus)="$event.target.select()">
                         </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadril | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="addEval">
+                            <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril" type="number">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
                     </tr>
                 </tbody>
             </table>

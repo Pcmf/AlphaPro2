@@ -16,6 +16,8 @@ export class AllDobrasComponent implements OnInit {
   addEval = false;
   pointer = -1;
   maxPointer = -1;
+  editPointer: number;
+  editAv = false;
   newEvaluation: any = [];
   student: any = [];
   sex: string;
@@ -170,6 +172,52 @@ export class AllDobrasComponent implements OnInit {
         } else {
           this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
         }
+      }
+    );
+  }
+
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newEvaluation = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newEvaluation);
+    this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
+      resp => {
+        console.log(resp);
+        this.newEvaluation = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/morfo/' + this.student.id + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
       }
     );
   }

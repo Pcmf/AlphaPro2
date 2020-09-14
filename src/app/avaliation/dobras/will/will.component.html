@@ -30,38 +30,58 @@
                 <tbody>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Triciptal')">Triciptal</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].triciptal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].triciptal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="triciptal" #triciptal="ngModel"
-                                [(ngModel)]="newEvaluation.triciptal" type="number">
+                            <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Subescapular')">Subescapular</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].subescapular | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].subescapular | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="subescapular" #subescapular="ngModel"
-                                [(ngModel)]="newEvaluation.subescapular" type="number">
+                            <input name="subescapular" #subescapular="ngModel" [(ngModel)]="newEvaluation.subescapular" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Abdominal')">Abdominal</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdominal | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdominal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdominal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="abdominal" #abdominal="ngModel"
-                                [(ngModel)]="newEvaluation.abdominal" type="number">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Geminal')">Geminal</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].geminal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].geminal | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="geminal" #geminal="ngModel"
-                                [(ngModel)]="newEvaluation.geminal" type="number">
+                            <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -93,18 +113,32 @@
                             <small class="advise-sm" i18n>* Todas as medidas são em milimetros</small>
                         </td>
                     </tr>
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
             <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>

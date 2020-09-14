@@ -50,7 +50,7 @@ export class EvaluationComponent implements OnInit {
 
   calcTMB(ln) {
     let sexParam = 0;
-    this.student.sexo == 'M' ? sexParam = 5 : sexParam = -161;
+    this.student.sexo === 'M' ? sexParam = 5 : sexParam = -161;
     if (ln.peso > 0 && ln.altura > 0) {
       const TMB = 10 * ln.peso + 6.25 * ln.altura * 100 - 5 * this.student.idade + sexParam;
       return TMB;

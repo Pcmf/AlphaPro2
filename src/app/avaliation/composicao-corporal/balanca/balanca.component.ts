@@ -18,33 +18,15 @@ export class BalancaComponent implements OnInit {
   pointer = -1;
   maxPointer = -1;
   newEvaluation: any = [];
+  editPointer: number;
+  editAv = false;
   age: number;
   protocolo = 7;  // Balança
 
-  // graphics
-  chartValues: any[];
-  view: any[] = [300, 300];
-
-  // options
-  gradient = true;
-  showLegend = true;
-  showLabels = false;
-  isDoughnut = false;
-  legendPosition = 'bellow';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#1010FF', '#BF00FF', '#00FFFF']
-  };
-
-  showChart = false;
-  chartSelected = 'pie';
-
   private newAv: boolean;
-  private newCorporal: boolean;
   private lastAv: any = [];
-  private lastCorporal: any = [];
+
   private daysAv = 0;
-  private daysCorporal = 0;
   locale: string;
 
   constructor(
@@ -88,23 +70,8 @@ export class BalancaComponent implements OnInit {
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
-    /* this.startGraphics(evaluation); */
   }
 
-/*   // Iniciar os graficos
-  startGraphics(evaluation) {
-    const chartValues =
-     [
-       { name: 'Peso: ' + evaluation.peso + ' Kg', value: evaluation.peso },
-      { name: '% Gordura: ' + evaluation.perc_gordura_bl + ' %', value: evaluation.perc_gordura_bl },
-      { name: 'Massa Gorda: ' + evaluation.massa_gorda + ' Kg', value: evaluation.massa_gorda },
-      { name: 'Massa Magra: ' + evaluation.massa_magra + ' Kg', value: evaluation.massa_magra }
-     ];
-
-    // Create graphic
-    this.showChart = true;
-    Object.assign(this, {chartValues});
-  } */
 
   ngOnInit(): void {
   }
@@ -112,7 +79,7 @@ export class BalancaComponent implements OnInit {
   save(form) {
     form.protocolo = this.protocolo;
     console.log(form);
-
+    form.tmb = this.calcTMB(form);
     // Save
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
@@ -165,11 +132,12 @@ export class BalancaComponent implements OnInit {
   }
 
   calcTMB(ln) {
-    console.log(this.student);
+    console.log(ln);
+    console.log(this.age);
     let sexParam = 0;
-    this.student.sexo == 'M' ? sexParam = 5 : sexParam = -161;
-    if (ln.peso > 0 && ln.altura > 0) {
-      const TMB = 10 * ln.peso + 6.25 * ln.altura * 100 - 5 * this.student.idade + sexParam;
+    this.student.sexo === 'M' ? sexParam = 5 : sexParam = -161;
+    if (+ln.peso > 0 && +ln.altura > 0) {
+      const TMB = 10 * +ln.peso + 6.25 * +ln.altura * 100 - 5 * +this.age + +sexParam;
       return TMB;
     }
     return 0;
@@ -179,6 +147,53 @@ export class BalancaComponent implements OnInit {
 closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newEvaluation = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    this.newEvaluation.tmb = this.calcTMB(this.newEvaluation);
+    console.table(this.newEvaluation);
+    this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
+      resp => {
+        console.log(resp);
+        this.newEvaluation = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/morfo/' + this.student.id + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+      }
+    );
   }
 
 openSnackBar(message: string, action: string) {

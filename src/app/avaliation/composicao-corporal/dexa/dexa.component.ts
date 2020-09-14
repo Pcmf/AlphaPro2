@@ -15,6 +15,8 @@ export class DEXAComponent implements OnInit {
   addEval = false;
   pointer = -1;
   maxPointer = -1;
+  editPointer: number;
+  editAv = false;
   newEvaluation: any = [];
   locale: string;
   lastAv: any;
@@ -79,20 +81,66 @@ export class DEXAComponent implements OnInit {
   // Add new Evaluation
   addEvaluation() {
     // Obter os dados da ultima Avaliação complementar
-    this.dataService.getLastEvaluation(this.student.id).subscribe(
+/*     this.dataService.getLastEvaluation(this.student.id).subscribe(
       (resp: any[]) => {
         if (resp.length > 0) {
           // tslint:disable-next-line: no-conditional-assignment
           this.lastAv = resp.pop();
-        } else {
+        } else { */
           this.lastAv = 0;
-        }
-        this.newEvaluation.altura = this.lastAv.altura;
-        this.newEvaluation.peso = this.lastAv.peso;
+     /*    } */
+          this.newEvaluation.altura = this.lastAv.altura;
+          this.newEvaluation.peso = this.lastAv.peso;
+/*       }
+    ); */
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+          this.addEval = true;
+  }
+
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newEvaluation = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newEvaluation);
+    this.dataService.setData('clients/dexa/' + this.student.id, this.newEvaluation).subscribe(
+      resp => {
+        console.log(resp);
+        this.newEvaluation = [];
+        this.closeEditForm();
       }
     );
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addEval = true;
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/dexa/' + this.student.id + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+      }
+    );
   }
 
   getTotal(evaluation) {

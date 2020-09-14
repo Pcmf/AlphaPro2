@@ -166,18 +166,35 @@
                 </mat-card> -->
                 <mat-card>
                     <mat-card-header routerLink="/tw">
-                        <mat-card-subtitle i18n="Subtitle">Tran & Weltman</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle" 
+                            [style.color]="(age >= 22 && age <= 78 && sex=='M' || age >= 15 && age <= 79 && sex=='F') ? 'white' : '#AAAAAA'">
+                        Tran & Weltman</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>População: Adultos(as)/Idosos(as)<br /></small>
+                        <small>Homens: dos 22 aos 78 anos;<br /> Mulheres: dos 15 aos 79 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/vogel">
-                        <mat-card-subtitle i18n="Subtitle">Vogel et al</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 18 && age <= 40 && sex=='F') ? 'white' : '#AAAAAA'">
+                    Vogel et al</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>Mulheres: dos 18 aos 40 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card>
                     <mat-card-header routerLink="/weltal">
-                        <mat-card-subtitle i18n="Subtitle">Weltman et al</mat-card-subtitle>
+                        <mat-card-subtitle i18n="Subtitle"
+                        [style.color]="(age >= 24 && age <= 68 && sex=='M' || age >= 20 && age <= 60 && sex=='F') ? 'white' : '#AAAAAA'">
+                    Weltman et al</mat-card-subtitle>
                     </mat-card-header>
+                    <mat-card-footer>
+                        <small>População: Obesos(as)<br /></small>
+                        <small>Homens: dos 24 aos 68 anos;<br /> Mulheres: dos 20 aos 60 anos;</small>
+                    </mat-card-footer>
                 </mat-card>
                 <!--                 <mat-card>
                     <mat-card-header routerLink="/welt">

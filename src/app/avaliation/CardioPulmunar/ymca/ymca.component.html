@@ -1,7 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
-        <h1 class="h1-title" i18n>Bicicleta - YMCA - Golding, Myers & Sinning, (1989) - 6min</h1>
+        <h1 class="h1-title" i18n>YMCA - Golding, Myers & Sinning, (1989) - 6min</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
             <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
@@ -13,8 +13,12 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                            <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button> 
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button> 
+                        </th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
                         </th>
@@ -23,82 +27,142 @@
                 <tbody>
                     <tr>
                         <th i18n>FC com 25W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min0 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min0 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min0 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min0 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 50W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min2 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min2 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min2" #min2="ngModel" [(ngModel)]="newEvaluation.min2" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min2" #min2="ngModel" [(ngModel)]="newEvaluation.min2" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min2" #min2="ngModel" [(ngModel)]="newEvaluation.min2" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 75W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min4 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min4 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min4 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min4" #min4="ngModel" [(ngModel)]="newEvaluation.min4" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min4 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min4" #min4="ngModel" [(ngModel)]="newEvaluation.min4" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min4" #min4="ngModel" [(ngModel)]="newEvaluation.min4" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 100W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min6 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min6 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min6 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min6" #min6="ngModel" [(ngModel)]="newEvaluation.min6" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min6 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min6" #min6="ngModel" [(ngModel)]="newEvaluation.min6" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min6" #min6="ngModel" [(ngModel)]="newEvaluation.min6" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 125W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min8 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min8 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min8 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min8" #min8="ngModel" [(ngModel)]="newEvaluation.min8" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min8 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min8" #min8="ngModel" [(ngModel)]="newEvaluation.min8" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="min8" #min8="ngModel" [(ngModel)]="newEvaluation.min8" type="text">
+                            <input name="min8" #min8="ngModel" [(ngModel)]="newEvaluation.min8" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 150W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min10 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min10 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min10 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min10" #min10="ngModel" [(ngModel)]="newEvaluation.min10" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min10 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min10" #min10="ngModel" [(ngModel)]="newEvaluation.min10" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min10" #min10="ngModel" [(ngModel)]="newEvaluation.min10" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 175W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min12 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min12 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min12 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min12" #min12="ngModel" [(ngModel)]="newEvaluation.min12" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min12 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min12" #min12="ngModel" [(ngModel)]="newEvaluation.min12" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min12" #min12="ngModel" [(ngModel)]="newEvaluation.min12" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 200W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min14 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min14 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min14 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min14" #min14="ngModel" [(ngModel)]="newEvaluation.min14" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min14 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min14" #min14="ngModel" [(ngModel)]="newEvaluation.min14" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="min14" #min14="ngModel" [(ngModel)]="newEvaluation.min14" type="text">
+                            <input name="min14" #min14="ngModel" [(ngModel)]="newEvaluation.min14" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 225W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min16 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min16 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min16 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min16" #min16="ngModel" [(ngModel)]="newEvaluation.min16" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min16 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min16" #min16="ngModel" [(ngModel)]="newEvaluation.min16" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="min16" #min16="ngModel" [(ngModel)]="newEvaluation.min16" type="number">
                         </td>
                     </tr>
                     <tr>
                         <th i18n>FC com 250W</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].min18 | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].min18 | number: '': locale}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min18 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min18 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
-                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="text">
+                            <input name="min18" #min18="ngModel" [(ngModel)]="newEvaluation.min18" type="number">
                         </td>
                     </tr>
                     <!--  resultados -->
@@ -138,19 +202,33 @@
                         <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e | number: '': locale}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
             <em>*Frequência Cardiaca (FC) em batimentos por minuto (bpm)</em>
 
             <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>

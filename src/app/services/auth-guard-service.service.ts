@@ -12,10 +12,7 @@ export class AuthGuardService {
     private router: Router) { }
 
   canActivate() {
-    console.log('check');
-    console.log(this.loginService.isLoggedIn());
     if (this.loginService.isLoggedIn()) {
-      console.log('TRUE');
       return true;
     }
     this.router.navigate(['/login']);

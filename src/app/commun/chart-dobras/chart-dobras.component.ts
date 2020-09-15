@@ -23,13 +23,11 @@ export class ChartDobrasComponent implements OnInit {
     };
     @Input() chart1: any[];
 
-
   ngOnInit(): void {
     setTimeout(() => {
       const single = this.chart1;
       Object.assign(this, { single });
     }, 700);
-
   }
 
 

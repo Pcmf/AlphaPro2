@@ -12,27 +12,56 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Flexão')">Flexão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Punho - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhof}}
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].punhof}}
                                 </td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="punhof" #punhof="ngModel" (ngModel)="newEvaluation.punhof" placeholder="Selecionar">
+                                        <mat-select name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -44,11 +73,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhofe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].punhofe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhofe" #punhofe="ngModel" [(ngModel)]="newEvaluation.punhofe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhofe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhofe" #punhofe="ngModel" [(ngModel)]="newEvaluation.punhofe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="punhofe" #punhofe="ngModel" (ngModel)="newEvaluation.punhofe" placeholder="Selecionar">
+                                        <mat-select name="punhofe" #punhofe="ngModel" [(ngModel)]="newEvaluation.punhofe"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -69,15 +124,42 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Punho - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].punhoe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhoe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="punhoe" #punhoe="ngModel" (ngModel)="newEvaluation.punhoe" placeholder="Selecionar">
+                                        <mat-select name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -89,11 +171,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].punhoee}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].punhoee}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoee" #punhoee="ngModel" [(ngModel)]="newEvaluation.punhoee"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>+
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhoee}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="punhoee" #punhoee="ngModel" [(ngModel)]="newEvaluation.punhoee"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>+
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="punhoee" #punhoee="ngModel" (ngModel)="newEvaluation.punhoee" placeholder="Selecionar">
+                                        <mat-select name="punhoee" #punhoee="ngModel" [(ngModel)]="newEvaluation.punhoee"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -111,19 +219,35 @@
                                 </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1" mat-mini-fab
-                            color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -134,8 +258,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/punho.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -146,26 +270,56 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo - Flexão')">Flexão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Cotovelo - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotovelof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].cotovelof}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelof" #cotovelof="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotovelof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelof" #cotovelof="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelof" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="cotovelof" #cotovelof="ngModel" (ngModel)="newEvaluation.cotovelof" placeholder="Selecionar">
+                                        <mat-select name="cotovelof" #cotovelof="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelof" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -177,11 +331,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotovelofe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    {{evaluation[pointer-1].cotovelofe}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelofe" #cotovelofe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotovelofe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotovelofe" #cotovelofe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="cotovelofe" #cotovelofe="ngModel" (ngModel)="newEvaluation.cotovelofe" placeholder="Selecionar">
+                                        <mat-select name="cotovelofe" #cotovelofe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotovelofe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -195,21 +375,58 @@
                                 <th>Total</th>
                                 <td *ngIf="pointer>=1 && !addEval">
                                     {{+evaluation[pointer-1].cotovelof + +evaluation[pointer-1].cotovelofe}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="suprailiaca" #suprailiaca="ngModel"
+                                        [(ngModel)]="newEvaluation.suprailiaca" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="pointer>=0">
                                     {{+evaluation[pointer].cotovelof + +evaluation[pointer].cotovelofe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="suprailiaca" #suprailiaca="ngModel"
+                                        [(ngModel)]="newEvaluation.suprailiaca" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Cotovelo - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotoveloe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].cotoveloe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloe" #cotoveloe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloe" #cotoveloe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="cotoveloe" #cotoveloe="ngModel" (ngModel)="newEvaluation.cotoveloe" placeholder="Selecionar">
+                                        <mat-select name="cotoveloe" #cotoveloe="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -221,11 +438,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].cotoveloee}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    {{evaluation[pointer-1].cotoveloee}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloee" #cotoveloee="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotoveloee}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="cotoveloee" #cotoveloee="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="cotoveloee" #cotoveloee="ngModel" (ngModel)="newEvaluation.cotoveloee" placeholder="Selecionar">
+                                        <mat-select name="cotoveloee" #cotoveloee="ngModel"
+                                            [(ngModel)]="newEvaluation.cotoveloee" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -243,18 +486,34 @@
                                     {{+evaluation[pointer].cotoveloe + +evaluation[pointer].cotoveloee}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -265,8 +524,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/cotovelo.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -277,26 +536,56 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro - Abdução')">Abdução</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Ombro - Abdução')">Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombroab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroab}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].ombroab}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombroab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="ombroab" #ombroab="ngModel" (ngModel)="newEvaluation.ombroab" placeholder="Selecionar">
+                                        <mat-select name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -308,11 +597,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombroabe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroabe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].ombroabe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroabe" #ombroabe="ngModel"
+                                            [(ngModel)]="newEvaluation.ombroabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombroabe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombroabe" #ombroabe="ngModel"
+                                            [(ngModel)]="newEvaluation.ombroabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="ombroabe" #ombroabe="ngModel" (ngModel)="newEvaluation.ombroabe" placeholder="Selecionar">
+                                        <mat-select name="ombroabe" #ombroabe="ngModel"
+                                            [(ngModel)]="newEvaluation.ombroabe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -332,15 +647,42 @@
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Ombro - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Horizontal</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].ombromedial}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    {{evaluation[pointer-1].ombromedial}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombromedial" #ombromedial="ngModel"
+                                            [(ngModel)]="newEvaluation.ombromedial" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombromedial}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="ombromedial" #ombromedial="ngModel"
+                                            [(ngModel)]="newEvaluation.ombromedial" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="ombromedial" #ombromedial="ngModel" (ngModel)="newEvaluation.ombromedial" placeholder="Selecionar">
+                                        <mat-select name="ombromedial" #ombromedial="ngModel"
+                                            [(ngModel)]="newEvaluation.ombromedial" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -350,18 +692,34 @@
                                     </mat-form-field>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -372,8 +730,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/ombro.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -384,23 +742,53 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tronco - Flexão')">Flexão</span></th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncof}}</td>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Tronco - Flexão')">Flexão</span></th>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].troncof}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncof" #troncof="ngModel" [(ngModel)]="newEvaluation.troncof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].troncof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncof" #troncof="ngModel" [(ngModel)]="newEvaluation.troncof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="troncof" #troncof="ngModel" (ngModel)="newEvaluation.troncof" placeholder="Selecionar">
+                                        <mat-select name="troncof" #troncof="ngModel" [(ngModel)]="newEvaluation.troncof"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -412,11 +800,37 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Tronco - Extensão')">Extensão</span></th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].troncoe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncoe" #troncoe="ngModel" [(ngModel)]="newEvaluation.troncoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].troncoe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncoe" #troncoe="ngModel" [(ngModel)]="newEvaluation.troncoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="troncoe" #troncoe="ngModel" (ngModel)="newEvaluation.troncoe" placeholder="Selecionar">
+                                        <mat-select name="troncoe" #troncoe="ngModel" [(ngModel)]="newEvaluation.troncoe"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -428,15 +842,42 @@
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tronco - Flexão Lateral')">Flexão Lateral</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Tronco - Flexão Lateral')">Flexão Lateral</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncold}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncold}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].troncold}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncold" #troncold="ngModel"
+                                            [(ngModel)]="newEvaluation.troncold" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].troncold}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncold" #troncold="ngModel"
+                                            [(ngModel)]="newEvaluation.troncold" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="troncold" #troncold="ngModel" (ngModel)="newEvaluation.troncold" placeholder="Selecionar">
+                                        <mat-select name="troncold" #troncold="ngModel"
+                                            [(ngModel)]="newEvaluation.troncold" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -448,11 +889,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].troncole}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].troncole}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].troncole}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncole" #troncole="ngModel"
+                                            [(ngModel)]="newEvaluation.troncole" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].troncole}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="troncole" #troncole="ngModel"
+                                            [(ngModel)]="newEvaluation.troncole" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="troncole" #troncole="ngModel" (ngModel)="newEvaluation.troncole" placeholder="Selecionar">
+                                        <mat-select name="troncole" #troncole="ngModel"
+                                            [(ngModel)]="newEvaluation.troncole" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -470,18 +937,34 @@
                                 </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -492,8 +975,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/tronco.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -504,26 +987,56 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Flexão')">Flexão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Quadril - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrilf}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilf" #quadrilf="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilf" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilf}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilf" #quadrilf="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilf" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilf" #quadrilf="ngModel" (ngModel)="newEvaluation.quadrilf" placeholder="Selecionar">
+                                        <mat-select name="quadrilf" #quadrilf="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilf" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -535,11 +1048,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilfe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilfe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrilfe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilfe" #quadrilfe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilfe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilfe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilfe" #quadrilfe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilfe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilfe" #quadrilfe="ngModel" (ngModel)="newEvaluation.quadrilfe" placeholder="Selecionar">
+                                        <mat-select name="quadrilfe" #quadrilfe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilfe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -559,15 +1098,42 @@
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Quadril - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrile}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrile}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrile}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrile" #quadrile="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrile" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrile}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrile" #quadrile="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrile" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrile" #quadrile="ngModel" (ngModel)="newEvaluation.quadrile" placeholder="Selecionar">
+                                        <mat-select name="quadrile" #quadrile="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrile" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -579,11 +1145,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilee}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrilee}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilee" #quadrilee="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilee}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilee" #quadrilee="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilee" #quadrilee="ngModel" (ngModel)="newEvaluation.quadrilee" placeholder="Selecionar">
+                                        <mat-select name="quadrilee" #quadrilee="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilee" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -602,15 +1194,42 @@
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Abdução')">Abdução</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Quadril - Abdução')">Abdução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilab}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrilab}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilab" #quadrilab="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilab" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilab" #quadrilab="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilab" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilab" #quadrilab="ngModel" (ngModel)="newEvaluation.quadrilab" placeholder="Selecionar">
+                                        <mat-select name="quadrilab" #quadrilab="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilab" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -622,11 +1241,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilabe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilabe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilabe}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilabe" #quadrilabe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilabe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilabe" #quadrilabe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilabe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilabe" #quadrilabe="ngModel" (ngModel)="newEvaluation.quadrilabe" placeholder="Selecionar">
+                                        <mat-select name="quadrilabe" #quadrilabe="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilabe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -646,15 +1291,42 @@
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril - Adução')">Adução</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Quadril - Adução')">Adução</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadrilad}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilad" #quadrilad="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilad" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilad}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilad" #quadrilad="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilad" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilad" #quadrilad="ngModel" (ngModel)="newEvaluation.quadrilad" placeholder="Selecionar">
+                                        <mat-select name="quadrilad" #quadrilad="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilad" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -666,11 +1338,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].quadrilade}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilade}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilade}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilade" #quadrilade="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilade" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilade}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="quadrilade" #quadrilade="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilade" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="quadrilade" #quadrilade="ngModel" (ngModel)="newEvaluation.quadrilade" placeholder="Selecionar">
+                                        <mat-select name="quadrilade" #quadrilade="ngModel"
+                                            [(ngModel)]="newEvaluation.quadrilade" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -688,18 +1386,34 @@
                                     {{+evaluation[pointer].quadrilad + +evaluation[pointer].quadrilade}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -710,8 +1424,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/quadril.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -722,26 +1436,56 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Joelho - Flexão')">Flexão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Joelho - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].joelhof}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].joelhof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="joelhof" #joelhof="ngModel" (ngModel)="newEvaluation.joelhof" placeholder="Selecionar">
+                                        <mat-select name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -753,11 +1497,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhofe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhofe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].joelhofe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhofe" #joelhofe="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].joelhofe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhofe" #joelhofe="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhofe" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="joelhofe" #joelhofe="ngModel" (ngModel)="newEvaluation.joelhofe" placeholder="Selecionar">
+                                        <mat-select name="joelhofe" #joelhofe="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhofe" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -777,15 +1547,42 @@
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Punho - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].joelhoe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoe" #joelhoe="ngModel" [(ngModel)]="newEvaluation.joelhoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].joelhoe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoe" #joelhoe="ngModel" [(ngModel)]="newEvaluation.joelhoe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="joelhoe" #joelhoe="ngModel" (ngModel)="newEvaluation.joelhoe" placeholder="Selecionar">
+                                        <mat-select name="joelhoe" #joelhoe="ngModel" [(ngModel)]="newEvaluation.joelhoe"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -797,11 +1594,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].joelhoee}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhoee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].joelhoee}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoee" #joelhoee="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhoee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].joelhoee}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="joelhoee" #joelhoee="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhoee" placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="joelhoee" #joelhoee="ngModel" (ngModel)="newEvaluation.joelhoee" placeholder="Selecionar">
+                                        <mat-select name="joelhoee" #joelhoee="ngModel"
+                                            [(ngModel)]="newEvaluation.joelhoee" placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -819,18 +1642,34 @@
                                 </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -841,8 +1680,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/joelho.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -853,26 +1692,55 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
                                 <th class="th-top" *ngIf="addEval">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Pés - Flexão')">Flexão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Pés - Flexão')">Flexão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesf}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].pesf}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesf" #pesf="ngModel" [(ngModel)]="newEvaluation.pesf"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].pesf}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesf" #pesf="ngModel" [(ngModel)]="newEvaluation.pesf"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="pesf" #pesf="ngModel" (ngModel)="newEvaluation.pesf" placeholder="Selecionar">
+                                        <mat-select name="pesf" #pesf="ngModel" [(ngModel)]="newEvaluation.pesf"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -884,11 +1752,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesfe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesfe}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].pesfe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesfe" #pesfe="ngModel" [(ngModel)]="newEvaluation.pesfe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].pesfe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesfe" #pesfe="ngModel" [(ngModel)]="newEvaluation.pesfe"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="pesfe" #pesfe="ngModel" (ngModel)="newEvaluation.pesfe" placeholder="Selecionar">
+                                        <mat-select name="pesfe" #pesfe="ngModel" [(ngModel)]="newEvaluation.pesfe"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -900,22 +1794,49 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].pesf + +evaluation[pointer-1].pesfe}}
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    {{+evaluation[pointer-1].pesf + +evaluation[pointer-1].pesfe}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].pesf + +evaluation[pointer].pesfe}}</td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
 
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Pés - Extensão')">Extensão</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Pés - Extensão')">Extensão</span></th>
                             </tr>
                             <tr>
                                 <th>Direito</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pese}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].pese}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].pese}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pese" #pese="ngModel" [(ngModel)]="newEvaluation.pese"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].pese}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pese" #pese="ngModel" [(ngModel)]="newEvaluation.pese"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="pese" #pese="ngModel" (ngModel)="newEvaluation.pese" placeholder="Selecionar">
+                                        <mat-select name="pese" #pese="ngModel" [(ngModel)]="newEvaluation.pese"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -927,11 +1848,37 @@
                             </tr>
                             <tr>
                                 <th>Esquerdo</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].pesee}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].pesee}}</td>
+                                <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].pesee}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesee" #pesee="ngModel" [(ngModel)]="newEvaluation.pesee"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].pesee}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <mat-form-field class="flex-select">
+                                        <mat-select name="pesee" #pesee="ngModel" [(ngModel)]="newEvaluation.pesee"
+                                            placeholder="Selecionar">
+                                            <mat-option value="0"></mat-option>
+                                            <mat-option value="1">1 - Fraca</mat-option>
+                                            <mat-option value="2">2 - Média</mat-option>
+                                            <mat-option value="3">3 - Boa</mat-option>
+                                            <mat-option value="4">4 - Excelente</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="addEval">
                                     <mat-form-field class="flex-select">
-                                        <mat-select name="pesee" #pesee="ngModel" (ngModel)="newEvaluation.pesee" placeholder="Selecionar">
+                                        <mat-select name="pesee" #pesee="ngModel" [(ngModel)]="newEvaluation.pesee"
+                                            placeholder="Selecionar">
                                             <mat-option value="0"></mat-option>
                                             <mat-option value="1">1 - Fraca</mat-option>
                                             <mat-option value="2">2 - Média</mat-option>
@@ -943,23 +1890,40 @@
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <td *ngIf="pointer>=1 && !addEval">{{+evaluation[pointer-1].pese + +evaluation[pointer-1].pesee}}
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    {{+evaluation[pointer-1].pese + +evaluation[pointer-1].pesee}}
                                 </td>
                                 <td *ngIf="pointer>=0">{{+evaluation[pointer].pese + +evaluation[pointer].pesee}}</td>
+                                <td *ngIf="addEval">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addEval">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
                                 <td *ngIf="addEval">&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                        <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                            (click)="addEvaluation()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
-                            mat-mini-fab color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addEval"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
                         <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
@@ -970,8 +1934,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="images"  (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <br/><br/>
+                <div class="images" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    <br /><br />
                     <img src="./assets/img/pes.png" alt="classificação">
                 </div>
             </mat-tab>
@@ -981,14 +1945,17 @@
                     <thead>
                         <tr>
                             <th>&nbsp;</th>
-                            <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                            <th class="th-top" *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
                             </th>
-                            <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                            <th class="th-top" *ngIf="pointer>=0 && editPointer!=0">
+                                {{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
+                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                    (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>
@@ -1011,17 +1978,18 @@
                         </tr>
 
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
+                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                    (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
                         </tr>
                         <tr>
                             <th>Direito</th>
-                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].mid}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].mid}}</td>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].mid}}</td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].mid}}</td>
                         </tr>
                         <tr>
                             <th>Esquerdo</th>
-                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].mie}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].mie}}</td>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].mie}}</td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].mie}}</td>
                         </tr>
                         <tr>
                             <th>Total</th>
@@ -1037,7 +2005,7 @@
                             <th>Direito</th>
                             <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mid + +evaluation[pointer-1].outrosd}}
-                                </td>
+                            </td>
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].msd + +evaluation[pointer].mid + +evaluation[pointer].outrosd}}
                             </td>
@@ -1047,7 +2015,9 @@
                             <td *ngIf="pointer>=1 && !addEval">
                                 {{+evaluation[pointer-1].mse + +evaluation[pointer-1].mie + +evaluation[pointer-1].outrose}}
                             </td>
-                            <td *ngIf="pointer>=0">{{+evaluation[pointer].mse + +evaluation[pointer].mie + +evaluation[pointer].outrose}}</td>
+                            <td *ngIf="pointer>=0">
+                                {{+evaluation[pointer].mse + +evaluation[pointer].mie + +evaluation[pointer].outrose}}
+                            </td>
                         </tr>
                         <tr>
                             <th>Total</th>
@@ -1055,7 +2025,7 @@
                                 {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mse 
                                     + +evaluation[pointer-1].mid + +evaluation[pointer-1].mie
                                     + +evaluation[pointer-1].outrosd + +evaluation[pointer-1].outros}}
-                                </td>
+                            </td>
                             <td *ngIf="pointer>=0">
                                 {{+evaluation[pointer].msd + +evaluation[pointer].mse 
                                     + +evaluation[pointer].mid + +evaluation[pointer].mie

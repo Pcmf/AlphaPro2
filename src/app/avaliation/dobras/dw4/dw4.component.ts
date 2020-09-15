@@ -54,10 +54,10 @@ export class DW4Component implements OnInit {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
     this.age = this.ageService.getAge(this.student.dt_nasc);
-    if (this.student.sexo == 'M' && (this.age < 17 || this.age > 72)) {
+    if (this.student.sexo === 'M' && (this.age < 17 || this.age > 72)) {
       this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
     }
-    if (this.student.sexo == 'F' && (this.age < 16 || this.age > 68)) {
+    if (this.student.sexo === 'F' && (this.age < 16 || this.age > 68)) {
       this.openSnackBar('Atenção: Este protocolo não deve ser usado com este aluno!', '');
     }
     this.getData();
@@ -98,6 +98,11 @@ export class DW4Component implements OnInit {
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
     this.startGraphics(evaluation);
+   // console.log(document.getElementsByClassName('legend-title-text'));
+    const col = document.querySelectorAll('span.legend-title-text');
+    const arr = Array.prototype.slice.call(col);
+    console.log(Array.isArray(arr));
+    console.log(arr);
   }
 
   // Iniciar os graficos

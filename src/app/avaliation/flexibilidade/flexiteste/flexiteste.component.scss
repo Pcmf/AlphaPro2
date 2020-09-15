@@ -47,12 +47,29 @@ img {
  color: rgb(37, 211, 211);
 }
 ::ng-deep{
+  .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+    color: white;
+    cursor: pointer;
+}
+  /*   .mat-form-field .mat-form-field-flex{
+      color: whitesmoke;
+    } */
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+      background-color: white;
+  }
   .mat-tab-label {
     color: white;
   }
 
   .mat-tab-label-active{
-    color: yellow
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .mat-select-arrow, .mat-select-placeholder, .mat-select-value,.mat-select-value-text, .mat-select-label, .mat-form-field-label {
+    color: whitesmoke !important;
   }
 }
 @media only screen and (min-width: 768px) {

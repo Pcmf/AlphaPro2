@@ -22,6 +22,8 @@ export class RockportComponent implements OnInit {
   addEval = false;
   pointer = -1;
   maxPointer = -1;
+  editPointer: number;
+  editAv = false;
   newEvaluation: any = [];
   selectedEvaluation: any = [];
   student: any = [];
@@ -154,6 +156,61 @@ export class RockportComponent implements OnInit {
     );
   }
 
+  executeAction(param, evaluation, editPointer) {
+    if (param.operation === 'Delete' && param.execute) {
+      this.delete(evaluation);
+    }
+    if (param.operation === 'Edit' && param.execute) {
+      this.openEditForm(evaluation, editPointer);
+    }
+    if (param.operation === 'Edit' && !param.execute) {
+      this.closeEditForm();
+    }
+    if (param.operation === 'Save' && param.execute) {
+      this.saveEditForm();
+    }
+  }
+
+  openEditForm(evaluation, editPointer) {
+    this.newEvaluation = evaluation;
+    this.editAv = true;
+    this.editPointer = editPointer;
+  }
+
+  saveEditForm() {
+    console.table(this.newEvaluation);
+    this.newEvaluation.protocolo = this.protocolo;
+    this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
+    this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2ObtRockport(this.newEvaluation);
+    this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
+    this.newEvaluation.c_classefai = this.protocoloCardio.getClasseFAI(this.newEvaluation.c_fai);
+    this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
+    this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
+    this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
+    console.table(this.newEvaluation);
+    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
+      resp => {
+        console.log(resp);
+        this.newEvaluation = [];
+        this.closeEditForm();
+      }
+    );
+  }
+
+  closeEditForm() {
+    this.editAv = false;
+    this.editPointer = -1;
+  }
+
+  delete(evaluation) {
+    this.dataService.delete('clients/cardio/' + this.protocolo + '/' + this.student.id + '/' + evaluation.data).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+      }
+    );
+  }
+
   openMedidasDialog(daysAv: number, newAv: boolean, lastAv: any, classe: number) {
     const options = {
       daysAv,
@@ -169,7 +226,6 @@ export class RockportComponent implements OnInit {
     this.dialogService.confirmedMedidasCardio().subscribe(
       result => {
         if (result) {
-          console.log('Result 172: ' + result);
           this.newEvaluation.altura = result.altura;
           this.newEvaluation.peso = result.peso;
           this.openSnackBar('Dados atualizados com sucesso', '');

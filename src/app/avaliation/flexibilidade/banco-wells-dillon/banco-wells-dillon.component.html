@@ -7,8 +7,9 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                           <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button></th>
+                        <th class="th-top" *ngIf="pointer>=0"><button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button></th>
                         <th class="th-top" *ngIf="addEval">
                             <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
                             class="data-input">
@@ -18,8 +19,14 @@
                 <tbody>
                     <tr>
                         <th><span (click)="openDialog('Flexibilidade')">Flexibilidade</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].flex}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].flex}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].flex}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="flex" #flex="ngModel" [(ngModel)]="newEvaluation.flex" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].flex}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="flex" #flex="ngModel" [(ngModel)]="newEvaluation.flex" type="number" (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="flex" #flex="ngModel" [(ngModel)]="newEvaluation.flex" type="number">
                         </td>
@@ -30,18 +37,32 @@
                         <td *ngIf="pointer>=0">{{evaluation[pointer].xclasse}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
             <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>

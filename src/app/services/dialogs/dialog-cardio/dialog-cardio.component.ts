@@ -28,14 +28,14 @@ export class DialogCardioComponent implements OnInit {
     }
 
     if (data.newAv && data.daysAv) {
-      this.msg += ' A ultima avaliação complementar já tem ' + data.daysAv + ' dias.';
+      this.msg += ' A última avaliação complementar já tem ' + data.daysAv + ' dias.';
     }
     if (data.newAv && !data.daysAv) {
       this.msg += ' Não existem avaliações complementares. ';
     }
 
     if (this.msg) {
-      this.msg += ' Altere ou adicione novos:';
+      this.msg += ' Altere ou adicione novas informações.';
     }
     if (data.lastAv) {
       this.ev.altura = data.lastAv.altura;

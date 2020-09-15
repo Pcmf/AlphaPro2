@@ -7,21 +7,35 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                            <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
+                        </th>
+                        <th class="th-top" *ngIf="pointer>=0">
+                            <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                        </th>
                         <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                class="data-input">
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-row-subtitle" >
-                        <th  [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span
+                                (click)="openDialog('Membros Inferiores')">Membros Inferiores</span></th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Agachamento')">Agachamento</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].agachamento}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].agachamento}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].agachamento}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].agachamento}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="agachamento" #agachamento="ngModel" [(ngModel)]="newEvaluation.agachamento"
                                 type="number">
@@ -29,18 +43,28 @@
                     </tr>
                     <tr>
                         <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{getClassAgachamento(evaluation[pointer-1].agachamento)}}</td>
+                        <td *ngIf="pointer>=1 && !addEval">{{getClassAgachamento(evaluation[pointer-1].agachamento)}}
+                        </td>
                         <td *ngIf="pointer>=0">{{getClassAgachamento(evaluation[pointer].agachamento)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
 
-                    <tr class="table-row-subtitle" >
-                        <th  [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span (click)="openDialog('Abdominal')">Abdominal</span></th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span
+                                (click)="openDialog('Abdominal')">Abdominal</span></th>
                     </tr>
                     <tr>
                         <th i18n><span (click)="openDialog('Flexão do Tronco')">Flexão do Tronco</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].abdominal}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].abdominal}}</td>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdominal}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdominal}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
                                 type="number">
@@ -53,13 +77,23 @@
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
 
-                    <tr class="table-row-subtitle" >
-                        <th  [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
+                    <tr class="table-row-subtitle">
+                        <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line" i18n><span
+                                (click)="openDialog('Membros Superiores')">Membros Superiores</span></th>
                     </tr>
                     <tr>
-                        <th i18n><span (click)="openDialog('Flexão e extensão dos cotovelos no chão')">Flexão e extensão<br />dos cotovelos no chão</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].flexb}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].flexb}}</td>
+                        <th i18n><span (click)="openDialog('Flexão e extensão dos cotovelos no chão')">Flexão e
+                                extensão<br />dos cotovelos no chão</span></th>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].flexb}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].flexb}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number"
+                                (focus)="$event.target.select()">
+                        </td>
                         <td *ngIf="addEval">
                             <input name="flexb" #flexb="ngModel" [(ngModel)]="newEvaluation.flexb" type="number">
                         </td>
@@ -70,18 +104,32 @@
                         <td *ngIf="pointer>=0">{{getClassFlex(evaluation[pointer].flexb)}}</td>
                         <td *ngIf="addEval">&nbsp;</td>
                     </tr>
+                    <tr>
+                        <th>Ações</th>
+                        <td *ngIf="pointer>=1 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer-1].data"
+                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="pointer>=0 && !addEval">
+                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                [dataAv]="evaluation[pointer].data"
+                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                        </td>
+                        <td *ngIf="addEval">&nbsp;</td>
+                    </tr>
                 </tbody>
             </table>
 
             <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                     (click)="pointer=pointer-1">
                     <mat-icon class="mat-14">chevron_left</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
                     <mat-icon class="mat-18">add</mat-icon>
                 </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                     mat-mini-fab color="default" (click)="pointer=pointer+1">
                     <mat-icon class="mat-14">chevron_right</mat-icon>
                 </button>

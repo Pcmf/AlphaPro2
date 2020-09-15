@@ -10,144 +10,304 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                                </th>
                                 <th class="th-top" *ngIf="addMesure">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Ombro')">Ombro</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Ombro')">Ombro</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Flexão')">Flexão <small>[180&#730;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombrof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombrof}}</td>
+                                <th><span (click)="openDialog('Ombro - Flexão')">Flexão
+                                        <small>[180&#730;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].ombrof}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombrof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof" type="number">
+                                    <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
+                                        type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Extensão')">Extensão <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombroe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroe}}</td>
+                                <th><span (click)="openDialog('Ombro - Extensão')">Extensão
+                                        <small>[45&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].ombroe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombroe" #ombroe="ngModel" [(ngModel)]="newEvaluation.ombroe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombroe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombroe" #ombroe="ngModel" [(ngModel)]="newEvaluation.ombroe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="ombroe" #ombroe="ngModel" [(ngModel)]="newEvaluation.ombroe"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Adução')">Adução <small>[40&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombroad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroad}}</td>
+                                <th><span (click)="openDialog('Ombro - Adução')">Adução <small>[40&deg;]</small></span>
+                                </th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].ombroad}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombroad}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="ombroad" #ombroad="ngModel" [(ngModel)]="newEvaluation.ombroad"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Abdução')">Abdução <small>[180&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombroab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombroab}}</td>
+                                <th><span (click)="openDialog('Ombro - Abdução')">Abdução
+                                        <small>[180&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].ombroab}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombroab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="ombroab" #ombroab="ngModel" [(ngModel)]="newEvaluation.ombroab"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Rotação Medial')">Rotação Medial <small>[90&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombromedial}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombromedial}}</td>
+                                <th><span (click)="openDialog('Ombro - Rotação Medial')">Rotação Medial
+                                        <small>[90&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].ombromedial}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombromedial" #ombromedial="ngModel"
+                                        [(ngModel)]="newEvaluation.ombromedial" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombromedial}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombromedial" #ombromedial="ngModel"
+                                        [(ngModel)]="newEvaluation.ombromedial" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="ombromedial" #ombromedial="ngModel" [(ngModel)]="newEvaluation.ombromedial"
+                                    <input name="ombromedial" #ombromedial="ngModel"
+                                        [(ngModel)]="newEvaluation.ombromedial" type="number">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span (click)="openDialog('Ombro - Rotação Lateral')">Rotação Lateral
+                                        <small>[90&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].ombrolateral}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="ombrolateral" #ombrolateral="ngModel"
+                                        [(ngModel)]="newEvaluation.ombrolateral" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombrolateral}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="ombrolateral" #ombrolateral="ngModel"
+                                        [(ngModel)]="newEvaluation.ombrolateral" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="addMesure">
+                                    <input name="ombrolateral" #ombrolateral="ngModel"
+                                        [(ngModel)]="newEvaluation.ombrolateral" type="number">
+                                </td>
+                            </tr>
+                            <tr class="table-row-subtitle">
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Cotovelo')">Cotovelo</span></th>
+                            </tr>
+                            <tr>
+                                <th><span (click)="openDialog('Cotovelo - Flexão')">Flexão
+                                        <small>[145&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cotovelof}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotovelof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="addMesure">
+                                    <input name="cotovelof" #cotovelof="ngModel" [(ngModel)]="newEvaluation.cotovelof"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombro - Rotação Lateral')">Rotação Lateral <small>[90&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].ombrolateral}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].ombrolateral}}</td>
+                                <th><span (click)="openDialog('Cotovelo - Extensão')">Extensão
+                                        <small>[145&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cotoveloe}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="ombrolateral" #ombrolateral="ngModel" [(ngModel)]="newEvaluation.ombrolateral"
+                                    <input name="cotoveloe" #cotoveloe="ngModel" [(ngModel)]="newEvaluation.cotoveloe"
                                         type="number">
                                 </td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cotovelo')">Cotovelo</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Radioulnar')">Radioulnar</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cotovelo - Flexão')">Flexão <small>[145&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].cotovelof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotovelof}}</td>
+                                <th><span (click)="openDialog('Radioulnar - Pronação')">Pronação
+                                        <small>[90&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].radioulnarp}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="radioulnarp" #radioulnarp="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnarp" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].radioulnarp}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="radioulnarp" #radioulnarp="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnarp" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cotovelof" #cotovelof="ngModel"
-                                        [(ngModel)]="newEvaluation.cotovelof" type="number">
+                                    <input name="radioulnarp" #radioulnarp="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnarp" type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cotovelo - Extensão')">Extensão <small>[145&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].cotoveloe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cotoveloe}}</td>
+                                <th><span (click)="openDialog('Radioulnar - Supinação')">Supinação
+                                        <small>[90&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].radioulnars}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="radioulnars" #radioulnars="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnars" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].radioulnars}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="radioulnars" #radioulnars="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnars" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cotoveloe" #cotoveloe="ngModel"
-                                        [(ngModel)]="newEvaluation.cotoveloe" type="number">
+                                    <input name="radioulnars" #radioulnars="ngModel"
+                                        [(ngModel)]="newEvaluation.radioulnars" type="number">
                                 </td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Radioulnar')">Radioulnar</span></th></tr>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Punho')">Punho</span></th>
+                            </tr>
                             <tr>
-                                <th><span (click)="openDialog('Radioulnar - Pronação')">Pronação <small>[90&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].radioulnarp}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].radioulnarp}}</td>
-                                <td *ngIf="addMesure">
-                                    <input name="radioulnarp" #radioulnarp="ngModel" [(ngModel)]="newEvaluation.radioulnarp" type="number">
+                                <th><span (click)="openDialog('Punho - Flexão')">Flexão <small>[90&deg;]</small></span>
+                                </th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].punhof}}
                                 </td>
-                            </tr>
-                            <tr>
-                                <th><span (click)="openDialog('Radioulnar - Supinação')">Supinação <small>[90&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].radioulnars}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].radioulnars}}</td>
-                                <td *ngIf="addMesure">
-                                    <input name="radioulnars" #radioulnars="ngModel" [(ngModel)]="newEvaluation.radioulnars" type="number">
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
+                                        type="number" (focus)="$event.target.select()">
                                 </td>
-                            </tr>
-                            <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Punho')">Punho</span></th>
-                            </tr>
-                            <tr>
-                                <th><span (click)="openDialog('Punho - Flexão')">Flexão <small>[90&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].punhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhof}}</td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="punhof" #punhof="ngModel" [(ngModel)]="newEvaluation.punhof"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Punho - Extensão')">Extensão <small>[70&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].punhoe}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoe}}</td>
+                                <th><span (click)="openDialog('Punho - Extensão')">Extensão
+                                        <small>[70&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].punhoe}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhoe}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="punhoe" #punhoe="ngModel" [(ngModel)]="newEvaluation.punhoe"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Punho - Adução')">Adução <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].punhoad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoad}}</td>
+                                <th><span (click)="openDialog('Punho - Adução')">Adução <small>[45&deg;]</small></span>
+                                </th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].punhoad}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="punhoad" #punhoad="ngModel" [(ngModel)]="newEvaluation.punhoad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhoad}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="punhoad" #punhoad="ngModel" [(ngModel)]="newEvaluation.punhoad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="punhoad" #punhoad="ngModel" [(ngModel)]="newEvaluation.punhoad"
                                         type="number">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Punho - Abdução')">Abdução <small>[20&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].punhoab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].punhoab}}</td>
+                                <th><span (click)="openDialog('Punho - Abdução')">Abdução
+                                        <small>[20&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].punhoab}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="punhoab" #punhoab="ngModel" [(ngModel)]="newEvaluation.punhoab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].punhoab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="punhoab" #punhoab="ngModel" [(ngModel)]="newEvaluation.punhoab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
                                     <input name="punhoab" #punhoab="ngModel" [(ngModel)]="newEvaluation.punhoab"
                                         type="number">
@@ -156,24 +316,41 @@
                             <tr>
                                 <td colspan="3">
                                     <small class="advise-sm">*Todas as medições são em graus</small>
-                                </td> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addMesure">&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="action">
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv"
+                            (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
-                            color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addMesure"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
+                            (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>
@@ -188,109 +365,250 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                                </th>
                                 <th class="th-top" *ngIf="addMesure">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Quadril')">Quadril</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Quadril')">Quadril</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Flexão')">Flexão <small>[125&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrilf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilf}}</td>
+                                <th><span (click)="openDialog('Quadril - Flexão')">Flexão
+                                        <small>[125&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilf}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilf}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf" type="number" style="width: 60px;">
+                                    <input name="quadrilf" #quadrilf="ngModel" [(ngModel)]="newEvaluation.quadrilf"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Extensão')">Extensão <small>[10&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrile}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrile}}</td>
+                                <th><span (click)="openDialog('Quadril - Extensão')">Extensão
+                                        <small>[10&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrile}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrile}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile" type="number" style="width: 60px;">
+                                    <input name="quadrile" #quadrile="ngModel" [(ngModel)]="newEvaluation.quadrile"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Adução')">Adução<small>[15&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrilad}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilad}}</td>
+                                <th><span (click)="openDialog('Quadril - Adução')">Adução<small>[15&deg;]</small></span>
+                                </th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilad}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilad}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad" type="number" style="width: 60px;">
+                                    <input name="quadrilad" #quadrilad="ngModel" [(ngModel)]="newEvaluation.quadrilad"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Abdução')">Abdução <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrilab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilab}}</td>
+                                <th><span (click)="openDialog('Quadril - Abdução')">Abdução
+                                        <small>[45&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilab}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab" type="number" style="width: 60px;">
+                                    <input name="quadrilab" #quadrilab="ngModel" [(ngModel)]="newEvaluation.quadrilab"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Rotação Medial')">Rotação Medial <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrilmedial}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrilmedial}}</td>
+                                <th><span (click)="openDialog('Quadril - Rotação Medial')">Rotação Medial
+                                        <small>[45&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrilmedial}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrilmedial" #quadrilmedial="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrilmedial" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrilmedial}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrilmedial" #quadrilmedial="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrilmedial" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrilmedial" #quadrilmedial="ngModel" [(ngModel)]="newEvaluation.quadrilmedial" type="number" style="width: 60px;">
+                                    <input name="quadrilmedial" #quadrilmedial="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrilmedial" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Quadril - Rotação Lateral')">Rotação Lateral <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].quadrillateral}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].quadrillateral}}</td>
+                                <th><span (click)="openDialog('Quadril - Rotação Lateral')">Rotação Lateral
+                                        <small>[45&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].quadrillateral}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="quadrillateral" #quadrillateral="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrillateral" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].quadrillateral}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="quadrillateral" #quadrillateral="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrillateral" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="quadrillateral" #quadrillateral="ngModel" [(ngModel)]="newEvaluation.quadrillateral" type="number" style="width: 60px;">
+                                    <input name="quadrillateral" #quadrillateral="ngModel"
+                                        [(ngModel)]="newEvaluation.quadrillateral" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Joelho')">Joelho</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Joelho')">Joelho</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Joelho - Flexão')">Flexão <small>[140&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].joelhof}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].joelhof}}</td>
+                                <th><span (click)="openDialog('Joelho - Flexão')">Flexão
+                                        <small>[140&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].joelhof}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].joelhof}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                        type="number" (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof" type="number" style="width: 60px;">
+                                    <input name="joelhof" #joelhof="ngModel" [(ngModel)]="newEvaluation.joelhof"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Tornozelo')">Tornozelo</span></th></tr>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Tornozelo')">Tornozelo</span></th>
+                            </tr>
                             <tr>
-                                <th><span (click)="openDialog('Tornozelo - Flexão Dorsal')">Flexão Dorsal <small>[20&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].tornozelod}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelod}}</td>
+                                <th><span (click)="openDialog('Tornozelo - Flexão Dorsal')">Flexão Dorsal
+                                        <small>[20&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].tornozelod}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="tornozelod" #tornozelod="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelod" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].tornozelod}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="tornozelod" #tornozelod="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelod" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="tornozelod" #tornozelod="ngModel" [(ngModel)]="newEvaluation.tornozelod" type="number" style="width: 60px;">
+                                    <input name="tornozelod" #tornozelod="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelod" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Tornozelo - Flexão Plantar')">Flexão Plantar <small>[45&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].tornozelop}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozelop}}</td>
+                                <th><span (click)="openDialog('Tornozelo - Flexão Plantar')">Flexão Plantar
+                                        <small>[45&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].tornozelop}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="tornozelop" #tornozelop="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelop" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].tornozelop}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="tornozelop" #tornozelop="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelop" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="tornozelop" #tornozelop="ngModel" [(ngModel)]="newEvaluation.tornozelop" type="number" style="width: 60px;">
+                                    <input name="tornozelop" #tornozelop="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozelop" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Tornozelo - Adução')">Adução <small>[20&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].tornozeload}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeload}}</td>
+                                <th><span (click)="openDialog('Tornozelo - Adução')">Adução
+                                        <small>[20&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].tornozeload}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="tornozeload" #tornozeload="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeload" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].tornozeload}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="tornozeload" #tornozeload="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeload" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="tornozeload" #tornozeload="ngModel" [(ngModel)]="newEvaluation.tornozeload" type="number" style="width: 60px;">
+                                    <input name="tornozeload" #tornozeload="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeload" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Tornozelo - Abdução')">Abdução <small>[40&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].tornozeloab}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].tornozeloab}}</td>
+                                <th><span (click)="openDialog('Tornozelo - Abdução')">Abdução
+                                        <small>[40&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].tornozeloab}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="tornozeloab" #tornozeloab="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeloab" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].tornozeloab}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="tornozeloab" #tornozeloab="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeloab" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="tornozeloab" #tornozeloab="ngModel" [(ngModel)]="newEvaluation.tornozeloab" type="number" style="width: 60px;">
+                                    <input name="tornozeloab" #tornozeloab="ngModel"
+                                        [(ngModel)]="newEvaluation.tornozeloab" type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
@@ -298,21 +616,39 @@
                                     <small class="advise-sm">*Todas as medições são em graus</small>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addMesure">&nbsp;</td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1" mat-mini-fab color="default"
-                            (click)="pointer=pointer-1">
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                            color="default" (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv"
+                            (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
-                            color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addMesure"
+                            [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                            (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
+                            (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>
@@ -330,83 +666,177 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                <th class="th-top" *ngIf="pointer>=1 && !addMesure">
+                                    <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                 </th>
-                                <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                                <th class="th-top" *ngIf="pointer>=0">
+                                    <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                                </th>
                                 <th class="th-top" *ngIf="addMesure">
-                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                        class="data-input">
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Cervical')">Cervical</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Cervical')">Cervical</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cervical - Flexão')">Flexão <small>[65&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1 && !addMesure">{{evaluation[pointer-1].cervicalf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalf}}</td>
+                                <th><span (click)="openDialog('Cervical - Flexão')">Flexão
+                                        <small>[65&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cervicalf}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cervicalf" #cervicalf="ngModel" [(ngModel)]="newEvaluation.cervicalf" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cervicalf}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cervicalf" #cervicalf="ngModel" [(ngModel)]="newEvaluation.cervicalf" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cervicalf" #cervicalf="ngModel" [(ngModel)]="newEvaluation.cervicalf" type="number" style="width: 60px;">
+                                    <input name="cervicalf" #cervicalf="ngModel" [(ngModel)]="newEvaluation.cervicalf"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cervical - Extensão')">Extensão <small>[50&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicale}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicale}}</td>
+                                <th><span (click)="openDialog('Cervical - Extensão')">Extensão
+                                        <small>[50&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cervicale}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cervicale}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale" type="number" style="width: 60px;">
+                                    <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cervical - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicall}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicall}}</td>
+                                <th><span (click)="openDialog('Cervical - Flexão Lateral')">Flexão Lateral
+                                        <small>[40&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cervicall}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cervicall}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall" type="number" style="width: 60px;">
+                                    <input name="cervicall" #cervicall="ngModel" [(ngModel)]="newEvaluation.cervicall"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Cervical - Rotação')">Rotação <small>[55&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].cervicalr}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].cervicalr}}</td>
+                                <th><span (click)="openDialog('Cervical - Rotação')">Rotação
+                                        <small>[55&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">
+                                    {{evaluation[pointer-1].cervicalr}}</td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cervicalr}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr" type="number" style="width: 60px;">
+                                    <input name="cervicalr" #cervicalr="ngModel" [(ngModel)]="newEvaluation.cervicalr"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr class="table-row-subtitle">
-                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span (click)="openDialog('Lombar')">Lombar</span></th>
+                                <th [attr.colspan]="pointer>=1 ? 3 : 2" class="sub-line"><span
+                                        (click)="openDialog('Lombar')">Lombar</span></th>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Lombar - Flexão')">Flexão <small>[95&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarf}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarf}}</td>
+                                <th><span (click)="openDialog('Lombar - Flexão')">Flexão <small>[95&deg;]</small></span>
+                                </th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].lombarf}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].lombarf}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf" type="number" style="width: 60px;">
+                                    <input name="lombarf" #lombarf="ngModel" [(ngModel)]="newEvaluation.lombarf"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Lombar - Extensão')">Extensão <small>[35&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombare}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombare}}</td>
+                                <th><span (click)="openDialog('Lombar - Extensão')">Extensão
+                                        <small>[35&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].lombare}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].lombare}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare" type="number" style="width: 60px;">
+                                    <input name="lombare" #lombare="ngModel" [(ngModel)]="newEvaluation.lombare"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Lombar - Flexão Lateral')">Flexão Lateral <small>[40&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarl}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarl}}</td>
+                                <th><span (click)="openDialog('Lombar - Flexão Lateral')">Flexão Lateral
+                                        <small>[40&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].lombarl}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].lombarl}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl" type="number" style="width: 60px;">
+                                    <input name="lombarl" #lombarl="ngModel" [(ngModel)]="newEvaluation.lombarl"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Lombar - Rotação')">Rotação <small>[35&deg;]</small></span></th>
-                                <td *ngIf="pointer>=1">{{evaluation[pointer-1].lombarr}}</td>
-                                <td *ngIf="pointer>=0">{{evaluation[pointer].lombarr}}</td>
+                                <th><span (click)="openDialog('Lombar - Rotação')">Rotação
+                                        <small>[35&deg;]</small></span></th>
+                                <td *ngIf="pointer>=1 && !addMesure && editPointer!=1">{{evaluation[pointer-1].lombarr}}
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
+                                <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].lombarr}}</td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number"
+                                        (focus)="$event.target.select()">
+                                </td>
                                 <td *ngIf="addMesure">
-                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr" type="number" style="width: 60px;">
+                                    <input name="lombarr" #lombarr="ngModel" [(ngModel)]="newEvaluation.lombarr"
+                                        type="number" style="width: 60px;">
                                 </td>
                             </tr>
                             <tr>
@@ -414,21 +844,36 @@
                                     <small class="advise-sm">*Todas as medições são em graus</small>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Ações</th>
+                                <td *ngIf="pointer>=1 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer-1].data"
+                                        (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="pointer>=0 && !addMesure">
+                                    <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                        [dataAv]="evaluation[pointer].data"
+                                        (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                                </td>
+                                <td *ngIf="addMesure">&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="action">
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                             (click)="pointer=pointer-1">
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" mat-stroked-button (click)="addMesures()">
+                        <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv" (click)="addMesures()">
                             <mat-icon class="mat-18">add</mat-icon>
                         </button>
-                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
-                            color="default" (click)="pointer=pointer+1">
+                        <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
+                            mat-mini-fab color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>
-                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default" (click)="closeInputs()">
+                        <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
+                            (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>

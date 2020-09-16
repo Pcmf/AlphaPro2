@@ -64,6 +64,9 @@ input[type=number] {
   .mat-select-arrow {
     color: whitesmoke !important;
   }
+/*   .chart-legend .legend-label {
+    color: whitesmoke !important;
+} */
 }
 
 em {
@@ -134,10 +137,6 @@ app-header-name{
   margin: auto;
   display: flex;
   justify-content: center;
-}
-
-.chart-legend .legend-label {
-  color: black !important;
 }
 
 .sub-line {
@@ -228,8 +227,6 @@ app-header-name{
     margin: 0;
 
   }
-
-
   .section {
     width: 100%;
     display: flex;

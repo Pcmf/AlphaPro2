@@ -3,5 +3,10 @@
     .chart-legend .legend-labels {
         display: flex;
         flex-wrap: wrap;
+        color: white;
     }
+    
+}
+.chart-legend .legend-label {
+    color: white !important;
 }

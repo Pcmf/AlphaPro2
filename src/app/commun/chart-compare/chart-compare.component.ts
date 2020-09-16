@@ -17,9 +17,12 @@ export class ChartCompareComponent implements OnInit {
   @Input() evaluations: any[];
 
   // Grafico
-  multi: any[];
+  multi1: any[];
   multi2: any[];
-  view = [360, 300];
+  multi3: any[];
+  multi4: any[];
+  multi5: any[];
+  view = [250, 250];
   student: any = [];
 
   // options
@@ -169,7 +172,7 @@ export class ChartCompareComponent implements OnInit {
         pesoMuscular.push({ name: element.data, value: element.pesoMuscular });
       });
 
-      const multi = [
+      const multi1 = [
         {
           name: '% Gordura',
           series: [...gorduras]
@@ -177,34 +180,24 @@ export class ChartCompareComponent implements OnInit {
         {
           name: '% Excesso',
           series: [...excessos]
-        },
-        {
-          name: '% Livre',
-          series: [...livres]
-        }/* ,
-        {
-          name: '% Desejada',
-          series: [...desejadas]
-        } */
+        }
       ];
 
       const multi2 = [
         {
-          name: 'Peso',
-          series: [...pesoAtual]
-        },
-        {
-          name: 'Sugerido',
-          series: [...pesoSugerido]
-        },
-        {
-          name: 'Excesso',
-          series: [...pesoExcesso]
-        },
+          name: '% Livre',
+          series: [...livres]
+        }
+      ];
+
+      const multi3 = [
         {
           name: 'Muscular',
           series: [...pesoMuscular]
-        },
+        }
+      ];
+
+      const multi4 = [
         {
           name: 'Ósseo',
           series: [...pesoOsseo]
@@ -214,8 +207,23 @@ export class ChartCompareComponent implements OnInit {
           series: [...pesoResidual]
         }
       ];
-      Object.assign(this, { multi });
+
+      const multi5 = [
+        {
+          name: 'Peso',
+          series: [...pesoAtual]
+        },
+        {
+          name: 'Sugerido',
+          series: [...pesoSugerido]
+        }
+      ];
+
+      Object.assign(this, { multi1 });
       Object.assign(this, { multi2 });
+      Object.assign(this, { multi3 });
+      Object.assign(this, { multi4 });
+      Object.assign(this, { multi5 });
     }, 700);
   }
 

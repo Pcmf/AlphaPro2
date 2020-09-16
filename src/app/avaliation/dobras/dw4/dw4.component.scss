@@ -37,11 +37,16 @@
     border-color: rgb(37, 36, 36);
     background-color: rgba(245, 245, 245, 0.555);
   }
+
 }
 
 @media only screen and (min-width: 768px) {
   .section{
     width: 520px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: inherit;
   }
 }
 

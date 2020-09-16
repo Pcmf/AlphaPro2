@@ -96,7 +96,7 @@ export class FlexitesteComponent implements OnInit {
 
   saveEditForm() {
     console.table(this.newEvaluation);
-    this.dataService.setData('clients/morfo/' + this.selectedStudent.id, this.newEvaluation).subscribe(
+    this.dataService.setData('clients/flex/' + this.selectedStudent.id, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
         this.newEvaluation = [];
@@ -111,7 +111,7 @@ export class FlexitesteComponent implements OnInit {
   }
 
   delete(evaluation) {
-    this.dataService.delete('clients/morfo/' + this.selectedStudent.id + '/' + evaluation.data).subscribe(
+    this.dataService.delete('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
         this.getData();

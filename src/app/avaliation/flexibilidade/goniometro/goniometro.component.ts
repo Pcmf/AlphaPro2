@@ -91,7 +91,7 @@ export class GoniometroComponent implements OnInit {
   }
 
   delete(evaluation) {
-    this.dataService.delete('clients/flex/' + this.selectedStudent.id + '/' + evaluation.data).subscribe(
+    this.dataService.delete('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
         this.getData();

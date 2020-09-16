@@ -27,13 +27,13 @@ export class ChartCompareComponent implements OnInit {
   showYAxis = true;
   gradient = false;
   showLegend = true;
-  showXAxisLabel = true;
+  showXAxisLabel = false;
   xAxisLabel = 'Avaliações';
   showYAxisLabel = true;
   yAxisLabel1 = '%';
   yAxisLabel2 = 'Kg';
   legendPosition = 'bottom';
-  legendTitle = '';
+  legendTitle = 'Avaliações';
   barPadding = 0;
   groupPadding = 5;
 

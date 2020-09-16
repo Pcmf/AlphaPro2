@@ -11,6 +11,7 @@ export class ChartPieComponent implements OnInit {
   showLegend = true;
   showLabels = false;
   isDoughnut = false;
+  legendTitle = 'Legenda';
   legendPosition = 'top';
   view: any[] = [250, 250];
   colorScheme = {

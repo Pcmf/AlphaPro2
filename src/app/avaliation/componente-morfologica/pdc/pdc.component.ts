@@ -4,9 +4,6 @@ import { DataService } from 'src/app/services/data.service';
 import { DialogService } from 'src/app/services/dialog.service';
 
 
-
-
-
 @Component({
   selector: 'app-pdc',
   templateUrl: './pdc.component.html',

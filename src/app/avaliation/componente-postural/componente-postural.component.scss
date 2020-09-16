@@ -53,7 +53,9 @@
   .mat-select-arrow, .mat-select-value {
     color: white !important;
   }
-
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: flex;
+  }
 
 }
 

@@ -48,6 +48,9 @@
     color: white;
     opacity: 1 !important;
   }
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: flex;
+  }
 
 }
 

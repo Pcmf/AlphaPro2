@@ -50,10 +50,11 @@ img {
   .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
     color: white;
     cursor: pointer;
-}
-  /*   .mat-form-field .mat-form-field-flex{
-      color: whitesmoke;
-    } */
+  }
+
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: flex;
+  }
 
   .mat-form-field-appearance-legacy .mat-form-field-underline {
       background-color: white;
@@ -76,11 +77,4 @@ img {
   .section{
     width: 520px !important;
   }
-/*   .mat-tab-group {
-    width: 0% !important;
-    margin: auto;
-  } */
-/*   img {
-    width: 90%;
-  }*/
 } 

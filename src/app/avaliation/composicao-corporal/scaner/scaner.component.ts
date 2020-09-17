@@ -60,13 +60,13 @@ export class ScanerComponent implements OnInit {
     this.selectedEvaluation = evaluation;
   }
 
-  getTotal(evaluation) {
+/*   getTotal(evaluation) {
     return +(+evaluation.tri_qualidade + +evaluation.abd_qualidade + +evaluation.qua_qualidade);
   }
 
   getTotalPerc(evaluation) {
     return +(+evaluation.tri_perc + +evaluation.abd_perc + +evaluation.qua_perc);
-  }
+  } */
 
   ngOnInit(): void {
   }

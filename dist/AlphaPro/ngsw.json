@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1600252508910,
+  "timestamp": 1600257404946,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.93f5d711c926aa65eee1.js",
-        "/main-es5.93f5d711c926aa65eee1.js",
+        "/main-es2015.11a61a57d29234dcc485.js",
+        "/main-es5.11a61a57d29234dcc485.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.9a51c357b95f623a5ef5.js",
         "/polyfills-es5.7c63f4bac2a381dba54c.js",
         "/runtime-es2015.1eba213af0b233498d9d.js",
         "/runtime-es5.1eba213af0b233498d9d.js",
-        "/styles.eb2818085491c1856c21.css"
+        "/styles.9c1475066f79ed8edb2e.css"
       ],
       "patterns": []
     },
@@ -768,9 +768,9 @@
     "/dobras1.314a3a03cc8d6d42a9d3.jpg": "ff841c930982e0159c9f103d7352592fd4d60363",
     "/favicon.ico": "71d9a53781db117c0260e1e5bbbf2f54bbd14044",
     "/flexibilidade.76052fb46dcf23ed4e97.jpg": "a7b477386d61797da41cd00c2cb800b3996e43e5",
-    "/index.html": "32d6177cfc3d726da58251b7427bd6ea627a8be1",
-    "/main-es2015.93f5d711c926aa65eee1.js": "8bd558806591b831cef739b4d54d95935f4cbe59",
-    "/main-es5.93f5d711c926aa65eee1.js": "84a07b646256e1dcccb330eaa594029be9ccdaff",
+    "/index.html": "6777562ac7771f5face3b416f568a3321d526e65",
+    "/main-es2015.11a61a57d29234dcc485.js": "21a55ebbbd312a4fe56cd8b027f902f399126296",
+    "/main-es5.11a61a57d29234dcc485.js": "933cc73a6cd664f965259d7cd2e11b5852b9b1fb",
     "/manifest.webmanifest": "10845486d46c9c09b87bf40ab445990fbd617ab4",
     "/measurement-1698856.743b6207429718ed218c.jpg": "569cc0705aea4d42c7c8e1439ad561486ba1122d",
     "/polyfills-es2015.9a51c357b95f623a5ef5.js": "19197b4a142bfb2d5afec097c1570ef3c378daf9",
@@ -780,7 +780,7 @@
     "/reports.63c07f93d7278c545d4d.jpg": "683cce3fad77ff6a7be4e0af495ed89e5b564b3c",
     "/runtime-es2015.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/runtime-es5.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/styles.eb2818085491c1856c21.css": "7a7f3749003cef2f2567b91f8ff591fa1bd5e9d1",
+    "/styles.9c1475066f79ed8edb2e.css": "aa2d9922ae0667948b644cd1cea8e638d3fad8cc",
     "/swimming-unsplash.018915ec515a02f96858.jpg": "47b1bea97edd25fe2fe4eb38b8f61c431bbe6593"
   },
   "navigationUrls": [

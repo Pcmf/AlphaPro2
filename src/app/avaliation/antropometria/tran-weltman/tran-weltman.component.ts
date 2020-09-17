@@ -33,6 +33,13 @@ export class TranWeltmanComponent implements OnInit {
   fatChanged = false;
   chartSelected = 'pie';
   locale: string;
+    // corporal
+    private newAv: boolean;
+    private newCorporal: boolean;
+    private lastAv: any = [];
+    private lastCorporal: any = [];
+    private daysAv = 0;
+    private daysCorporal = 0;
 
   constructor(
     private location: Location,
@@ -129,8 +136,42 @@ export class TranWeltmanComponent implements OnInit {
       resp => {
         if (resp) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação de peso e altura já tem ' + resp[0].difdias + ' dias.', '');
           }
+
+                 // Obter os dados da ultima avaliação corporal - punho e joelho
+          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
+                  (respc: []) => {
+                    if (respc.length > 0) {
+                      this.lastCorporal = respc.pop();
+                      this.newCorporal = false;
+                      // tslint:disable-next-line: no-conditional-assignment
+                      if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
+                        || +this.lastCorporal.punho == 0
+                        || +this.lastCorporal.joelho == 0) {
+                        this.newCorporal = true;
+                      }
+                    } else {
+                      this.newCorporal = true;
+                    }
+                    // decide se vai mostrar dialog
+                    if (this.newAv || this.newCorporal) {
+                      this.openMedidasDialog(
+                        this.daysAv,
+                        this.daysCorporal,
+                        this.newAv,
+                        this.newCorporal,
+                        this.lastAv,
+                        this.lastCorporal
+                      );
+                    }
+                    this.newEvaluation.altura = this.lastAv.altura;
+                    this.newEvaluation.peso = this.lastAv.peso;
+                    this.newEvaluation.punho = this.lastCorporal.punho;
+                    this.newEvaluation.joelho = this.lastCorporal.joelho;
+                  }
+                );
+
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
           this.newEvaluation.idade = this.age;
@@ -204,6 +245,37 @@ export class TranWeltmanComponent implements OnInit {
     // Help Dialog
     openHelpDialog(type): void {
       this.dialogService.openHelp(type);
+    }
+
+
+
+    openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
+      const options = {
+        daysAv,
+        daysCorporal,
+        newAv,
+        newCorporal,
+        lastAv,
+        lastCorporal,
+        idade: this.age,
+        sexo: this.student.sexo,
+        id: this.student.id
+      };
+      this.dialogService.openMedidas(options);
+      this.dialogService.confirmedMedidas().subscribe(
+        result => {
+          if (result) {
+            this.newEvaluation.altura = result.altura;
+            this.newEvaluation.peso = result.peso;
+            this.newEvaluation.punho = result.punho;
+            this.newEvaluation.joelho = result.joelho;
+            this.openSnackBar('Dados atualizados com sucesso', '');
+            this.addEvaluation();
+          } else {
+            this.closeInput();
+          }
+        }
+      );
     }
 
 }

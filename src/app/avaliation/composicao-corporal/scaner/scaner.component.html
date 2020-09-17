@@ -123,16 +123,32 @@
                         <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">Total</th>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('Qualidade Muscular')">Qualidade Muscular</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{getTotal(evaluation[pointer-1]) | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{getTotal(evaluation[pointer]) | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
+                        <th><span (click)="openDialog('Total Qualidade Muscular')">Qualidade Muscular</span></th>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].total_qualidade | number: '': locale}}</td>
+                                                <td *ngIf="editPointer==1 && editAv">
+                            <input name="total_qualidade" #total_qualidade="ngModel" [(ngModel)]="newEvaluation.total_qualidade" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].total_qualidade | number: '': locale}}</td>
+                                                <td *ngIf="editPointer==0 && editAv">
+                            <input name="total_qualidade" #total_qualidade="ngModel" [(ngModel)]="newEvaluation.total_qualidade" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="addEval">
+                            <input name="total_qualidade" #total_qualidade="ngModel" [(ngModel)]="newEvaluation.total_qualidade" type="number">
+                        </td>
                     </tr>
                     <tr>
-                        <th><span (click)="openDialog('% Gordura')">% Gordura</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{getTotalPerc(evaluation[pointer-1]) | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{getTotalPerc(evaluation[pointer]) | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
+                        <th><span (click)="openDialog('Total % Gordura')">% Gordura</span></th>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].total_percent | number: '': locale}}</td>
+                                                <td *ngIf="editPointer==1 && editAv">
+                            <input name="total_percent" #total_percent="ngModel" [(ngModel)]="newEvaluation.total_percent" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].total_percent | number: '': locale}}</td>
+                                                <td *ngIf="editPointer==0 && editAv">
+                            <input name="total_percent" #total_percent="ngModel" [(ngModel)]="newEvaluation.total_percent" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="addEval">
+                            <input name="total_percent" #total_percent="ngModel" [(ngModel)]="newEvaluation.total_percent" type="number">
+                        </td>
                     </tr>
 
                     <tr>

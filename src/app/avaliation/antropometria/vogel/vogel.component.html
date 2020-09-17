@@ -56,21 +56,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="addEval">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span></th>
+                        <th i18n><span (click)="openHelpDialog('Cintura')">Cintura</span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">
                             <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number" (focus)="$event.target.select()">
@@ -83,6 +69,21 @@
                             <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
                         </td>
                     </tr>
+                    <tr>
+                        <th i18n><span (click)="openHelpDialog('Linha Umbilical')">Linha Umbilical</span></th>
+                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==1 && editAv">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
+                        <td *ngIf="editPointer==0 && editAv">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
+                        </td>
+                        <td *ngIf="addEval">
+                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number">
+                        </td>
+                    </tr>
+
                     <tr>
                         <th i18n><span (click)="openHelpDialog('Quadril')">Quadril</span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].quadril | number: '': locale}}</td>
@@ -137,12 +138,10 @@
         </form>
         <br />
         <hr />
-        <div *ngIf="selectedEvaluation">
-            <h4 style="text-align: center; color: blue;">
-                {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-            </h4>
+        <div *ngIf="selectedEvaluation && evaluation.length > 0">
+
             <div *ngIf="showChart">
-                <div style="text-align: center; color: blue;">
+                <div style="text-align: center; color: white;">
                     <div>
                         <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
                             <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
@@ -164,7 +163,7 @@
                     </div>
                 </div>
                 <!-- charts -->
-                <div class="chart-pie" *ngIf="chartSelected=='pie'">
+                <div class="chart-pie" *ngIf="chartSelected=='pie' && !editAv">
                     <app-chart-pie [values]="single"></app-chart-pie>
                     <app-chart-pie [values]="single2"></app-chart-pie>
                 </div>

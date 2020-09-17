@@ -263,7 +263,7 @@ export class ProtcolosDobrasService {
       console.table(morfo);
       this.gorduraDesejada = gorduraDesejada;
       this.morfo = morfo;
-      // Precisa da formula
+      // Precisa da formula   (alterei a altura de m para cm)
       this.perGordura = 0.173 * +morfo.quadril + 105.328 * Math.log10(+morfo.peso) - 0.515 * +morfo.altura
                         - 1.574 * +morfo.antebracod - 0.533 * +morfo.pescoco - 0.2 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 35.6;
       const answer = this.createAnswer();

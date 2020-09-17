@@ -17,6 +17,7 @@ export class DialogMedidas {
     erroPunho = false;
     erroJoelho = false;
     erro = false;
+    
     constructor(
       public dialogRef: MatDialogRef<DialogMedidas>,
       @Inject(MAT_DIALOG_DATA) public data,

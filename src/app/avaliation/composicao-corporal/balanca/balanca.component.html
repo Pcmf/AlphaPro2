@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span (click)="openDialog('Peso')">Peso <small>(Kg)</small></span></th>
+                        <th><span (click)="openDialog('Peso Corporal')">Peso Corporal<small>(Kg)</small></span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                             {{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">
@@ -98,9 +98,6 @@
                             <input name="gordura_visceral" #gordura_visceral="ngModel" [(ngModel)]="newEvaluation.gordura_visceral" type="number">
                         </td>
                     </tr>
-                    <tr class="form-subtitle">
-                        <td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
-                    </tr>
                     <tr>
                         <th><span (click)="openDialog('Massa Magra')">Massa Magra <small>(kg)</small></span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
@@ -138,7 +135,9 @@
                             <input name="massa_muscular" #massa_muscular="ngModel" [(ngModel)]="newEvaluation.massa_muscular" type="number">
                         </td>
                     </tr>
-
+                    <tr class="form-subtitle">
+                        <td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
+                    </tr>
                     <tr>
                         <th><span (click)="openDialog('Membros Superiores Dir')">Membros Superiores Dir
                                 <small>(kg)</small></span></th>
@@ -233,9 +232,9 @@
                             <input name="mm_tronco" #mm_tronco="ngModel" [(ngModel)]="newEvaluation.mm_tronco" type="number">
                         </td>
                     </tr>
-                    <tr class="form-subtitle">
+<!--                     <tr class="form-subtitle">
                         <td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th><span (click)="openDialog('Peso Ósseo')">Peso Ósseo <small>(Kg)</small></span></th>
                         <td *ngIf="pointer>=1 && !addEval  && editPointer!=1">
@@ -274,9 +273,9 @@
                         </td>
                     </tr>
 
-                    <tr class="form-subtitle">
+<!--                     <tr class="form-subtitle">
                         <td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
                         <th><span (click)="openDialog('Reactância')">Reactância <small>(Ohms)</small></span></th>
@@ -315,9 +314,9 @@
                         </td>
                     </tr>
 
-                    <tr class="form-sub-title>">
+<!--                     <tr class="form-sub-title>">
                         <td [attr.colspan]="pointer>=1 ? 3 : 2">&nbsp;</td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
                         <th><span (click)="openDialog('Água Corporal Total')">Água Corporal Total

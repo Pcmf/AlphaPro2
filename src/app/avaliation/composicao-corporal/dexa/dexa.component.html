@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th><span (click)="openDialog('Peso')">Peso</span></th>
+                        <th><span (click)="openDialog('Peso Corporal')">Peso Corporal</span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                             {{evaluation[pointer-1].peso | number: '': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">

@@ -39,9 +39,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -50,9 +51,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -60,9 +62,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -70,13 +73,13 @@
                             <tr>
                                 <th>Graus</th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vacabig | number: '': locale}}</td>
+                                    {{oldData[pointer-1].vacabig | number: '': locale}}&deg;</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <input type="number" name="vacabig" #vacabig="ngModel"
                                         [(ngModel)]="newData.vacabig">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
-                                    {{oldData[pointer].vacabig | number: '': locale}}</td>
+                                    {{oldData[pointer].vacabig | number: '': locale}}&deg;</td>
                                 <td *ngIf="editPointer==0 && editAv">
                                     <input type="number" name="vacabig" #vacabig="ngModel"
                                         [(ngModel)]="newData.vacabig">
@@ -93,9 +96,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -104,9 +108,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -114,9 +119,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vacabr="ngModel" name="vacabr" [(ngModel)]="newData.vacabr"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -127,16 +133,19 @@
                                         (click)="openDialog('Ombros')">OMBROS</span></td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Elevação de Ombros')">Elevação</span></th>
+                                <th><span (click)="openDialog('Elevado(a) de Ombros')">Elevado(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vaombroelevacao}}</td>
+                                    {{oldData[pointer-1].vaombroelevacao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombroelevacao="ngModel" name="vaombroelevacao"
                                             [(ngModel)]="newData.vaombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -145,9 +154,11 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombroelevacao="ngModel" name="vaombroelevacao"
                                             [(ngModel)]="newData.vaombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -155,24 +166,29 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombroelevacao="ngModel" name="vaombroelevacao"
                                             [(ngModel)]="newData.vaombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Depressão de Ombros')">Depressão</span></th>
+                                <th><span (click)="openDialog('Deprimido(a) de Ombros')">Deprimido(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vaombrodeprecao}}</td>
+                                    {{oldData[pointer-1].vaombrodeprecao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombrodeprecao="ngModel" name="vaombrodeprecao"
                                             [(ngModel)]="newData.vaombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -181,9 +197,11 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombrodeprecao="ngModel" name="vaombrodeprecao"
                                             [(ngModel)]="newData.vaombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -191,9 +209,11 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaombrodeprecao="ngModel" name="vaombrodeprecao"
                                             [(ngModel)]="newData.vaombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -211,9 +231,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncoinclinacao="ngModel" name="vatroncoinclinacao"
                                             [(ngModel)]="newData.vatroncoinclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -222,9 +243,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncoinclinacao="ngModel" name="vatroncoinclinacao"
                                             [(ngModel)]="newData.vatroncoinclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -232,9 +254,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncoinclinacao="ngModel" name="vatroncoinclinacao"
                                             [(ngModel)]="newData.vatroncoinclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -242,20 +265,20 @@
                             <tr>
                                 <th>Graus</th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vatroncoinclinacaog | number: '': locale}}</td>
+                                    {{oldData[pointer-1].vatroncoinclinacaog | number: '': locale}}&deg;</td>
                                 <td *ngIf="editPointer==1 && editAv">
-                                    <input type="number" name="vatrocoinclinacaog" #vatrocoinclinacaog="ngModel"
-                                        [(ngModel)]="newData.vatrocoinclinacaog">
+                                    <input type="number" name="vatroncoinclinacaog" #vatroncoinclinacaog="ngModel"
+                                        [(ngModel)]="newData.vatroncoinclinacaog">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
-                                    {{oldData[pointer].vatroncoinclinacaog | number: '': locale}}</td>
+                                    {{oldData[pointer].vatroncoinclinacaog | number: '': locale}}&deg;</td>
                                 <td *ngIf="editPointer==0 && editAv">
-                                    <input type="number" name="vatrocoinclinacaog" #vatrocoinclinacaog="ngModel"
-                                        [(ngModel)]="newData.vatrocoinclinacaog">
+                                    <input type="number" name="vatroncoinclinacaog" #vatroncoinclinacaog="ngModel"
+                                        [(ngModel)]="newData.vatroncoinclinacaog">
                                 </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vatrocoinclinacaog" #vatrocoinclinacaog="ngModel"
-                                        [(ngModel)]="newData.vatrocoinclinacaog">
+                                    <input type="number" name="vatroncoinclinacaog" #vatroncoinclinacaog="ngModel"
+                                        [(ngModel)]="newData.vatroncoinclinacaog">
                                 </td>
                             </tr>
                             <tr>
@@ -266,9 +289,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncorotacao="ngModel" name="vatroncorotacao"
                                             [(ngModel)]="newData.vatroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -277,9 +301,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncorotacao="ngModel" name="vatroncorotacao"
                                             [(ngModel)]="newData.vatroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -287,9 +312,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatroncorotacao="ngModel" name="vatroncorotacao"
                                             [(ngModel)]="newData.vatroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -297,10 +323,10 @@
                             <!--   ANGULO DE THALES -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Angulo de Thales')">ANGULO DE THALES</span></td>
+                                        (click)="openDialog('Ângulo de Thales')">ÂNGULO DE THALES</span></td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Angulo de Thales')">Angulo Maior</span></th>
+                                <th><span (click)="openDialog('Ângulo de Thales')">Ângulo Maior</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vathales}}
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
@@ -384,9 +410,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapelverotacao="ngModel" name="vapelverotacao"
                                             [(ngModel)]="newData.vapelverotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -395,9 +422,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapelverotacao="ngModel" name="vapelverotacao"
                                             [(ngModel)]="newData.vapelverotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -405,9 +433,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapelverotacao="ngModel" name="vapelverotacao"
                                             [(ngModel)]="newData.vapelverotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -425,7 +454,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvalgo="ngModel" name="vaquadrilvalgo"
                                             [(ngModel)]="newData.vaquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -436,7 +466,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvalgo="ngModel" name="vaquadrilvalgo"
                                             [(ngModel)]="newData.vaquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -446,7 +477,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvalgo="ngModel" name="vaquadrilvalgo"
                                             [(ngModel)]="newData.vaquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -461,7 +493,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvaro="ngModel" name="vaquadrilvaro"
                                             [(ngModel)]="newData.vaquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -472,7 +505,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvaro="ngModel" name="vaquadrilvaro"
                                             [(ngModel)]="newData.vaquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -482,7 +516,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vaquadrilvaro="ngModel" name="vaquadrilvaro"
                                             [(ngModel)]="newData.vaquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -502,7 +537,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovalgo="ngModel" name="vajoelhovalgo"
                                             [(ngModel)]="newData.vajoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -513,7 +549,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovalgo="ngModel" name="vajoelhovalgo"
                                             [(ngModel)]="newData.vajoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -523,7 +560,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovalgo="ngModel" name="vajoelhovalgo"
                                             [(ngModel)]="newData.vajoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -538,7 +576,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovaro="ngModel" name="vajoelhovaro"
                                             [(ngModel)]="newData.vajoelhovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -549,7 +588,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovaro="ngModel" name="vajoelhovaro"
                                             [(ngModel)]="newData.vajoelhovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -559,7 +599,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vajoelhovaro="ngModel" name="vajoelhovaro"
                                             [(ngModel)]="newData.vajoelhovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -580,7 +621,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelalateralizada="ngModel" name="vapatelalateralizada"
                                             [(ngModel)]="newData.vapatelalateralizada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -591,7 +632,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelalateralizada="ngModel" name="vapatelalateralizada"
                                             [(ngModel)]="newData.vapatelalateralizada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -601,7 +642,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelalateralizada="ngModel" name="vapatelalateralizada"
                                             [(ngModel)]="newData.vapatelalateralizada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -616,7 +657,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelamedializada="ngModel" name="vapatelamedializada"
                                             [(ngModel)]="newData.vapatelamedializada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -627,7 +668,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelamedializada="ngModel" name="vapatelamedializada"
                                             [(ngModel)]="newData.vapatelamedializada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -637,7 +678,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelamedializada="ngModel" name="vapatelamedializada"
                                             [(ngModel)]="newData.vapatelamedializada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -652,7 +693,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelaelevada="ngModel" name="vapatelaelevada"
                                             [(ngModel)]="newData.vapatelaelevada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -663,7 +704,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelaelevada="ngModel" name="vapatelaelevada"
                                             [(ngModel)]="newData.vapatelaelevada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -673,7 +714,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapatelaelevada="ngModel" name="vapatelaelevada"
                                             [(ngModel)]="newData.vapatelaelevada" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -686,7 +727,7 @@
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
                                         (click)="openDialog('Perna')">PERNA</span></td>
                             </tr>
-                            <tr>
+<!--                             <tr>
                                 <th><span (click)="openDialog('Perna Valgo')">Valgo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vapernavalgo}}
                                 </td>
@@ -694,7 +735,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavalgo="ngModel" name="vapernavalgo"
                                             [(ngModel)]="newData.vapernavalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -705,7 +746,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavalgo="ngModel" name="vapernavalgo"
                                             [(ngModel)]="newData.vapernavalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -715,13 +756,13 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavalgo="ngModel" name="vapernavalgo"
                                             [(ngModel)]="newData.vapernavalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <th><span (click)="openDialog('Perna Varo')">Varo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vapernavaro}}
@@ -730,7 +771,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavaro="ngModel" name="vapernavaro"
                                             [(ngModel)]="newData.vapernavaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -741,7 +783,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavaro="ngModel" name="vapernavaro"
                                             [(ngModel)]="newData.vapernavaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -751,7 +794,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernavaro="ngModel" name="vapernavaro"
                                             [(ngModel)]="newData.vapernavaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -766,7 +810,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotinterna="ngModel" name="vapernarotinterna"
                                             [(ngModel)]="newData.vapernarotinterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -777,7 +821,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotinterna="ngModel" name="vapernarotinterna"
                                             [(ngModel)]="newData.vapernarotinterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -787,7 +831,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotinterna="ngModel" name="vapernarotinterna"
                                             [(ngModel)]="newData.vapernarotinterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -802,7 +846,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotexterna="ngModel" name="vapernarotexterna"
                                             [(ngModel)]="newData.vapernarotexterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -813,7 +857,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotexterna="ngModel" name="vapernarotexterna"
                                             [(ngModel)]="newData.vapernarotexterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -823,7 +867,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapernarotexterna="ngModel" name="vapernarotexterna"
                                             [(ngModel)]="newData.vapernarotexterna" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -843,7 +887,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovalgo="ngModel" name="vatornozelovalgo"
                                             [(ngModel)]="newData.vatornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -854,7 +899,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovalgo="ngModel" name="vatornozelovalgo"
                                             [(ngModel)]="newData.vatornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -864,7 +910,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovalgo="ngModel" name="vatornozelovalgo"
                                             [(ngModel)]="newData.vatornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -879,7 +926,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovaro="ngModel" name="vatornozelovaro"
                                             [(ngModel)]="newData.vatornozelovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -890,7 +938,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovaro="ngModel" name="vatornozelovaro"
                                             [(ngModel)]="newData.vatornozelovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -900,7 +949,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vatornozelovaro="ngModel" name="vatornozelovaro"
                                             [(ngModel)]="newData.vatornozelovaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -921,7 +971,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeabduzidos="ngModel" name="vapeabduzidos"
                                             [(ngModel)]="newData.vapeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -932,7 +983,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeabduzidos="ngModel" name="vapeabduzidos"
                                             [(ngModel)]="newData.vapeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -942,7 +994,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeabduzidos="ngModel" name="vapeabduzidos"
                                             [(ngModel)]="newData.vapeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -957,7 +1010,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeaduzidos="ngModel" name="vapeaduzidos"
                                             [(ngModel)]="newData.vapeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -968,7 +1022,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeaduzidos="ngModel" name="vapeaduzidos"
                                             [(ngModel)]="newData.vapeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -978,7 +1033,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeaduzidos="ngModel" name="vapeaduzidos"
                                             [(ngModel)]="newData.vapeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -993,7 +1049,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeplano="ngModel" name="vapeplano"
                                             [(ngModel)]="newData.vapeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1004,7 +1061,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeplano="ngModel" name="vapeplano"
                                             [(ngModel)]="newData.vapeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1014,7 +1072,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeplano="ngModel" name="vapeplano"
                                             [(ngModel)]="newData.vapeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1029,7 +1088,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapecavo="ngModel" name="vapecavo" [(ngModel)]="newData.vapecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1040,7 +1100,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapecavo="ngModel" name="vapecavo" [(ngModel)]="newData.vapecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1050,7 +1111,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapecavo="ngModel" name="vapecavo" [(ngModel)]="newData.vapecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1065,7 +1127,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeequino="ngModel" name="vapeequino"
                                             [(ngModel)]="newData.vapeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1076,7 +1139,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeequino="ngModel" name="vapeequino"
                                             [(ngModel)]="newData.vapeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1086,7 +1150,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vapeequino="ngModel" name="vapeequino"
                                             [(ngModel)]="newData.vapeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Esquerda">Bilateral</mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1169,7 +1234,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcabeca="ngModel" name="vlcabeca" [(ngModel)]="newData.vlcabeca"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Projetada">Projetada</mat-option>
                                             <mat-option value="Retraida">Retraida</mat-option>
                                         </mat-select>
@@ -1180,7 +1245,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcabeca="ngModel" name="vlcabeca" [(ngModel)]="newData.vlcabeca"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Projetada">Projetada</mat-option>
                                             <mat-option value="Retraida">Retraida</mat-option>
                                         </mat-select>
@@ -1190,7 +1255,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcabeca="ngModel" name="vlcabeca" [(ngModel)]="newData.vlcabeca"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Projetada">Projetada</mat-option>
                                             <mat-option value="Retraida">Retraida</mat-option>
                                         </mat-select>
@@ -1210,8 +1275,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcervical="ngModel" name="vlcervical"
                                             [(ngModel)]="newData.vlcervical" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1221,8 +1286,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcervical="ngModel" name="vlcervical"
                                             [(ngModel)]="newData.vlcervical" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1231,8 +1296,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcervical="ngModel" name="vlcervical"
                                             [(ngModel)]="newData.vlcervical" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1251,7 +1316,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroprotraidos="ngModel" name="vlombroprotraidos"
                                             [(ngModel)]="newData.vlombroprotraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1262,7 +1328,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroprotraidos="ngModel" name="vlombroprotraidos"
                                             [(ngModel)]="newData.vlombroprotraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1272,7 +1339,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroprotraidos="ngModel" name="vlombroprotraidos"
                                             [(ngModel)]="newData.vlombroprotraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1287,7 +1355,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroretraidos="ngModel" name="vlombroretraidos"
                                             [(ngModel)]="newData.vlombroretraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1298,7 +1367,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroretraidos="ngModel" name="vlombroretraidos"
                                             [(ngModel)]="newData.vlombroretraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1308,7 +1378,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroretraidos="ngModel" name="vlombroretraidos"
                                             [(ngModel)]="newData.vlombroretraidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1316,15 +1387,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombros Anteriorizados (rotação interna)')">Anteriorizados
-                                        <br /><small>(rotação interna)</small></span></th>
+                                <th><span (click)="openDialog('Ombros Rotação Interna')">Rotação Interna</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vlombroanteriorizados}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroanteriorizados="ngModel" name="vlombroanteriorizados"
                                             [(ngModel)]="newData.vlombroanteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1335,7 +1406,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroanteriorizados="ngModel" name="vlombroanteriorizados"
                                             [(ngModel)]="newData.vlombroanteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1345,14 +1417,15 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroanteriorizados="ngModel" name="vlombroanteriorizados"
                                             [(ngModel)]="newData.vlombroanteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
-                            <tr>
+<!--                             <tr>
                                 <th><span
                                         (click)="openDialog('Ombros Posteriorizados (rotação externa)')">Posteriorizados
                                         <br /><small>(rotação interna)</small></span></th>
@@ -1362,7 +1435,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroposteriorizados="ngModel" name="vlombroposteriorizados"
                                             [(ngModel)]="newData.vlombroposteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1374,7 +1448,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroposteriorizados="ngModel" name="vlombroposteriorizados"
                                             [(ngModel)]="newData.vlombroposteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
@@ -1384,13 +1459,14 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlombroposteriorizados="ngModel" name="vlombroposteriorizados"
                                             [(ngModel)]="newData.vlombroposteriorizados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Bilateral">Bilateral</mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
-                            </tr>
+                            </tr> -->
 
                             <!-- REGIÃO DORSAL -->
                             <tr class="table-row-subtitle">
@@ -1405,8 +1481,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaodorsal="ngModel" name="vlregiaodorsal"
                                             [(ngModel)]="newData.vlregiaodorsal" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hipercifótica">Hipercifótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hipercifose">Hipercifose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1416,8 +1492,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaodorsal="ngModel" name="vlregiaodorsal"
                                             [(ngModel)]="newData.vlregiaodorsal" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hipercifótica">Hipercifótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hipercifose">Hipercifose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1426,8 +1502,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaodorsal="ngModel" name="vlregiaodorsal"
                                             [(ngModel)]="newData.vlregiaodorsal" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hipercifótica">Hipercifótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hipercifose">Hipercifose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1446,9 +1522,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltroncorotacao="ngModel" name="vltroncorotacao"
                                             [(ngModel)]="newData.vltroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
-                                            <mat-option value="Posteriorizado">Posteriorizado</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1457,9 +1533,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltroncorotacao="ngModel" name="vltroncorotacao"
                                             [(ngModel)]="newData.vltroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
-                                            <mat-option value="Posteriorizado">Posteriorizado</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1467,9 +1543,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltroncorotacao="ngModel" name="vltroncorotacao"
                                             [(ngModel)]="newData.vltroncorotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Anteriorizado">Anteriorizado</mat-option>
-                                            <mat-option value="Posteriorizado">Posteriorizado</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1487,9 +1563,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlabdomem="ngModel" name="vlabdomem"
                                             [(ngModel)]="newData.vlabdomem" placeholder="selecione">
+                                            <mat-option></mat-option>
                                             <mat-option value="Ptose">Ptose</mat-option>
-                                            <mat-option value="inf">inf</mat-option>
-                                            <mat-option value="total">total</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1498,9 +1573,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlabdomem="ngModel" name="vlabdomem"
                                             [(ngModel)]="newData.vlabdomem" placeholder="selecione">
+                                            <mat-option></mat-option>
                                             <mat-option value="Ptose">Ptose</mat-option>
-                                            <mat-option value="inf">inf</mat-option>
-                                            <mat-option value="total">total</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1508,9 +1582,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlabdomem="ngModel" name="vlabdomem"
                                             [(ngModel)]="newData.vlabdomem" placeholder="selecione">
+                                            <mat-option></mat-option>
                                             <mat-option value="Ptose">Ptose</mat-option>
-                                            <mat-option value="inf">inf</mat-option>
-                                            <mat-option value="total">total</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -1528,8 +1601,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaolombar="ngModel" name="vlregiaolombar"
                                             [(ngModel)]="newData.vlregiaolombar" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1539,8 +1612,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaolombar="ngModel" name="vlregiaolombar"
                                             [(ngModel)]="newData.vlregiaolombar" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1549,8 +1622,8 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlregiaolombar="ngModel" name="vlregiaolombar"
                                             [(ngModel)]="newData.vlregiaolombar" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
-                                            <mat-option value="Hiperlordótica">Hiperlordótica</mat-option>
+                                            <mat-option></mat-option>
+                                            <mat-option value="Hiperlordose">Hiperlordose</mat-option>
                                             <mat-option value="Retificada">Retificada</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -1569,7 +1642,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlquadril="ngModel" name="vlquadril"
                                             [(ngModel)]="newData.vlquadril" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Antepulsão">Antepulsão</mat-option>
                                             <mat-option value="Retropulsão">Retropulsão</mat-option>
                                             <mat-option value="Anteversão">Anteversão</mat-option>
@@ -1582,7 +1655,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlquadril="ngModel" name="vlquadril"
                                             [(ngModel)]="newData.vlquadril" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Antepulsão">Antepulsão</mat-option>
                                             <mat-option value="Retropulsão">Retropulsão</mat-option>
                                             <mat-option value="Anteversão">Anteversão</mat-option>
@@ -1594,7 +1667,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlquadril="ngModel" name="vlquadril"
                                             [(ngModel)]="newData.vlquadril" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Antepulsão">Antepulsão</mat-option>
                                             <mat-option value="Retropulsão">Retropulsão</mat-option>
                                             <mat-option value="Anteversão">Anteversão</mat-option>
@@ -1609,14 +1682,14 @@
                                         (click)="openDialog('Joelhos')">JOELHOS</span></td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Joelhos Flexos')">Flexos</span></th>
+                                <th><span (click)="openDialog('Joelhos Flexum')">Flexum</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vljoelhosflexos}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosflexos="ngModel" name="vljoelhosflexos"
                                             [(ngModel)]="newData.vljoelhosflexos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1627,7 +1700,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosflexos="ngModel" name="vljoelhosflexos"
                                             [(ngModel)]="newData.vljoelhosflexos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1637,7 +1710,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosflexos="ngModel" name="vljoelhosflexos"
                                             [(ngModel)]="newData.vljoelhosflexos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1645,14 +1718,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Joelhos Recurvados')">Recurvados</span></th>
+                                <th><span (click)="openDialog('Joelhos Recurvatum')">Recurvatum</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vljoelhosrecurvados}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosrecurvados="ngModel" name="vljoelhosrecurvados"
                                             [(ngModel)]="newData.vljoelhosrecurvados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1663,7 +1736,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosrecurvados="ngModel" name="vljoelhosrecurvados"
                                             [(ngModel)]="newData.vljoelhosrecurvados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1673,7 +1746,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vljoelhosrecurvados="ngModel" name="vljoelhosrecurvados"
                                             [(ngModel)]="newData.vljoelhosrecurvados" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1682,7 +1755,7 @@
                             </tr>
 
                             <!-- TORNOZELOS -->
-                            <tr class="table-row-subtitle">
+<!--                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
                                         (click)="openDialog('Tornozelos')">TORNOZELOS</span></td>
                             </tr>
@@ -1694,7 +1767,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvalgo="ngModel" name="vltornozelosvalgo"
                                             [(ngModel)]="newData.vltornozelosvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1705,7 +1778,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvalgo="ngModel" name="vltornozelosvalgo"
                                             [(ngModel)]="newData.vltornozelosvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1715,7 +1788,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvalgo="ngModel" name="vltornozelosvalgo"
                                             [(ngModel)]="newData.vltornozelosvalgo" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1730,7 +1803,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvaro="ngModel" name="vltornozelosvaro"
                                             [(ngModel)]="newData.vltornozelosvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1741,7 +1814,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvaro="ngModel" name="vltornozelosvaro"
                                             [(ngModel)]="newData.vltornozelosvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1751,13 +1824,13 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vltornozelosvaro="ngModel" name="vltornozelosvaro"
                                             [(ngModel)]="newData.vltornozelosvaro" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
-                            </tr>
+                            </tr> -->
 
                             <!-- PÈS -->
                             <tr class="table-row-subtitle">
@@ -1772,7 +1845,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeplanos="ngModel" name="vlpeplanos"
                                             [(ngModel)]="newData.vlpeplanos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1783,7 +1856,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeplanos="ngModel" name="vlpeplanos"
                                             [(ngModel)]="newData.vlpeplanos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1793,7 +1866,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeplanos="ngModel" name="vlpeplanos"
                                             [(ngModel)]="newData.vlpeplanos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1801,7 +1874,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Pé Cavos')">Cavos</span></th>
+                                <th><span (click)="openDialog('Pé Cavo')">Cavo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vlpecavos}}
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
@@ -1809,7 +1882,7 @@
 
                                         <mat-select #vlpecavos="ngModel" name="vlpecavos"
                                             [(ngModel)]="newData.vlpecavos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1820,7 +1893,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpecavos="ngModel" name="vlpecavos"
                                             [(ngModel)]="newData.vlpecavos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1830,7 +1903,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpecavos="ngModel" name="vlpecavos"
                                             [(ngModel)]="newData.vlpecavos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1845,7 +1918,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeequino="ngModel" name="vlpeequino"
                                             [(ngModel)]="newData.vlpeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1856,7 +1929,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeequino="ngModel" name="vlpeequino"
                                             [(ngModel)]="newData.vlpeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1866,7 +1939,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlpeequino="ngModel" name="vlpeequino"
                                             [(ngModel)]="newData.vlpeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1938,18 +2011,19 @@
                         <tbody>
                             <!-- CABEÇA -->
                             <tr class="table-row-subtitle">
-                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Cabeça')">CABEÇA</span></td>
+                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">
+                                    <span (click)="openDialog('Cabeça')">CABEÇA</span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça Inclinação')">Inclinação</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpcabecainclinacao}}</td>
+                                    {{oldData[pointer-1].vpcabecainclinacao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                             [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1960,7 +2034,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                             [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1970,7 +2044,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                             [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1985,7 +2059,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecarotacao="ngModel" name="vpcabecarotacao"
                                             [(ngModel)]="newData.vpcabecarotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -1996,7 +2070,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecarotacao="ngModel" name="vpcabecarotacao"
                                             [(ngModel)]="newData.vpcabecarotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2006,7 +2080,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpcabecarotacao="ngModel" name="vpcabecarotacao"
                                             [(ngModel)]="newData.vpcabecarotacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2015,18 +2089,18 @@
                             </tr>
                             <!-- ESCOLIOSE CERVICAL -->
                             <tr class="table-row-subtitle">
-                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escoliose Cervical')">ESCOLIOSE CERVICAL</span></td>
+                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">
+                                    <span (click)="openDialog('Escoliose Cervical')">ESCOLIOSE CERVICAL (CONVEXIDADE) </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Cervical')">Escoliose Cervical</span></th>
-                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vpescoliose}}
-                                </td>
+                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vpescoliose}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliose="ngModel" name="vpescoliose"
                                             [(ngModel)]="newData.vpescoliose" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2037,7 +2111,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliose="ngModel" name="vpescoliose"
                                             [(ngModel)]="newData.vpescoliose" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2047,7 +2121,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliose="ngModel" name="vpescoliose"
                                             [(ngModel)]="newData.vpescoliose" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2057,28 +2131,37 @@
                             <tr>
                                 <th>Graus</th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpescolioseg | number: '': locale}}</td>
+                                    {{oldData[pointer-1].vpescolioseg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
+                                </td>                                
                                 <td *ngIf="pointer>=0 && editPointer!=0">
-                                    {{oldData[pointer].vpescolioseg | number: '': locale}}</td>
+                                    {{oldData[pointer].vpescolioseg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
+                                </td>                                
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel"
-                                        [(ngModel)]="newData.vpescolioseg">
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
                                 </td>
                             </tr>
                             <!-- OMBROS -->
                             <tr class="table-row-subtitle">
-                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Ombros')">OMBROS</span></td>
+                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">
+                                    <span (click)="openDialog('Ombros')">OMBROS</span>
+                                </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombros Elevação')">Elevação</span></th>
+                                <th><span (click)="openDialog('Ombros Elevado(a)')">Elevado(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpombroelevacao}}</td>
+                                    {{oldData[pointer-1].vpombroelevacao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombroelevacao="ngModel" name="vpombroelevacao"
                                             [(ngModel)]="newData.vpombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2089,7 +2172,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombroelevacao="ngModel" name="vpombroelevacao"
                                             [(ngModel)]="newData.vpombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2099,7 +2182,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombroelevacao="ngModel" name="vpombroelevacao"
                                             [(ngModel)]="newData.vpombroelevacao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2107,14 +2190,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Ombros Depressão')">Depressão</span></th>
+                                <th><span (click)="openDialog('Ombros Deprimido(a)')">Deprimido(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpombrodeprecao}}</td>
+                                    {{oldData[pointer-1].vpombrodeprecao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombrodeprecao="ngModel" name="vpombrodeprecao"
                                             [(ngModel)]="newData.vpombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2125,7 +2209,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombrodeprecao="ngModel" name="vpombrodeprecao"
                                             [(ngModel)]="newData.vpombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2135,7 +2219,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpombrodeprecao="ngModel" name="vpombrodeprecao"
                                             [(ngModel)]="newData.vpombrodeprecao" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2145,19 +2229,23 @@
 
                             <!-- ESCÁPULAS -->
                             <tr class="table-row-subtitle">
-                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escápulas')">ESCÁPULAS</span></td>
+                                <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">
+                                    <span (click)="openDialog('Escápulas')">ESCÁPULAS</span>
+                                </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Escápulas Elevação')">Elevação</span></th>
+                                <th><span (click)="openDialog('Escápulas Elevado(a)')">Elevado(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpescapulaselevacao}}</td>
+                                    {{oldData[pointer-1].vpescapulaselevacao}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulaselevacao="ngModel" name="vpescapulaselevacao"
                                             [(ngModel)]="newData.vpescapulaselevacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2166,8 +2254,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulaselevacao="ngModel" name="vpescapulaselevacao"
                                             [(ngModel)]="newData.vpescapulaselevacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2175,22 +2265,26 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulaselevacao="ngModel" name="vpescapulaselevacao"
                                             [(ngModel)]="newData.vpescapulaselevacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Escápulas Depressão')">Depressão</span></th>
+                                <th><span (click)="openDialog('Escápulas Deprimido(a)')">Deprimido(a)</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vpescapulasdepressao}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasdepressao="ngModel" name="vpescapulasdepressao"
                                             [(ngModel)]="newData.vpescapulasdepressao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2199,8 +2293,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasdepressao="ngModel" name="vpescapulasdepressao"
                                             [(ngModel)]="newData.vpescapulasdepressao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2208,22 +2304,26 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasdepressao="ngModel" name="vpescapulasdepressao"
                                             [(ngModel)]="newData.vpescapulasdepressao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Escápulas Aladas')">Aladas</span></th>
+                                <th><span (click)="openDialog('Escápulas Alada')">Alada</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vpescapulasaladas}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaladas="ngModel" name="vpescapulasaladas"
                                             [(ngModel)]="newData.vpescapulasaladas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2232,8 +2332,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaladas="ngModel" name="vpescapulasaladas"
                                             [(ngModel)]="newData.vpescapulasaladas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2241,22 +2343,26 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaladas="ngModel" name="vpescapulasaladas"
                                             [(ngModel)]="newData.vpescapulasaladas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Escápulas Abduzidas')">Abduzidas</span></th>
+                                <th><span (click)="openDialog('Escápulas Abduzida')">Abduzida</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vpescapulasabduzidas}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasabduzidas="ngModel" name="vpescapulasabduzidas"
                                             [(ngModel)]="newData.vpescapulasabduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2265,8 +2371,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasabduzidas="ngModel" name="vpescapulasabduzidas"
                                             [(ngModel)]="newData.vpescapulasabduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2274,22 +2382,26 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasabduzidas="ngModel" name="vpescapulasabduzidas"
                                             [(ngModel)]="newData.vpescapulasabduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Escápulas Aduzidas')">Aduzidas</span></th>
+                                <th><span (click)="openDialog('Escápulas Aduzida')">Aduzida</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vpescapulasaduzidas}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaduzidas="ngModel" name="vpescapulasaduzidas"
                                             [(ngModel)]="newData.vpescapulasaduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2298,8 +2410,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaduzidas="ngModel" name="vpescapulasaduzidas"
                                             [(ngModel)]="newData.vpescapulasaduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2307,8 +2421,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescapulasaduzidas="ngModel" name="vpescapulasaduzidas"
                                             [(ngModel)]="newData.vpescapulasaduzidas" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2317,18 +2433,20 @@
                             <!-- GIBOSIDADE TORÁXICA -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Gibosidade Toráxica')">GIBOSIDADE TORÁXICA</span></td>
+                                        (click)="openDialog('Gibosidade Torácica')">GIBOSIDADE TORÁCICA</span></td>
                             </tr>
                             <tr>
-                                <th><span (click)="openDialog('Gibosidade Toráxica')">Gibosidade Toráxica</span></th>
+                                <th><span (click)="openDialog('Gibosidade Torácica')">Gibosidade Torácica</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vpgibosidade}}
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpgibosidade="ngModel" name="vpgibosidade"
                                             [(ngModel)]="newData.vpgibosidade" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2337,8 +2455,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpgibosidade="ngModel" name="vpgibosidade"
                                             [(ngModel)]="newData.vpgibosidade" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2346,8 +2466,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpgibosidade="ngModel" name="vpgibosidade"
                                             [(ngModel)]="newData.vpgibosidade" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2355,7 +2477,7 @@
                             <!-- ESCOLIOSE DORSAL -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escoliose Dorsal')">ESCOLIOSE DORSAL</span></td>
+                                        (click)="openDialog('Escoliose Dorsal')">ESCOLIOSE DORSAL (CONVEXIDADE) </span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Dorsal')">Escoliose Dorsal</span></th>
@@ -2365,9 +2487,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliosedorsal="ngModel" name="vpescoliosedorsal"
                                             [(ngModel)]="newData.vpescoliosedorsal" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
-                                            <mat-option value="Ausente">Ausente</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2376,9 +2498,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliosedorsal="ngModel" name="vpescoliosedorsal"
                                             [(ngModel)]="newData.vpescoliosedorsal" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
-                                            <mat-option value="Ausente">Ausente</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2386,9 +2508,9 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliosedorsal="ngModel" name="vpescoliosedorsal"
                                             [(ngModel)]="newData.vpescoliosedorsal" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
-                                            <mat-option value="Ausente">Ausente</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2396,19 +2518,25 @@
                             <tr>
                                 <th>Graus</th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpescoliosedorsalg | number: '': locale}}
+                                    {{oldData[pointer-1].vpescoliosedorsalg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
-                                    {{oldData[pointer].vpescoliosedorsalg | number: '': locale}}</td>
+                                    {{oldData[pointer].vpescoliosedorsalg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
+                                </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
-                                        [(ngModel)]="newData.vpescoliosedorsalg">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                             </tr>
                             <!-- ESCOLIOSE LOMBAR -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escoliose Lombar')">ESCOLIOSE LOMBAR</span></td>
+                                        (click)="openDialog('Escoliose Lombar')">ESCOLIOSE LOMBAR (CONVEXIDADE) </span></td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Lombar')">Escoliose Lombar</span></th>
@@ -2418,8 +2546,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescolioselombar="ngModel" name="vpescolioselombar"
                                             [(ngModel)]="newData.vpescolioselombar" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2428,8 +2558,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescolioselombar="ngModel" name="vpescolioselombar"
                                             [(ngModel)]="newData.vpescolioselombar" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2437,8 +2569,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescolioselombar="ngModel" name="vpescolioselombar"
                                             [(ngModel)]="newData.vpescolioselombar" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2446,13 +2580,19 @@
                             <tr>
                                 <th>Graus</th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
-                                    {{oldData[pointer-1].vpescolioselombarg | number: '': locale}}
+                                    {{oldData[pointer-1].vpescolioselombarg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
-                                    {{oldData[pointer].vpescolioselombarg | number: '': locale}}</td>
+                                    {{oldData[pointer].vpescolioselombarg | number: '': locale}}&deg;
+                                </td>
+                                <td *ngIf="editPointer==0 && editAv">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
+                                </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
-                                        [(ngModel)]="newData.vpescolioselombarg">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                             </tr>
                             <!-- PELVE -->
@@ -2468,8 +2608,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppelveinclinacao="ngModel" name="vppelveinclinacao"
                                             [(ngModel)]="newData.vppelveinclinacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2478,8 +2620,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppelveinclinacao="ngModel" name="vppelveinclinacao"
                                             [(ngModel)]="newData.vppelveinclinacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2487,8 +2631,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppelveinclinacao="ngModel" name="vppelveinclinacao"
                                             [(ngModel)]="newData.vppelveinclinacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2501,8 +2647,10 @@
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vppelverotacao="ngModel" name="vppelverotacao"
                                             [(ngModel)]="newData.vppelverotacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                         </mat-form-field>
                                     </td>                               
@@ -2511,8 +2659,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppelverotacao="ngModel" name="vppelverotacao"
                                             [(ngModel)]="newData.vppelverotacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2520,8 +2670,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppelverotacao="ngModel" name="vppelverotacao"
                                             [(ngModel)]="newData.vppelverotacao" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2539,8 +2691,10 @@
                                     <mat-form-field class="form-select-sm">
                                            <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
                                             [(ngModel)]="newData.vpquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2549,8 +2703,10 @@
                                     <mat-form-field class="form-select-sm">
                                            <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
                                             [(ngModel)]="newData.vpquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2558,8 +2714,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
                                             [(ngModel)]="newData.vpquadrilvalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2572,8 +2730,10 @@
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpquadrilvaro="ngModel" name="vpquadrilvaro"
                                             [(ngModel)]="newData.vpquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                         </mat-form-field>
                                     </td>
@@ -2582,8 +2742,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpquadrilvaro="ngModel" name="vpquadrilvaro"
                                             [(ngModel)]="newData.vpquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2591,8 +2753,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpquadrilvaro="ngModel" name="vpquadrilvaro"
                                             [(ngModel)]="newData.vpquadrilvaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2611,8 +2775,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovalgo="ngModel" name="vpjoelhovalgo"
                                             [(ngModel)]="newData.vpjoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2621,8 +2787,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovalgo="ngModel" name="vpjoelhovalgo"
                                             [(ngModel)]="newData.vpjoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2630,8 +2798,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovalgo="ngModel" name="vpjoelhovalgo"
                                             [(ngModel)]="newData.vpjoelhovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2644,8 +2814,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovaro="ngModel" name="vpjoelhovaro"
                                             [(ngModel)]="newData.vpjoelhovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2654,8 +2826,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovaro="ngModel" name="vpjoelhovaro"
                                             [(ngModel)]="newData.vpjoelhovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2663,8 +2837,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpjoelhovaro="ngModel" name="vpjoelhovaro"
                                             [(ngModel)]="newData.vpjoelhovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2683,8 +2859,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovalgo="ngModel" name="vptornozelovalgo"
                                             [(ngModel)]="newData.vptornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2693,8 +2871,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovalgo="ngModel" name="vptornozelovalgo"
                                             [(ngModel)]="newData.vptornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2702,8 +2882,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovalgo="ngModel" name="vptornozelovalgo"
                                             [(ngModel)]="newData.vptornozelovalgo" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2716,8 +2898,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovaro="ngModel" name="vptornozelovaro"
                                             [(ngModel)]="newData.vptornozelovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2726,8 +2910,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovaro="ngModel" name="vptornozelovaro"
                                             [(ngModel)]="newData.vptornozelovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2735,8 +2921,10 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vptornozelovaro="ngModel" name="vptornozelovaro"
                                             [(ngModel)]="newData.vptornozelovaro" placeholder="selecione">
-                                            <mat-option value="Esquerda">Esquerda</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
+                                            <mat-option value="Esquerda">Esquerda</mat-option>
+
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
@@ -2754,7 +2942,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeabduzidos="ngModel" name="vppeabduzidos"
                                             [(ngModel)]="newData.vppeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2765,7 +2953,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeabduzidos="ngModel" name="vppeabduzidos"
                                             [(ngModel)]="newData.vppeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2775,7 +2963,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeabduzidos="ngModel" name="vppeabduzidos"
                                             [(ngModel)]="newData.vppeabduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2790,7 +2978,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeaduzidos="ngModel" name="vppeaduzidos"
                                             [(ngModel)]="newData.vppeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2801,7 +2989,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeaduzidos="ngModel" name="vppeaduzidos"
                                             [(ngModel)]="newData.vppeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2811,7 +2999,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeaduzidos="ngModel" name="vppeaduzidos"
                                             [(ngModel)]="newData.vppeaduzidos" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2826,7 +3014,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeplano="ngModel" name="vppeplano"
                                             [(ngModel)]="newData.vppeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2837,7 +3025,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeplano="ngModel" name="vppeplano"
                                             [(ngModel)]="newData.vppeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2847,14 +3035,14 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeplano="ngModel" name="vppeplano"
                                             [(ngModel)]="newData.vppeplano" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
                             </tr>
-                            <tr>
+<!--                             <tr>
                                 <th><span (click)="openDialog('Pé Cavo')">Cavo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vppecavo}}
                                 </td>
@@ -2862,7 +3050,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppecavo="ngModel" name="vppecavo" [(ngModel)]="newData.vppecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2873,7 +3061,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppecavo="ngModel" name="vppecavo" [(ngModel)]="newData.vppecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2883,7 +3071,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppecavo="ngModel" name="vppecavo" [(ngModel)]="newData.vppecavo"
                                             placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Direito">Direito</mat-option>
                                             <mat-option value="Esquerdo">Esquerdo</mat-option>
                                         </mat-select>
@@ -2898,7 +3086,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeequino="ngModel" name="vppeequino"
                                             [(ngModel)]="newData.vppeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Abduzidos">Abduzidos</mat-option>
                                             <mat-option value="Aduzidos">Aduzidos</mat-option>
                                         </mat-select>
@@ -2909,7 +3097,7 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeequino="ngModel" name="vppeequino"
                                             [(ngModel)]="newData.vppeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Abduzidos">Abduzidos</mat-option>
                                             <mat-option value="Aduzidos">Aduzidos</mat-option>
                                         </mat-select>
@@ -2919,13 +3107,13 @@
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vppeequino="ngModel" name="vppeequino"
                                             [(ngModel)]="newData.vppeequino" placeholder="selecione">
-                                            <mat-option value="Normal">Normal</mat-option>
+                                            <mat-option></mat-option>
                                             <mat-option value="Abduzidos">Abduzidos</mat-option>
                                             <mat-option value="Aduzidos">Aduzidos</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <th>Ações</th>
                                 <td *ngIf="pointer>=1 && !addForm">
@@ -2967,6 +3155,7 @@
                 <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                 </div>
             </mat-tab>
+
             <!--   FOTOS -->
             <mat-tab i18n label="Fotos">
 
@@ -2994,6 +3183,7 @@
                 </table>
 
                 <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    
                     <div class="photo">
                         <div *ngIf="oldData[pointer] && oldData[pointer].fotoa">
                             <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">

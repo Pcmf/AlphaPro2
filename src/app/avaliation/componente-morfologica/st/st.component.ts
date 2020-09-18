@@ -95,7 +95,7 @@ export class StComponent implements OnInit {
       (resp: any[]) => {
         if (resp.length > 0) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
           }
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
@@ -104,8 +104,28 @@ export class StComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.addEval = true;
         } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
         }
+        this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+          (respa: any[]) => {
+            if (respa.length > 0) {
+              this.newEvaluation.joelho = respa[0].joelho;
+              this.newEvaluation.cotovelo = respa[0].cotovelo;
+              this.newEvaluation.bracoc = respa[0].bracoc;
+              this.newEvaluation.pernad = respa[0].pernad;
+            }
+          }
+        );
+        this.dataService.getData('clients/morfo/data/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+          (respm: any[]) => {
+            if (respm.length > 0) {
+              this.newEvaluation.triciptal = respm[0].triciptal;
+              this.newEvaluation.subescapular = respm[0].subescapular;
+              this.newEvaluation.geminal = respm[0].geminal;
+              this.newEvaluation.suprailiaca = respm[0].suprailiaca;
+            }
+          }
+        );
       }
     );
   }

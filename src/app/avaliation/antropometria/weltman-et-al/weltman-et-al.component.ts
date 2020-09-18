@@ -135,7 +135,7 @@ export class WeltmanEtAlComponent implements OnInit {
       resp => {
         if (resp) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! Esta avaliação já tem ' + resp[0].difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
           }
 
                  // Obter os dados da ultima avaliação corporal - punho e joelho
@@ -178,7 +178,7 @@ export class WeltmanEtAlComponent implements OnInit {
           console.log(this.newEvaluation);
           this.addEval = true;
         } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
         }
       }
     );

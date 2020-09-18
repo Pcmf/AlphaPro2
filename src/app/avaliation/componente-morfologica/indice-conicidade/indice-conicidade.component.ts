@@ -38,7 +38,7 @@ export class IndiceConicidadeComponent implements OnInit {
         if (resp.length > 0) {
           this.lastEvaluation = resp[0];
           if (this.lastEvaluation.difdias > 1) {
-            this.openSnackBar('Atenção! Esta avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
           }
         }
       }
@@ -88,7 +88,14 @@ export class IndiceConicidadeComponent implements OnInit {
     this.newEvaluation.altura = this.lastEvaluation.altura;
     this.newEvaluation.peso = this.lastEvaluation.peso;
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addEval = true;
+    this.dataService.getData('clients/corporal/' + this.selectedStudent.id + '/' + this.newEvaluation.data).subscribe(
+      (respa: any[]) => {
+        if (respa.length > 0) {
+          this.newEvaluation.cintura = respa[0].cintura;
+        }
+        this.addEval = true;
+      }
+    );
   }
 
   getIC(evaluation) {

@@ -162,7 +162,7 @@ export class AllDobrasComponent implements OnInit {
       resp => {
         if (resp) {
           if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! A última avaliação de peso e altura já tem ' + resp[0].difdias + ' dias.', '');
+            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
           }
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
@@ -170,7 +170,7 @@ export class AllDobrasComponent implements OnInit {
           console.log(this.newEvaluation);
           this.addEval = true;
         } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação de altura e peso.', '');
+          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
         }
       }
     );
@@ -214,7 +214,7 @@ export class AllDobrasComponent implements OnInit {
   }
 
   delete(evaluation) {
-    this.dataService.delete('clients/morfo/' + this.student.id + '/' + evaluation.data).subscribe(
+    this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
         this.getData();

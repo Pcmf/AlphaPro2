@@ -14,7 +14,7 @@
       <mat-form-field appearance="">
         <label i18n="Label | data de nascimento">Data de Nascimento <small>(dd/mm/aaaa)</small></label>
         <input matInput type="search" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" 
-        name="dt_nasc" mask="00/00/0000" autocomplete="off" 
+        name="dt_nasc" mask="00/00/0000" [showMaskTyped] = "true" autocomplete="off" 
         (focus)="$event.target.select()">
       </mat-form-field>
 

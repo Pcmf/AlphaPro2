@@ -227,7 +227,7 @@ export class JP3Component implements OnInit {
   }
 
   delete(evaluation) {
-    this.dataService.delete('clients/morfo/' + this.student.id + '/' + evaluation.data).subscribe(
+    this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
         this.getData();

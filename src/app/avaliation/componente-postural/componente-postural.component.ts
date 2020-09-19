@@ -22,6 +22,7 @@ export class ComponentePosturalComponent implements OnInit {
   data: string;
   selectedTab = 0;
   locale: string;
+  private dataPhoto: string;
   // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
@@ -141,8 +142,45 @@ export class ComponentePosturalComponent implements OnInit {
       });
   }
 
-  openTakePhoto(view) {
+  editView(view, data) {
+    console.log(view + ' ' + data);
+    this.openTakePhoto(view, data);
+  }
+
+  deleteView(view, data) {
+    console.log(view + ' ' + data);
+    switch (this.view) {
+      case 'a':
+        this.foto1 = '';
+        break;
+      case 'l':
+        this.foto2 = '';
+        break;
+      case 'p':
+        this.foto3 = '';
+        break;
+    }
+    const obj = {
+      data,
+      fotoa: this.foto1,
+      fotol: this.foto2,
+      fotop: this.foto3
+    };
+
+    console.table(obj);
+    this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
+      resp => {
+        console.log(resp);
+        this.getData();
+        this.view = '';
+        this.webcamImage = null;
+      }
+    );
+  }
+
+  openTakePhoto(view, data) {
     this.view = view;
+    this.dataPhoto = data;
     switch (view) {
       case 'a':
         this.viewTitle = 'Vista Anterior';
@@ -170,14 +208,17 @@ export class ComponentePosturalComponent implements OnInit {
         this.foto3 = this.webcamImage.imageAsDataUrl;
         break;
     }
+    if (this.addForm) {
+      this.dataPhoto = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    }
     const obj = {
-      data: this.datapipe.transform(Date(), 'yyyy-MM-dd'),
+      data: this.dataPhoto,
       fotoa: this.foto1,
       fotol: this.foto2,
       fotop: this.foto3
     };
 
-    //  console.table(this.newData);
+    console.table(obj);
     this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
       resp => {
         console.log(resp);

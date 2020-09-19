@@ -727,7 +727,7 @@
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
                                         (click)="openDialog('Perna')">PERNA</span></td>
                             </tr>
-<!--                             <tr>
+                            <!--                             <tr>
                                 <th><span (click)="openDialog('Perna Valgo')">Valgo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vapernavalgo}}
                                 </td>
@@ -1229,7 +1229,8 @@
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Cabeça')">Cabeça</span></th>
-                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vlcabeca}}</td>
+                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vlcabeca}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vlcabeca="ngModel" name="vlcabeca" [(ngModel)]="newData.vlcabeca"
@@ -1425,7 +1426,7 @@
                                     </mat-form-field>
                                 </td>
                             </tr>
-<!--                             <tr>
+                            <!--                             <tr>
                                 <th><span
                                         (click)="openDialog('Ombros Posteriorizados (rotação externa)')">Posteriorizados
                                         <br /><small>(rotação interna)</small></span></th>
@@ -1755,7 +1756,7 @@
                             </tr>
 
                             <!-- TORNOZELOS -->
-<!--                             <tr class="table-row-subtitle">
+                            <!--                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
                                         (click)="openDialog('Tornozelos')">TORNOZELOS</span></td>
                             </tr>
@@ -2090,12 +2091,14 @@
                             <!-- ESCOLIOSE CERVICAL -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">
-                                    <span (click)="openDialog('Escoliose Cervical')">ESCOLIOSE CERVICAL (CONVEXIDADE) </span>
+                                    <span (click)="openDialog('Escoliose Cervical')">ESCOLIOSE CERVICAL (CONVEXIDADE)
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Cervical')">Escoliose Cervical</span></th>
-                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vpescoliose}}</td>
+                                <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vpescoliose}}
+                                </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
                                         <mat-select #vpescoliose="ngModel" name="vpescoliose"
@@ -2134,16 +2137,19 @@
                                     {{oldData[pointer-1].vpescolioseg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
-                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
-                                </td>                                
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel"
+                                        [(ngModel)]="newData.vpescolioseg">
+                                </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
                                     {{oldData[pointer].vpescolioseg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==0 && editAv">
-                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
-                                </td>                                
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel"
+                                        [(ngModel)]="newData.vpescolioseg">
+                                </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel" [(ngModel)]="newData.vpescolioseg">
+                                    <input type="number" name="vpescolioseg" #vpescolioseg="ngModel"
+                                        [(ngModel)]="newData.vpescolioseg">
                                 </td>
                             </tr>
                             <!-- OMBROS -->
@@ -2477,7 +2483,8 @@
                             <!-- ESCOLIOSE DORSAL -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escoliose Dorsal')">ESCOLIOSE DORSAL (CONVEXIDADE) </span></td>
+                                        (click)="openDialog('Escoliose Dorsal')">ESCOLIOSE DORSAL (CONVEXIDADE) </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Dorsal')">Escoliose Dorsal</span></th>
@@ -2521,22 +2528,26 @@
                                     {{oldData[pointer-1].vpescoliosedorsalg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
-                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
+                                        [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
                                     {{oldData[pointer].vpescoliosedorsalg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==0 && editAv">
-                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
+                                        [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel" [(ngModel)]="newData.vpescoliosedorsalg">
+                                    <input type="number" name="vpescoliosedorsalg" #vpescoliosedorsalg="ngModel"
+                                        [(ngModel)]="newData.vpescoliosedorsalg">
                                 </td>
                             </tr>
                             <!-- ESCOLIOSE LOMBAR -->
                             <tr class="table-row-subtitle">
                                 <td [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
-                                        (click)="openDialog('Escoliose Lombar')">ESCOLIOSE LOMBAR (CONVEXIDADE) </span></td>
+                                        (click)="openDialog('Escoliose Lombar')">ESCOLIOSE LOMBAR (CONVEXIDADE) </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th><span (click)="openDialog('Escoliose Lombar')">Escoliose Lombar</span></th>
@@ -2583,16 +2594,19 @@
                                     {{oldData[pointer-1].vpescolioselombarg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
-                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
+                                        [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">
                                     {{oldData[pointer].vpescolioselombarg | number: '': locale}}&deg;
                                 </td>
                                 <td *ngIf="editPointer==0 && editAv">
-                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
+                                        [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                                 <td *ngIf="addForm">
-                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel" [(ngModel)]="newData.vpescolioselombarg">
+                                    <input type="number" name="vpescolioselombarg" #vpescolioselombarg="ngModel"
+                                        [(ngModel)]="newData.vpescolioselombarg">
                                 </td>
                             </tr>
                             <!-- PELVE -->
@@ -2643,17 +2657,17 @@
                                 <th><span (click)="openDialog('Pelve Rotação')">Rotação</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vppelverotacao}}</td>
-                                    <td *ngIf="editPointer==1 && editAv">
-                                        <mat-form-field class="form-select-sm">
-                                            <mat-select #vppelverotacao="ngModel" name="vppelverotacao"
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vppelverotacao="ngModel" name="vppelverotacao"
                                             [(ngModel)]="newData.vppelverotacao" placeholder="selecione">
                                             <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
 
                                         </mat-select>
-                                        </mat-form-field>
-                                    </td>                               
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">{{oldData[pointer].vppelverotacao}}</td>
                                 <td *ngIf="editPointer==0 && editAv">
                                     <mat-form-field class="form-select-sm">
@@ -2689,7 +2703,7 @@
                                     {{oldData[pointer-1].vpquadrilvalgo}}</td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <mat-form-field class="form-select-sm">
-                                           <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
+                                        <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
                                             [(ngModel)]="newData.vpquadrilvalgo" placeholder="selecione">
                                             <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -2701,7 +2715,7 @@
                                 <td *ngIf="pointer>=0 && editPointer!=0">{{oldData[pointer].vpquadrilvalgo}}</td>
                                 <td *ngIf="editPointer==0 && editAv">
                                     <mat-form-field class="form-select-sm">
-                                           <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
+                                        <mat-select #vpquadrilvalgo="ngModel" name="vpquadrilvalgo"
                                             [(ngModel)]="newData.vpquadrilvalgo" placeholder="selecione">
                                             <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
@@ -2726,17 +2740,17 @@
                                 <th><span (click)="openDialog('Quadril Varo')">Varo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">
                                     {{oldData[pointer-1].vpquadrilvaro}}</td>
-                                    <td *ngIf="editPointer==1 && editAv">
-                                        <mat-form-field class="form-select-sm">
-                                            <mat-select #vpquadrilvaro="ngModel" name="vpquadrilvaro"
+                                <td *ngIf="editPointer==1 && editAv">
+                                    <mat-form-field class="form-select-sm">
+                                        <mat-select #vpquadrilvaro="ngModel" name="vpquadrilvaro"
                                             [(ngModel)]="newData.vpquadrilvaro" placeholder="selecione">
                                             <mat-option></mat-option>
                                             <mat-option value="Direita">Direita</mat-option>
                                             <mat-option value="Esquerda">Esquerda</mat-option>
 
                                         </mat-select>
-                                        </mat-form-field>
-                                    </td>
+                                    </mat-form-field>
+                                </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">{{oldData[pointer].vpquadrilvaro}}</td>
                                 <td *ngIf="editPointer==0 && editAv">
                                     <mat-form-field class="form-select-sm">
@@ -3042,7 +3056,7 @@
                                     </mat-form-field>
                                 </td>
                             </tr>
-<!--                             <tr>
+                            <!--                             <tr>
                                 <th><span (click)="openDialog('Pé Cavo')">Cavo</span></th>
                                 <td *ngIf="pointer>=1 && !addForm && editPointer!=1">{{oldData[pointer-1].vppecavo}}
                                 </td>
@@ -3183,7 +3197,7 @@
                 </table>
 
                 <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    
+
                     <div class="photo">
                         <div *ngIf="oldData[pointer] && oldData[pointer].fotoa">
                             <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
@@ -3191,8 +3205,15 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa">
                             <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default"
-                            (click)="openTakePhoto('a')">
+
+                        <button mat-icon-button color="accent" (click)="editView('a', oldData[pointer].data)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteView('a', oldData[pointer].data)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
+                            (click)="openTakePhoto('a', oldData[pointer].data)">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
@@ -3203,8 +3224,14 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol">
                             <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default"
-                            (click)="openTakePhoto('l')">
+                        <button mat-icon-button color="accent" (click)="editView('l', oldData[pointer].data)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteView('l', oldData[pointer].data)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
+                            (click)="openTakePhoto('l', oldData[pointer].data)">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
@@ -3215,11 +3242,17 @@
                         <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop">
                             <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
                         </div>
-                        <button *ngIf="pointer+1 == maxPointer" mat-mini-fab color="default"
-                            (click)="openTakePhoto('p')">
+
+                        <button mat-icon-button color="accent" (click)="editView('p', oldData[pointer].data)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteView('p', oldData[pointer].data)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
+                            (click)="openTakePhoto('p', oldData[pointer].data)">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
-
                     </div>
                 </div>
                 <div *ngIf="view && pointer+1 == maxPointer" class="photoArea" style="text-align:center">

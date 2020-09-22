@@ -4,6 +4,7 @@ import { Location, DatePipe } from '@angular/common';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { DialogService } from 'src/app/services/dialog.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-componente-postural',
@@ -22,20 +23,21 @@ export class ComponentePosturalComponent implements OnInit {
   data: string;
   selectedTab = 0;
   locale: string;
+  viewPhoto = true;
   private dataPhoto: string;
   // toggle webcam on/off
-  public showWebcam = true;
-  public allowCameraSwitch = true;
-  public multipleWebcamsAvailable = true;
-  public deviceId: string;
-  public videoOptions: MediaTrackConstraints = {
+  showWebcam = true;
+  allowCameraSwitch = true;
+  multipleWebcamsAvailable = true;
+  deviceId: string;
+  videoOptions: MediaTrackConstraints = {
     // width: {ideal: 1024},
     // height: {ideal: 576}
   };
-  public errors: WebcamInitError[] = [];
+  errors: WebcamInitError[] = [];
 
   // latest snapshot
-  public webcamImage: WebcamImage = null;
+  webcamImage: WebcamImage = null;
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
@@ -51,7 +53,8 @@ export class ComponentePosturalComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
-              private dialogService: DialogService
+              private dialogService: DialogService,
+              public dialog: MatDialog
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -61,32 +64,44 @@ export class ComponentePosturalComponent implements OnInit {
   swipeLeft(event) {
     if (this.selectedTab < 3) {
       this.selectedTab++;
-      /* console.log(this.selectedTab); */
     }
   }
   swipeRight(event) {
     if (this.selectedTab > 0) {
       this.selectedTab--;
-      /* console.log(this.selectedTab); */
     }
   }
 
   getData() {
     this.dataService.getData('clients/post/' + this.student.id).subscribe(
       (resp: any[]) => {
-        console.log(resp);
         this.maxPointer = resp.length;
-        console.log(this.maxPointer);
-        if (this.maxPointer > 0) {
-          this.oldData = resp;
-          this.pointer = this.maxPointer - 1;
-        } else {
-          this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          this.pointer = -1;
+        this.oldData = resp;
+        if (this.pointer < 0) {
+          if (this.maxPointer > 0) {
+            this.pointer = this.maxPointer - 1;
+          } else {
+            this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+            this.pointer = -1;
+          }
         }
-        /* console.table(this.oldData); */
       }
     );
+  }
+  /* abrir nova avaliação */
+  addDataForm() {
+    this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    this.addForm = true;
+  }
+
+  saveDataForm(form) {
+    //  console.table(form.value);
+    this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
+      resp => {
+        this.getData();
+      }
+    );
+    this.addForm = false;
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -130,6 +145,7 @@ export class ComponentePosturalComponent implements OnInit {
     this.dataService.delete('clients/post/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
         console.log(resp);
+        this.pointer--;
         this.getData();
       }
     );
@@ -142,25 +158,23 @@ export class ComponentePosturalComponent implements OnInit {
       });
   }
 
-  editView(view, data) {
-    console.log(view + ' ' + data);
-    this.openTakePhoto(view, data);
-  }
-
   deleteView(view, data) {
-    console.log(view + ' ' + data);
-    switch (this.view) {
+    this.foto1 = null;
+    this.foto2 = null;
+    this.foto3 = null;
+    switch (view) {
       case 'a':
-        this.foto1 = '';
+        this.foto1 = 'del';
         break;
       case 'l':
-        this.foto2 = '';
+        this.foto2 = 'del';
         break;
       case 'p':
-        this.foto3 = '';
+        this.foto3 = 'del';
         break;
     }
-    const obj = {
+    let obj = {};
+    obj = {
       data,
       fotoa: this.foto1,
       fotol: this.foto2,
@@ -168,9 +182,8 @@ export class ComponentePosturalComponent implements OnInit {
     };
 
     console.table(obj);
-    this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
+    this.dataService.setData('clients/post/del/' + this.student.id, obj).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
         this.view = '';
         this.webcamImage = null;
@@ -221,7 +234,6 @@ export class ComponentePosturalComponent implements OnInit {
     console.table(obj);
     this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
         this.view = '';
         this.webcamImage = null;
@@ -266,26 +278,18 @@ export class ComponentePosturalComponent implements OnInit {
     return this.nextWebcam.asObservable();
   }
 
+  showPhoto(view, data, photo) {
+      const dialogRef = this.dialog.open(ShowPhotoDialog, {
+        /* width: '360px', */
+        data: {view, data, photo}
+      });
+  }
+
 
   goBack() {
     this.location.back();
   }
 
-  addDataForm() {
-    this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    this.addForm = true;
-  }
-
-  saveDataForm(form) {
-    //  console.table(form.value);
-    this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
-      resp => {
-        console.log(resp);
-        this.getData();
-      }
-    );
-    this.addForm = false;
-  }
 
   closeInputs() {
     this.newData = [];
@@ -296,5 +300,24 @@ export class ComponentePosturalComponent implements OnInit {
     this.dialogService.openHelp(type);
   }
 
+
+}
+
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'dialog-show-photo',
+  templateUrl: 'dialog-show-photo.html',
+})
+// tslint:disable-next-line: component-class-suffix
+export class ShowPhotoDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<ShowPhotoDialog>,
+    @Inject(MAT_DIALOG_DATA) public data) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

@@ -3197,65 +3197,65 @@
                 </table>
 
                 <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-
-                    <div class="photo">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotoa">
-                            <img [src]="oldData[pointer].fotoa" alt="Vista Anterior">
+                    <!-- vista anterior -->
+                    <div class="photo" *ngIf="viewPhoto">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotoa && !addForm">
+                            <img [src]="oldData[pointer].fotoa" alt="Vista Anterior" 
+                            (click)="showPhoto('Vista Anterior', oldData[pointer].data, oldData[pointer].fotoa)">
                         </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa">
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa || addForm">
                             <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
                         </div>
-
-                        <button mat-icon-button color="accent" (click)="editView('a', oldData[pointer].data)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button color="warn" (click)="deleteView('a', oldData[pointer].data)">
+                        <button mat-icon-button color="warn"
+                                *ngIf="oldData[pointer] && oldData[pointer].fotoa && !addForm"
+                                (click)="deleteView('a', oldData[pointer].data)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
-                            (click)="openTakePhoto('a', oldData[pointer].data)">
+                        <button  mat-icon-button color="default"
+                            (click)="openTakePhoto('a', oldData[pointer].data); viewPhoto=false;">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
-                    <div class="photo">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotol">
-                            <img [src]="oldData[pointer].fotol" alt="Vista Lateral">
+                    <!-- vista lateral -->
+                    <div class="photo" *ngIf="viewPhoto">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotol && !addForm">
+                            <img [src]="oldData[pointer].fotol" alt="Vista Lateral"
+                            (click)="showPhoto('Vista Lateral', oldData[pointer].data, oldData[pointer].fotol)">
                         </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol">
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol || addForm">
                             <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
                         </div>
-                        <button mat-icon-button color="accent" (click)="editView('l', oldData[pointer].data)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button color="warn" (click)="deleteView('l', oldData[pointer].data)">
+                        <button mat-icon-button color="warn"
+                                *ngIf="oldData[pointer] && oldData[pointer].fotol && !addForm"
+                                (click)="deleteView('l', oldData[pointer].data)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
-                            (click)="openTakePhoto('l', oldData[pointer].data)">
+                        <button  mat-icon-button color="default"
+                            (click)="openTakePhoto('l', oldData[pointer].data); viewPhoto=false;">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
-                    <div class="photo">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotop">
-                            <img [src]="oldData[pointer].fotop" alt="Vista Posterior">
+                    <!-- vista posterior -->
+                    <div class="photo" *ngIf="viewPhoto">
+                        <div *ngIf="oldData[pointer] && oldData[pointer].fotop && !addForm">
+                            <img [src]="oldData[pointer].fotop" alt="Vista Posterior"
+                            (click)="showPhoto('Vista Posterior', oldData[pointer].data, oldData[pointer].fotop)">
                         </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop">
+                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop || addForm">
                             <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
                         </div>
-
-                        <button mat-icon-button color="accent" (click)="editView('p', oldData[pointer].data)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button color="warn" (click)="deleteView('p', oldData[pointer].data)">
+                        <button mat-icon-button color="warn"
+                                *ngIf="oldData[pointer] && oldData[pointer].fotop && !addForm"
+                                (click)="deleteView('p', oldData[pointer].data)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button *ngIf="pointer+1 == maxPointer" mat-icon-button color="default"
-                            (click)="openTakePhoto('p', oldData[pointer].data)">
+                        <button  mat-icon-button color="default"
+                            (click)="openTakePhoto('p', oldData[pointer].data); viewPhoto=false;">
                             <mat-icon>camera_alt</mat-icon>
                         </button>
                     </div>
                 </div>
-                <div *ngIf="view && pointer+1 == maxPointer" class="photoArea" style="text-align:center">
+                <div *ngIf="view" class="photoArea" style="text-align:center">     <!--  && pointer+1 == maxPointer -->
                     <h4>{{viewTitle}}</h4>
                     <div *ngIf="!webcamImage">
                         <webcam [width]="200" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
@@ -3264,7 +3264,7 @@
                             (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
                         </webcam>
                         <br />
-                        <button mat-mini-fab color="default" (click)="view=''">
+                        <button mat-mini-fab color="default" (click)="view=''; viewPhoto=true">
                             <mat-icon>close</mat-icon>
                         </button>
                         <button mat-mini-fab color="default" class="actionBtn" (click)="triggerSnapshot();">
@@ -3279,7 +3279,7 @@
                         <button mat-mini-fab color="default" (click)="webcamImage=null">
                             <mat-icon>undo</mat-icon>
                         </button>
-                        <button mat-mini-fab color="default" class="actionBtn" (click)="savePhoto();">
+                        <button mat-mini-fab color="default" class="actionBtn" (click)="savePhoto(); viewPhoto=true">
                             <mat-icon>save</mat-icon>
                         </button>
                     </div>
@@ -3288,6 +3288,7 @@
                     (swipeleft)="swipeLeft($event)">
                     &nbsp;
                 </div>
+
 
             </mat-tab>
         </mat-tab-group>

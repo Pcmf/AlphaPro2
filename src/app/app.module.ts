@@ -68,7 +68,7 @@ import { YMCAComponent } from './avaliation/CardioPulmunar/ymca/ymca.component';
 import { BancoComponent } from './avaliation/CardioPulmunar/banco/banco.component';
 import { NatacaoComponent } from './avaliation/CardioPulmunar/natacao/natacao.component';
 import { AgeService } from './services/age.service';
-import { ComponentePosturalComponent } from './avaliation/componente-postural/componente-postural.component';
+import { ComponentePosturalComponent, ShowPhotoDialog } from './avaliation/componente-postural/componente-postural.component';
 import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.component';
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
@@ -205,7 +205,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     LoadImageComponent,
     HeaderNameComponent,
     EditDelFormComponent,
-    ConfirmDeleteDialog
+    ConfirmDeleteDialog,
+    ShowPhotoDialog
   ],
   imports: [
     BrowserModule,
@@ -225,7 +226,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DialogHelp,
     DialogMedidas,
     DialogParq,
-    ConfirmDeleteDialog
+    ConfirmDeleteDialog,
+    ShowPhotoDialog
   ],
   providers: [DataService,
               {provide: LocationStrategy, useClass: HashLocationStrategy},

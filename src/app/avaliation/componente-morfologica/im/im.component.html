@@ -2,197 +2,212 @@
     <app-header-name></app-header-name>
 
     <div class="section">
-        <h1 class="h1-title" i18n>IMC - Índice de Massa Corporal</h1>
-        <form #f="ngForm" autocomplete="off">
-            <table class="section-table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</th>
-                        <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Altura')">Altura <small>(m)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Peso')">Peso <small>(Kg)</small></span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('IMC')">IMC</span></th>
-                        <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].imc | number: '': locale}}</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Classificação Sobrepeso')">Classificação<br />Sobrepeso</span></th>
-                        <td *ngIf="pointer>=1">
-                            <span *ngIf="evaluation[pointer-1].imc < 18.5">Abaixo do Normal</span>
-                            <span
-                                *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25">Normal</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Acima do Normal</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade I</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade II</span>
-                            <span *ngIf="evaluation[pointer-1].imc >= 40">Obesidade Extrema</span>
-                        </td>
-                        <td *ngIf="pointer>=0">
-                            <span *ngIf="evaluation[pointer].imc < 18.5">Abaixo do Normal</span>
-                            <span *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25">Normal</span>
-                            <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Acima do Normal</span>
-                            <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade I</span>
-                            <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade II</span>
-                            <span *ngIf="evaluation[pointer].imc >= 40">Obesidade Extrema</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Risco de Saúde')">Risco de Saúde</span></th>
-                        <td *ngIf="pointer>=1">
-                            <div *ngIf="student.sexo=='M'">
-                                <span *ngIf="evaluation[pointer-1].imc < 19">Baixo</span>
+        <div class="section-content">
+            <h1 class="h1-title" i18n>IMC - Índice de Massa Corporal</h1>
+            <form #f="ngForm" autocomplete="off">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                            </th>
+                            <th class="th-top" *ngIf="pointer>=0">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th i18n><span (click)="openDialog('Altura')">Altura <small>(m)</small></span></th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].altura | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('Peso')">Peso <small>(Kg)</small></span></th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('IMC')">IMC</span></th>
+                            <td *ngIf="pointer>=1">{{evaluation[pointer-1].imc | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].imc | number: '': locale}}</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span
+                                    (click)="openDialog('Classificação Sobrepeso')">Classificação<br />Sobrepeso</span>
+                            </th>
+                            <td *ngIf="pointer>=1">
+                                <span *ngIf="evaluation[pointer-1].imc < 18.5">Abaixo do Normal</span>
                                 <span
-                                    *ngIf="evaluation[pointer-1].imc >= 19 && evaluation[pointer-1].imc < 25">Ideal</span>
+                                    *ngIf="evaluation[pointer-1].imc >= 18.5 && evaluation[pointer-1].imc < 25">Normal</span>
+                                <span *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 30">Acima do
+                                    Normal</span>
                                 <span
-                                    *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 27.7">Moderado</span>
-                                <span *ngIf="evaluation[pointer-1].imc >= 27.7">Elevado</span>
-                            </div>
-                            <div *ngIf="student.sexo=='F'">
-                                <span *ngIf="evaluation[pointer-1].imc < 18">Baixo</span>
+                                    *ngIf="evaluation[pointer-1].imc >= 30 && evaluation[pointer-1].imc < 35">Obesidade
+                                    I</span>
                                 <span
-                                    *ngIf="evaluation[pointer-1].imc >= 18 && evaluation[pointer-1].imc < 24.5">Ideal</span>
+                                    *ngIf="evaluation[pointer-1].imc >= 35 && evaluation[pointer-1].imc < 40">Obesidade
+                                    II</span>
+                                <span *ngIf="evaluation[pointer-1].imc >= 40">Obesidade Extrema</span>
+                            </td>
+                            <td *ngIf="pointer>=0">
+                                <span *ngIf="evaluation[pointer].imc < 18.5">Abaixo do Normal</span>
                                 <span
-                                    *ngIf="evaluation[pointer-1].imc >= 24.5 && evaluation[pointer-1].imc < 27.2">Moderado</span>
-                                <span *ngIf="evaluation[pointer-1].imc >= 27.2">Elevado</span>
-                            </div>
-                        </td>
-                        <td *ngIf="pointer>=0">
-                            <div *ngIf="student.sexo=='M'">
-                                <span *ngIf="evaluation[pointer].imc < 19">Baixo</span>
-                                <span *ngIf="evaluation[pointer].imc >= 19 && evaluation[pointer].imc < 25">Ideal</span>
-                                <span
-                                    *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 27.7">Moderado</span>
-                                <span *ngIf="evaluation[pointer].imc >= 27.7">Elevado</span>
-                            </div>
-                            <div *ngIf="student.sexo=='F'">
-                                <span *ngIf="evaluation[pointer].imc < 18">Baixo</span>
-                                <span
-                                    *ngIf="evaluation[pointer].imc >= 18 && evaluation[pointer].imc < 24.5">Ideal</span>
-                                <span
-                                    *ngIf="evaluation[pointer].imc >= 24.5 && evaluation[pointer].imc < 27.2">Moderado</span>
-                                <span *ngIf="evaluation[pointer].imc >= 27.2">Elevado</span>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                    *ngIf="evaluation[pointer].imc >= 18.5 && evaluation[pointer].imc < 25">Normal</span>
+                                <span *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 30">Acima do
+                                    Normal</span>
+                                <span *ngIf="evaluation[pointer].imc >= 30 && evaluation[pointer].imc < 35">Obesidade
+                                    I</span>
+                                <span *ngIf="evaluation[pointer].imc >= 35 && evaluation[pointer].imc < 40">Obesidade
+                                    II</span>
+                                <span *ngIf="evaluation[pointer].imc >= 40">Obesidade Extrema</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('Risco de Saúde')">Risco de Saúde</span></th>
+                            <td *ngIf="pointer>=1">
+                                <div *ngIf="student.sexo=='M'">
+                                    <span *ngIf="evaluation[pointer-1].imc < 19">Baixo</span>
+                                    <span
+                                        *ngIf="evaluation[pointer-1].imc >= 19 && evaluation[pointer-1].imc < 25">Ideal</span>
+                                    <span
+                                        *ngIf="evaluation[pointer-1].imc >= 25 && evaluation[pointer-1].imc < 27.7">Moderado</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 27.7">Elevado</span>
+                                </div>
+                                <div *ngIf="student.sexo=='F'">
+                                    <span *ngIf="evaluation[pointer-1].imc < 18">Baixo</span>
+                                    <span
+                                        *ngIf="evaluation[pointer-1].imc >= 18 && evaluation[pointer-1].imc < 24.5">Ideal</span>
+                                    <span
+                                        *ngIf="evaluation[pointer-1].imc >= 24.5 && evaluation[pointer-1].imc < 27.2">Moderado</span>
+                                    <span *ngIf="evaluation[pointer-1].imc >= 27.2">Elevado</span>
+                                </div>
+                            </td>
+                            <td *ngIf="pointer>=0">
+                                <div *ngIf="student.sexo=='M'">
+                                    <span *ngIf="evaluation[pointer].imc < 19">Baixo</span>
+                                    <span
+                                        *ngIf="evaluation[pointer].imc >= 19 && evaluation[pointer].imc < 25">Ideal</span>
+                                    <span
+                                        *ngIf="evaluation[pointer].imc >= 25 && evaluation[pointer].imc < 27.7">Moderado</span>
+                                    <span *ngIf="evaluation[pointer].imc >= 27.7">Elevado</span>
+                                </div>
+                                <div *ngIf="student.sexo=='F'">
+                                    <span *ngIf="evaluation[pointer].imc < 18">Baixo</span>
+                                    <span
+                                        *ngIf="evaluation[pointer].imc >= 18 && evaluation[pointer].imc < 24.5">Ideal</span>
+                                    <span
+                                        *ngIf="evaluation[pointer].imc >= 24.5 && evaluation[pointer].imc < 27.2">Moderado</span>
+                                    <span *ngIf="evaluation[pointer].imc >= 27.2">Elevado</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="action">
-                <button type="button" [disabled]="pointer<=1" mat-mini-fab color="default" (click)="pointer=pointer-1">
-                    <mat-icon class="mat-14">chevron_left</mat-icon>
-                </button>
-                <button type="button" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab color="default"
-                    (click)="pointer=pointer+1">
-                    <mat-icon class="mat-14">chevron_right</mat-icon>
-                </button>
+                <div class="action">
+                    <button type="button" [disabled]="pointer<=1" mat-mini-fab color="default"
+                        (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
+                        color="default" (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                </div>
+            </form>
+
+            <div class="section-info">
+                <h4>Diretrizes para classificação do sobrepeso e obesidade em adultos.</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>IMC</th>
+                            <th>Classificação de Sobrepeso</th>
+                            <th>Classe de Obesidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>&lt; 18,5</th>
+                            <td>Peso abaixo do normal</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>18,5 a 24,9</th>
+                            <td>Peso normal</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>25 a 29,9</th>
+                            <td>Peso acima do normal</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>30 a 34,5</th>
+                            <td>Obesidade</td>
+                            <td>I</td>
+                        </tr>
+                        <tr>
+                            <th>35 a 39,9</th>
+                            <td>Obesidade</td>
+                            <td>II</td>
+                        </tr>
+                        <tr>
+                            <th>&gt; 40</th>
+                            <td>Obesidade extrema</td>
+                            <td>III</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <em>Fonte: National Heart, Lung and Blood Institute, 1998.</em>
+                <br />
+                <h4>Classificação relativamente aos riscos de saúde.</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>IMC</th>
+                            <th>Classificação</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="student.sexo=='M'">
+                        <tr>
+                            <th>17,9 a 18,9</th>
+                            <td>Risco baixo</td>
+                        </tr>
+                        <tr>
+                            <th>19 a 24,9</th>
+                            <td>Ideal</td>
+                        </tr>
+                        <tr>
+                            <th>25 a 27,7</th>
+                            <td>Risco moderado</td>
+                        </tr>
+                        <tr>
+                            <th>&gt; 27,8</th>
+                            <td>Risco elevado</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="student.sexo=='F'">
+                        <tr>
+                            <th>15 a 17,9</th>
+                            <td>Risco baixo</td>
+                        </tr>
+                        <tr>
+                            <th>18 a 24,4</th>
+                            <td>Ideal</td>
+                        </tr>
+                        <tr>
+                            <th>24,5 a 27,2</th>
+                            <td>Risco moderado</td>
+                        </tr>
+                        <tr>
+                            <th>&gt; 27,3</th>
+                            <td>Risco elevado</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <em>Fonte: Corbin & Lindey, 1994</em>
+
             </div>
-        </form>
-
-        <div class="section-info">
-            <h4>Diretrizes para classificação do sobrepeso e obesidade em adultos.</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>IMC</th>
-                        <th>Classificação de Sobrepeso</th>
-                        <th>Classe de Obesidade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>&lt; 18,5</th>
-                        <td>Peso abaixo do normal</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th>18,5 a 24,9</th>
-                        <td>Peso normal</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th>25 a 29,9</th>
-                        <td>Peso acima do normal</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th>30 a 34,5</th>
-                        <td>Obesidade</td>
-                        <td>I</td>
-                    </tr>
-                    <tr>
-                        <th>35 a 39,9</th>
-                        <td>Obesidade</td>
-                        <td>II</td>
-                    </tr>
-                    <tr>
-                        <th>&gt; 40</th>
-                        <td>Obesidade extrema</td>
-                        <td>III</td>
-                    </tr>
-                </tbody>
-            </table>
-            <em>Fonte: National Heart, Lung and Blood Institute, 1998.</em>
-            <br/>
-            <h4>Classificação relativamente aos riscos de saúde.</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>IMC</th>
-                        <th>Classificação</th>
-                    </tr>
-                </thead>
-                <tbody *ngIf="student.sexo=='M'">
-                    <tr>
-                        <th>17,9 a 18,9</th>
-                        <td>Risco baixo</td>
-                    </tr>
-                    <tr>
-                        <th>19 a 24,9</th>
-                        <td>Ideal</td>
-                    </tr>
-                    <tr>
-                        <th>25 a 27,7</th>
-                        <td>Risco moderado</td>
-                    </tr>
-                    <tr>
-                        <th>&gt; 27,8</th>
-                        <td>Risco elevado</td>
-                    </tr>                    
-                </tbody>
-                <tbody *ngIf="student.sexo=='F'">
-                    <tr>
-                        <th>15 a 17,9</th>
-                        <td>Risco baixo</td>
-                    </tr>
-                    <tr>
-                        <th>18 a 24,4</th>
-                        <td>Ideal</td>
-                    </tr>
-                    <tr>
-                        <th>24,5 a 27,2</th>
-                        <td>Risco moderado</td>
-                    </tr>
-                    <tr>
-                        <th>&gt; 27,3</th>
-                        <td>Risco elevado</td>
-                    </tr>                    
-                </tbody>
-            </table>
-            <em>Fonte: Corbin & Lindey, 1994</em>
-
         </div>
-
     </div>
 </div>

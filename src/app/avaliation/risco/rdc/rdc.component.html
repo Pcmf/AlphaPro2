@@ -2,208 +2,222 @@
     <app-header-name></app-header-name>
 
     <div class="section">
-        <h1 class="h1-title" i18n>Risco de Cardiopatia</h1>
-        <form class="flex-form" #f="ngForm" (submit)="save(f.value)" autocomplete="off">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Pressão Arterial (mm/Hg)</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Sistólica</mat-label>
-                                <input matInput #qtas="ngModel" name="qtas" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtas" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Diastólica</mat-label>
-                                <input matInput #qtad="ngModel" name="qtad" (focus)="$event.target.select()" [(ngModel)]="rdcData.qtad" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Tabagismo</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Cigarros por dia</mat-label>
-                                <input matInput type="number" #qtos="ngModel" name="qtos" (focus)="$event.target.select()"
-                                        [(ngModel)]="rdcData.qtos" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Lipídios Sanguíneos (mg/dl)</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Colesterol Total</mat-label>
-                                <input matInput #lsc="ngModel" name="lsc" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsc" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Fração CT/HDL-C</mat-label>
-                                <input matInput #lsf="ngModel" name="lsf" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsf" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Triglicerídeos</mat-label>
-                                <input matInput #lst="ngModel" name="lst" (focus)="$event.target.select()" [(ngModel)]="rdcData.lst" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Glicemia</mat-label>
-                                <input matInput #lsg="ngModel" name="lsg" (focus)="$event.target.select()" [(ngModel)]="rdcData.lsg" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Diabetes Mellitus</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="rdcData.diabetes" (selectionChange)="calcRisco(f.value)">
-                                    <mat-option value="0" i18n>Não</mat-option>
-                                    <mat-option value="1" i18n>DMNID*</mat-option>
-                                    <mat-option value="2" i18n>DMNID* Recente</mat-option>
-                                    <mat-option value="3" i18n>DMNID* + 15 anos</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                    <small>*Diabetes Mellitus Não Insulina Dependente</small>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Gordura Corporal (%)</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Percentagem</mat-label>
-                                <input matInput #gc="ngModel" name="gc" [(ngModel)]="rdcData.gc" (focus)="$event.target.select()" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Stress - Tensão</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-select #st="ngModel" name="st" [(ngModel)]="rdcData.st" (selectionChange)="calcRisco(f.value)">
-                                    <mat-option value="0" i18n>Nunca</mat-option>
-                                    <mat-option value="1" i18n>Quase nunca</mat-option>
-                                    <mat-option value="2" i18n>Às vezes</mat-option>
-                                    <mat-option value="3" i18n>Frequentemente</mat-option>
-                                    <mat-option value="4" i18n>Quase sempre</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Atividade Física</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Frequência Semanal</mat-label>
-                                <input matInput #fs="ngModel" name="fs" [(ngModel)]="rdcData.fs"
-                                    placeholder="vezes por semana" (focus)="$event.target.select()" (input)="calcRisco(f.value)">
-                            </mat-form-field>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <mat-label i18n>Minutos/Semana</mat-label>
-                                <mat-select #af50="ngModel" name="af50" [(ngModel)]="rdcData.af50" (selectionChange)="calcRisco(f.value)">
-                                    <mat-option value="120">Maior ou igual 120</mat-option>
-                                    <mat-option value="90">Mais de 90</mat-option>
-                                    <mat-option value="30">30 ou mais</mat-option>
-                                    <mat-option value="29">Menos de 30</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Histórico Familiar</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field style="width: 200px;"> 
-                                <mat-label i18n>Familiares doentes coronários > 60</mat-label>
-                                <input matInput #hf="ngModel" name="hf" [ngModel]="rdcData.hf" readonly>
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-subtitle i18n>Idade</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-form-field>
-                                <input matInput readonly #idade="ngModel" name="idade" [ngModel]="student.idade">
-                            </mat-form-field>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
-            <mat-card *ngIf="risco >= 0" class="mat-card-resultado {{classRisco}}">
-                <mat-card-header>
-                    <mat-card-title>NÍVEL DE RISCO</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <span i18n *ngIf="!risco || risco <= 1">Baixo</span>
-                    <span i18n *ngIf="risco == 2">Moderado</span>
-                    <span i18n *ngIf="risco == 3">Alto</span>
-                    <span i18n *ngIf="risco > 3">Muito Alto</span>
-                </mat-card-content>
-            </mat-card>
+        <div class="section-content">
+            <h1 class="h1-title" i18n>Risco de Cardiopatia</h1>
+            <form class="flex-form" #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Pressão Arterial (mm/Hg)</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Sistólica</mat-label>
+                                    <input matInput #qtas="ngModel" name="qtas" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.qtas" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Diastólica</mat-label>
+                                    <input matInput #qtad="ngModel" name="qtad" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.qtad" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Tabagismo</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Cigarros por dia</mat-label>
+                                    <input matInput type="number" #qtos="ngModel" name="qtos"
+                                        (focus)="$event.target.select()" [(ngModel)]="rdcData.qtos"
+                                        (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Lipídios Sanguíneos (mg/dl)</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Colesterol Total</mat-label>
+                                    <input matInput #lsc="ngModel" name="lsc" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.lsc" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Fração CT/HDL-C</mat-label>
+                                    <input matInput #lsf="ngModel" name="lsf" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.lsf" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Triglicerídeos</mat-label>
+                                    <input matInput #lst="ngModel" name="lst" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.lst" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Glicemia</mat-label>
+                                    <input matInput #lsg="ngModel" name="lsg" (focus)="$event.target.select()"
+                                        [(ngModel)]="rdcData.lsg" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Diabetes Mellitus</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-select #diabetes="ngModel" name="diabetes" [(ngModel)]="rdcData.diabetes"
+                                        (selectionChange)="calcRisco(f.value)">
+                                        <mat-option value="0" i18n>Não</mat-option>
+                                        <mat-option value="1" i18n>DMNID*</mat-option>
+                                        <mat-option value="2" i18n>DMNID* Recente</mat-option>
+                                        <mat-option value="3" i18n>DMNID* + 15 anos</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                        <small>*Diabetes Mellitus Não Insulina Dependente</small>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Gordura Corporal (%)</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Percentagem</mat-label>
+                                    <input matInput #gc="ngModel" name="gc" [(ngModel)]="rdcData.gc"
+                                        (focus)="$event.target.select()" (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Stress - Tensão</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-select #st="ngModel" name="st" [(ngModel)]="rdcData.st"
+                                        (selectionChange)="calcRisco(f.value)">
+                                        <mat-option value="0" i18n>Nunca</mat-option>
+                                        <mat-option value="1" i18n>Quase nunca</mat-option>
+                                        <mat-option value="2" i18n>Às vezes</mat-option>
+                                        <mat-option value="3" i18n>Frequentemente</mat-option>
+                                        <mat-option value="4" i18n>Quase sempre</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Atividade Física</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Frequência Semanal</mat-label>
+                                    <input matInput #fs="ngModel" name="fs" [(ngModel)]="rdcData.fs"
+                                        placeholder="vezes por semana" (focus)="$event.target.select()"
+                                        (input)="calcRisco(f.value)">
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <mat-label i18n>Minutos/Semana</mat-label>
+                                    <mat-select #af50="ngModel" name="af50" [(ngModel)]="rdcData.af50"
+                                        (selectionChange)="calcRisco(f.value)">
+                                        <mat-option value="120">Maior ou igual 120</mat-option>
+                                        <mat-option value="90">Mais de 90</mat-option>
+                                        <mat-option value="30">30 ou mais</mat-option>
+                                        <mat-option value="29">Menos de 30</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Histórico Familiar</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field style="width: 200px;">
+                                    <mat-label i18n>Familiares doentes coronários > 60</mat-label>
+                                    <input matInput #hf="ngModel" name="hf" [ngModel]="rdcData.hf" readonly>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-subtitle i18n>Idade</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <input matInput readonly #idade="ngModel" name="idade" [ngModel]="student.idade">
+                                </mat-form-field>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card *ngIf="risco >= 0" class="mat-card-resultado {{classRisco}}">
+                    <mat-card-header>
+                        <mat-card-title>NÍVEL DE RISCO</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <span i18n *ngIf="!risco || risco <= 1">Baixo</span>
+                        <span i18n *ngIf="risco == 2">Moderado</span>
+                        <span i18n *ngIf="risco == 3">Alto</span>
+                        <span i18n *ngIf="risco > 3">Muito Alto</span>
+                    </mat-card-content>
+                </mat-card>
 
-            <div class="action">
-                <button mat-stroked-button>
-                    Salvar
-                </button>
-            </div>
-        </form>
+                <div class="action">
+                    <button mat-stroked-button>
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <br/>
+    <br />
 
 </div>

@@ -12,6 +12,9 @@
   justify-content: flex-start;
   align-items: center;
   color: white;
+  &-content{
+    width: 100%;
+  }
 
   .h1-title {
     width: 100%;
@@ -41,7 +44,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .section{
+  .section-content{
     width: 520px;
   }
   ::-webkit-scrollbar {

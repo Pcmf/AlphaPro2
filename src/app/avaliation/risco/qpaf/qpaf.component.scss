@@ -13,6 +13,9 @@
         flex-direction: column;
         justify-content: flex-start;
         color: white;
+        &-content{
+            width: 100%;
+        }
 
         .h1-title{
             margin-top: 40px;
@@ -78,7 +81,7 @@ em {
 
 @media only screen and (min-width: 768px) {
 
-    .section {
+    .section-content{
         width: 425px !important;
     }
 

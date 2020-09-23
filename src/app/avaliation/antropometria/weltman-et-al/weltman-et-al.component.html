@@ -1,146 +1,162 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
-        <h1 class="h1-title" i18n>Weltman et al (1988)</h1>
-        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
-            <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
-            <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
-            <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
-            <table class="section-table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
-                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
-                                {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
-                            </button>
-                        </th>
-                        <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
-                                {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
-                            </button>
-                        </th>
-                        <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
-                                class="data-input">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen2 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="addEval">
-                            <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].abdomen | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].abdomen | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="addEval">
-                            <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen" type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr *ngIf="sex ==='F'">
-                        <th i18n><span (click)="openHelpDialog('Altura')">Altura</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th>Ações</th>
-                        <td *ngIf="pointer>=1 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer-1].data"
-                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="pointer>=0 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer].data"
-                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="section-content">
+            <h1 class="h1-title" i18n>Weltman et al (1988)</h1>
+            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+                <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
+                <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
+                <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                                <button type="button"
+                                    (click)="chartSelected='pie'; setEvaluation(evaluation[pointer-1])">
+                                    {{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}
+                                </button>
+                            </th>
+                            <th class="th-top" *ngIf="pointer>=0">
+                                <button type="button" (click)="chartSelected='pie'; setEvaluation(evaluation[pointer])">
+                                    {{evaluation[pointer].data | date:'dd/LL/yyyy'}}
+                                </button>
+                            </th>
+                            <th class="th-top" *ngIf="addEval">
+                                <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                    class="data-input">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                {{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
+                            <td *ngIf="editPointer==1 && editAv">
+                                <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">
+                                {{evaluation[pointer].abdomen2 | number: '': locale}}</td>
+                            <td *ngIf="editPointer==0 && editAv">
+                                <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="addEval">
+                                <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2"
+                                    type="number">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span>
+                            </th>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                {{evaluation[pointer-1].abdomen | number: '': locale}}</td>
+                            <td *ngIf="editPointer==1 && editAv">
+                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">
+                                {{evaluation[pointer].abdomen | number: '': locale}}</td>
+                            <td *ngIf="editPointer==0 && editAv">
+                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="addEval">
+                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
+                                    type="number">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr *ngIf="sex ==='F'">
+                            <th i18n><span (click)="openHelpDialog('Altura')">Altura</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>Ações</th>
+                            <td *ngIf="pointer>=1 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer-1].data"
+                                    (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="pointer>=0 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer].data"
+                                    (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
-                    (click)="pointer=pointer-1">
-                    <mat-icon class="mat-14">chevron_left</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
-                    <mat-icon class="mat-18">add</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
-                    mat-mini-fab color="default" (click)="pointer=pointer+1">
-                    <mat-icon class="mat-14">chevron_right</mat-icon>
-                </button>
-                <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                    <mat-icon class="mat-18">close</mat-icon>
-                </button>
-                <button *ngIf="addEval" mat-stroked-button>
-                    <mat-icon class="mat-18">check</mat-icon>
-                </button>
-            </div>
-        </form>
-        <br />
-        <hr />
-        <div *ngIf="selectedEvaluation">
-            <div *ngIf="showChart">
-                <div style="text-align: center; color: white;">
-                    <div>
-                        <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
-                            <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-                            </mat-button-toggle>
-                            <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
-                        </mat-button-toggle-group>
-                    </div>
-                    <div *ngIf="chartSelected=='pie'">
-                        <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
-                        <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
-                            [disabled]="!fatChanged" (change)="getNewEvaluation()">
-                        </mat-slider>
-                        <button mat-mini-fab color="default" (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="default" (click)="saveFatChange()" *ngIf="fatChanged">
-                            <mat-icon>save</mat-icon>
-                        </button>
-                    </div>
+                <div class="action">
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                        color="default" (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                        (click)="addEvaluation()">
+                        <mat-icon class="mat-18">add</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval"
+                        [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                        (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
+                        <mat-icon class="mat-18">close</mat-icon>
+                    </button>
+                    <button *ngIf="addEval" mat-stroked-button>
+                        <mat-icon class="mat-18">check</mat-icon>
+                    </button>
                 </div>
-                <!-- charts -->
-                <div class="chart-pie" *ngIf="chartSelected=='pie'">
-                    <app-chart-pie [values]="single"></app-chart-pie>
-                    <app-chart-pie [values]="single2"></app-chart-pie>
-                </div>
-                <div *ngIf="chartSelected=='compare'">
-                    <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada"
-                        [evaluations]="evaluation">
-                    </app-chart-compare>
+            </form>
+            <br />
+            <hr />
+            <div *ngIf="selectedEvaluation">
+                <div *ngIf="showChart">
+                    <div style="text-align: center; color: white;">
+                        <div>
+                            <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
+                                <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
+                                </mat-button-toggle>
+                                <mat-button-toggle value="compare">Comparativo</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+                        <div *ngIf="chartSelected=='pie'">
+                            <mat-label i18n>% Gordura Desejada <small>[{{gorduraDesejada}}]</small> : </mat-label>
+                            <mat-slider min="10" max="30" step="1" thumbLabel="true" [(ngModel)]="gorduraDesejada"
+                                [disabled]="!fatChanged" (change)="getNewEvaluation()">
+                            </mat-slider>
+                            <button mat-mini-fab color="default" (click)="fatChanged = !fatChanged" *ngIf="!fatChanged">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab color="default" (click)="saveFatChange()" *ngIf="fatChanged">
+                                <mat-icon>save</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- charts -->
+                    <div class="chart-pie" *ngIf="chartSelected=='pie'">
+                        <app-chart-pie [values]="single"></app-chart-pie>
+                        <app-chart-pie [values]="single2"></app-chart-pie>
+                    </div>
+                    <div *ngIf="chartSelected=='compare'">
+                        <app-chart-compare [id]="student.id" [protocolo]="protocolo" [percgd]="gorduraDesejada"
+                            [evaluations]="evaluation">
+                        </app-chart-compare>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

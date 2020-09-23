@@ -2,113 +2,119 @@
     <app-header-name></app-header-name>
 
     <div class="section">
-        <h1 class="h1-title" i18n>Questionário PAR-Q</h1>
-        <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>1) Seu médico já lhe disse que você é portador de um problema cardíaco e que somente deve
-                        fazer atividade física recomendada por um profissional da saúde?
-                    </p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq1="ngModel" name="parq1"
-                            [(ngModel)]="student.parq1" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+        <div class="section-content">
+            <h1 class="h1-title" i18n>Questionário PAR-Q</h1>
+            <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>1) Seu médico já lhe disse que você é portador de um problema cardíaco e que somente
+                            deve
+                            fazer atividade física recomendada por um profissional da saúde?
+                        </p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq1="ngModel" name="parq1"
+                                [(ngModel)]="student.parq1" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>2) Você sente dor no peito quando realiza uma atividade física?</p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq2="ngModel" name="parq2"
-                            [(ngModel)]="student.parq2" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>3) No último mês, você teve dor no peito quando não estava realizando uma atividade física?
-                    </p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq3="ngModel" name="parq3"
-                            [(ngModel)]="student.parq3" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>2) Você sente dor no peito quando realiza uma atividade física?</p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq2="ngModel" name="parq2"
+                                [(ngModel)]="student.parq2" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>3) No último mês, você teve dor no peito quando não estava realizando uma atividade
+                            física?
+                        </p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq3="ngModel" name="parq3"
+                                [(ngModel)]="student.parq3" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>4) Você perdeu o equilíbrio em virtude de uma tontura ou já perdeu a consciência?
-                    </p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq4="ngModel" name="parq4"
-                            [(ngModel)]="student.parq4" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>4) Você perdeu o equilíbrio em virtude de uma tontura ou já perdeu a consciência?
+                        </p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq4="ngModel" name="parq4"
+                                [(ngModel)]="student.parq4" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>5) Você sofre de algum problema ósseo ou articular que poderia ser agravado por uma mudança
-                        em sua atividade física?</p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq5="ngModel" name="parq5"
-                            [(ngModel)]="student.parq5" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>5) Você sofre de algum problema ósseo ou articular que poderia ser agravado por uma
+                            mudança
+                            em sua atividade física?</p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq5="ngModel" name="parq5"
+                                [(ngModel)]="student.parq5" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>6) Seu médico está lhe receitando atualmente medicamentos (por exemplo, diuréticos) para a
-                        pressão arterial ou algum problema cardíaco?</p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq6="ngModel" name="parq6"
-                            [(ngModel)]="student.parq6" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>6) Seu médico está lhe receitando atualmente medicamentos (por exemplo, diuréticos) para
+                            a
+                            pressão arterial ou algum problema cardíaco?</p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq6="ngModel" name="parq6"
+                                [(ngModel)]="student.parq6" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
-            <mat-card>
-                <mat-card-content>
-                    <p i18n>7) Você está a par de alguma outra razão pela qual não deveria realizar uma atividade
-                        física?</p>
-                    <div class="flex-radio-group">
-                        <mat-radio-group aria-label="Select an option" #parq7="ngModel" name="parq7"
-                            [(ngModel)]="student.parq7" (change)="calcRisco(f.value)">
-                            <mat-radio-button value="1" i18n>Sim</mat-radio-button>
-                            <mat-radio-button value="0" i18n>Não</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <p i18n>7) Você está a par de alguma outra razão pela qual não deveria realizar uma atividade
+                            física?</p>
+                        <div class="flex-radio-group">
+                            <mat-radio-group aria-label="Select an option" #parq7="ngModel" name="parq7"
+                                [(ngModel)]="student.parq7" (change)="calcRisco(f.value)">
+                                <mat-radio-button value="1" i18n>Sim</mat-radio-button>
+                                <mat-radio-button value="0" i18n>Não</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
 
-                </mat-card-content>
-            </mat-card>
+                    </mat-card-content>
+                </mat-card>
 
-            <em i18n>Fonte: Sociadade Canadense de Fisiologia do Exercicio, in ACSM (2003)</em>
+                <em i18n>Fonte: Sociadade Canadense de Fisiologia do Exercicio, in ACSM (2003)</em>
 
-            <div class="footer">
-                <button mat-stroked-button>
-                    Salvar  
-                </button>
-            </div>
-        </form>
+                <div class="footer">
+                    <button mat-stroked-button>
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

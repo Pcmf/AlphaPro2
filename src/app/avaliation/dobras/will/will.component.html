@@ -1,6 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
         <h1 class="h1-title" i18n>Williams - 4 dobras</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
@@ -182,5 +183,6 @@
                 </app-chart-compare>
             </div>
         </div>
+    </div>
     </div>
 </div>

@@ -12,6 +12,9 @@
     justify-content: flex-start;
     align-items: center;
     color: white;
+    &-content{
+      width: 100%;
+    }
   
     .h1-title {
       width: 100%;
@@ -33,8 +36,19 @@
    color: rgb(37, 211, 211);
   }
 
+  .table{
+    font-size: smaller;
+    td, th {
+      border: 1px solid #999;
+      padding: 0.5rem;
+    }
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+
 @media only screen and (min-width: 768px) {
-    .section{
+    .section-content{
         width: 520px !important;
     }
 }

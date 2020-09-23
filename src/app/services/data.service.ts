@@ -13,6 +13,9 @@ export class DataService {
   private aluno = new BehaviorSubject([]);
   currentAluno = this.aluno.asObservable();
 
+  private editType = new BehaviorSubject(false);
+  currentEditType = this.editType.asObservable();
+
   private ADDRESS = environment.ADDRESS;
   private helper = new JwtHelperService();
 
@@ -22,6 +25,12 @@ export class DataService {
   changeAluno(aluno: any[]) {
     this.aluno.next(aluno);
   }
+
+  /** Edit Type service  */
+  changeEditType(editType: boolean) {
+    this.editType.next(editType);
+  }
+
   // Get data from DB
   getData(param) {
     return this.http.get(this.ADDRESS + param);

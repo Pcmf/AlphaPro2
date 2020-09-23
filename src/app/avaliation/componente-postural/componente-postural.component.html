@@ -3,12 +3,11 @@
 
     <div class="section">
         <h1 class="h1-title" i18n>Avaliação Postural</h1>
+        <form #f="ngForm" (submit)="saveDataForm(f)" autocomplete="off">
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             
-            <!-- TAB - Vista anterior -->
-            <mat-tab i18n label="Vista Anterior">
-                <form #fa="ngForm" (submit)="saveDataForm(fa)" autocomplete="off">
-
+                <!-- TAB - Vista anterior -->
+                <mat-tab i18n label="Vista Anterior">
                     <table class="section-table front-view" id="VP" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
                         <thead>
@@ -1191,19 +1190,17 @@
                             (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addForm" mat-stroked-button>
+                        <button type="submit" *ngIf="addForm" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
-                </form>
 
-                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
-                </div>
-            </mat-tab>
+                    <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                    </div>
+                </mat-tab>
 
-            <!-- Vista Lateral -->
-            <mat-tab i18n label="Vista Lateral">
-                <form #fl="ngForm" (submit)="saveDataForm(fl)" autocomplete="off">
+                <!-- Vista Lateral -->
+                <mat-tab i18n label="Vista Lateral">
                     <table class="section-table side-view" id="VL" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
                         <thead>
@@ -1980,18 +1977,16 @@
                             (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addForm" mat-stroked-button>
+                        <button type="submit" *ngIf="addForm" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
-                </form>
-                <div style="height: 100px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
-                </div>
-            </mat-tab>
+                    <div style="height: 100px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">&nbsp;
+                    </div>
+                </mat-tab>
 
-            <!-- Vista Posterior -->
-            <mat-tab i18n label="Vista Posterior">
-                <form #fp="ngForm" (submit)="saveDataForm(fp)" autocomplete="off">
+                <!-- Vista Posterior -->
+                <mat-tab i18n label="Vista Posterior">
                     <table class="section-table back-view" (swiperight)="swipeRight($event)"
                         (swipeleft)="swipeLeft($event)">
                         <thead>
@@ -3161,137 +3156,140 @@
                             (click)="closeInputs()">
                             <mat-icon class="mat-18">close</mat-icon>
                         </button>
-                        <button *ngIf="addForm" mat-stroked-button>
+                        <button type="submit" *ngIf="addForm" mat-stroked-button>
                             <mat-icon class="mat-18">check</mat-icon>
                         </button>
                     </div>
-                </form>
-                <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                </div>
-            </mat-tab>
+                    <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                    </div>
+                </mat-tab>
 
-            <!--   FOTOS -->
-            <mat-tab i18n label="Fotos">
+                <!--   FOTOS -->
+                <mat-tab i18n label="Fotos">
 
-                <table class="section-table">
-                    <thead>
-                        <tr>
-                            <th class="th-top" *ngIf="pointer>=0">
-                                <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab
-                                    color="default" (click)="pointer=pointer-1">
-                                    <mat-icon class="mat-14">chevron_left</mat-icon>
-                                </button>
-                                {{oldData[pointer].data | date:'dd/LL/yyyy'}}
-                                <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1" mat-mini-fab
-                                    color="default" (click)="pointer=pointer+1">
-                                    <mat-icon class="mat-14">chevron_right</mat-icon>
-                                </button>
-                            </th>
-                            <th class="th-top" *ngIf="addForm">
-                                <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
-                                    class="data-input">
-                            </th>
-                        </tr>
+                    <table class="section-table">
+                        <thead>
+                            <tr>
+                                <th class="th-top" *ngIf="pointer>=0">
+                                    <button type="button" *ngIf="!addForm" [disabled]="pointer<=0" mat-mini-fab
+                                        color="default" (click)="pointer=pointer-1">
+                                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                                    </button>
+                                    {{oldData[pointer].data | date:'dd/LL/yyyy'}}
+                                    <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1"
+                                        mat-mini-fab color="default" (click)="pointer=pointer+1">
+                                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                                    </button>
+                                </th>
+                                <th class="th-top" *ngIf="addForm">
+                                    <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                        class="data-input">
+                                </th>
+                            </tr>
 
-                    </thead>
-                </table>
+                        </thead>
+                    </table>
 
-                <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
-                    <!-- vista anterior -->
-                    <div class="photo" *ngIf="viewPhoto">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotoa && !addForm">
-                            <img [src]="oldData[pointer].fotoa" alt="Vista Anterior" 
-                            (click)="showPhoto('Vista Anterior', oldData[pointer].data, oldData[pointer].fotoa)">
-                        </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa || addForm">
-                            <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
-                        </div>
-                        <button mat-icon-button color="warn"
+                    <div class="photos" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
+                        <!-- vista anterior -->
+                        <div class="photo" *ngIf="viewPhoto">
+                            <div *ngIf="oldData[pointer] && oldData[pointer].fotoa && !addForm">
+                                <img [src]="oldData[pointer].fotoa" alt="Vista Anterior"
+                                    (click)="showPhoto('Vista Anterior', oldData[pointer].data, oldData[pointer].fotoa)">
+                            </div>
+                            <div *ngIf="!oldData[pointer] || !oldData[pointer].fotoa || addForm">
+                                <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
+                            </div>
+                            <button type="button" mat-icon-button color="warn"
                                 *ngIf="oldData[pointer] && oldData[pointer].fotoa && !addForm"
                                 (click)="deleteView('a', oldData[pointer].data)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button  mat-icon-button color="default"
-                            (click)="openTakePhoto('a', oldData[pointer].data); viewPhoto=false;">
-                            <mat-icon>camera_alt</mat-icon>
-                        </button>
-                    </div>
-                    <!-- vista lateral -->
-                    <div class="photo" *ngIf="viewPhoto">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotol && !addForm">
-                            <img [src]="oldData[pointer].fotol" alt="Vista Lateral"
-                            (click)="showPhoto('Vista Lateral', oldData[pointer].data, oldData[pointer].fotol)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button type="button" mat-icon-button color="default"
+                                (click)="openTakePhoto('a', oldData[pointer].data); viewPhoto=false;">
+                                <mat-icon>camera_alt</mat-icon>
+                            </button>
                         </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol || addForm">
-                            <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
-                        </div>
-                        <button mat-icon-button color="warn"
+                        <!-- vista lateral -->
+                        <div class="photo" *ngIf="viewPhoto">
+                            <div *ngIf="oldData[pointer] && oldData[pointer].fotol && !addForm">
+                                <img [src]="oldData[pointer].fotol" alt="Vista Lateral"
+                                    (click)="showPhoto('Vista Lateral', oldData[pointer].data, oldData[pointer].fotol)">
+                            </div>
+                            <div *ngIf="!oldData[pointer] || !oldData[pointer].fotol || addForm">
+                                <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
+                            </div>
+                            <button type="button" mat-icon-button color="warn"
                                 *ngIf="oldData[pointer] && oldData[pointer].fotol && !addForm"
                                 (click)="deleteView('l', oldData[pointer].data)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button  mat-icon-button color="default"
-                            (click)="openTakePhoto('l', oldData[pointer].data); viewPhoto=false;">
-                            <mat-icon>camera_alt</mat-icon>
-                        </button>
-                    </div>
-                    <!-- vista posterior -->
-                    <div class="photo" *ngIf="viewPhoto">
-                        <div *ngIf="oldData[pointer] && oldData[pointer].fotop && !addForm">
-                            <img [src]="oldData[pointer].fotop" alt="Vista Posterior"
-                            (click)="showPhoto('Vista Posterior', oldData[pointer].data, oldData[pointer].fotop)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button type="button" mat-icon-button color="default"
+                                (click)="openTakePhoto('l', oldData[pointer].data); viewPhoto=false;">
+                                <mat-icon>camera_alt</mat-icon>
+                            </button>
                         </div>
-                        <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop || addForm">
-                            <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
-                        </div>
-                        <button mat-icon-button color="warn"
+                        <!-- vista posterior -->
+                        <div class="photo" *ngIf="viewPhoto">
+                            <div *ngIf="oldData[pointer] && oldData[pointer].fotop && !addForm">
+                                <img [src]="oldData[pointer].fotop" alt="Vista Posterior"
+                                    (click)="showPhoto('Vista Posterior', oldData[pointer].data, oldData[pointer].fotop)">
+                            </div>
+                            <div *ngIf="!oldData[pointer] || !oldData[pointer].fotop || addForm">
+                                <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
+                            </div>
+                            <button type="button" mat-icon-button color="warn"
                                 *ngIf="oldData[pointer] && oldData[pointer].fotop && !addForm"
                                 (click)="deleteView('p', oldData[pointer].data)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button  mat-icon-button color="default"
-                            (click)="openTakePhoto('p', oldData[pointer].data); viewPhoto=false;">
-                            <mat-icon>camera_alt</mat-icon>
-                        </button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button type="button" mat-icon-button color="default"
+                                (click)="openTakePhoto('p', oldData[pointer].data); viewPhoto=false;">
+                                <mat-icon>camera_alt</mat-icon>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div *ngIf="view" class="photoArea" style="text-align:center">     <!--  && pointer+1 == maxPointer -->
-                    <h4>{{viewTitle}}</h4>
-                    <div *ngIf="!webcamImage">
-                        <webcam [width]="200" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
-                            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
-                            [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="0.6"
-                            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
-                        </webcam>
-                        <br />
-                        <button mat-mini-fab color="default" (click)="view=''; viewPhoto=true">
-                            <mat-icon>close</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="default" class="actionBtn" (click)="triggerSnapshot();">
-                            <mat-icon>camera</mat-icon>
-                        </button>
-                        <br />
+                    <div *ngIf="view" class="photoArea" style="text-align:center">
+                        <!--  && pointer+1 == maxPointer -->
+                        <h4>{{viewTitle}}</h4>
+                        <div *ngIf="!webcamImage">
+                            <webcam [width]="200" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                                *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
+                                [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="0.6"
+                                (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+                            </webcam>
+                            <br />
+                            <button type="button" mat-mini-fab color="default" (click)="view=''; viewPhoto=true">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <button type="button" mat-mini-fab color="default" class="actionBtn" (click)="triggerSnapshot();">
+                                <mat-icon>camera</mat-icon>
+                            </button>
+                            <br />
+                        </div>
+                        <!-- Visualizador de foto -->
+                        <div class="snapshot" *ngIf="webcamImage">
+                            <img [src]="webcamImage.imageAsDataUrl" width="200" />
+                            <br />
+                            <button type="button" mat-mini-fab color="default" (click)="webcamImage=null">
+                                <mat-icon>undo</mat-icon>
+                            </button>
+                            <button type="button" mat-mini-fab color="default" class="actionBtn"
+                                (click)="savePhoto(); viewPhoto=true">
+                                <mat-icon>save</mat-icon>
+                            </button>
+                        </div>
                     </div>
-                    <!-- Visualizador de foto -->
-                    <div class="snapshot" *ngIf="webcamImage">
-                        <img [src]="webcamImage.imageAsDataUrl" width="200" />
-                        <br />
-                        <button mat-mini-fab color="default" (click)="webcamImage=null">
-                            <mat-icon>undo</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="default" class="actionBtn" (click)="savePhoto(); viewPhoto=true">
-                            <mat-icon>save</mat-icon>
-                        </button>
+                    <div *ngIf="!view" style="height: 200px;" (swiperight)="swipeRight($event)"
+                        (swipeleft)="swipeLeft($event)">
+                        &nbsp;
                     </div>
-                </div>
-                <div *ngIf="!view" style="height: 200px;" (swiperight)="swipeRight($event)"
-                    (swipeleft)="swipeLeft($event)">
-                    &nbsp;
-                </div>
 
 
-            </mat-tab>
+                </mat-tab>
+            
         </mat-tab-group>
+    </form>
     </div>
 
 </div>

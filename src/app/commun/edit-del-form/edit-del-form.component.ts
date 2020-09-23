@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-edit-del-form',
@@ -14,8 +15,11 @@ export class EditDelFormComponent implements OnInit {
   edit = false;
 
   constructor(
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private dataService: DataService
+  ) {
+      this.dataService.currentEditType.subscribe(resp => this.edit = resp);
+  }
 
   ngOnInit(): void {
   }
@@ -26,6 +30,7 @@ export class EditDelFormComponent implements OnInit {
     this.returnAction.execute = true;
     this.action.emit(this.returnAction);
     this.edit = true;
+    this.dataService.changeEditType(true);
   }
 
   cancelEdit() {
@@ -33,6 +38,7 @@ export class EditDelFormComponent implements OnInit {
     this.returnAction.execute = false;
     this.action.emit(this.returnAction);
     this.edit = false;
+    this.dataService.changeEditType(false);
   }
 
   saveEdit() {
@@ -40,6 +46,7 @@ export class EditDelFormComponent implements OnInit {
     this.returnAction.execute = true;
     this.action.emit(this.returnAction);
     this.edit = false;
+    this.dataService.changeEditType(false);
   }
 
   openConfirmDialog() {

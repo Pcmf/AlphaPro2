@@ -95,9 +95,10 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   saveDataForm(form) {
-    //  console.table(form.value);
+    console.table(form.value);
     this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
       resp => {
+        this.pointer = -1;
         this.getData();
       }
     );

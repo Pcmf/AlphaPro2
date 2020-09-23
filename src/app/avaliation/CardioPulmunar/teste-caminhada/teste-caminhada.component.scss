@@ -22,14 +22,28 @@
 }
 
 .mat-card{
-  height: 30px;
+  min-height: 30px;
   background-color:  rgba(119, 107, 107, 0.788);
   margin-bottom: 3px;
 
+
+
   .mat-card-subtitle{
+    text-align: center;
     font-size: 16px;
     font-weight: unset;
     color: white;
+  }
+  .mat-card-content{
+    margin-left: 16px;
+    font-size: small;
+    line-height: 0.8;
+    color: white;
+  }
+}
+::ng-deep{
+    .mat-card-header-text{
+    width: 100% !important;
   }
 }
 

@@ -17,7 +17,7 @@ export class DialogMedidas {
     erroPunho = false;
     erroJoelho = false;
     erro = false;
-    
+
     constructor(
       public dialogRef: MatDialogRef<DialogMedidas>,
       @Inject(MAT_DIALOG_DATA) public data,
@@ -25,19 +25,19 @@ export class DialogMedidas {
       private datapipe: DatePipe
     ) {
       if (data.newAv && data.daysAv) {
-        this.msg += 'A ultima avaliação de altura e peso já tem ' + data.daysAv + ' dias.';
+        this.msg += 'A última avaliação complementar já tem ' + data.daysAv + ' dias.';
       }
       if (data.newAv && !data.daysAv) {
-        this.msg += 'Não existem avaliações de altura e/ou peso. ';
+        this.msg += 'Não existem avaliações complementares. ';
       }
       if (data.newCorporal && data.daysCorporal) {
-        this.msg += ' A ultima medição do punho e joelho já tem ' + data.daysCorporal + ' dias.';
+        this.msg += ' A última medição do punho e/ou joelho já tem ' + data.daysCorporal + ' dias.';
       }
       if (data.newCorporal && data.daysCorporal) {
         this.msg += ' Não existem medições de punho e/ou joelho.';
       }
       if (this.msg) {
-        this.msg += ' Altere ou adicione novos:';
+        this.msg += ' Altere ou adicione nova informação.';
       }
       this.ev.altura = data.lastAv.altura;
       this.ev.peso = data.lastAv.peso;

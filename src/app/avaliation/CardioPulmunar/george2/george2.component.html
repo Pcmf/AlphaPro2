@@ -1,6 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
         <h1 class="h1-title" i18n>Corrida esteira - George et Al (1993) - 3min</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
@@ -27,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n>Velocidade</th>
+                        <th i18n>Velocidade <small>(Km/h)</small></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].c_vm | number: '': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">
                             <input name="c_vm" #c_vm="ngModel" [(ngModel)]="newEvaluation.c_vm" type="number" (focus)="$event.target.select()">
@@ -137,7 +138,7 @@
         </div>
 
         <div class="section-info">
-            <mat-card>
+<!--             <mat-card>
                 <mat-card-header>
                     <mat-card-title>Especificações</mat-card-title>
                 </mat-card-header>
@@ -151,8 +152,8 @@
                         não ultrapassando os 10.4Km/h no caso de mulheres ou 12Km/h no caso de homens, por mais 3
                         minutos</p>
                 </mat-card-content>
-            </mat-card>
+            </mat-card> -->
         </div>
     </div>
-
+</div>
 </div>

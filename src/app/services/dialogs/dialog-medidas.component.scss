@@ -4,6 +4,15 @@
     align-items: center;
     color: black;
 }
-.mat-form-field-appearance-legacy .mat-form-field-label {
-    color: unset;
+::ng-deep{
+    .mat-label{
+        color: black;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: black;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        background-color: black;
+    }
 }

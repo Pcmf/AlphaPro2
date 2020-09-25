@@ -2,85 +2,93 @@
     <app-header-name></app-header-name>
     <div class="section">
         <div class="section-content">
-        <h1 class="h1-title" i18n>Natação - nadar crawl na pescina - 12min</h1>
-        <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
-            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
-            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
-            <table class="section-table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
-                            <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button> 
-                        </th>
-                        <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button> 
-                        </th>
-                        <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th i18n>Distância <small>(m)</small></th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].distancia | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].distancia | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number" (focus)="$event.target.select()">
-                        </td>                        
-                        <td *ngIf="addEval">
-                            <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia" type="number">
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <th i18n>Classificação</th>
-                        <td *ngIf="pointer>=1 && !addEval">{{getClassificacao(evaluation[pointer-1])}}</td>
-                        <td *ngIf="pointer>=0">{{getClassificacao(evaluation[pointer])}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr> 
-                    <tr>
-                        <th>Ações</th>
-                        <td *ngIf="pointer>=1 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer-1].data"
-                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="pointer>=0 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer].data"
-                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>                                      
-                </tbody>
-            </table>
+            <h1 class="h1-title" i18n>Natação - nadar crawl na pescina - 12min</h1>
+            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+                <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+                <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                                <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
+                            </th>
+                            <th class="th-top" *ngIf="pointer>=0">
+                                <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                            </th>
+                            <th class="th-top" *ngIf="addEval">
+                                <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                    class="data-input">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th i18n>Distância <small>(m)</small></th>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                {{evaluation[pointer-1].distancia | number: '': locale}}</td>
+                            <td *ngIf="editPointer==1 && editAv">
+                                <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">
+                                {{evaluation[pointer].distancia | number: '': locale}}</td>
+                            <td *ngIf="editPointer==0 && editAv">
+                                <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia"
+                                    type="number" (focus)="$event.target.select()">
+                            </td>
+                            <td *ngIf="addEval">
+                                <input name="distancia" #distancia="ngModel" [(ngModel)]="newEvaluation.distancia"
+                                    type="number">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th i18n>Classificação</th>
+                            <td *ngIf="pointer>=1 && !addEval">{{getClassificacao(evaluation[pointer-1])}}</td>
+                            <td *ngIf="pointer>=0">{{getClassificacao(evaluation[pointer])}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>Ações</th>
+                            <td *ngIf="pointer>=1 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer-1].data"
+                                    (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="pointer>=0 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer].data"
+                                    (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
-                    (click)="pointer=pointer-1">
-                    <mat-icon class="mat-14">chevron_left</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
-                    <mat-icon class="mat-18">add</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
-                    mat-mini-fab color="default" (click)="pointer=pointer+1">
-                    <mat-icon class="mat-14">chevron_right</mat-icon>
-                </button>
-                <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                    <mat-icon class="mat-18">close</mat-icon>
-                </button>
-                <button *ngIf="addEval" mat-stroked-button>
-                    <mat-icon class="mat-18">check</mat-icon>
-                </button>
-            </div>
-        </form>
-        <div class="section-info">
-<!--             <mat-card>
+                <div class="action">
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                        color="default" (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                        (click)="addEvaluation()">
+                        <mat-icon class="mat-18">add</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval"
+                        [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                        (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
+                        <mat-icon class="mat-18">close</mat-icon>
+                    </button>
+                    <button *ngIf="addEval" mat-stroked-button>
+                        <mat-icon class="mat-18">check</mat-icon>
+                    </button>
+                </div>
+            </form>
+            <div class="section-info">
+                <!--             <mat-card>
                 <mat-card-header>
                     <mat-card-title>Especificações</mat-card-title>
                 </mat-card-header>
@@ -90,95 +98,89 @@
                     <p><strong>Objetivo:</strong> Nadar a maior distância possivél 12 minutos, nadando crawl na piscina.</p>
                 </mat-card-content>
             </mat-card> -->
-        </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Faixa Etária (anos)</th>
-                    <th>Muito Baixa</th>
-                    <th>Baixa</th>
-                    <th>Média</th>
-                    <th>Boa</th>
-                    <th>Excelente</th>
-                </tr>
-            </thead>
-            <tbody *ngIf="student.sexo == 'F'">
-                <tr>
-                    <th> &lt; 30</th>
-                    <td>&lt; 380</td>
-                    <td>380 - 460</td>
-                    <td>461 - 560</td>
-                    <td>561 - 660</td>
-                    <td> &gt; 660</td>
-                </tr>
-                <tr>
-                    <th>30 - 39</th>
-                    <td>&lt; 340</td>
-                    <td>340 - 420</td>
-                    <td>421 - 520</td>
-                    <td>521 - 620</td>
-                    <td> &gt; 620</td>
-                </tr>
-                <tr>
-                    <th>40 - 49</th>
-                    <td>&lt; 300</td>
-                    <td>300 - 380</td>
-                    <td>381 - 460</td>
-                    <td>461 - 580</td>
-                    <td> &gt; 580</td>
-                </tr>
-                <tr>
-                    <th> &gt; 50</th>
-                    <td>&lt; 260</td>
-                    <td>260 - 340</td>
-                    <td>341 - 420</td>
-                    <td>421 - 540</td>
-                    <td> &gt; 540</td>
-                </tr>
-            </tbody>
-            <tbody *ngIf="student.sexo == 'M'">
-                <tr>
-                    <th> &lt; 30</th>
-                    <td>&lt; 400</td>
-                    <td>400 - 500</td>
-                    <td>501 - 600</td>
-                    <td>601 - 700</td>
-                    <td> &gt; 700</td>
-                </tr>
-                <tr>
-                    <th>30 - 39</th>
-                    <td>&lt; 380</td>
-                    <td>380 - 460</td>
-                    <td>461 - 560</td>
-                    <td>561 - 660</td>
-                    <td> &gt; 660</td>
-                </tr>
-                <tr>
-                    <th>40 - 49</th>
-                    <td>&lt; 340</td>
-                    <td>340 - 420</td>
-                    <td>421 - 520</td>
-                    <td>521 - 620</td>
-                    <td> &gt; 620</td>
-                </tr>
-                <tr>
-                    <th> &gt; 50</th>
-                    <td>&lt; 320</td>
-                    <td>320 - 400</td>
-                    <td>401 - 500</td>
-                    <td>501 - 600</td>
-                    <td> &gt; 600</td>
-                </tr>
-            </tbody>
-        </table>
-        <em>Distância percorrida em metros</em>
-    </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Faixa Etária (anos)</th>
+                            <th>Muito Baixa</th>
+                            <th>Baixa</th>
+                            <th>Média</th>
+                            <th>Boa</th>
+                            <th>Excelente</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="student.sexo == 'F'">
+                        <tr>
+                            <th> &lt; 30</th>
+                            <td>&lt; 380</td>
+                            <td>380 - 460</td>
+                            <td>461 - 560</td>
+                            <td>561 - 660</td>
+                            <td> &gt; 660</td>
+                        </tr>
+                        <tr>
+                            <th>30 - 39</th>
+                            <td>&lt; 340</td>
+                            <td>340 - 420</td>
+                            <td>421 - 520</td>
+                            <td>521 - 620</td>
+                            <td> &gt; 620</td>
+                        </tr>
+                        <tr>
+                            <th>40 - 49</th>
+                            <td>&lt; 300</td>
+                            <td>300 - 380</td>
+                            <td>381 - 460</td>
+                            <td>461 - 580</td>
+                            <td> &gt; 580</td>
+                        </tr>
+                        <tr>
+                            <th> &gt; 50</th>
+                            <td>&lt; 260</td>
+                            <td>260 - 340</td>
+                            <td>341 - 420</td>
+                            <td>421 - 540</td>
+                            <td> &gt; 540</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="student.sexo == 'M'">
+                        <tr>
+                            <th> &lt; 30</th>
+                            <td>&lt; 400</td>
+                            <td>400 - 500</td>
+                            <td>501 - 600</td>
+                            <td>601 - 700</td>
+                            <td> &gt; 700</td>
+                        </tr>
+                        <tr>
+                            <th>30 - 39</th>
+                            <td>&lt; 380</td>
+                            <td>380 - 460</td>
+                            <td>461 - 560</td>
+                            <td>561 - 660</td>
+                            <td> &gt; 660</td>
+                        </tr>
+                        <tr>
+                            <th>40 - 49</th>
+                            <td>&lt; 340</td>
+                            <td>340 - 420</td>
+                            <td>421 - 520</td>
+                            <td>521 - 620</td>
+                            <td> &gt; 620</td>
+                        </tr>
+                        <tr>
+                            <th> &gt; 50</th>
+                            <td>&lt; 320</td>
+                            <td>320 - 400</td>
+                            <td>401 - 500</td>
+                            <td>501 - 600</td>
+                            <td> &gt; 600</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <em>Distância percorrida em metros</em>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
-
-
-

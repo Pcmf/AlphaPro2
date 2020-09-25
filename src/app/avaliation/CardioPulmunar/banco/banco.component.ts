@@ -172,6 +172,7 @@ export class BancoComponent implements OnInit {
 
   openEditForm(evaluation, editPointer) {
     this.newEvaluation = evaluation;
+    this.getLastEvaluation();
     this.editAv = true;
     this.editPointer = editPointer;
   }
@@ -192,6 +193,8 @@ export class BancoComponent implements OnInit {
         console.log(resp);
         this.newEvaluation = [];
         this.closeEditForm();
+        this.refresh = false;
+        this.getData();
       }
     );
   }
@@ -254,4 +257,31 @@ export class BancoComponent implements OnInit {
   openDialog(type) {
     this.dialogService.openHelp(type);
   }
+
+    // Obter a ultima avaliação para a edição
+    getLastEvaluation() {
+      // Obter dados da anamnese com o nivel de atividade do aluno
+      this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+        (respa: any[]) => {
+          if (respa && respa.length > 0 ) {
+            if (respa[0].nafs >= 0) {
+              this.newEvaluation.nafs = respa[0].nafs;
+            }
+          }
+          // Obter os dados da ultima Avaliação complementar
+          this.dataService.getLastEvaluation(this.student.id).subscribe(
+            (resp: any[]) => {
+              if (resp.length > 0) {
+  
+                this.newEvaluation.altura = resp[0].altura;
+                this.newEvaluation.peso = resp[0].peso;
+                this.newEvaluation.fc2 = resp[0].fc;
+              }
+              this.newEvaluation.sexo = this.student.sexo;
+              this.newEvaluation.idade = this.ageService.getAge( this.student.dt_nasc);
+            }
+          );
+        }
+      );
+    }
 }

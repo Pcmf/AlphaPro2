@@ -1,6 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
         <h1 class="h1-title" i18n>Natação - nadar crawl na pescina - 12min</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
@@ -79,7 +80,7 @@
             </div>
         </form>
         <div class="section-info">
-            <mat-card>
+<!--             <mat-card>
                 <mat-card-header>
                     <mat-card-title>Especificações</mat-card-title>
                 </mat-card-header>
@@ -88,7 +89,7 @@
                     <p><strong>Faixa etária:</strong> Não definida</p>
                     <p><strong>Objetivo:</strong> Nadar a maior distância possivél 12 minutos, nadando crawl na piscina.</p>
                 </mat-card-content>
-            </mat-card>
+            </mat-card> -->
         </div>
 
         <table class="table">
@@ -173,7 +174,7 @@
         </table>
         <em>Distância percorrida em metros</em>
     </div>
-
+    </div>
 </div>
 
 

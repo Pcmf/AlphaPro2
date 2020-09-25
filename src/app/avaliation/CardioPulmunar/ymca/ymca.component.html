@@ -1,6 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
         <h1 class="h1-title" i18n>YMCA - Golding, Myers & Sinning, (1989) - 6min</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
@@ -243,5 +244,6 @@
         <div class="charts" *ngIf="refresh">
             <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
+    </div>
     </div>
 </div>

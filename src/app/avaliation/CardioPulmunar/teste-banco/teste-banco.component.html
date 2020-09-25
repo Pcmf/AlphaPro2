@@ -4,15 +4,20 @@
     <div class="section">
         <h1 class="h1-title" i18n>Testes de Banco</h1>
         <div class="section-cards">
-            <mat-card>
-                <mat-card-header [routerLink]="['/banco']">
+            <mat-card [routerLink]="['/banco']">
+                <mat-card-header>
                     <mat-card-subtitle i18n="Subtitle">Katch & McArdle (1984) - 3min</mat-card-subtitle>
                 </mat-card-header>
             </mat-card>
-            <mat-card>
-                <mat-card-header [routerLink]="['/bancoymca']">
+            <mat-card [routerLink]="['/bancoymca']">
+                <mat-card-header>
                     <mat-card-subtitle i18n="Subtitle">YMCA - 3min</mat-card-subtitle>
                 </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Destinado a: </strong> Homens e mulheres.</p>
+                    <p><strong>Faixa etária:</strong> Adultos maiores de 18 anos</p>
+                    <p><strong>Objetivo:</strong> Subir e descer um banco num ritmo pré definido durante 3 minutos.</p>
+                </mat-card-content>
             </mat-card>
         </div>
     </div>

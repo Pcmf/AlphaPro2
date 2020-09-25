@@ -1,15 +1,16 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
         <h1 class="h1-title" i18n>Testes de Caminhada</h1>
         <div class="section-cards">
-            <mat-card>
-                <mat-card-header [routerLink]="['/rock']">
+            <mat-card [routerLink]="['/rock']">
+                <mat-card-header>
                     <mat-card-subtitle i18n="Subtitle">Rockport - 1609m</mat-card-subtitle>
                 </mat-card-header>
             </mat-card>
-            <mat-card>
-                <mat-card-header [routerLink]="['/ukk']">
+            <mat-card [routerLink]="['/ukk']">
+                <mat-card-header>
                     <mat-card-subtitle i18n="Subtitle">Instituto UKK Finlândia<br />Kukkonen-Harjula et Al - 2000m
                     </mat-card-subtitle>
                 </mat-card-header>
@@ -19,8 +20,8 @@
                     <p><strong>Objetivo:</strong> caminhar o mais rápido possivél o percurso proposto.</p>
                 </mat-card-content>
             </mat-card>
-            <mat-card>
-                <mat-card-header [routerLink]="['/cureton']">
+            <mat-card [routerLink]="['/cureton']">
+                <mat-card-header>
                     <mat-card-subtitle i18n="Subtitle">Cureton et Al - 1609m</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
@@ -32,7 +33,7 @@
             </mat-card>
         </div>
 
-
+        </div>
     </div>
 
 </div>

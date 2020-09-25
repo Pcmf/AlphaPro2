@@ -1,6 +1,7 @@
 <div class="container">
     <app-header-name></app-header-name>
     <div class="section">
+        <div class="section-content">
          <h1 class="h1-title" i18n>Banco - Katch e McArdle, (1984) - 3min</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
@@ -144,5 +145,5 @@
         </div>
     </div>
 
-
+    </div>
 </div>

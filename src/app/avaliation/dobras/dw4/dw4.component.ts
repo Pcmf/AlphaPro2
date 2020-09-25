@@ -217,6 +217,7 @@ export class DW4Component implements OnInit {
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
+        this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
         this.closeEditForm();
       }

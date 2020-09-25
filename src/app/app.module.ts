@@ -111,6 +111,7 @@ import { IconService } from './services/icon.service';
 import { AuthGuardService } from './services/auth-guard-service.service';
 import { HeaderNameComponent } from './commun/header-name/header-name.component';
 import { EditDelFormComponent, ConfirmDeleteDialog } from './commun/edit-del-form/edit-del-form.component';
+import { TesteOrtopedicosDashComponent } from './avaliation/teste-ortopedicos-dash/teste-ortopedicos-dash.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -206,7 +207,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     HeaderNameComponent,
     EditDelFormComponent,
     ConfirmDeleteDialog,
-    ShowPhotoDialog
+    ShowPhotoDialog,
+    TesteOrtopedicosDashComponent
   ],
   imports: [
     BrowserModule,

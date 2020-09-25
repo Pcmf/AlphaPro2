@@ -66,9 +66,12 @@ import { ConfigsComponent } from './dashboard/configs/configs.component';
 import { VideoComponent } from './commun/video/video.component';
 import { MetronomeComponent } from './commun/metronome/metronome.component';
 import { AuthGuardService } from './services/auth-guard-service.service';
+import { TesteOrtopedicosDashComponent } from './avaliation/teste-ortopedicos-dash/teste-ortopedicos-dash.component';
 
 
 const routes: Routes = [
+  // Testes Ortopedicos
+  {path: 'ortop', component: TesteOrtopedicosDashComponent, canActivate: [AuthGuardService] },
 // Morfologico - dobras e outros protocolos
   {path: 'slau', component: SlaugtherComponent, canActivate: [AuthGuardService] },
   {path: 'jp3', component: JP3Component, canActivate: [AuthGuardService] },

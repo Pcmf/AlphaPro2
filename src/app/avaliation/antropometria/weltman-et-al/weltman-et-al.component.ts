@@ -137,6 +137,8 @@ export class WeltmanEtAlComponent implements OnInit {
           if (resp[0].difdias > 2) {
             this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
           }
+          this.lastAv.altura = resp[0].altura;
+          this.lastAv.peso = resp[0].peso;
 
                  // Obter os dados da ultima avaliação corporal - punho e joelho
           this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
@@ -145,7 +147,7 @@ export class WeltmanEtAlComponent implements OnInit {
                       this.lastCorporal = respc.pop();
                       this.newCorporal = false;
                       // tslint:disable-next-line: no-conditional-assignment
-                      if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
+                      if ((this.daysCorporal = this.lastCorporal.difdias) > 2
                         || +this.lastCorporal.punho == 0
                         || +this.lastCorporal.joelho == 0) {
                         this.newCorporal = true;
@@ -171,8 +173,6 @@ export class WeltmanEtAlComponent implements OnInit {
                   }
                 );
 
-   /*        this.newEvaluation.altura = resp[0].altura;
-          this.newEvaluation.peso = resp[0].peso; */
           this.newEvaluation.idade = this.age;
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           console.log(this.newEvaluation);
@@ -209,9 +209,10 @@ export class WeltmanEtAlComponent implements OnInit {
     console.table(this.newEvaluation);
     this.dataService.setData('clients/corporal/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }

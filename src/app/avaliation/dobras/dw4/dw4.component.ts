@@ -216,7 +216,6 @@ export class DW4Component implements OnInit {
     console.table(this.newEvaluation);
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
         this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
         this.closeEditForm();
@@ -232,7 +231,6 @@ export class DW4Component implements OnInit {
   delete(evaluation) {
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
       }
     );

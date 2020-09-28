@@ -77,7 +77,6 @@ import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
 import { ChartDobrasComponent } from './commun/chart-dobras/chart-dobras.component';
 import { PrepareChartService } from './services/prepare-chart.service';
 import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
-import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { FlexClassComponent } from './commun/flex-class/flex-class.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
@@ -181,7 +180,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     DEXAComponent,
     ChartDobrasComponent,
     ChartPieComponent,
-    MayhewEtAlComponent,
     WeltmanSeipTranComponent,
     FlexClassComponent,
     IndiceConicidadeComponent,

@@ -225,7 +225,15 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     // Precisa da formula
-    this.perGordura = 22.00;
+    if (morfo.sexo === 'F') {
+      const CABD = (morfo.abdomen + morfo.abdomen2) / 2;
+      const DC = 1.168297 - (0.002824 * CABD) + 0.000012298 * Math.pow(CABD, 2) - 0.000733128 * +morfo.quadril
+      + 0.000510477 * +morfo.altura - 0.000216162 * +morfo.idade;
+      this.perGordura = (4.95 / DC - 4.5) * 100;
+    } else {
+      this.perGordura = 0.57914807 * +morfo.abdomen + 0.25189114 * +morfo.quadril + 0.21366088 * +morfo.cintura
+      - 0.35595404 * morfo.peso - 47.371817;
+    }
     const answer = this.createAnswer();
     console.table(answer);
     return answer;
@@ -249,9 +257,9 @@ export class ProtcolosDobrasService {
     this.gorduraDesejada = gorduraDesejada;
     this.morfo = morfo;
     if (morfo.sexo === 'M') {
-      this.perGordura = 0.31457 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 0.10969 * +morfo.peso + 10.8336;
+      this.perGordura = 0.31457 * +morfo.abdomen  - 0.10969 * +morfo.peso + 10.8336;
     } else {
-      this.perGordura = 0.11077 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 0.17666 * +morfo.altura - 0.14354 * +morfo.peso + 51.03301;
+      this.perGordura = 0.11077 * +morfo.abdomen - 0.17666 * +morfo.altura - 0.14354 * +morfo.peso + 51.03301;
     }
     const answer = this.createAnswer();
     console.table(answer);
@@ -263,9 +271,9 @@ export class ProtcolosDobrasService {
       console.table(morfo);
       this.gorduraDesejada = gorduraDesejada;
       this.morfo = morfo;
-      // Precisa da formula   (alterei a altura de m para cm)
+      // Precisa da formula 
       this.perGordura = 0.173 * +morfo.quadril + 105.328 * Math.log10(+morfo.peso) - 0.515 * +morfo.altura
-                        - 1.574 * +morfo.antebracod - 0.533 * +morfo.pescoco - 0.2 * (+morfo.abdomen + +morfo.abdomen2) / 2 - 35.6;
+                        - 1.574 * +morfo.antebracod - 0.533 * +morfo.pescoco - 0.2 * +morfo.abdomen2 - 35.6;
       const answer = this.createAnswer();
       console.table(answer);
       return answer;

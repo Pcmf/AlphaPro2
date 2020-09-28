@@ -30,7 +30,7 @@ export class DialogMedidas {
       if (data.newAv && !data.daysAv) {
         this.msg += 'Não existem avaliações complementares. ';
       }
-      if (data.newCorporal && data.daysCorporal) {
+      if (data.newCorporal && data.daysCorporal && data.lastCorporal.punho > 0 && data.lastCorporal.joelho > 0) {
         this.msg += ' A última medição do punho e/ou joelho já tem ' + data.daysCorporal + ' dias.';
       }
       if (data.newCorporal && data.daysCorporal) {

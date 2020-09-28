@@ -132,21 +132,28 @@ export class TranWeltmanComponent implements OnInit {
   }
 
   addEvaluation() {
+    this.newAv = false;
     this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
+      (resp: any[]) => {
         if (resp) {
+          console.log(resp);
+          console.log(resp[0].difdias);
+          this.lastAv.altura = resp[0].altura;
+          this.lastAv.peso = resp[0].peso;
           if (resp[0].difdias > 2) {
             this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
           }
 
                  // Obter os dados da ultima avaliação corporal - punho e joelho
           this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
-                  (respc: []) => {
+                  (respc: any[]) => {
+                    console.log(respc);
+                    console.log(resp[0].difdias);
                     if (respc.length > 0) {
                       this.lastCorporal = respc.pop();
                       this.newCorporal = false;
                       // tslint:disable-next-line: no-conditional-assignment
-                      if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
+                      if ((this.daysCorporal = resp[0].difdias) > 2
                         || +this.lastCorporal.punho == 0
                         || +this.lastCorporal.joelho == 0) {
                         this.newCorporal = true;
@@ -165,8 +172,6 @@ export class TranWeltmanComponent implements OnInit {
                         this.lastCorporal
                       );
                     }
-                    this.newEvaluation.altura = this.lastAv.altura;
-                    this.newEvaluation.peso = this.lastAv.peso;
                     this.newEvaluation.punho = this.lastCorporal.punho;
                     this.newEvaluation.joelho = this.lastCorporal.joelho;
                   }
@@ -210,9 +215,10 @@ export class TranWeltmanComponent implements OnInit {
     console.table(this.newEvaluation);
     this.dataService.setData('clients/corporal/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }
@@ -225,7 +231,7 @@ export class TranWeltmanComponent implements OnInit {
   delete(evaluation) {
     this.dataService.delete('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.startGraphics([]);
         this.getData();
       }
     );

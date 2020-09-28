@@ -53,7 +53,6 @@ import { StComponent } from './avaliation/componente-morfologica/st/st.component
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
 import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
-import { MayhewEtAlComponent } from './avaliation/antropometria/mayhew-et-al/mayhew-et-al.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
 import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
@@ -94,7 +93,6 @@ const routes: Routes = [
   {path: 'weltal', component: WeltmanEtAlComponent, canActivate: [AuthGuardService] },
   {path: 'tw', component: TranWeltmanComponent, canActivate: [AuthGuardService] },
   {path: 'wst', component: WeltmanSeipTranComponent, canActivate: [AuthGuardService] },
-  {path: 'metal', component: MayhewEtAlComponent, canActivate: [AuthGuardService] },
   {path: 'welt', component: WeltmanComponent, canActivate: [AuthGuardService] },
 // Flexidade
   {path: 'flex', component: FlexDashComponent, canActivate: [AuthGuardService] },

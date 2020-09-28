@@ -210,7 +210,7 @@ export class WB3Component implements OnInit {
     console.table(this.newEvaluation);
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
         this.closeEditForm();
       }

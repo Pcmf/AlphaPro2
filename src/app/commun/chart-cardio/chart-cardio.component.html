@@ -5,6 +5,7 @@
             [view]="view" 
             [scheme]="colorScheme" 
             [legend]="legend" 
+            legendTitle = 'Legenda'
             [legendPosition]="legendPosition"
             [showXAxisLabel]="showXAxisLabel"
             [showYAxisLabel]="showYAxisLabel" 
@@ -17,7 +18,7 @@
     </ngx-charts-line-chart>
     <!-- VO2 -->
     <ngx-charts-bar-vertical-2d [view]="view2" [scheme]="colorScheme" [results]="multi2" [gradient]="gradient"
-      [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel2"
+      [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" legendTitle = 'Legenda' [showXAxisLabel]="showXAxisLabel2"
       [showYAxisLabel]="showYAxisLabel2" [xAxisLabel]="xAxisLabel2" [yAxisLabel]="yAxisLabel1"
       [legendPosition]=""  [barPadding]="barPadding"
       [groupPadding]="groupPadding">

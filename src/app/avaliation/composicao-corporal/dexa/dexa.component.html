@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th><span (click)="openDialog('Peso Corporal')">Peso Corporal</span></th>
+                            <th><span (click)="openDialog('Peso Corporal')">Peso Corporal <small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].peso | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
@@ -66,7 +66,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><span (click)="openDialog('DMO')">DMO</span> <small>(g/cm2)</small></th>
+                            <th><span (click)="openDialog('DMO')">DMO <small>(g/cm2)</small></span> </th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].dmo | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
@@ -84,7 +84,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><span (click)="openDialog('Gordura')">Gordura</span> <small>(Kg)</small></th>
+                            <th><span (click)="openDialog('Gordura')">Gordura <small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].fat | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
@@ -102,7 +102,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><span (click)="openDialog('Massa Magra')">Massa Magra</span> <small>(g)</small></th>
+                            <th><span (click)="openDialog('Massa Magra')">Massa Magra <small>(g)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].lean | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">

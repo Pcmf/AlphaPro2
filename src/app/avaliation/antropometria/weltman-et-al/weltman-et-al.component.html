@@ -49,7 +49,7 @@
                             </td>
                         </tr> -->
                         <tr>
-                            <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span>
+                            <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura) <small>(cm)</small></span>
                             </th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].abdomen | number: '': locale}}</td>
@@ -69,13 +69,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal</span></th>
+                            <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal <small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                         <tr *ngIf="sex ==='F'">
-                            <th i18n><span (click)="openHelpDialog('Altura')">Altura</span></th>
+                            <th i18n><span (click)="openHelpDialog('Altura')">Altura <small>(m)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
                             </td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
@@ -95,6 +95,7 @@
                             </td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
+
                     </tbody>
                 </table>
 

@@ -107,7 +107,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><span (click)="openHelpDialog('Altura')">Altura</span></th>
+                            <th><span (click)="openHelpDialog('Altura')">Altura <small>(m)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
                             </td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
@@ -133,6 +133,12 @@
                             </td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
+                        <tr>
+                            <td colspan="3">
+                                <small class="advise-sm" i18n>* Todas as medidas são em centimetros</small>
+                            </td>
+                        </tr>
+                        
                     </tbody>
                 </table>
 

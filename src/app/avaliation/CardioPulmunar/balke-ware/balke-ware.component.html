@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <div class="section-content">
-        <h1 class="h1-title" i18n>Bicicleta - Balke e Ware, (1954)</h1>
+        <h1 class="h1-title" i18n>Balke e Ware, (1954)</h1>
         <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
             <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
             <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th i18n><span (click)="openDialog('Carga Teste')">Carga Teste</span></th>
+                        <th i18n><span (click)="openDialog('Carga Teste')">Carga Teste <small>(Watt)</small></span></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].carga | number: '': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">
                             <input name="carga" #carga="ngModel" [(ngModel)]="newEvaluation.carga" type="number" (focus)="$event.target.select()">

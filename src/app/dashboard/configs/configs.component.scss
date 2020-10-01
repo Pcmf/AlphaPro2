@@ -1,6 +1,8 @@
 .container{
-    background-color: white;
-    background-image: unset;
+    background-image: url("./../../../assets/img/postural_fundo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .section{
@@ -8,6 +10,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    color: white;
 }
 
 .box1, .box2{

@@ -3,10 +3,12 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Tran & Weltman (1989)</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
+                <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
+                <input type="hidden" name="joelho" #joelho="ngModel" [(ngModel)]="newEvaluation.joelho">
                 <table class="section-table">
                     <thead>
                         <tr>
@@ -111,13 +113,20 @@
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
                             </td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{newEvaluation.altura | number: '': locale}}</td>
+                        </tr>
+                        <tr>
+                            <th><span (click)="openHelpDialog('Peso corporal')">Peso corporal <small>(m)</small></span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
+                            <td *ngIf="addEval">{{newEvaluation.peso | number: '': locale}}</td>
                         </tr>
                         <tr>
                             <th>Idade</th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].idade | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].idade | number: '': locale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{newEvaluation.idade | number: '': locale}}</td>
                         </tr>
                         <tr>
                             <th>Ações</th>
@@ -149,7 +158,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -157,10 +166,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

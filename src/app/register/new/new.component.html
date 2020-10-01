@@ -1,21 +1,27 @@
 <div class="container">
-    
-
   <div class="section">
+    <div class="section-content">
     <h1 i18n="titulo">Cadastro</h1>
     <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)" autocomplete="off">
       <input type="hidden" [ngModel]="student.foto" #foto="ngModel" name="foto">
+
       <mat-form-field appearance="">
         <label i18n="Label | nome do aluno" #nome>Nome</label>
         <input matInput type="search" #nome="ngModel" [ngModel]="student.nome" name="nome" required
-        autocomplete="off" (focus)="$event.target.select()">
+        autocomplete="off" (focus)="$event.target.select()" minlength="3">
+        <mat-error>* Campo obrigatório.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="">
         <label i18n="Label | data de nascimento">Data de Nascimento <small>(dd/mm/aaaa)</small></label>
-        <input matInput type="search" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" 
-        name="dt_nasc" mask="00/00/0000" [showMaskTyped] = "true" autocomplete="off" 
-        (focus)="$event.target.select()">
+        <input matInput type="text" #dt_nasc="ngModel" [(ngModel)]="student.dt_nasc" 
+              name="dt_nasc" mask="00/00/0000" [showMaskTyped] = "true" autocomplete="off" 
+              [style]="errorData.year || errorData.month || errorData.day ? 'color:red' : null" 
+              (change)="checkData(dt_nasc)" (focus)="$event.target.select()" required>
+        <mat-hint style="color: red" *ngIf="errorData.year">*Atenção! Verifique o ano introduzido.</mat-hint>
+        <mat-hint style="color: red" *ngIf="errorData.month && !errorData.year">*Atenção! Verifique o mês introduzido.</mat-hint>
+        <mat-hint style="color: red" *ngIf="errorData.day && !errorData.year && !errorData.month">*Atenção! Verifique o dia introduzido.</mat-hint>
+        <mat-error *ngIf="dt_nasc.invalid">*Verifique a data de nascimento!</mat-error>
       </mat-form-field>
 
       <div class="section-middle">
@@ -93,19 +99,17 @@
         <button mat-stroked-button type="button" (click)="cancel()">
           <mat-icon class="mat-18">close</mat-icon>
         </button>
-        <button mat-stroked-button type="submit" color="accent" [disabled]="erroRepeatCliente || !f.valid">
+        <button mat-stroked-button type="submit" color="accent" 
+                [disabled]="erroRepeatCliente || !f.valid || errorData.year || errorData.month || errorData.day">
           <mat-icon class="mat-18">check</mat-icon>
         </button>
       </div>
       <span class="alert" *ngIf="erroRepeatCliente">Já existe registro com estes dados.</span> 
       </div>
-
-
       <p>
-        <!-- <a href="#"> -->
-         <!--  <em>(1) - Entre sexo e gênero: um estudo bibliográfico-exploratórios das ciências da saúde.</em> -->
-        <!-- </a> -->
+
       </p>
     </form>
+  </div>
   </div>
 </div>

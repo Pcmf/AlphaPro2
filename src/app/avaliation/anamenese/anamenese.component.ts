@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
@@ -14,7 +14,6 @@ export class AnameneseComponent implements OnInit {
   startDate = new Date();
   student: any = [];
   selectedStudent: any = [];
-  dataObj: any;
   dataIniPgm: any;
   dataUltimoExame: any;
 
@@ -26,12 +25,16 @@ export class AnameneseComponent implements OnInit {
   DiabetesParentesco: any = [];
   OutraDoencaParentesco: any = [];
 
-
+  errorData: any = [];
   constructor(
     private location: Location,
     private dataService: DataService,
-    public dialog: MatDialog,
+    private datapipe: DatePipe,
+    public dialog: MatDialog
   ) {
+    this.errorData.year = false;
+    this.errorData.month = false;
+    this.errorData.day = false;
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
   }
 
@@ -58,7 +61,7 @@ export class AnameneseComponent implements OnInit {
           this.student.hipertenso == 0 ? this.student.hipertenso = false : this.student.hipertenso = true;
           this.student.osteoporose == 0 ? this.student.osteoporose = false : this.student.osteoporose = true;
           this.student.osteopenia == 0 ? this.student.osteopenia = false : this.student.osteopenia = true;
-          this.dataObj = this.student.DT_OBJ;
+          this.student.DT_OBJ = this.datapipe.transform( this.student.DT_OBJ, 'dd/MM/yyyy');
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
           this.checkHipertenso();
@@ -97,6 +100,24 @@ export class AnameneseComponent implements OnInit {
         }
       }
     );
+  }
+
+  checkData(data) {
+    if (data.value.substr(-4) < 2020 ) {
+      this.errorData.year = true;
+    } else {
+      this.errorData.year = false;
+    }
+    if (data.value.substr(0, 2) > 31 ) {
+      this.errorData.day = true;
+    } else {
+      this.errorData.day = false;
+    }
+    if (data.value.substr(2, 2) > 12 ) {
+      this.errorData.month = true;
+    } else {
+      this.errorData.month = false;
+    }
   }
 
   private checkHipertenso() {
@@ -158,12 +179,21 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveObjetivos(form) {
+    form.DT_OBJ = this.convertData(form.DT_OBJ);
+    console.log(form.DT_OBJ);
     if (!form.QEST) {
       form.Q201 = '';
       form.Q13 = '';
     }
-    form.DT_OBJ = this.dataObj;
     this.saveData(form);
+  }
+
+  private convertData(data) {
+    const ano = data.substr(-4);
+    const dia = data.substr(0, 2);
+    const mes = data.substr(2, 2);
+
+    return ano + '-' + mes + '-' + dia;
   }
 
   saveEstiloVida(form) {

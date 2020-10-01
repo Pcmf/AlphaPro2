@@ -54,30 +54,32 @@
                   placeholder="especificar..."></textarea>
               </mat-form-field>
 
-              <mat-form-field style="display: contents;">
+              <mat-form-field  style="display: contents;">
                 <mat-label i18n="Label">Expectativa (data) para alcançar o objetivo</mat-label>
-                <input matInput #DT_OBJ="ngModel" name="DT_OBJ" [(ngModel)]="dataObj" [matDatepicker]="pickerAmn"
-                  placeholder="Ex: 25/01/2021" required>
-                <mat-datepicker-toggle matSuffix [for]="pickerAmn"></mat-datepicker-toggle>
-                <mat-datepicker #pickerAmn startView="month" touchUi="true" [startAt]="startDate"></mat-datepicker>
+                  <input matInput [style]="errorData.year || errorData.month || errorData.day ? 'color:red' : null" 
+                      type="text" #DT_OBJ="ngModel" name="DT_OBJ" [(ngModel)]="student.DT_OBJ" mask="00/00/0000" [showMaskTyped]="true" autocomplete="off" 
+                      (focus)="$event.target.select()" (change)="checkData(DT_OBJ)">
+                      <mat-hint style="color: red" *ngIf="errorData.year">*Atenção! O ano não pode ser inferior ao atual.</mat-hint>
+                      <mat-hint style="color: red" *ngIf="errorData.month && !errorData.year">*Atenção! Verifique o mês introduzido.</mat-hint>
+                      <mat-hint style="color: red" *ngIf="errorData.day && !errorData.year && !errorData.month">*Atenção! Verifique o dia introduzido.</mat-hint>
               </mat-form-field>
 
               <div class="escalas">
                 <mat-label i18n>Interesse pelo objetivo </mat-label>
                 <mat-slider #INTERESSE="ngModel" name="INTERESSE" [(ngModel)]="student.INTERESSE" thumbLabel
-                  tickInterval="1" min="1" max="10">
+                  tickInterval="1" min="0" max="10">
                 </mat-slider>
               </div>
               <div class="escalas">
                 <mat-label i18n>É um objetivo alcançável?</mat-label>
                 <mat-slider #ALCANCA="ngModel" name="ALCANCA" [(ngModel)]="student.ALCANCA" thumbLabel tickInterval="1"
-                  min="1" max="10">
+                  min="0" max="10">
                 </mat-slider>
               </div>
               <div class="escalas">
                 <mat-label i18n>Depende de você mesmo alcançar o objetivo?</mat-label>
                 <mat-slider #DEPENDE="ngModel" name="DEPENDE" [(ngModel)]="student.DEPENDE" thumbLabel tickInterval="1"
-                  min="1" max="10"></mat-slider>
+                  min="0" max="10"></mat-slider>
               </div>
 
               <mat-radio-group aria-label="Select an option" #ANTES="ngModel" name="ANTES" [(ngModel)]="student.ANTES">

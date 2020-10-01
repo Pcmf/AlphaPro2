@@ -61,11 +61,11 @@
                     <tr>
                         <th>Peso <small>(Kg)</small></th>
                         <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
-                            {{evaluation[pointer-1].peso | number: '1.2-2': locale}}</td>
+                            {{evaluation[pointer-1].peso | number: '1.2-3': locale}}</td>
                         <td *ngIf="editPointer==1 && editAv">
                             <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number" (focus)="$event.target.select()">
                         </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].peso | number: '1.2-2': locale}}
+                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].peso | number: '1.2-3': locale}}
                         </td>
                         <td *ngIf="editPointer==0 && editAv">
                             <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number" (focus)="$event.target.select()">

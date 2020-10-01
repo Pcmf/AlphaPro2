@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Sloan - 2 dobras</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
@@ -46,7 +46,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input class="hidde-arrows" name="subescapular" #subescapular="ngModel"
-                                    [(ngModel)]="newEvaluation.subescapular" type="number">
+                                    [(ngModel)]="newEvaluation.subescapular" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='F'">
@@ -65,7 +66,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input class="hidde-arrows" name="triciptal" #tricipital="ngModel"
-                                    [(ngModel)]="newEvaluation.triciptal" type="number">
+                                    [(ngModel)]="newEvaluation.triciptal" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='M'">
@@ -84,7 +86,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input class="hidde-arrows" name="crural" #crural="ngModel"
-                                    [(ngModel)]="newEvaluation.crural" type="number">
+                                    [(ngModel)]="newEvaluation.crural" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='F'">
@@ -103,7 +106,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input class="hidde-arrows" name="suprailiaca" #suprailiaca="ngModel"
-                                    [(ngModel)]="newEvaluation.suprailiaca" type="number">
+                                    [(ngModel)]="newEvaluation.suprailiaca" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -120,7 +124,7 @@
                             <td *ngIf="pointer>=0 && sexo == 'F'">
                                 {{(+evaluation[pointer].triciptal + +evaluation[pointer].suprailiaca) / 2 |number: '1.2-2': locale}}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio / 2 | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <th i18n>Somatório</th>
@@ -136,7 +140,7 @@
                             <td *ngIf="pointer>=0 && sexo == 'F'">
                                 {{+evaluation[pointer].triciptal + +evaluation[pointer].suprailiaca |number: '1.2-2': locale}}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <td colspan="3">
@@ -167,7 +171,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -175,10 +179,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

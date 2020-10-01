@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Wilmore & Behnke - 3 dobras</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
@@ -48,7 +48,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="subescapular" #subescapular="ngModel"
-                                    [(ngModel)]="newEvaluation.subescapular" type="number">
+                                    [(ngModel)]="newEvaluation.subescapular" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -67,7 +68,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +86,8 @@
                                     (focus)="$event.target.select()">
                             </td>
                             <td *ngIf="addEval">
-                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number">
+                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number"
+                                (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
 
@@ -99,7 +101,7 @@
                                 {{(+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
                             + +evaluation[pointer].crural) / 3 | number: '1.2-2': locale}}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio / 3 | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <th i18n>Somatório</th>
@@ -111,7 +113,7 @@
                                 {{+evaluation[pointer].subescapular + +evaluation[pointer].triciptal 
                             + +evaluation[pointer].crural | number: '1.2-2': locale}}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <td colspan="3">

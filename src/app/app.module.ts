@@ -111,6 +111,7 @@ import { AuthGuardService } from './services/auth-guard-service.service';
 import { HeaderNameComponent } from './commun/header-name/header-name.component';
 import { EditDelFormComponent, ConfirmDeleteDialog } from './commun/edit-del-form/edit-del-form.component';
 import { TesteOrtopedicosDashComponent } from './avaliation/teste-ortopedicos-dash/teste-ortopedicos-dash.component';
+import { LastEvaluationService } from './services/last-evaluation.service';
 
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -247,7 +248,8 @@ export class MyHammerConfig extends HammerGestureConfig {
               DialogService,
               NgxImageCompressService,
               IconService,
-              AuthGuardService
+              AuthGuardService,
+              LastEvaluationService
             ],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Guedes - 3 dobras</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
@@ -46,7 +46,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='F'">
@@ -67,7 +67,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="subescapular" #subescapular="ngModel"
-                                    [(ngModel)]="newEvaluation.subescapular" type="number">
+                                    [(ngModel)]="newEvaluation.subescapular" type="number"
+                                     (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +87,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='M'">
@@ -105,7 +106,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sexo=='F'">
@@ -123,31 +124,33 @@
                                     (focus)="$event.target.select()">
                             </td>
                             <td *ngIf="addEval">
-                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number">
+                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number" 
+                                (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
                             <th i18n>Média</th>
-                            <td *ngIf="pointer>=1 && sexo=='M'">
+                            <td *ngIf="pointer>=1 && sexo=='M' && !addEval">
                                 {{(+evaluation[pointer-1].triciptal + +evaluation[pointer-1].suprailiaca
                            + +evaluation[pointer-1].abdominal) / 3 | number: '1.2-2': locale}}</td>
-                            <td *ngIf="pointer>=1 && sexo=='F'">
+                            <td *ngIf="pointer>=1 && sexo=='F' && !addEval">
                                 {{(+evaluation[pointer-1].subescapular + +evaluation[pointer-1].suprailiaca
                                + +evaluation[pointer-1].crural) / 3 | number: '1.2-2': locale}}</td>
+
                             <td *ngIf="pointer>=0 && sexo=='M'">
                                 {{(+evaluation[pointer].triciptal + +evaluation[pointer].suprailiaca
                                    + +evaluation[pointer].abdominal) / 3 | number: '1.2-2': locale}}</td>
                             <td *ngIf="pointer>=0 && sexo=='F'">
                                 {{(+evaluation[pointer].subescapular + +evaluation[pointer].suprailiaca
                                        + +evaluation[pointer].crural) / 3 | number: '1.2-2': locale}}</td>
-                            <td *ngIf="addEval">&nbsp; </td>
+                            <td *ngIf="addEval">{{ somatorio / 3 | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <th i18n>Somatório</th>
-                            <td *ngIf="pointer>=1 && sexo=='M'">
+                            <td *ngIf="pointer>=1 && sexo=='M' && !addEval">
                                 {{+evaluation[pointer-1].triciptal + +evaluation[pointer-1].suprailiaca
                            + +evaluation[pointer-1].abdominal | number: '1.2-2': locale}}</td>
-                            <td *ngIf="pointer>=1 && sexo=='F'">
+                            <td *ngIf="pointer>=1 && sexo=='F' && !addEval">
                                 {{+evaluation[pointer-1].subescapular + +evaluation[pointer-1].suprailiaca
                                + +evaluation[pointer-1].crural | number: '1.2-2': locale}}</td>
                             <td *ngIf="pointer>=0 && sexo=='M'">
@@ -156,7 +159,7 @@
                             <td *ngIf="pointer>=0 && sexo=='F'">
                                 {{+evaluation[pointer].subescapular + +evaluation[pointer].suprailiaca
                                        + +evaluation[pointer].crural | number: '1.2-2': locale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <td colspan="3">
@@ -187,7 +190,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -195,10 +198,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

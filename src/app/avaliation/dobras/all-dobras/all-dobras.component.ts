@@ -4,6 +4,7 @@ import { Location, DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AgeService } from 'src/app/services/age.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { LastEvaluationService } from 'src/app/services/last-evaluation.service';
 
 @Component({
   selector: 'app-all-dobras',
@@ -28,6 +29,7 @@ export class AllDobrasComponent implements OnInit {
   single2: any[];
   showChart = false;
   locale: string;
+  somatorio = 0;
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
@@ -37,7 +39,8 @@ export class AllDobrasComponent implements OnInit {
               private datapipe: DatePipe,
               private snackBar: MatSnackBar,
               public dialogService: DialogService,
-              private ageService: AgeService
+              private ageService: AgeService,
+              private lastEvalService: LastEvaluationService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -78,79 +81,85 @@ export class AllDobrasComponent implements OnInit {
   }
 
   save(form) {
-    form.protocolo = this.protocolo;
-    this.saveToDB(form);
+    if (form.data) {
+      form.protocolo = this.protocolo;
+      this.saveToDB(form);
 
-    /* Durnim & Womersley - 4 dobras  - protocolo 5 */
-    if (form.triciptal > 0 && form.subescapular > 0 && form.biciptal > 0 && form.suprailiaca > 0) {
-      form.protocolo = 5;
-      this.saveToDB(form);
+      /* Durnim & Womersley - 4 dobras  - protocolo 5 */
+      if ((this.student.sexo === 'M' && this.age >= 17 && this.age <= 72)
+            || (this.student.sexo === 'F' &&  this.age >= 16 && this.age <= 68)) {
+        if (form.triciptal > 0 && form.subescapular > 0 && form.biciptal > 0 && form.suprailiaca > 0) {
+          form.protocolo = 5;
+          this.saveToDB(form);
+        }
+      }
+      /* Faulkner - 4 dobras  - protocolo 2 */
+      if (form.triciptal > 0 && form.subescapular > 0 && form.abdominal > 0 && form.suprailiaca > 0
+        && this.student.sexo === 'M') {
+        form.protocolo = 2;
+        this.saveToDB(form);
+      }
+      /* Guedes - 3 dobras  - protocolo 1 */
+      if (form.triciptal > 0 && form.abdominal > 0 && form.suprailiaca > 0) {
+        form.protocolo = 1;
+        this.saveToDB(form);
+      }
+      /* JP3 - 3 dobras  - protocolo 3 */
+      if ((this.student.sexo === 'M' && form.peitoral > 0 && form.abdominal > 0 && this.age >= 18 && this.age <= 61)
+        || (this.student.sexo === 'F' && form.triciptal > 0 && form.suprailiaca > 0 && form.crural > 0
+        && this.age >= 18 && this.age <= 55)) {
+        form.protocolo = 3;
+        this.saveToDB(form);
+      }
+      /* JP7 - 7 dobras  - protocolo 4 */
+      if (form.triciptal > 0 && form.subescapular > 0 && form.peitoral > 0 && form.suprailiaca > 0
+        && form.axilar > 0 && form.abdominal > 0 && form.crural > 0 && this.age >= 18 && this.age <= 55) {
+        form.protocolo = 4;
+        this.saveToDB(form);
+      }
+      /* Petroski - 4 dobras  - protocolo 10 */
+      if ((this.student.sexo === 'M' && form.triciptal > 0 && form.subescapular > 0 && this.age >= 18 && this.age <= 66)
+        || (this.student.sexo === 'F' && form.axilar > 0 && form.crural > 0) && form.geminal > 0 && form.suprailiaca > 0
+        && this.age >= 18 && this.age <= 51) {
+        form.protocolo = 10;
+        this.saveToDB(form);
+      }
+      /* Slaugther - 2 dobras  - protocolo 6 */
+      if (this.age <= 16 && form.triciptal > 0 && form.geminal > 0) {
+        form.protocolo = 6;
+        this.saveToDB(form);
+      }
+      /* Sloan - 2 dobras  - protocolo 12 */
+      if ( (this.student.sexo === 'M' && form.crural > 0 && form.subescapular > 0 && this.age >= 18 && this.age <= 26)
+        || (this.student.sexo === 'F' && form.triciptal > 0 && form.suprailiaca > 0 && this.age >= 17 && this.age <= 25)) {
+        form.protocolo = 12;
+        this.saveToDB(form);
+      }
+      /* Williams - 4 dobras  - protocolo 11 */
+      if (form.triciptal > 0 && form.subescapular > 0 && form.geminal > 0 && form.abdominal > 0
+          && (this.student.sexo === 'M' || (this.student.sexo === 'F' && this.age >= 34 && this.age <= 84))) {
+        form.protocolo = 11;
+        this.saveToDB(form);
+      }
+      /* Wilmore & Benk - 2 dobras  - protocolo 16 */
+      if (this.student.sexo === 'M' && form.crural > 0 && form.abdominal > 0 && this.age >= 16 && this.age <= 37) {
+        form.protocolo = 16;
+        this.saveToDB(form);
+      }
+      /* Wilmore & Benk - Mulheres - 3 dobras  - protocolo 15 */
+      if (this.student.sexo === 'F' && form.crural > 0 && form.subescapular > 0 && form.triciptal > 0) {
+        form.protocolo = 15;
+        this.saveToDB(form);
+      }
+      this.newEvaluation = [];
+      this.addEval = false;
+      this.getData();
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
-    /* Faulkner - 4 dobras  - protocolo 2 */
-    if (form.triciptal > 0 && form.subescapular > 0 && form.abdominal > 0 && form.suprailiaca > 0
-          &&  this.student.sexo == 'F') {
-      form.protocolo = 2;
-      this.saveToDB(form);
-    }
-    /* Guedes - 3 dobras  - protocolo 1 */
-    if (form.triciptal > 0  && form.abdominal > 0 && form.suprailiaca > 0) {
-      form.protocolo = 1;
-      this.saveToDB(form);
-    }
-    /* JP3 - 3 dobras  - protocolo 3 */
-    if ((this.student.sexo == 'M' && form.peitoral > 0  && form.abdominal > 0)
-        || (this.student.sexo == 'F' && form.triciptal  > 0 && form.suprailiaca > 0) && form.crural > 0) {
-      form.protocolo = 3;
-      this.saveToDB(form);
-    }
-    /* JP7 - 7 dobras  - protocolo 4 */
-    if (form.triciptal > 0 && form.subescapular > 0 && form.peitoral > 0 && form.suprailiaca > 0
-      && form.axilar > 0 && form.abdominal > 0 && form.crural > 0) {
-      form.protocolo = 4;
-      this.saveToDB(form);
-    }
-    /* Petroski - 4 dobras  - protocolo 10 */
-    if ((this.student.sexo == 'M' && form.triciptal > 0 && form.subescapular > 0)
-        || (this.student.sexo == 'F' && form.axilar > 0 && form.crural > 0) && form.geminal > 0 && form.suprailiaca > 0) {
-      form.protocolo = 10;
-      this.saveToDB(form);
-    }
-    /* Slaugther - 2 dobras  - protocolo 6 */
-    if (form.triciptal > 0 && form.geminal > 0) {
-      form.protocolo = 6;
-      this.saveToDB(form);
-    }
-    /* Sloan - 2 dobras  - protocolo 12 */
-    if ((this.student.sexo == 'M' && form.crural > 0 && form.subescapular > 0)
-        || (this.student.sexo == 'F' && form.triciptal > 0 && form.suprailiaca > 0)) {
-      form.protocolo = 12;
-      this.saveToDB(form);
-    }
-        /* Williams - 4 dobras  - protocolo 11 */
-    if (form.triciptal > 0 && form.subescapular > 0 && form.geminal > 0 && form.abdominal > 0) {
-      form.protocolo = 11;
-      this.saveToDB(form);
-    }
-    /* Wilmore & Benk - 2 dobras  - protocolo 16 */
-    if (this.student.sexo == 'M' && form.crural > 0 && form.abdominal > 0) {
-      form.protocolo = 16;
-      this.saveToDB(form);
-    }
-    /* Wilmore & Benk - Mulheres - 3 dobras  - protocolo 15 */
-    if (this.student.sexo == 'F' && form.crural > 0 && form.subescapular > 0 && form.triciptal > 0) {
-      form.protocolo = 15;
-      this.saveToDB(form);
-    }
-    this.newEvaluation = [];
-    this.addEval = false;
-    this.getData();
   }
 
-  // Save to DB
-  saveToDB(form) {
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe( resp => {});
-    return;
-  }
+
 
 
   goBack() {
@@ -158,22 +167,45 @@ export class AllDobrasComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
-        if (resp) {
-          if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
-          }
-          this.newEvaluation.altura = resp[0].altura;
-          this.newEvaluation.peso = resp[0].peso;
-          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          console.log(this.newEvaluation);
-          this.addEval = true;
-        } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
+
+      this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+      // Obter dados das avaliações complementares e ultima corporal
+      this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+      this.lastEvalService.lastEval.subscribe(
+        (resp: any) => {
+          this.newEvaluation.altura = resp.altura;
+          this.newEvaluation.peso = resp.peso;
+          this.newEvaluation.punho = resp.punho;
+          this.newEvaluation.joelho = resp.joelho;
         }
+      );
+
+      // if already have an evaluation on actual date
+      if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+        this.newEvaluation.data = '';
+        this.newEvaluation = [];
       }
-    );
+      this.somatorio = 0;
+      this.newEvaluation.biciptal = 0;
+      this.newEvaluation.geminal = 0;
+      this.newEvaluation.triciptal = 0;
+      this.newEvaluation.peitoral = 0;
+      this.newEvaluation.subescapular = 0;
+      this.newEvaluation.axilar = 0;
+      this.newEvaluation.suprailiaca = 0;
+      this.newEvaluation.abdominal = 0;
+      this.newEvaluation.crural = 0;
+      this.addEval = true;
+  }
+
+  // Save to DB
+  saveToDB(form) {
+    if (form.data) {
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(resp => { });
+      return;
+    } else {
+      console.log(' data indefenida');
+    }
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -215,7 +247,6 @@ export class AllDobrasComponent implements OnInit {
   delete(evaluation) {
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
       }
     );
@@ -232,9 +263,16 @@ export class AllDobrasComponent implements OnInit {
     });
   }
 
-    // Help Dialog
-    openDialog(type): void {
-      this.dialogService.openHelp(type);
-    }
+  // Help Dialog
+  openDialog(type): void {
+    this.dialogService.openHelp(type);
+  }
+
+  getSomatorio() {
+    this.somatorio = +this.newEvaluation.biciptal + +this.newEvaluation.geminal + +this.newEvaluation.triciptal
+      + +this.newEvaluation.peitoral + +this.newEvaluation.subescapular
+      + +this.newEvaluation.axilar + +this.newEvaluation.suprailiaca + +this.newEvaluation.abdominal
+      + +this.newEvaluation.crural;
+  }
 
 }

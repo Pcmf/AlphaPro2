@@ -6,6 +6,6 @@
   <p>Confirme ou cancele.</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-mini-fab color="default" (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-  <button mat-mini-fab color="accent" [mat-dialog-close]="true" ><mat-icon>check</mat-icon></button>
+  <button mat-mini-fab type="button" color="default" (click)="onNoClick()"><mat-icon color="warn">close</mat-icon></button>
+  <button mat-mini-fab type="button" color="default" [mat-dialog-close]="true" ><mat-icon color="accent">check</mat-icon></button>
 </div>

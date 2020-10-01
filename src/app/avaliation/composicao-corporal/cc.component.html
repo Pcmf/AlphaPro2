@@ -31,9 +31,9 @@
                     <mat-card-header>
                         <mat-card-subtitle i18n="Subtitle">Faulkner - 4 dobras</mat-card-subtitle>
                     </mat-card-header>
-                    <!--                     <mat-card-footer>
-                        <small>Homens: 17 a 72 Anos; Mulheres: 16 a 68 Anos;</small>
-                    </mat-card-footer> -->
+                    <mat-card-footer>
+                        <small>Homens</small>
+                    </mat-card-footer>
                 </mat-card>
                 <mat-card routerLink="/guedes3">
                     <mat-card-header>
@@ -95,7 +95,7 @@
                 <mat-card routerLink="/will">
                     <mat-card-header>
                         <mat-card-subtitle i18n="Subtitle"
-                        [style.color]="( age >= 34 && age <= 84 && sex=='F') ? 'white' : '#AAAAAA'">
+                        [style.color]="(( age >= 34 && age <= 84 && sex=='F') || sex=='M') ? 'white' : '#AAAAAA'">
                         Williams - 4 dobras
                     </mat-card-subtitle>
                     </mat-card-header>
@@ -106,7 +106,7 @@
                 <mat-card routerLink="/wb2">
                     <mat-card-header>
                         <mat-card-subtitle i18n="Subtitle"
-                        [style.color]="(age >= 17 && age <= 72 && sex==='M') ? 'white' : '#AAAAAA'">
+                        [style.color]="(age >= 16 && age <= 37 && sex==='M') ? 'white' : '#AAAAAA'">
                         Wilmore & Behnke - 2 dobras
                     </mat-card-subtitle>
                     </mat-card-header>

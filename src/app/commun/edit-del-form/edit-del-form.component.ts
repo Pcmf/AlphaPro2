@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
 
@@ -7,7 +7,7 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './edit-del-form.component.html',
   styleUrls: ['./edit-del-form.component.scss']
 })
-export class EditDelFormComponent implements OnInit {
+export class EditDelFormComponent implements OnInit, OnDestroy {
   @Input() dataAv: Date;
   @Output() action: EventEmitter<any> = new EventEmitter<any>();
   confirm: boolean;
@@ -22,6 +22,11 @@ export class EditDelFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.edit = false;
+  }
+
+  ngOnDestroy() {
+    this.edit = false;
   }
 
   executeEdit() {

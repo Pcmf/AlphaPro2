@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Petroski <small>(população brasileira)</small> - 4 Dobras</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()"  (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho">
@@ -46,7 +46,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sex=='M'">
@@ -65,7 +65,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="subescapular" #subescapular="ngModel"
-                                    [(ngModel)]="newEvaluation.subescapular" type="number">
+                                    [(ngModel)]="newEvaluation.subescapular" type="number"
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sex=='F'">
@@ -83,7 +84,8 @@
                                     type="number" (focus)="$event.target.select()">
                             </td>
                             <td *ngIf="addEval">
-                                <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar" type="number">
+                                <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar" type="number"
+                                (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr *ngIf="sex=='F'">
@@ -101,7 +103,8 @@
                                     type="number" (focus)="$event.target.select()">
                             </td>
                             <td *ngIf="addEval">
-                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number">
+                                <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number"
+                                (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -120,7 +123,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="geminal" #geminal="ngModel" [(ngModel)]="newEvaluation.geminal"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -139,7 +142,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="suprailiaca" #suprailiaca="ngModel" [(ngModel)]="newEvaluation.suprailiaca"
-                                    type="number">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -160,7 +163,7 @@
                                 {{(+evaluation[pointer].axilar + +evaluation[pointer].crural
                          + +evaluation[pointer].geminal + +evaluation[pointer].suprailiaca) / 4 | number: '1.2-2': locale }}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio / 4 | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <th i18n>Somatório</th>
@@ -180,7 +183,7 @@
                                 {{+evaluation[pointer].axilar + +evaluation[pointer].crural
                           + +evaluation[pointer].geminal + +evaluation[pointer].suprailiaca | number: '1.2-2': locale }}
                             </td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ somatorio / 4 | number: '': locale }}</td>
                         </tr>
                         <tr>
                             <td colspan="3">
@@ -211,7 +214,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -219,10 +222,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

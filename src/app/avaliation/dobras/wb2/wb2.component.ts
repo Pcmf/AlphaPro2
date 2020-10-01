@@ -6,6 +6,7 @@ import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.servic
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { AgeService } from 'src/app/services/age.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { LastEvaluationService } from 'src/app/services/last-evaluation.service';
 
 @Component({
   selector: 'app-wb2',
@@ -24,13 +25,9 @@ export class WB2Component implements OnInit {
   student: any = [];
   sexo: string;
   age: number;
+  somatorio = 0;
   protocolo = 16;
-  private newAv: boolean;
-  private newCorporal: boolean;
-  private lastAv: any = [];
-  private lastCorporal: any = [];
-  private daysAv = 0;
-  private daysCorporal = 0;
+
 
   // graphics
   chartSelected = 'pie';
@@ -50,7 +47,8 @@ export class WB2Component implements OnInit {
     private protocolos: ProtcolosDobrasService,
     private prepareChart: PrepareChartService,
     private ageService: AgeService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private lastEvalService: LastEvaluationService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -118,6 +116,7 @@ export class WB2Component implements OnInit {
   }
 
   save(form) {
+    if (form.data) {
     form.protocolo = this.protocolo;
     this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
       resp => {
@@ -126,6 +125,9 @@ export class WB2Component implements OnInit {
         this.getData();
       }
     );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -134,54 +136,33 @@ export class WB2Component implements OnInit {
 
   // Add new Evaluation
   addEvaluation() {
-    // Obter os dados da ultima Avaliação complementar
-    this.dataService.getLastEvaluation(this.student.id).subscribe(
-      (resp: any[]) => {
-        this.newAv = false;
-        if (resp.length > 0) {
-          // tslint:disable-next-line: no-conditional-assignment
-          if ((this.daysAv = resp[0].difdias) > 2) {
-            this.newAv = true;
-          }
-          this.lastAv = resp.pop();
-        } else {
-          this.newAv = true;
-        }
-        // Obter os dados da ultima avaliação corporal - punho e joelho
-        this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
-          (respc: []) => {
-            if (respc.length > 0) {
-              this.lastCorporal = respc.pop();
-              this.newCorporal = false;
-              // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
-                || +this.lastCorporal.punho == 0
-                || +this.lastCorporal.joelho == 0) {
-                this.newCorporal = true;
-              }
-            } else {
-              this.newCorporal = true;
-            }
-            // decide se vai mostrar dialog
-            if (this.newAv || this.newCorporal) {
-              this.openMedidasDialog(
-                this.daysAv,
-                this.daysCorporal,
-                this.newAv,
-                this.newCorporal,
-                this.lastAv,
-                this.lastCorporal
-              );
-            }
-            this.newEvaluation.altura = this.lastAv.altura;
-            this.newEvaluation.peso = this.lastAv.peso;
-            this.newEvaluation.punho = this.lastCorporal.punho;
-            this.newEvaluation.joelho = this.lastCorporal.joelho;
-          }
-        );
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        this.newEvaluation.altura = resp.altura;
+        this.newEvaluation.peso = resp.peso;
+        this.newEvaluation.punho = resp.punho;
+        this.newEvaluation.joelho = resp.joelho;
       }
     );
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
+    this.somatorio = 0;
+    this.newEvaluation.biciptal = 0;
+    this.newEvaluation.geminal = 0;
+    this.newEvaluation.triciptal = 0;
+    this.newEvaluation.peitoral = 0;
+    this.newEvaluation.subescapular = 0;
+    this.newEvaluation.axilar = 0;
+    this.newEvaluation.suprailiaca = 0;
+    this.newEvaluation.abdominal = 0;
+    this.newEvaluation.crural = 0;
     this.addEval = true;
   }
 
@@ -275,5 +256,10 @@ export class WB2Component implements OnInit {
       }
     );
   }
-
+  getSomatorio() {
+    this.somatorio = +this.newEvaluation.biciptal + +this.newEvaluation.geminal + +this.newEvaluation.triciptal
+      + +this.newEvaluation.peitoral + +this.newEvaluation.subescapular
+      + +this.newEvaluation.axilar + +this.newEvaluation.suprailiaca + +this.newEvaluation.abdominal
+      + +this.newEvaluation.crural;
+  }
 }

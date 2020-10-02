@@ -97,60 +97,68 @@ export class StComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.dataService.getLastEvaluation(this.student.id).subscribe(
-      (resp: any[]) => {
-        if (resp.length > 0) {
-          if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
-          }
-          this.newEvaluation.altura = resp[0].altura;
-          this.newEvaluation.peso = resp[0].peso;
-          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
 
-          // if already have an evaluation on actual date
-          console.log(this.maxPointer);
-          if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-            this.newEvaluation.data = '';
-            this.newEvaluation.altura = 0;
-            this.newEvaluation.peso = 0;
-            this.newEvaluation.joelho = 0;
-            this.newEvaluation.cotovelo = 0;
-            this.newEvaluation.bracoc = 0;
-            this.newEvaluation.pernad = 0;
-            this.newEvaluation.triciptal = 0;
-            this.newEvaluation.subescapular = 0;
-            this.newEvaluation.geminal = 0;
-            this.newEvaluation.suprailiaca = 0;
-            console.log(this.newEvaluation);
+    // if already have an evaluation on actual date
+    console.log(this.maxPointer);
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation.altura = 0;
+      this.newEvaluation.peso = 0;
+      this.newEvaluation.joelho = 0;
+      this.newEvaluation.cotovelo = 0;
+      this.newEvaluation.bracoc = 0;
+      this.newEvaluation.pernad = 0;
+      this.newEvaluation.triciptal = 0;
+      this.newEvaluation.subescapular = 0;
+      this.newEvaluation.geminal = 0;
+      this.newEvaluation.suprailiaca = 0;
+      console.log(this.newEvaluation);
+      this.addEval = true;
+    } else {
+
+
+      this.dataService.getLastEvaluation(this.student.id).subscribe(
+        (resp: any[]) => {
+          if (resp.length > 0) {
+            if (resp[0].difdias > 2) {
+              this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
+            }
+            this.newEvaluation.altura = resp[0].altura;
+            this.newEvaluation.peso = resp[0].peso;
+            this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+            this.addEval = true;
+
+          } else {
+            this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
           }
-          this.addEval = true;
-        } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
+
+          this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+            (respa: any[]) => {
+              if (respa.length > 0) {
+                this.newEvaluation.joelho = respa[0].joelho;
+                this.newEvaluation.cotovelo = respa[0].cotovelo;
+                this.newEvaluation.bracoc = respa[0].bracoc;
+                this.newEvaluation.pernad = respa[0].pernad;
+              }
+            }
+          );
+          this.dataService.getData('clients/morfo/data/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+            (respm: any[]) => {
+              if (respm && respm.length > 0) {
+                this.newEvaluation.triciptal = respm[0].triciptal;
+                this.newEvaluation.subescapular = respm[0].subescapular;
+                this.newEvaluation.geminal = respm[0].geminal;
+                this.newEvaluation.suprailiaca = respm[0].suprailiaca;
+              }
+            }
+          );
+
+
         }
-        this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
-          (respa: any[]) => {
-            if (respa.length > 0) {
-              this.newEvaluation.joelho = respa[0].joelho;
-              this.newEvaluation.cotovelo = respa[0].cotovelo;
-              this.newEvaluation.bracoc = respa[0].bracoc;
-              this.newEvaluation.pernad = respa[0].pernad;
-            }
-          }
-        );
-        this.dataService.getData('clients/morfo/data/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
-          (respm: any[]) => {
-            if (respm && respm.length > 0) {
-              this.newEvaluation.triciptal = respm[0].triciptal;
-              this.newEvaluation.subescapular = respm[0].subescapular;
-              this.newEvaluation.geminal = respm[0].geminal;
-              this.newEvaluation.suprailiaca = respm[0].suprailiaca;
-            }
-          }
-        );
-
-
-      }
-    );
+      );
+    }
   }
 
   save(form) {

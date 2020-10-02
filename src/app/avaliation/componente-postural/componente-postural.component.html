@@ -4,7 +4,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Avaliação Postural</h1>
-            <form #f="ngForm" (submit)="saveDataForm(f)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveDataForm(f)" autocomplete="off">
                 <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
 
                     <!-- TAB - Vista anterior -->
@@ -1197,7 +1197,7 @@
                             </button>
                             <button type="button" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
                                 (click)="addDataForm()">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -1205,10 +1205,10 @@
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
                                 (click)="closeInputs()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button type="submit" *ngIf="addForm" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
 
@@ -1993,7 +1993,7 @@
                             </button>
                             <button type="button" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
                                 (click)="addDataForm()">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -2001,10 +2001,10 @@
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
                                 (click)="closeInputs()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button type="submit" *ngIf="addForm" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
                         <div style="height: 100px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
@@ -3187,7 +3187,7 @@
                             </button>
                             <button type="button" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
                                 (click)="addDataForm()">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -3195,10 +3195,10 @@
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
                                 (click)="closeInputs()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button type="submit" *ngIf="addForm" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
                         <div style="height: 200px;" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">

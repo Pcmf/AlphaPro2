@@ -71,13 +71,17 @@ export class IndiceConicidadeComponent implements OnInit {
 
   save(form) {
     console.table(form);
-    this.dataService.setData('clients/corporal/' + this.selectedStudent.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
+    if (form.data) {
+      this.dataService.setData('clients/corporal/' + this.selectedStudent.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -92,6 +96,11 @@ export class IndiceConicidadeComponent implements OnInit {
       (respa: any[]) => {
         if (respa.length > 0) {
           this.newEvaluation.cintura = respa[0].cintura;
+        }
+              // if already have an evaluation on actual date
+        if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+          this.newEvaluation.data = '';
+          this.newEvaluation = [];
         }
         this.addEval = true;
       }

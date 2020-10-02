@@ -82,9 +82,6 @@ export class BalkeWareComponent implements OnInit {
   }
 
   addEvaluation() {
-    if (this.selectedEvaluation && this.selectedEvaluation.data === this.datapipe.transform(Date(), 'yyyy-MM-dd')) {
-      this.newEvaluation = this.selectedEvaluation;
-    }
     // Obter dados da anamnese com o tipo de aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
@@ -123,6 +120,11 @@ export class BalkeWareComponent implements OnInit {
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
             this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+            // if already have an evaluation on actual date
+            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+              this.newEvaluation.data = '';
+              this.newEvaluation = [];
+            }
             this.addEval = true;
           }
         );
@@ -132,7 +134,7 @@ export class BalkeWareComponent implements OnInit {
 
 
   save(form) {
-    console.log(form);
+    if (form.data) {
     form.protocolo = this.protocolo;
     form.c_vo2e = this.protocoloCardio.getVO2Est(form);
     form.c_vo2m = this.protocoloCardio.getVO2ObtBalke(form);
@@ -149,6 +151,9 @@ export class BalkeWareComponent implements OnInit {
         this.getData();
       }
     );
+  } else {
+    this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+  }
   }
 
   executeAction(param, evaluation, editPointer) {

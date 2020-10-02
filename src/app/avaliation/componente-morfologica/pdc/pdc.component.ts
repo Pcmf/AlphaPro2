@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class PDCComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
+              private snackBar: MatSnackBar,
               private dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
@@ -105,18 +107,25 @@ export class PDCComponent implements OnInit {
 
   addPerimetros() {
     this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.medidas[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     this.addPerim = true;
   }
 
   savePerimetros(form) {
-    console.table(form.value);
-    this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
-      resp => {
-        console.log(resp);
-        this.getData();
-      }
-    );
-    this.addPerim = false;
+    if (form.value.data) {
+      this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
+        resp => {
+          this.getData();
+        }
+      );
+      this.addPerim = false;
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   closeInputPerimetros() {
@@ -127,18 +136,25 @@ export class PDCComponent implements OnInit {
 
   addDiametros() {
     this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.medidas[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     this.addDiam = true;
   }
 
   saveDiametros(form) {
-    console.table(form.value);
-    this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
-      resp => {
-        console.log(resp);
-        this.getData();
-      }
-    );
-    this.addDiam = false;
+    if (form.data) {
+      this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
+        resp => {
+          this.getData();
+        }
+      );
+      this.addDiam = false;
+    } else {
+    this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
   closeInputDiametros() {
     this.newEvaluation = [];
@@ -148,11 +164,17 @@ export class PDCComponent implements OnInit {
 
   addOutrosPerimetros() {
     this.newOutros.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.medidas[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     this.addOutros = true;
   }
 
   saveOutrosPerimetros(form) {
     console.table(form.value);
+    if (form.data) {
     this.dataService.saveData('clients/corporal/' + this.studentId, form.value).subscribe(
       resp => {
         console.log(resp);
@@ -160,6 +182,9 @@ export class PDCComponent implements OnInit {
       }
     );
     this.addOutros = false;
+  } else {
+    this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+  }
   }
 
   closeInputOutros() {
@@ -176,6 +201,12 @@ export class PDCComponent implements OnInit {
     if (this.selectedTab > 0) {
       this.selectedTab--;
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, verticalPosition: 'top'
+    });
   }
 
   // Help Dialog

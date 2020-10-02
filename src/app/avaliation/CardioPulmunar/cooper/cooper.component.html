@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Cooper (1968) - <small>12min</small></h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
                 <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
@@ -240,7 +240,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -248,10 +248,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-scaner',
@@ -26,6 +27,7 @@ export class ScanerComponent implements OnInit {
     private location: Location,
     private dataService: DataService,
     private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
     private dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
@@ -60,18 +62,11 @@ export class ScanerComponent implements OnInit {
     this.selectedEvaluation = evaluation;
   }
 
-/*   getTotal(evaluation) {
-    return +(+evaluation.tri_qualidade + +evaluation.abd_qualidade + +evaluation.qua_qualidade);
-  }
-
-  getTotalPerc(evaluation) {
-    return +(+evaluation.tri_perc + +evaluation.abd_perc + +evaluation.qua_perc);
-  } */
-
   ngOnInit(): void {
   }
 
   save(form) {
+    if (form.data) {
     this.dataService.setData('clients/scan/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
@@ -79,6 +74,9 @@ export class ScanerComponent implements OnInit {
         this.getData();
       }
     );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -88,6 +86,12 @@ export class ScanerComponent implements OnInit {
   // Add new Evaluation
   addEvaluation() {
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+      // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+        this.newEvaluation.data = '';
+        this.newEvaluation = [];
+      }
     this.addEval = true;
   }
 
@@ -145,6 +149,12 @@ delete(evaluation) {
       this.getData();
     }
   );
+}
+
+openSnackBar(message: string, action: string) {
+  this.snackBar.open(message, action, {
+    duration: 3000, verticalPosition: 'top'
+  });
 }
 
 }

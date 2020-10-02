@@ -3,6 +3,7 @@ import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { AgeService } from 'src/app/services/age.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-evaluation',
@@ -22,11 +23,12 @@ export class EvaluationComponent implements OnInit {
   locale: string;
 
   constructor(
-              private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private ageService: AgeService,
-              private router: Router
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    private ageService: AgeService,
+    private router: Router
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -41,7 +43,7 @@ export class EvaluationComponent implements OnInit {
           this.evaluation = resp;
           this.pointer = this.maxPointer - 1;
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'dd/MM/yyyy'); // this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'dd/MM/yyyy'); // this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
       }
@@ -67,17 +69,21 @@ export class EvaluationComponent implements OnInit {
   }
 
   save(form) {
-    form.tmb = this.calcTMB(form);
-   // form.imc = this.calcIMC(form);
-    console.table(form);
-    this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        // this.getData();
-        this.router.navigate(['/avDash']);
-      }
-    );
+    if (form.data) {
+      form.tmb = this.calcTMB(form);
+      // form.imc = this.calcIMC(form);
+      console.table(form);
+      this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          // this.getData();
+          this.router.navigate(['/avDash']);
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -85,11 +91,15 @@ export class EvaluationComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     this.newEvaluation.avaliador = this.dataService.getUserName();
     if (this.evaluation[this.pointer]) {
       this.newEvaluation.altura = this.evaluation[this.pointer].altura;
       this.newEvaluation.envergadura = this.evaluation[this.pointer].envergadura;
+    }
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
     }
     this.addEval = true;
   }
@@ -144,6 +154,12 @@ export class EvaluationComponent implements OnInit {
         this.getData();
       }
     );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, verticalPosition: 'top'
+    });
   }
 
 }

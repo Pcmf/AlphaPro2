@@ -77,17 +77,21 @@ export class BalancaComponent implements OnInit {
   }
 
   save(form) {
-    form.protocolo = this.protocolo;
-    console.log(form);
-    form.tmb = this.calcTMB(form);
-    // Save
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
+    if (form.data) {
+      form.protocolo = this.protocolo;
+      console.log(form);
+      form.tmb = this.calcTMB(form);
+      // Save
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -127,6 +131,12 @@ export class BalancaComponent implements OnInit {
           }
         );
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+      // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+        this.newEvaluation.data = '';
+        this.newEvaluation = [];
+      }
     this.addEval = true;
 
   }

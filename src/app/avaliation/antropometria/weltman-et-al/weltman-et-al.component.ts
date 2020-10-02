@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtcolosDobrasService } from 'src/app/services/protcolos-dobras.service';
 import { PrepareChartService } from 'src/app/services/prepare-chart.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { LastEvaluationService } from 'src/app/services/last-evaluation.service';
 
 @Component({
   selector: 'app-weltman-et-al',
@@ -33,13 +34,7 @@ export class WeltmanEtAlComponent implements OnInit {
   fatChanged = false;
   chartSelected = 'pie';
   locale: string;
-  // corporal
-  private newAv: boolean;
-  private newCorporal: boolean;
-  private lastAv: any = [];
-  private lastCorporal: any = [];
-  private daysAv = 0;
-  private daysCorporal = 0;
+
 
   constructor(
     private location: Location,
@@ -49,7 +44,8 @@ export class WeltmanEtAlComponent implements OnInit {
     private snackBar: MatSnackBar,
     private protocolos: ProtcolosDobrasService,
     private prepareChart: PrepareChartService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private lastEvalService: LastEvaluationService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -116,6 +112,7 @@ export class WeltmanEtAlComponent implements OnInit {
   }
 
   save(form) {
+    if (form.data) {
     form.protocolo = this.protocolo;
     this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
       resp => {
@@ -124,6 +121,9 @@ export class WeltmanEtAlComponent implements OnInit {
         this.getData();
       }
     );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -131,57 +131,34 @@ export class WeltmanEtAlComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.dataService.getLastEvaluation(this.student.id).subscribe(
-      resp => {
-        if (resp) {
-          if (resp[0].difdias > 2) {
-            this.openSnackBar('Atenção! A última avaliação complementar já tem ' + resp[0].difdias + ' dias.', '');
-          }
-          this.lastAv.altura = resp[0].altura;
-          this.lastAv.peso = resp[0].peso;
-
-                 // Obter os dados da ultima avaliação corporal - punho e joelho
-          this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
-                  (respc: []) => {
-                    if (respc.length > 0) {
-                      this.lastCorporal = respc.pop();
-                      this.newCorporal = false;
-                      // tslint:disable-next-line: no-conditional-assignment
-                      if ((this.daysCorporal = this.lastCorporal.difdias) > 2
-                        || +this.lastCorporal.punho == 0
-                        || +this.lastCorporal.joelho == 0) {
-                        this.newCorporal = true;
-                      }
-                    } else {
-                      this.newCorporal = true;
-                    }
-                    // decide se vai mostrar dialog
-                    if (this.newAv || this.newCorporal) {
-                      this.openMedidasDialog(
-                        this.daysAv,
-                        this.daysCorporal,
-                        this.newAv,
-                        this.newCorporal,
-                        this.lastAv,
-                        this.lastCorporal
-                      );
-                    }
-                    this.newEvaluation.altura = this.lastAv.altura;
-                    this.newEvaluation.peso = this.lastAv.peso;
-                    this.newEvaluation.punho = this.lastCorporal.punho;
-                    this.newEvaluation.joelho = this.lastCorporal.joelho;
-                  }
-                );
-
-          this.newEvaluation.idade = this.age;
-          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          console.log(this.newEvaluation);
-          this.addEval = true;
-        } else {
-          this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
-        }
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        this.newEvaluation.altura = resp.altura;
+        this.newEvaluation.peso = resp.peso;
+        this.newEvaluation.punho = resp.punho;
+        this.newEvaluation.joelho = resp.joelho;
       }
     );
+
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
+    this.newEvaluation.biciptal = 0;
+    this.newEvaluation.geminal = 0;
+    this.newEvaluation.triciptal = 0;
+    this.newEvaluation.peitoral = 0;
+    this.newEvaluation.subescapular = 0;
+    this.newEvaluation.axilar = 0;
+    this.newEvaluation.suprailiaca = 0;
+    this.newEvaluation.abdominal = 0;
+    this.newEvaluation.crural = 0;
+    this.addEval = true;
+
   }
 
   executeAction(param, evaluation, editPointer) {

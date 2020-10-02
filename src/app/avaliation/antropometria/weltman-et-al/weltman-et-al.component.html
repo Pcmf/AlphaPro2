@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Weltman et al (1988)</h1>
-            <form #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
                 <input type="hidden" name="idade" #idade="ngModel" [(ngModel)]="newEvaluation.idade">
@@ -76,19 +76,19 @@
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
                             </td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ newEvaluation.altura | number: '': locale }}</td>
                         </tr>                        
                         <tr>
                             <th i18n><span (click)="openHelpDialog('Peso corporal')">Peso corporal <small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ newEvaluation.peso | number: '': locale}}</td>
                         </tr>
                         <tr>
                             <th>Idade</th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].idade | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].idade | number: '': locale}}</td>
-                            <td *ngIf="addEval">{{newEvaluation.idade | number: '': locale}}</td>
+                            <td *ngIf="addEval">{{ age | number: '': locale}}</td>
                         </tr>
 
                         <tr>

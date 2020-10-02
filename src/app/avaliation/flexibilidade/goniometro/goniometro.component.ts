@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { DialogService } from 'src/app/services/dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-goniometro',
@@ -25,6 +26,7 @@ export class GoniometroComponent implements OnInit {
   constructor(private location: Location,
               private dataService: DataService,
               private datapipe: DatePipe,
+              private snackBar: MatSnackBar,
               public dialogService: DialogService
                ) {
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
@@ -48,8 +50,15 @@ export class GoniometroComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
   addMesures() {
     this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+      // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+        this.newEvaluation.data = '';
+        this.newEvaluation = [];
+      }
     this.addMesure = true;
   }
 
@@ -108,6 +117,7 @@ export class GoniometroComponent implements OnInit {
 
   saveMesures(form) {
     console.table(form);
+    if (form.data) {
     form.protocolo = this.protocolo;
     this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
       resp => {
@@ -116,16 +126,19 @@ export class GoniometroComponent implements OnInit {
         this.getData();
       }
     );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
     this.location.back();
   }
 
-  addMesureuation() {
+/*   addMesureuation() {
     this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
     this.addMesure = true;
-  }
+  } */
 
   swipeLeft(event) {
     if (this.selectedTab < 2) {
@@ -145,6 +158,12 @@ export class GoniometroComponent implements OnInit {
     // Help Dialog
     openDialog(type): void {
       this.dialogService.openHelp(type);
+    }
+
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 3000, verticalPosition: 'top'
+      });
     }
 
 }

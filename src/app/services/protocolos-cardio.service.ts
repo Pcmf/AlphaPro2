@@ -19,6 +19,7 @@ export class ProtocolosCardioService {
   getFAI(vo2e, vo2o) {
     return +((vo2e - vo2o) / vo2e * 100).toFixed(2);
   }
+  
   getClasseFAI(fai) {
     if (+fai < 10) { return 'Eficiência Miocárdica e bom condicionamento'; }
     if (+fai >= 10 && +fai < 25 ) { return 'Baixo condicionamento físico'; }

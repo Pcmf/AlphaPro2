@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
-import {  MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
@@ -25,12 +25,12 @@ export class StComponent implements OnInit {
   private protocolo = 43; // Somatotipo
 
   constructor(
-              private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private snackBar: MatSnackBar,
-              private dialogService: DialogService
-            ) {
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    private dialogService: DialogService
+  ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.getData();
@@ -58,13 +58,17 @@ export class StComponent implements OnInit {
                         elem.subescapular = respm[0].subescapular;
                         elem.geminal = respm[0].geminal;
                         elem.suprailiaca = respm[0].suprailiaca;
-                        if ( elem.altura > 0 && elem.peso > 0 && elem.joelho > 0 && elem.cotovelo > 0 && elem.triciptal > 0
-                            && elem.subescapular > 0 && elem.geminal > 0 && elem.suprailiaca > 0 && elem.bracoc > 0 && elem.pernad > 0 ) {
-                              elem.showEval = true;
-                          }
+                        if (elem.altura > 0 && elem.peso > 0 && elem.joelho > 0 && elem.cotovelo > 0 && elem.triciptal > 0
+                          && elem.subescapular > 0 && elem.geminal > 0 && elem.suprailiaca > 0 && elem.bracoc > 0 && elem.pernad > 0) {
+                          elem.showEval = true;
+                        }
+                      } else {
+                        this.maxPointer = -1;
                       }
                     }
                   );
+                } else {
+                  this.maxPointer = -1;
                 }
               }
             );
@@ -80,11 +84,13 @@ export class StComponent implements OnInit {
             this.evaluation = tempEval;
             this.maxPointer = this.evaluation.length;
             this.pointer = this.maxPointer - 1;
-      }, 700);
-
+          }, 700);
+          console.log(this.evaluation);
+          console.log(this.pointer);
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
       }
     );
@@ -99,9 +105,24 @@ export class StComponent implements OnInit {
           }
           this.newEvaluation.altura = resp[0].altura;
           this.newEvaluation.peso = resp[0].peso;
-          this.newEvaluation.altura = resp[0].altura;
-          this.newEvaluation.peso = resp[0].peso;
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+          // if already have an evaluation on actual date
+          console.log(this.maxPointer);
+          if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+            this.newEvaluation.data = '';
+            this.newEvaluation.altura = 0;
+            this.newEvaluation.peso = 0;
+            this.newEvaluation.joelho = 0;
+            this.newEvaluation.cotovelo = 0;
+            this.newEvaluation.bracoc = 0;
+            this.newEvaluation.pernad = 0;
+            this.newEvaluation.triciptal = 0;
+            this.newEvaluation.subescapular = 0;
+            this.newEvaluation.geminal = 0;
+            this.newEvaluation.suprailiaca = 0;
+            console.log(this.newEvaluation);
+          }
           this.addEval = true;
         } else {
           this.openSnackBar('Atenção! Não existe nenhuma avaliação complementar.', '');
@@ -118,7 +139,7 @@ export class StComponent implements OnInit {
         );
         this.dataService.getData('clients/morfo/data/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
           (respm: any[]) => {
-            if (respm.length > 0) {
+            if (respm && respm.length > 0) {
               this.newEvaluation.triciptal = respm[0].triciptal;
               this.newEvaluation.subescapular = respm[0].subescapular;
               this.newEvaluation.geminal = respm[0].geminal;
@@ -126,34 +147,40 @@ export class StComponent implements OnInit {
             }
           }
         );
+
+
       }
     );
   }
 
   save(form) {
-    if (form.peso != this.tempPeso || form.altura != this.tempAltura) {
-      // gravar avaliação
-      this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
-        resp => {
-                  this.newEvaluation = [];
-                  this.addEval = false;
-                  this.getData();
-        }
-      );
-    }
-
-    form.protocolo = this.protocolo;
-    this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
-      resp0 => {
-        this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+    if (form.data) {
+      if (form.peso != this.tempPeso || form.altura != this.tempAltura) {
+        // gravar avaliação
+        this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
           resp => {
-                    this.newEvaluation = [];
-                    this.addEval = false;
-                    this.getData();
+            this.newEvaluation = [];
+            this.addEval = false;
+            this.getData();
           }
         );
       }
-    );
+
+      form.protocolo = this.protocolo;
+      this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
+        resp0 => {
+          this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+            resp => {
+              this.newEvaluation = [];
+              this.addEval = false;
+              this.getData();
+            }
+          );
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   closeInput() {
@@ -222,10 +249,10 @@ export class StComponent implements OnInit {
     this.location.back();
   }
 
-    // Help Dialog
-    openDialog(type): void {
-      this.dialogService.openHelp(type);
-    }
+  // Help Dialog
+  openDialog(type): void {
+    this.dialogService.openHelp(type);
+  }
 
 
   calcIP(evaluation) {
@@ -237,9 +264,9 @@ export class StComponent implements OnInit {
     let fx = 0;
     if (IP > 40.75) {
       fx = (+evaluation.triciptal + +evaluation.subescapular + +evaluation.suprailiaca) / 10 * 170.18 / +evaluation.altura * 100;
-    } else if ( IP > 38.28 && IP <=  40.75) {
+    } else if (IP > 38.28 && IP <= 40.75) {
       fx = 4 + (+evaluation.cotovelo + +evaluation.joelho + +evaluation.bracoc - +evaluation.triciptal / 10
-                + +evaluation.pernad - +evaluation.geminal / 10) / 8;
+        + +evaluation.pernad - +evaluation.geminal / 10) / 8;
     } else {
       fx = (+evaluation.altura * 100) / Math.pow(+evaluation.peso, 1 / 3);
     }
@@ -252,12 +279,12 @@ export class StComponent implements OnInit {
   }
 
   getMesomorfia(evaluation) {
-    return  +(0.858 * +evaluation.cotovelo + 0.601 * +evaluation.joelho + 0.188 * ( +evaluation.bracoc - +evaluation.triciptal / 10)
-             + 0.161 * (+evaluation.pernad - +evaluation.geminal / 10) - 0.131 * (+evaluation.altura * 100) + 4.5).toFixed(2);
+    return +(0.858 * +evaluation.cotovelo + 0.601 * +evaluation.joelho + 0.188 * (+evaluation.bracoc - +evaluation.triciptal / 10)
+      + 0.161 * (+evaluation.pernad - +evaluation.geminal / 10) - 0.131 * (+evaluation.altura * 100) + 4.5).toFixed(2);
   }
 
   getEctomorfia(evaluation) {
-    const ip = (+evaluation.altura * 100) / Math.pow(+evaluation.peso , (1 / 3));
+    const ip = (+evaluation.altura * 100) / Math.pow(+evaluation.peso, (1 / 3));
     if (+ip > 40.75) {
       return (+ip * 0.732 - 28.58).toFixed(2);
     }
@@ -268,26 +295,22 @@ export class StComponent implements OnInit {
   }
 
   getX(evaluation) {
-    const X =  (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
-    console.log(X);
+    const X = (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
     return (220 + +X * 10);
   }
 
   getY(evaluation) {
-    const Y =  +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
-    console.log(Y);
+    const Y = +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
     return (240 - +Y * 10);
   }
 
   getXSm(evaluation) {
-    const X =  (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
-    console.log(X);
+    const X = (+this.getEctomorfia(evaluation) - +this.getEndomorfia(evaluation)).toFixed(1);
     return (115 + +X * 5);
   }
 
   getYSm(evaluation) {
-    const Y =  +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
-    console.log(Y);
+    const Y = +(2 * +this.getMesomorfia(evaluation) - +this.getEndomorfia(evaluation) - +this.getEctomorfia(evaluation)).toFixed(1);
     return (120 - +Y * 5);
   }
 

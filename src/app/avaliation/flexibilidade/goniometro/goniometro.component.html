@@ -6,7 +6,7 @@
         <h1 class="h1-title" i18n>Goniômetro</h1>
         <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
             <mat-tab i18n label="Membros Superiores">
-                <form #fp="ngForm" (submit)="saveMesures(fp.value)" autocomplete="off">
+                <form #fp="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveMesures(fp.value)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -343,7 +343,7 @@
                         </button>
                         <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv"
                             (click)="addMesures()">
-                            <mat-icon class="mat-18">add</mat-icon>
+                            <mat-icon class="mat-18" color="accent">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure"
                             [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -352,16 +352,16 @@
                         </button>
                         <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
                             (click)="closeInputs()">
-                            <mat-icon class="mat-18">close</mat-icon>
+                            <mat-icon class="mat-18" color="warn">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>
-                            <mat-icon class="mat-18">check</mat-icon>
+                            <mat-icon class="mat-18" color="accent">check</mat-icon>
                         </button>
                     </div>
                 </form>
             </mat-tab>
             <mat-tab i18n label="Membros Inferiores">
-                <form #fd="ngForm" (submit)="saveMesures(fd.value)" autocomplete="off">
+                <form #fd="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveMesures(fd.value)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -641,7 +641,7 @@
                         </button>
                         <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv"
                             (click)="addMesures()">
-                            <mat-icon class="mat-18">add</mat-icon>
+                            <mat-icon class="mat-18" color="accent">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure"
                             [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -650,10 +650,10 @@
                         </button>
                         <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
                             (click)="closeInputs()">
-                            <mat-icon class="mat-18">close</mat-icon>
+                            <mat-icon class="mat-18" coloe="warn">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>
-                            <mat-icon class="mat-18">check</mat-icon>
+                            <mat-icon class="mat-18" color="accent">check</mat-icon>
                         </button>
                     </div>
                 </form>
@@ -662,7 +662,7 @@
             </mat-tab>
             <!-- Coluna Vertebral -->
             <mat-tab i18n label="Coluna Vertebral">
-                <form #fo="ngForm" (submit)="saveMesures(fo.value)" autocomplete="off">
+                <form #fo="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveMesures(fo.value)" autocomplete="off">
                     <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                         <thead>
                             <tr>
@@ -867,7 +867,7 @@
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure" mat-stroked-button [disabled]="editAv" (click)="addMesures()">
-                            <mat-icon class="mat-18">add</mat-icon>
+                            <mat-icon class="mat-18" color="accent">add</mat-icon>
                         </button>
                         <button type="button" *ngIf="!addMesure" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                             mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -875,10 +875,10 @@
                         </button>
                         <button type="button" *ngIf="addMesure" mat-stroked-button color="default"
                             (click)="closeInputs()">
-                            <mat-icon class="mat-18">close</mat-icon>
+                            <mat-icon class="mat-18" color="warn">close</mat-icon>
                         </button>
                         <button *ngIf="addMesure" mat-stroked-button>
-                            <mat-icon class="mat-18">check</mat-icon>
+                            <mat-icon class="mat-18" color="accent">check</mat-icon>
                         </button>
                     </div>
                 </form>

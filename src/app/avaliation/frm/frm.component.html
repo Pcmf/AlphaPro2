@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Força e Resistência Muscular</h1>
-            <form #f="ngForm" (submit)="save(f.value)">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)">
                 <table class="section-table">
                     <thead>
                         <tr>
@@ -49,7 +49,7 @@
                                 {{getClassAgachamento(evaluation[pointer-1].agachamento)}}
                             </td>
                             <td *ngIf="pointer>=0">{{getClassAgachamento(evaluation[pointer].agachamento)}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ getClassAgachamento(newEvaluation.agachamento)}}</td>
                         </tr>
 
                         <tr class="table-row-subtitle">
@@ -79,7 +79,7 @@
                             <td *ngIf="pointer>=1 && !addEval">{{getClassAbdominal(evaluation[pointer-1].abdominal)}}
                             </td>
                             <td *ngIf="pointer>=0">{{getClassAbdominal(evaluation[pointer].abdominal)}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ getClassAbdominal(newEvaluation.abdominal) }}</td>
                         </tr>
 
                         <tr class="table-row-subtitle">
@@ -107,7 +107,7 @@
                             <th i18n>Classificação</th>
                             <td *ngIf="pointer>=1 && !addEval">{{getClassFlex(evaluation[pointer-1].flexb)}}</td>
                             <td *ngIf="pointer>=0">{{getClassFlex(evaluation[pointer].flexb)}}</td>
-                            <td *ngIf="addEval">&nbsp;</td>
+                            <td *ngIf="addEval">{{ getClassFlex(newEvaluation.flexb) }}</td>
                         </tr>
                         <tr>
                             <th>Ações</th>
@@ -133,7 +133,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -141,10 +141,10 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>

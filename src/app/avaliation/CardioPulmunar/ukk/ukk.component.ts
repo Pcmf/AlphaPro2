@@ -83,9 +83,6 @@ export class UKKComponent implements OnInit {
   }
 
   addEvaluation() {
-    if (this.selectedEvaluation && this.selectedEvaluation.data === this.datapipe.transform(Date(), 'yyyy-MM-dd')) {
-      this.newEvaluation = this.selectedEvaluation;
-    }
     // Obter dados da anamnese com o tipo de aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
@@ -126,6 +123,12 @@ export class UKKComponent implements OnInit {
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
             this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+            // if already have an evaluation on actual date
+            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+              this.newEvaluation.data = '';
+              this.newEvaluation = [];
+            }
             this.addEval = true;
           }
         );
@@ -134,23 +137,27 @@ export class UKKComponent implements OnInit {
   }
 
   save(form) {
-    form.protocolo = this.protocolo;
-    form.c_vo2e = this.protocoloCardio.getVO2Est(form);
-    form.c_vo2m = this.protocoloCardio.getVO2ObtUkk(form);
-    form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
-    form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
-    form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
-    form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
-    form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
-    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.paramEvaluation = [];
-        this.addEval = false;
-        this.refresh = false;
-        this.getData();
-      }
-    );
+    if (form.data) {
+      form.protocolo = this.protocolo;
+      form.c_vo2e = this.protocoloCardio.getVO2Est(form);
+      form.c_vo2m = this.protocoloCardio.getVO2ObtUkk(form);
+      form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
+      form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
+      form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
+      form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
+      form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+      this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.paramEvaluation = [];
+          this.addEval = false;
+          this.refresh = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -263,7 +270,7 @@ export class UKKComponent implements OnInit {
     // Obter dados da anamnese com o nivel de atividade do aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
-        if (respa && respa.length > 0 ) {
+        if (respa && respa.length > 0) {
           if (respa[0].nafs >= 0) {
             this.newEvaluation.nafs = respa[0].nafs;
           }
@@ -278,7 +285,7 @@ export class UKKComponent implements OnInit {
               this.newEvaluation.fc2 = resp[0].fc;
             }
             this.newEvaluation.sexo = this.student.sexo;
-            this.newEvaluation.idade = this.ageService.getAge( this.student.dt_nasc);
+            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
           }
         );
       }

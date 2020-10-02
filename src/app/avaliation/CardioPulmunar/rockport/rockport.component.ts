@@ -34,13 +34,14 @@ export class RockportComponent implements OnInit {
   refresh: boolean;
   locale: string;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private ageService: AgeService,
-              private dialogService: DialogService,
-              private snackBar: MatSnackBar,
-              private protocoloCardio: ProtocolosCardioService
+  constructor(
+            private location: Location,
+            private dataService: DataService,
+            private datapipe: DatePipe,
+            private ageService: AgeService,
+            private dialogService: DialogService,
+            private snackBar: MatSnackBar,
+            private protocoloCardio: ProtocolosCardioService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -51,11 +52,11 @@ export class RockportComponent implements OnInit {
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-              this.maxPointer = resp.length;
-              this.pointer = this.maxPointer - 1;
-              this.evaluation = resp;
-              this.refresh = true;
-              this.setEvaluation(this.evaluation[this.pointer]);
+          this.maxPointer = resp.length;
+          this.pointer = this.maxPointer - 1;
+          this.evaluation = resp;
+          this.refresh = true;
+          this.setEvaluation(this.evaluation[this.pointer]);
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
@@ -83,77 +84,85 @@ export class RockportComponent implements OnInit {
   }
 
   addEvaluation() {
-      if (this.selectedEvaluation && this.selectedEvaluation.data === this.datapipe.transform(Date(), 'yyyy-MM-dd')) {
-        this.newEvaluation = this.selectedEvaluation;
-      }
-        // Obter dados da anamnese com o nivel de atividade do aluno
-      this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-          (respa: any[]) => {
+    // Obter dados da anamnese com o nivel de atividade do aluno
+    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+      (respa: any[]) => {
+        this.newAv = false;
+        if (respa && respa.length > 0) {
+          if (respa[0].nafs >= 0) {
+            this.newEvaluation.nafs = respa[0].nafs;
+          } else {
+            this.newAv = true;
+          }
+        }
+        // Obter os dados da ultima Avaliação complementar
+        this.dataService.getLastEvaluation(this.student.id).subscribe(
+          (resp: any[]) => {
             this.newAv = false;
-            if (respa && respa.length > 0 ) {
-              if (respa[0].nafs >= 0) {
-                this.newEvaluation.nafs = respa[0].nafs;
-              } else {
+            if (resp.length > 0) {
+              // tslint:disable-next-line: no-conditional-assignment
+              if ((this.daysAv = resp[0].difdias) > 7) {     // number of days before ask if want new evaluation
                 this.newAv = true;
               }
-            }
-            // Obter os dados da ultima Avaliação complementar
-            this.dataService.getLastEvaluation(this.student.id).subscribe(
-              (resp: any[]) => {
-                this.newAv = false;
-                if (resp.length > 0) {
-                  // tslint:disable-next-line: no-conditional-assignment
-                  if ((this.daysAv = resp[0].difdias) > 7) {     // number of days before ask if want new evaluation
-                    this.newAv = true;
-                  }
-                  this.lastAv = resp.pop();
-                  if (+this.lastAv.fc === 0) {
-                    this.newAv = true;
-                  }
-                } else {
-                  this.newAv = true;
-                }
-                // decide se vai mostrar dialog
-                if (this.newAv) {
-                              this.openMedidasDialog(
-                                this.daysAv,
-                                this.newAv,
-                                this.lastAv,
-                                this.nafs
-                              );
-                } else {
-                  this.newEvaluation.altura = this.lastAv.altura;
-                  this.newEvaluation.peso = this.lastAv.peso;
-                  this.newEvaluation.fc2 = this.lastAv.fc;
-                }
-                this.newEvaluation.sexo = this.student.sexo;
-                this.newEvaluation.idade = this.ageService.getAge( this.student.dt_nasc);
-                this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-                this.addEval = true;
+              this.lastAv = resp.pop();
+              // se não tiver valor da FC em repouso abre dialog
+              if (+this.lastAv.fc === 0) {
+                this.newAv = true;
               }
-            );
+            } else {
+              this.newAv = true;
+            }
+            // decide se vai mostrar dialog
+            if (this.newAv) {
+              this.openMedidasDialog(
+                this.daysAv,
+                this.newAv,
+                this.lastAv,
+                this.nafs
+              );
+            } else {
+              this.newEvaluation.altura = this.lastAv.altura;
+              this.newEvaluation.peso = this.lastAv.peso;
+              this.newEvaluation.fc2 = this.lastAv.fc;
+            }
+            this.newEvaluation.sexo = this.student.sexo;
+            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
+            this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+
+            // if already have an evaluation on actual date
+            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+              this.newEvaluation.data = '';
+              this.newEvaluation = [];
+            }
+            this.addEval = true;
           }
         );
+      }
+    );
   }
 
   // Save changes
   save(form) {
-    form.protocolo = this.protocolo;
-    form.c_vo2e = this.protocoloCardio.getVO2Est(form);
-    form.c_vo2m = this.protocoloCardio.getVO2ObtRockport(form);
-    form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
-    form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
-    form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
-    form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
-    form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
-    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.refresh = false;
-        this.addEval = false;
-        this.getData();
-      }
-    );
+    if (form.data) {
+      form.protocolo = this.protocolo;
+      form.c_vo2e = this.protocoloCardio.getVO2Est(form);
+      form.c_vo2m = this.protocoloCardio.getVO2ObtRockport(form);
+      form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
+      form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
+      form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
+      form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
+      form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+      this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.refresh = false;
+          this.addEval = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -179,7 +188,6 @@ export class RockportComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
     this.newEvaluation.protocolo = this.protocolo;
     this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
     this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2ObtRockport(this.newEvaluation);
@@ -188,7 +196,6 @@ export class RockportComponent implements OnInit {
     this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
     this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
     this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
-    console.table(this.newEvaluation);
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
@@ -260,7 +267,7 @@ export class RockportComponent implements OnInit {
     // Obter dados da anamnese com o nivel de atividade do aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
-        if (respa && respa.length > 0 ) {
+        if (respa && respa.length > 0) {
           if (respa[0].nafs >= 0) {
             this.newEvaluation.nafs = respa[0].nafs;
           }
@@ -275,7 +282,7 @@ export class RockportComponent implements OnInit {
               this.newEvaluation.fc2 = resp[0].fc;
             }
             this.newEvaluation.sexo = this.student.sexo;
-            this.newEvaluation.idade = this.ageService.getAge( this.student.dt_nasc);
+            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
           }
         );
       }

@@ -6,7 +6,7 @@
             <h1 class="h1-title" i18n>Perímetros e Diâmetros Corporais</h1>
             <mat-tab-group [disableRipple]="false" [(selectedIndex)]="selectedTab">
                 <mat-tab i18n label="Perímetros">
-                    <form #fp="ngForm" (submit)="savePerimetros(fp)" autocomplete="off">
+                    <form #fp="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="savePerimetros(fp)" autocomplete="off">
                         <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
@@ -298,7 +298,7 @@
                             </button>
                             <button type="button" *ngIf="!addPerim" mat-stroked-button (click)="addPerimetros()"
                                 [disabled]="editAv">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addPerim" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -306,16 +306,16 @@
                             </button>
                             <button type="button" *ngIf="addPerim" mat-stroked-button color="default"
                                 (click)="closeInputPerimetros()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button *ngIf="addPerim" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
                     </form>
                 </mat-tab>
                 <mat-tab i18n label="Diâmetros">
-                    <form #fd="ngForm" (submit)="saveDiametros(fd)" autocomplete="off">
+                    <form #fd="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveDiametros(fd)" autocomplete="off">
                         <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
@@ -425,7 +425,7 @@
                             </button>
                             <button type="button" *ngIf="!addDiam" mat-stroked-button [disabled]="editAv"
                                 (click)="addDiametros()">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addDiam" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -433,10 +433,10 @@
                             </button>
                             <button type="button" *ngIf="addDiam" mat-stroked-button color="default"
                                 (click)="closeInputDiametros()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button *ngIf="addDiam" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
                     </form>
@@ -445,7 +445,7 @@
                 </mat-tab>
                 <!-- Mais Perimetros Corporais -->
                 <mat-tab i18n label="Outros Perímetros">
-                    <form #fo="ngForm" (submit)="saveOutrosPerimetros(fo)" autocomplete="off">
+                    <form #fo="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveOutrosPerimetros(fo)" autocomplete="off">
                         <table class="section-table" (swiperight)="swipeRight($event)" (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
@@ -629,7 +629,7 @@
                             </button>
                             <button type="button" *ngIf="!addOutros" mat-stroked-button [disabled]="editAv"
                                 (click)="addOutrosPerimetros()">
-                                <mat-icon class="mat-18">add</mat-icon>
+                                <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
                             <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
@@ -637,10 +637,10 @@
                             </button>
                             <button type="button" *ngIf="addOutros" mat-stroked-button color="default"
                                 (click)="closeInputOutros()">
-                                <mat-icon class="mat-18">close</mat-icon>
+                                <mat-icon class="mat-18" color="warn">close</mat-icon>
                             </button>
                             <button *ngIf="addOutros" mat-stroked-button>
-                                <mat-icon class="mat-18">check</mat-icon>
+                                <mat-icon class="mat-18" color="accent">check</mat-icon>
                             </button>
                         </div>
                     </form>

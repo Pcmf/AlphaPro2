@@ -126,7 +126,7 @@
                             <th>Idade</th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].idade | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].idade | number: '': locale}}</td>
-                            <td *ngIf="addEval">{{newEvaluation.idade | number: '': locale}}</td>
+                            <td *ngIf="addEval">{{ age | number: '': locale}}</td>
                         </tr>
                         <tr>
                             <th>Ações</th>

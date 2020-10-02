@@ -5,6 +5,7 @@ import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { DialogService } from 'src/app/services/dialog.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-componente-postural',
@@ -54,6 +55,7 @@ export class ComponentePosturalComponent implements OnInit {
               private dataService: DataService,
               private datapipe: DatePipe,
               private dialogService: DialogService,
+              private snackBar: MatSnackBar,
               public dialog: MatDialog
   ) {
     this.locale = this.dataService.getCountryId();
@@ -91,11 +93,17 @@ export class ComponentePosturalComponent implements OnInit {
   /* abrir nova avaliação */
   addDataForm() {
     this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.oldData[this.maxPointer - 1].data == this.newData.data) {
+      this.newData.data = '';
+      this.newData = [];
+    }
     this.addForm = true;
   }
 
   saveDataForm(form) {
     console.table(form.value);
+    if (form.value.data) {
     this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
       resp => {
         this.pointer = -1;
@@ -103,6 +111,9 @@ export class ComponentePosturalComponent implements OnInit {
       }
     );
     this.addForm = false;
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -301,6 +312,11 @@ export class ComponentePosturalComponent implements OnInit {
     this.dialogService.openHelp(type);
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, verticalPosition: 'top'
+    });
+  }
 
 }
 

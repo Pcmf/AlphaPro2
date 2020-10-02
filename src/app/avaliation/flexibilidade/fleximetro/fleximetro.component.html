@@ -3,7 +3,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Fleximetro</h1>
-            <form #f="ngForm" (submit)="save(f.value)">
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)">
                 <table class="section-table">
                     <thead>
                         <tr>
@@ -442,7 +442,7 @@
                     </button>
                     <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
                         (click)="addEvaluation()">
-                        <mat-icon class="mat-18">add</mat-icon>
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
                     <button type="button" *ngIf="!addEval"
                         [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
@@ -450,218 +450,220 @@
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>
                     <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                        <mat-icon class="mat-18">close</mat-icon>
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
                     </button>
                     <button *ngIf="addEval" mat-stroked-button>
-                        <mat-icon class="mat-18">check</mat-icon>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
                     </button>
                 </div>
             </form>
-            Tabela de referência
-            <br />
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Movimento</th>
-                        <th>Fraca</th>
-                        <th>Regular</th>
-                        <th>Boa</th>
-                        <th>Muito Boa</th>
-                        <th>Excelente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th colspan="6">Cervical</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;107</td>
-                        <td>107 - 128</td>
-                        <td>129 - 142</td>
-                        <td>143 - 160</td>
-                        <td>&gt;160</td>
-                    </tr>
-                    <tr>
-                        <th>Flexão Lateral</th>
-                        <td>&lt;74</td>
-                        <td>74 - 89</td>
-                        <td>90 - 106</td>
-                        <td>107 - 122</td>
-                        <td>&gt;122</td>
-                    </tr>
-                    <tr>
-                        <th>Rotação</th>
-                        <td>&lt;141</td>
-                        <td>141 - 160</td>
-                        <td>161 - 181</td>
-                        <td>182 - 201</td>
-                        <td>&gt;201</td>
-                    </tr>
+            <div class="section-info">
+                Tabela de referência
+                <br />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Movimento</th>
+                            <th>Fraca</th>
+                            <th>Regular</th>
+                            <th>Boa</th>
+                            <th>Muito Boa</th>
+                            <th>Excelente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="6">Cervical</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;107</td>
+                            <td>107 - 128</td>
+                            <td>129 - 142</td>
+                            <td>143 - 160</td>
+                            <td>&gt;160</td>
+                        </tr>
+                        <tr>
+                            <th>Flexão Lateral</th>
+                            <td>&lt;74</td>
+                            <td>74 - 89</td>
+                            <td>90 - 106</td>
+                            <td>107 - 122</td>
+                            <td>&gt;122</td>
+                        </tr>
+                        <tr>
+                            <th>Rotação</th>
+                            <td>&lt;141</td>
+                            <td>141 - 160</td>
+                            <td>161 - 181</td>
+                            <td>182 - 201</td>
+                            <td>&gt;201</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Ombro</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;207</td>
-                        <td>207 - 223</td>
-                        <td>224 - 242</td>
-                        <td>243 - 259</td>
-                        <td>&gt;259</td>
-                    </tr>
-                    <tr>
-                        <th>Adução/Abdução</th>
-                        <td>&lt;158</td>
-                        <td>158 - 171</td>
-                        <td>172 - 186</td>
-                        <td>187 - 210</td>
-                        <td>&gt;210</td>
-                    </tr>
-                    <tr>
-                        <th>Rotação</th>
-                        <td>&lt;154</td>
-                        <td>154 - 171</td>
-                        <td>172 - 192</td>
-                        <td>193 - 210</td>
-                        <td>&gt;210</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Ombro</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;207</td>
+                            <td>207 - 223</td>
+                            <td>224 - 242</td>
+                            <td>243 - 259</td>
+                            <td>&gt;259</td>
+                        </tr>
+                        <tr>
+                            <th>Adução/Abdução</th>
+                            <td>&lt;158</td>
+                            <td>158 - 171</td>
+                            <td>172 - 186</td>
+                            <td>187 - 210</td>
+                            <td>&gt;210</td>
+                        </tr>
+                        <tr>
+                            <th>Rotação</th>
+                            <td>&lt;154</td>
+                            <td>154 - 171</td>
+                            <td>172 - 192</td>
+                            <td>193 - 210</td>
+                            <td>&gt;210</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Cotovelo</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;133</td>
-                        <td>133 - 143</td>
-                        <td>144 - 156</td>
-                        <td>157 - 167</td>
-                        <td>&gt;167</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Cotovelo</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;133</td>
+                            <td>133 - 143</td>
+                            <td>144 - 156</td>
+                            <td>157 - 167</td>
+                            <td>&gt;167</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Antebraço</th>
-                    </tr>
-                    <tr>
-                        <th>Supinação/Pronação</th>
-                        <td>&lt;151</td>
-                        <td>151 - 170</td>
-                        <td>171 - 191</td>
-                        <td>192 - 211</td>
-                        <td>&gt;211</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Antebraço</th>
+                        </tr>
+                        <tr>
+                            <th>Supinação/Pronação</th>
+                            <td>&lt;151</td>
+                            <td>151 - 170</td>
+                            <td>171 - 191</td>
+                            <td>192 - 211</td>
+                            <td>&gt;211</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Punho</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;112</td>
-                        <td>112 - 131</td>
-                        <td>132 - 152</td>
-                        <td>153 - 172</td>
-                        <td>&gt;172</td>
-                    </tr>
-                    <tr>
-                        <th>Desvio Ulnar/Radial</th>
-                        <td>&lt;64</td>
-                        <td>64 - 77</td>
-                        <td>78 - 92</td>
-                        <td>93 - 105</td>
-                        <td>&gt;105</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Punho</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;112</td>
+                            <td>112 - 131</td>
+                            <td>132 - 152</td>
+                            <td>153 - 172</td>
+                            <td>&gt;172</td>
+                        </tr>
+                        <tr>
+                            <th>Desvio Ulnar/Radial</th>
+                            <td>&lt;64</td>
+                            <td>64 - 77</td>
+                            <td>78 - 92</td>
+                            <td>93 - 105</td>
+                            <td>&gt;105</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Tronco</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;45</td>
-                        <td>45 - 62</td>
-                        <td>63 - 83</td>
-                        <td>84 - 101</td>
-                        <td>&gt;101</td>
-                    </tr>
-                    <tr>
-                        <th>Flexão Lateral</th>
-                        <td>&lt;74</td>
-                        <td>74 - 89</td>
-                        <td>90 - 106</td>
-                        <td>107 - 122</td>
-                        <td>&gt;122</td>
-                    </tr>
-                    <tr>
-                        <th>Rotação</th>
-                        <td>&lt;108</td>
-                        <td>108 - 126</td>
-                        <td>127 - 147</td>
-                        <td>148 - 166</td>
-                        <td>&gt;166</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Tronco</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;45</td>
+                            <td>45 - 62</td>
+                            <td>63 - 83</td>
+                            <td>84 - 101</td>
+                            <td>&gt;101</td>
+                        </tr>
+                        <tr>
+                            <th>Flexão Lateral</th>
+                            <td>&lt;74</td>
+                            <td>74 - 89</td>
+                            <td>90 - 106</td>
+                            <td>107 - 122</td>
+                            <td>&gt;122</td>
+                        </tr>
+                        <tr>
+                            <th>Rotação</th>
+                            <td>&lt;108</td>
+                            <td>108 - 126</td>
+                            <td>127 - 147</td>
+                            <td>148 - 166</td>
+                            <td>&gt;166</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Quadril</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;50</td>
-                        <td>50 - 67</td>
-                        <td>68 - 88</td>
-                        <td>89 - 106</td>
-                        <td>&gt;106</td>
-                    </tr>
-                    <tr>
-                        <th>Adução/Abdução</th>
-                        <td>&lt;41</td>
-                        <td>41 - 50</td>
-                        <td>51 - 61</td>
-                        <td>62 - 71</td>
-                        <td>&gt;71</td>
-                    </tr>
-                    <tr>
-                        <th>Rotação</th>
-                        <td>&lt;59</td>
-                        <td>59 - 78</td>
-                        <td>79 - 99</td>
-                        <td>100 - 119</td>
-                        <td>&gt;119</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Quadril</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;50</td>
+                            <td>50 - 67</td>
+                            <td>68 - 88</td>
+                            <td>89 - 106</td>
+                            <td>&gt;106</td>
+                        </tr>
+                        <tr>
+                            <th>Adução/Abdução</th>
+                            <td>&lt;41</td>
+                            <td>41 - 50</td>
+                            <td>51 - 61</td>
+                            <td>62 - 71</td>
+                            <td>&gt;71</td>
+                        </tr>
+                        <tr>
+                            <th>Rotação</th>
+                            <td>&lt;59</td>
+                            <td>59 - 78</td>
+                            <td>79 - 99</td>
+                            <td>100 - 119</td>
+                            <td>&gt;119</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Joelho</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão/Extensão</th>
-                        <td>&lt;122</td>
-                        <td>122 - 133</td>
-                        <td>134 - 146</td>
-                        <td>147 - 157</td>
-                        <td>&gt;157</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Joelho</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão/Extensão</th>
+                            <td>&lt;122</td>
+                            <td>122 - 133</td>
+                            <td>134 - 146</td>
+                            <td>147 - 157</td>
+                            <td>&gt;157</td>
+                        </tr>
 
-                    <tr>
-                        <th colspan="6">Tornozelo</th>
-                    </tr>
-                    <tr>
-                        <th>Flexão Dorsal/Plantar</th>
-                        <td>&lt;48</td>
-                        <td>48 - 58</td>
-                        <td>59 - 71</td>
-                        <td>72 - 82</td>
-                        <td>&gt;82</td>
-                    </tr>
-                    <tr>
-                        <th>Inversão/Erversão</th>
-                        <td>&lt;30</td>
-                        <td>30 - 41</td>
-                        <td>42 - 56</td>
-                        <td>57 - 68</td>
-                        <td>&gt;68</td>
-                    </tr>
+                        <tr>
+                            <th colspan="6">Tornozelo</th>
+                        </tr>
+                        <tr>
+                            <th>Flexão Dorsal/Plantar</th>
+                            <td>&lt;48</td>
+                            <td>48 - 58</td>
+                            <td>59 - 71</td>
+                            <td>72 - 82</td>
+                            <td>&gt;82</td>
+                        </tr>
+                        <tr>
+                            <th>Inversão/Erversão</th>
+                            <td>&lt;30</td>
+                            <td>30 - 41</td>
+                            <td>42 - 56</td>
+                            <td>57 - 68</td>
+                            <td>&gt;68</td>
+                        </tr>
 
-                </tbody>
-            </table>
-            <em><small>Fonte: Monteiro, G.A.(200)</small></em>
+                    </tbody>
+                </table>
+                <em><small>Fonte: Monteiro, G.A.(200)</small></em>
+            </div>
         </div>
 
     </div>

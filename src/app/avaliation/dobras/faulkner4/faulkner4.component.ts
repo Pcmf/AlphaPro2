@@ -86,6 +86,8 @@ export class Faulkner4Component implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
+          this.showChart = false;
         }
       }
     );
@@ -209,7 +211,6 @@ export class Faulkner4Component implements OnInit {
   delete(evaluation) {
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
       }
     );

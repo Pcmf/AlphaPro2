@@ -89,6 +89,8 @@ export class GuedesComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
+          this.showChart = false;
         }
       }
     );

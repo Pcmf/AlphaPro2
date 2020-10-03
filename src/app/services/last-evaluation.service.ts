@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AgeService } from './age.service';
 import { DataService } from './data.service';
 import { DialogService } from './dialog.service';
@@ -48,7 +48,7 @@ export class LastEvaluationService {
               this.lastCorporal = respc.pop();
               this.newCorporal = false;
               // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysCorporal = this.lastCorporal.diffdias) > 2
+              if ((this.daysCorporal = this.lastCorporal.difdias) > 2
                 || +this.lastCorporal.punho == 0
                 || +this.lastCorporal.joelho == 0) {
                 this.newCorporal = true;

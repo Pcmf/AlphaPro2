@@ -85,6 +85,7 @@ export class ComponentePosturalComponent implements OnInit {
           } else {
             this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
             this.pointer = -1;
+            this.maxPointer = -1;
           }
         }
       }

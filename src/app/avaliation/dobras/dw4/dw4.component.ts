@@ -86,6 +86,8 @@ export class DW4Component implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
+          this.showChart = false;
         }
       }
     );
@@ -104,6 +106,7 @@ export class DW4Component implements OnInit {
 
   // Iniciar os graficos
   startGraphics(evaluation) {
+    console.log(evaluation);
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloDurninWormersley4d(evaluation, this.gorduraDesejada);
@@ -218,7 +221,6 @@ export class DW4Component implements OnInit {
   }
 
   closeInput() {
-    this.newEvaluation = [];
     this.addEval = false;
   }
 

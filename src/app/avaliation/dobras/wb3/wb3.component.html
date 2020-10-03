@@ -48,8 +48,8 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="subescapular" #subescapular="ngModel"
-                                    [(ngModel)]="newEvaluation.subescapular" type="number"
-                                    (change)="getSomatorio()" (focus)="$event.target.select()">
+                                    [(ngModel)]="newEvaluation.subescapular" type="number" (change)="getSomatorio()"
+                                    (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -87,7 +87,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="crural" #crural="ngModel" [(ngModel)]="newEvaluation.crural" type="number"
-                                (change)="getSomatorio()" (focus)="$event.target.select()">
+                                    (change)="getSomatorio()" (focus)="$event.target.select()">
                             </td>
                         </tr>
 
@@ -160,11 +160,12 @@
                 </div>
             </form>
             <br />
-            <hr />
-            <h4 style="text-align: center; color: whitesmoke;">
-                {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-            </h4>
+
             <div *ngIf="showChart">
+                <hr />
+                <h4 style="text-align: center; color: whitesmoke;">
+                    {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
+                </h4>
                 <div style="text-align: center; color: whitesmoke;">
                     <div>
                         <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">

@@ -64,10 +64,12 @@ export class StComponent implements OnInit {
                         }
                       } else {
                         this.maxPointer = -1;
+                        this.pointer = -1;
                       }
                     }
                   );
                 } else {
+                  this.pointer = -1;
                   this.maxPointer = -1;
                 }
               }
@@ -101,7 +103,7 @@ export class StComponent implements OnInit {
     // if already have an evaluation on actual date
     console.log(this.maxPointer);
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+    if (this.maxPointer > 0 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
       this.newEvaluation.altura = 0;
       this.newEvaluation.peso = 0;

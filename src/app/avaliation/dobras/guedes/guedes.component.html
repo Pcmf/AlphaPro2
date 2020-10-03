@@ -205,13 +205,13 @@
                     </button>
                 </div>
             </form>
-
             <br />
-            <hr />
-            <h4 style="text-align: center; color: whitesmoke;">
-                {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
-            </h4>
+
             <div *ngIf="showChart">
+                <hr />
+                <h4 style="text-align: center; color: whitesmoke;">
+                    {{selectedEvaluation.data | date:'dd/LL/yyyy'}}
+                </h4>
                 <div style="text-align: center; color: whitesmoke;">
                     <div>
                         <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">

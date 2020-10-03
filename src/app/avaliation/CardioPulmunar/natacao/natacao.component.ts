@@ -58,6 +58,7 @@ export class NatacaoComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
       }
     );
@@ -151,14 +152,15 @@ export class NatacaoComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation.sexo = this.student.sexo;
-    this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
     }
+    this.newEvaluation.sexo = this.student.sexo;
+    this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
+
     this.addEval = true;
   }
 

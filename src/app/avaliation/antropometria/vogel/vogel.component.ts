@@ -49,6 +49,9 @@ export class VogelComponent implements OnInit {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
     this.sex = this.student.sexo;
+    if (this.sex !== 'F' || this.age <18 || this.age > 40) {
+      this.openSnackBar('Atenção! Este protocolo não é adequado para este aluno(a).', '');
+    }
     this.getData();
   }
 

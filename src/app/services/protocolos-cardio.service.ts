@@ -221,6 +221,7 @@ export class ProtocolosCardioService {
 
   // Banco YMCA 3 minutos
   getClassBancoYMCA(evaluation) {
+    console.log(evaluation);
     if (evaluation.sexo == 'M') {
       if (+evaluation.idade >= 18 && +evaluation.idade < 26) {
         if ( +evaluation.fc >= 70 && +evaluation.fc <= 78) { return 'Excelente'; }

@@ -60,6 +60,7 @@ export class RockportComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
           this.refresh = false;
         }
       }
@@ -84,6 +85,12 @@ export class RockportComponent implements OnInit {
   }
 
   addEvaluation() {
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     // Obter dados da anamnese com o nivel de atividade do aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
@@ -127,13 +134,7 @@ export class RockportComponent implements OnInit {
             }
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
-            this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
 
-            // if already have an evaluation on actual date
-            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-              this.newEvaluation.data = '';
-              this.newEvaluation = [];
-            }
             this.addEval = true;
           }
         );

@@ -33,6 +33,7 @@ export class GeorgeComponent implements OnInit {
   lastAv: any;
   refresh: boolean;
   locale: string;
+  age: number;
 
   constructor(
     private location: Location,
@@ -45,6 +46,10 @@ export class GeorgeComponent implements OnInit {
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
+    this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.age < 18 || this.age > 29 ) {
+      this.openSnackBar('Atenção! Este protocolo não é adequado para este aluno(a)', '');
+    }
     this.getData();
   }
 
@@ -83,6 +88,12 @@ export class GeorgeComponent implements OnInit {
   }
 
   addEvaluation() {
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     // Obter dados da anamnese com o tipo de aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
       (respa: any[]) => {
@@ -122,12 +133,7 @@ export class GeorgeComponent implements OnInit {
             }
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
-            this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-            // if already have an evaluation on actual date
-            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-              this.newEvaluation.data = '';
-              this.newEvaluation = [];
-            }
+
             this.addEval = true;
           }
         );

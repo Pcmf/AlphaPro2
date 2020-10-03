@@ -11,7 +11,10 @@
             </mat-card>
             <mat-card [routerLink]="['/george']">
                 <mat-card-header>
-                    <mat-card-subtitle i18n="Subtitle">George et Al - 1609m</mat-card-subtitle>
+                    <mat-card-subtitle i18n="Subtitle"
+                    [style.color]="(age >= 18 && age <= 29) ? 'white' : '#AAAAAA'">
+                    George et Al - 1609m
+                </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p><strong>Destinado a: </strong> jovens e adultos, sedentários ou ativos.</p>
@@ -24,7 +27,10 @@
             </mat-card>
             <mat-card [routerLink]="['/george2']">
                 <mat-card-header>
-                    <mat-card-subtitle i18n="Subtitle">George et Al - 3min</mat-card-subtitle>
+                    <mat-card-subtitle i18n="Subtitle"
+                    [style.color]="(age >= 18 && age <= 28) ? 'white' : '#AAAAAA'">
+                    George et Al - 3min
+                </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p><strong>Destinado a: </strong> jovens e adultos, sedentários ou ativos.</p>

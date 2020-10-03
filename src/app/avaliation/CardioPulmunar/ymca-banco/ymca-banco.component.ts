@@ -60,6 +60,7 @@ export class YmcaBancoComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
           this.refresh = false;
         }
       }
@@ -85,7 +86,13 @@ export class YmcaBancoComponent implements OnInit {
   }
 
   addEvaluation() {
-    this.newEvaluation = [];
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    console.log(this.maxPointer);
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     console.log(this.newEvaluation);
     // Obter dados da anamnese com o tipo de aluno
     this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
@@ -126,14 +133,7 @@ export class YmcaBancoComponent implements OnInit {
             }
             this.newEvaluation.sexo = this.student.sexo;
             this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
-            this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-            // if already have an evaluation on actual date
-            console.log(this.maxPointer);
-            if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-              this.newEvaluation.data = '';
-              this.newEvaluation = [];
-            }
-            console.log(this.newEvaluation);
+
             this.addEval = true;
           }
         );
@@ -143,26 +143,26 @@ export class YmcaBancoComponent implements OnInit {
 
   save(form) {
     if (form.data) {
-    console.table(form);
-    form.protocolo = this.protocolo;
-/*     form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
-    form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
-    form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
-    form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
-    form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
-    console.table(form); */
-    this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.paramEvaluation = [];
-        this.addEval = false;
-        this.refresh = false;
-        this.getData();
-      }
-    );
-  } else {
-    this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
-  }
+      form.protocolo = this.protocolo;
+      /*     form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
+          form.c_classefai = this.protocoloCardio.getClasseFAI(form.c_fai);
+          form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
+          form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
+          form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+          console.table(form); */
+      this.getClasse(form);
+      this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.paramEvaluation = [];
+          this.addEval = false;
+          this.refresh = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -188,15 +188,15 @@ export class YmcaBancoComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
-/*     this.newEvaluation.protocolo = this.protocolo;
-    this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
-    this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
-    this.newEvaluation.c_classefai = this.protocoloCardio.getClasseFAI(this.newEvaluation.c_fai);
-    this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
-    this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
-    this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
-    console.table(this.newEvaluation); */
+    /*     this.newEvaluation.protocolo = this.protocolo;
+        this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
+        this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
+        this.newEvaluation.c_classefai = this.protocoloCardio.getClasseFAI(this.newEvaluation.c_fai);
+        this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
+        this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
+        this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
+        console.table(this.newEvaluation); */
+    this.getClasse(this.newEvaluation);
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);

@@ -11,7 +11,9 @@
             </mat-card>
             <mat-card [routerLink]="['/ukk']">
                 <mat-card-header>
-                    <mat-card-subtitle i18n="Subtitle">Instituto UKK Finlândia<br />Kukkonen-Harjula et Al - 2000m
+                    <mat-card-subtitle i18n="Subtitle"
+                    [style.color]="(age >= 20 && age <= 64) ? 'white' : '#AAAAAA'">
+                    Instituto UKK Finlândia<br />Kukkonen-Harjula et Al - 2000m
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
@@ -22,7 +24,10 @@
             </mat-card>
             <mat-card [routerLink]="['/cureton']">
                 <mat-card-header>
-                    <mat-card-subtitle i18n="Subtitle">Cureton et Al - 1609m</mat-card-subtitle>
+                    <mat-card-subtitle i18n="Subtitle" 
+                    [style.color]="(age >= 8 && age <= 17) ? 'white' : '#AAAAAA'">
+                    Cureton et Al - 1609m
+                </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p><strong>Destinado a: </strong> crianças e jovens.</p>

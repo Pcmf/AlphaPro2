@@ -51,6 +51,9 @@ export class WeltmanEtAlComponent implements OnInit {
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.age = this.ageService.getAge(this.student.dt_nasc);
     this.sex = this.student.sexo;
+    if ((this.sex === 'M' && (this.age < 24 || this.age > 68)) || (this.sex === 'F' && (this.age < 20 || this.age > 60))) {
+      this.openSnackBar('Atenção! Este protocolo não é adequado para este aluno(a).', '');
+    }
     this.getData();
   }
 

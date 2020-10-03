@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dexa',
@@ -25,6 +26,7 @@ export class DEXAComponent implements OnInit {
     private location: Location,
     private dataService: DataService,
     private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
     private dialogService: DialogService
   ) {
     this.locale = this.dataService.getCountryId();
@@ -49,6 +51,7 @@ export class DEXAComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
       }
     );
@@ -65,13 +68,17 @@ export class DEXAComponent implements OnInit {
 
   save(form) {
     console.log(this.student.id);
-    this.dataService.setData('clients/dexa/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
+    if (form.data) {
+      this.dataService.setData('clients/dexa/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.getData();
+        }
+      );
+    } else {
+      this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
+    }
   }
 
   goBack() {
@@ -81,20 +88,25 @@ export class DEXAComponent implements OnInit {
   // Add new Evaluation
   addEvaluation() {
     // Obter os dados da ultima Avaliação complementar
-/*     this.dataService.getLastEvaluation(this.student.id).subscribe(
-      (resp: any[]) => {
-        if (resp.length > 0) {
-          // tslint:disable-next-line: no-conditional-assignment
-          this.lastAv = resp.pop();
-        } else { */
-          this.lastAv = 0;
-     /*    } */
-          this.newEvaluation.altura = this.lastAv.altura;
-          this.newEvaluation.peso = this.lastAv.peso;
-/*       }
-    ); */
-          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-          this.addEval = true;
+    /*     this.dataService.getLastEvaluation(this.student.id).subscribe(
+          (resp: any[]) => {
+            if (resp.length > 0) {
+              // tslint:disable-next-line: no-conditional-assignment
+              this.lastAv = resp.pop();
+            } else { */
+    this.lastAv = 0;
+    /*    } */
+    this.newEvaluation.altura = this.lastAv.altura;
+    this.newEvaluation.peso = this.lastAv.peso;
+    /*       }
+        ); */
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
+    this.addEval = true;
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -150,6 +162,12 @@ export class DEXAComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, verticalPosition: 'top'
+    });
   }
 
   // Help Dialog

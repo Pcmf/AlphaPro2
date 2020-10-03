@@ -204,6 +204,40 @@ export class ComponentePosturalComponent implements OnInit {
     );
   }
 
+  receiveImage(event, view, data) {
+    console.log(event);
+    this.dataPhoto = data;
+    switch (view) {
+      case 'a':
+        this.foto1 = event;
+        break;
+      case 'l':
+        this.foto2 = event;
+        break;
+      case 'p':
+        this.foto3 = event;
+        break;
+    }
+    if (this.addForm) {
+      this.dataPhoto = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    }
+    const obj = {
+      data: this.dataPhoto,
+      fotoa: this.foto1,
+      fotol: this.foto2,
+      fotop: this.foto3
+    };
+
+    console.table(obj);
+    this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
+      resp => {
+        this.getData();
+        this.view = '';
+      }
+    );
+  }
+
+
   openTakePhoto(view, data) {
     this.view = view;
     this.dataPhoto = data;

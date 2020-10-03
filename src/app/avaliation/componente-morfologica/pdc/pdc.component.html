@@ -300,7 +300,7 @@
                                 [disabled]="editAv">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addPerim" [disabled]="pointer == maxPointer-1 || editAv"
+                            <button type="button" *ngIf="!addPerim" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
@@ -427,7 +427,7 @@
                                 (click)="addDiametros()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addDiam" [disabled]="pointer == maxPointer-1 || editAv"
+                            <button type="button" *ngIf="!addDiam" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
@@ -631,7 +631,7 @@
                                 (click)="addOutrosPerimetros()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1 || editAv"
+                            <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                                 mat-mini-fab color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
@@ -725,7 +725,7 @@
                             <mat-icon class="mat-14">chevron_left</mat-icon>
                         </button>
 
-                        <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1" mat-mini-fab
+                        <button type="button" *ngIf="!addOutros" [disabled]="pointer == maxPointer-1 || pointer == -1" mat-mini-fab
                             color="default" (click)="pointer=pointer+1">
                             <mat-icon class="mat-14">chevron_right</mat-icon>
                         </button>

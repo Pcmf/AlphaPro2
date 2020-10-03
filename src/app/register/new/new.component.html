@@ -2,7 +2,7 @@
   <div class="section">
     <div class="section-content">
     <h1 i18n="titulo">Cadastro</h1>
-    <form class="new-form" #f="ngForm" (submit)="saveForm(f.value)" autocomplete="off">
+    <form class="new-form" #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveForm(f.value)" autocomplete="off">
       <input type="hidden" [ngModel]="student.foto" #foto="ngModel" name="foto">
 
       <mat-form-field appearance="">
@@ -97,11 +97,11 @@
       <div class="section-action">
         <div class="new-form-buttons">
         <button mat-stroked-button type="button" (click)="cancel()">
-          <mat-icon class="mat-18">close</mat-icon>
+          <mat-icon class="mat-18" color="warn">close</mat-icon>
         </button>
         <button mat-stroked-button type="submit" color="accent" 
                 [disabled]="erroRepeatCliente || !f.valid || errorData.year || errorData.month || errorData.day">
-          <mat-icon class="mat-18">check</mat-icon>
+          <mat-icon class="mat-18" color="accent">check</mat-icon>
         </button>
       </div>
       <span class="alert" *ngIf="erroRepeatCliente">Já existe registro com estes dados.</span> 

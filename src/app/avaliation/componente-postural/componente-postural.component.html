@@ -3250,6 +3250,7 @@
                                     (click)="openTakePhoto('a', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
+                                <app-load-image (imageB64)="receiveImage($event, 'a', oldData[pointer].data)"></app-load-image>
                             </div>
                             <!-- vista lateral -->
                             <div class="photo" *ngIf="viewPhoto">
@@ -3269,6 +3270,7 @@
                                     (click)="openTakePhoto('l', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
+                                <app-load-image (imageB64)="receiveImage($event, 'l', oldData[pointer].data)"></app-load-image>
                             </div>
                             <!-- vista posterior -->
                             <div class="photo" *ngIf="viewPhoto">
@@ -3288,6 +3290,7 @@
                                     (click)="openTakePhoto('p', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
+                                <app-load-image (imageB64)="receiveImage($event, 'p', oldData[pointer].data)"></app-load-image>
                             </div>
                         </div>
                         <div *ngIf="view" class="photoArea" style="text-align:center">
@@ -3302,12 +3305,12 @@
                                 </webcam>
                                 <br />
                                 <button type="button" mat-mini-fab color="default" (click)="view=''; viewPhoto=true">
-                                    <mat-icon>close</mat-icon>
+                                    <mat-icon color="warn">close</mat-icon>
                                 </button>
                                 <button type="button" mat-mini-fab color="default" class="actionBtn"
                                     (click)="triggerSnapshot();">
                                     <mat-icon>camera</mat-icon>
-                                </button>
+                                </button>                              
                                 <br />
                             </div>
                             <!-- Visualizador de foto -->

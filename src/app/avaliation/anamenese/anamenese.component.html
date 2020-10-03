@@ -13,7 +13,7 @@
           </mat-panel-title>
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
-        <form #fs1="ngForm" (submit)="saveObjetivos(fs1.value)" autocomplete="off">
+        <form #fs1="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveObjetivos(fs1.value)" autocomplete="off">
           <mat-card>
             <mat-card-content>
 
@@ -113,7 +113,7 @@
           </mat-panel-title>
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
-        <form #fev="ngForm" (submit)="saveEstiloVida(fev.value)" autocomplete="off">
+        <form #fev="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveEstiloVida(fev.value)" autocomplete="off">
 
           <mat-card>
             <mat-card-header>
@@ -225,7 +225,7 @@
           </mat-panel-title>
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
-        <form #fhp="ngForm" (submit)="saveHistoricoPatologico(fhp.value)" autocomplete="off">
+        <form #fhp="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveHistoricoPatologico(fhp.value)" autocomplete="off">
 
           <mat-card>
             <mat-card-content>
@@ -413,7 +413,7 @@
           </mat-panel-title>
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
-        <form #fpf="ngForm" (submit)="savePatologiaFamiliar(fpf.value)" autocomplete="off">
+        <form #fpf="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="savePatologiaFamiliar(fpf.value)" autocomplete="off">
           <mat-card>
             <mat-card-content>
               <mat-label i18n>Alguém da familia com estas carateristicas?</mat-label>
@@ -550,7 +550,7 @@
           <mat-panel-title i18n="Label">Hábitos Sociais</mat-panel-title>
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
-        <form #fhs="ngForm" (submit)="saveHabitosSociais(fhs.value)" autocomplete="off">
+        <form #fhs="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveHabitosSociais(fhs.value)" autocomplete="off">
 
           <!--  Bebida -->
           <mat-card>
@@ -748,7 +748,7 @@
           <mat-panel-description>&nbsp;</mat-panel-description>
         </mat-expansion-panel-header>
 
-        <form #fqa="ngForm" (submit)="saveQueixasAtuais(fqa.value)" autocomplete="off">
+        <form #fqa="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveQueixasAtuais(fqa.value)" autocomplete="off">
           <mat-card>
             <mat-card-content>
               <div class="check-box">

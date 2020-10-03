@@ -4,7 +4,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Questionário PAR-Q</h1>
-            <form class="flex-form" #f="ngForm" (submit)="save(f.value)">
+            <form class="flex-form" #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)">
                 <mat-card>
                     <mat-card-content>
                         <p i18n>1) Seu médico já lhe disse que você é portador de um problema cardíaco e que somente

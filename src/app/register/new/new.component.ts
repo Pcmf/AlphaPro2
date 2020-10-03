@@ -136,10 +136,4 @@ export class NewComponent implements OnInit {
     return ano + '-' + mes + '-' + dia;
   }
 
-/*  checkDate(data) {
- // console.log(this.ageService.getAge(this.convertData(data)));
-  return +this.ageService.getAge(this.convertData(data));
-
- } */
-
 }

@@ -4,7 +4,7 @@
     <div class="section">
         <div class="section-content">
             <h1 class="h1-title" i18n>Risco de Cardiopatia</h1>
-            <form class="flex-form" #f="ngForm" (submit)="save(f.value)" autocomplete="off">
+            <form class="flex-form" #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <mat-card>
                     <mat-card-header>
                         <mat-card-subtitle i18n>Pressão Arterial (mm/Hg)</mat-card-subtitle>

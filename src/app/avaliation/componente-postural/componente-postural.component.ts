@@ -274,6 +274,9 @@ export class ComponentePosturalComponent implements OnInit {
     }
     if (this.addForm) {
       this.dataPhoto = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+      this.newData.fotoa = this.foto1;
+      this.newData.fotol = this.foto2;
+      this.newData.fotop = this.foto3;
     }
     const obj = {
       data: this.dataPhoto,

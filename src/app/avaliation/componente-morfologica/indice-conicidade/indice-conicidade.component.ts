@@ -32,7 +32,6 @@ export class IndiceConicidadeComponent implements OnInit {
   ) {
     this.locale = this.dataService.getCountryId();
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
-    this.getData();
     this.dataService.getLastEvaluation(this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         if (resp.length > 0) {
@@ -41,14 +40,15 @@ export class IndiceConicidadeComponent implements OnInit {
             this.openSnackBar('Atenção! A última avaliação complementar já tem ' + this.lastEvaluation.difdias + ' dias.', '');
           }
         }
+        this.getData();
       }
     );
-
   }
 
   getData() {
     this.dataService.getData('clients/corporal/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
+        console.log(resp);
         if (resp && resp.length > 0) {
           this.evaluation = resp.filter((elem) => {
             if (elem.altura > 0 && elem.peso > 0 && elem.cintura > 0) {
@@ -90,6 +90,7 @@ export class IndiceConicidadeComponent implements OnInit {
   }
 
   addEvaluation() {
+    this.newEvaluation = [];
     this.newEvaluation.altura = this.lastEvaluation.altura;
     this.newEvaluation.peso = this.lastEvaluation.peso;
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
@@ -99,7 +100,7 @@ export class IndiceConicidadeComponent implements OnInit {
           this.newEvaluation.cintura = respa[0].cintura;
         }
               // if already have an evaluation on actual date
-        if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+        if (this.maxPointer > 0 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
           this.newEvaluation.data = '';
           this.newEvaluation = [];
         }
@@ -152,7 +153,6 @@ export class IndiceConicidadeComponent implements OnInit {
     console.table(this.newEvaluation);
     this.dataService.setData('clients/corporal/' + this.selectedStudent.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -167,7 +167,6 @@ export class IndiceConicidadeComponent implements OnInit {
   delete(evaluation) {
     this.dataService.delete('clients/corporal/' + this.selectedStudent.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
         this.getData();
       }
     );

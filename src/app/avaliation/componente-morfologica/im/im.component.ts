@@ -16,6 +16,7 @@ export class IMComponent implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -28,6 +29,7 @@ export class IMComponent implements OnInit {
     this.getData();
   }
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/eval/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -38,6 +40,7 @@ export class IMComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }

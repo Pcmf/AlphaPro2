@@ -22,6 +22,7 @@ export class IndiceConicidadeComponent implements OnInit {
   selectedTab = 0;
   private coefRisco = 1.25;
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -46,6 +47,7 @@ export class IndiceConicidadeComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/corporal/' + this.selectedStudent.id).subscribe(
       (resp: any[]) => {
         console.log(resp);
@@ -63,6 +65,7 @@ export class IndiceConicidadeComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -71,12 +74,13 @@ export class IndiceConicidadeComponent implements OnInit {
   }
 
   save(form) {
-    console.table(form);
+    this.spinner = true;
     if (form.data) {
       this.dataService.setData('clients/corporal/' + this.selectedStudent.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -150,10 +154,11 @@ export class IndiceConicidadeComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.selectedStudent.id, this.newEvaluation).subscribe(
       resp => {
         this.newEvaluation = [];
+        this.spinner = false;
         this.closeEditForm();
       }
     );
@@ -165,8 +170,10 @@ export class IndiceConicidadeComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/corporal/' + this.selectedStudent.id + '/' + evaluation.data).subscribe(
       resp => {
+        this.spinner = false;
         this.getData();
       }
     );

@@ -19,8 +19,7 @@ export class ScanerComponent implements OnInit {
   editPointer: number;
   editAv = false;
   newEvaluation: any = [];
-
-
+  spinner = false;
   locale: string;
 
   constructor(
@@ -41,6 +40,7 @@ export class ScanerComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/scan/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -52,6 +52,7 @@ export class ScanerComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -67,10 +68,12 @@ export class ScanerComponent implements OnInit {
 
   save(form) {
     if (form.data) {
-    this.dataService.setData('clients/scan/' + this.student.id, form).subscribe(
+      this.spinner = true;
+      this.dataService.setData('clients/scan/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
+        this.spinner = false;
         this.getData();
       }
     );
@@ -127,10 +130,10 @@ openEditForm(evaluation, editPointer) {
 }
 
 saveEditForm() {
-  console.table(this.newEvaluation);
+  this.spinner = true;
   this.dataService.setData('clients/scan/' + this.student.id, this.newEvaluation).subscribe(
     resp => {
-      console.log(resp);
+      this.spinner = false;
       this.newEvaluation = [];
       this.closeEditForm();
     }
@@ -143,9 +146,10 @@ closeEditForm() {
 }
 
 delete(evaluation) {
+  this.spinner = true;
   this.dataService.delete('clients/scan/' + this.student.id + '/' + evaluation.data).subscribe(
     resp => {
-      console.log(resp);
+      this.spinner = false;
       this.getData();
     }
   );

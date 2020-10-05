@@ -22,6 +22,7 @@ export class PDCComponent implements OnInit {
   newEvaluation: any = [];
   selectedTab = 0;
   locale: string;
+  spinner = false;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -35,6 +36,7 @@ export class PDCComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/corporal/' + this.studentId).subscribe(
       (resp: any[]) => {
         this.maxPointer = resp.length;
@@ -46,6 +48,7 @@ export class PDCComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -75,11 +78,12 @@ export class PDCComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.saveData('clients/corporal/' + this.studentId, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
         this.newEvaluation = [];
+        this.spinner = false;
         this.closeEditForm();
       }
     );
@@ -91,9 +95,10 @@ export class PDCComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/corporal/' + this.studentId + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );
@@ -116,8 +121,10 @@ export class PDCComponent implements OnInit {
 
   saveEvaluation(form) {
     if (form.data) {
+      this.spinner = true;
       this.dataService.saveData('clients/corporal/' + this.studentId, form).subscribe(
         resp => {
+          this.spinner = false;
           this.getData();
         }
       );

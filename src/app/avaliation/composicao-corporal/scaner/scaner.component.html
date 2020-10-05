@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
+                            <th [attr.colspan]="pointer>=1 || addEval ? 3 : 2" class="form-subtitle"><span
                                     (click)="openDialog('Tríceps')">Tríceps</span></th>
                         </tr>
                         <tr>
@@ -72,7 +72,7 @@
                         </tr>
 
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
+                            <th [attr.colspan]="pointer>=1 || addEval ? 3 : 2" class="form-subtitle"><span
                                     (click)="openDialog('Abdominal')">Abdominal</span></th>
                         </tr>
                         <tr>
@@ -116,7 +116,7 @@
                             </td>
                         </tr>
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle"><span
+                            <th [attr.colspan]="pointer>=1 || addEval ? 3 : 2" class="form-subtitle"><span
                                     (click)="openDialog('Quadríceps')">Quadríceps</span></th>
                         </tr>
                         <tr>
@@ -161,7 +161,7 @@
                         </tr>
 
                         <tr class="table-row-subtitle">
-                            <th [attr.colspan]="pointer>=1 ? 3 : 2" class="form-subtitle">Total</th>
+                            <th [attr.colspan]="pointer>=1 || addEval ? 3 : 2" class="form-subtitle">Total</th>
                         </tr>
                         <tr>
                             <th><span (click)="openDialog('Total Qualidade Muscular')">Qualidade Muscular</span></th>
@@ -247,5 +247,5 @@
             </form>
         </div>
     </div>
-
+    <app-overlay *ngIf="spinner"></app-overlay>
 </div>

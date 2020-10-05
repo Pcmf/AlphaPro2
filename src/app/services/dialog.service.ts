@@ -24,6 +24,7 @@ export class DialogService {
 
   public confirmedMedidas(): Observable<any> {
     return this.dialogRef.afterClosed().pipe(take(1), map(res => {
+      console.log(res);
       return res;
     }
   ));

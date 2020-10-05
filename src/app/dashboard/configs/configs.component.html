@@ -1,19 +1,20 @@
 <div class="container">
 
     <div class="section">
-        <h1 class="h1-title" i18n="titulo"><span>Configurações</span></h1>
-        <div class="box1">
-            <form #fb1="ngForm" (submit)="savePersonalData(fb1.value)">
-                <h2>Configurações</h2>
-<!--                 <mat-form-field appearance="">
+        <div class="section-content">
+            <h1 class="h1-title" i18n="titulo"><span>Configurações</span></h1>
+            <div class="box1">
+                <form #fb1="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="savePersonalData(fb1.value)" autocomplete="off">
+                    <h2>Configurações</h2>
+                    <!--                 <mat-form-field appearance="">
                     <mat-label>Seu Nome</mat-label>
                     <input matInput #nome="ngModel" name="nome" [(ngModel)]="user.nome">
                 </mat-form-field> -->
-                <mat-form-field appearance="">
-                    <mat-label>Email</mat-label>
-                    <input matInput #email="ngModel" name="email" [(ngModel)]="user.email">
-                </mat-form-field>
-<!--                 <mat-form-field appearance="">
+                    <mat-form-field appearance="">
+                        <mat-label>Email</mat-label>
+                        <input matInput #email="ngModel" name="email" [(ngModel)]="user.email">
+                    </mat-form-field>
+                    <!--                 <mat-form-field appearance="">
                     <mat-label>Celular</mat-label>
                     <input matInput #telemovel="ngModel" name="telemovel" [(ngModel)]="user.telemovel">
                 </mat-form-field>
@@ -21,46 +22,48 @@
                     <mat-label>Telefone</mat-label>
                     <input matInput #telefone="ngModel" name="telefone" [(ngModel)]="user.telefone">
                 </mat-form-field> -->
-                <mat-form-field>
-                    <mat-label>Pais</mat-label>
-                    <mat-select appearance="" #country="ngModel" name="country" [(ngModel)]="user.country" placeholder="Selecione o pais onde se encontra">
-                        <mat-option *ngFor="let c of countries" [value]="c">
-                            <img src="./assets/flags/flags/24x24/{{c.alpha2}}.png" alt=""> {{c.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <div class="action">
-                    <button mat-mini-fab>
-                        <mat-icon class="mat-18">check</mat-icon>
-                    </button>
-                </div>
+                    <mat-form-field>
+                        <mat-label>Pais</mat-label>
+                        <mat-select appearance="" #country="ngModel" name="country" [(ngModel)]="user.country"
+                            placeholder="Selecione o pais onde se encontra">
+                            <mat-option *ngFor="let c of countries" [value]="c">
+                                <img src="./assets/flags/flags/24x24/{{c.alpha2}}.png" alt=""> {{c.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="action">
+                        <button mat-mini-fab color="default">
+                            <mat-icon color="accent">check</mat-icon>
+                        </button>
+                    </div>
 
 
-            </form>
+                </form>
+            </div>
+            <div class="box2">
+                <form #fb2="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="saveAcessData(fb2.value)" autocomplete="off">
+                    <h2>Dados de Acesso</h2>
+                    <mat-form-field appearance="">
+                        <mat-label>Nome de Utilizador</mat-label>
+                        <input matInput #username="ngModel" name="username" [(ngModel)]="user.username">
+                    </mat-form-field>
+                    <mat-form-field appearance="">
+                        <mat-label>Nova Senha</mat-label>
+                        <input matInput #password="ngModel" name="password" [(ngModel)]="user.password" type="password">
+                    </mat-form-field>
+                    <mat-form-field appearance="">
+                        <mat-label>Confirme Senha</mat-label>
+                        <input matInput #confirm="ngModel" name="confirm" [(ngModel)]="user.confirm" type="password">
+                    </mat-form-field>
+                    <div class="action">
+                        <button mat-mini-fab color="default"
+                            [disabled]="(password.value != confirm.value && confirm.touched) || password.value==''">
+                            <mat-icon color="accent">check</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="box2">
-            <form #fb2="ngForm" (submit)="saveAcessData(fb2.value)">
-                <h2>Dados de Acesso</h2>
-                <mat-form-field appearance="">
-                    <mat-label>Nome de Utilizador</mat-label>
-                    <input matInput #username="ngModel" name="username" [(ngModel)]="user.username">
-                </mat-form-field>
-                <mat-form-field appearance="">
-                    <mat-label>Nova Senha</mat-label>
-                    <input matInput #password="ngModel" name="password" [(ngModel)]="user.password" type="password">
-                </mat-form-field>
-                <mat-form-field appearance="">
-                    <mat-label>Confirme Senha</mat-label>
-                    <input matInput #confirm="ngModel" name="confirm" [(ngModel)]="user.confirm" type="password">
-                </mat-form-field>
-                <div class="action">
-                    <button mat-mini-fab [disabled]="password.value != confirm.value && confirm.touched">
-                        <mat-icon class="mat-18">check</mat-icon>
-                    </button>
-                </div>
-            </form>
-        </div>
-
     </div>
-
+    <app-overlay *ngIf="spinner"></app-overlay>
 </div>

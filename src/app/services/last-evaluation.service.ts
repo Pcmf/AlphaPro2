@@ -74,6 +74,7 @@ export class LastEvaluationService {
               this.response.peso = this.lastAv.peso;
               this.response.punho = this.lastCorporal.punho;
               this.response.joelho = this.lastCorporal.joelho;
+              this.response.erro = false;
               this.evaluation.next( this.response);
             }
           }
@@ -91,19 +92,25 @@ export class LastEvaluationService {
       lastAv,
       lastCorporal,
       idade: age,
-      sexo: sexo,
-      id: id
+      sexo,
+      id
     };
     this.dialogService.openMedidas(options);
     this.dialogService.confirmedMedidas().subscribe(
       result => {
+        console.log(result);
         if (result) {
           this.response.altura = result.altura;
           this.response.peso = result.peso;
           this.response.punho = result.punho;
           this.response.joelho = result.joelho;
-          this.evaluation.next( this.response);
+          this.response.erro = false;
+        } else {
+          this.response.erro = true;
+
         }
+        this.evaluation.next( this.response);
+
       }
     );
   }

@@ -1,19 +1,39 @@
-.container{
+.container {
     background-image: url("./../../../assets/img/postural_fundo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-.section{
+.section {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     color: white;
+    &-content {
+        width: 100%;
+        display: flex;
+        align-self: center;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.box1, .box2{
+::ng-deep {
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: rgb(250 250 250) !important;
+        font-size: medium !important;
+    }
+    .mat-select-arrow,
+    .mat-select-value {
+        color: white !important;
+    }
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+        display: inline-block !important;
+    }
+}
+
+.box1,
+.box2 {
     width: 280px;
     display: flex;
     flex-direction: column;
@@ -21,7 +41,16 @@
     padding: 20px;
 }
 
-.action{
+.action {
     width: 100%;
     text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .section-content {
+        width: 520px !important;
+        h1 {
+            width: 100%;
+        }
+    }
 }

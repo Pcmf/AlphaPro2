@@ -33,14 +33,15 @@ export class AllDobrasComponent implements OnInit {
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
+  spinner = false;
 
   constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private snackBar: MatSnackBar,
-              public dialogService: DialogService,
-              private ageService: AgeService,
-              private lastEvalService: LastEvaluationService
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    public dialogService: DialogService,
+    private ageService: AgeService,
+    private lastEvalService: LastEvaluationService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -58,6 +59,7 @@ export class AllDobrasComponent implements OnInit {
 
   getData() {
     /* Protocolo Soma todas as dobras */
+    this.spinner = true;
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -69,6 +71,7 @@ export class AllDobrasComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -87,7 +90,7 @@ export class AllDobrasComponent implements OnInit {
 
       /* Durnim & Womersley - 4 dobras  - protocolo 5 */
       if ((this.student.sexo === 'M' && this.age >= 17 && this.age <= 72)
-            || (this.student.sexo === 'F' &&  this.age >= 16 && this.age <= 68)) {
+        || (this.student.sexo === 'F' && this.age >= 16 && this.age <= 68)) {
         if (form.triciptal > 0 && form.subescapular > 0 && form.biciptal > 0 && form.suprailiaca > 0) {
           form.protocolo = 5;
           this.saveToDB(form);
@@ -107,7 +110,7 @@ export class AllDobrasComponent implements OnInit {
       /* JP3 - 3 dobras  - protocolo 3 */
       if ((this.student.sexo === 'M' && form.peitoral > 0 && form.abdominal > 0 && this.age >= 18 && this.age <= 61)
         || (this.student.sexo === 'F' && form.triciptal > 0 && form.suprailiaca > 0 && form.crural > 0
-        && this.age >= 18 && this.age <= 55)) {
+          && this.age >= 18 && this.age <= 55)) {
         form.protocolo = 3;
         this.saveToDB(form);
       }
@@ -130,14 +133,14 @@ export class AllDobrasComponent implements OnInit {
         this.saveToDB(form);
       }
       /* Sloan - 2 dobras  - protocolo 12 */
-      if ( (this.student.sexo === 'M' && form.crural > 0 && form.subescapular > 0 && this.age >= 18 && this.age <= 26)
+      if ((this.student.sexo === 'M' && form.crural > 0 && form.subescapular > 0 && this.age >= 18 && this.age <= 26)
         || (this.student.sexo === 'F' && form.triciptal > 0 && form.suprailiaca > 0 && this.age >= 17 && this.age <= 25)) {
         form.protocolo = 12;
         this.saveToDB(form);
       }
       /* Williams - 4 dobras  - protocolo 11 */
       if (form.triciptal > 0 && form.subescapular > 0 && form.geminal > 0 && form.abdominal > 0
-          && (this.student.sexo === 'M' || (this.student.sexo === 'F' && this.age >= 34 && this.age <= 84))) {
+        && (this.student.sexo === 'M' || (this.student.sexo === 'F' && this.age >= 34 && this.age <= 84))) {
         form.protocolo = 11;
         this.saveToDB(form);
       }
@@ -168,41 +171,46 @@ export class AllDobrasComponent implements OnInit {
 
   addEvaluation() {
 
-      this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-      // Obter dados das avaliações complementares e ultima corporal
-      this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
-      this.lastEvalService.lastEval.subscribe(
-        (resp: any) => {
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        if (!resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;
           this.newEvaluation.joelho = resp.joelho;
-        }
-      );
 
-      // if already have an evaluation on actual date
-      if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-        this.newEvaluation.data = '';
-        this.newEvaluation = [];
+          this.somatorio = 0;
+          this.newEvaluation.biciptal = 0;
+          this.newEvaluation.geminal = 0;
+          this.newEvaluation.triciptal = 0;
+          this.newEvaluation.peitoral = 0;
+          this.newEvaluation.subescapular = 0;
+          this.newEvaluation.axilar = 0;
+          this.newEvaluation.suprailiaca = 0;
+          this.newEvaluation.abdominal = 0;
+          this.newEvaluation.crural = 0;
+          this.addEval = true;
+        }
       }
-      this.somatorio = 0;
-      this.newEvaluation.biciptal = 0;
-      this.newEvaluation.geminal = 0;
-      this.newEvaluation.triciptal = 0;
-      this.newEvaluation.peitoral = 0;
-      this.newEvaluation.subescapular = 0;
-      this.newEvaluation.axilar = 0;
-      this.newEvaluation.suprailiaca = 0;
-      this.newEvaluation.abdominal = 0;
-      this.newEvaluation.crural = 0;
-      this.addEval = true;
+    );
   }
 
   // Save to DB
   saveToDB(form) {
     if (form.data) {
-      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(resp => { });
-      return;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(resp => {
+        this.spinner = false;
+        return;
+      });
     } else {
       console.log(' data indefenida');
     }
@@ -230,9 +238,10 @@ export class AllDobrasComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -245,8 +254,10 @@ export class AllDobrasComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
+        this.spinner = false;
         this.getData();
       }
     );

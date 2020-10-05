@@ -28,6 +28,7 @@ export class BalancaComponent implements OnInit {
 
   private daysAv = 0;
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -51,6 +52,7 @@ export class BalancaComponent implements OnInit {
 
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -62,6 +64,7 @@ export class BalancaComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -79,13 +82,13 @@ export class BalancaComponent implements OnInit {
   save(form) {
     if (form.data) {
       form.protocolo = this.protocolo;
-      console.log(form);
       form.tmb = this.calcTMB(form);
-      // Save
+      this.spinner = true;
       this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -100,6 +103,12 @@ export class BalancaComponent implements OnInit {
 
   // Add new Evaluation
   addEvaluation() {
+    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
+    // if already have an evaluation on actual date
+    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
+      this.newEvaluation.data = '';
+      this.newEvaluation = [];
+    }
     // Obter os dados da ultima Avaliação complementar
     this.dataService.getLastEvaluation(this.student.id).subscribe(
       (resp: any[]) => {
@@ -113,30 +122,24 @@ export class BalancaComponent implements OnInit {
         } else {
           this.newAv = true;
         }
-            // decide se vai mostrar dialog
+        // decide se vai mostrar dialog
         if (this.newAv) {
-              this.openMedidasDialog(
-                this.daysAv,
-                '',
-                this.newAv,
-                '',
-                this.lastAv,
-                ''
-              );
-            }
+          this.openMedidasDialog(
+            this.daysAv,
+            '',
+            this.newAv,
+            '',
+            this.lastAv,
+            ''
+          );
+        }
         this.newEvaluation.altura = this.lastAv.altura;
         this.newEvaluation.peso = this.lastAv.peso;
         this.newEvaluation.tmb = this.lastAv.tmb;
 
-          }
-        );
-    this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-
-      // if already have an evaluation on actual date
-    if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
-        this.newEvaluation.data = '';
-        this.newEvaluation = [];
       }
+    );
+
     this.addEval = true;
 
   }
@@ -154,7 +157,7 @@ export class BalancaComponent implements OnInit {
   }
 
 
-closeInput() {
+  closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
   }
@@ -182,10 +185,10 @@ closeInput() {
 
   saveEditForm() {
     this.newEvaluation.tmb = this.calcTMB(this.newEvaluation);
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -198,27 +201,28 @@ closeInput() {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );
   }
 
-openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000, verticalPosition: 'top'
     });
   }
 
   // Help Dialog
-openDialog(type): void {
+  openDialog(type): void {
     this.dialogService.openHelp(type);
   }
 
   // Medidas Dialog
-openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
+  openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
     const options = {
       daysAv,
       daysCorporal,
@@ -247,77 +251,77 @@ openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal
     );
   }
 
-// Get classification from table
-getClassificacao(percGordura) {
-  // Feminino
-  if (this.student.sexo === 'F') {
-    if (this.age >= 20 && this.age < 40) {
-      if (percGordura < 21) {
-        return 'Baixo';
-      } else if (percGordura >= 21 && percGordura < 33) {
-        return 'Aceitávél';
-      } else if (percGordura >= 33 && percGordura < 39) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
+  // Get classification from table
+  getClassificacao(percGordura) {
+    // Feminino
+    if (this.student.sexo === 'F') {
+      if (this.age >= 20 && this.age < 40) {
+        if (percGordura < 21) {
+          return 'Baixo';
+        } else if (percGordura >= 21 && percGordura < 33) {
+          return 'Aceitávél';
+        } else if (percGordura >= 33 && percGordura < 39) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
+      } else if (this.age >= 40 && this.age < 60) {
+        if (percGordura < 23) {
+          return 'Baixo';
+        } else if (percGordura >= 23 && percGordura < 34) {
+          return 'Aceitávél';
+        } else if (percGordura >= 34 && percGordura < 40) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
+      } else if (this.age >= 60 && this.age < 80) {
+        if (percGordura < 24) {
+          return 'Baixo';
+        } else if (percGordura >= 24 && percGordura < 36) {
+          return 'Aceitávél';
+        } else if (percGordura >= 36 && percGordura < 42) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
       }
-    } else if (this.age >= 40 && this.age < 60) {
-      if (percGordura < 23) {
-        return 'Baixo';
-      } else if (percGordura >= 23 && percGordura < 34) {
-        return 'Aceitávél';
-      } else if (percGordura >= 34 && percGordura < 40) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
-      }
-    } else if (this.age >= 60 && this.age < 80) {
-      if (percGordura < 24) {
-        return 'Baixo';
-      } else if (percGordura >= 24 && percGordura < 36) {
-        return 'Aceitávél';
-      } else if (percGordura >= 36 && percGordura < 42) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
+    }
+    // Masculino
+    if (this.student.sexo === 'M') {
+      if (this.age >= 20 && this.age < 40) {
+        if (percGordura < 8) {
+          return 'Baixo';
+        } else if (percGordura >= 8 && percGordura < 20) {
+          return 'Aceitávél';
+        } else if (percGordura >= 20 && percGordura < 25) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
+      } else if (this.age >= 40 && this.age < 60) {
+        if (percGordura < 11) {
+          return 'Baixo';
+        } else if (percGordura >= 11 && percGordura < 22) {
+          return 'Aceitávél';
+        } else if (percGordura >= 22 && percGordura < 28) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
+      } else if (this.age >= 60 && this.age < 80) {
+        if (percGordura < 13) {
+          return 'Baixo';
+        } else if (percGordura >= 13 && percGordura < 25) {
+          return 'Aceitávél';
+        } else if (percGordura >= 25 && percGordura < 30) {
+          return 'Sobrepeso';
+        } else {
+          return 'Obesidade';
+        }
       }
     }
   }
-  // Masculino
-  if (this.student.sexo === 'M') {
-    if (this.age >= 20 && this.age < 40) {
-      if (percGordura < 8) {
-        return 'Baixo';
-      } else if (percGordura >= 8 && percGordura < 20) {
-        return 'Aceitávél';
-      } else if (percGordura >= 20 && percGordura < 25) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
-      }
-    } else if (this.age >= 40 && this.age < 60) {
-      if (percGordura < 11) {
-        return 'Baixo';
-      } else if (percGordura >= 11 && percGordura < 22) {
-        return 'Aceitávél';
-      } else if (percGordura >= 22 && percGordura < 28) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
-      }
-    } else if (this.age >= 60 && this.age < 80) {
-      if (percGordura < 13) {
-        return 'Baixo';
-      } else if (percGordura >= 13 && percGordura < 25) {
-        return 'Aceitávél';
-      } else if (percGordura >= 25 && percGordura < 30) {
-        return 'Sobrepeso';
-      } else {
-        return 'Obesidade';
-      }
-    }
-  }
-}
 
 
 }

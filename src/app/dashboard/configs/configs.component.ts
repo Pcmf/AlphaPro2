@@ -11,6 +11,8 @@ export class ConfigsComponent implements OnInit {
   user: any = [];
   countries: any;
   country: any = [];
+  spinner = false;
+
   constructor(
     private dataService: DataService
   ) {
@@ -18,28 +20,33 @@ export class ConfigsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner = true;
     this.dataService.getData('entities/' + this.dataService.getPTId()).subscribe(
       resp => {
         this.user = resp[0];
         this.user.password = '';
         this.user.confirm = '';
-        console.log(resp);
+        this.spinner = false;
       }
     );
   }
 
   savePersonalData(form) {
+    this.spinner = true;
     this.dataService.setData('entities/' + this.dataService.getPTId(), form).subscribe(
       resp => {
         console.log(resp);
         if (!resp) {
           alert('Dados alterados com sucesso!');
         }
+        this.spinner = false;
       }
     );
   }
 
   saveAcessData(form) {
+    this.spinner = true;
+    console.log(form);
     this.dataService.setData('entities/' + this.dataService.getPTId(), form).subscribe(
       resp => {
         console.log(resp);
@@ -48,6 +55,7 @@ export class ConfigsComponent implements OnInit {
           this.user.confirm = '';
           alert('Dados de acesso alterados com sucesso!');
         }
+        this.spinner = false;
       }
     );
   }

@@ -19,6 +19,7 @@ export class IRCQComponent implements OnInit {
   student: any = [];
   age: number;
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -33,6 +34,7 @@ export class IRCQComponent implements OnInit {
     this.getData();
   }
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -48,6 +50,7 @@ export class IRCQComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }

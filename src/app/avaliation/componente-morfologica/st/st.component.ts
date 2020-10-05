@@ -23,6 +23,7 @@ export class StComponent implements OnInit {
   private tempAltura: number;
   private tempPeso: number;
   private protocolo = 43; // Somatotipo
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -37,6 +38,7 @@ export class StComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/eval/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -66,6 +68,7 @@ export class StComponent implements OnInit {
                         this.maxPointer = -1;
                         this.pointer = -1;
                       }
+                      this.spinner = false;
                     }
                   );
                 } else {
@@ -94,6 +97,7 @@ export class StComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -101,7 +105,6 @@ export class StComponent implements OnInit {
   addEvaluation() {
 
     // if already have an evaluation on actual date
-    console.log(this.maxPointer);
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     if (this.maxPointer > 0 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
@@ -118,8 +121,6 @@ export class StComponent implements OnInit {
       console.log(this.newEvaluation);
       this.addEval = true;
     } else {
-
-
       this.dataService.getLastEvaluation(this.student.id).subscribe(
         (resp: any[]) => {
           if (resp.length > 0) {
@@ -168,21 +169,19 @@ export class StComponent implements OnInit {
       if (form.peso != this.tempPeso || form.altura != this.tempAltura) {
         // gravar avaliação
         this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
-          resp => {
-            this.newEvaluation = [];
-            this.addEval = false;
-            this.getData();
-          }
+          resp => { console.log(resp)}
         );
       }
 
       form.protocolo = this.protocolo;
+      this.spinner = true;
       this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
         resp0 => {
           this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
             resp => {
               this.newEvaluation = [];
               this.addEval = false;
+              this.spinner = false;
               this.getData();
             }
           );
@@ -221,10 +220,10 @@ export class StComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -237,9 +236,10 @@ export class StComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

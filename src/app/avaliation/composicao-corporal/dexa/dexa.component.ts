@@ -21,6 +21,7 @@ export class DEXAComponent implements OnInit {
   newEvaluation: any = [];
   locale: string;
   lastAv: any;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -41,6 +42,7 @@ export class DEXAComponent implements OnInit {
 
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/dexa/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -53,6 +55,7 @@ export class DEXAComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -67,12 +70,13 @@ export class DEXAComponent implements OnInit {
   }
 
   save(form) {
-    console.log(this.student.id);
     if (form.data) {
+      this.spinner = true;
       this.dataService.setData('clients/dexa/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -88,18 +92,9 @@ export class DEXAComponent implements OnInit {
   // Add new Evaluation
   addEvaluation() {
     // Obter os dados da ultima Avaliação complementar
-    /*     this.dataService.getLastEvaluation(this.student.id).subscribe(
-          (resp: any[]) => {
-            if (resp.length > 0) {
-              // tslint:disable-next-line: no-conditional-assignment
-              this.lastAv = resp.pop();
-            } else { */
     this.lastAv = 0;
-    /*    } */
     this.newEvaluation.altura = this.lastAv.altura;
     this.newEvaluation.peso = this.lastAv.peso;
-    /*       }
-        ); */
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
@@ -131,10 +126,10 @@ export class DEXAComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/dexa/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -147,9 +142,10 @@ export class DEXAComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/dexa/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

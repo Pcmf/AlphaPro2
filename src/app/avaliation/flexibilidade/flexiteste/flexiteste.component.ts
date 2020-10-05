@@ -22,7 +22,7 @@ export class FlexitesteComponent implements OnInit {
   selectedStudent: any = [];
   selectedTab = 0;
   protocolo = 40;
-
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -37,6 +37,7 @@ export class FlexitesteComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -47,6 +48,7 @@ export class FlexitesteComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -58,10 +60,12 @@ export class FlexitesteComponent implements OnInit {
     if (form.data) {
       console.table(form);
       form.protocolo = this.protocolo;
+      this.spinner = true;
       this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -106,10 +110,10 @@ export class FlexitesteComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/flex/' + this.selectedStudent.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -123,9 +127,10 @@ export class FlexitesteComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

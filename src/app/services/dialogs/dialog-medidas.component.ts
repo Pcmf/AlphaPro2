@@ -33,7 +33,7 @@ export class DialogMedidas {
       if (data.newCorporal && data.daysCorporal && data.lastCorporal.punho > 0 && data.lastCorporal.joelho > 0) {
         this.msg += ' A última medição do punho e/ou joelho já tem ' + data.daysCorporal + ' dias.';
       }
-      if (data.newCorporal && data.daysCorporal) {
+      if (data.newCorporal && !data.daysCorporal) {
         this.msg += ' Não existem medições de punho e/ou joelho.';
       }
       if (this.msg) {

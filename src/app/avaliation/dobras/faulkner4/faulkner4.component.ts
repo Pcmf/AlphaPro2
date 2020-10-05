@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,7 +14,6 @@ import { LastEvaluationService } from 'src/app/services/last-evaluation.service'
   styleUrls: ['./faulkner4.component.scss']
 })
 export class Faulkner4Component implements OnInit {
-  @ViewChild('triciptal') triciptal: ElementRef;
   evaluation: any = [];
   selectedEvaluation: any = [];
   addEval = false;
@@ -29,6 +28,7 @@ export class Faulkner4Component implements OnInit {
   somatorio = 0;
   protocolo = 2;
   locale: string;
+  spinner = false;
 
   // graphics
   chartSelected = 'pie';
@@ -76,6 +76,7 @@ export class Faulkner4Component implements OnInit {
 
   getData() {
     // Protocolo Petroski  - 10
+    this.spinner = true;
     this.dataService.getData('clients/morfo/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -89,6 +90,7 @@ export class Faulkner4Component implements OnInit {
           this.maxPointer = -1;
           this.showChart = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -116,14 +118,16 @@ export class Faulkner4Component implements OnInit {
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -136,39 +140,35 @@ export class Faulkner4Component implements OnInit {
   // Add new Evaluation
   addEvaluation() {
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    // Obter dados das avaliações complementares e ultima corporal
-    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
-    this.lastEvalService.lastEval.subscribe(
-      (resp: any) => {
-        this.newEvaluation.altura = resp.altura;
-        this.newEvaluation.peso = resp.peso;
-        this.newEvaluation.punho = resp.punho;
-        this.newEvaluation.joelho = resp.joelho;
-      }
-    );
-
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
     }
-    this.somatorio = 0;
-    this.newEvaluation.biciptal = 0;
-    this.newEvaluation.geminal = 0;
-    this.newEvaluation.triciptal = 0;
-    this.newEvaluation.peitoral = 0;
-    this.newEvaluation.subescapular = 0;
-    this.newEvaluation.axilar = 0;
-    this.newEvaluation.suprailiaca = 0;
-    this.newEvaluation.abdominal = 0;
-    this.newEvaluation.crural = 0;
-    this.addEval = true;
-    // tslint:disable-next-line: no-string-literal
-    const ele = this.triciptal.nativeElement;
-    console.log(ele);
-    if (ele) {
-      ele.focus();
-    }
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        if (!resp.erro) {
+          this.newEvaluation.altura = resp.altura;
+          this.newEvaluation.peso = resp.peso;
+          this.newEvaluation.punho = resp.punho;
+          this.newEvaluation.joelho = resp.joelho;
+
+          this.somatorio = 0;
+          this.newEvaluation.biciptal = 0;
+          this.newEvaluation.geminal = 0;
+          this.newEvaluation.triciptal = 0;
+          this.newEvaluation.peitoral = 0;
+          this.newEvaluation.subescapular = 0;
+          this.newEvaluation.axilar = 0;
+          this.newEvaluation.suprailiaca = 0;
+          this.newEvaluation.abdominal = 0;
+          this.newEvaluation.crural = 0;
+          this.addEval = true;
+        }
+      }
+    );
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -193,11 +193,12 @@ export class Faulkner4Component implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/morfo/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
+        this.spinner = false;
         this.closeEditForm();
       }
     );
@@ -209,14 +210,15 @@ export class Faulkner4Component implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/morfo/' + this.student.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
+        this.spinner = false;
         this.getData();
       }
     );
   }
 
-  
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;

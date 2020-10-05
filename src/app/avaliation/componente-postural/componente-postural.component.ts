@@ -4,7 +4,7 @@ import { Location, DatePipe } from '@angular/common';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { DialogService } from 'src/app/services/dialog.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -50,13 +50,15 @@ export class ComponentePosturalComponent implements OnInit {
   private foto1: string;
   private foto2: string;
   private foto3: string;
+  spinner = false;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private dialogService: DialogService,
-              private snackBar: MatSnackBar,
-              public dialog: MatDialog
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private dialogService: DialogService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -75,24 +77,30 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/post/' + this.student.id).subscribe(
       (resp: any[]) => {
-        this.maxPointer = resp.length;
-        this.oldData = resp;
-        if (this.pointer < 0) {
-          if (this.maxPointer > 0) {
-            this.pointer = this.maxPointer - 1;
-          } else {
+        if (resp.length > 0) {
+          this.maxPointer = resp.length;
+          this.oldData = resp;
+          this.pointer = this.maxPointer - 1;
+        } else {
             this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
             this.pointer = -1;
             this.maxPointer = -1;
-          }
         }
+        console.log(this.oldData);
+        console.log(this.maxPointer);
+        this.spinner = false;
       }
     );
   }
+
   /* abrir nova avaliação */
   addDataForm() {
+    this.foto1 = null;
+    this.foto2 = null;
+    this.foto3 = null;
     this.newData.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.oldData[this.maxPointer - 1].data == this.newData.data) {
@@ -103,15 +111,16 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   saveDataForm(form) {
-    console.table(form.value);
     if (form.value.data) {
-    this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
-      resp => {
-        this.pointer = -1;
-        this.getData();
-      }
-    );
-    this.addForm = false;
+      this.spinner = true;
+      this.dataService.setData('clients/post/' + this.student.id, form.value).subscribe(
+        resp => {
+          this.pointer = -1;
+          this.addForm = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -139,10 +148,10 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newData);
+    this.spinner = true;
     this.dataService.setData('clients/post/' + this.student.id, this.newData).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newData = [];
         this.closeEditForm();
       }
@@ -155,9 +164,13 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/post/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.foto1 = null;
+        this.foto2 = null;
+        this.foto3 = null;
+        this.spinner = false;
         this.pointer--;
         this.getData();
       }
@@ -194,18 +207,19 @@ export class ComponentePosturalComponent implements OnInit {
       fotop: this.foto3
     };
 
-    console.table(obj);
+    this.spinner = true;
     this.dataService.setData('clients/post/del/' + this.student.id, obj).subscribe(
       resp => {
-        this.getData();
         this.view = '';
         this.webcamImage = null;
+        this.spinner = false;
+        this.getData();
       }
     );
   }
 
   receiveImage(event, view, data) {
-    console.log(event);
+    console.log(view);
     this.dataPhoto = data;
     switch (view) {
       case 'a':
@@ -231,12 +245,12 @@ export class ComponentePosturalComponent implements OnInit {
       fotol: this.foto2,
       fotop: this.foto3
     };
-
-    console.table(obj);
+    this.spinner = true;
     this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
       resp => {
-        this.getData();
         this.view = '';
+        this.spinner = false;
+        this.getData();
       }
     );
   }
@@ -285,12 +299,13 @@ export class ComponentePosturalComponent implements OnInit {
       fotop: this.foto3
     };
 
-    console.table(obj);
+    this.spinner = true;
     this.dataService.setData('clients/post/' + this.student.id, obj).subscribe(
       resp => {
-        this.getData();
+        this.spinner = false;
         this.view = '';
         this.webcamImage = null;
+        this.getData();
       }
     );
   }
@@ -333,10 +348,10 @@ export class ComponentePosturalComponent implements OnInit {
   }
 
   showPhoto(view, data, photo) {
-      const dialogRef = this.dialog.open(ShowPhotoDialog, {
-        /* width: '360px', */
-        data: {view, data, photo}
-      });
+    const dialogRef = this.dialog.open(ShowPhotoDialog, {
+      /* width: '360px', */
+      data: { view, data, photo }
+    });
   }
 
 
@@ -373,7 +388,7 @@ export class ShowPhotoDialog {
 
   constructor(
     public dialogRef: MatDialogRef<ShowPhotoDialog>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   onNoClick(): void {
     this.dialogRef.close();

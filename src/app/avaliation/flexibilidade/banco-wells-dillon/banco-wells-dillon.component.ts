@@ -21,6 +21,7 @@ export class BancoWellsDillonComponent implements OnInit {
   selectedStudent: any = [];
   idade: number;
   protocolo = 38;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -35,6 +36,7 @@ export class BancoWellsDillonComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -57,7 +59,9 @@ export class BancoWellsDillonComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -69,10 +73,12 @@ export class BancoWellsDillonComponent implements OnInit {
     if (form.data) {
       form.protocolo = this.protocolo;
       form.xclasse = this.getClass(form);
+      this.spinner = true;
       this.dataService.setData('clients/flex/' + this.selectedStudent.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -117,12 +123,12 @@ export class BancoWellsDillonComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
     this.newEvaluation.protocolo = this.protocolo;
     this.newEvaluation.xclasse = this.getClass(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/flex/' + this.selectedStudent.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -135,9 +141,10 @@ export class BancoWellsDillonComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/flex/' + this.selectedStudent.id + '/' + this.protocolo + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

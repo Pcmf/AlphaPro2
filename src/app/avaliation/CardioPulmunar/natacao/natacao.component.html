@@ -46,7 +46,7 @@
                             <th i18n>Classificação</th>
                             <td *ngIf="pointer>=1 && !addEval">{{getClassificacao(evaluation[pointer-1])}}</td>
                             <td *ngIf="pointer>=0">{{getClassificacao(evaluation[pointer])}}</td>
-                            <td *ngIf="addEval">{{ getClassificacao(newEvaluation.distancia) }}</td>
+                            <td *ngIf="addEval">{{ getClassificacao(newEvaluation) }}</td>
                         </tr>
                         <tr>
                             <th>Ações</th>
@@ -183,5 +183,4 @@
             </div>
         </div>
     </div>
-    <app-overlay *ngIf="spinner"></app-overlay>
 </div>

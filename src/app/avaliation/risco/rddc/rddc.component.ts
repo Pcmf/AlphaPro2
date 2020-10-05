@@ -20,6 +20,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
   student: any = [];
   formS: any = [];
   classRisco: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -35,6 +36,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     // Obter dados quantos cigarros dia
+    this.spinner = true;
     this.dataService.getData('clients/' + this.student.id).subscribe(
       respa => {
         this.qtos = respa[0].qtos;
@@ -65,6 +67,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
             this.calcRisco(this.data);
           }
         );
+        this.spinner = false;
       }
     );
   }
@@ -75,17 +78,21 @@ export class RDDCComponent implements OnInit, OnDestroy {
 
   save(form) {
     form.pontos = +this.risco;
+    this.spinner = true;
     this.dataService.setData('clients/column/' + this.student.id, form).subscribe(
       resp => {
         console.log(resp);
+        this.spinner = false;
       }
     );
     if (form.smoker === '1') {
       form.fumante = 'S';
     }
+    this.spinner = true;
     this.dataService.setData('clients/anamnese/' + this.student.id, form).subscribe(
       res => {
         console.log(res);
+        this.spinner = false;
         this.router.navigate(['/avDash']);
       }
     );

@@ -18,6 +18,7 @@ export class NewComponent implements OnInit {
   erroRepeatCliente = false;
   imageB64: string;
   errorData: any = [];
+  spinner = false;
 
   constructor(private location: Location,
               private dataService: DataService,
@@ -61,6 +62,7 @@ export class NewComponent implements OnInit {
    // const data = this.datapipe.transform( this.student.dt_nasc, 'yyyy-MM-dd');
     const data = this.convertData(form);
     const obj = {nome: form.nome, data};
+    this.spinner = true;
     this.dataService.setData('clients/check/' + this.dataService.getPTId(), form).subscribe(
       resp => {
         if (resp[0]) {
@@ -68,6 +70,7 @@ export class NewComponent implements OnInit {
         } else {
           this.erroRepeatCliente = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -87,6 +90,7 @@ export class NewComponent implements OnInit {
 
       if (!this.student.id) {
         // new student
+        this.spinner = true;
         this.dataService.setData('entity/clients/' + this.dataService.getPTId(), form).subscribe(
           // TODO - control if student was created - important
           resp => {
@@ -94,6 +98,7 @@ export class NewComponent implements OnInit {
               res => {
                 this.menuService.setSelectedStudent(res[0]);
                 sessionStorage.selectedStudent = JSON.stringify(res[0]);
+                this.spinner = false;
                 this.route.navigate(['/eval']);
               }
             );
@@ -101,6 +106,7 @@ export class NewComponent implements OnInit {
         );
       } else {
         // edit student
+        this.spinner = true;
         this.dataService.setData('entity/clients/' + this.dataService.getPTId() + '/' + this.student.id, form).subscribe(
           resp => {
             const aluno = JSON.parse(sessionStorage.selectedStudent);
@@ -117,6 +123,7 @@ export class NewComponent implements OnInit {
             aluno.active = form.active;
             aluno.foto = form.foto;
             sessionStorage.selectedStudent = JSON.stringify(aluno);
+            this.spinner = false;
             this.location.back();
           }
         );

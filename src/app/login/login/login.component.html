@@ -26,4 +26,6 @@
       <button i18n="Botão entrar" [disabled]="!f.valid" mat-stroked-button type="submit" color="primary">Entrar</button>
     </div>
   </form>
+
+  <app-overlay *ngIf="spinner"></app-overlay>
 </div>

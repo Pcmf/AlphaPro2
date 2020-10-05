@@ -21,6 +21,7 @@ export class EvaluationComponent implements OnInit {
   newEvaluation: any = [];
   student: any = [];
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -35,7 +36,9 @@ export class EvaluationComponent implements OnInit {
     this.student.idade = this.ageService.getAge(this.student.dt_nasc);
     this.getData();
   }
+
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/eval/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -46,6 +49,7 @@ export class EvaluationComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'dd/MM/yyyy'); // this.datapipe.transform( Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -71,13 +75,12 @@ export class EvaluationComponent implements OnInit {
   save(form) {
     if (form.data) {
       form.tmb = this.calcTMB(form);
-      // form.imc = this.calcIMC(form);
-      console.table(form);
+      this.spinner = true;
       this.dataService.setData('clients/eval/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.addEval = false;
-          // this.getData();
+          this.spinner = false;
           this.router.navigate(['/avDash']);
         }
       );
@@ -132,10 +135,10 @@ export class EvaluationComponent implements OnInit {
 
   saveEditForm() {
     this.newEvaluation.tmb = this.calcTMB(this.newEvaluation);
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/eval/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
       }
@@ -148,9 +151,10 @@ export class EvaluationComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/eval/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

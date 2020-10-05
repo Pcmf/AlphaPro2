@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatVideoModule } from 'mat-video';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         LayoutModule,
         BrowserAnimationsModule,
         MatVideoModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatInputModule,
@@ -77,6 +79,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         LayoutModule,
         BrowserAnimationsModule,
         MatVideoModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatProgressSpinnerModule
     ]
 }) export class MatModulesImports { }

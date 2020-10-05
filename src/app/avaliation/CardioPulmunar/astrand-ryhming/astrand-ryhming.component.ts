@@ -33,6 +33,7 @@ export class AstrandRyhmingComponent implements OnInit {
   lastAv: any;
   refresh: boolean;
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -49,6 +50,7 @@ export class AstrandRyhmingComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -63,6 +65,7 @@ export class AstrandRyhmingComponent implements OnInit {
           this.maxPointer = -1;
           this.refresh = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -148,11 +151,13 @@ export class AstrandRyhmingComponent implements OnInit {
       form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
       form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
       form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+      this.spinner = true;
       this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.refresh = false;
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -184,7 +189,6 @@ export class AstrandRyhmingComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
     this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
     this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2ObtAstrand(this.newEvaluation);
     this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
@@ -192,11 +196,12 @@ export class AstrandRyhmingComponent implements OnInit {
     this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
     this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
     this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         console.log(resp);
         this.newEvaluation = [];
+        this.spinner = false;
         this.closeEditForm();
         this.refresh = false;
         this.getData();
@@ -210,9 +215,10 @@ export class AstrandRyhmingComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/cardio/' + this.protocolo + '/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

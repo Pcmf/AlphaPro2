@@ -34,6 +34,7 @@ export class WeltmanEtAlComponent implements OnInit {
   fatChanged = false;
   chartSelected = 'pie';
   locale: string;
+  spinner = false;
 
 
   constructor(
@@ -59,6 +60,7 @@ export class WeltmanEtAlComponent implements OnInit {
 
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -78,6 +80,7 @@ export class WeltmanEtAlComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -88,8 +91,12 @@ export class WeltmanEtAlComponent implements OnInit {
   saveFatChange() {
     this.student.percgd = this.gorduraDesejada;
     sessionStorage.selectedStudent = JSON.stringify(this.student);
+    this.spinner = true;
     this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
-      resp => this.getData()
+      resp => {
+        this.spinner = false;
+        this.getData();
+      }
     );
     this.fatChanged = false;
   }
@@ -117,10 +124,12 @@ export class WeltmanEtAlComponent implements OnInit {
   save(form) {
     if (form.data) {
     form.protocolo = this.protocolo;
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
+        this.spinner = false;
         this.getData();
       }
     );
@@ -136,6 +145,7 @@ export class WeltmanEtAlComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // Obter dados das avaliações complementares e ultima corporal
+    this.spinner = true;
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
@@ -143,6 +153,7 @@ export class WeltmanEtAlComponent implements OnInit {
         this.newEvaluation.peso = resp.peso;
         this.newEvaluation.punho = resp.punho;
         this.newEvaluation.joelho = resp.joelho;
+        this.spinner = false;
       }
     );
 
@@ -187,9 +198,11 @@ export class WeltmanEtAlComponent implements OnInit {
 
   saveEditForm() {
     console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         this.startGraphics(this.newEvaluation);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
         this.getData();
@@ -203,9 +216,10 @@ export class WeltmanEtAlComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/corporal/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

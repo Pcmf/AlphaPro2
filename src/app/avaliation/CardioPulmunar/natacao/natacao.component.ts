@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Location, DatePipe } from '@angular/common';
 import { AgeService } from 'src/app/services/age.service';
-import { DialogService } from 'src/app/services/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.service';
 
@@ -32,13 +31,13 @@ export class NatacaoComponent implements OnInit {
   daysAv: any;
   lastAv: any;
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
     private dataService: DataService,
     private datapipe: DatePipe,
     private ageService: AgeService,
-    private dialogService: DialogService,
     private snackBar: MatSnackBar,
     private protocoloCardio: ProtocolosCardioService
   ) {
@@ -48,6 +47,7 @@ export class NatacaoComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -60,6 +60,7 @@ export class NatacaoComponent implements OnInit {
           this.pointer = -1;
           this.maxPointer = -1;
         }
+        this.spinner = false;
       }
     );
   }
@@ -85,11 +86,13 @@ export class NatacaoComponent implements OnInit {
   save(form) {
     if (form.data) {
       form.protocolo = this.protocolo;
+      this.spinner = true;
       this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.paramEvaluation = [];
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -122,10 +125,10 @@ export class NatacaoComponent implements OnInit {
 
   saveEditForm() {
     this.newEvaluation.protocolo = this.protocolo;
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
         this.getData();
@@ -139,9 +142,10 @@ export class NatacaoComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/cardio/' + this.protocolo + '/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

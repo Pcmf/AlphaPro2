@@ -33,6 +33,7 @@ export class RockportComponent implements OnInit {
   lastAv: any;
   refresh: boolean;
   locale: string;
+  spinner = false;
 
   constructor(
             private location: Location,
@@ -49,6 +50,7 @@ export class RockportComponent implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -63,6 +65,7 @@ export class RockportComponent implements OnInit {
           this.maxPointer = -1;
           this.refresh = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -153,11 +156,13 @@ export class RockportComponent implements OnInit {
       form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
       form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
       form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+      this.spinner = true;
       this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.refresh = false;
           this.addEval = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -197,9 +202,10 @@ export class RockportComponent implements OnInit {
     this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
     this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
     this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
         this.refresh = false;
@@ -214,9 +220,10 @@ export class RockportComponent implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/cardio/' + this.protocolo + '/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

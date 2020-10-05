@@ -10,12 +10,14 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class LoginComponent implements OnInit {
   erro: boolean;
+  spinner = false;
 
   constructor(private dataService: DataService, private router: Router, private menuService: MenuService) {
     this.erro = false;
    }
 
   submit(form) {
+    this.spinner = true;
     this.dataService.checkUser(form, 'elogin').subscribe(
       resp => {
         if (resp) {
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.erro = true;
         }
-
+        this.spinner = false;
       }
     );
 

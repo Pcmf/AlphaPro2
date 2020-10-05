@@ -34,6 +34,7 @@ export class TranWeltmanComponent implements OnInit {
   fatChanged = false;
   chartSelected = 'pie';
   locale: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -58,6 +59,7 @@ export class TranWeltmanComponent implements OnInit {
 
   // Protocolo Tran & Weltman - 14
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -80,6 +82,7 @@ export class TranWeltmanComponent implements OnInit {
           this.maxPointer =  -1;
           this.showChart = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -90,8 +93,12 @@ export class TranWeltmanComponent implements OnInit {
   saveFatChange() {
     this.student.percgd = this.gorduraDesejada;
     sessionStorage.selectedStudent = JSON.stringify(this.student);
+    this.spinner = true;
     this.dataService.setData('entity/clients/' + this.student.entity + '/' + this.student.id, this.student).subscribe(
-      resp => this.getData()
+      resp => {
+        this.spinner = false;
+        this.getData();
+      }
     );
     this.fatChanged = false;
   }
@@ -119,10 +126,12 @@ export class TranWeltmanComponent implements OnInit {
   save(form) {
     if (form.data) {
     form.protocolo = 14;
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.student.id, form).subscribe(
       resp => {
         this.newEvaluation = [];
         this.addEval = false;
+        this.spinner = false;
         this.getData();
       }
     );
@@ -138,6 +147,7 @@ export class TranWeltmanComponent implements OnInit {
   addEvaluation() {
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // Obter dados das avaliações complementares e ultima corporal
+    this.spinner = true;
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
@@ -145,6 +155,7 @@ export class TranWeltmanComponent implements OnInit {
         this.newEvaluation.peso = resp.peso;
         this.newEvaluation.punho = resp.punho;
         this.newEvaluation.joelho = resp.joelho;
+        this.spinner = false;
       }
     );
 
@@ -188,11 +199,12 @@ export class TranWeltmanComponent implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/corporal/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
         this.startGraphics(this.newEvaluation);
         this.newEvaluation = [];
+        this.spinner = false;
         this.closeEditForm();
         this.getData();
       }

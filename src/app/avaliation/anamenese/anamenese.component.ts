@@ -16,6 +16,7 @@ export class AnameneseComponent implements OnInit {
   selectedStudent: any = [];
   dataIniPgm: any;
   dataUltimoExame: any;
+  spinner = false;
 
   doencasList: any = [];
   Parentesco: any = [];
@@ -39,6 +40,7 @@ export class AnameneseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner = true;
     this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
       (resp: any) => {
         if (resp.length > 0) {
@@ -50,8 +52,8 @@ export class AnameneseComponent implements OnInit {
           this.student.Q33 == 0 ? this.student.Q33 = false : this.student.Q33 = true;
           this.student.Q34 == 0 ? this.student.Q34 = false : this.student.Q34 = true;
           !this.student.Q4D1 || this.student.Q4D1 === '0' ? this.student.Q4D1 = false : this.student.Q4D1 = true;
-          !this.student.Q4D2 || this.student.Q4D2 === '0'  ? this.student.Q4D2 = false : this.student.Q4D2 = true;
-          !this.student.Q4D3 || this.student.Q4D3 === '0'  ? this.student.Q4D3 = false : this.student.Q4D3 = true;
+          !this.student.Q4D2 || this.student.Q4D2 === '0' ? this.student.Q4D2 = false : this.student.Q4D2 = true;
+          !this.student.Q4D3 || this.student.Q4D3 === '0' ? this.student.Q4D3 = false : this.student.Q4D3 = true;
           this.student.artrite == 0 ? this.student.artrite = false : this.student.artrite = true;
           this.student.bronquite == 0 ? this.student.bronquite = false : this.student.bronquite = true;
           this.student.cancer == 0 ? this.student.cancer = false : this.student.cancer = true;
@@ -61,7 +63,7 @@ export class AnameneseComponent implements OnInit {
           this.student.hipertenso == 0 ? this.student.hipertenso = false : this.student.hipertenso = true;
           this.student.osteoporose == 0 ? this.student.osteoporose = false : this.student.osteoporose = true;
           this.student.osteopenia == 0 ? this.student.osteopenia = false : this.student.osteopenia = true;
-          this.student.DT_OBJ = this.datapipe.transform( this.student.DT_OBJ, 'dd/MM/yyyy');
+          this.student.DT_OBJ = this.datapipe.transform(this.student.DT_OBJ, 'dd/MM/yyyy');
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
           this.checkHipertenso();
@@ -86,7 +88,7 @@ export class AnameneseComponent implements OnInit {
                   this.OutraDoencaParentesco.push(el);
                 }
               });
-
+              this.spinner = false;
             }
           );
         } else {
@@ -97,23 +99,25 @@ export class AnameneseComponent implements OnInit {
           this.DiabetesParentesco = [];
           this.OutraDoencaParentesco = [];
           this.checkHipertenso();
+          this.spinner = false;
         }
+        this.spinner = false;
       }
     );
   }
 
   checkData(data) {
-    if (data.value.substr(-4) < 2020 ) {
+    if (data.value.substr(-4) < 2020) {
       this.errorData.year = true;
     } else {
       this.errorData.year = false;
     }
-    if (data.value.substr(0, 2) > 31 ) {
+    if (data.value.substr(0, 2) > 31) {
       this.errorData.day = true;
     } else {
       this.errorData.day = false;
     }
-    if (data.value.substr(2, 2) > 12 ) {
+    if (data.value.substr(2, 2) > 12) {
       this.errorData.month = true;
     } else {
       this.errorData.month = false;
@@ -180,7 +184,6 @@ export class AnameneseComponent implements OnInit {
 
   saveObjetivos(form) {
     form.DT_OBJ = this.convertData(form.DT_OBJ);
-    console.log(form.DT_OBJ);
     if (!form.QEST) {
       form.Q201 = '';
       form.Q13 = '';
@@ -307,8 +310,12 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveData(form) {
+    this.spinner = true;
     this.dataService.setData('clients/anamnese/' + this.selectedStudent.id, form).subscribe(
-      resp => console.log(resp)
+      resp => {
+        console.log(resp);
+        this.spinner = false;
+      }
     );
   }
 

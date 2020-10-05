@@ -13,15 +13,20 @@ export class DashComponent implements OnInit {
   students: any =  [];
   student: any = [];
   selectedS = false;
+  spinner = false;
+
+
   constructor(
     private dataService: DataService,
   //  private menuService: MenuService,
 
   ) {
+      this.spinner = true;
       const id = this.dataService.getPTId();
       this.dataService.getData('entity/clients/' + id).subscribe(
         resp =>  {
           this.students = resp;
+          this.spinner = false;
         }
       );
 

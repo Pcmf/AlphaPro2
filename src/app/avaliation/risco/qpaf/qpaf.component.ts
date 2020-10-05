@@ -13,12 +13,15 @@ export class QPAFComponent implements OnInit, OnDestroy {
   student: any = [];
   id: number;
   formS: any = [];
+  spinner = false;
+
   constructor(private location: Location,
               private dataService: DataService,
               private router: Router,
               public dialog: MatDialog
-              ) {
+    ) {
     this.id = JSON.parse(sessionStorage.selectedStudent).id;
+    this.spinner = true;
     this.dataService.getData('clients/parq/' + this.id).subscribe(
       resp => {
         if (resp[0]) {
@@ -26,6 +29,7 @@ export class QPAFComponent implements OnInit, OnDestroy {
         } else {
           this.student.codigo = this.id;
         }
+        this.spinner = false;
       }
     );
    }
@@ -34,9 +38,11 @@ export class QPAFComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.spinner = true;
     this.dataService.setData('clients/parq/' + this.id, this.formS).subscribe(
       resp => {
         console.log(resp);
+        this.spinner = false;
       }
     );
   }

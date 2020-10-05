@@ -16,6 +16,7 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { MatVideoModule } from 'mat-video';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { WebcamModule} from 'ngx-webcam';
+import { OverlayComponent } from './commun/overlay/overlay.component';
 
 import { DataService } from './services/data.service';
 import { MenuComponent } from './commun/menu/menu.component';
@@ -127,6 +128,7 @@ export class MyHammerConfig extends HammerGestureConfig {
   declarations: [
     AppComponent,
     MenuComponent,
+    OverlayComponent,
     LoginComponent,
     DashComponent,
     NewComponent,

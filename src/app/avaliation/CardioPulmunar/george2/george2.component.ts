@@ -35,6 +35,7 @@ export class George2Component implements OnInit {
   refresh: boolean;
   locale: string;
   age: number;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -55,6 +56,7 @@ export class George2Component implements OnInit {
   }
 
   getData() {
+    this.spinner = true;
     this.dataService.getData('clients/cardio/' + this.protocolo + '/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
@@ -68,6 +70,7 @@ export class George2Component implements OnInit {
           this.pointer = -1;
           this.refresh = false;
         }
+        this.spinner = false;
       }
     );
   }
@@ -94,12 +97,14 @@ export class George2Component implements OnInit {
       form.c_fcreserva = this.protocoloCardio.getFCReserva(form);
       form.c_fcestimada = this.protocoloCardio.getFCEstimada(form.idade);
       form.c_percfcm = this.protocoloCardio.getPercFCMax(form);
+      this.spinner = true;
       this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
           this.paramEvaluation = [];
           this.addEval = false;
           this.refresh = false;
+          this.spinner = false;
           this.getData();
         }
       );
@@ -131,7 +136,6 @@ export class George2Component implements OnInit {
   }
 
   saveEditForm() {
-    console.table(this.newEvaluation);
     this.newEvaluation.protocolo = this.protocolo;
     this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
     this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2OObtGeorgeEtAl3m(this.newEvaluation);
@@ -140,10 +144,10 @@ export class George2Component implements OnInit {
     this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);
     this.newEvaluation.c_fcestimada = this.protocoloCardio.getFCEstimada(this.newEvaluation.idade);
     this.newEvaluation.c_percfcm = this.protocoloCardio.getPercFCMax(this.newEvaluation);
-    console.table(this.newEvaluation);
+    this.spinner = true;
     this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, this.newEvaluation).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
         this.refresh = false;
@@ -158,9 +162,10 @@ export class George2Component implements OnInit {
   }
 
   delete(evaluation) {
+    this.spinner = true;
     this.dataService.delete('clients/cardio/' + this.protocolo + '/' + this.student.id + '/' + evaluation.data).subscribe(
       resp => {
-        console.log(resp);
+        this.spinner = false;
         this.getData();
       }
     );

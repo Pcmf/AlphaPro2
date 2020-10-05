@@ -16,6 +16,7 @@ export class RDCComponent implements OnInit, OnDestroy {
   risco = 0;
   formS: any = [];
   classRisco: string;
+  spinner = false;
 
   constructor(
     private location: Location,
@@ -28,6 +29,7 @@ export class RDCComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.spinner = true;
     this.dataService.getData('clients/rdc/' + this.student.id).subscribe(
       resp => {
         if (resp[0]) {
@@ -52,12 +54,15 @@ export class RDCComponent implements OnInit, OnDestroy {
             // historic cardio family from pat_familiar
             this.dataService.getData('patfam/' + this.student.id + '/Cardiopatia').subscribe(
               (respq: any[]) => {
+                this.spinner = false;
                 this.rdcData.hf = respq.length;
               }
             );
+            this.spinner = false;
             this.calcRisco(this.rdcData);
           }
         );
+        this.spinner = false;
       }
     );
   }
@@ -67,7 +72,7 @@ export class RDCComponent implements OnInit, OnDestroy {
   }
 
   save(form) {
-    console.log(form);
+    this.spinner = true;
     this.dataService.setData('clients/rdc/' + this.student.id, form).subscribe(
       resp => {
         console.log(resp);
@@ -76,6 +81,7 @@ export class RDCComponent implements OnInit, OnDestroy {
     this.dataService.setData('clients/anamnese/' + this.student.id, form).subscribe(
       res => console.log(res)
     );
+    this.spinner = false;
     this.router.navigate(['rddc/']);
   }
 

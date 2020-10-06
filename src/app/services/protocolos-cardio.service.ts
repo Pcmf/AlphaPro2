@@ -47,6 +47,7 @@ export class ProtocolosCardioService {
           FCMax = el;
         }
     });
+    console.log(FCMax);
     return FCMax;
   }
 
@@ -55,6 +56,7 @@ export class ProtocolosCardioService {
   }
 
   getFCEstimada(idade) {
+    console.log(+(205.8 - 0.685 * +idade).toFixed(2));
     return +(205.8 - 0.685 * +idade).toFixed(2);
   }
 
@@ -68,6 +70,7 @@ export class ProtocolosCardioService {
   }
 
   getPercFCMax(evaluation) {
+    console.log(evaluation);
     return +((this.getFCMax(evaluation) / this.getFCEstimada(evaluation.idade)) * 100).toFixed(2);
   }
 

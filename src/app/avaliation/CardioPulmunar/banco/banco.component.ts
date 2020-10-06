@@ -5,6 +5,7 @@ import { AgeService } from 'src/app/services/age.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.service';
+import { LastEvalCardioService } from 'src/app/services/last-eval-cardio.service';
 
 @Component({
   selector: 'app-banco',
@@ -18,6 +19,7 @@ export class BancoComponent implements OnInit {
   paramEvaluation: any = [];
   // student phisical condition
   nafs = 0;  // not defined - it will be necessair ask for it in dialogs
+  age: number;
 
   addEval = false;
   pointer = -1;
@@ -42,11 +44,26 @@ export class BancoComponent implements OnInit {
     private ageService: AgeService,
     private dialogService: DialogService,
     private snackBar: MatSnackBar,
-    private protocoloCardio: ProtocolosCardioService
+    private protocoloCardio: ProtocolosCardioService,
+    private lastEvalService: LastEvalCardioService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
-    this.getData();
+    this.age = this.ageService.getAge(this.student.dt_nasc);
+    if (this.age < 20 || this.age > 64) {
+      this.openSnackBar('Atenção! Este protocolo não é adequado para este aluno(a)', '');
+    }
+    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+      (respa: any[]) => {
+        this.nafs = 0;
+        if (respa && respa.length > 0) {
+          if (respa[0].nafs >= 0) {
+            this.nafs = respa[0].nafs;
+          }
+        }
+        this.getData();
+      }
+    );
   }
 
   getData() {
@@ -56,6 +73,9 @@ export class BancoComponent implements OnInit {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
+          this.evaluation.nafs = this.nafs;
+          this.evaluation.sexo = this.student.sexo;
+          this.evaluation.idade = this.age;
           this.pointer = this.maxPointer - 1;
           this.refresh = true;
           this.setEvaluation(this.evaluation[this.pointer]);
@@ -94,49 +114,21 @@ export class BancoComponent implements OnInit {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
     }
-    // Obter dados da anamnese com o tipo de aluno
-    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-      (respa: any[]) => {
-        if (respa && respa.length > 0) {
-          this.newEvaluation.nafs = respa[0].nafs;
-        }
-        // Obter os dados da ultima Avaliação complementar
-        this.dataService.getLastEvaluation(this.student.id).subscribe(
-          (resp: any[]) => {
-            this.newAv = false;
-            if (resp.length > 0) {
-              this.newEvaluation.imc = resp[0].imc;
-              // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysAv = resp[0].difdias) > 2) {
-                this.newAv = true;
-              }
-              this.lastAv = resp.pop();
-              if (+this.lastAv.fc === 0) {
-                this.newAv = true;
-              }
-            } else {
-              this.newAv = true;
-            }
-            // decide se vai mostrar dialog
-            if (this.newAv) {
-              console.log('openMedidasDialog');
-              this.openMedidasDialog(
-                this.daysAv,
-                this.newAv,
-                this.lastAv,
-                this.newEvaluation
-              );
-            } else {
-              this.newEvaluation.altura = this.lastAv.altura;
-              this.newEvaluation.peso = this.lastAv.peso;
-              this.newEvaluation.fc2 = this.lastAv.fc;
-            }
-            this.newEvaluation.sexo = this.student.sexo;
-            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
 
-            this.addEval = true;
-          }
-        );
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        if (resp.erro != undefined && !resp.erro) {
+          this.newEvaluation.altura = resp.altura;
+          this.newEvaluation.peso = resp.peso;
+          this.newEvaluation.fc2 = resp.fc;
+          this.newEvaluation.imc = resp.imc;
+          this.newEvaluation.sexo = resp.sexo;
+          this.newEvaluation.idade = resp.idade;
+          this.newEvaluation.nafs = this.nafs;
+          this.addEval = true;
+        }
       }
     );
   }
@@ -145,6 +137,9 @@ export class BancoComponent implements OnInit {
   save(form) {
     if (form.data) {
       form.protocolo = this.protocolo;
+      form.sexo = this.student.sexo;
+      form.idade = this.age;
+      form.nafs = this.nafs;
       form.c_vo2e = this.protocoloCardio.getVO2Est(form);
       form.c_vo2m = this.protocoloCardio.getVO2OObtBancoKatch(form);
       form.c_fai = this.protocoloCardio.getFAI(form.c_vo2e, form.c_vo2m);
@@ -185,13 +180,15 @@ export class BancoComponent implements OnInit {
 
   openEditForm(evaluation, editPointer) {
     this.newEvaluation = evaluation;
-    this.getLastEvaluation();
     this.editAv = true;
     this.editPointer = editPointer;
   }
 
   saveEditForm() {
     this.newEvaluation.protocolo = this.protocolo;
+    this.newEvaluation.sexo = this.student.sexo;
+    this.newEvaluation.idade = this.age;
+    this.newEvaluation.nafs = this.nafs;
     this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
     this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2OObtBancoKatch(this.newEvaluation);
     this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
@@ -227,35 +224,6 @@ export class BancoComponent implements OnInit {
     );
   }
 
-  openMedidasDialog(daysAv: number, newAv: boolean, lastAv: any, newEvaluation: number) {
-    const options = {
-      daysAv,
-      newAv,
-      lastAv,
-      newEvaluation,
-      idade: this.ageService.getAge(this.student.dt_nasc),
-      sexo: this.student.sexo,
-      id: this.student.id
-    };
-    console.log(options);
-    this.dialogService.openMedidasCardio(options);
-    this.dialogService.confirmedMedidasCardio().subscribe(
-      result => {
-        if (result) {
-          this.newEvaluation.altura = result.altura;
-          this.newEvaluation.peso = result.peso;
-          this.openSnackBar('Dados atualizados com sucesso', '');
-          this.addEvaluation();
-        } else {
-          this.closeInput();
-        }
-      }
-    );
-  }
-
-  getnewEvaluation(ev) {
-    return 'TODO';
-  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -272,30 +240,4 @@ export class BancoComponent implements OnInit {
     this.dialogService.openHelp(type);
   }
 
-  // Obter a ultima avaliação para a edição
-  getLastEvaluation() {
-    // Obter dados da anamnese com o nivel de atividade do aluno
-    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-      (respa: any[]) => {
-        if (respa && respa.length > 0) {
-          if (respa[0].nafs >= 0) {
-            this.newEvaluation.nafs = respa[0].nafs;
-          }
-        }
-        // Obter os dados da ultima Avaliação complementar
-        this.dataService.getLastEvaluation(this.student.id).subscribe(
-          (resp: any[]) => {
-            if (resp.length > 0) {
-
-              this.newEvaluation.altura = resp[0].altura;
-              this.newEvaluation.peso = resp[0].peso;
-              this.newEvaluation.fc2 = resp[0].fc;
-            }
-            this.newEvaluation.sexo = this.student.sexo;
-            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
-          }
-        );
-      }
-    );
-  }
 }

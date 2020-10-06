@@ -195,6 +195,7 @@ export class StComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
 
@@ -226,6 +227,7 @@ export class StComponent implements OnInit {
         this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }

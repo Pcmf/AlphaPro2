@@ -35,13 +35,14 @@ export class AllDobrasComponent implements OnInit {
   fatChanged = false;
   spinner = false;
 
-  constructor(private location: Location,
-    private dataService: DataService,
-    private datapipe: DatePipe,
-    private snackBar: MatSnackBar,
-    public dialogService: DialogService,
-    private ageService: AgeService,
-    private lastEvalService: LastEvaluationService
+  constructor(
+      private location: Location,
+      private dataService: DataService,
+      private datapipe: DatePipe,
+      private snackBar: MatSnackBar,
+      public dialogService: DialogService,
+      private ageService: AgeService,
+      private lastEvalService: LastEvaluationService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -70,6 +71,7 @@ export class AllDobrasComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
         this.spinner = false;
       }
@@ -170,7 +172,6 @@ export class AllDobrasComponent implements OnInit {
   }
 
   addEvaluation() {
-
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
@@ -251,6 +252,7 @@ export class AllDobrasComponent implements OnInit {
   closeEditForm() {
     this.editAv = false;
     this.editPointer = -1;
+    this.getData();
   }
 
   delete(evaluation) {
@@ -266,6 +268,7 @@ export class AllDobrasComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openSnackBar(message: string, action: string) {

@@ -220,31 +220,6 @@ export class RockportComponent implements OnInit {
     );
   }
 
-  openMedidasDialog(daysAv: number, newAv: boolean, lastAv: any, classe: number) {
-    const options = {
-      daysAv,
-      newAv,
-      lastAv,
-      classe,
-      idade: this.ageService.getAge(this.student.dt_nasc),
-      sexo: this.student.sexo,
-      id: this.student.id
-    };
-    console.log(options);
-    this.dialogService.openMedidasCardio(options);
-    this.dialogService.confirmedMedidasCardio().subscribe(
-      result => {
-        if (result) {
-          this.newEvaluation.altura = result.altura;
-          this.newEvaluation.peso = result.peso;
-          this.openSnackBar('Dados atualizados com sucesso', '');
-          this.addEvaluation();
-        } else {
-          this.closeInput();
-        }
-      }
-    );
-  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -255,6 +230,7 @@ export class RockportComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openDialog(type) {

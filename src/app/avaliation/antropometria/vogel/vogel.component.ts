@@ -204,6 +204,7 @@ export class VogelComponent implements OnInit {
         this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }
@@ -226,6 +227,7 @@ export class VogelComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openSnackBar(message: string, action: string) {

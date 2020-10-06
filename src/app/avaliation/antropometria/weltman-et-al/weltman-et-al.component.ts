@@ -212,6 +212,7 @@ export class WeltmanEtAlComponent implements OnInit {
   closeEditForm() {
     this.editAv = false;
     this.editPointer = -1;
+    this.getData();
   }
 
   delete(evaluation) {

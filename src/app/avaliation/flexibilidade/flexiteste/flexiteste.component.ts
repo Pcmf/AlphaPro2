@@ -139,6 +139,7 @@ export class FlexitesteComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   swipeLeft(event) {

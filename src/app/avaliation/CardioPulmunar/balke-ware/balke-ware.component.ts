@@ -226,6 +226,7 @@ export class BalkeWareComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
 

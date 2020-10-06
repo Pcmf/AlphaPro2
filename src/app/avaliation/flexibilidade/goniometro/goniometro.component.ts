@@ -117,6 +117,7 @@ export class GoniometroComponent implements OnInit {
   closeInputs() {
     this.newEvaluation = [];
     this.addMesure = false;
+    this.getData();
   }
 
   saveMesures(form) {

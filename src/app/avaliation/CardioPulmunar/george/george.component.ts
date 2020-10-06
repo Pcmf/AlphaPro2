@@ -220,7 +220,6 @@ export class GeorgeComponent implements OnInit {
     );
   }
 
- 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000, verticalPosition: 'top'
@@ -230,6 +229,7 @@ export class GeorgeComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openDialog(type) {

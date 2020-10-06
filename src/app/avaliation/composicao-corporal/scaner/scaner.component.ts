@@ -101,6 +101,7 @@ export class ScanerComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
     // Help Dialog
@@ -136,6 +137,7 @@ saveEditForm() {
       this.spinner = false;
       this.newEvaluation = [];
       this.closeEditForm();
+      this.getData();
     }
   );
 }

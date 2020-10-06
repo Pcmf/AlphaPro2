@@ -130,6 +130,7 @@ export class IndiceConicidadeComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -160,6 +161,7 @@ export class IndiceConicidadeComponent implements OnInit {
         this.newEvaluation = [];
         this.spinner = false;
         this.closeEditForm();
+        this.getData();
       }
     );
   }

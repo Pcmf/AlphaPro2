@@ -98,11 +98,6 @@ export class DW4Component implements OnInit {
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
     this.startGraphics(evaluation);
-    // console.log(document.getElementsByClassName('legend-title-text'));
-    /*     const col = document.querySelectorAll('span.legend-title-text');
-        const arr = Array.prototype.slice.call(col);
-        console.log(Array.isArray(arr));
-        console.log(arr); */
   }
 
   // Iniciar os graficos
@@ -177,7 +172,6 @@ export class DW4Component implements OnInit {
         }
       }
     );
-
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -230,6 +224,7 @@ export class DW4Component implements OnInit {
 
   closeInput() {
     this.addEval = false;
+    this.getData();
   }
 
   openSnackBar(message: string, action: string) {

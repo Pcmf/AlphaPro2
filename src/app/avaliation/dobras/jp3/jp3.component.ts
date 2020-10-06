@@ -213,6 +213,7 @@ export class JP3Component implements OnInit {
   closeEditForm() {
     this.editAv = false;
     this.editPointer = -1;
+    this.getData();
   }
 
   delete(evaluation) {

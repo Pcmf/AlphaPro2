@@ -160,6 +160,7 @@ export class BalancaComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -191,6 +192,7 @@ export class BalancaComponent implements OnInit {
         this.spinner = false;
         this.newEvaluation = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }

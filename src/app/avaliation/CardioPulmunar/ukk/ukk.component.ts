@@ -229,6 +229,7 @@ export class UKKComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openDialog(type) {

@@ -110,6 +110,7 @@ export class EvaluationComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   executeAction(param, evaluation, editPointer) {

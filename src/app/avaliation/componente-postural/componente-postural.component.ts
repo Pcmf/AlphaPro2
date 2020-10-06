@@ -154,6 +154,7 @@ export class ComponentePosturalComponent implements OnInit {
         this.spinner = false;
         this.newData = [];
         this.closeEditForm();
+        this.getData();
       }
     );
   }
@@ -363,6 +364,7 @@ export class ComponentePosturalComponent implements OnInit {
   closeInputs() {
     this.newData = [];
     this.addForm = false;
+    this.getData();
   }
 
   openDialog(type): void {

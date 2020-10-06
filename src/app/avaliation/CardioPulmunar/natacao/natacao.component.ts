@@ -166,6 +166,7 @@ export class NatacaoComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   // Obter a ultima avaliação para a edição

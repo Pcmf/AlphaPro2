@@ -226,6 +226,8 @@ export class WB2Component implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
+
   }
 
   openSnackBar(message: string, action: string) {

@@ -234,6 +234,7 @@ export class BancoComponent implements OnInit {
   closeInput() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
   openDialog(type) {

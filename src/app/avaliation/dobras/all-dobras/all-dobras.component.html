@@ -258,14 +258,14 @@
                 </table>
 
                 <div class="action">
-                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1" mat-mini-fab color="default"
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
                         (click)="pointer=pointer-1">
                         <mat-icon class="mat-14">chevron_left</mat-icon>
                     </button>
-                    <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()">
+                    <button type="button" *ngIf="!addEval" mat-stroked-button (click)="addEvaluation()" [disabled]="editAv">
                         <mat-icon class="mat-18" color="accent">add</mat-icon>
                     </button>
-                    <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1"
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
                         mat-mini-fab color="default" (click)="pointer=pointer+1">
                         <mat-icon class="mat-14">chevron_right</mat-icon>
                     </button>

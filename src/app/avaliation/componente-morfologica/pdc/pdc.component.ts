@@ -85,6 +85,7 @@ export class PDCComponent implements OnInit {
         this.newEvaluation = [];
         this.spinner = false;
         this.closeEditForm();
+        this.getData();
       }
     );
   }
@@ -137,6 +138,7 @@ export class PDCComponent implements OnInit {
   closeInputEvaluation() {
     this.newEvaluation = [];
     this.addEval = false;
+    this.getData();
   }
 
 

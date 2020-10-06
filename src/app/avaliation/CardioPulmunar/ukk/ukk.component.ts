@@ -15,8 +15,7 @@ import { LastEvalCardioService } from 'src/app/services/last-eval-cardio.service
 export class UKKComponent implements OnInit {
   // All evaluations loaded from db
   evaluation: any = [];
-  // evaluations to push to charts
-  paramEvaluation: any = [];
+
   // student phisical condition
   nafs = 0;  // not defined - it will be necessair ask for it in dialogs
 
@@ -73,6 +72,7 @@ export class UKKComponent implements OnInit {
         if (resp && resp.length > 0) {
           this.maxPointer = resp.length;
           this.evaluation = resp;
+          this.evaluation.nafs = this.nafs;
           this.evaluation.sexo = this.student.sexo;
           this.evaluation.idade = this.age;
           this.pointer = this.maxPointer - 1;
@@ -148,7 +148,6 @@ export class UKKComponent implements OnInit {
       this.dataService.setData('clients/cardio/' + this.protocolo + '/' + this.student.id, form).subscribe(
         resp => {
           this.newEvaluation = [];
-          this.paramEvaluation = [];
           this.addEval = false;
           this.refresh = false;
           this.spinner = false;
@@ -186,10 +185,8 @@ export class UKKComponent implements OnInit {
     this.newEvaluation.sexo = this.student.sexo;
     this.newEvaluation.idade = this.age;
     this.newEvaluation.nafs = this.nafs;
-    console.log(this.newEvaluation);
     this.newEvaluation.c_vo2e = this.protocoloCardio.getVO2Est(this.newEvaluation);
     this.newEvaluation.c_vo2m = this.protocoloCardio.getVO2ObtUkk(this.newEvaluation);
-    console.log(this.newEvaluation);
     this.newEvaluation.c_fai = this.protocoloCardio.getFAI(this.newEvaluation.c_vo2e, this.newEvaluation.c_vo2m);
     this.newEvaluation.c_classefai = this.protocoloCardio.getClasseFAI(this.newEvaluation.c_fai);
     this.newEvaluation.c_fcreserva = this.protocoloCardio.getFCReserva(this.newEvaluation);

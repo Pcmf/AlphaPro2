@@ -16,8 +16,9 @@ export class ProtocolosCardioService {
             + 9.17 * +evaluation.altura - 0.254 * +evaluation.peso + 34.142).toFixed(2);
   }
 
-  getFAI(vo2e, vo2o) {
-    return +((vo2e - vo2o) / vo2e * 100).toFixed(2);
+  getFAI(vo2e: number, vo2o: number) {
+    console.log(vo2e + '   ' + vo2o);
+    return +((+vo2e - +vo2o) / +vo2e * 100).toFixed(2);
   }
   
   getClasseFAI(fai) {
@@ -77,7 +78,6 @@ export class ProtocolosCardioService {
   getVO2ObtUkk(evaluation) {
     const min = this.getMinutes(evaluation.c_tempo);
     const sec = this.getSeconds(evaluation.c_tempo);
-    console.log(sec);
     if (evaluation.sexo === 'M') {
       return +(184 - 4.65 * (min + sec / 60) - 0.22 * evaluation.fc - 0.26 * evaluation.idade - 1.05 * evaluation.imc).toFixed(2);
     } else {

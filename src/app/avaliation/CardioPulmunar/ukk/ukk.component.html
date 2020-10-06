@@ -118,13 +118,11 @@
                             <td *ngIf="pointer>=1 && !addEval">
                                 <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
                                     [dataAv]="evaluation[pointer-1].data"
-                                    (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
-                            </td>
+                                    (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form></td>
                             <td *ngIf="pointer>=0 && !addEval">
                                 <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
                                     [dataAv]="evaluation[pointer].data"
-                                    (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
-                            </td>
+                                    (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form></td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                     </tbody>

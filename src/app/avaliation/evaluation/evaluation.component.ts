@@ -65,7 +65,7 @@ export class EvaluationComponent implements OnInit {
   }
 
   calcIMC(form) {
-    const IMC = form.peso / Math.pow(form.altura, 2);
+    const IMC = (form.peso / Math.pow(form.altura, 2)).toFixed(2);
     return IMC;
   }
 

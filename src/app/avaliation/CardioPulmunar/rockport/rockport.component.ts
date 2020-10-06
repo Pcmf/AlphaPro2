@@ -5,6 +5,7 @@ import { AgeService } from 'src/app/services/age.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProtocolosCardioService } from 'src/app/services/protocolos-cardio.service';
+import { LastEvalCardioService } from 'src/app/services/last-eval-cardio.service';
 
 @Component({
   selector: 'app-rockport',
@@ -36,13 +37,14 @@ export class RockportComponent implements OnInit {
   spinner = false;
 
   constructor(
-            private location: Location,
-            private dataService: DataService,
-            private datapipe: DatePipe,
-            private ageService: AgeService,
-            private dialogService: DialogService,
-            private snackBar: MatSnackBar,
-            private protocoloCardio: ProtocolosCardioService
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private ageService: AgeService,
+    private dialogService: DialogService,
+    private snackBar: MatSnackBar,
+    private protocoloCardio: ProtocolosCardioService,
+    private lastEvalService: LastEvalCardioService
   ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
@@ -94,53 +96,30 @@ export class RockportComponent implements OnInit {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
     }
-    // Obter dados da anamnese com o nivel de atividade do aluno
-    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
-      (respa: any[]) => {
-        this.newAv = false;
-        if (respa && respa.length > 0) {
-          if (respa[0].nafs >= 0) {
-            this.newEvaluation.nafs = respa[0].nafs;
-          } else {
-            this.newAv = true;
-          }
-        }
-        // Obter os dados da ultima Avaliação complementar
-        this.dataService.getLastEvaluation(this.student.id).subscribe(
-          (resp: any[]) => {
-            this.newAv = false;
-            if (resp.length > 0) {
-              // tslint:disable-next-line: no-conditional-assignment
-              if ((this.daysAv = resp[0].difdias) > 7) {     // number of days before ask if want new evaluation
-                this.newAv = true;
-              }
-              this.lastAv = resp.pop();
-              // se não tiver valor da FC em repouso abre dialog
-              if (+this.lastAv.fc === 0) {
-                this.newAv = true;
-              }
-            } else {
-              this.newAv = true;
-            }
-            // decide se vai mostrar dialog
-            if (this.newAv) {
-              this.openMedidasDialog(
-                this.daysAv,
-                this.newAv,
-                this.lastAv,
-                this.nafs
-              );
-            } else {
-              this.newEvaluation.altura = this.lastAv.altura;
-              this.newEvaluation.peso = this.lastAv.peso;
-              this.newEvaluation.fc2 = this.lastAv.fc;
-            }
-            this.newEvaluation.sexo = this.student.sexo;
-            this.newEvaluation.idade = this.ageService.getAge(this.student.dt_nasc);
 
-            this.addEval = true;
-          }
-        );
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        if (resp.erro != undefined && !resp.erro) {
+          this.newEvaluation.altura = resp.altura;
+          this.newEvaluation.peso = resp.peso;
+          this.newEvaluation.fc2 = resp.fc;
+          this.newEvaluation.sexo = resp.sexo;
+          this.newEvaluation.idade = resp.idade;
+          // Obter dados da anamnese com o nivel de atividade do aluno
+          this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+            (respa: any[]) => {
+              this.newEvaluation.nafs = 0;
+              if (respa && respa.length > 0) {
+                if (respa[0].nafs >= 0) {
+                  this.newEvaluation.nafs = respa[0].nafs;
+                }
+              }
+              this.addEval = true;
+            }
+          );
+        }
       }
     );
   }

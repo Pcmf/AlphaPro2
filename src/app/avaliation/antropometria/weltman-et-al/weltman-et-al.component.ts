@@ -144,35 +144,34 @@ export class WeltmanEtAlComponent implements OnInit {
 
   addEvaluation() {
     this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
-    // Obter dados das avaliações complementares e ultima corporal
-    this.spinner = true;
-    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
-    this.lastEvalService.lastEval.subscribe(
-      (resp: any) => {
-        this.newEvaluation.altura = resp.altura;
-        this.newEvaluation.peso = resp.peso;
-        this.newEvaluation.punho = resp.punho;
-        this.newEvaluation.joelho = resp.joelho;
-        this.spinner = false;
-      }
-    );
-
     // if already have an evaluation on actual date
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
     }
-    this.newEvaluation.biciptal = 0;
-    this.newEvaluation.geminal = 0;
-    this.newEvaluation.triciptal = 0;
-    this.newEvaluation.peitoral = 0;
-    this.newEvaluation.subescapular = 0;
-    this.newEvaluation.axilar = 0;
-    this.newEvaluation.suprailiaca = 0;
-    this.newEvaluation.abdominal = 0;
-    this.newEvaluation.crural = 0;
-    this.addEval = true;
+    // Obter dados das avaliações complementares e ultima corporal
+    this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
+    this.lastEvalService.lastEval.subscribe(
+      (resp: any) => {
+        if (resp.erro != undefined && !resp.erro) {
+          this.newEvaluation.altura = resp.altura;
+          this.newEvaluation.peso = resp.peso;
+          this.newEvaluation.punho = resp.punho;
+          this.newEvaluation.joelho = resp.joelho;
 
+          this.newEvaluation.biciptal = 0;
+          this.newEvaluation.geminal = 0;
+          this.newEvaluation.triciptal = 0;
+          this.newEvaluation.peitoral = 0;
+          this.newEvaluation.subescapular = 0;
+          this.newEvaluation.axilar = 0;
+          this.newEvaluation.suprailiaca = 0;
+          this.newEvaluation.abdominal = 0;
+          this.newEvaluation.crural = 0;
+          this.addEval = true;
+        }
+      }
+    );
   }
 
   executeAction(param, evaluation, editPointer) {
@@ -242,33 +241,5 @@ export class WeltmanEtAlComponent implements OnInit {
     this.dialogService.openHelp(type);
   }
 
-  openMedidasDialog(daysAv, daysCorporal, newAv, newCorporal, lastAv, lastCorporal): void {
-    const options = {
-      daysAv,
-      daysCorporal,
-      newAv,
-      newCorporal,
-      lastAv,
-      lastCorporal,
-      idade: this.age,
-      sexo: this.student.sexo,
-      id: this.student.id
-    };
-    this.dialogService.openMedidas(options);
-    this.dialogService.confirmedMedidas().subscribe(
-      result => {
-        if (result) {
-          this.newEvaluation.altura = result.altura;
-          this.newEvaluation.peso = result.peso;
-          this.newEvaluation.punho = result.punho;
-          this.newEvaluation.joelho = result.joelho;
-          this.openSnackBar('Dados atualizados com sucesso', '');
-          this.addEvaluation();
-        } else {
-          this.closeInput();
-        }
-      }
-    );
-  }
 
 }

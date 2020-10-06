@@ -25,7 +25,8 @@
 <div mat-dialog-actions>
 
   <div>
-      <button mat-mini-fab color="default" (click)="save()" cdkFocusInitial><mat-icon color="accent">check</mat-icon></button>
+    <button mat-mini-fab color="default" mat-dialog-close><mat-icon color="warn">close</mat-icon></button>
+    <button mat-mini-fab color="default" (click)="save()" cdkFocusInitial><mat-icon color="accent">check</mat-icon></button>
   </div>
 
 </div>

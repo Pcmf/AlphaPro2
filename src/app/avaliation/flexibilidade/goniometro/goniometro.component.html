@@ -35,16 +35,16 @@
                                 </td>
                                 <td *ngIf="editPointer==1 && editAv">
                                     <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
-                                        type="number" (focus)="$event.target.select()">
+                                        type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                 </td>
                                 <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].ombrof}}&deg;</td>
                                 <td *ngIf="editPointer==0 && editAv">
                                     <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
-                                        type="number" (focus)="$event.target.select()">
+                                        type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                 </td>
                                 <td *ngIf="addMesure">
                                     <input name="ombrof" #ombrof="ngModel" [(ngModel)]="newEvaluation.ombrof"
-                                        type="number">
+                                        type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
                                 </td>
                             </tr>
                             <tr>

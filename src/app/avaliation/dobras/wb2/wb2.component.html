@@ -36,17 +36,20 @@
                                 {{evaluation[pointer-1].abdominal | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].abdominal | number: '': locale}}</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="abdominal" #abdominal="ngModel" [(ngModel)]="newEvaluation.abdominal"
-                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

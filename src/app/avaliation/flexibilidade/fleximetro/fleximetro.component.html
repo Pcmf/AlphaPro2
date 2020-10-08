@@ -32,16 +32,16 @@
                                 {{evaluation[pointer-1].cervicale}}&deg;</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].cervicale}}&deg;</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="cervicale" #cervicale="ngModel" [(ngModel)]="newEvaluation.cervicale"
-                                    type="number">
+                                    type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

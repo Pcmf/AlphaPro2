@@ -13,7 +13,8 @@
                         </p>
                         <div class="flex-radio-group">
                             <mat-radio-group aria-label="Select an option" #parq1="ngModel" name="parq1"
-                                [(ngModel)]="student.parq1" (change)="calcRisco(f.value)">
+                                [(ngModel)]="student.parq1" (change)="calcRisco(f.value)"
+                                cdkTrapFocus cdkTrapFocusAutoCapture>
                                 <mat-radio-button value="1" i18n>Sim</mat-radio-button>
                                 <mat-radio-button value="0" i18n>Não</mat-radio-button>
                             </mat-radio-group>

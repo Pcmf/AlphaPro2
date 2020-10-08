@@ -33,16 +33,17 @@
                                 {{evaluation[pointer-1].carga | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="carga" #carga="ngModel" [(ngModel)]="newEvaluation.carga" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].carga | number: '': locale}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="carga" #carga="ngModel" [(ngModel)]="newEvaluation.carga" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
-                                <input name="carga" #carga="ngModel" [(ngModel)]="newEvaluation.carga" type="number">
+                                <input name="carga" #carga="ngModel" [(ngModel)]="newEvaluation.carga" type="number"
+                                cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

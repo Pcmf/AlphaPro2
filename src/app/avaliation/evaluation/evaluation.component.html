@@ -70,18 +70,18 @@
                                 {{evaluation[pointer-1].peso | number: '1.2-3': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].peso | number: '1.2-3': locale}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>
@@ -164,7 +164,7 @@
                             </td>
                             <td *ngIf="pointer>=0">{{calcTMB(evaluation[pointer]) | number: '': locale}}</td>
                             <td *ngIf="addEval">
-                                <input name="fc" #fc="ngModel" [ngModel] [value]="calcTMB(newEvaluation)" readonly>
+                                <input name="fc" #fc="ngModel" [ngModel] [value]="calcTMB(newEvaluation)" type="number" readonly>
                             </td>
                         </tr>
                         <tr>

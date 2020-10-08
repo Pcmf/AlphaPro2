@@ -26,7 +26,6 @@ import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
 import { BalancaComponent } from './avaliation/composicao-corporal/balanca/balanca.component';
 import { TranWeltmanComponent } from './avaliation/antropometria/tran-weltman/tran-weltman.component';
-import { WeltmanComponent } from './avaliation/antropometria/weltman/weltman.component';
 import { FlexDashComponent } from './avaliation/flexibilidade/flex-dash/flex-dash.component';
 import { GoniometroComponent } from './avaliation/flexibilidade/goniometro/goniometro.component';
 import { FleximetroComponent } from './avaliation/flexibilidade/fleximetro/fleximetro.component';
@@ -52,7 +51,6 @@ import { IRCQComponent } from './avaliation/componente-morfologica/ircq/ircq.com
 import { StComponent } from './avaliation/componente-morfologica/st/st.component';
 import { ScanerComponent } from './avaliation/composicao-corporal/scaner/scaner.component';
 import { DEXAComponent } from './avaliation/composicao-corporal/dexa/dexa.component';
-import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { AllDobrasComponent } from './avaliation/dobras/all-dobras/all-dobras.component';
 import { Faulkner4Component } from './avaliation/dobras/faulkner4/faulkner4.component';
@@ -92,11 +90,8 @@ const routes: Routes = [
   {path: 'vogel', component: VogelComponent, canActivate: [AuthGuardService] },
   {path: 'weltal', component: WeltmanEtAlComponent, canActivate: [AuthGuardService] },
   {path: 'tw', component: TranWeltmanComponent, canActivate: [AuthGuardService] },
-  {path: 'wst', component: WeltmanSeipTranComponent, canActivate: [AuthGuardService] },
-  {path: 'welt', component: WeltmanComponent, canActivate: [AuthGuardService] },
 // Flexidade
   {path: 'flex', component: FlexDashComponent, canActivate: [AuthGuardService] },
-  {path: 'frc', component: WeltmanComponent, canActivate: [AuthGuardService] },
   {path: 'goniometro', component: GoniometroComponent, canActivate: [AuthGuardService] },
   {path: 'fleximetro', component: FleximetroComponent, canActivate: [AuthGuardService] },
   {path: 'flexiteste', component: FlexitesteComponent, canActivate: [AuthGuardService] },

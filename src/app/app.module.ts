@@ -16,6 +16,7 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { MatVideoModule } from 'mat-video';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { WebcamModule} from 'ngx-webcam';
+import {A11yModule} from '@angular/cdk/a11y';
 import { OverlayComponent } from './commun/overlay/overlay.component';
 
 import { DataService } from './services/data.service';
@@ -47,7 +48,6 @@ import { WB3Component } from './avaliation/dobras/wb3/wb3.component';
 import { WillComponent } from './avaliation/dobras/will/will.component';
 import { BalancaComponent } from './avaliation/composicao-corporal/balanca/balanca.component';
 import { TranWeltmanComponent } from './avaliation/antropometria/tran-weltman/tran-weltman.component';
-import { WeltmanComponent } from './avaliation/antropometria/weltman/weltman.component';
 import { FlexDashComponent } from './avaliation/flexibilidade/flex-dash/flex-dash.component';
 import { BancoWellsDillonComponent } from './avaliation/flexibilidade/banco-wells-dillon/banco-wells-dillon.component';
 import { GoniometroComponent } from './avaliation/flexibilidade/goniometro/goniometro.component';
@@ -78,7 +78,6 @@ import { ProtcolosDobrasService } from './services/protcolos-dobras.service';
 import { ChartDobrasComponent } from './commun/chart-dobras/chart-dobras.component';
 import { PrepareChartService } from './services/prepare-chart.service';
 import { ChartPieComponent } from './commun/chart-pie/chart-pie.component';
-import { WeltmanSeipTranComponent } from './avaliation/antropometria/weltman-seip-tran/weltman-seip-tran.component';
 import { FlexClassComponent } from './commun/flex-class/flex-class.component';
 import { IndiceConicidadeComponent } from './avaliation/componente-morfologica/indice-conicidade/indice-conicidade.component';
 import { ChartCompareComponent } from './commun/chart-compare/chart-compare.component';
@@ -155,7 +154,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     WillComponent,
     BalancaComponent,
     TranWeltmanComponent,
-    WeltmanComponent,
     FlexDashComponent,
     BancoWellsDillonComponent,
     GoniometroComponent,
@@ -183,7 +181,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     DEXAComponent,
     ChartDobrasComponent,
     ChartPieComponent,
-    WeltmanSeipTranComponent,
     FlexClassComponent,
     IndiceConicidadeComponent,
     ChartCompareComponent,
@@ -222,6 +219,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxChartsModule,
     HammerModule,
     WebcamModule,
+    A11yModule,
     NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

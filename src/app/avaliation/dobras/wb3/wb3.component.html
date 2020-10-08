@@ -37,19 +37,19 @@
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="subescapular" #subescapular="ngModel"
                                     [(ngModel)]="newEvaluation.subescapular" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].subescapular | number: '': locale}}</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="subescapular" #subescapular="ngModel"
                                     [(ngModel)]="newEvaluation.subescapular" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="subescapular" #subescapular="ngModel"
                                     [(ngModel)]="newEvaluation.subescapular" type="number" (change)="getSomatorio()"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

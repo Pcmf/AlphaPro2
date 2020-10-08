@@ -39,7 +39,7 @@
                                     <td *ngIf="editPointer==1 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
-                                                placeholder="selecione">
+                                                placeholder="selecione" cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direita">Direita</mat-option>
                                                 <mat-option value="Esquerda">Esquerda</mat-option>
@@ -51,7 +51,7 @@
                                     <td *ngIf="editPointer==0 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
-                                                placeholder="selecione">
+                                                placeholder="selecione" cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direita">Direita</mat-option>
                                                 <mat-option value="Esquerda">Esquerda</mat-option>
@@ -62,7 +62,7 @@
                                     <td *ngIf="addForm">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select name="vacabi" #vacabi="ngModel" [(ngModel)]="newData.vacabi"
-                                                placeholder="selecione">
+                                                placeholder="selecione" cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direita">Direita</mat-option>
                                                 <mat-option value="Esquerda">Esquerda</mat-option>
@@ -1249,7 +1249,8 @@
                                     <td *ngIf="editPointer==1 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione">
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -1260,7 +1261,8 @@
                                     <td *ngIf="editPointer==0 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione">
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -1270,7 +1272,8 @@
                                     <td *ngIf="addForm">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione">
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -2045,7 +2048,8 @@
                                     <td *ngIf="editPointer==1 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
-                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
+                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>
@@ -2057,7 +2061,8 @@
                                     <td *ngIf="editPointer==0 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
-                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
+                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>
@@ -2067,7 +2072,8 @@
                                     <td *ngIf="addForm">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
-                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione">
+                                                [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>

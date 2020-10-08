@@ -35,18 +35,20 @@
                                         {{medidas[pointer-1].torax | number: '': locale}}</td>
                                     <td *ngIf="editPointer==1 && editAv">
                                         <input name="torax" #torax="ngModel" [(ngModel)]="newEvaluation.torax"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()"
+                                            cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="pointer>=0 && editPointer!=0">
                                         {{medidas[pointer].torax | number: '': locale}}
                                     </td>
                                     <td *ngIf="editPointer==0 && editAv">
                                         <input name="torax" #torax="ngModel" [(ngModel)]="newEvaluation.torax"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()"
+                                            cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="addEval">
                                         <input name="torax" #torax="ngModel" [(ngModel)]="newEvaluation.torax"
-                                            type="number">
+                                            type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                 </tr>
 
@@ -344,18 +346,18 @@
                                         {{medidas[pointer-1].punho | number: '': locale}}</td>
                                     <td *ngIf="editPointer==1 && editAv">
                                         <input name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="pointer>=0 && editPointer!=0">
                                         {{medidas[pointer].punho | number: '': locale}}
                                     </td>
                                     <td *ngIf="editPointer==0 && editAv">
                                         <input name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="addEval">
                                         <input name="punho" #punho="ngModel" [(ngModel)]="newEvaluation.punho"
-                                            type="number" style="width: 60px;">
+                                            type="number" style="width: 60px;" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                 </tr>
 
@@ -475,17 +477,17 @@
                                         {{medidas[pointer-1].coxaid | number: '': locale}}</td>
                                     <td *ngIf="editPointer==1 && editAv">
                                         <input name="coxaid" #coxaid="ngModel" [(ngModel)]="newEvaluation.coxaid"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="pointer>=0 && editPointer!=0">
                                         {{medidas[pointer].coxaid | number: '': locale}}</td>
                                     <td *ngIf="editPointer==0 && editAv">
                                         <input name="coxaid" #coxaid="ngModel" [(ngModel)]="newEvaluation.coxaid"
-                                            type="number" (focus)="$event.target.select()">
+                                            type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                     <td *ngIf="addEval">
                                         <input name="coxaid" #coxaid="ngModel" [(ngModel)]="newEvaluation.coxaid"
-                                            type="number" style="width: 60px;">
+                                            type="number" style="width: 60px;" cdkTrapFocus cdkTrapFocusAutoCapture>
                                     </td>
                                 </tr>
                                 <tr>

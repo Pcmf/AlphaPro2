@@ -34,17 +34,20 @@
                                 {{evaluation[pointer-1].c_tempo | mask: '00:00'}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="c_tempo" mask="00:00" #c_tempo="ngModel"
-                                    [(ngModel)]="newEvaluation.c_tempo" (focus)="$event.target.select()" [showMaskTyped] = "true">
+                                    [(ngModel)]="newEvaluation.c_tempo" (focus)="$event.target.select()" 
+                                    [showMaskTyped] = "true" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].c_tempo | mask: '00:00'}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="c_tempo" mask="00:00" #c_tempo="ngModel"
-                                    [(ngModel)]="newEvaluation.c_tempo"  (focus)="$event.target.select()" [showMaskTyped] = "true">
+                                    [(ngModel)]="newEvaluation.c_tempo"  (focus)="$event.target.select()" 
+                                    [showMaskTyped] = "true" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="c_tempo" mask="00:00" #c_tempo="ngModel"
-                                    [(ngModel)]="newEvaluation.c_tempo"  [showMaskTyped] = "true">
+                                    [(ngModel)]="newEvaluation.c_tempo"  [showMaskTyped] = "true"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

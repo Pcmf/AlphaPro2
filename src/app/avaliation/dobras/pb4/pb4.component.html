@@ -36,17 +36,20 @@
                                 {{evaluation[pointer-1].triciptal | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].triciptal | number: '': locale}}</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="triciptal" #triciptal="ngModel" [(ngModel)]="newEvaluation.triciptal"
-                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr *ngIf="sex=='M'">
@@ -75,17 +78,17 @@
                                 {{evaluation[pointer-1].axilar | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].axilar | number: '': locale}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="axilar" #axilar="ngModel" [(ngModel)]="newEvaluation.axilar" type="number"
-                                (change)="getSomatorio()" (focus)="$event.target.select()">
+                                (change)="getSomatorio()" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr *ngIf="sex=='F'">

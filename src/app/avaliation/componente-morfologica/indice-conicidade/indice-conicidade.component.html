@@ -25,17 +25,17 @@
                                 {{evaluation[pointer-1].altura | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].altura | number: '': locale}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura" type="number"
-                                    style="width: 60px;">
+                                    style="width: 60px;" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

@@ -37,18 +37,19 @@
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="tri_qualidade" #tri_qualidade="ngModel"
                                     [(ngModel)]="newEvaluation.tri_qualidade" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].tri_qualidade | number: '': locale}}</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="tri_qualidade" #tri_qualidade="ngModel"
                                     [(ngModel)]="newEvaluation.tri_qualidade" type="number"
-                                    (focus)="$event.target.select()">
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="tri_qualidade" #tri_qualidade="ngModel"
-                                    [(ngModel)]="newEvaluation.tri_qualidade" type="number">
+                                    [(ngModel)]="newEvaluation.tri_qualidade" type="number"
+                                    cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>

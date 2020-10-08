@@ -36,17 +36,20 @@
                                 {{evaluation[pointer-1].peitoral | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="peitoral" #peitoral="ngModel" [(ngModel)]="newEvaluation.peitoral"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="pointer>=0 && editPointer!=0">
                                 {{evaluation[pointer].peitoral | number: '': locale}}</td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="peitoral" #peitoral="ngModel" [(ngModel)]="newEvaluation.peitoral"
-                                    type="number" (focus)="$event.target.select()">
+                                    type="number" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                             <td *ngIf="addEval">
                                 <input name="peitoral" #peitoral="ngModel" [(ngModel)]="newEvaluation.peitoral"
-                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()">
+                                    type="number" (change)="getSomatorio()" (focus)="$event.target.select()"
+                                     cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr *ngIf="student.sexo == 'F'">

@@ -39,7 +39,8 @@
                                     <td *ngIf="editPointer==1 && editAv">
                                         <mat-form-field class="flex-select">
                                             <mat-select name="punhof" #punhof="ngModel"
-                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar">
+                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option value="0"></mat-option>
                                                 <mat-option value="1">1 - Fraca</mat-option>
                                                 <mat-option value="2">2 - Média</mat-option>
@@ -52,7 +53,8 @@
                                     <td *ngIf="editPointer==0 && editAv">
                                         <mat-form-field class="flex-select">
                                             <mat-select name="punhof" #punhof="ngModel"
-                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar">
+                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option value="0"></mat-option>
                                                 <mat-option value="1">1 - Fraca</mat-option>
                                                 <mat-option value="2">2 - Média</mat-option>
@@ -64,7 +66,8 @@
                                     <td *ngIf="addEval">
                                         <mat-form-field class="flex-select">
                                             <mat-select name="punhof" #punhof="ngModel"
-                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar">
+                                                [(ngModel)]="newEvaluation.punhof" placeholder="Selecionar"
+                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option value="0"></mat-option>
                                                 <mat-option value="1">1 - Fraca</mat-option>
                                                 <mat-option value="2">2 - Média</mat-option>

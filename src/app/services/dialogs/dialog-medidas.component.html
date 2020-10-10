@@ -3,33 +3,38 @@
   <p style="color: black">{{msg}}</p>
 
   <div>
-  <mat-form-field class="input-sm"  style="color: black">
-    <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
-    <mat-label *ngIf="!erroAltura" style="color: black">Altura</mat-label>
-    <input matInput type="number" style="color: black" [(ngModel)]="ev.altura" placeholder="m">
-  </mat-form-field>
-  <mat-form-field style="color: black">
-    <mat-label *ngIf="erroPeso" style="color: red;">Peso Corporal</mat-label>
-    <mat-label *ngIf="!erroPeso" style="color: black">Peso Corporal</mat-label>
-    <input matInput type="number" style="color: black" [(ngModel)]="ev.peso" placeholder="Kg">
-  </mat-form-field>
-  <mat-form-field class="input-sm" style="color: black">
-    <mat-label *ngIf="erroPunho" style="color: red;">Diâmetro do Punho</mat-label>
-    <mat-label *ngIf="!erroPunho" style="color: black">Diâmetro do Punho</mat-label>
-    <input matInput type="number" style="color: black" [(ngModel)]="ev.punho" placeholder="cm">
-  </mat-form-field>
-  <mat-form-field style="color: black">
-    <mat-label *ngIf="erroJoelho" style="color: red;">Diâmetro do Joelho</mat-label>
-    <mat-label *ngIf="!erroJoelho" style="color: black">Diâmetro do Joelho</mat-label>
-    <input matInput type="number" style="color: black" [(ngModel)]="ev.joelho" placeholder="cm">
-  </mat-form-field>
-
+    <form autocomplete="off">
+      <mat-form-field class="input-sm" style="color: black" appearance="outline">
+        <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
+        <mat-label *ngIf="!erroAltura" style="color: black">Altura</mat-label>
+        <input matInput type="number" style="color: black" name="altura" [(ngModel)]="ev.altura" placeholder="metros" cdkTrapFocus cdkTrapFocusAutoCapture>
+      </mat-form-field>
+      <mat-form-field style="color: black" appearance="outline">
+        <mat-label *ngIf="erroPeso" style="color: red;">Peso Corporal</mat-label>
+        <mat-label *ngIf="!erroPeso" style="color: black">Peso Corporal</mat-label>
+        <input matInput type="number" style="color: black" name="peso" [(ngModel)]="ev.peso" placeholder="Kg">
+      </mat-form-field>
+      <mat-form-field class="input-sm" style="color: black" appearance="outline">
+        <mat-label *ngIf="erroPunho" style="color: red;">Diâmetro do Punho</mat-label>
+        <mat-label *ngIf="!erroPunho" style="color: black">Diâmetro do Punho</mat-label>
+        <input matInput type="number" style="color: black" name="punho" [(ngModel)]="ev.punho" placeholder="cm">
+      </mat-form-field>
+      <mat-form-field style="color: black" appearance="outline">
+        <mat-label *ngIf="erroJoelho" style="color: red;">Diâmetro do Joelho</mat-label>
+        <mat-label *ngIf="!erroJoelho" style="color: black">Diâmetro do Joelho</mat-label>
+        <input matInput type="number" style="color: black" name="joelho" [(ngModel)]="ev.joelho" placeholder="cm">
+      </mat-form-field>
+    </form>
   </div>
 </div>
 <div mat-dialog-actions>
   <div>
-      <button mat-mini-fab mat-dialog-close color="default"><mat-icon color="warn">close</mat-icon></button>
-      <button mat-mini-fab (click)="save()" cdkFocusInitial color="default"><mat-icon color="accent">check</mat-icon></button>
+    <button type="button" mat-mini-fab mat-dialog-close color="default">
+      <mat-icon color="warn">close</mat-icon>
+    </button>
+    <button type="button" mat-mini-fab (click)="save()" cdkFocusInitial color="default">
+      <mat-icon color="accent">check</mat-icon>
+    </button>
   </div>
 
 </div>

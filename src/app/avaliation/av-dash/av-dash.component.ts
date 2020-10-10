@@ -1,38 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-av-dash',
   templateUrl: './av-dash.component.html',
   styleUrls: ['./av-dash.component.scss']
 })
-export class AvDashComponent implements OnInit {
+export class AvDashComponent implements OnInit, OnDestroy {
   morfoExpanded = false;
   videoExpanded = false;
   isLoged: boolean;
   studentName: string;
 
-  constructor() {
+  constructor(
+    private dataService: DataService
+  ) {
     this.studentName = JSON.parse(sessionStorage.selectedStudent).nome;
+    this.dataService.morfoExpanded.subscribe(
+      resp => this.morfoExpanded = resp
+    );
+  }
+  ngOnDestroy(): void {
   }
 
-  ngOnInit(): void {
-
-    if (sessionStorage.morfoExpanded) {
-      this.morfoExpanded = sessionStorage.morfoExpanded;
-    } else {
-      sessionStorage.morfoExpanded = false;
-    }
-    if (sessionStorage.videoExpanded) {
-      this.videoExpanded = sessionStorage.videoExpanded;
-    } else {
-      sessionStorage.videoExpanded = false;
-    }
+  ngOnInit(): void { 
+    this.dataService.changeDobrasExp(false);
   }
 
   changeMorfoExpanded() {
-    this.morfoExpanded = !this.morfoExpanded;
-    sessionStorage.morfoExpanded = this.morfoExpanded;
+    this.dataService.changeMorfoExp(!this.morfoExpanded);
   }
+
+
 
   changeVideoExpanded() {
     this.videoExpanded = !this.videoExpanded;

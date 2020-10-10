@@ -37,6 +37,7 @@ export class LastEvalCardioService {
           }
           this.lastAv = resp.pop();
         } else {
+          this.lastAv = [];
           this.newAv = true;
         }
         // decide se vai mostrar dialog

@@ -62,9 +62,9 @@ export class VogelComponent implements OnInit {
     this.dataService.getData('clients/corporal/' + this.student.id).subscribe(
       (resp: any[]) => {
         if (resp && resp.length > 0) {
-          // Select only the ones that have all values 
+          // Select only the ones that have all values
           this.evaluation = resp.filter((el) => {
-            return el.pescoco > 0 && el.antebracod > 0 && el.abdomen > 0 && el.abdomen2 > 0  && el.quadril > 0;
+            return el.pescoco > 0 && el.antebracod > 0  && el.abdomen2 > 0  && el.quadril > 0;
           });
         }
         if (this.evaluation.length > 0) {
@@ -78,6 +78,7 @@ export class VogelComponent implements OnInit {
         } else {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
+          this.maxPointer = -1;
         }
         this.spinner = false;
       }
@@ -159,15 +160,19 @@ export class VogelComponent implements OnInit {
           this.newEvaluation.punho = resp.punho;
           this.newEvaluation.joelho = resp.joelho;
 
-          this.newEvaluation.biciptal = 0;
-          this.newEvaluation.geminal = 0;
-          this.newEvaluation.triciptal = 0;
-          this.newEvaluation.peitoral = 0;
-          this.newEvaluation.subescapular = 0;
-          this.newEvaluation.axilar = 0;
-          this.newEvaluation.suprailiaca = 0;
-          this.newEvaluation.abdominal = 0;
-          this.newEvaluation.crural = 0;
+          // Obter dados da corporal se existir com a mesma data
+          this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+            (respc: any ) => {
+                console.log(respc);
+                if (respc.length > 0 ) {
+                  respc[0].abdomen2 > 0 ? this.newEvaluation.abdomen2 = respc[0].abdomen2 : this.newEvaluation.abdomen2 = '';
+                  respc[0].pescoco > 0 ? this.newEvaluation.pescoco = respc[0].pescoco : this.newEvaluation.pescoco = '';
+                  respc[0].quadril > 0 ? this.newEvaluation.quadril = respc[0].quadril : this.newEvaluation.quadril = '';
+                  respc[0].cintura > 0 ? this.newEvaluation.cintura = respc[0].cintura : this.newEvaluation.cintura = '';
+                  respc[0].antebracod > 0 ? this.newEvaluation.antebracod = respc[0].antebracod : this.newEvaluation.antebracod = '';
+                }
+            }
+          );
           this.addEval = true;
         }
       }

@@ -19,6 +19,12 @@ export class DataService {
   private ADDRESS = environment.ADDRESS;
   private helper = new JwtHelperService();
 
+  private morfoExp = new BehaviorSubject(false);
+  morfoExpanded = this.morfoExp.asObservable();
+
+  private dobrasExp = new BehaviorSubject(false);
+  DobrasExpanded = this.dobrasExp.asObservable();
+
   constructor(private http: HttpClient) { }
 
   /** aluno service  */
@@ -30,6 +36,15 @@ export class DataService {
   changeEditType(editType: boolean) {
     this.editType.next(editType);
   }
+
+  /** Expanded morfo menu service  */
+  changeMorfoExp(morfoExp: boolean) {
+    this.morfoExp.next(morfoExp);
+  }
+    /** Expanded dobras menu service  */
+    changeDobrasExp(dobrasExp: boolean) {
+      this.dobrasExp.next(dobrasExp);
+    }
 
   // Get data from DB
   getData(param) {

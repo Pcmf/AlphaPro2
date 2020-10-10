@@ -18,6 +18,7 @@ export class DialogService {
   constructor(private dialog: MatDialog) { }
 
   public openMedidas(options) {
+    console.log(options);
     this.dialogRef = this.dialog.open(DialogMedidas, {width: '350px', data: options});
   }
 

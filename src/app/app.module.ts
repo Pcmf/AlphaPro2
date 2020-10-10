@@ -113,6 +113,7 @@ import { EditDelFormComponent, ConfirmDeleteDialog } from './commun/edit-del-for
 import { TesteOrtopedicosDashComponent } from './avaliation/teste-ortopedicos-dash/teste-ortopedicos-dash.component';
 import { LastEvaluationService } from './services/last-evaluation.service';
 
+// for swipes
 export class MyHammerConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
     const mc = new Hammer(element, {

@@ -34,9 +34,16 @@ export class RDDCComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
-    // Obter dados quantos cigarros dia
     this.spinner = true;
+    // obter se tem queixas de dor de costas
+    this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
+      resp => {
+        if (resp[0].Q510 == '1') {
+          this.data.dor = '3';
+        }
+      }
+    );
+    // Obter dados quantos cigarros dia
     this.dataService.getData('clients/' + this.student.id).subscribe(
       respa => {
         this.qtos = respa[0].qtos;
@@ -45,14 +52,14 @@ export class RDDCComponent implements OnInit, OnDestroy {
           respd => {
             if (respd[0]) {
               this.data = respd[0];
-              // obter se tem queixas de dor de costas
+/*               // obter se tem queixas de dor de costas
               this.dataService.getData('clients/anamnese/' + this.student.id).subscribe(
                 resp => {
                   if (resp[0].Q510 == '1') {
                     this.data.dor = '3';
                   }
                 }
-              );
+              ); */
             }
             if (respa[0].fumante === 'S' || respa[0].fumante === 'E') {
               this.data.smoker = '1';
@@ -60,7 +67,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
             } else if (respa[0].fumante === 'N' && this.qtos == 0) {
               this.data.smoker = '0';
               this.fumante = true;
-            } else  {
+            } else {
               this.data.smoker = null;
               this.fumante = false;
             }
@@ -128,7 +135,7 @@ export class RDDCComponent implements OnInit, OnDestroy {
       form.pontos = +this.risco;
       this.formS = form;
     }
-    if (this.risco < 0 ) {
+    if (this.risco < 0) {
       this.risco = 0;
     }
     if (this.risco < 5) {

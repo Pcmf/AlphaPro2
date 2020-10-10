@@ -9,6 +9,7 @@ import { AgeService } from 'src/app/services/age.service';
 })
 export class CCComponent implements OnInit {
   panelOpenState = false;
+  dobrasExpanded = false;
   student: any[];
   age: number;
   sex: string;
@@ -24,7 +25,14 @@ export class CCComponent implements OnInit {
           this.sex = resp.sexo;
         }
       );
+      this.dataService.DobrasExpanded.subscribe(
+        respd => this.dobrasExpanded = respd
+      );
 
+  }
+
+  changeDobrasExpanded() {
+    this.dataService.changeDobrasExp(!this.dobrasExpanded);
   }
 
   ngOnInit(): void {

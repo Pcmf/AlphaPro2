@@ -85,7 +85,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><span (click)="openDialog('Gordura')">Gordura <small>(Kg)</small></span></th>
+                            <th><span (click)="openDialog('Gordura')">Gordura Total<small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].fat | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">

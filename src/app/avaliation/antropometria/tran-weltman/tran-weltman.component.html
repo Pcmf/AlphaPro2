@@ -47,7 +47,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="abdomen2" #abdomen2="ngModel" [(ngModel)]="newEvaluation.abdomen2"
-                                    type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
+                                    type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
                         <tr>
@@ -67,7 +67,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
-                                    type="number">
+                                    type="number" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +86,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="cintura" #cintura="ngModel" [(ngModel)]="newEvaluation.cintura"
-                                    type="number">
+                                    type="number" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>
@@ -105,7 +105,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="quadril" #quadril="ngModel" [(ngModel)]="newEvaluation.quadril"
-                                    type="number">
+                                    type="number" (focus)="$event.target.select()">
                             </td>
                         </tr>
                         <tr>

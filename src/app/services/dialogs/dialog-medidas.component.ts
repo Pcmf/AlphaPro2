@@ -24,6 +24,7 @@ export class DialogMedidas {
       private dataService: DataService,
       private datapipe: DatePipe
     ) {
+      console.log(data);
       if (data.newAv && data.daysAv) {
         this.msg += 'A última avaliação complementar já tem ' + data.daysAv + ' dias.';
       }

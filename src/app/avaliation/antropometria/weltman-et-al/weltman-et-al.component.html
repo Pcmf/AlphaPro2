@@ -69,7 +69,7 @@
                             </td>
                             <td *ngIf="addEval">
                                 <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
-                                    type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
+                                    type="number" cdkTrapFocus cdkTrapFocusAutoCapture (focus)="$event.target.select()">
                             </td>
                         </tr>
 

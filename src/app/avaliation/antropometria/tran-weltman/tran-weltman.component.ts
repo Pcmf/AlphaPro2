@@ -161,15 +161,18 @@ export class TranWeltmanComponent implements OnInit {
           this.newEvaluation.punho = resp.punho;
           this.newEvaluation.joelho = resp.joelho;
 
-          this.newEvaluation.biciptal = 0;
-          this.newEvaluation.geminal = 0;
-          this.newEvaluation.triciptal = 0;
-          this.newEvaluation.peitoral = 0;
-          this.newEvaluation.subescapular = 0;
-          this.newEvaluation.axilar = 0;
-          this.newEvaluation.suprailiaca = 0;
-          this.newEvaluation.abdominal = 0;
-          this.newEvaluation.crural = 0;
+          // Obter dados da corporal se existir com a mesma data
+          this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+            (respc: any ) => {
+                console.log(respc);
+                if (respc.length > 0 ) {
+                  respc[0].abdomen2 > 0 ? this.newEvaluation.abdomen2 = respc[0].abdomen2 : this.newEvaluation.abdomen2 = '';
+                  respc[0].abdomen > 0 ? this.newEvaluation.abdomen = respc[0].abdomen : this.newEvaluation.abdomen = '';
+                  respc[0].quadril > 0 ? this.newEvaluation.quadril = respc[0].quadril : this.newEvaluation.quadril = '';
+                  respc[0].cintura > 0 ? this.newEvaluation.cintura = respc[0].cintura : this.newEvaluation.cintura = '';
+                }
+            }
+          );
           this.addEval = true;
         }
       }

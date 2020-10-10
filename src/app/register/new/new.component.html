@@ -8,7 +8,7 @@
       <mat-form-field appearance="">
         <label i18n="Label | nome do aluno" #nome>Nome</label>
         <input matInput type="search" #nome="ngModel" [ngModel]="student.nome" name="nome" required
-        autocomplete="off" (focus)="$event.target.select()" minlength="3"  cdkTrapFocus cdkTrapFocusAutoCapture>
+        autocomplete="off" (focus)="$event.target.select()" minlength="3">
         <mat-error>* Campo obrigatório.</mat-error>
       </mat-form-field>
 

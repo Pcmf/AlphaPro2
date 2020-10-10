@@ -5,7 +5,8 @@
         <div class="section-content">
         <h1 class="h1-title">Composição Corporal</h1>
         <mat-accordion>
-            <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel (click)="changeDobrasExpanded()" [expanded]="dobrasExpanded"> <!-- class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false" -->
+                                
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title | area de avaliação">
                         DOBRAS CUTÂNEAS
@@ -129,7 +130,7 @@
 
             </mat-expansion-panel>
 
-            <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel> 
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         BIOIMPEDÂNCIA
@@ -154,7 +155,7 @@
                 </mat-expansion-panel-header>
             </mat-expansion-panel>
 
-            <mat-expansion-panel (opened)="panelOpenState = true">
+            <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title i18n="Title">
                         ANTROPOMETRIA

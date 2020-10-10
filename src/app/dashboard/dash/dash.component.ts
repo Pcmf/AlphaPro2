@@ -18,8 +18,6 @@ export class DashComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-  //  private menuService: MenuService,
-
   ) {
       this.spinner = true;
       const id = this.dataService.getPTId();
@@ -34,6 +32,8 @@ export class DashComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.dataService.changeMorfoExp(false);
+    this.dataService.changeDobrasExp(false);
     // tslint:disable-next-line: no-conditional-assignment
     if (sessionStorage.getItem('selectedStudent')) {
       this.student = JSON.parse(sessionStorage.getItem('selectedStudent'));
@@ -44,7 +44,6 @@ export class DashComponent implements OnInit {
   selected(student) {
     if (student) {
       this.selectedS = true;
-     // this.menuService.setSelectedStudent(student);
       sessionStorage.selectedStudent = JSON.stringify(student);
       this.dataService.changeAluno(student);
     } else {
@@ -55,7 +54,6 @@ export class DashComponent implements OnInit {
   reset() {
     this.student = {};
     this.selectedS = false;
-  //  this.menuService.setSelectedStudent({});
     sessionStorage.removeItem('selectedStudent');
     this.dataService.changeAluno([]);
   }

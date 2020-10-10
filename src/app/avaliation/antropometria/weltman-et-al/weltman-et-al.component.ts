@@ -66,7 +66,7 @@ export class WeltmanEtAlComponent implements OnInit {
         if (resp && resp.length > 0) {
           // Select only the ones that have all values 
           this.evaluation = resp.filter((el) => {
-            return el.peso > 0 && el.altura > 0 && el.abdomen > 0 && el.abdomen2 > 0;
+            return el.peso > 0 && el.altura > 0 && el.abdomen > 0;
           });
         }
         if (this.evaluation.length > 0) {
@@ -159,15 +159,15 @@ export class WeltmanEtAlComponent implements OnInit {
           this.newEvaluation.punho = resp.punho;
           this.newEvaluation.joelho = resp.joelho;
 
-          this.newEvaluation.biciptal = 0;
-          this.newEvaluation.geminal = 0;
-          this.newEvaluation.triciptal = 0;
-          this.newEvaluation.peitoral = 0;
-          this.newEvaluation.subescapular = 0;
-          this.newEvaluation.axilar = 0;
-          this.newEvaluation.suprailiaca = 0;
-          this.newEvaluation.abdominal = 0;
-          this.newEvaluation.crural = 0;
+          // Obter dados da corporal se existir com a mesma data
+          this.dataService.getData('clients/corporal/' + this.student.id + '/' + this.newEvaluation.data).subscribe(
+            (respc: any ) => {
+                console.log(respc);
+                if (respc.length > 0 ) {
+                  respc[0].abdomen > 0 ? this.newEvaluation.abdomen = respc[0].abdomen : this.newEvaluation.abdomen = '';
+                }
+            }
+          );
           this.addEval = true;
         }
       }

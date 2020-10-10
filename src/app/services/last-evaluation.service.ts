@@ -38,6 +38,7 @@ export class LastEvaluationService {
           }
           this.lastAv = resp.pop();
         } else {
+          this.lastAv = [];
           this.newAv = true;
         }
         // Obter os dados da ultima avaliação corporal - punho e joelho
@@ -53,8 +54,10 @@ export class LastEvaluationService {
                 this.newCorporal = true;
               }
             } else {
+              this.lastCorporal = [];
               this.newCorporal = true;
             }
+            console.log(this.lastCorporal);
             // decide se vai mostrar dialog
             if (this.newAv || this.newCorporal) {
               this.openMedidasDialog(
@@ -73,6 +76,7 @@ export class LastEvaluationService {
               this.response.peso = this.lastAv.peso;
               this.response.punho = this.lastCorporal.punho;
               this.response.joelho = this.lastCorporal.joelho;
+
               this.response.erro = false;
               this.evaluation.next( this.response);
             }

@@ -72,6 +72,7 @@ export class AllDobrasComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
           this.maxPointer = -1;
+          this.addEvaluation();
         }
         this.spinner = false;
       }
@@ -99,8 +100,7 @@ export class AllDobrasComponent implements OnInit {
         }
       }
       /* Faulkner - 4 dobras  - protocolo 2 */
-      if (form.triciptal > 0 && form.subescapular > 0 && form.abdominal > 0 && form.suprailiaca > 0
-        && this.student.sexo === 'M') {
+      if (form.triciptal > 0 && form.subescapular > 0 && form.abdominal > 0 && form.suprailiaca > 0) {
         form.protocolo = 2;
         this.saveToDB(form);
       }

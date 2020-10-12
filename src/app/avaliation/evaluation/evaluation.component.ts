@@ -103,6 +103,7 @@ export class EvaluationComponent implements OnInit {
     if (this.maxPointer != -1 && this.evaluation[this.maxPointer - 1].data == this.newEvaluation.data) {
       this.newEvaluation.data = '';
       this.newEvaluation = [];
+      this.newEvaluation.avaliador = this.dataService.getUserName();
     }
     this.addEval = true;
   }

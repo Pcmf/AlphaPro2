@@ -13,7 +13,19 @@
                             (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <th>
+                                        <button type="button" class="btn-small" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
+                                            (click)="addDataForm()">
+                                            <mat-icon class="mat-18" color="accent">add</mat-icon>
+                                        </button>
+                                        <button type="button" class="btn-small" *ngIf="addForm" mat-stroked-button color="default"
+                                            (click)="closeInputs()">
+                                            <mat-icon class="mat-18" color="warn">close</mat-icon>
+                                        </button>
+                                        <button type="submit" class="btn-small" *ngIf="addForm" mat-stroked-button>
+                                            <mat-icon class="mat-18" color="accent">check</mat-icon>
+                                        </button>
+                                    </th>
                                     <th class="th-top" *ngIf="pointer>=1 && !addForm">
                                         <button type="button">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                     </th>
@@ -1199,8 +1211,9 @@
                                 (click)="addDataForm()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv || maxPointer == -1"
-                                mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <button type="button" *ngIf="!addForm"
+                                [disabled]="pointer == maxPointer-1 || editAv || maxPointer == -1" mat-mini-fab
+                                color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
@@ -1223,7 +1236,19 @@
                             (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <th>
+                                        <button type="button" class="btn-small" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
+                                            (click)="addDataForm()">
+                                            <mat-icon class="mat-18" color="accent">add</mat-icon>
+                                        </button>
+                                        <button type="button" class="btn-small" *ngIf="addForm" mat-stroked-button color="default"
+                                            (click)="closeInputs()">
+                                            <mat-icon class="mat-18" color="warn">close</mat-icon>
+                                        </button>
+                                        <button type="submit" class="btn-small" *ngIf="addForm" mat-stroked-button>
+                                            <mat-icon class="mat-18" color="accent">check</mat-icon>
+                                        </button>
+                                    </th>
                                     <th class="th-top" *ngIf="pointer>=1 && !addForm">
                                         <button type="button">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                     </th>
@@ -1249,8 +1274,8 @@
                                     <td *ngIf="editPointer==1 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione" cdkTrapFocus
+                                                cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -1261,8 +1286,8 @@
                                     <td *ngIf="editPointer==0 && editAv">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione" cdkTrapFocus
+                                                cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -1272,8 +1297,8 @@
                                     <td *ngIf="addForm">
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vlcabeca="ngModel" name="vlcabeca"
-                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                [(ngModel)]="newData.vlcabeca" placeholder="selecione" cdkTrapFocus
+                                                cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Projetada">Projetada</mat-option>
                                                 <mat-option value="Retraida">Retraida</mat-option>
@@ -1998,8 +2023,9 @@
                                 (click)="addDataForm()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv || maxPointer == -1"
-                                mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <button type="button" *ngIf="!addForm"
+                                [disabled]="pointer == maxPointer-1 || editAv || maxPointer == -1" mat-mini-fab
+                                color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
@@ -2021,7 +2047,19 @@
                             (swipeleft)="swipeLeft($event)">
                             <thead>
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <th>
+                                        <button type="button" class="btn-small" *ngIf="!addForm" mat-stroked-button [disabled]="editAv"
+                                            (click)="addDataForm()">
+                                            <mat-icon class="mat-18" color="accent">add</mat-icon>
+                                        </button>
+                                        <button type="button" class="btn-small" *ngIf="addForm" mat-stroked-button color="default"
+                                            (click)="closeInputs()">
+                                            <mat-icon class="mat-18" color="warn">close</mat-icon>
+                                        </button>
+                                        <button type="submit" class="btn-small" *ngIf="addForm" mat-stroked-button>
+                                            <mat-icon class="mat-18" color="accent">check</mat-icon>
+                                        </button>
+                                    </th>
                                     <th class="th-top" *ngIf="pointer>=1 && !addForm">
                                         <button type="button">{{oldData[pointer-1].data | date:'dd/LL/yyyy'}}</button>
                                     </th>
@@ -2049,7 +2087,7 @@
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                                 [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>
@@ -2062,7 +2100,7 @@
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                                 [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>
@@ -2073,7 +2111,7 @@
                                         <mat-form-field class="form-select-sm">
                                             <mat-select #vpcabecainclinacao="ngModel" name="vpcabecainclinacao"
                                                 [(ngModel)]="newData.vpcabecainclinacao" placeholder="selecione"
-                                                 cdkTrapFocus cdkTrapFocusAutoCapture>
+                                                cdkTrapFocus cdkTrapFocusAutoCapture>
                                                 <mat-option></mat-option>
                                                 <mat-option value="Direito">Direito</mat-option>
                                                 <mat-option value="Esquerdo">Esquerdo</mat-option>
@@ -3195,8 +3233,9 @@
                                 (click)="addDataForm()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv || maxPointer==-1 "
-                                mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <button type="button" *ngIf="!addForm"
+                                [disabled]="pointer == maxPointer-1 || editAv || maxPointer==-1 " mat-mini-fab
+                                color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"
@@ -3229,7 +3268,8 @@
                                         </button>
                                     </th>
                                     <th class="th-top" *ngIf="addForm">
-                                        <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date" class="data-input">
+                                        <input name="data" #data="ngModel" [(ngModel)]="newData.data" type="date"
+                                            class="data-input">
                                     </th>
                                 </tr>
 
@@ -3247,7 +3287,8 @@
                                     <img [src]="newData.fotoa" alt="Vista Posterior"
                                         (click)="showPhoto('Vista Posterior', newData.data, newData.fotoa)">
                                 </div>
-                                <div *ngIf="(!oldData[pointer] || !oldData[pointer].fotoa || addForm) && !newData.fotoa">
+                                <div
+                                    *ngIf="(!oldData[pointer] || !oldData[pointer].fotoa || addForm) && !newData.fotoa">
                                     <img src="./assets/img/front_view.jpg" alt="Vista Anterior">
                                 </div>
 
@@ -3261,13 +3302,14 @@
                                     (click)="openTakePhoto('a', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
-                                <app-load-image *ngIf="oldData[pointer] && !addForm" (imageB64)="receiveImage($event, 'a', oldData[pointer].data)"></app-load-image>
-                                <button type="button" mat-icon-button color="default"
-                                    *ngIf="addForm"
+                                <app-load-image *ngIf="oldData[pointer] && !addForm"
+                                    (imageB64)="receiveImage($event, 'a', oldData[pointer].data)"></app-load-image>
+                                <button type="button" mat-icon-button color="default" *ngIf="addForm"
                                     (click)="openTakePhoto('a', newData.data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
-                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'a', newData.data)"></app-load-image>
+                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'a', newData.data)">
+                                </app-load-image>
 
                             </div>
                             <!-- vista lateral -->
@@ -3280,7 +3322,8 @@
                                     <img [src]="newData.fotol" alt="Vista Posterior"
                                         (click)="showPhoto('Vista Posterior', newData.data, newData.fotol)">
                                 </div>
-                                <div *ngIf="(!oldData[pointer] || !oldData[pointer].fotol || addForm) && !newData.fotol">
+                                <div
+                                    *ngIf="(!oldData[pointer] || !oldData[pointer].fotol || addForm) && !newData.fotol">
                                     <img src="./assets/img/side_view.jpg" alt="Vista Lateral">
                                 </div>
                                 <button type="button" mat-icon-button color="warn"
@@ -3293,13 +3336,14 @@
                                     (click)="openTakePhoto('l', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
-                                <app-load-image *ngIf="oldData[pointer] && !addForm" (imageB64)="receiveImage($event, 'l', oldData[pointer].data)"></app-load-image>
-                                <button type="button" mat-icon-button color="default"
-                                *ngIf="addForm"
-                                (click)="openTakePhoto('l', newData.data); viewPhoto=false;">
-                                <mat-icon>camera_alt</mat-icon>
-                            </button>
-                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'l', newData.data)"></app-load-image>
+                                <app-load-image *ngIf="oldData[pointer] && !addForm"
+                                    (imageB64)="receiveImage($event, 'l', oldData[pointer].data)"></app-load-image>
+                                <button type="button" mat-icon-button color="default" *ngIf="addForm"
+                                    (click)="openTakePhoto('l', newData.data); viewPhoto=false;">
+                                    <mat-icon>camera_alt</mat-icon>
+                                </button>
+                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'l', newData.data)">
+                                </app-load-image>
                             </div>
                             <!-- vista posterior -->
                             <div class="photo" *ngIf="viewPhoto">
@@ -3311,7 +3355,8 @@
                                     <img [src]="newData.fotop" alt="Vista Posterior"
                                         (click)="showPhoto('Vista Posterior', newData.data, newData.fotop)">
                                 </div>
-                                <div *ngIf="(!oldData[pointer] || !oldData[pointer].fotop || addForm) && !newData.fotop">
+                                <div
+                                    *ngIf="(!oldData[pointer] || !oldData[pointer].fotop || addForm) && !newData.fotop">
                                     <img src="./assets/img/back_view.jpg" alt="Vista Posterior">
                                 </div>
                                 <button type="button" mat-icon-button color="warn"
@@ -3324,12 +3369,14 @@
                                     (click)="openTakePhoto('p', oldData[pointer].data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
-                                <app-load-image *ngIf="oldData[pointer] && !addForm" (imageB64)="receiveImage($event, 'p', oldData[pointer].data)"></app-load-image>
+                                <app-load-image *ngIf="oldData[pointer] && !addForm"
+                                    (imageB64)="receiveImage($event, 'p', oldData[pointer].data)"></app-load-image>
                                 <button type="button" mat-icon-button color="default" *ngIf="addForm"
                                     (click)="openTakePhoto('p', newData.data); viewPhoto=false;">
                                     <mat-icon>camera_alt</mat-icon>
                                 </button>
-                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'p', newData.data)"></app-load-image>
+                                <app-load-image *ngIf="addForm" (imageB64)="receiveImage($event, 'p', newData.data)">
+                                </app-load-image>
                             </div>
                         </div>
                         <!-- Captação da foto -->
@@ -3379,8 +3426,9 @@
                                 (click)="addDataForm()">
                                 <mat-icon class="mat-18" color="accent">add</mat-icon>
                             </button>
-                            <button type="button" *ngIf="!addForm" [disabled]="pointer == maxPointer-1 || editAv || maxPointer==-1"
-                                mat-mini-fab color="default" (click)="pointer=pointer+1">
+                            <button type="button" *ngIf="!addForm"
+                                [disabled]="pointer == maxPointer-1 || editAv || maxPointer==-1" mat-mini-fab
+                                color="default" (click)="pointer=pointer+1">
                                 <mat-icon class="mat-14">chevron_right</mat-icon>
                             </button>
                             <button type="button" *ngIf="addForm" mat-stroked-button color="default"

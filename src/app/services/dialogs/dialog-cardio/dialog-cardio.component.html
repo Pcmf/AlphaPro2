@@ -3,21 +3,24 @@
   <p style="color: black">{{msg}}</p>
 
   <div>
-    <mat-form-field style="color: black">
+    <mat-form-field style="color: black" appearance="outline">
         <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
         <mat-label *ngIf="!erroAltura" style="color: black">Altura</mat-label>
-        <input matInput style="color: black" type="number" [(ngModel)]="ev.altura" placeholder="metros">
+        <input matInput style="color: black" type="number" [(ngModel)]="ev.altura" placeholder="metros"
+        cdkTrapFocus cdkTrapFocusAutoCapture (focus)="$event.target.select()">
     </mat-form-field>
-  <mat-form-field style="color: black">
+  <mat-form-field style="color: black" appearance="outline">
     <mat-label *ngIf="erroPeso" style="color: red;">Peso Corporal</mat-label>
     <mat-label *ngIf="!erroPeso" style="color: black">Peso Corporal</mat-label>
-    <input matInput style="color: black" type="number" [(ngModel)]="ev.peso" placeholder="Kg">
+    <input matInput style="color: black" type="number" [(ngModel)]="ev.peso" placeholder="Kg"
+    (focus)="$event.target.select()">
   </mat-form-field>
   <!-- FC Repouso  -->
-  <mat-form-field style="color: black">
+  <mat-form-field style="color: black" appearance="outline">
     <mat-label *ngIf="erroFC2" style="color: red;">FC Repouso</mat-label>
     <mat-label *ngIf="!erroFC2" style="color: black">FC Repouso</mat-label>
-    <input matInput style="color: black" type="number" [(ngModel)]="ev.fc" placeholder="bpm">
+    <input matInput style="color: black" type="number" [(ngModel)]="ev.fc" placeholder="bpm"
+    (focus)="$event.target.select()">
   </mat-form-field>
 
   </div>

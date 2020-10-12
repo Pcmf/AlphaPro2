@@ -75,12 +75,6 @@ export class ChartCompareComponent implements OnInit {
               case 14:
                 this.dados = this.protocolos.protocoloTranWeltman(ln, this.percgd);
                 break;
-              case 17:
-                  this.dados = this.protocolos.protocoloWeltmanSpeinTran(ln, this.percgd);
-                  break;
-              case 18:
-                this.dados = this.protocolos.protocoloMayhewEtAl(ln, this.percgd);
-                break;
             }
             this.dados.data = ln.data;
             this.result.push(this.dados);

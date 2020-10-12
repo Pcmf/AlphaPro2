@@ -239,18 +239,6 @@ export class ProtcolosDobrasService {
     return answer;
   }
 
-  //  Weltman Seip & Tran
-  protocoloWeltmanSpeinTran(morfo, gorduraDesejada) {
-    console.table(morfo);
-    this.gorduraDesejada = gorduraDesejada;
-    this.morfo = morfo;
-    //  formula
-    this.perGordura = 0.31457 * +morfo.abdomen - 0.10969 * +morfo.peso + 10.8336;
-    const answer = this.createAnswer();
-    console.table(answer);
-    return answer;
-  }
-
   // Weltman et al
   protocoloWeltmanEtAl(morfo, gorduraDesejada) {
     console.table(morfo);
@@ -279,22 +267,6 @@ export class ProtcolosDobrasService {
       return answer;
     }
 
-    // Mayhew et al
-    protocoloMayhewEtAl(morfo, gorduraDesejada) {
-      console.table(morfo);
-      this.gorduraDesejada = gorduraDesejada;
-      this.morfo = morfo;
-      // Precisa da formula
-      this.perGordura = 22.00;
-      const answer = this.createAnswer();
-      console.table(answer);
-      return answer;
-    }
-
-  // não está a ser usada.
-  getGorduraDesejada() {
-    return 20;  // só para testes
-  }
 
   // Criar JSON com resposta
   createAnswer() {

@@ -7,22 +7,26 @@
       <mat-form-field class="input-sm" style="color: black" appearance="outline">
         <mat-label *ngIf="erroAltura" style="color: red;">Altura</mat-label>
         <mat-label *ngIf="!erroAltura" style="color: black">Altura</mat-label>
-        <input matInput type="number" style="color: black" name="altura" [(ngModel)]="ev.altura" placeholder="metros" cdkTrapFocus cdkTrapFocusAutoCapture>
+        <input matInput type="number" style="color: black" name="altura" [(ngModel)]="ev.altura" 
+        placeholder="metros" cdkTrapFocus cdkTrapFocusAutoCapture (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field style="color: black" appearance="outline">
         <mat-label *ngIf="erroPeso" style="color: red;">Peso Corporal</mat-label>
         <mat-label *ngIf="!erroPeso" style="color: black">Peso Corporal</mat-label>
-        <input matInput type="number" style="color: black" name="peso" [(ngModel)]="ev.peso" placeholder="Kg">
+        <input matInput type="number" style="color: black" name="peso" [(ngModel)]="ev.peso" placeholder="Kg"
+        (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field class="input-sm" style="color: black" appearance="outline">
         <mat-label *ngIf="erroPunho" style="color: red;">Diâmetro do Punho</mat-label>
         <mat-label *ngIf="!erroPunho" style="color: black">Diâmetro do Punho</mat-label>
-        <input matInput type="number" style="color: black" name="punho" [(ngModel)]="ev.punho" placeholder="cm">
+        <input matInput type="number" style="color: black" name="punho" [(ngModel)]="ev.punho" placeholder="cm"
+        (focus)="$event.target.select()">
       </mat-form-field>
       <mat-form-field style="color: black" appearance="outline">
         <mat-label *ngIf="erroJoelho" style="color: red;">Diâmetro do Joelho</mat-label>
         <mat-label *ngIf="!erroJoelho" style="color: black">Diâmetro do Joelho</mat-label>
-        <input matInput type="number" style="color: black" name="joelho" [(ngModel)]="ev.joelho" placeholder="cm">
+        <input matInput type="number" style="color: black" name="joelho" [(ngModel)]="ev.joelho" placeholder="cm"
+        (focus)="$event.target.select()">
       </mat-form-field>
     </form>
   </div>

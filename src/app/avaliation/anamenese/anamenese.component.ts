@@ -228,17 +228,20 @@ export class AnameneseComponent implements OnInit {
   savePatologiaFamiliar(form) {
     if (!this.student.Q31) {
       this.CardioParentesco = [];
+      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Cardiopatia').subscribe(
-        resd => console.log(resd)
+        resd => this.spinner = false
       );
     }
+    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.CardioParentesco).subscribe(
-      res1 => console.log(res1)
+      res1 => this.spinner = false
     );
     if (!this.student.Q32) {
       this.HiperParentesco = [];
+      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Hipertensao').subscribe(
-        resd => console.log(resd)
+        resd => this.spinner = false
       );
     }
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.HiperParentesco).subscribe(
@@ -246,21 +249,25 @@ export class AnameneseComponent implements OnInit {
     );
     if (!this.student.Q33) {
       this.DiabetesParentesco = [];
+      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Diabetes').subscribe(
-        resd => console.log(resd)
+        resd => this.spinner = false
       );
     }
+    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.DiabetesParentesco).subscribe(
-      res2 => console.log(res2)
+      res2 => this.spinner = false
     );
     if (!this.student.Q34) {
       this.OutraDoencaParentesco = [];
+      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/OutraDoenca').subscribe(
-        resd => console.log(resd)
+        resd => this.spinner = false
       );
     }
+    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.OutraDoencaParentesco).subscribe(
-      res2 => console.log(res2)
+      res2 => this.spinner = false
     );
     this.saveData(form);
   }

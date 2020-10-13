@@ -257,16 +257,16 @@ export class AnameneseComponent implements OnInit {
     if (!this.student.Q31) {
       this.CardioParentesco = [];
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Cardiopatia').subscribe(
-        resd => this.spinner = false
+        resd => console.log(resd)
       );
     }
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.CardioParentesco).subscribe(
-      res1 => this.spinner = false
+      res1 => console.log(res1)
     );
     if (!this.student.Q32) {
       this.HiperParentesco = [];
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Hipertensao').subscribe(
-        resd => this.spinner = false
+        resd => console.log(resd)
       );
     }
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.HiperParentesco).subscribe(
@@ -275,20 +275,20 @@ export class AnameneseComponent implements OnInit {
     if (!this.student.Q33) {
       this.DiabetesParentesco = [];
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Diabetes').subscribe(
-        resd => this.spinner = false
+        resd => console.log(resd)
       );
     }
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.DiabetesParentesco).subscribe(
-      res2 => this.spinner = false
+      res2 => console.log(res2)
     );
     if (!this.student.Q34) {
       this.OutraDoencaParentesco = [];
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/OutraDoenca').subscribe(
-        resd => this.spinner = false
+        resd => console.log(resd)
       );
     }
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.OutraDoencaParentesco).subscribe(
-      res2 => this.spinner = false
+      res2 => console.log(res2)
     );
     this.saveData(form);
   }

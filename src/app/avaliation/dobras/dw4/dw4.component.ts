@@ -152,7 +152,7 @@ export class DW4Component implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (!resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;

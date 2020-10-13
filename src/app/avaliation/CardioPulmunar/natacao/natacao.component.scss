@@ -45,17 +45,29 @@
 }
 
 .table {
-  font-size: smaller;
+  font-size: x-small;
   td,
   th {
     border: 1px solid #999;
-    padding: 0.5rem;
+    padding: 1.5px;
   }
 }
 
 em {
   font-size: x-small;
 }
+
+@media only screen and (min-width: 426px) {
+  .table {
+    font-size: smaller;
+    td,
+    th {
+      padding: 5px;
+    }
+  }
+}
+
+
 @media only screen and (min-width: 768px) {
   .section-content{
     width: 520px !important;

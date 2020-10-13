@@ -12,38 +12,46 @@
   justify-content: flex-start;
   align-items: center;
   color: white;
-  &-content{
+  &-content {
     width: 100%;
   }
 
   .h1-title {
     width: 100%;
     height: 30px;
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 10px !important;
   }
-  form{
+  form {
     width: 100% !important;
   }
 }
 
-.section-info{
+.section-info {
   margin: auto;
   margin-top: 20px;
 }
 
-.mat-card{
+.mat-card {
   padding: 20px;
   background-color: transparent;
   color: white;
 }
 
-.mat-card-header{
+.mat-card-header {
   justify-content: center;
 }
 
-@media only screen and (min-width: 768px){
-  .section-content{
+@media only screen and (min-width: 322px) {
+  .section {
+    .h1-title {
+      font-size: 20px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .section-content {
     width: 520px !important;
   }
 }

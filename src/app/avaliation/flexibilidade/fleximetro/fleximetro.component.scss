@@ -1,59 +1,70 @@
 .container {
-    background-image: url("./../../../../assets/img/postural_fundo.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .section {
+  background-image: url("./../../../../assets/img/postural_fundo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  &-content {
     width: 100%;
+  }
+  &-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    color: white;
-    &-content{
-      width: 100%;
-    }
-    &-info{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .h1-title {
-      width: 100%;
-      height: 30px;
-      font-size: 20px;
-      margin-top: 10px !important;
-    }
-    form{
-      width: 100% !important;
-    }
   }
 
-  .table-row-subtitle{
-    background-color: rgba(59, 58, 58, 0.74);
+  .h1-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 10px !important;
   }
-  
-  .sub-line {
-   text-align: start;
-   color: rgb(37, 211, 211);
+  form {
+    width: 100% !important;
   }
+}
 
-  .table{
+.table-row-subtitle {
+  background-color: rgba(59, 58, 58, 0.74);
+}
+
+.sub-line {
+  text-align: start;
+  color: rgb(37, 211, 211);
+}
+
+.table {
+  font-size: x-small;
+  td,
+  th {
+    border: 1px solid #999;
+    padding: 1.5px;
+  }
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+
+@media only screen and (min-width: 426px) {
+  .table {
     font-size: smaller;
-    td, th {
-      border: 1px solid #999;
-      padding: 0.5rem;
+    td,
+    th {
+      padding: 5px;
     }
-    margin-top: 12px;
-    margin-bottom: 12px;
   }
-  
+}
 
 @media only screen and (min-width: 768px) {
-    .section-content{
-        width: 520px !important;
-    }
+  .section-content {
+    width: 520px !important;
+  }
 }

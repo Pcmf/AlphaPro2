@@ -72,7 +72,7 @@ export class AllDobrasComponent implements OnInit {
           this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
           this.maxPointer = -1;
-          this.addEvaluation();
+          /* this.addEvaluation(); */
         }
         this.spinner = false;
       }
@@ -182,7 +182,7 @@ export class AllDobrasComponent implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (!resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;

@@ -38,6 +38,7 @@ export class AnameneseComponent implements OnInit {
     this.errorData.month = false;
     this.errorData.day = false;
     this.selectedStudent = JSON.parse(sessionStorage.selectedStudent);
+
   }
 
   ngOnInit(): void {
@@ -66,15 +67,7 @@ export class AnameneseComponent implements OnInit {
           this.student.DT_OBJ = this.datapipe.transform(this.student.DT_OBJ, 'dd/MM/yyyy');
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
-          // Select NAF painel
-          console.log(this.student.nafs);
-          if (!this.student.nafs || this.student.nafs <= 1 ) {
-            this.selectedTab = 0;
-          } else if (this.student.nafs <= 3) {
-             this.selectedTab = 1;
-          } else {
-             this.selectedTab = 2 ;
-          }
+
           this.checkHipertenso();
           this.dataService.getData('patfam/' + this.selectedStudent.id).subscribe(
             respp => {
@@ -99,6 +92,16 @@ export class AnameneseComponent implements OnInit {
               });
             }
           );
+          // Select NAF painel
+          console.log(this.student.nafs);
+          if (!this.student.nafs || this.student.nafs <= 1) {
+            this.selectedTab = 0;
+          } else if (this.student.nafs <= 3) {
+            this.selectedTab = 1;
+          } else {
+            this.selectedTab = 2;
+          }
+          console.log(this.selectedTab);
         } else {
           this.student = [];
           this.student.profissao = this.selectedStudent.profissao;

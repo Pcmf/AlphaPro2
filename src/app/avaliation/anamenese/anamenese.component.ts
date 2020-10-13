@@ -13,6 +13,7 @@ export class AnameneseComponent implements OnInit {
   step: number;
   startDate = new Date();
   student: any = [];
+  selectedTab = 0;
   selectedStudent: any = [];
   dataIniPgm: any;
   dataUltimoExame: any;
@@ -40,7 +41,6 @@ export class AnameneseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spinner = true;
     this.dataService.getData('clients/anamnese/' + this.selectedStudent.id).subscribe(
       (resp: any) => {
         if (resp.length > 0) {
@@ -66,6 +66,15 @@ export class AnameneseComponent implements OnInit {
           this.student.DT_OBJ = this.datapipe.transform(this.student.DT_OBJ, 'dd/MM/yyyy');
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
+          // Select NAF painel
+          console.log(this.student.nafs);
+          if (!this.student.nafs || this.student.nafs <= 1 ) {
+            this.selectedTab = 0;
+          } else if (this.student.nafs <= 3) {
+             this.selectedTab = 1;
+          } else {
+             this.selectedTab = 2 ;
+          }
           this.checkHipertenso();
           this.dataService.getData('patfam/' + this.selectedStudent.id).subscribe(
             respp => {
@@ -88,7 +97,6 @@ export class AnameneseComponent implements OnInit {
                   this.OutraDoencaParentesco.push(el);
                 }
               });
-              this.spinner = false;
             }
           );
         } else {
@@ -99,9 +107,7 @@ export class AnameneseComponent implements OnInit {
           this.DiabetesParentesco = [];
           this.OutraDoencaParentesco = [];
           this.checkHipertenso();
-          this.spinner = false;
         }
-        this.spinner = false;
       }
     );
   }
@@ -228,18 +234,15 @@ export class AnameneseComponent implements OnInit {
   savePatologiaFamiliar(form) {
     if (!this.student.Q31) {
       this.CardioParentesco = [];
-      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Cardiopatia').subscribe(
         resd => this.spinner = false
       );
     }
-    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.CardioParentesco).subscribe(
       res1 => this.spinner = false
     );
     if (!this.student.Q32) {
       this.HiperParentesco = [];
-      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Hipertensao').subscribe(
         resd => this.spinner = false
       );
@@ -249,23 +252,19 @@ export class AnameneseComponent implements OnInit {
     );
     if (!this.student.Q33) {
       this.DiabetesParentesco = [];
-      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/Diabetes').subscribe(
         resd => this.spinner = false
       );
     }
-    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.DiabetesParentesco).subscribe(
       res2 => this.spinner = false
     );
     if (!this.student.Q34) {
       this.OutraDoencaParentesco = [];
-      this.spinner = true;
       this.dataService.delete('patfam/' + this.selectedStudent.id + '/OutraDoenca').subscribe(
         resd => this.spinner = false
       );
     }
-    this.spinner = true;
     this.dataService.setData('patfam/' + this.selectedStudent.id, this.OutraDoencaParentesco).subscribe(
       res2 => this.spinner = false
     );
@@ -320,7 +319,6 @@ export class AnameneseComponent implements OnInit {
     this.spinner = true;
     this.dataService.setData('clients/anamnese/' + this.selectedStudent.id, form).subscribe(
       resp => {
-        console.log(resp);
         this.spinner = false;
       }
     );

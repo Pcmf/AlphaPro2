@@ -127,9 +127,9 @@
                 <mat-card-subtitle i18n="Label">Nível de Atividade Física</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <mat-tab-group  [selectedIndex]="selectedTab">
+                <mat-tab-group>
+                  
                   <mat-tab label=" A ">
-
                     <p i18n>Não participa regularmente de atividades esportivas ou recreacionais programadas ou
                       exercícios
                       físicos intensos.</p>
@@ -149,8 +149,8 @@
 
                     </mat-radio-group>
                   </mat-tab>
-                  <mat-tab label=" B ">
 
+                  <mat-tab label=" B ">
                     <p i18n>Participa regularmente de atividades esportivas moderadas ou recreacionais programadas,
                       tais como golfe, andar a cavalo, movimentos calistênicos, tênis de mesa, ...</p>
                     <mat-radio-group aria-label="Select an option" #nafs="ngModel" name="nafs"
@@ -159,8 +159,8 @@
                       <mat-radio-button value="3" i18n> Acima de 1 hora por semana.</mat-radio-button>
                     </mat-radio-group>
                   </mat-tab>
-                  <mat-tab label=" C">
 
+                  <mat-tab label=" C">
                     <p i18n>Participa regularmente de exercícios físicos intensos, tais como corrida ao ar livre,
                       corrida em esteira, remo, natação, ciclismo ou participa de atividades aeróbias vigorosas tais
                       como

@@ -62,7 +62,11 @@ export class AnameneseComponent implements OnInit {
           this.student.hipertenso == 0 ? this.student.hipertenso = false : this.student.hipertenso = true;
           this.student.osteoporose == 0 ? this.student.osteoporose = false : this.student.osteoporose = true;
           this.student.osteopenia == 0 ? this.student.osteopenia = false : this.student.osteopenia = true;
-          this.student.DT_OBJ = this.datapipe.transform(this.student.DT_OBJ, 'dd/MM/yyyy');
+          if (this.student.DT_OBJ && this.student.DT_OBJ !== '0000-00-00') {
+            this.student.DT_OBJ = this.datapipe.transform(this.student.DT_OBJ, 'dd/MM/yyyy');
+          } else {
+            this.student.DT_OBJ = '';
+          }
           this.dataIniPgm = this.student.dt_prevista;
           this.dataUltimoExame = this.student.Q4BDATA;
           // Select NAF painel

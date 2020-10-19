@@ -338,10 +338,9 @@ export class AnameneseComponent implements OnInit {
   }
 
   saveData(form) {
-    this.spinner = true;
     this.dataService.setData('clients/anamnese/' + this.selectedStudent.id, form).subscribe(
       resp => {
-        this.spinner = false;
+        console.log(resp);
       }
     );
   }

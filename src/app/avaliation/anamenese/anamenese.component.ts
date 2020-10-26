@@ -16,7 +16,7 @@ export class AnameneseComponent implements OnInit {
   selectedTab1 = 0;
   selectedStudent: any = [];
   dataIniPgm: any;
-  dataUltimoExame: any;
+ // dataUltimoExame: any;
   spinner = false;
 
   doencasList: any = [];
@@ -68,7 +68,7 @@ export class AnameneseComponent implements OnInit {
             this.student.DT_OBJ = '';
           }
           this.dataIniPgm = this.student.dt_prevista;
-          this.dataUltimoExame = this.student.Q4BDATA;
+         // this.dataUltimoExame = this.student.Q4BDATA;
           // Select NAF painel
           console.log(this.student.nafs);
           setTimeout(() => {
@@ -306,7 +306,7 @@ export class AnameneseComponent implements OnInit {
       form.Q4ATA = 0;
       form.Q4ATA = 0;
     }
-    form.Q4BDATA = this.dataUltimoExame;
+  //  form.Q4BDATA = this.dataUltimoExame;
     this.saveData(form);
   }
 

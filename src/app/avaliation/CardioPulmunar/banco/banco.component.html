@@ -2,150 +2,177 @@
     <app-header-name></app-header-name>
     <div class="section">
         <div class="section-content">
-         <h1 class="h1-title" i18n>Katch e McArdle, (1984) - 3min</h1>
-        <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
-            <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
-            <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
-            <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
-            <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
-            <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
-            <input type="hidden" name="fc2" #fc2="ngModel" [ngModel]="newEvaluation.fc2">
-            <table class="section-table">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th class="th-top" *ngIf="pointer>=1 && !addEval">
-                            <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button> 
-                        </th>
-                        <th class="th-top" *ngIf="pointer>=0">
-                            <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button> 
-                        </th>
-                        <th class="th-top" *ngIf="addEval">
-                            <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date" class="data-input">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Metrônomo')">Metrônomo</span>
-                        <span *ngIf="!addEval" class="metronomo-button">
-                            <button mat-mini-fab color="warn" routerLink="/metro/">
-                                <mat-icon class="mat-18">arrow_right</mat-icon>
-                            </button>
-                        </span>
-                        </th>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n>FC final</th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].fc | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number" (focus)="$event.target.select()"
-                             cdkTrapFocus cdkTrapFocusAutoCapture>
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].fc | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number" (focus)="$event.target.select()"
-                             cdkTrapFocus cdkTrapFocusAutoCapture>
-                        </td>
-                        <td *ngIf="addEval">
-                            <input  name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th i18n>Passadas minuto</th>
-                        <td *ngIf="pointer>=1 && !addEval && editPointer!=1">{{evaluation[pointer-1].min0 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==1 && editAv">
-                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].min0 | number: '': locale}}</td>
-                        <td *ngIf="editPointer==0 && editAv">
-                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number" (focus)="$event.target.select()">
-                        </td>
-                        <td *ngIf="addEval">
-                            <input name="min0" #min0="ngModel" [(ngModel)]="newEvaluation.min0" type="number">
-                        </td>
-                    </tr>
-                    <!--  resultados -->
-                    <tr>
-                        <th i18n><span (click)="openDialog('FC Estimado')">FC Estimada</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fcestimada | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('FC Reserva')">FC Reserva</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fcreserva | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('% FC Máxima Alcançada')">% FC Máx. Alcançada</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_percfcm | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('Índice Aeróbico Funcional')">Índice Aeróbico Funcional (FAI)</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fai | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('VO2 Máximo Obtido')">VO2 Máx Obtido</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2m | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th i18n><span (click)="openDialog('VO2 Máximo Estimado')">VO2 Máx. Estimado</span></th>
-                        <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2e | number: '': locale}}</td>
-                        <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e | number: '': locale}}</td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <th>Ações</th>
-                        <td *ngIf="pointer>=1 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer-1].data"
-                                (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="pointer>=0 && !addEval">
-                            <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
-                                [dataAv]="evaluation[pointer].data"
-                                (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
-                        </td>
-                        <td *ngIf="addEval">&nbsp;</td>
-                    </tr>
-                </tbody>
-            </table>
-            <em>*Frequência Cardiaca (FC) em batimentos por minuto (bpm)</em>
+            <h1 class="h1-title" i18n>Katch e McArdle, (1984) - 3min</h1>
+            <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
+                <input type="hidden" name="nafs" #nafs="ngModel" [ngModel]="newEvaluation.nafs">
+                <input type="hidden" name="altura" #altura="ngModel" [ngModel]="newEvaluation.altura">
+                <input type="hidden" name="peso" #peso="ngModel" [ngModel]="newEvaluation.peso">
+                <input type="hidden" name="idade" #idade="ngModel" [ngModel]="newEvaluation.idade">
+                <input type="hidden" name="sexo" #sexo="ngModel" [ngModel]="newEvaluation.sexo">
+                <input type="hidden" name="fc2" #fc2="ngModel" [ngModel]="newEvaluation.fc2">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="th-top" *ngIf="pointer>=1 && !addEval">
+                                <button type="button">{{evaluation[pointer-1].data | date:'dd/LL/yyyy'}}</button>
+                            </th>
+                            <th class="th-top" *ngIf="pointer>=0">
+                                <button type="button">{{evaluation[pointer].data | date:'dd/LL/yyyy'}}</button>
+                            </th>
+                            <th class="th-top" *ngIf="addEval">
+                                <input name="data" #data="ngModel" [(ngModel)]="newEvaluation.data" type="date"
+                                    class="data-input">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th i18n><span (click)="openDialog('Metrônomo')">Metrônomo</span>
+                                <span *ngIf="!addEval" class="metronomo-button">
+                                    <button mat-mini-fab color="warn" routerLink="/metro/">
+                                        <mat-icon class="mat-18">arrow_right</mat-icon>
+                                    </button>
+                                </span>
+                            </th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n>FC final</th>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                {{evaluation[pointer-1].fc | number: '': locale}}</td>
+                            <td *ngIf="editPointer==1 && editAv">
+                                <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
+                            </td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].fc | number: '': locale}}
+                            </td>
+                            <td *ngIf="editPointer==0 && editAv">
+                                <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
+                                    (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
+                            </td>
+                            <td *ngIf="addEval">
+                                <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number" cdkTrapFocus
+                                    cdkTrapFocusAutoCapture>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th i18n>Passadas minuto</th>
+                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                <span *ngIf="student.sexo =='M'">96</span>
+                                <span *ngIf="student.sexo =='F'">88</span>
+                            </td>
+                            <td *ngIf="editPointer==1 && editAv && student.sexo == 'M'">
+                                <input type="number" readonly value="96">
+                            </td>
+                            <td *ngIf="editPointer==1 && editAv && student.sexo == 'F'">
+                                <input type="number" readonly value="88">
+                            </td>
+                            <td *ngIf="pointer>=0 && editPointer!=0">
+                                <span *ngIf="student.sexo =='M'">96</span>
+                                <span *ngIf="student.sexo =='F'">88</span>
+                            </td>
+                            <td *ngIf="editPointer==0 && editAv && student.sexo == 'M'">
+                                <input type="number" readonly value="96">
+                            </td>
+                            <td *ngIf="editPointer==0 && editAv && student.sexo == 'F'">
+                                <input type="number" readonly value="88">
+                            </td>
+                            <td *ngIf="addEval && student.sexo=='M'">
+                                <input readonly value="96" type="number">
+                            </td>
+                            <td *ngIf="addEval && student.sexo=='F'">
+                                <input readonly value="88" type="number">
+                            </td>
+                        </tr>
+                        <!--  resultados -->
+                        <tr>
+                            <th i18n><span (click)="openDialog('FC Estimado')">FC Estimada</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">
+                                {{evaluation[pointer-1].c_fcestimada | number: '1.0-0': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '1.0-0': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('FC Reserva')">FC Reserva</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">
+                                {{evaluation[pointer-1].c_fcreserva | number: '1.0-0': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '1.0-0': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('% FC Máxima Alcançada')">% FC Máx. Alcançada</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_percfcm | number: '': locale}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_percfcm | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('Índice Aeróbico Funcional')">Índice Aeróbico Funcional
+                                    (FAI)</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_fai | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fai | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('VO2 Máximo Obtido')">VO2 Máx Obtido</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2m | number: '': locale}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2m | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th i18n><span (click)="openDialog('VO2 Máximo Estimado')">VO2 Máx. Estimado</span></th>
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].c_vo2e | number: '': locale}}
+                            </td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_vo2e | number: '': locale}}</td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>Ações</th>
+                            <td *ngIf="pointer>=1 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==1 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer-1].data"
+                                    (action)="executeAction($event, evaluation[pointer-1], 1)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="pointer>=0 && !addEval">
+                                <app-edit-del-form *ngIf="(editPointer==0 && editAv) || !editAv"
+                                    [dataAv]="evaluation[pointer].data"
+                                    (action)="executeAction($event, evaluation[pointer], 0)"></app-edit-del-form>
+                            </td>
+                            <td *ngIf="addEval">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <em>*Frequência Cardiaca (FC) em batimentos por minuto (bpm)</em>
 
-            <div class="action">
-                <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab color="default"
-                    (click)="pointer=pointer-1">
-                    <mat-icon class="mat-14">chevron_left</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv" (click)="addEvaluation()">
-                    <mat-icon class="mat-18" color="accent">add</mat-icon>
-                </button>
-                <button type="button" *ngIf="!addEval" [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv"
-                    mat-mini-fab color="default" (click)="pointer=pointer+1">
-                    <mat-icon class="mat-14">chevron_right</mat-icon>
-                </button>
-                <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
-                    <mat-icon class="mat-18" color="warn">close</mat-icon>
-                </button>
-                <button *ngIf="addEval" mat-stroked-button>
-                    <mat-icon class="mat-18" color="accent">check</mat-icon>
-                </button>
+                <div class="action">
+                    <button type="button" *ngIf="!addEval" [disabled]="pointer<=1 || editAv" mat-mini-fab
+                        color="default" (click)="pointer=pointer-1">
+                        <mat-icon class="mat-14">chevron_left</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval" mat-stroked-button [disabled]="editAv"
+                        (click)="addEvaluation()">
+                        <mat-icon class="mat-18" color="accent">add</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="!addEval"
+                        [disabled]="pointer == maxPointer-1 || pointer == -1 || editAv" mat-mini-fab color="default"
+                        (click)="pointer=pointer+1">
+                        <mat-icon class="mat-14">chevron_right</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="addEval" mat-stroked-button color="default" (click)="closeInput()">
+                        <mat-icon class="mat-18" color="warn">close</mat-icon>
+                    </button>
+                    <button *ngIf="addEval" mat-stroked-button>
+                        <mat-icon class="mat-18" color="accent">check</mat-icon>
+                    </button>
+                </div>
+            </form>
+
+            <div class="charts" *ngIf="refresh">
+                <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
             </div>
-        </form>
-
-        <div class="charts" *ngIf="refresh">
-            <app-chart-cardio [evaluation]="evaluation" [protocolo]="protocolo"></app-chart-cardio>
         </div>
-    </div>
 
     </div>
     <app-overlay *ngIf="spinner"></app-overlay>

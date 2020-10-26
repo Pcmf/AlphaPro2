@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th i18n>Tempo Final <small>(m:s)</small></th>
+                            <th i18n>Tempo Final <small>(min:s)</small></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].c_tempo | mask: '00:00'}}</td>
                             <td *ngIf="editPointer==1 && editAv">
@@ -53,12 +53,12 @@
                         <tr>
                             <th i18n>FC Final</th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
-                                {{evaluation[pointer-1].fc | number: '': locale}}</td>
+                                {{evaluation[pointer-1].fc | number: '1.0-0': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
                                 <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
                                     (focus)="$event.target.select()">
                             </td>
-                            <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].fc | number: '': locale}}
+                            <td *ngIf="pointer>=0 && editPointer!=0">{{evaluation[pointer].fc | number: '1.0-0': locale}}
                             </td>
                             <td *ngIf="editPointer==0 && editAv">
                                 <input name="fc" #fc="ngModel" [(ngModel)]="newEvaluation.fc" type="number"
@@ -72,15 +72,15 @@
                         <tr>
                             <th i18n><span (click)="openDialog('FC Estimada')">FC Estimada</span></th>
                             <td *ngIf="pointer>=1 && !addEval">
-                                {{evaluation[pointer-1].c_fcestimada | number: '': locale}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '': locale}}</td>
+                                {{evaluation[pointer-1].c_fcestimada | number: '1.0-0': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcestimada | number: '1.0-0': locale}}</td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                         <tr>
                             <th i18n><span (click)="openDialog('FC Reserva')">FC Reserva</span></th>
                             <td *ngIf="pointer>=1 && !addEval">
-                                {{evaluation[pointer-1].c_fcreserva | number: '': locale}}</td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '': locale}}</td>
+                                {{evaluation[pointer-1].c_fcreserva | number: '1.0-0': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].c_fcreserva | number: '1.0-0': locale}}</td>
                             <td *ngIf="addEval">&nbsp;</td>
                         </tr>
                         <tr>

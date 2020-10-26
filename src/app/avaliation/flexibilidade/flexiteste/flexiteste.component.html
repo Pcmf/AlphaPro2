@@ -2061,28 +2061,28 @@
                                 </tr>
                                 <tr>
                                     <th>Direito</th>
-                                    <td *ngIf="pointer>=1 && !addEval">
+                                    <td *ngIf="pointer>=1 && !addEval" style="font-weight: 600">
                                         {{+evaluation[pointer-1].msd + +evaluation[pointer-1].mid}}
                                     </td>
-                                    <td *ngIf="pointer>=0">
+                                    <td *ngIf="pointer>=0" style="font-weight: 600">
                                         {{+evaluation[pointer].msd + +evaluation[pointer].mid}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Esquerdo</th>
-                                    <td *ngIf="pointer>=1 && !addEval">
+                                    <td *ngIf="pointer>=1 && !addEval" style="font-weight: 600">
                                         {{+evaluation[pointer-1].mse + +evaluation[pointer-1].mie}}
                                     </td>
-                                    <td *ngIf="pointer>=0">
+                                    <td *ngIf="pointer>=0" style="font-weight: 600">
                                         {{+evaluation[pointer].mse + +evaluation[pointer].mie}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <td *ngIf="pointer>=1 && !addEval">
+                                    <td *ngIf="pointer>=1 && !addEval" style="font-weight: 600">
                                         {{+evaluation[pointer-1].ms + +evaluation[pointer-1].mid + +evaluation[pointer-1].mie}}
                                     </td>
-                                    <td *ngIf="pointer>=0">
+                                    <td *ngIf="pointer>=0" style="font-weight: 600">
                                         {{+evaluation[pointer].ms + +evaluation[pointer].mid + +evaluation[pointer].mie}}
                                     </td>
                                 </tr>

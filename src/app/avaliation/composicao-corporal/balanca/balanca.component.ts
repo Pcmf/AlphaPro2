@@ -261,7 +261,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 21) {
           return 'Baixo';
         } else if (percGordura >= 21 && percGordura < 33) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 33 && percGordura < 39) {
           return 'Sobrepeso';
         } else {
@@ -271,7 +271,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 23) {
           return 'Baixo';
         } else if (percGordura >= 23 && percGordura < 34) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 34 && percGordura < 40) {
           return 'Sobrepeso';
         } else {
@@ -281,7 +281,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 24) {
           return 'Baixo';
         } else if (percGordura >= 24 && percGordura < 36) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 36 && percGordura < 42) {
           return 'Sobrepeso';
         } else {
@@ -295,7 +295,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 8) {
           return 'Baixo';
         } else if (percGordura >= 8 && percGordura < 20) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 20 && percGordura < 25) {
           return 'Sobrepeso';
         } else {
@@ -305,7 +305,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 11) {
           return 'Baixo';
         } else if (percGordura >= 11 && percGordura < 22) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 22 && percGordura < 28) {
           return 'Sobrepeso';
         } else {
@@ -315,7 +315,7 @@ export class BalancaComponent implements OnInit {
         if (percGordura < 13) {
           return 'Baixo';
         } else if (percGordura >= 13 && percGordura < 25) {
-          return 'Aceitávél';
+          return 'Aceitável';
         } else if (percGordura >= 25 && percGordura < 30) {
           return 'Sobrepeso';
         } else {

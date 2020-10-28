@@ -2,7 +2,7 @@
     <app-header-name></app-header-name>
     <div class="section">
         <div class="section-content">
-            <h1 class="h1-title" i18n>Tran & Weltman (1989)</h1>
+            <h1 class="h1-title" i18n>Tran & Weltman <small>&nbsp;(1989)</small></h1>
             <form #f="ngForm" (keydown.enter)="$event.preventDefault()" (submit)="save(f.value)" autocomplete="off">
                 <input type="hidden" name="altura" #altura="ngModel" [(ngModel)]="newEvaluation.altura">
                 <input type="hidden" name="peso" #peso="ngModel" [(ngModel)]="newEvaluation.peso">
@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th i18n><span (click)="openHelpDialog('Abdominal (umbigo)')">Abdominal (umbigo)</span></th>
+                            <th i18n><span (click)="openHelpDialog('Abdominal')">Abdominal</span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                 {{evaluation[pointer-1].abdomen2 | number: '': locale}}</td>
                             <td *ngIf="editPointer==1 && editAv">
@@ -50,26 +50,7 @@
                                     type="number" (focus)="$event.target.select()" cdkTrapFocus cdkTrapFocusAutoCapture>
                             </td>
                         </tr>
-                        <tr>
-                            <th i18n><span (click)="openHelpDialog('Abdominal (cintura)')">Abdominal (cintura)</span>
-                            </th>
-                            <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
-                                {{evaluation[pointer-1].abdomen | number: '': locale}}</td>
-                            <td *ngIf="editPointer==1 && editAv">
-                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
-                                    type="number" (focus)="$event.target.select()">
-                            </td>
-                            <td *ngIf="pointer>=0 && editPointer!=0">
-                                {{evaluation[pointer].abdomen | number: '': locale}}</td>
-                            <td *ngIf="editPointer==0 && editAv">
-                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
-                                    type="number" (focus)="$event.target.select()">
-                            </td>
-                            <td *ngIf="addEval">
-                                <input name="abdomen" #abdomen="ngModel" [(ngModel)]="newEvaluation.abdomen"
-                                    type="number" (focus)="$event.target.select()">
-                            </td>
-                        </tr>
+
                         <tr>
                             <th i18n><span (click)="openHelpDialog('Cintura')">Cintura</span></th>
                             <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
@@ -110,20 +91,20 @@
                         </tr>
                         <tr>
                             <th><span (click)="openHelpDialog('Altura')">Altura <small>(m)</small></span></th>
-                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '': locale}}
+                            <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].altura | number: '1.2-2': locale}}
                             </td>
-                            <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '': locale}}</td>
-                            <td *ngIf="addEval">{{newEvaluation.altura | number: '': locale}}</td>
+                            <td *ngIf="pointer>=0">{{evaluation[pointer].altura | number: '1.2-2': locale}}</td>
+                            <td *ngIf="addEval">{{newEvaluation.altura | number: '1.2-2': locale}}</td>
                         </tr>
                         <tr>
-                            <th><span (click)="openHelpDialog('Peso corporal')">Peso corporal <small>(m)</small></span></th>
+                            <th><span (click)="openHelpDialog('Peso corporal')">Peso corporal <small>(Kg)</small></span></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].peso | number: '': locale}}
                             </td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].peso | number: '': locale}}</td>
                             <td *ngIf="addEval">{{newEvaluation.peso | number: '': locale}}</td>
                         </tr>
                         <tr>
-                            <th>Idade</th>
+                            <th>Idade <small>(anos)</small></th>
                             <td *ngIf="pointer>=1 && !addEval">{{evaluation[pointer-1].idade | number: '': locale}}</td>
                             <td *ngIf="pointer>=0">{{evaluation[pointer].idade | number: '': locale}}</td>
                             <td *ngIf="addEval">{{ age | number: '': locale}}</td>
@@ -144,7 +125,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <small class="advise-sm" i18n>* Todas as medidas são em centimetros</small>
+                                <small class="advise-sm" i18n>* Todas as medidas de perímetros são em centimetros</small>
                             </td>
                         </tr>
                         

@@ -226,7 +226,7 @@ export class ProtcolosDobrasService {
     this.morfo = morfo;
     // Precisa da formula
     if (morfo.sexo === 'F') {
-      const CABD = (morfo.abdomen + morfo.abdomen2) / 2;
+      const CABD = (morfo.abdomen + morfo.cinturang) / 2;
       const DC = 1.168297 - (0.002824 * CABD) + 0.000012298 * Math.pow(CABD, 2) - 0.000733128 * +morfo.quadril
       + 0.000510477 * +morfo.altura - 0.000216162 * +morfo.idade;
       this.perGordura = (4.95 / DC - 4.5) * 100;

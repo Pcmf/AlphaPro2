@@ -28,6 +28,7 @@ export class WB3Component implements OnInit {
   age: number;
   somatorio = 0;
   protocolo = 15;
+  pesos: any = [];
 
   // graphics
   chartSelected = 'pie';
@@ -40,16 +41,17 @@ export class WB3Component implements OnInit {
   locale: string;
   spinner = false;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService,
-              private prepareChart: PrepareChartService,
-              private ageService: AgeService,
-              private dialogService: DialogService,
-              private lastEvalService: LastEvaluationService
-               ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    private protocolos: ProtcolosDobrasService,
+    private prepareChart: PrepareChartService,
+    private ageService: AgeService,
+    private dialogService: DialogService,
+    private lastEvalService: LastEvaluationService
+  ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
@@ -86,7 +88,7 @@ export class WB3Component implements OnInit {
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
           this.maxPointer = -1;
           this.showChart = false;
@@ -94,7 +96,7 @@ export class WB3Component implements OnInit {
         this.spinner = false;
       }
     );
-   }
+  }
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
     this.selectedEvaluation = evaluation;
@@ -107,6 +109,10 @@ export class WB3Component implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloWilmoreBehnk3d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -121,16 +127,16 @@ export class WB3Component implements OnInit {
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.spinner = true;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.spinner = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -152,7 +158,7 @@ export class WB3Component implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (resp.erro != undefined  && !resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;
@@ -228,7 +234,7 @@ export class WB3Component implements OnInit {
     this.addEval = false;
     this.getData();
   }
-  
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000, verticalPosition: 'top'

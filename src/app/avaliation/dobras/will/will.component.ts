@@ -32,22 +32,24 @@ export class WillComponent implements OnInit {
   single: any[];
   single2: any[];
   showChart = false;
+  pesos: any = [];
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
   locale: string;
   spinner = false;
 
-  constructor(private location: Location,
-              private dataService: DataService,
-              private datapipe: DatePipe,
-              private snackBar: MatSnackBar,
-              private protocolos: ProtcolosDobrasService,
-              private prepareChart: PrepareChartService,
-              private ageService: AgeService,
-              private dialogService: DialogService,
-              private lastEvalService: LastEvaluationService
-               ) {
+  constructor(
+    private location: Location,
+    private dataService: DataService,
+    private datapipe: DatePipe,
+    private snackBar: MatSnackBar,
+    private protocolos: ProtcolosDobrasService,
+    private prepareChart: PrepareChartService,
+    private ageService: AgeService,
+    private dialogService: DialogService,
+    private lastEvalService: LastEvaluationService
+  ) {
     this.locale = this.dataService.getCountryId();
     this.student = JSON.parse(sessionStorage.selectedStudent);
     this.student.percgd > 0 ? this.gorduraDesejada = this.student.percgd : this.student.percgd = this.gorduraDesejada;
@@ -83,7 +85,7 @@ export class WillComponent implements OnInit {
           this.pointer = this.maxPointer - 1;
           this.setEvaluation(this.evaluation[this.pointer]);
         } else {
-          this.newEvaluation.data = this.datapipe.transform( Date(), 'yyyy-MM-dd');
+          this.newEvaluation.data = this.datapipe.transform(Date(), 'yyyy-MM-dd');
           this.pointer = -1;
           this.maxPointer = -1;
           this.showChart = false;
@@ -91,7 +93,7 @@ export class WillComponent implements OnInit {
         this.spinner = false;
       }
     );
-   }
+  }
 
   // Seleciona a data que está a mostrar
   setEvaluation(evaluation) {
@@ -99,34 +101,38 @@ export class WillComponent implements OnInit {
     this.startGraphics(evaluation);
   }
 
- // Iniciar os graficos
- startGraphics(evaluation) {
-  evaluation.idade = this.age;
-  evaluation.sexo = this.student.sexo;
-  const proto = this.protocolos.protocoloWilliams4d(evaluation, this.gorduraDesejada);
-  // Create graphic
-  this.showChart = true;
-  this.single = this.prepareChart.getSingle1(proto);
-  Object.assign(this, this.single);
-  // Create graphic 2
-  this.single2 = this.prepareChart.getSingle2(proto);
-  Object.assign(this, this.single2);
-}
+  // Iniciar os graficos
+  startGraphics(evaluation) {
+    evaluation.idade = this.age;
+    evaluation.sexo = this.student.sexo;
+    const proto = this.protocolos.protocoloWilliams4d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
+    // Create graphic
+    this.showChart = true;
+    this.single = this.prepareChart.getSingle1(proto);
+    Object.assign(this, this.single);
+    // Create graphic 2
+    this.single2 = this.prepareChart.getSingle2(proto);
+    Object.assign(this, this.single2);
+  }
   ngOnInit(): void {
   }
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.spinner = true;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.spinner = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -148,7 +154,7 @@ export class WillComponent implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (resp.erro != undefined  && !resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;

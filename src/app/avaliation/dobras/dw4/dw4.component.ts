@@ -31,6 +31,7 @@ export class DW4Component implements OnInit {
   single: any[];
   single2: any[];
   showChart = false;
+  pesos: any = [];
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
@@ -106,6 +107,10 @@ export class DW4Component implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloDurninWormersley4d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);

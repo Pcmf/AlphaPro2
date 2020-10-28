@@ -1,0 +1,18 @@
+.mat-card{
+    background-color: #7c7a7a54;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.line{
+    width: 90%;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.list-title{
+    font-weight: 600;
+}
+

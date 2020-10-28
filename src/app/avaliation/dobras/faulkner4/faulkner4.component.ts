@@ -29,6 +29,7 @@ export class Faulkner4Component implements OnInit {
   protocolo = 2;
   locale: string;
   spinner = false;
+  pesos: any = [];
 
   // graphics
   chartSelected = 'pie';
@@ -106,6 +107,10 @@ export class Faulkner4Component implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloPetroski(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);

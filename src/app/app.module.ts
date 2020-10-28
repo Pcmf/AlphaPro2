@@ -112,6 +112,7 @@ import { HeaderNameComponent } from './commun/header-name/header-name.component'
 import { EditDelFormComponent, ConfirmDeleteDialog } from './commun/edit-del-form/edit-del-form.component';
 import { TesteOrtopedicosDashComponent } from './avaliation/teste-ortopedicos-dash/teste-ortopedicos-dash.component';
 import { LastEvaluationService } from './services/last-evaluation.service';
+import { DobrasPainelInfoComponent } from './commun/dobras-painel-info/dobras-painel-info.component';
 
 // for swipes
 export class MyHammerConfig extends HammerGestureConfig {
@@ -207,7 +208,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     EditDelFormComponent,
     ConfirmDeleteDialog,
     ShowPhotoDialog,
-    TesteOrtopedicosDashComponent
+    TesteOrtopedicosDashComponent,
+    DobrasPainelInfoComponent
   ],
   imports: [
     BrowserModule,

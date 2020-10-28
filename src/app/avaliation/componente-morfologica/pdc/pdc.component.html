@@ -53,6 +53,29 @@
                                 </tr>
 
                                 <tr>
+                                    <th><span (click)="openDialog('Ilíacos')">Ilíacos</span></th>
+                                    <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
+                                        {{medidas[pointer-1].per_iliacos | number: '': locale}}</td>
+                                    <td *ngIf="editPointer==1 && editAv">
+                                        <input name="per_iliacos" #per_iliacos="ngModel" [(ngModel)]="newEvaluation.per_iliacos"
+                                            type="number" (focus)="$event.target.select()"
+                                            cdkTrapFocus cdkTrapFocusAutoCapture>
+                                    </td>
+                                    <td *ngIf="pointer>=0 && editPointer!=0">
+                                        {{medidas[pointer].per_iliacos | number: '': locale}}
+                                    </td>
+                                    <td *ngIf="editPointer==0 && editAv">
+                                        <input name="per_iliacos" #per_iliacos="ngModel" [(ngModel)]="newEvaluation.per_iliacos"
+                                            type="number" (focus)="$event.target.select()"
+                                            cdkTrapFocus cdkTrapFocusAutoCapture>
+                                    </td>
+                                    <td *ngIf="addEval">
+                                        <input name="per_iliacos" #per_iliacos="ngModel" [(ngModel)]="newEvaluation.per_iliacos"
+                                            type="number" cdkTrapFocus cdkTrapFocusAutoCapture>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th><span (click)="openDialog('Cintura')">Cintura</span></th>
                                     <td *ngIf="pointer>=1 && !addEval && editPointer!=1">
                                         {{medidas[pointer-1].cintura | number: '': locale}}</td>

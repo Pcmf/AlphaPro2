@@ -27,7 +27,8 @@ export class SloanComponent implements OnInit {
   age: number;
   somatorio = 0;
   protocolo = 12;
-
+  pesos: any = [];
+  
   // graphics
   chartSelected = 'pie';
   single: any[];
@@ -104,19 +105,23 @@ export class SloanComponent implements OnInit {
     this.startGraphics(evaluation);
   }
 
- // Iniciar os graficos
- startGraphics(evaluation) {
-  evaluation.idade = this.age;
-  evaluation.sexo = this.student.sexo;
-  const proto = this.protocolos.protocoloSloan2d(evaluation, this.gorduraDesejada);
-  // Create graphic
-  this.showChart = true;
-  this.single = this.prepareChart.getSingle1(proto);
-  Object.assign(this, this.single);
-  // Create graphic 2
-  this.single2 = this.prepareChart.getSingle2(proto);
-  Object.assign(this, this.single2);
-}
+  // Iniciar os graficos
+  startGraphics(evaluation) {
+    evaluation.idade = this.age;
+    evaluation.sexo = this.student.sexo;
+    const proto = this.protocolos.protocoloSloan2d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
+    // Create graphic
+    this.showChart = true;
+    this.single = this.prepareChart.getSingle1(proto);
+    Object.assign(this, this.single);
+    // Create graphic 2
+    this.single2 = this.prepareChart.getSingle2(proto);
+    Object.assign(this, this.single2);
+  }
 
 
   ngOnInit(): void {
@@ -124,16 +129,16 @@ export class SloanComponent implements OnInit {
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.spinner = true;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.spinner = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -155,7 +160,7 @@ export class SloanComponent implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (resp.erro != undefined  && !resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;

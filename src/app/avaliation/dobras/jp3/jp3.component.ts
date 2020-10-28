@@ -26,6 +26,7 @@ export class JP3Component implements OnInit {
   age: number;
   somatorio = 0;
   protocolo = 3;
+  pesos: any = [];
 
   // graphics
   chartSelected = 'pie';
@@ -109,6 +110,10 @@ export class JP3Component implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloJacksonPollok3d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);

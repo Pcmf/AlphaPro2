@@ -29,6 +29,7 @@ export class JP7Component implements OnInit {
   somatorio = 0;
   protocolo = 4;
   locale: string;
+  pesos: any = [];
 
   // graphics
   chartSelected = 'pie';
@@ -108,6 +109,10 @@ export class JP7Component implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloJacksonPollok7d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -122,16 +127,16 @@ export class JP7Component implements OnInit {
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.spinner = true;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.spinner = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }

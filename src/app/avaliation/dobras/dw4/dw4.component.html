@@ -177,7 +177,8 @@
                     </button>
                 </div>
             </form>
-            <div *ngIf="showChart">
+            <!-- Graficos -->
+            <div *ngIf="showChart">                
                 <div style="text-align: center; color: whitesmoke;">
                     <mat-button-toggle-group name="chartSelected" [(ngModel)]="chartSelected">
                         <mat-button-toggle value="pie">{{selectedEvaluation.data | date:'dd/LL/yyyy'}}
@@ -196,7 +197,10 @@
                             <mat-icon>save</mat-icon>
                         </button>
                     </div>
+                    <!-- Painel informativo dos pesos -->
+                    <app-dobras-painel-info [pesos]="pesos"></app-dobras-painel-info>
                 </div>
+
                 <!-- charts -->
                 <div class="section-charts">
                     <div class="chart-pie" *ngIf="chartSelected=='pie'">

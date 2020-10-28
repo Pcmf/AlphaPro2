@@ -31,6 +31,7 @@ export class SlaugtherComponent implements OnInit {
   single: any[];
   single2: any[];
   showChart = false;
+  pesos: any = [];
 
   gorduraDesejada = 20; // Este valor deverá ser obtido de uma tabela através de um serviço.
   fatChanged = false;
@@ -103,6 +104,10 @@ export class SlaugtherComponent implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloSlaughter2d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
@@ -117,16 +122,16 @@ export class SlaugtherComponent implements OnInit {
 
   save(form) {
     if (form.data) {
-    form.protocolo = this.protocolo;
-    this.spinner = true;
-    this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
-      resp => {
-        this.newEvaluation = [];
-        this.addEval = false;
-        this.spinner = false;
-        this.getData();
-      }
-    );
+      form.protocolo = this.protocolo;
+      this.spinner = true;
+      this.dataService.setData('clients/morfo/' + this.student.id, form).subscribe(
+        resp => {
+          this.newEvaluation = [];
+          this.addEval = false;
+          this.spinner = false;
+          this.getData();
+        }
+      );
     } else {
       this.openSnackBar('Atenção! Tem que definir uma data para esta avaliação!', '');
     }
@@ -148,7 +153,7 @@ export class SlaugtherComponent implements OnInit {
     this.lastEvalService.getLastEvaluation(this.student, this.newEvaluation.data);
     this.lastEvalService.lastEval.subscribe(
       (resp: any) => {
-        if (resp.erro != undefined  && !resp.erro) {
+        if (resp.erro != undefined && !resp.erro) {
           this.newEvaluation.altura = resp.altura;
           this.newEvaluation.peso = resp.peso;
           this.newEvaluation.punho = resp.punho;

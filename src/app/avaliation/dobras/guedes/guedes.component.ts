@@ -28,6 +28,7 @@ export class GuedesComponent implements OnInit {
   somatorio = 0;
   protocolo = 1;
   locale: string;
+  pesos: any = [];
 
   // graphics
   chartSelected = 'pie';
@@ -109,6 +110,10 @@ export class GuedesComponent implements OnInit {
     evaluation.idade = this.age;
     evaluation.sexo = this.student.sexo;
     const proto = this.protocolos.protocoloGuedes3d(evaluation, this.gorduraDesejada);
+    // results to pass
+    this.pesos.pesoAtual = proto.pesoAtual;
+    this.pesos.pesoSugerido = proto.pesoSugerido;
+    this.pesos.pesoExcesso = proto.pesoExcesso;
     // Create graphic
     this.showChart = true;
     this.single = this.prepareChart.getSingle1(proto);
